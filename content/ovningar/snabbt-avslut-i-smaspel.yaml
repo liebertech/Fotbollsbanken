@@ -58,5 +58,23 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanliga smålagsspel med bonusregler för snabbt avslut.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen håller. Avslut och spelbarhet är båda kärnområden för fas-8-9 (fokusomraden.md), och
+      båda är förankrade i innehållet: bonusregeln om avslut inom två toucher bär avslutet, och
+      coachningspunkten om att söka läge nära mål bär spelbarheten. Ytan 18 x 12 meter ger 36
+      kvadratmeter per spelare vid sex, vilket är rymligare än godkända litet spel till småmål på
+      samma yta med sju spelare. Småmål utan målvakt gör de snabba skotten ofarliga, och tre bollar
+      gör att spelet startar om direkt. Tiden 8 till 10 minuter ligger inom fasens gräns för
+      spelövning, 10 minuter (passuppbyggnad.md). Ledarbehov 0 är rätt. Nivålistan 1 till 3 är
+      rimlig: den lättare varianten tar bort touchgränsen, och då är övningen ett vanligt smålagsspel
+      som en nivå-1-grupp klarar, medan den svårare varianten med en touch räcker för nivå 3. Det
+      speglar godkända litet spel till småmål, som har samma nivålista. Lösningen för udda antal, att
+      ett lag spelar med en spelare mer, är rätt val i den här åldern enligt passuppbyggnad.md, och
+      R-054 tillåter att övningens egen lösning visas i stället för joker. Två mindre noteringar, som
+      inte hindrar godkännande: materiallistan saknar koner för ytans sidlinjer, och vid sju spelare
+      kan generatorn inte använda övningen, eftersom grupperna då blir fyra och tre (R-051, R-052).

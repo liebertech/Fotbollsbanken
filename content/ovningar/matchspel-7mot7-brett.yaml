@@ -62,5 +62,28 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer, påminner om retreatlinjen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Tre saker ska ändras. 1. Coachningspunkten om retreatlinjen är omvänd. Det står "Backa till
+      retreatlinjen så fort er målvakt har bollen i händerna". Det är motståndarna som backar: laget
+      vars målvakt inte har bollen går till linjen sju meter från mittlinjen på sin egen planhalva
+      och stannar där tills bollen har lämnat målvaktens händer (spelformer.md, SvFF:s spelformsblad
+      7 mot 7, hämtat 2026-09-11). Skriv "motståndarnas målvakt" i punkten. 2. Det står inte när
+      målvakter används. Beskrivningen och organisationen säger "om gruppen är tillräckligt stor"
+      utan något antal, fast minsta antal är åtta. Då kan ledaren läsa det som fyra mot fyra utan
+      målvakt, med två obevakade mål på fem gånger två meter och utan den retreatregel beskrivningen
+      bygger på. Skriv ut vad som gäller per gruppstorlek, som matchspelet för 5 mot 5 i samma
+      omgång: åtta = tre mot tre plus målvakter, tio = fyra mot fyra plus målvakter, fjorton = sex
+      mot sex plus målvakter. Väg in att tre mot tre på 50 x 30 meter ger 250 kvadratmeter per
+      utespelare och mest blir spring; minsta antal tio, som i godkända målvaktsspel i smålagsspel
+      (10 till 14 på samma yta), är rimligare, och vid åtta till nio finns redan smålagsspel med
+      fasta situationer. 3. Namnet stämmer inte. "Matchspel i litet format" låter som smålagsspel,
+      men det är 7 mot 7 på matchens egen plan med mål i spelformens storlek. Byt till exempel till
+      Matchspel 7 mot 7 i bredd. Id:t ändras aldrig. Det som stämmer: 50 x 30 är SvFF:s minsta
+      planmått för 7 mot 7 och ger 107 kvadratmeter per spelare vid fjorton, som i två godkända
+      spel-övningar. Tiden 10 till 25 minuter ligger inom fasens gräns för spel (30 minuter),
+      ledarbehov 0 är rätt (R-057) och nivålistan 1 till 3 godtar jag.

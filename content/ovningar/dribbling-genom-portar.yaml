@@ -60,5 +60,24 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare vid sidan kan hen bekräfta porträffar och byta
     vilken port som är öppen i den svårare varianten.
 kalla: Egen övning, inspirerad av vanliga smålagsspel med dribblingsportar.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen håller. Dribbling och 1 mot 1 är båda kärnområden för fas-8-9 (fokusomraden.md), och
+      bonusregeln gör att dribblingen faktiskt händer i stället för att bara nämnas. Ytan 18 x 12
+      meter är 216 kvadratmeter, alltså 36 per spelare vid sex och 54 vid fyra. Det är rymligare än
+      godkända litet spel till småmål, som har samma yta men sju spelare (30,9 per spelare), och
+      passar 3 mot 3 i åldern. Tiden 8 till 10 minuter ligger inom fasens gräns för spelövning, 10
+      minuter (passuppbyggnad.md). Ledarbehov 0 är rätt: reglerna är få, och att döma sig själv i
+      smålagsspel hör till fas-8-9 (aldrar-och-fokus.md). Ingen kö, alla är i spel hela tiden. Nivå 2
+      och 3 är rätt satt: att driva bollen genom en försvarad port kräver att spelaren behåller
+      bollen med en motståndare nära, vilket är nivå 2 i nivaer.md, och den svårare varianten med
+      bara en öppen port i taget räcker för nivå 3. Grupptyp och lösning för udda antal stämmer med
+      R-054. Tre mindre noteringar, som inte hindrar godkännande. Materiallistan saknar koner för att
+      markera ytans sidlinjer, vilket ledaren löser på plats. Portarna står inne på spelytan, så
+      platta markeringar är att föredra framför strutkoner om klubben har det. Vid sju spelare kan
+      generatorn inte använda övningen, eftersom grupperna då blir fyra och tre och tre är under
+      minsta antal (R-051, R-052).

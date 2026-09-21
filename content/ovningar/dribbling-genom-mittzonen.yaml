@@ -61,5 +61,27 @@ anpassning:
   ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar
     från sidan.
 kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      En sak ska ändras, och den påverkar hur generatorn använder övningen. Andra fokusområdet
+      spelbarhet har inget stöd i innehållet. Beskrivningen säger uttryckligen att en passning genom
+      zonen inte räknas, alla tre coachningspunkterna handlar om den som driver bollen, och syftet
+      nämner bara dribblingen. Enligt fokusomraden.md ska taggen beskriva vad spelarna faktiskt övar
+      mest, och med R-041 hamnar övningen i passets kärna så fort en ledare väljer spelbarhet som
+      fokus. Då får ledaren en dribblingsövning i stället för det som valdes. Välj ett av två: byt
+      spelbarhet mot ett-mot-ett, som är vad som faktiskt händer i zonen och som systerövningen
+      dribbling genom portar i samma omgång använder, eller behåll spelbarhet och förankra det med en
+      coachningspunkt om hur medspelarna ska göra sig spelbara på sidorna för att dra isär försvaret
+      framför zonen. Det som stämmer: dribbling som huvudfokus hör ihop med syftet och är kärnområde
+      för fas-10-12. Ytan 20 x 14 meter ger 280 kvadratmeter, alltså 47 per spelare vid sex. Det
+      ligger strax över bankens lägsta godkända för 7 mot 7 med motståndare (45, försvara zonen),
+      alltså i underkant men godtagbart för 3 mot 3, och zonen på sex meter av tjugo lämnar sju meter
+      till varje mål, vilket räcker för att bygga upp anfallet. Nivå 2 och 3 är rätt: att driva
+      bollen genom en försvarad zon kräver kontroll med en motståndare nära. Tiden 8 till 12 minuter
+      ligger inom fasens gräns för spelövning (15 minuter), ledarbehov 0 är rätt, ingen kö uppstår
+      och udda antal löses med joker enligt R-054. Konerna markerar zonen tvärs över ytan vid
+      sidlinjerna, vilket är rätt plats för strutkoner i ett spel.

@@ -57,5 +57,27 @@ anpassning:
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i litet format.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Två saker ska ändras. 1. Coachningspunkten om retreatlinjen är omvänd. Det står "Backa till
+      egen planhalva så fort er målvakt har bollen i händerna". Det är motståndarna som backar: laget
+      vars målvakt inte har bollen går till sin egen planhalva och stannar där tills bollen har
+      lämnat målvaktens händer (spelformer.md, SvFF:s spelformsblad 5 mot 5, hämtat 2026-09-11).
+      Beskrivningen säger rätt, punkten säger motsatsen, och det är punkterna ledaren läser högt.
+      Skriv "Backa till egen planhalva så fort motståndarnas målvakt har bollen i händerna". 2.
+      Nivålistan är för snäv. Ett vanligt matchspel i dagens spelform, utan extraregler, kräver inget
+      särskilt av gruppen och är rätt innehåll i spel-delen på alla tre nivåerna, och den svårare
+      varianten med tre passningar före mål är just en nivå-3-skärpning. Lägg till niva-3.
+      Matchspelet för 7 mot 7 i samma omgång är märkt 1 till 3, så banken blir annars
+      motsägelsefull. Det som stämmer: ytan 28 x 18 meter ger 504 kvadratmeter, alltså 50 per spelare
+      vid tio, samma trängsel som 5 mot 5-matchen på 30 x 15-20 meter (45 till 60) och samma som
+      godkända matchspel med snabb omställning. Mål i spelformens storlek, målvakt i varje lag och
+      byte av målvakter under passet är rätt för fas-8-9. Tiden 15 till 25 minuter ligger inom fasens
+      gräns för spel, 25 minuter. Ledarbehov 0 är rätt, och i spel-delen gäller inte taket per ledare
+      (R-057). Spannet sex till tio täcker fler lag än godkända matchspel med snabb omställning, som
+      börjar på åtta; vid elva spelare kan övningen ändå inte användas, eftersom grupperna då blir
+      sex och fem (R-051, R-052).
