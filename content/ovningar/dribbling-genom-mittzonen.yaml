@@ -1,0 +1,98 @@
+schema: 1
+id: dribbling-genom-mittzonen
+namn: Dribbling genom mittzonen
+syfte: Spelarna ska driva bollen genom en försvarad zon på väg mot mål.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 20 x 14 meter med ett litet mål i var
+  ände. En zon på mitten, 6 meter bred, är markerad tvärs över ytan. Ett lag får en extra
+  poäng om en spelare driver bollen genom zonen, med bollen i egna fötter, innan laget gör
+  mål i samma anfall. En passning genom zonen räknas inte, bollen måste drivas dit av samma
+  spelare.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters mellanrum.
+fokusomraden:
+  - dribbling
+  - ett-mot-ett
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 20
+    bredd: 14
+material:
+  - typ: minimal
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar zonens hörn tvärs över ytan
+  - typ: vast
+    antal: 3
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 2
+coachningspunkter:
+  - Driv bollen i fart genom zonen i stället för att passa runt den.
+  - Skydda bollen med kroppen när en försvarare möter dig i zonen.
+  - Byt riktning för att hitta en öppen väg genom zonen.
+varianter:
+  lattare: Zonen görs bredare, till exempel 8 meter, så att det finns mer plats att driva i.
+  svarare: Zonen görs smalare, till exempel 4 meter, och spelaren får bara två toucher genom den.
+anpassning:
+  fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
+  udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
+  ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar
+    från sidan.
+kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      En sak ska ändras, och den påverkar hur generatorn använder övningen. Andra fokusområdet
+      spelbarhet har inget stöd i innehållet. Beskrivningen säger uttryckligen att en passning genom
+      zonen inte räknas, alla tre coachningspunkterna handlar om den som driver bollen, och syftet
+      nämner bara dribblingen. Enligt fokusomraden.md ska taggen beskriva vad spelarna faktiskt övar
+      mest, och med R-041 hamnar övningen i passets kärna så fort en ledare väljer spelbarhet som
+      fokus. Då får ledaren en dribblingsövning i stället för det som valdes. Välj ett av två: byt
+      spelbarhet mot ett-mot-ett, som är vad som faktiskt händer i zonen och som systerövningen
+      dribbling genom portar i samma omgång använder, eller behåll spelbarhet och förankra det med en
+      coachningspunkt om hur medspelarna ska göra sig spelbara på sidorna för att dra isär försvaret
+      framför zonen. Det som stämmer: dribbling som huvudfokus hör ihop med syftet och är kärnområde
+      för fas-10-12. Ytan 20 x 14 meter ger 280 kvadratmeter, alltså 47 per spelare vid sex. Det
+      ligger strax över bankens lägsta godkända för 7 mot 7 med motståndare (45, försvara zonen),
+      alltså i underkant men godtagbart för 3 mot 3, och zonen på sex meter av tjugo lämnar sju meter
+      till varje mål, vilket räcker för att bygga upp anfallet. Nivå 2 och 3 är rätt: att driva
+      bollen genom en försvarad zon kräver kontroll med en motståndare nära. Tiden 8 till 12 minuter
+      ligger inom fasens gräns för spelövning (15 minuter), ledarbehov 0 är rätt, ingen kö uppstår
+      och udda antal löses med joker enligt R-054. Konerna markerar zonen tvärs över ytan vid
+      sidlinjerna, vilket är rätt plats för strutkoner i ett spel.
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Punkten är åtgärdad. Andra fokusområdet är nu ett-mot-ett, vilket stämmer med
+      innehållet: zonen är försvarad, två av tre coachningspunkter handlar om att skydda bollen och
+      byta riktning med en försvarare nära, och samma taggning används av systerövningen dribbling
+      genom portar. Med bytet hamnar övningen inte längre i passets kärna när ledaren väljer
+      spelbarhet som fokus (R-041), vilket var problemet. Inget annat är ändrat, och bedömningen
+      från första rundan står kvar: ytan 20 x 14 meter, nivå 2 och 3, tiden 8 till 12 minuter,
+      ledarbehov 0 och jokerlösningen vid udda antal (R-054). Inget kvarstår.

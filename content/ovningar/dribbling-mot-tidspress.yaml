@@ -1,0 +1,103 @@
+schema: 1
+id: dribbling-mot-tidspress
+namn: Dribbling mot tidspress
+syfte: Spelarna ska dribbla förbi en aktiv försvarare snabbt och med flera finter i följd.
+beskrivning: |
+  Två spelare möts på en yta om 15 x 10 meter med en port av två koner i bortre änden.
+  Anfallaren har åtta sekunder på sig att dribbla bollen genom porten, medan försvararen
+  försvarar aktivt från start. Anfallaren räknar sekunderna högt, "en, två, tre...", så att
+  båda vet när tiden är ute. Vinner försvararen bollen eller tar tiden slut byter paret roll
+  och startar om med en ny boll. Efter fyra försök var går paret tillbaka till start och
+  vilar en halv minut innan nästa omgång.
+organisation: |
+  Ett par per yta. Fler par får varsin egen yta bredvid, med tre meters mellanrum. Paret
+  arbetar i omgångar om fyra försök var, med en halv minuts vila mellan omgångarna.
+fokusomraden:
+  - dribbling
+  - ett-mot-ett
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 6
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 15
+    bredd: 10
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv så att paret kan starta om direkt
+  - typ: kon
+    antal: 6
+    anteckning: fyra till ytans hörn och två till porten i bortre änden
+coachningspunkter:
+  - Sätt fart direkt efter finten, stanna inte upp.
+  - Skydda bollen med kroppen när försvararen är tätt inpå.
+  - Håll blicken uppe för att se när porten är öppen.
+  - Räkna sekunderna högt så att både du och försvararen vet när tiden är ute.
+varianter:
+  lattare: Höj tidsgränsen till tolv sekunder.
+  svarare: Sänk tidsgränsen till sex sekunder och gör porten smalare.
+anpassning:
+  fler_spelare: Bygg fler ytor bredvid varandra med samma mått.
+  udda_antal: Tre spelare delar en yta och roterar, två dribblar och byter mot den tredje efter
+    varje försök.
+  ledare: Med en ledare i närheten kan hen hålla tiden och ropa ut när tiden är slut för alla par
+    samtidigt.
+kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Idén är bra och nivå 3 ensam är rätt satt: åtta sekunder mot en aktiv försvarare kräver att
+      spelaren behåller bollen under press och har flera lösningar, vilket är nivå 3 i nivaer.md. Två
+      saker ska ändras. 1. Ytan är för liten. 10 x 8 meter är 80 kvadratmeter för två spelare i full
+      fart. Vid granskningen av godkända 1 mot 1 till småmål, som är samma ålder och samma grupptyp,
+      höjdes ytan från 8 x 6 till 12 x 8 meter just för att spelarna ska hinna växla fart och möta i
+      vinkel utan att springa in i varandra eller i målen. Den här övningen är snabbare än den,
+      eftersom anfallaren måste attackera direkt när klockan startar, och porten står i bortre änden,
+      så spelaren passerar mellan två koner i fart. Sätt minst 12 x 8 meter, och helst 15 x 10 som i
+      godkända slalomdribbling mot försvarare, där paret också ska driva bollen i fart. 2. Vilan
+      saknas. Beskrivningen säger att paret byter roll och startar om direkt med en ny boll. Åtta
+      sekunder i full fart om och om igen i sex till tio minuter är hög belastning för 10-12 år, och
+      beskrivningen ger ingen naturlig paus. Skriv in arbete och vila, till exempel att paret går
+      tillbaka till start mellan försöken och vilar en halv minut efter fyra försök. Med tre spelare
+      som roterar, som anpassningen för udda antal beskriver, löser det sig av sig självt, men med
+      två gör det inte det. Ta samtidigt med en tredje sak: beskriv vem som räknar de åtta sekunderna
+      när ingen ledare står vid ytan, eftersom ledarbehovet är 0 och tidtagningen är övningens
+      viktigaste regel. Det som stämmer: dribbling som huvudfokus hör ihop med syftet och är
+      kärnområde för fas-10-12, 1 mot 1 är relevant i fasen, tiden 6 till 10 minuter ligger inom
+      fasens gräns för öva (15 minuter), och lösningen för udda antal med en trio följer R-054. Att
+      en duell i 1 mot 1 ligger i öva-delen är i sin ordning; godkända 1 mot 1 till småmål ligger
+      där.
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Alla tre punkterna är åtgärdade. 1. Ytan är 15 x 10 meter. Kontrollräknat: 150
+      kvadratmeter, alltså 75 per spelare, samma som godkända slalomdribbling mot försvarare och
+      klart över golvet 12 x 8 som jag angav. Porten i bortre änden får nu plats framför sig, så
+      spelarna hinner växla fart utan kollisionsrisk. 2. Arbete och vila står i både beskrivningen
+      och organisationen: fyra försök var och en halv minuts vila mellan omgångarna, och rollbytet
+      efter varje försök ger dessutom en kort andhämtning. Det är rimlig belastning för 10-12 år i
+      sex till tio minuter. 3. Det står nu att anfallaren räknar sekunderna högt, och det finns en
+      egen coachningspunkt om det, så tidtagningen fungerar med ledarbehov 0. Till redaktören, ingen
+      åtgärd krävs: att räkna högt i full fart är krävande, och ledaren kan lika gärna låta
+      försvararen räkna om paret tycker det är enklare. Övrigt är oförändrat och står fast: nivå 3
+      ensam, dribbling som huvudfokus och trion vid udda antal (R-054).

@@ -1,0 +1,80 @@
+schema: 1
+id: snabbt-avslut-i-smaspel
+namn: Snabbt avslut i litet spel
+syfte: Spelarna ska avsluta snabbt mot mål så fort ett bra läge uppstår.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 18 x 12 meter med ett litet mål i var
+  ände utan målvakt. Vanliga mål ger en poäng. En extra poäng ges om spelaren skjuter inom
+  två toucher efter att ha tagit emot bollen eller vunnit den, så att laget lär sig att
+  avsluta direkt i stället för att dribblera för länge.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters mellanrum.
+fokusomraden:
+  - avslut
+  - spelbarhet
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 10
+yta:
+  alla:
+    langd: 18
+    bredd: 12
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 3
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+    anteckning: extra bollar så att spelet kommer i gång snabbt igen
+coachningspunkter:
+  - Skjut så fort du har ett öppet läge, vänta inte på ett bättre.
+  - Sikta lågt mot ett hörn av målet.
+  - Sök läge nära mål i stället för att stanna långt bak.
+varianter:
+  lattare: Ta bort touchgränsen. Alla mål ger en poäng oavsett hur snabbt de görs.
+  svarare: Bonuspoängen kräver avslut med en enda touch.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
+kalla: Egen övning, inspirerad av vanliga smålagsspel med bonusregler för snabbt avslut.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen håller. Avslut och spelbarhet är båda kärnområden för fas-8-9 (fokusomraden.md), och
+      båda är förankrade i innehållet: bonusregeln om avslut inom två toucher bär avslutet, och
+      coachningspunkten om att söka läge nära mål bär spelbarheten. Ytan 18 x 12 meter ger 36
+      kvadratmeter per spelare vid sex, vilket är rymligare än godkända litet spel till småmål på
+      samma yta med sju spelare. Småmål utan målvakt gör de snabba skotten ofarliga, och tre bollar
+      gör att spelet startar om direkt. Tiden 8 till 10 minuter ligger inom fasens gräns för
+      spelövning, 10 minuter (passuppbyggnad.md). Ledarbehov 0 är rätt. Nivålistan 1 till 3 är
+      rimlig: den lättare varianten tar bort touchgränsen, och då är övningen ett vanligt smålagsspel
+      som en nivå-1-grupp klarar, medan den svårare varianten med en touch räcker för nivå 3. Det
+      speglar godkända litet spel till småmål, som har samma nivålista. Lösningen för udda antal, att
+      ett lag spelar med en spelare mer, är rätt val i den här åldern enligt passuppbyggnad.md, och
+      R-054 tillåter att övningens egen lösning visas i stället för joker. Två mindre noteringar, som
+      inte hindrar godkännande: materiallistan saknar koner för ytans sidlinjer, och vid sju spelare
+      kan generatorn inte använda övningen, eftersom grupperna då blir fyra och tre (R-051, R-052).

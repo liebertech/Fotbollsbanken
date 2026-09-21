@@ -1,0 +1,97 @@
+schema: 1
+id: en-mot-en-till-tva-mal
+namn: 1 mot 1 till två mål
+syfte: Spelarna ska utmana motståndaren i 1 mot 1 och göra mål i ett litet lagspel.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 24 x 16 meter med ett litet mål i var
+  ände. Vanliga mål ger en poäng. En extra poäng ges för mål som föregås av att spelaren
+  dribblat förbi en direkt motståndare på väg mot mål.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters mellanrum.
+fokusomraden:
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 24
+    bredd: 16
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 3
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Utmana motståndaren i stället för att passa bort bollen direkt.
+  - Skydda bollen med kroppen i närkampen.
+  - Skjut tidigt när du har tagit dig förbi din motståndare.
+varianter:
+  lattare: Försvararna får bara gå, inte springa, när de pressar bollhållaren.
+  svarare: Bonuspoängen kräver att spelaren dribblat förbi två motståndare i samma anfall.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum.
+  udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
+  ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål med bonus för 1 mot 1.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen är rätt tänkt för spelövningen, men ytan och en coachningspunkt ska ändras. 1. Ytan är
+      för liten för åldern. 18 x 12 meter är 216 kvadratmeter, alltså 36 per spelare vid sex. Det är
+      den trängsta duellövningen i 7 mot 7-delen av banken. Godkända övningar för fas-10-12 med
+      motståndare och riktning ligger på 45 (försvara zonen) till 107 kvadratmeter per spelare
+      (smålagsspel på 50 x 30), och tre mot en till mål använder samma 18 x 12 meter men med högst
+      fyra spelare, alltså 54 per spelare. Måtten 18 x 12 är hämtade från 5 mot 5-övningarna i samma
+      omgång, och 10-12-åringar är både större och snabbare än 8-9-åringar. Syftet är dessutom att
+      utmana i 1 mot 1, och det kräver plats att anfalla på. Höj ytan till ungefär 24 x 16 meter,
+      vilket ger 64 kvadratmeter per spelare vid sex, och behåll spannet fyra till sex. Att i stället
+      sänka maxantalet löser inte problemet: med fyra till fyra kan generatorn inte dela tio spelare
+      i grupper som alla håller minsta antal (R-051, R-052). 2. Tredje coachningspunkten handlar om
+      omställning, som inte är ett av övningens fokusområden, medan avslut, som är andra
+      fokusområde, saknar egen punkt. Byt punkten mot en om avslutet, till exempel att skjuta tidigt
+      när du har tagit dig förbi. Det som stämmer: 1 mot 1 och avslut passar fasen (fokusomraden.md),
+      nivå 1 och 2 är rimligt satt eftersom den lättare varianten med gående försvarare gör övningen
+      möjlig på nivå 1, tiden 8 till 12 minuter ligger inom fasens gräns för spelövning (15 minuter),
+      ledarbehov 0 är rätt och udda antal löses med joker enligt R-054. Materiallistan skulle vinna
+      på koner som markerar ytans sidlinjer.
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Båda punkterna är åtgärdade. 1. Ytan är 24 x 16 meter. Kontrollräknat: 384
+      kvadratmeter, alltså 64 per spelare vid sex och 96 vid fyra. Det ligger mellan bankens lägsta
+      godkända för fas-10-12 med motståndare (45, försvara zonen) och smålagsspelet på 50 x 30
+      (107), och ger den plats att anfalla på som syftet kräver. Spannet 4-6 är behållet, vilket är
+      rätt: med högst fyra spelare hade tio delats i 4+3+3, och två av grupperna hade varit för små
+      (R-051, R-052). Med 4-6 fungerar åtta, nio, tio, elva och tolv spelare. 2. Tredje
+      coachningspunkten handlar nu om avslutet, så båda fokusområdena har var sin punkt, och
+      punkten om omställning är borta. Koner som markerar ytans hörn är dessutom tillagda i
+      materiallistan. Inget kvarstår.

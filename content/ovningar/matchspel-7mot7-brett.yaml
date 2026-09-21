@@ -1,0 +1,111 @@
+schema: 1
+id: matchspel-7mot7-brett
+namn: Matchspel 7 mot 7 i bredd
+syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i ett matchlikt spel.
+beskrivning: |
+  Två lag möts på en yta om 50 x 30 meter med mål i var ände, alltid med varsin målvakt.
+  Antalet utespelare i varje lag beror på gruppens storlek: tio spelare ger fyra mot fyra,
+  tolv ger fem mot fem och fjorton, fullstort 7 mot 7, ger sex mot sex. Är antalet udda
+  spelar det ena laget med en utespelare mer. Laget som har boll ska sprida ut sig och hålla
+  bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren. Vanliga regler
+  i 7 mot 7 gäller, inklusive retreatlinjen: när målvakten har bollen i händerna backar
+  motståndarna till linjen 7 meter från mittlinjen på sin egen planhalva och stannar där tills
+  bollen har lämnat målvaktens händer.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Tio spelare: fyra mot fyra. Tolv spelare: fem
+  mot fem. Fjorton spelare: sex mot sex. Vid elva eller tretton spelare spelar det ena laget
+  med en utespelare mer än det andra. Ledaren markerar retreatlinjen med koner 7 meter från
+  mittlinjen på båda planhalvor.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 10
+  max: 14
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 20
+  langst: 25
+yta:
+  alla:
+    langd: 50
+    bredd: 30
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 7
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 4
+    anteckning: markerar retreatlinjen på båda planhalvor
+coachningspunkter:
+  - Sprid ut er i bredd och djup så att bollhållaren har flera passningsval.
+  - Backa till retreatlinjen så fort motståndarnas målvakt har bollen i händerna.
+  - Rör dig direkt efter din passning för att bli spelbar igen.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst fyra passningar i följd.
+anpassning:
+  fler_spelare: Gör planen större, upp mot 55 x 35 meter, och spela med fler spelare i varje lag.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer, påminner om retreatlinjen och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Tre saker ska ändras. 1. Coachningspunkten om retreatlinjen är omvänd. Det står "Backa till
+      retreatlinjen så fort er målvakt har bollen i händerna". Det är motståndarna som backar: laget
+      vars målvakt inte har bollen går till linjen sju meter från mittlinjen på sin egen planhalva
+      och stannar där tills bollen har lämnat målvaktens händer (spelformer.md, SvFF:s spelformsblad
+      7 mot 7, hämtat 2026-09-11). Skriv "motståndarnas målvakt" i punkten. 2. Det står inte när
+      målvakter används. Beskrivningen och organisationen säger "om gruppen är tillräckligt stor"
+      utan något antal, fast minsta antal är åtta. Då kan ledaren läsa det som fyra mot fyra utan
+      målvakt, med två obevakade mål på fem gånger två meter och utan den retreatregel beskrivningen
+      bygger på. Skriv ut vad som gäller per gruppstorlek, som matchspelet för 5 mot 5 i samma
+      omgång: åtta = tre mot tre plus målvakter, tio = fyra mot fyra plus målvakter, fjorton = sex
+      mot sex plus målvakter. Väg in att tre mot tre på 50 x 30 meter ger 250 kvadratmeter per
+      utespelare och mest blir spring; minsta antal tio, som i godkända målvaktsspel i smålagsspel
+      (10 till 14 på samma yta), är rimligare, och vid åtta till nio finns redan smålagsspel med
+      fasta situationer. 3. Namnet stämmer inte. "Matchspel i litet format" låter som smålagsspel,
+      men det är 7 mot 7 på matchens egen plan med mål i spelformens storlek. Byt till exempel till
+      Matchspel 7 mot 7 i bredd. Id:t ändras aldrig. Det som stämmer: 50 x 30 är SvFF:s minsta
+      planmått för 7 mot 7 och ger 107 kvadratmeter per spelare vid fjorton, som i två godkända
+      spel-övningar. Tiden 10 till 25 minuter ligger inom fasens gräns för spel (30 minuter),
+      ledarbehov 0 är rätt (R-057) och nivålistan 1 till 3 godtar jag.
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Alla tre punkterna är åtgärdade. 1. Retreatpunkten säger nu "motståndarnas
+      målvakt". Jag läste alla tre coachningspunkterna; de två övriga, om bredd och djup och om att
+      röra sig efter passningen, stämmer med syftet. Beskrivningen anger linjen sju meter från
+      mittlinjen, som spelformer.md och SvFF:s spelformsblad 7 mot 7 (hämtat 2026-09-11), och
+      konerna finns i materiallistan. 2. Lagstorleken står utskriven per gruppstorlek, tio ger fyra
+      mot fyra, tolv fem mot fem och fjorton sex mot sex, udda antal ger ena laget en utespelare
+      mer, och målvakt är alltid med. Spelare.min är 10. Kontrollräknat: 1500 kvadratmeter ger 150
+      per spelare vid tio och 107 vid fjorton, båda rimliga för fas-10-12. 3. Namnet är Matchspel 7
+      mot 7 i bredd och id:t är oförändrat. Två följder att känna till, ingen av dem stoppar
+      övningen: grupper på åtta till nio kan inte längre använda den, och för dem är smålagsspel med
+      fasta situationer (8-14, nivå 1-3) enda spel-alternativet i 7 mot 7. Grupper på 15 till 19
+      faller också utanför, eftersom två grupper då blir mindre än tio (R-051, R-052), men samma
+      smålagsspel täcker dem. Rekommendation till nästa omgång: ett spel för 7 mot 7 med spelbarhet
+      eller passning som fokus och ett spann som börjar på åtta spelare.

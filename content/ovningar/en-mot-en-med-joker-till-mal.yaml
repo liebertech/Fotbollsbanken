@@ -1,0 +1,106 @@
+schema: 1
+id: en-mot-en-med-joker-till-mal
+namn: 2 mot 2 med joker till mål
+syfte: Spelarna ska utmana motståndaren i 1 mot 1 och avsluta mot mål med stöd av en joker.
+beskrivning: |
+  Två lag möts på en yta om 18 x 12 meter med ett litet mål i var ände. En joker spelar
+  alltid med det lag som har bollen och gör att anfallarna oftast är i överläge mot den
+  sista försvararen. Extra poäng ges för mål som föregås av att en spelare dribblat förbi en
+  direkt motståndare. Grundformen är två mot två plus en joker, totalt fem spelare; hur
+  laguppställningen växer med fler spelare beskrivs i organisationen.
+organisation: |
+  Två jämnstora lag delar ytan, plus minst en joker som alltid spelar med laget som har
+  bollen. Fem spelare: två lag om två plus en joker. Sex spelare: två lag om två plus två
+  jokrar, så att jokermekaniken alltid finns kvar. Sju spelare: två lag om tre plus en
+  joker. Flera ytor läggs bredvid varandra, med tre meters mellanrum, om gruppen är större.
+fokusomraden:
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 5
+  max: 7
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 10
+yta:
+  alla:
+    langd: 18
+    bredd: 12
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 5
+    anteckning: upp till tre till det ena laget, i en färg, och upp till två till
+      jokern eller jokrarna, i en annan färg
+  - typ: boll
+    antal: 2
+coachningspunkter:
+  - Utmana motståndaren i stället för att passa bort bollen direkt.
+  - Använd jokern för att skapa ett överläge och en öppen väg till mål.
+  - Skydda bollen med kroppen när en försvarare är nära.
+  - Skjut lågt och tidigt när vägen till mål är öppen.
+varianter:
+  lattare: Jokern får bara passa, inte göra mål själv, så att en av de andra måste avsluta.
+  svarare: Ta bort jokern eller jokrarna så lagen möts jämnt, till exempel två mot två.
+anpassning:
+  fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
+  udda_antal: Redan inbyggt i grundformen. Vid fem eller sju spelare finns alltid en joker,
+    vid sex spelare två, enligt organisationen ovan.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen bekräfta bonuspoängen för
+    dribblingar och peppa laget.
+kalla: Egen övning, inspirerad av vanliga smålagsspel med joker och bonuspoäng för 1 mot 1.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Fyra saker ska ändras. 1. Jokern finns inte vid minsta antal. Namn, syfte, beskrivning och två
+      av tre coachningspunkter förutsätter en joker, men minsta antal är fyra, alltså 2 mot 2 utan
+      joker. Med åtta spelare blir det två grupper om fyra, och då saknas jokern helt fast passet
+      visar en övning som heter med joker. Den svårare varianten, att ta bort jokern, blir dessutom
+      identisk med grundformen vid fyra. Välj: antingen minsta antal fem så att jokern alltid finns,
+      och skriv då vad som gäller vid sex och sju spelare, eller skriv om texten så att den fungerar
+      både med och utan joker. 2. Namnet säger 1 mot 1, men uppställningen är 2 mot 2. Byt namn, till
+      exempel 2 mot 2 med joker till mål. Id:t ändras aldrig. 3. Nivålistan. Jokerregeln plus
+      bonuspoängen är två extra regler utöver spelet, vilket är för mycket för nivå 1, som enligt
+      nivaer.md behöver enkel organisation och få moment. Sätt niva-2 och niva-3, eller behåll niva-1
+      och flytta bonuspoängen till den svårare varianten. 4. Avslut är andra fokusområde men saknar
+      egen coachningspunkt. Lägg till en, till exempel att skjuta lågt och tidigt när vägen till mål
+      är öppen. Det som stämmer: ytan 16 x 10 meter ger 32 kvadratmeter per spelare vid fem, i nivå
+      med godkända litet spel till småmål (30,9) och tätare än 5 mot 5-matchen (45 till 60,
+      spelformer.md). Tiden 8 till 10 minuter ligger inom fasens gräns för spelövning, 10 minuter.
+      Ledarbehov 0 är rätt och västarna i två färger är genomtänkta. Väg in när du ändrar antalet:
+      med spannet fyra till fem kan generatorn inte använda övningen vid sex, sju eller elva spelare,
+      eftersom en grupp då blir för liten (R-051, R-052).
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Alla fyra punkterna är åtgärdade. Jokern finns nu vid fem, sex och sju spelare,
+      och spannet 5-7 hänger ihop med ytan 18 x 12: kontrollräknat 216 kvadratmeter, alltså 43 per
+      spelare vid fem och 31 vid sju, i nivå med godkända litet spel till småmål (30,9). Namnet
+      stämmer med uppställningen och id:t är oförändrat. Nivå 2 och 3 är rätt när jokerregel och
+      bonuspoäng gäller samtidigt, och avslut har fått en egen coachningspunkt. Tre saker att veta,
+      ingen av dem stoppar övningen. 1. Med spannet 5-7 kan generatorn inte använda övningen vid
+      åtta eller nio spelare, eftersom grupperna då blir 4+4 respektive 5+4 (R-051, R-052). Det är
+      vanliga storlekar i 5 mot 5, men dribbling genom portar och behåll bollen i gruppen täcker
+      spelövningen där. 2. När nivå 1 lämnas finns ingen spelövning med ett-mot-ett på nivå 1 kvar
+      för 8-9 år. Väljer ledaren bara ett-mot-ett på nivå 1 kan spelövningen då inte fyllas (R-041).
+      Rekommendation till nästa omgång: en enkel nivå-1-spelövning i 1 mot 1 för 8-9 år. 3. Till
+      redaktören: den svårare varianten, att ta bort jokern, går jämnt ut vid sex men lämnar en
+      spelare över vid fem och sju. Skriv gärna in att den spelaren roterar in efter varje mål.

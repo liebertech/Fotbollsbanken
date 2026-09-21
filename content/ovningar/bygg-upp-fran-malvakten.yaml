@@ -1,0 +1,83 @@
+schema: 1
+id: bygg-upp-fran-malvakten
+namn: Bygg upp från målvakten
+syfte: Spelarna ska sprida ut sig och ta emot uppspel från målvakten utan press.
+beskrivning: |
+  En målvakt och tre utespelare håller till på en yta om 25 x 18 meter med ett mål i ena
+  änden och en markerad linje 18 meter bort. Målvakten lägger ner bollen och spelar ut till en
+  utespelare, som ska ta sig med passningar hela vägen till linjen utan någon motståndare.
+  När gruppen når linjen rullas bollen tillbaka till målvakten och gruppen startar om, gärna
+  med en ny fördelning av vem som springer var.
+organisation: |
+  En grupp om fyra spelare per yta: målvakt och tre utespelare. Gruppen turas om att stå i
+  mål, en femte spelare roterar in som ny målvakt efter ett bestämt antal försök.
+fokusomraden:
+  - speluppbyggnad
+  - malvaktsspel
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 25
+    bredd: 18
+material:
+  - typ: mal
+    antal: 1
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar linjen 18 meter från målet
+coachningspunkter:
+  - Målvakten lägger ner bollen och passar med fötterna, sparkar inte ut den.
+  - Sprid ut er i bredd så att det finns flera passningsvägar.
+  - Möt bollen på väg mot den i stället för att stå still och vänta.
+varianter:
+  lattare: Målvakten får kasta ut bollen med händerna till en fri utespelare.
+  svarare: Lägg till en passiv försvarare som får röra sig men inte tackla eller vinna bollen.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En femte spelare roterar in som målvakt så att alla turas om.
+  ledare: Utan extra ledare styr gruppen själv vem som är målvakt och byter efter ett bestämt antal
+    försök. Med en ledare kan hen coacha målvaktens utkast och passningsval.
+kalla: Egen övning, inspirerad av vanlig uppspelsträning från målvakten utan press.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen håller och fyller en lucka: speluppbyggnad utan press i öva-delen, som ska ha ingen
+      eller passiv motståndare och många upprepningar. Målvaktsspel som andra fokusområde godtar jag,
+      men bara för att alla turas om att stå i mål, vilket organisationen och anpassningen säger.
+      Faller rotationen bort, faller taggen. Spelformens regler är rätt: målvakten lägger ner bollen
+      och passar i stället för att sparka ut den, och utkast med händerna i den lättare varianten är
+      tillåtet (spelformer.md, SvFF:s spelformsblad 7 mot 7, hämtat 2026-09-11). Ingen kö, alla fyra
+      är med i varje försök. Ytan 25 x 18 meter ger 450 kvadratmeter på fyra spelare, och linjen 18
+      meter från målet ryms i de 25 metrarna. Tiden 8 till 12 minuter ligger inom fasens gräns för
+      öva, 15 minuter. Ledarbehov 0 är rätt, och med R-055 kan en ensam ledare ha flera grupper
+      igång. Nivå 1 och 2 stämmer: uppspel utan press utmanar inte en nivå-3-grupp, och en passiv
+      försvarare håller sig inom nivå 2. Fast storlek fyra med lösning för udda antal ger grupper om
+      fyra eller fem (R-050), vilket stämmer med att organisationen nämner en femte spelare. Vid sju
+      och elva spelare kan övningen inte användas, eftersom en grupp då blir för liten (R-051,
+      R-052). Två noteringar utan hinder för godkännande: varje grupp behöver ett eget mål, så tolv
+      spelare betyder tre mål, och materiallistan skulle kunna säga att ett minimål eller två koner
+      duger, som i godkända 1 mot 1 till småmål. Material är inget filter i generatorn.

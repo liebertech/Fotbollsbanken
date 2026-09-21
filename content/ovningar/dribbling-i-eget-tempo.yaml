@@ -1,0 +1,77 @@
+schema: 1
+id: dribbling-i-eget-tempo
+namn: Dribbling i eget tempo
+syfte: Spelarna ska föra bollen med kontroll och byta riktning i eget tempo, utan motstånd.
+beskrivning: |
+  En slalombana på ungefär 15 meter byggs upp med fyra koner. Spelarna startar en och en med
+  några sekunders mellanrum, driver bollen genom slalomen och joggar tillbaka till kön för ett
+  nytt varv i eget tempo.
+organisation: |
+  En bana per grupp om upp till åtta spelare. Fler grupper byggs bredvid varandra med samma
+  uppsättning koner.
+fokusomraden:
+  - dribbling
+  - bollkansla
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 8
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 20
+    bredd: 15
+material:
+  - typ: boll
+    antal: 1
+    anteckning: en per spelare
+  - typ: kon
+    antal: 6
+    anteckning: fyra till slalomen och två som markerar start och mål
+coachningspunkter:
+  - Håll bollen nära fötterna i varje riktningsbyte.
+  - Använd insidan och utsidan av foten växelvis.
+  - Titta upp mellan toucherna, inte bara ner på bollen.
+varianter:
+  lattare: Färre koner med längre mellanrum, så att riktningsbytena blir enklare.
+  svarare: Fler koner med kortare mellanrum, och tidta varvet mot sin egen förra tid.
+anpassning:
+  fler_spelare: Bygg en andra bana bredvid med samma uppsättning koner.
+  udda_antal: Alla kör med egen boll i eget tempo, så udda antal spelar ingen roll.
+  ledare: En ledare räcker för att visa banan och peppa. Med fler ledare kan en stå vid start och en
+    vid slalomen och ge tips under tiden.
+kalla: Egen övning, inspirerad av vanliga slalombanor för dribbling.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen håller och fyller ett hål i banken: dribbling på nivå 1 i öva-delen för 10-12 år.
+      Formen är densamma som godkända hinderbana med boll, som vid granskningen fick högst åtta
+      spelare per bana just för att kön inte ska bli för lång, så max åtta här ligger i linje med
+      banken. Alla har egen boll och startar med några sekunders mellanrum, så ingen står utan boll;
+      riktvärdet för fasen är högst 3-4 i kö per boll, mål eller station (aldrar-och-fokus.md), och
+      med egen boll till var och en är det uppfyllt. Ytan 20 x 15 meter räcker för en bana på 15
+      meter plus återgång vid sidan. Tiden 6 till 10 minuter ligger inom fasens gräns för öva, 15
+      minuter (passuppbyggnad.md). Ledarbehov 0 är rätt: banan är självgående när den visats en gång,
+      och med R-055 kan en ensam ledare ha flera banor igång. Syftet hör tydligt ihop med huvudfokus
+      dribbling, och bollkänsla som andra fokusområde är förankrat i coachningspunkterna om
+      fotisättning och att titta upp. Att bara nivå 1 står i listan är ett medvetet och rimligt val:
+      en bana utan motståndare i eget tempo utmanar inte en nivå-2-grupp i öva-delen, där banken i
+      stället har slalomdribbling mot försvarare på nivå 2. En mindre sak, utan hinder för
+      godkännande: den svårare varianten talar om fler koner än de sex som står i materiallistan, så
+      ledaren behöver ta fram några extra.

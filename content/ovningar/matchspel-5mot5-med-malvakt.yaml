@@ -1,0 +1,96 @@
+schema: 1
+id: matchspel-5mot5-med-malvakt
+namn: Matchspel 5 mot 5 med målvakt
+syfte: Spelarna ska sprida ut sig och passa till en fri medspelare i ett matchlikt spel.
+beskrivning: |
+  Två lag med upp till fyra utespelare och varsin målvakt möts på en yta om 28 x 18 meter
+  med mål i var ände. Vanliga regler i 5 mot 5 gäller: när målvakten har bollen i händerna
+  backar motståndarna till sin egen planhalva och stannar där tills bollen har lämnat
+  målvaktens händer. Inga särskilda poängregler, bara ett vanligt matchspel.
+organisation: |
+  Två lag om två till fyra utespelare plus varsin målvakt, alltså sex till tio spelare per
+  yta. Är gruppen åtta eller nio spelare spelas tre mot tre med målvakt, och den nionde blir
+  en extra utespelare i ena laget. Målvakterna byts av under passet så att fler får prova.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 15
+  rekommenderad: 20
+  langst: 25
+yta:
+  alla:
+    langd: 28
+    bredd: 18
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er över ytan så att ni är lätta att hitta för den som har boll.
+  - Ropa efter bollen och visa dig spelbar i en öppen yta.
+  - Backa till egen planhalva så fort motståndarnas målvakt har bollen i händerna.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst tre passningar i följd.
+anpassning:
+  fler_spelare: Gör ytan större och spela med fem utespelare i varje lag.
+  udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
+  ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i litet format.
+status: granskad
+granskning:
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Två saker ska ändras. 1. Coachningspunkten om retreatlinjen är omvänd. Det står "Backa till
+      egen planhalva så fort er målvakt har bollen i händerna". Det är motståndarna som backar: laget
+      vars målvakt inte har bollen går till sin egen planhalva och stannar där tills bollen har
+      lämnat målvaktens händer (spelformer.md, SvFF:s spelformsblad 5 mot 5, hämtat 2026-09-11).
+      Beskrivningen säger rätt, punkten säger motsatsen, och det är punkterna ledaren läser högt.
+      Skriv "Backa till egen planhalva så fort motståndarnas målvakt har bollen i händerna". 2.
+      Nivålistan är för snäv. Ett vanligt matchspel i dagens spelform, utan extraregler, kräver inget
+      särskilt av gruppen och är rätt innehåll i spel-delen på alla tre nivåerna, och den svårare
+      varianten med tre passningar före mål är just en nivå-3-skärpning. Lägg till niva-3.
+      Matchspelet för 7 mot 7 i samma omgång är märkt 1 till 3, så banken blir annars
+      motsägelsefull. Det som stämmer: ytan 28 x 18 meter ger 504 kvadratmeter, alltså 50 per spelare
+      vid tio, samma trängsel som 5 mot 5-matchen på 30 x 15-20 meter (45 till 60) och samma som
+      godkända matchspel med snabb omställning. Mål i spelformens storlek, målvakt i varje lag och
+      byte av målvakter under passet är rätt för fas-8-9. Tiden 15 till 25 minuter ligger inom fasens
+      gräns för spel, 25 minuter. Ledarbehov 0 är rätt, och i spel-delen gäller inte taket per ledare
+      (R-057). Spannet sex till tio täcker fler lag än godkända matchspel med snabb omställning, som
+      börjar på åtta; vid elva spelare kan övningen ändå inte användas, eftersom grupperna då blir
+      sex och fem (R-051, R-052).
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Båda punkterna är åtgärdade. Jag läste alla tre coachningspunkterna.
+      Retreatpunkten säger nu "motståndarnas målvakt", vilket stämmer med spelformer.md och SvFF:s
+      spelformsblad 5 mot 5 (hämtat 2026-09-11): laget vars målvakt inte har bollen backar till sin
+      egen planhalva och stannar där tills bollen har lämnat målvaktens händer. De två övriga
+      punkterna, om att sprida ut sig och att visa sig spelbar, är oförändrade och hänger ihop med
+      syftet och fokusområdena. Beskrivningen och organisationen säger samma sak som punkterna, så
+      ledaren kan läsa vilken del som helst utan att bli vilseledd. Nivålistan är nu 1 till 3, i
+      linje med matchspelet för 7 mot 7 i samma omgång. Inget kvarstår.
