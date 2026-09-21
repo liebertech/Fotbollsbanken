@@ -58,7 +58,7 @@ anpassning:
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
   ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål med bonus för 1 mot 1.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -82,3 +82,16 @@ granskning:
       möjlig på nivå 1, tiden 8 till 12 minuter ligger inom fasens gräns för spelövning (15 minuter),
       ledarbehov 0 är rätt och udda antal löses med joker enligt R-054. Materiallistan skulle vinna
       på koner som markerar ytans sidlinjer.
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Båda punkterna är åtgärdade. 1. Ytan är 24 x 16 meter. Kontrollräknat: 384
+      kvadratmeter, alltså 64 per spelare vid sex och 96 vid fyra. Det ligger mellan bankens lägsta
+      godkända för fas-10-12 med motståndare (45, försvara zonen) och smålagsspelet på 50 x 30
+      (107), och ger den plats att anfalla på som syftet kräver. Spannet 4-6 är behållet, vilket är
+      rätt: med högst fyra spelare hade tio delats i 4+3+3, och två av grupperna hade varit för små
+      (R-051, R-052). Med 4-6 fungerar åtta, nio, tio, elva och tolv spelare. 2. Tredje
+      coachningspunkten handlar nu om avslutet, så båda fokusområdena har var sin punkt, och
+      punkten om omställning är borta. Koner som markerar ytans hörn är dessutom tillagda i
+      materiallistan. Inget kvarstår.

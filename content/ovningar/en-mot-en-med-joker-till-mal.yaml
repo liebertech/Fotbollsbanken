@@ -63,7 +63,7 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare i närheten kan hen bekräfta bonuspoängen för
     dribblingar och peppa laget.
 kalla: Egen övning, inspirerad av vanliga smålagsspel med joker och bonuspoäng för 1 mot 1.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -87,3 +87,20 @@ granskning:
       Ledarbehov 0 är rätt och västarna i två färger är genomtänkta. Väg in när du ändrar antalet:
       med spannet fyra till fem kan generatorn inte använda övningen vid sex, sju eller elva spelare,
       eftersom en grupp då blir för liten (R-051, R-052).
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Alla fyra punkterna är åtgärdade. Jokern finns nu vid fem, sex och sju spelare,
+      och spannet 5-7 hänger ihop med ytan 18 x 12: kontrollräknat 216 kvadratmeter, alltså 43 per
+      spelare vid fem och 31 vid sju, i nivå med godkända litet spel till småmål (30,9). Namnet
+      stämmer med uppställningen och id:t är oförändrat. Nivå 2 och 3 är rätt när jokerregel och
+      bonuspoäng gäller samtidigt, och avslut har fått en egen coachningspunkt. Tre saker att veta,
+      ingen av dem stoppar övningen. 1. Med spannet 5-7 kan generatorn inte använda övningen vid
+      åtta eller nio spelare, eftersom grupperna då blir 4+4 respektive 5+4 (R-051, R-052). Det är
+      vanliga storlekar i 5 mot 5, men dribbling genom portar och behåll bollen i gruppen täcker
+      spelövningen där. 2. När nivå 1 lämnas finns ingen spelövning med ett-mot-ett på nivå 1 kvar
+      för 8-9 år. Väljer ledaren bara ett-mot-ett på nivå 1 kan spelövningen då inte fyllas (R-041).
+      Rekommendation till nästa omgång: en enkel nivå-1-spelövning i 1 mot 1 för 8-9 år. 3. Till
+      redaktören: den svårare varianten, att ta bort jokern, går jämnt ut vid sex men lämnar en
+      spelare över vid fem och sju. Skriv gärna in att den spelaren roterar in efter varje mål.

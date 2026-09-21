@@ -58,7 +58,7 @@ anpassning:
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i litet format.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -82,3 +82,15 @@ granskning:
       (R-057). Spannet sex till tio täcker fler lag än godkända matchspel med snabb omställning, som
       börjar på åtta; vid elva spelare kan övningen ändå inte användas, eftersom grupperna då blir
       sex och fem (R-051, R-052).
+  - datum: 2026-09-21
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Andra rundan. Båda punkterna är åtgärdade. Jag läste alla tre coachningspunkterna.
+      Retreatpunkten säger nu "motståndarnas målvakt", vilket stämmer med spelformer.md och SvFF:s
+      spelformsblad 5 mot 5 (hämtat 2026-09-11): laget vars målvakt inte har bollen backar till sin
+      egen planhalva och stannar där tills bollen har lämnat målvaktens händer. De två övriga
+      punkterna, om att sprida ut sig och att visa sig spelbar, är oförändrade och hänger ihop med
+      syftet och fokusområdena. Beskrivningen och organisationen säger samma sak som punkterna, så
+      ledaren kan läsa vilken del som helst utan att bli vilseledd. Nivålistan är nu 1 till 3, i
+      linje med matchspelet för 7 mot 7 i samma omgång. Inget kvarstår.
