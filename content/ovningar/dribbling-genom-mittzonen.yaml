@@ -13,7 +13,7 @@ organisation: |
   större, med tre meters mellanrum.
 fokusomraden:
   - dribbling
-  - spelbarhet
+  - ett-mot-ett
 alder:
   min: 10
   max: 12
@@ -61,7 +61,7 @@ anpassning:
   ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar
     från sidan.
 kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert

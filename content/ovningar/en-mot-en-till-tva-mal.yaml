@@ -3,7 +3,7 @@ id: en-mot-en-till-tva-mal
 namn: 1 mot 1 till två mål
 syfte: Spelarna ska utmana motståndaren i 1 mot 1 och göra mål i ett litet lagspel.
 beskrivning: |
-  Två lag om två till tre spelare möts på en yta om 18 x 12 meter med ett litet mål i var
+  Två lag om två till tre spelare möts på en yta om 24 x 16 meter med ett litet mål i var
   ände. Vanliga mål ger en poäng. En extra poäng ges för mål som föregås av att spelaren
   dribblat förbi en direkt motståndare på väg mot mål.
 organisation: |
@@ -33,8 +33,8 @@ tid:
   langst: 12
 yta:
   alla:
-    langd: 18
-    bredd: 12
+    langd: 24
+    bredd: 16
 material:
   - typ: minimal
     antal: 2
@@ -43,10 +43,13 @@ material:
     anteckning: till det ena laget
   - typ: boll
     antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
 coachningspunkter:
   - Utmana motståndaren i stället för att passa bort bollen direkt.
   - Skydda bollen med kroppen i närkampen.
-  - Var snabb i omställningen när du vinner bollen, du blir direkt anfallare.
+  - Skjut tidigt när du har tagit dig förbi din motståndare.
 varianter:
   lattare: Försvararna får bara gå, inte springa, när de pressar bollhållaren.
   svarare: Bonuspoängen kräver att spelaren dribblat förbi två motståndare i samma anfall.
@@ -55,7 +58,7 @@ anpassning:
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
   ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål med bonus för 1 mot 1.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert

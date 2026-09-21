@@ -22,6 +22,7 @@ spelformer:
 niva:
   - niva-1
   - niva-2
+  - niva-3
 passdelar:
   - del-spel
 ledarbehov: 0
@@ -48,7 +49,7 @@ material:
 coachningspunkter:
   - Sprid ut er över ytan så att ni är lätta att hitta för den som har boll.
   - Ropa efter bollen och visa dig spelbar i en öppen yta.
-  - Backa till egen planhalva så fort er målvakt har bollen i händerna.
+  - Backa till egen planhalva så fort motståndarnas målvakt har bollen i händerna.
 varianter:
   lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
   svarare: Poäng bara för mål som föregås av minst tre passningar i följd.
@@ -57,7 +58,7 @@ anpassning:
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i litet format.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert

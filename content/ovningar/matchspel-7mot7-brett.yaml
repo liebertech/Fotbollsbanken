@@ -1,17 +1,21 @@
 schema: 1
 id: matchspel-7mot7-brett
-namn: Matchspel i litet format
+namn: Matchspel 7 mot 7 i bredd
 syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i ett matchlikt spel.
 beskrivning: |
-  Två lag om upp till sju spelare, inklusive målvakt om gruppen är tillräckligt stor, möts på
-  en yta om 50 x 30 meter med mål i var ände. Laget som har boll ska sprida ut sig och hålla
+  Två lag möts på en yta om 50 x 30 meter med mål i var ände, alltid med varsin målvakt.
+  Antalet utespelare i varje lag beror på gruppens storlek: tio spelare ger fyra mot fyra,
+  tolv ger fem mot fem och fjorton, fullstort 7 mot 7, ger sex mot sex. Är antalet udda
+  spelar det ena laget med en utespelare mer. Laget som har boll ska sprida ut sig och hålla
   bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren. Vanliga regler
   i 7 mot 7 gäller, inklusive retreatlinjen: när målvakten har bollen i händerna backar
   motståndarna till linjen 7 meter från mittlinjen på sin egen planhalva och stannar där tills
   bollen har lämnat målvaktens händer.
 organisation: |
-  Två lag om upp till sju spelare per yta, inklusive varsin målvakt om gruppen är tillräckligt
-  stor. Ledaren markerar retreatlinjen med koner 7 meter från mittlinjen på båda planhalvor.
+  Två lag per yta, alltid med varsin målvakt. Tio spelare: fyra mot fyra. Tolv spelare: fem
+  mot fem. Fjorton spelare: sex mot sex. Vid elva eller tretton spelare spelar det ena laget
+  med en utespelare mer än det andra. Ledaren markerar retreatlinjen med koner 7 meter från
+  mittlinjen på båda planhalvor.
 fokusomraden:
   - spelbarhet
   - passning-mottagning
@@ -28,7 +32,7 @@ passdelar:
   - del-spel
 ledarbehov: 0
 spelare:
-  min: 8
+  min: 10
   max: 14
 grupptyp: tva-lag
 tid:
@@ -52,7 +56,7 @@ material:
     anteckning: markerar retreatlinjen på båda planhalvor
 coachningspunkter:
   - Sprid ut er i bredd och djup så att bollhållaren har flera passningsval.
-  - Backa till retreatlinjen så fort er målvakt har bollen i händerna.
+  - Backa till retreatlinjen så fort motståndarnas målvakt har bollen i händerna.
   - Rör dig direkt efter din passning för att bli spelbar igen.
 varianter:
   lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
@@ -62,7 +66,7 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer, påminner om retreatlinjen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert

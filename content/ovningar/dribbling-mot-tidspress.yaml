@@ -3,12 +3,15 @@ id: dribbling-mot-tidspress
 namn: Dribbling mot tidspress
 syfte: Spelarna ska dribbla förbi en aktiv försvarare snabbt och med flera finter i följd.
 beskrivning: |
-  Två spelare möts på en yta om 10 x 8 meter med en port av två koner i bortre änden.
+  Två spelare möts på en yta om 15 x 10 meter med en port av två koner i bortre änden.
   Anfallaren har åtta sekunder på sig att dribbla bollen genom porten, medan försvararen
-  försvarar aktivt från start. Vinner försvararen bollen eller tar tiden slut byter paret
-  roll och startar om direkt med en ny boll.
+  försvarar aktivt från start. Anfallaren räknar sekunderna högt, "en, två, tre...", så att
+  båda vet när tiden är ute. Vinner försvararen bollen eller tar tiden slut byter paret roll
+  och startar om med en ny boll. Efter fyra försök var går paret tillbaka till start och
+  vilar en halv minut innan nästa omgång.
 organisation: |
-  Ett par per yta. Fler par får varsin egen yta bredvid, med tre meters mellanrum.
+  Ett par per yta. Fler par får varsin egen yta bredvid, med tre meters mellanrum. Paret
+  arbetar i omgångar om fyra försök var, med en halv minuts vila mellan omgångarna.
 fokusomraden:
   - dribbling
   - ett-mot-ett
@@ -32,8 +35,8 @@ tid:
   langst: 10
 yta:
   alla:
-    langd: 10
-    bredd: 8
+    langd: 15
+    bredd: 10
 material:
   - typ: boll
     antal: 2
@@ -45,6 +48,7 @@ coachningspunkter:
   - Sätt fart direkt efter finten, stanna inte upp.
   - Skydda bollen med kroppen när försvararen är tätt inpå.
   - Håll blicken uppe för att se när porten är öppen.
+  - Räkna sekunderna högt så att både du och försvararen vet när tiden är ute.
 varianter:
   lattare: Höj tidsgränsen till tolv sekunder.
   svarare: Sänk tidsgränsen till sex sekunder och gör porten smalare.
@@ -55,7 +59,7 @@ anpassning:
   ledare: Med en ledare i närheten kan hen hålla tiden och ropa ut när tiden är slut för alla par
     samtidigt.
 kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
