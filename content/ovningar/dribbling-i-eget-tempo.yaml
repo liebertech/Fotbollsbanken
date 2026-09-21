@@ -54,7 +54,7 @@ anpassning:
   ledare: En ledare räcker för att visa banan och peppa. Med fler ledare kan en stå vid start och en
     vid slalomen och ge tips under tiden.
 kalla: Egen övning, inspirerad av vanliga slalombanor för dribbling.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -67,11 +67,15 @@ granskning:
       riktvärdet för fasen är högst 3-4 i kö per boll, mål eller station (aldrar-och-fokus.md), och
       med egen boll till var och en är det uppfyllt. Ytan 20 x 15 meter räcker för en bana på 15
       meter plus återgång vid sidan. Tiden 6 till 10 minuter ligger inom fasens gräns för öva, 15
-      minuter (passuppbyggnad.md). Ledarbehov 0 är rätt: banan är självgående när den visats en gång,
-      och med R-055 kan en ensam ledare ha flera banor igång. Syftet hör tydligt ihop med huvudfokus
-      dribbling, och bollkänsla som andra fokusområde är förankrat i coachningspunkterna om
-      fotisättning och att titta upp. Att bara nivå 1 står i listan är ett medvetet och rimligt val:
-      en bana utan motståndare i eget tempo utmanar inte en nivå-2-grupp i öva-delen, där banken i
-      stället har slalomdribbling mot försvarare på nivå 2. En mindre sak, utan hinder för
+      minuter (passuppbyggnad.md). Ledarbehov 0 är rätt: banan är självgående när den visats en
+      gång, och med R-055 kan en ensam ledare ha flera banor igång. Syftet hör tydligt ihop med
+      huvudfokus dribbling, och bollkänsla som andra fokusområde är förankrat i coachningspunkterna
+      om fotisättning och att titta upp. Att bara nivå 1 står i listan är ett medvetet och rimligt
+      val: en bana utan motståndare i eget tempo utmanar inte en nivå-2-grupp i öva-delen, där
+      banken i stället har slalomdribbling mot försvarare på nivå 2. En mindre sak, utan hinder för
       godkännande: den svårare varianten talar om fler koner än de sex som står i materiallistan, så
       ledaren behöver ta fram några extra.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #11."

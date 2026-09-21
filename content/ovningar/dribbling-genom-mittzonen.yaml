@@ -58,10 +58,9 @@ varianter:
 anpassning:
   fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
-  ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar
-    från sidan.
+  ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar från sidan.
 kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -74,17 +73,17 @@ granskning:
       mest, och med R-041 hamnar övningen i passets kärna så fort en ledare väljer spelbarhet som
       fokus. Då får ledaren en dribblingsövning i stället för det som valdes. Välj ett av två: byt
       spelbarhet mot ett-mot-ett, som är vad som faktiskt händer i zonen och som systerövningen
-      dribbling genom portar i samma omgång använder, eller behåll spelbarhet och förankra det med en
-      coachningspunkt om hur medspelarna ska göra sig spelbara på sidorna för att dra isär försvaret
-      framför zonen. Det som stämmer: dribbling som huvudfokus hör ihop med syftet och är kärnområde
-      för fas-10-12. Ytan 20 x 14 meter ger 280 kvadratmeter, alltså 47 per spelare vid sex. Det
-      ligger strax över bankens lägsta godkända för 7 mot 7 med motståndare (45, försvara zonen),
-      alltså i underkant men godtagbart för 3 mot 3, och zonen på sex meter av tjugo lämnar sju meter
-      till varje mål, vilket räcker för att bygga upp anfallet. Nivå 2 och 3 är rätt: att driva
-      bollen genom en försvarad zon kräver kontroll med en motståndare nära. Tiden 8 till 12 minuter
-      ligger inom fasens gräns för spelövning (15 minuter), ledarbehov 0 är rätt, ingen kö uppstår
-      och udda antal löses med joker enligt R-054. Konerna markerar zonen tvärs över ytan vid
-      sidlinjerna, vilket är rätt plats för strutkoner i ett spel.
+      dribbling genom portar i samma omgång använder, eller behåll spelbarhet och förankra det med
+      en coachningspunkt om hur medspelarna ska göra sig spelbara på sidorna för att dra isär
+      försvaret framför zonen. Det som stämmer: dribbling som huvudfokus hör ihop med syftet och är
+      kärnområde för fas-10-12. Ytan 20 x 14 meter ger 280 kvadratmeter, alltså 47 per spelare vid
+      sex. Det ligger strax över bankens lägsta godkända för 7 mot 7 med motståndare (45, försvara
+      zonen), alltså i underkant men godtagbart för 3 mot 3, och zonen på sex meter av tjugo lämnar
+      sju meter till varje mål, vilket räcker för att bygga upp anfallet. Nivå 2 och 3 är rätt: att
+      driva bollen genom en försvarad zon kräver kontroll med en motståndare nära. Tiden 8 till 12
+      minuter ligger inom fasens gräns för spelövning (15 minuter), ledarbehov 0 är rätt, ingen kö
+      uppstår och udda antal löses med joker enligt R-054. Konerna markerar zonen tvärs över ytan
+      vid sidlinjerna, vilket är rätt plats för strutkoner i ett spel.
   - datum: 2026-09-21
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -96,3 +95,7 @@ granskning:
       spelbarhet som fokus (R-041), vilket var problemet. Inget annat är ändrat, och bedömningen
       från första rundan står kvar: ytan 20 x 14 meter, nivå 2 och 3, tiden 8 till 12 minuter,
       ledarbehov 0 och jokerlösningen vid udda antal (R-054). Inget kvarstår.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #11."

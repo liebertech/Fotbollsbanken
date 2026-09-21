@@ -44,8 +44,8 @@ material:
     antal: 2
   - typ: vast
     antal: 5
-    anteckning: upp till tre till det ena laget, i en färg, och upp till två till
-      jokern eller jokrarna, i en annan färg
+    anteckning: upp till tre till det ena laget, i en färg, och upp till två till jokern eller jokrarna,
+      i en annan färg
   - typ: boll
     antal: 2
 coachningspunkter:
@@ -58,12 +58,12 @@ varianter:
   svarare: Ta bort jokern eller jokrarna så lagen möts jämnt, till exempel två mot två.
 anpassning:
   fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
-  udda_antal: Redan inbyggt i grundformen. Vid fem eller sju spelare finns alltid en joker,
-    vid sex spelare två, enligt organisationen ovan.
+  udda_antal: Redan inbyggt i grundformen. Vid fem eller sju spelare finns alltid en joker, vid sex
+    spelare två, enligt organisationen ovan.
   ledare: Övningen är självgående. Med en ledare i närheten kan hen bekräfta bonuspoängen för
     dribblingar och peppa laget.
 kalla: Egen övning, inspirerad av vanliga smålagsspel med joker och bonuspoäng för 1 mot 1.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -75,18 +75,18 @@ granskning:
       visar en övning som heter med joker. Den svårare varianten, att ta bort jokern, blir dessutom
       identisk med grundformen vid fyra. Välj: antingen minsta antal fem så att jokern alltid finns,
       och skriv då vad som gäller vid sex och sju spelare, eller skriv om texten så att den fungerar
-      både med och utan joker. 2. Namnet säger 1 mot 1, men uppställningen är 2 mot 2. Byt namn, till
-      exempel 2 mot 2 med joker till mål. Id:t ändras aldrig. 3. Nivålistan. Jokerregeln plus
+      både med och utan joker. 2. Namnet säger 1 mot 1, men uppställningen är 2 mot 2. Byt namn,
+      till exempel 2 mot 2 med joker till mål. Id:t ändras aldrig. 3. Nivålistan. Jokerregeln plus
       bonuspoängen är två extra regler utöver spelet, vilket är för mycket för nivå 1, som enligt
-      nivaer.md behöver enkel organisation och få moment. Sätt niva-2 och niva-3, eller behåll niva-1
-      och flytta bonuspoängen till den svårare varianten. 4. Avslut är andra fokusområde men saknar
-      egen coachningspunkt. Lägg till en, till exempel att skjuta lågt och tidigt när vägen till mål
-      är öppen. Det som stämmer: ytan 16 x 10 meter ger 32 kvadratmeter per spelare vid fem, i nivå
-      med godkända litet spel till småmål (30,9) och tätare än 5 mot 5-matchen (45 till 60,
-      spelformer.md). Tiden 8 till 10 minuter ligger inom fasens gräns för spelövning, 10 minuter.
-      Ledarbehov 0 är rätt och västarna i två färger är genomtänkta. Väg in när du ändrar antalet:
-      med spannet fyra till fem kan generatorn inte använda övningen vid sex, sju eller elva spelare,
-      eftersom en grupp då blir för liten (R-051, R-052).
+      nivaer.md behöver enkel organisation och få moment. Sätt niva-2 och niva-3, eller behåll
+      niva-1 och flytta bonuspoängen till den svårare varianten. 4. Avslut är andra fokusområde men
+      saknar egen coachningspunkt. Lägg till en, till exempel att skjuta lågt och tidigt när vägen
+      till mål är öppen. Det som stämmer: ytan 16 x 10 meter ger 32 kvadratmeter per spelare vid
+      fem, i nivå med godkända litet spel till småmål (30,9) och tätare än 5 mot 5-matchen (45 till
+      60, spelformer.md). Tiden 8 till 10 minuter ligger inom fasens gräns för spelövning, 10
+      minuter. Ledarbehov 0 är rätt och västarna i två färger är genomtänkta. Väg in när du ändrar
+      antalet: med spannet fyra till fem kan generatorn inte använda övningen vid sex, sju eller
+      elva spelare, eftersom en grupp då blir för liten (R-051, R-052).
   - datum: 2026-09-21
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -104,3 +104,7 @@ granskning:
       Rekommendation till nästa omgång: en enkel nivå-1-spelövning i 1 mot 1 för 8-9 år. 3. Till
       redaktören: den svårare varianten, att ta bort jokern, går jämnt ut vid sex men lämnar en
       spelare över vid fem och sju. Skriv gärna in att den spelaren roterar in efter varje mål.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #11."

@@ -66,7 +66,7 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer, påminner om retreatlinjen och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -109,3 +109,7 @@ granskning:
       faller också utanför, eftersom två grupper då blir mindre än tio (R-051, R-052), men samma
       smålagsspel täcker dem. Rekommendation till nästa omgång: ett spel för 7 mot 7 med spelbarhet
       eller passning som fokus och ett spann som börjar på åtta spelare.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #11."

@@ -56,16 +56,14 @@ coachningspunkter:
   - Sök snabbt framåt igen så fort ni vunnit tillbaka bollen.
 varianter:
   lattare: Tidsgränsen för att pressa tillbaka höjs till tio sekunder.
-  svarare: Tidsgränsen sänks till fyra sekunder, och lyckas det inte blir det en poäng till
-    försvararen.
+  svarare: Tidsgränsen sänks till fyra sekunder, och lyckas det inte blir det en poäng till försvararen.
 anpassning:
   fler_spelare: Bygg en andra yta med samma uppställning bredvid.
-  udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare efter varje
-    omgång.
-  ledare: Utan extra ledare håller gruppen själv koll på tiden och byter roller i tur och ordning.
-    Med en ledare kan hen hålla tiden och servar nya bollar.
+  udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare efter varje omgång.
+  ledare: Utan extra ledare håller gruppen själv koll på tiden och byter roller i tur och ordning. Med
+    en ledare kan hen hålla tiden och servar nya bollar.
 kalla: Egen övning, inspirerad av vanlig omställningsträning i överläge.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -83,8 +81,12 @@ granskning:
       bollar gör att spelet startar om snabbt. Fast storlek tre med lösning för udda antal ger
       grupper om tre eller fyra (R-050), och det spannet täcker alla vanliga gruppstorlekar utan att
       någon grupp blir för liten. Nivå 2 och 3 är rätt: att pressa direkt efter en bollförlust
-      förutsätter att gruppen redan vet åt vilket håll den ska, vilket är nivå 2 i nivaer.md, och den
-      svårare varianten med fyra sekunder räcker för nivå 3. En mindre sak, som inte hindrar
+      förutsätter att gruppen redan vet åt vilket håll den ska, vilket är nivå 2 i nivaer.md, och
+      den svårare varianten med fyra sekunder räcker för nivå 3. En mindre sak, som inte hindrar
       godkännande: beskrivningen säger att försvararen byts efter mål eller misslyckad återpress
       medan organisationen säger efter mål eller bollvinst. Vid nästa revidering bör de två
       formuleringarna bli en och samma, så att ledaren vet exakt när rollerna roterar.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #11."
