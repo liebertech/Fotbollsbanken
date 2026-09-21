@@ -21,10 +21,15 @@ interface ExerciseCardProps {
 
 /** Gruppindelningen i ord (R-051 till R-056). */
 function layoutText(layout: Layout): string {
-  const sizes = layout.sizes.join(', ');
-  return layout.groups === 1
-    ? fill(TEXTS.session.oneGroup, { sizes })
-    : fill(TEXTS.session.groups, { groups: layout.groups, sizes });
+  const texts = TEXTS.session;
+  const first = layout.sizes[0] ?? 0;
+  if (layout.groups === 1) {
+    return fill(texts.oneGroup, { size: first });
+  }
+  // Lika stora grupper skrivs som en storlek, ojämna som hela listan (R-052).
+  return layout.sizes.every((size) => size === first)
+    ? fill(texts.groups, { groups: layout.groups, size: first })
+    : fill(texts.groupsMixed, { groups: layout.groups, sizes: layout.sizes.join(' + ') });
 }
 
 export function ExerciseCard({ exercise, minutes, layout, label }: ExerciseCardProps) {

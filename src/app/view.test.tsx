@@ -53,6 +53,8 @@ describe('Berättelse 02: det genererade passet', () => {
     expect(markup).toContain('Passning med vändning');
     expect(markup).toContain('Spelarna ska öva på det som testet handlar om.');
     expect(markup).toMatch(/\d+ min/);
+    // R-052: gruppindelningen skrivs ut för varje moment.
+    expect(markup).toContain('En grupp med 12 spelare');
   });
 
   it('02.8 visar passets faktiska tid mot den begärda', () => {
