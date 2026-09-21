@@ -1,4 +1,4 @@
-Status: ändrad vid K3 (2026-09-14)
+Status: ändrad 2026-09-21 (fas 4, inkrement 1)
 
 # Generatorregler
 
@@ -30,6 +30,8 @@ Domänmodellen godkändes vid K1 den 2026-09-11. Sedan dess har den här filen �
 | 2026-09-12 | **R-084 förtydligad.** Regeln pekar nu ut vilka materialtyper som räknas som mål (`mal` och `minimal`). Innebörden är oförändrad. |
 | 2026-09-14 | **R-057 tillagd.** Taket per ledare i R-050 gäller inte i `del-spel`. Utan undantaget delade generatorn ett spel i dagens spelform i två mindre spel bara för att gruppen var större än taket. Frågan kom fram vid granskningen av omgång 1 av övningsbanken. Godkänd av användaren 2026-09-14. |
 | 2026-09-14 | **R-050 hänvisar till R-057.** Strecksatsen om taket per ledare pekar nu på undantaget, så att regeln inte blir missvisande läst för sig. Vad R-050 kräver är oförändrat. |
+| 2026-09-21 | **R-121 tillagd.** Ledaren får välja vilket fokusområde som helst som är K eller R för fasen, men om `del-ovning` eller `del-spelovning` annars skulle bli tom fyller generatorn delen med ett närliggande fokusområde och talar om för ledaren att den gjorde det. Regeln anger vilket fokusområde som är närliggande vilket, per passdel och med avvikelser per åldersfas, och vad som gäller när inget närliggande fokus heller har någon övning. Frågan kom fram när `lek` eller `koordination` valdes som enda fokus i en bank med 31 godkända övningar: båda delarna i kärnan blev då tomma. Alternativen att skriva nya övningar eller att begränsa valet i gränssnittet valdes bort. Godkänd av användaren 2026-09-21. |
+| 2026-09-21 | **R-041, R-100, R-101, R-102, R-103 och R-104 hänvisar till R-121.** Hänvisningarna visar var ersättningsfokuset kommer in, så att reglerna inte blir missvisande lästa för sig. Vad reglerna kräver är oförändrat. |
 
 ## Så läser du reglerna
 
@@ -61,6 +63,8 @@ Domänmodellen godkändes vid K1 den 2026-09-11. Sedan dess har den här filen �
 | **Träff** | En övning träffar valt fokus om minst ett av övningens fokusområden finns bland de valda. **Huvudträff** betyder att övningens första fokusområde (huvudfokus) finns bland de valda. |
 | **Giltigt moment** | Ett moment som för sig uppfyller alla krav som gäller ett enskilt moment: grundfiltret (grupp 3), R-041 i `del-ovning` och `del-spelovning`, tid (R-034, R-065), grupper (grupp 6), ledare och stationer (grupp 7), säkerhet (grupp 9) och, om yta är vald, yta (grupp 10). |
 | **Delen kan fyllas** | Det finns ett eller två giltiga moment för delen, med olika övningar, vars sammanlagda tid kan ligga inom delens måltid ± 3 minuter (R-035) och som tillsammans håller nicktaket (R-082). Det prövas för delen för sig, utan hänsyn till resten av passet. Begreppet används i R-100, R-101 och R-103. |
+| **Delen kan fyllas med fokus F** | Samma prövning som *Delen kan fyllas*, men där R-041 prövas mot fokusområdet F i stället för mot valt fokus. Används i R-121. |
+| **Ersättningsfokus** | Det närliggande fokusområde som `del-ovning` eller `del-spelovning` använder när delen inte kan fyllas med valt fokus (R-121). Ersättningsfokuset gäller bara i den delen och ändrar aldrig ledarens val. |
 | **Giltigt pass** | Ett pass som uppfyller alla krav. |
 
 ---
@@ -299,7 +303,7 @@ Krav. Om en del saknar övning (R-100) gäller inte R-036 för passet, och R-035
 
 ---
 
-## Grupp 5: Fokusområden och vad som är ett bra pass (R-040–R-049)
+## Grupp 5: Fokusområden och vad som är ett bra pass (R-040–R-049, R-121)
 
 **Varför:** ledaren väljer fokus för att passet ska handla om något. Kärnan i passet, Öva och Spelövning, ska därför alltid träffa valt fokus. Uppvärmning och Spel ska helst också göra det, men har egna uppgifter: uppvärmningen ska förbereda kroppen, och spelet ska ge mycket fri speltid. Ett fritt spel är alltid meningsfullt, även när det inte är märkt med dagens fokus.
 
@@ -310,6 +314,8 @@ Definition. En övning **träffar** valt fokus om minst ett av dess fokusområde
 
 ### R-041 Kärnan träffar alltid valt fokus
 Krav. Varje övning i `del-ovning` och `del-spelovning` träffar valt fokus. Det gäller också varje station i ett stationsmoment.
+
+*Hänvisning:* om delen inte kan fyllas med valt fokus får den ett ersättningsfokus enligt R-121, och då prövas det här kravet mot ersättningsfokuset i just den delen. Vad kravet innebär är oförändrat: varje övning och varje station i delen ska träffa det fokus som gäller för delen.
 
 ### R-042 Huvudträff i kärnan
 Prioritet. Övningarna i `del-ovning` och `del-spelovning` har huvudträff.
@@ -390,6 +396,91 @@ Punkt 2 med ändring b är det som gör att en del bara står tom när generator
 - I en testbank där bara ett pass klarar punkt 1 och 2 ska generatorn lämna just det passet.
 
 *Motivering:* kraven skyddar spelarna och ser till att passet går att genomföra. Prioriteterna gör passet bättre, men ett pass som är nästan lika bra är fullt användbart för en ledare. Att kräva det allra bästa passet gör regeln svår att testa, eftersom flera pass kan vara lika bra, och dyr att räkna fram.
+
+### R-121 Närliggande fokusområde när kärnan annars blir tom
+
+Krav. Om `del-ovning` eller `del-spelovning` inte kan fyllas med valt fokus fylls delen i stället med ett **ersättningsfokus**: ett närliggande fokusområde ur tabellen nedan. Passet visar då vilket valt fokus som saknade övningar och vilket fokus som användes i stället.
+
+Regeln gäller bara de två delarna i kärnan, eftersom R-041 är det enda kravet som kan göra en del tom på grund av fokus. `del-uppvarmning` och `del-spel` har egna lösningar: där är fokus en prioritet (R-044, R-045 och R-046), och de delarna fylls redan i dag med en övning som passar delen även när ingen övning träffar valt fokus.
+
+**Så väljs ersättningsfokuset.** Stegen körs i ordning och ger alltid samma svar för samma underlag och samma bank.
+
+1. **Valt fokus först.** Delen prövas med ledarens valda fokus (*Delen kan fyllas*). Går delen att fylla så används inget ersättningsfokus. Ett ersättningsfokus får aldrig användas för att få ett bättre pass, bara för att en del i kärnan annars skulle stå tom.
+2. **Kandidatlistan byggs.** Ledarens fokusområden tas i den ordning ledaren valde dem. För varje sådant fokus läggs dess grannar för den aktuella delen till listan, i tabellens ordning.
+3. **Listan rensas**, i den här ordningen: dubbletter tas bort så att den första förekomsten står kvar, fokusområden som ledaren redan har valt tas bort, fokusområden som är "–" för fasen i `fokusomraden.md` tas bort, och `nickspel` och `malvaktsspel` tas bort.
+4. **Första kandidaten som fungerar väljs.** Ersättningsfokus är det första fokusområdet i den rensade listan där *Delen kan fyllas med fokus F* är sant. Alla andra krav gäller oförändrat, särskilt grupp 3 (grundfiltret), grupp 6 (grupper), grupp 7 (ledare och stationer), grupp 9 (säkerhet) och grupp 10 (yta).
+5. **Samma ersättning i båda delarna om det går.** Om både `del-ovning` och `del-spelovning` behöver ett ersättningsfokus går generatorn igenom `del-ovning`:s rensade kandidatlista i ordning och tar det första fokusområde som gör att **båda** delarna kan fyllas. Finns inget sådant väljs ersättningsfokus för varje del för sig enligt steg 4.
+
+**`nickspel` och `malvaktsspel` är aldrig ersättningsfokus.** Nickning ska bara förekomma när ledaren själv har valt den (R-080 till R-083), och en målvaktsövning är till för målvakterna, inte för att fylla en hel passdel för alla spelare.
+
+#### Vilka fokusområden som ligger nära varandra
+
+Nycklarna är de i `fokusomraden.md`. Ordningen i varje cell är den ordning generatorn prövar dem i.
+
+| Valt fokus | Ersättning i `del-ovning` | Ersättning i `del-spelovning` | Varför de hör ihop |
+|---|---|---|---|
+| `bollkansla` | `dribbling`, `passning-mottagning`, `koordination` | `ett-mot-ett`, `dribbling` | Bollkänsla är att bollen lyder. Närmast ligger att föra bollen och att ta emot den så att nästa handling blir lätt. Med motståndare visar sig bollkänslan i 1 mot 1. |
+| `dribbling` | `bollkansla`, `ett-mot-ett` | `ett-mot-ett`, `omstallning` | Dribbling mot en motståndare *är* 1 mot 1. Utan motståndare är det bollbehandling i fart. I spel används dribbling mest i den fria ytan efter en bollvinst. |
+| `passning-mottagning` | `bollkansla`, `spelbarhet` | `spelbarhet`, `speluppbyggnad` | En passning kräver någon att passa till. Att göra sig spelbar är passningsspelets andra halva, och speluppbyggnad är passningsspel i lagform. |
+| `avslut` | `dribbling`, `passning-mottagning` | `ett-mot-ett`, `omstallning` | Ett avslut föregås nästan alltid av ett driv eller en passning. I spel skapas målchanser genom att ta sig förbi någon eller genom att kontra. |
+| `nickspel` | `avslut`, `passning-mottagning` | `fasta-situationer`, `avslut` | Nickar sker mot mål och på inlägg och hörnor. Ersättningen tar alltid bort nickning ur passet, aldrig tvärtom. |
+| `ett-mot-ett` | `dribbling`, `bollkansla` | `dribbling`, `forsvarsspel` | Anfallssidan av 1 mot 1 är dribbling och finter. Försvarssidan, att pressa och vinna bollen, är samma sak som lagförsvarets minsta del. |
+| `spelbarhet` | `passning-mottagning`, `bollkansla` | `speluppbyggnad`, `passning-mottagning` | Att göra sig spelbar tränas alltid ihop med passningen. I spel med riktning blir spelbarhet i praktiken uppbyggnad genom lagdelarna. |
+| `speluppbyggnad` | `passning-mottagning`, `spelbarhet` | `spelbarhet`, `passning-mottagning` | Uppbyggnad är passningsspel med riktning. Tas lagdelarna bort återstår att göra sig spelbar och att passa och ta emot. |
+| `forsvarsspel` | `ett-mot-ett`, `koordination` | `ett-mot-ett`, `omstallning` | Allt försvar börjar i 1 mot 1: press, kroppsställning, vända och följa. Omställning innehåller försvarets första sekunder efter bolltapp. |
+| `omstallning` | `passning-mottagning`, `snabbhet` | `forsvarsspel`, `spelbarhet` | Omställning är snabba beslut direkt efter bollvinst eller bolltapp: snabba passningar och snabba starter, och i spel återerövring och snabbt anfall. |
+| `fasta-situationer` | `passning-mottagning`, `avslut` | `avslut`, `forsvarsspel` | En fast situation är en inövad passning eller ett avslut. Att försvara den är lagförsvar på liten yta. |
+| `malvaktsspel` | `avslut`, `passning-mottagning` | `avslut`, `speluppbyggnad` | Målvaktens moment tränas nästan alltid ihop med utespelarnas avslut, och utspelet hör ihop med uppbyggnaden. |
+| `koordination` | `bollkansla`, `snabbhet` | `snabbhet`, `ett-mot-ett` | För barn tränas koordination bäst med boll. I spel visar sig koordinationen som riktningsändringar i hög fart och i närkamp. |
+| `snabbhet` | `koordination`, `dribbling` | `ett-mot-ett`, `omstallning` | Fotbollssnabbhet är starter och riktningsändringar, nästan alltid i en kamp om bollen eller i en kontring. |
+| `uthallighet` | `snabbhet`, `koordination` | `spelbarhet`, `omstallning` | Uthållighet ska tränas i fotbollsform. Ett intensivt smålagsspel med många omställningar ger samma belastning. |
+| `skadeforebyggande` | `koordination`, `bollkansla` | `koordination`, `snabbhet` | Programmen består av löp-, hopp- och landningsteknik och bålstabilitet, alltså koordination och kroppskontroll. |
+| `lek` | `bollkansla`, `dribbling`, `koordination` | `ett-mot-ett`, `spelbarhet` | Lek med boll är i praktiken bollkänsla och dribbling i lekform. I en spelövning blir leken ett litet spel där alla utmanar, samarbetar och gör mål. |
+
+#### Avvikelser per åldersfas
+
+Närheten är inte densamma i alla åldrar. Där en rad nedan gäller används dess ordning i stället för tabellens.
+
+| Valt fokus | Del | Faser | Ordning i stället | Varför |
+|---|---|---|---|---|
+| `lek` | `del-ovning` | `fas-10-12`, `fas-13-14`, `fas-15-19` | `dribbling`, `koordination`, `bollkansla` | Från 10 år betyder lek i kärnan oftast utmaning och tävling med boll, inte fri lek med egen boll. Övning med egen boll ligger då ett steg längre bort. |
+| `lek` | `del-spelovning` | `fas-13-14`, `fas-15-19` | `spelbarhet`, `ett-mot-ett` | Från 13 år bärs den lekfulla spelövningen av lagspelet. `spelbarhet` är kärnområde i faserna, `ett-mot-ett` bara relevant (`fokusomraden.md`). |
+| `koordination` | `del-ovning` | `fas-13-14`, `fas-15-19` | `snabbhet`, `skadeforebyggande`, `bollkansla` | Under och efter tillväxtspurten tränas koordination mest som rörelse-, löp- och landningsteknik. Det är samma innehåll som de skadeförebyggande programmen, som är kärnområde i faserna. |
+
+#### När inget närliggande fokusområde heller fungerar
+
+Krav. Om inget fokusområde i den rensade kandidatlistan gör att delen kan fyllas ska delen stå tom. Generatorn går då aldrig vidare till ett fokusområde utanför listan och sänker aldrig något annat krav.
+
+- Delen **saknar övning** enligt R-100 och visas på sin plats med sitt namn, sin måltid och texten att övning saknas. R-039 gäller, alltså ingen tidsgräns för hela passet.
+- R-103 visar vilka av ledarens val som, var för sig, skulle kunna ge en övning i delen. Prövningen i R-103 görs mot ledarens egna val, inte mot ersättningsfokus.
+- Om varken `del-ovning`, `del-spelovning` eller `del-spel` kan fyllas, räknat med ersättningsfokus, skapas inget pass (R-101).
+
+#### Hur ersättningsfokuset påverkar de andra reglerna
+
+- **R-041** prövas mot delens ersättningsfokus, för varje övning och varje station i delen.
+- **R-042 (huvudträff)** prövas mot det fokus som gäller i delen, alltså ersättningsfokuset där ett sådant används.
+- **R-043 (röd tråd)** räknas som uppfylld om minst en övning i `del-spelovning` har ett fokusområde gemensamt med minst en övning i `del-ovning`, bland de fokus som gäller för respektive del. Steg 5 ovan finns just för att den röda tråden ska hålla.
+- **R-047 (alla valda fokus finns med)** prövas oförändrat mot ledarens val. Ett valt fokus som banken saknar övningar för förblir alltså ouppfyllt. Det är en prioritet, inte ett krav.
+- **R-044, R-045 och R-046** är oförändrade. Ersättningsfokuset gäller aldrig i `del-uppvarmning` eller `del-spel`.
+- **R-102** gäller fortfarande. Underlaget ändras inte: ledarens valda fokusområden står kvar oförändrade i passet, i utskriften och i säsongsplanens veckofokus (R-110).
+- **R-104 och R-106** (byte av övning): i en del med ersättningsfokus prövas villkoret om R-041 mot delens ersättningsfokus.
+- **R-049** gäller som vanligt. Eftersom en fylld del är bättre än en tom del enligt post 1 och 2 i R-048 kommer ett pass som kunde ha fyllt kärnan med ett ersättningsfokus, men lät delen stå tom, inte att uppfylla R-049.
+
+**Så testas regeln:**
+
+- En bank utan övningar med valt fokus i kärnan ger ett pass där `del-ovning` och `del-spelovning` har övningar med det första fungerande fokusområdet i listan, och passet talar om att ersättning har skett.
+- En bank där valt fokus räcker till båda delarna ger inget ersättningsfokus alls.
+- Ett fokusområde som är "–" för fasen, `nickspel` eller `malvaktsspel` förekommer aldrig som ersättningsfokus, oavsett bank.
+- När båda delarna behöver ersättning och det finns ett fokusområde som fungerar i båda, används samma fokus i båda delarna.
+- En bank där varken valt fokus eller någon kandidat fungerar ger en tom del enligt R-100, inte en övning med ett annat fokus.
+
+*Testfall:* 11 år (`fas-10-12`, `7mot7`), `niva-2`, enda valda fokus `lek`. Banken har inga övningar med `lek` märkta `del-ovning` eller `del-spelovning`. Kandidatlistan för `del-ovning` blir `dribbling`, `koordination`, `bollkansla` (avvikelsen för fas 10–12). Om delen kan fyllas med `dribbling`, och `del-spelovning` också kan fyllas med `dribbling`, används `dribbling` i båda delarna, och den röda tråden räknas som uppfylld. Passet visar att `lek` saknade övningar i kärnan och att `dribbling` användes i stället. Uppvärmningen kan fortfarande ha en lek, eftersom R-045 är en prioritet.
+
+*Testfall:* 9 år (`fas-8-9`), enda valda fokus `koordination`, och banken saknar övningar med `koordination` i kärnan. Kandidatlistan för `del-ovning` är `bollkansla`, `snabbhet`. Om `bollkansla` fungerar i Öva men inte i Spelövning, medan `snabbhet` fungerar i båda, används `snabbhet` i båda delarna enligt steg 5.
+
+*Motivering:* en ersättning är fotbollsmässigt försvarbar bara när tre saker stämmer. För det första ska innehållet leda mot det ledaren valde: ett barn som inte får leken i Öva får i stället det leken skulle ha övat, alltså bollkontakter och rörelse. För det andra ska fokusområdet vara K eller R för åldern (`fokusomraden.md`), så att övningarna passar spelarnas motorik och koncentration. För det tredje ska delens karaktär hålla: Öva är upprepningar utan eller med begränsat motstånd, Spelövning är spel med motståndare, riktning och mål (`passuppbyggnad.md`). Därför har varje fokusområde två listor. Lek i uppvärmningen och lek i en spelövning är inte samma sak: i uppvärmningen är leken målet i sig, i spelövningen är den ett litet spel, och närmast den ligger 1 mot 1 och att spela tillsammans. Motsatsen, att generatorn tystnar och lämnar halva passet tomt för att banken ännu är liten, hjälper ingen ledare. Att den byter i tysthet vore värre: ledaren ska alltid kunna se vad passet faktiskt innehåller.
+
+*Regeln är ny 2026-09-21.* Den kom fram i förarbetet till inkrement 1, när banken hade 31 godkända övningar, nitton för 7 mot 7 och tolv för 5 mot 5, och varken `lek` eller `koordination` fanns som fokus i kärnan. Användaren beslutade 2026-09-21 att valet ska tillåtas och att generatorn ska falla tillbaka på ett närliggande fokusområde och tala om det. Närhetstabellen och avvikelserna per fas är min bedömning som tränarutbildare, byggd på `fokusomraden.md`, `aldrar-och-fokus.md` och `passuppbyggnad.md`. SvFF anger så vitt jag vet ingen sådan indelning.
 
 ---
 
@@ -617,18 +708,26 @@ Krav. En del som fylls från banken, och som inte har tagits bort enligt R-033, 
 - En del som inte kan fyllas (se *Begrepp*) saknar alltid övning.
 - En del som kan fyllas för sig kan ändå sakna övning om generatorn inte kan fylla den tillsammans med resten av passet, till exempel för att samma övning behövs i en annan del (R-070), för att nicktaket annars överskrids (R-082) eller för att passet annars blir för långt (R-036). Det ska vara sällsynt. R-049, ändring b, anger vad generatorn då minst måste ha prövat.
 
+*Hänvisning:* innan `del-ovning` eller `del-spelovning` får sakna övning ska ersättningsfokus enligt R-121 ha prövats. En sådan del saknar övning bara om den varken kan fyllas med valt fokus eller med något närliggande fokusområde.
+
 *Varför regeln inte säger "om inget giltigt pass har ett moment i delen":* det skulle kräva att generatorn prövar alla möjliga pass innan den får visa en tom del. Det är samma sak som att kräva det bästa passet, och det kan varken byggas eller testas på ett rimligt sätt. I stället avgörs det av begreppet *Delen kan fyllas*, som prövas för delen för sig, och av R-049.
 
 ### R-101 När inget pass skapas
 Krav. Om ingen av delarna `del-ovning`, `del-spelovning` och `del-spel` kan fyllas (se *Begrepp*), bland dem som finns kvar efter R-033, skapas inget pass. Appen visar i stället att inget pass kunde skapas (berättelse 03, kriterium 1). Om minst en av dem kan fyllas skapas ett pass.
+
+*Hänvisning:* vid den här prövningen räknas `del-ovning` och `del-spelovning` som att de kan fyllas också när de bara kan fyllas med ett ersättningsfokus (R-121).
 
 *Motivering:* ett pass med bara uppvärmning är inget träningspass. Ett pass där bara spelet finns går däremot att använda.
 
 ### R-102 Underlaget ändras aldrig av generatorn
 Krav. Generatorn ändrar aldrig ålder, spelform, nivå, fokus, antal spelare, antal ledare, passlängd eller yta för att hitta fler övningar. Det gäller också R-026.
 
+*Hänvisning:* R-121 ändrar inte underlaget. Ledarens valda fokusområden står kvar oförändrade i passet och i säsongsplanens veckofokus (R-110). Det som ändras är bara vilket fokus övningarna i en del i kärnan måste träffa (R-041), och passet talar om för ledaren att det har skett.
+
 ### R-103 Vilka val som kan ändras
 Krav. För varje del som saknar övning visar appen vilka av ledarens val som, var för sig, skulle kunna ge en övning i delen. Ett val visas om det finns ett annat tillåtet värde för just det valet, med alla andra val oförändrade, som gör att delen kan fyllas (se *Begrepp*). Valen som prövas är nivå, fokusområden, antal spelare, antal ledare, spelform och, om det är valt, yta. För fokusområden prövas varje enskilt fokusområde som är tillåtet för fasen. Appen visar vilka val det gäller, inte vilka värden (berättelse 03, *Utanför*).
+
+*Hänvisning:* en del som har fyllts med ett ersättningsfokus (R-121) saknar inte övning. R-103 gäller därför inte den delen. Passet talar i stället om vilket valt fokus som saknade övningar och vilket fokus som användes i stället.
 
 Om delen kan fyllas för sig men ändå saknar övning (R-100, andra punkten) är det inget enskilt val som är orsaken. Då visar appen i stället att delens övningar inte gick att kombinera med resten av passet.
 
@@ -645,6 +744,8 @@ Klubbens egna övningar kan också ersätta X. För dem gäller R-106, som gör 
 Prioriteterna i R-048 används inte vid byte. Ledaren väljer själv bland alla övningar som uppfyller villkoren, ur banken och bland klubbens egna övningar. Om ingen övning uppfyller dem ligger X kvar (berättelse 04, kriterium 3).
 
 X kan själv vara en av klubbens egna övningar som ledaren har bytt in tidigare. Villkoren är desamma.
+
+*Hänvisning:* om delen har ett ersättningsfokus (R-121) prövas villkor 3 mot delens ersättningsfokus, alltså mot det fokus delens övningar faktiskt har. Det gäller också R-106, som hänvisar till villkoren här.
 
 ### R-105 Tid efter byte
 Krav. Y får den tid inom sina gränser (R-034) som ligger närmast X:s tid. Om två tider ligger lika nära väljs den kortare. I ett stationsmoment får Y stationstiden t. R-035 och R-036 kontrolleras inte efter ett byte, men passet visar den nya totala tiden (berättelse 04, kriterium 5). Regeln gäller både övningar ur banken (R-104) och klubbens egna övningar (R-106).
@@ -713,7 +814,7 @@ Krav. Åldern i säsongsplanen räknas som i R-010: den ålder spelarna fyller u
 | 2 Underlaget | R-010–R-021 | 12 | 0 | 0 |
 | 3 Vilka övningar, nivå | R-022–R-029 | 8 | 0 | 0 |
 | 4 Delar och tid | R-030–R-039 | 10 | 0 | 0 |
-| 5 Fokusområden | R-040–R-049 | 10 | 0 | 0 |
+| 5 Fokusområden | R-040–R-049, R-121 | 11 | 0 | 0 |
 | 6 Grupper och udda antal | R-050–R-057 | 8 | 0 | 0 |
 | 7 Ledare och stationer | R-060–R-067 | 8 | 0 | 0 |
 | 8 Variation | R-070–R-072 | 3 | 0 | 0 |
@@ -721,6 +822,6 @@ Krav. Åldern i säsongsplanen räknas som i R-010: den ålder spelarna fyller u
 | 10 Yta | R-090–R-094 | 5 | 0 | 0 |
 | 11 Inget matchande, byte | R-100–R-106 | 7 | 0 | 0 |
 | 12 Säsongsplan | R-110–R-113 | 4 | 1 (R-112) | 0 |
-| **Summa** | | **91** | **1** | **0** |
+| **Summa** | | **92** | **1** | **0** |
 
-Lediga nummer, reserverade för nya regler i respektive grupp: R-058–R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-086–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1, så nästa sådan regel får R-121.
+Lediga nummer, reserverade för nya regler i respektive grupp: R-058–R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-086–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1 och R-121 av grupp 5, så nästa sådan regel får R-122.
