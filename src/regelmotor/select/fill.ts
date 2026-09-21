@@ -49,7 +49,7 @@ function setExercises(blocks: readonly Block[]): Exercise[] {
  *
  * @regel R-082
  */
-function headingWithinCapForSet(blocks: readonly Block[], minutes: number[], phase: Phase): boolean {
+export function headingMinutes(blocks: readonly Block[], minutes: readonly number[]): number {
   let used = 0;
   for (const [index, block] of blocks.entries()) {
     const blockMinutes = minutes[index] ?? 0;
@@ -67,11 +67,19 @@ function headingWithinCapForSet(blocks: readonly Block[], minutes: number[], pha
       }
     }
   }
-  return used <= HEADING_MINUTES_CAP[phase];
+  return used;
+}
+
+function headingWithinCapForSet(
+  blocks: readonly Block[],
+  minutes: number[],
+  phase: Phase,
+): boolean {
+  return headingMinutes(blocks, minutes) <= HEADING_MINUTES_CAP[phase];
 }
 
 /** Summor som momenten tillsammans kan ge, och en fördelning per moment för varje summa. */
-function totalsFor(blocks: readonly Block[]): Map<number, number[]> {
+export function totalsFor(blocks: readonly Block[]): Map<number, number[]> {
   const result = new Map<number, number[]>();
   const options = blocks.map((block) => blockMinutesOptions(block));
   const preferred = blocks.map((block) => preferredMinutes(block));

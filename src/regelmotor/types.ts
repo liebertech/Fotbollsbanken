@@ -103,6 +103,40 @@ export interface PlacedBlock {
   stationMinutes: number | null;
 }
 
+/** Momenten i en del, med sina valda tider. */
+export interface PartFill {
+  part: SessionPartFromBank;
+  blocks: Block[];
+  /** Tid per moment, i samma ordning som `blocks`. */
+  minutes: number[];
+  /** Delens tid, summan av momentens tider (R-035). */
+  total: number;
+}
+
+/** Vilka moment varje del har. En del som saknas i kartan saknar övning (R-100). */
+export type Selection = Map<SessionPartFromBank, Block[]>;
+
+/**
+ * Ett pass under arbete: moment, tider och pauser, men ännu inga rader. Poängsättningen
+ * (R-048) och förbättringsloopen (R-049) arbetar på det här.
+ */
+export interface Draft {
+  fills: PartFill[];
+  emptyParts: SessionPartFromBank[];
+  /** Fokus som gäller i varje del: ledarens val, eller ett ersättningsfokus (R-121). */
+  effectiveFocus: Map<SessionPartFromBank, FocusArea[]>;
+  /** Ersättningsfokus per del, när delen har ett (R-121). */
+  substituteFocus: Map<SessionPartFromBank, FocusArea>;
+  totalMinutes: number;
+  longestStretch: number;
+  /** Antal pauser före varje moment, i momentens ordning. */
+  breaksBeforeMoment: number[];
+  /** Pauser efter sista momentet, undantaget i R-037. */
+  breaksAfterLast: number;
+  /** Periodindelning av spelmomentet, när en paus ligger inuti det (R-037). */
+  gamePeriods: { momentIndex: number; minutes: number[] } | null;
+}
+
 /** Radslagen i tidslinjen (ADR 0011 avsnitt 3). */
 export type RowKind =
   | 'exercise'
@@ -182,6 +216,11 @@ export interface Session {
 export interface NoSessionReason {
   /** Val som var för sig skulle kunna ge ett pass (R-103). */
   changeableFields: InputField[];
+  /**
+   * Krav som kontrollen fällde. Ett pass som inte klarar kontrollen lämnas aldrig ut, och
+   * att listan inte är tom är alltid en bugg i motorn (ADR 0011 avsnitt 1, steg 5).
+   */
+  internalProblems: string[];
 }
 
 export type GenerationResult =
