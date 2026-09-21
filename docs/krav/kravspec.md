@@ -1,4 +1,4 @@
-Status: godkänd (K2, 2026-09-12)
+Status: godkänd (K2, 2026-09-12); kompletterad inför K4 (2026-09-21), se avsnittet Beslut 2026-09-21
 
 # Kravspecifikation – Fotbollsbanken
 
@@ -94,6 +94,13 @@ De här frågorna fördes fram av säkerhetsgranskningen inför K2 (`docs/sakerh
 7. **Repot görs publikt före fas 4**, sedan de åtgärder som säkerhetsgranskningen kräver är genomförda (`docs/sakerhet/granskning-k2.md`, avsnitt 4). `content/`-mappens licens är nu avgjord (beslutat 2026-09-12, se samma granskning, *Beslut som behövs*, punkt 5): övningsbanken licensieras under **CC BY-SA 4.0** (`content/LICENSE`), skilt från kodens Apache-2.0-licens. En ledare som skickar in en övning till den gemensamma banken bidrar med den under CC BY-SA 4.0, vilket ska framgå vid inskickning (se berättelse 15, kriterium 5, och avsnittet Licens nedan).
 8. **Personuppgifter i fritext (fynd S-20):** lagnamn, passnamn, fritext i egna övningar och redaktörens kommentar kan råka innehålla ett barns namn. Appen upplyser kort vid alla fyra fälten om att spelarnamn inte ska skrivas in (se berättelse 05, kriterium 5, berättelse 10, kriterium 4, berättelse 13, kriterium 3, och berättelse 16, kriterium 5). Texterna till upplysningarna skrivs av UX-designern.
 9. **Fel e-postadress avslöjas inte vid inloggning (fynd S-13):** appen svarar likadant oavsett om den angivna adressen har ett konto eller inte. Kontrollerat mot berättelse 08: kriterium 3 gäller fel *kod*, inte en okänd adress, och krockar därför inte med detta beslut.
+
+## Beslut 2026-09-21 (inför K4, generatorns förarbete)
+
+De här frågorna kom upp när acceptanskriterierna för inkrement 1 (generatorn) skulle skrivas, inför bygget. Användaren har fattat följande beslut:
+
+1. **Fallback på närliggande fokusområde (ersättningsfokus).** När ledarens valda fokusområde gör att `del-ovning` eller `del-spelovning` inte kan fyllas ska generatorn inte misslyckas. Den ska i stället automatiskt pröva ett närliggande fokusområde (ett **ersättningsfokus**) för just den delen, och tala om för ledaren att den gjorde det och varför. Ledarens val i underlaget ändras inte (R-102 gäller fortfarande för alla andra fält). Beslutet gäller i första hand `lek` och `koordination`, som i dagens övningsbank saknar övningar i kärnan för både `5mot5` och `7mot7`, men lösningen är generell för alla fokusområden. `del-uppvarmning` och `del-spel` omfattas inte: fokus är där redan en prioritet, inte ett krav, och de delarna fylls redan i dag utan att kräva en träff mot valt fokus (R-044 till R-046). Vilka fokusområden som räknas som närliggande ett annat är en fotbollsfråga och avgörs av **R-121**, i grupp 5 av `docs/doman/generatorregler.md`. Se berättelse 02, kriterium 16, och berättelse 03, kriterium 5–7.
+2. **Ledarbehov ändras inte.** Fältet `ledarbehov` (R-006) behåller sin nuvarande betydelse. Ingen skärpt regel infördes.
 
 ## Licens
 
