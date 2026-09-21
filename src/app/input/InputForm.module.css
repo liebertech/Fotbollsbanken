@@ -60,6 +60,12 @@
   cursor: pointer;
 }
 
+/* Radioknappen är visuellt dold, så knappen bär fokusramen (WCAG 2.4.7). */
+.choice:focus-within {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
 .choiceSelected {
   border-color: var(--color-primary);
   border-width: 2px;
