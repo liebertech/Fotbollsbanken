@@ -1,0 +1,87 @@
+/* Kort (designsystem.md avsnitt 6.3): ram mot bakgrunden, aldrig bara en färgskiftning. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.minutes {
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.purpose {
+  margin: 0;
+}
+
+.layout {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Planskissen ritas i inkrement 2. Tills dess visas platsen tydligt inramad
+   (designsystem.md avsnitt 7). */
+.sketch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 72px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.toggle {
+  min-height: var(--tap-target);
+  align-self: flex-start;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detailHeading {
+  font-weight: 600;
+  margin: 0;
+}
+
+.detailText {
+  margin: 0;
+}
+
+.list {
+  margin: 0;
+  padding-left: var(--space-6);
+}

@@ -1,0 +1,105 @@
+/*
+ * Designtokens och grundstilar (docs/design/designsystem.md).
+ *
+ * Ljust läge är förval och mörkt läge följer enhetens systeminställning (avsnitt 1).
+ * Planlägets eget tema hör till inkrement 5 och finns inte här.
+ */
+
+:root {
+  /* Avsnitt 2.1, ljust läge. */
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f4;
+  --color-text: #1a1a1a;
+  --color-text-muted: #595959;
+  --color-primary: #0b6b3a;
+  --color-on-primary: #ffffff;
+  --color-error: #b3261e;
+  --color-warning-bg: #fff6da;
+  --color-warning-text: #6b4300;
+  --color-border: #d6d9d6;
+  --color-focus: #0b6b3a;
+
+  /* Avsnitt 4: basenheten är 8 px. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Avsnitt 5: minsta träffyta. */
+  --tap-target: 48px;
+
+  --radius: 8px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Avsnitt 2.2, mörkt läge. */
+    --color-bg: #121212;
+    --color-surface: #1e2620;
+    --color-text: #f2f2f2;
+    --color-text-muted: #c7c7c7;
+    --color-primary: #57c98a;
+    --color-on-primary: #121212;
+    --color-error: #e4685d;
+    --color-warning-bg: #3a2e10;
+    --color-warning-text: #f5d98a;
+    --color-border: #3a423c;
+    --color-focus: #57c98a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* Avsnitt 3: systemets egna typsnitt, 16 px brödtext, radavstånd minst 1,5. */
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 var(--space-2);
+}
+
+h2 {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+/* Avsnitt 8, WCAG 2.4.7: fokusramen är alltid synlig och minst 3 px. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

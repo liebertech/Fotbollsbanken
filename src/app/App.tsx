@@ -1,12 +1,14 @@
 /**
- * Platshållare för appskalet. Gränssnittet byggs i senare inkrement enligt
- * docs/design/floden.md och docs/design/skisser/, inte här.
+ * Appskalet. Inkrement 1 har en enda vy: generatorn (docs/design/floden.md avsnitt 1.1).
+ * Inloggning, sparade pass, planläge och säsongsplan kommer i senare inkrement.
  */
+import { bank } from '../data/bank.ts';
+import { Generator } from './Generator.tsx';
+
 export function App() {
   return (
     <main>
-      <h1>Fotbollsbanken</h1>
-      <p>Appskalet är uppsatt. Gränssnittet byggs i kommande inkrement.</p>
+      <Generator bank={bank} />
     </main>
   );
 }

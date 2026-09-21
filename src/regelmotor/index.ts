@@ -46,6 +46,29 @@ export { checkSession } from './check/session.ts';
 export { scoreSession } from './score/score.ts';
 export * from './types.ts';
 
+/**
+ * Tabellvärdena och härledningarna som gränssnittet behöver för att bygga formuläret:
+ * vilka val som finns och vilka som är tillåtna för åldern. Appen importerar bara den här
+ * filen (ADR 0011 avsnitt 1), så det appen ska kunna läsa exporteras här.
+ */
+export {
+  AREA_KEYS,
+  COACH_COUNT,
+  FOCUS_AREAS,
+  FOCUS_BY_PHASE,
+  FOCUS_CHOICE_COUNT,
+  GAME_FORMATS,
+  LEVELS,
+  PLAYER_COUNT,
+  SESSION_LENGTH_MAX,
+  SESSION_LENGTH_MIN,
+  SESSION_PARTS,
+  SESSION_PARTS_FROM_BANK,
+  allowedGameFormats,
+  phaseForAge,
+  suggestedGameFormat,
+} from './keys.ts';
+
 /** Bygger kandidatlistan och momenten per del, med det fokus som gäller i delen. */
 function buildBlocks(
   bank: readonly Exercise[],
