@@ -55,7 +55,7 @@ anpassning:
   udda_antal: Tre spelare delar en ruta och roterar, två spelar medan en väntar på sin tur.
   ledare: Övningen är självgående när paren har fått en ruta och sett ett exempel.
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-rutor med portar.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -63,15 +63,18 @@ granskning:
     kommentar: >-
       En av de bästa övningarna i omgången för fas-8-9. Två spelare per ruta betyder att alla är i
       gång hela tiden, rollbytet efter varje försök är enkelt nog att gruppen sköter det själv, och
-      dribbling och 1 mot 1 är båda kärnområden för fasen. Syftet stämmer med huvudfokus. Rutan
-      6 x 6 meter är rätt storlek för 1 mot 1 i den här åldern, och tre meter mellan rutorna räcker.
-      Ledarbehov 0 är rätt.
-      En egen rättelse av nivålistan. Övningen stod som enbart niva-2. Den lättare varianten, att
-      försvararen bara får gå, gör den fullt användbar på niva-1, och 1 mot 1 är det första en
-      nybörjargrupp ska öva. Den svårare varianten, tre toucher innan porten ska passeras, är
-      precis det nivaer.md beskriver för niva-3: mindre yta och färre toucher. Jag har därför satt
-      niva-1, niva-2 och niva-3. Varianterna är verkliga steg och räcker för spannet.
-      Jag har också lagt till en tredje coachningspunkt om att försvararen spelar på bollen och
-      inte springer in i kompisen. Beskrivningen nämnde att det inte får tacklas hårt, men det
-      stod inte bland punkterna som ledaren läser vid planen, och det är den viktigaste
-      säkerhetspunkten i en 1 mot 1-ruta i den här åldern.
+      dribbling och 1 mot 1 är båda kärnområden för fasen. Syftet stämmer med huvudfokus. Rutan 6 x
+      6 meter är rätt storlek för 1 mot 1 i den här åldern, och tre meter mellan rutorna räcker.
+      Ledarbehov 0 är rätt. En egen rättelse av nivålistan. Övningen stod som enbart niva-2. Den
+      lättare varianten, att försvararen bara får gå, gör den fullt användbar på niva-1, och 1 mot 1
+      är det första en nybörjargrupp ska öva. Den svårare varianten, tre toucher innan porten ska
+      passeras, är precis det nivaer.md beskriver för niva-3: mindre yta och färre toucher. Jag har
+      därför satt niva-1, niva-2 och niva-3. Varianterna är verkliga steg och räcker för spannet.
+      Jag har också lagt till en tredje coachningspunkt om att försvararen spelar på bollen och inte
+      springer in i kompisen. Beskrivningen nämnde att det inte får tacklas hårt, men det stod inte
+      bland punkterna som ledaren läser vid planen, och det är den viktigaste säkerhetspunkten i en
+      1 mot 1-ruta i den här åldern.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

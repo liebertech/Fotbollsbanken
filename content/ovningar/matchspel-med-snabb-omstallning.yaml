@@ -57,7 +57,7 @@ anpassning:
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel i matchform.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -68,15 +68,19 @@ granskning:
       spelare, alltså samma trängsel som SvFF:s planmått för 5 mot 5, 30 x 15–20 meter
       (spelformer.md). Målen i spelformens storlek och två lag med målvakt gör spelet matchlikt.
       Omställning och försvarsspel är relevanta för fas-8-9, syftet stämmer med huvudfokus, och
-      bonuspoängen inom tio sekunder gör att omställningen händer ofta i stället för att bara
-      pratas om. Att målvakterna byts av under passet är rätt för åldern: alla bör få prova att
-      stå i mål. Ledarbehov 0 är rätt, och i spel-delen gäller inte taket per ledare (R-057), så
-      hela gruppen kan spela ett spel med en ledare vid sidan. Tiderna, femton till tjugofem
-      minuter, ligger inom fasens gräns för spel och räcker för perioder med vila emellan.
-      Nivåerna niva-2 och niva-3 är rätt satta: en grupp som ännu samlas runt bollen har inte nytta
-      av en tidsregel för omställning, och den svårare varianten med fem sekunder räcker för
-      niva-3. En egen rättelse: organisationen sa tio spelare per yta medan fältet tillåter åtta,
-      så jag skrev in vad som gäller vid åtta och nio spelare. En begränsning som ledaren och
-      redaktören bör känna till: med åtta till tio spelare i gruppen kan generatorn inte använda
-      övningen vid elva till femton spelare, eftersom två grupper då blir för små. För de antalen
-      är det litet spel till småmål som fyller spel-delen.
+      bonuspoängen inom tio sekunder gör att omställningen händer ofta i stället för att bara pratas
+      om. Att målvakterna byts av under passet är rätt för åldern: alla bör få prova att stå i mål.
+      Ledarbehov 0 är rätt, och i spel-delen gäller inte taket per ledare (R-057), så hela gruppen
+      kan spela ett spel med en ledare vid sidan. Tiderna, femton till tjugofem minuter, ligger inom
+      fasens gräns för spel och räcker för perioder med vila emellan. Nivåerna niva-2 och niva-3 är
+      rätt satta: en grupp som ännu samlas runt bollen har inte nytta av en tidsregel för
+      omställning, och den svårare varianten med fem sekunder räcker för niva-3. En egen rättelse:
+      organisationen sa tio spelare per yta medan fältet tillåter åtta, så jag skrev in vad som
+      gäller vid åtta och nio spelare. En begränsning som ledaren och redaktören bör känna till: med
+      åtta till tio spelare i gruppen kan generatorn inte använda övningen vid elva till femton
+      spelare, eftersom två grupper då blir för små. För de antalen är det litet spel till småmål
+      som fyller spel-delen.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

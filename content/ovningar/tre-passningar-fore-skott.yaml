@@ -1,8 +1,8 @@
 schema: 1
 id: tre-passningar-fore-skott
 namn: Tre passningar före skott
-syfte: Spelarna ska passa och ta emot bollen med kvalitet för att behålla bollen och
-  skapa ett bra avslutsläge.
+syfte: Spelarna ska passa och ta emot bollen med kvalitet för att behålla bollen och skapa ett bra
+  avslutsläge.
 beskrivning: |
   Två lag spelar mot varandra på en yta om 30 x 20 meter med två minimål. Ett lag måste
   göra minst tre passningar inom laget innan det får skjuta mot mål. Kommer skottet för
@@ -60,13 +60,11 @@ varianter:
   svarare: Höj kravet till fyra passningar, och minst en av dem ska gå bakåt eller i sidled.
 anpassning:
   fler_spelare: Bygg ett spel till på en yta bredvid med samma regler och egna mål.
-  udda_antal: Ett lag får en spelare mer, eller en joker spelar alltid med laget som har
-    bollen.
-  ledare: Övningen sköter sig själv när lagen har förstått regeln. En ledare kan gå mellan
-    planerna och påminna om att räkna passningarna högt.
-kalla: Egen övning, inspirerad av vanliga possessionsövningar med krav på antal passningar
-  före avslut.
-status: granskad
+  udda_antal: Ett lag får en spelare mer, eller en joker spelar alltid med laget som har bollen.
+  ledare: Övningen sköter sig själv när lagen har förstått regeln. En ledare kan gå mellan planerna
+    och påminna om att räkna passningarna högt.
+kalla: Egen övning, inspirerad av vanliga possessionsövningar med krav på antal passningar före avslut.
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -75,17 +73,21 @@ granskning:
       Övningen fyller luckan den skrevs för: en riktig spelövning med passning-mottagning som
       huvudfokus. Det finns motståndare, riktning och mål, och regeln om tre passningar gör att
       fokuset händer ofta, vilket är just det en spelövning ska göra. Syftet hänger ihop med
-      huvudfokus, och spelbarhet som andra fokus stämmer, eftersom laget måste sprida ut sig för
-      att hitta tre passningar. Båda fokusområdena är kärnområden för fas-10-12. Nivåerna niva-2
-      och niva-3 är rätt satta: kravet på tre passningar i följd förutsätter att korta passningar
-      oftast går fram, vilket är beskrivningen av niva-2 i nivaer.md, och den svårare varianten
-      med fyra passningar där en ska gå bakåt är en verklig höjning för niva-3. Ytan 30 x 20 meter
-      ger vid tio spelare 60 kvadratmeter per spelare, alltså ungefär samma trängsel som en 5 mot
-      5-match, vilket är rimligt för ett bollhållningsspel. Ledarbehov 0 stämmer: när regeln är
-      satt driver spelet sig självt, och en ledare kan ha uppsikt över flera ytor. Materialet
-      räcker för förloppet, inklusive reservbollen som håller igång spelet, och västarna räcker
-      till det största laget. Tiderna ligger inom fasens gränser för spelövning. Coachningspunkterna
-      är konkreta och begripliga för en ideell ledare. Inga ändringar gjorda. En begränsning som
-      inte är ett fel i övningen: med minst sex och högst tio spelare kan generatorn inte använda
-      den vid exakt elva spelare, eftersom två grupper då blir sex och fem. Jag har rapporterat
-      det i täckningsbilden i stället för att ändra måtten.
+      huvudfokus, och spelbarhet som andra fokus stämmer, eftersom laget måste sprida ut sig för att
+      hitta tre passningar. Båda fokusområdena är kärnområden för fas-10-12. Nivåerna niva-2 och
+      niva-3 är rätt satta: kravet på tre passningar i följd förutsätter att korta passningar oftast
+      går fram, vilket är beskrivningen av niva-2 i nivaer.md, och den svårare varianten med fyra
+      passningar där en ska gå bakåt är en verklig höjning för niva-3. Ytan 30 x 20 meter ger vid
+      tio spelare 60 kvadratmeter per spelare, alltså ungefär samma trängsel som en 5 mot 5-match,
+      vilket är rimligt för ett bollhållningsspel. Ledarbehov 0 stämmer: när regeln är satt driver
+      spelet sig självt, och en ledare kan ha uppsikt över flera ytor. Materialet räcker för
+      förloppet, inklusive reservbollen som håller igång spelet, och västarna räcker till det
+      största laget. Tiderna ligger inom fasens gränser för spelövning. Coachningspunkterna är
+      konkreta och begripliga för en ideell ledare. Inga ändringar gjorda. En begränsning som inte
+      är ett fel i övningen: med minst sex och högst tio spelare kan generatorn inte använda den vid
+      exakt elva spelare, eftersom två grupper då blir sex och fem. Jag har rapporterat det i
+      täckningsbilden i stället för att ändra måtten.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

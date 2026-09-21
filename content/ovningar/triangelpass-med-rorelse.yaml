@@ -45,67 +45,67 @@ material:
   - typ: kon
     antal: 3
 coachningspunkter:
-  - Ta emot med den fot som är längst bort från den som passar, så hamnar bollen på rätt
-    sida av kroppen.
+  - Ta emot med den fot som är längst bort från den som passar, så hamnar bollen på rätt sida av
+    kroppen.
   - Möt bollen några steg ut från hörnet, stå inte och vänta still.
   - Vänd kroppen mot nästa hörn direkt efter mottagningen.
   - Passa längs marken med insidan, lagom hårt så att kompisen kan ta emot bollen.
 varianter:
-  lattare: Kortare sidor i triangeln, till exempel 5 meter, så mottagaren hinner möta bollen
-    och vända i lugnare tempo.
-  svarare: Efter varje passning byter alla tre spelare hörn samtidigt, och högst två toucher
-    är tillåtna innan bollen spelas vidare.
+  lattare: Kortare sidor i triangeln, till exempel 5 meter, så mottagaren hinner möta bollen och vända
+    i lugnare tempo.
+  svarare: Efter varje passning byter alla tre spelare hörn samtidigt, och högst två toucher är
+    tillåtna innan bollen spelas vidare.
 anpassning:
   fler_spelare: Bygg fler trianglar bredvid varandra med samma mått och koner.
-  udda_antal: Den fjärde spelaren står vid ett av hörnen och byts in efter varje varv, så att
-    alla får lika mycket boll.
+  udda_antal: Den fjärde spelaren står vid ett av hörnen och byts in efter varje varv, så att alla får
+    lika mycket boll.
   ledare: Övningen är självgående när triangeln är uppbyggd och visad en gång.
 kalla: Egen övning, inspirerad av allmänt känd passningsträning i triangel.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Syftet är rätt och passning-mottagning är kärnområde för fas-8-9, men rotationen går inte
-      ihop och måste skrivas om.
-      1. Rotationen fungerar inte som den står. Med tre spelare och tre hörn finns inget ledigt
-      hörn att byta till, så meningen om att byta till nästa lediga hörn efter varje passning
-      säger något som inte kan hända. Om alla tre i stället flyttar ett hörn samtidigt går det
-      rent tekniskt, men då passar spelarna till en medspelare som är på väg, samtidigt som de
-      själva springer. Det är för mycket på en gång för åtta- och nioåringar på niva-1, som enligt
-      nivaer.md behöver enkel organisation och få moment.
-      2. Så här föreslår jag att den skrivs om. Låt grundformen vara tre fasta hörn där mottagaren
-      möter bollen några steg, tar emot med foten längst från passaren och spelar vidare till nästa
-      hörn. Rörelsen finns då kvar, men den är att möta bollen och att vända kroppen rätt, inte att
-      byta plats. Gör dagens lättare variant överflödig och lägg i stället in platsbytet som
-      svårare variant, tillsammans med tvåtouchkravet. Namnet kan behållas, eftersom rörelsen mot
-      bollen är det som övas.
-      3. Nivålistan bör sedan vara niva-1 och niva-2. Grundformen med fasta hörn passar niva-1, och
-      med tvåtouchkrav och platsbyte är övningen en riktig niva-2-övning.
-      4. Skriv om anpassningen för udda antal. Att en fjärde spelare går in i triangeln och vilar
-      ett varv är svårt att förstå. Skriv i stället att den fjärde står vid ett av hörnen och byts
-      in efter varje varv, så att alla får lika mycket boll.
-      Övrigt är i ordning: ledarbehov 0, triangelsidor om åtta meter, ytan, tiderna och materialet
-      stämmer med beskrivningen.
+      Syftet är rätt och passning-mottagning är kärnområde för fas-8-9, men rotationen går inte ihop
+      och måste skrivas om. 1. Rotationen fungerar inte som den står. Med tre spelare och tre hörn
+      finns inget ledigt hörn att byta till, så meningen om att byta till nästa lediga hörn efter
+      varje passning säger något som inte kan hända. Om alla tre i stället flyttar ett hörn
+      samtidigt går det rent tekniskt, men då passar spelarna till en medspelare som är på väg,
+      samtidigt som de själva springer. Det är för mycket på en gång för åtta- och nioåringar på
+      niva-1, som enligt nivaer.md behöver enkel organisation och få moment. 2. Så här föreslår jag
+      att den skrivs om. Låt grundformen vara tre fasta hörn där mottagaren möter bollen några steg,
+      tar emot med foten längst från passaren och spelar vidare till nästa hörn. Rörelsen finns då
+      kvar, men den är att möta bollen och att vända kroppen rätt, inte att byta plats. Gör dagens
+      lättare variant överflödig och lägg i stället in platsbytet som svårare variant, tillsammans
+      med tvåtouchkravet. Namnet kan behållas, eftersom rörelsen mot bollen är det som övas. 3.
+      Nivålistan bör sedan vara niva-1 och niva-2. Grundformen med fasta hörn passar niva-1, och med
+      tvåtouchkrav och platsbyte är övningen en riktig niva-2-övning. 4. Skriv om anpassningen för
+      udda antal. Att en fjärde spelare går in i triangeln och vilar ett varv är svårt att förstå.
+      Skriv i stället att den fjärde står vid ett av hörnen och byts in efter varje varv, så att
+      alla får lika mycket boll. Övrigt är i ordning: ledarbehov 0, triangelsidor om åtta meter,
+      ytan, tiderna och materialet stämmer med beskrivningen.
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Granskad efter åtgärd. Grundformen med tre fasta hörn och mottagning med bortre foten är
-      precis rätt för fas-8-9, platsbyte och tvåtouch ligger nu i den svårare varianten, nivå 1
-      och 2 stämmer, och lösningen för udda antal är begriplig. Med tre som minsta och högsta
-      antal och en fjärde tillåten (R-050) delar generatorn en grupp om tio i fyra, tre och tre,
-      vilket går ihop.
-      Två saker har jag rättat själv. Den första coachningspunkten sa "längst bort från triangelns
-      mitt", medan beskrivningen sa "längst bort från passaren". Det är inte samma sak, och det
-      som är rätt är bortre foten räknat från den som passar, alltså så att bollen kommer på rätt
-      sida av kroppen och spelaren redan är vänd mot nästa hörn. Punkten är omskriven så att den
-      stämmer med beskrivningen. Jag har också lagt till en punkt om att passa längs marken med
+      precis rätt för fas-8-9, platsbyte och tvåtouch ligger nu i den svårare varianten, nivå 1 och
+      2 stämmer, och lösningen för udda antal är begriplig. Med tre som minsta och högsta antal och
+      en fjärde tillåten (R-050) delar generatorn en grupp om tio i fyra, tre och tre, vilket går
+      ihop. Två saker har jag rättat själv. Den första coachningspunkten sa "längst bort från
+      triangelns mitt", medan beskrivningen sa "längst bort från passaren". Det är inte samma sak,
+      och det som är rätt är bortre foten räknat från den som passar, alltså så att bollen kommer på
+      rätt sida av kroppen och spelaren redan är vänd mot nästa hörn. Punkten är omskriven så att
+      den stämmer med beskrivningen. Jag har också lagt till en punkt om att passa längs marken med
       insidan och lagom hårt, eftersom syftet nämner rätt passningskraft men ingen punkt tog upp
       den. Dessutom står det nu i beskrivningen att spelaren backar tillbaka till sitt hörn efter
-      passningen. Utan det kryper triangeln ihop efter ett par varv.
-      Kvar att bedöma för redaktören: spelbarhet som andra fokusområde är tunt i grundformen, där
-      rörelsen är att möta bollen och vända kroppen. Det blir ett riktigt spelbarhetsmoment först
-      i den svårare varianten med platsbyte. Jag låter det stå kvar, eftersom övningen annars är
-      bankens enda med spelbarhet i passdelen Öva för 5 mot 5.
+      passningen. Utan det kryper triangeln ihop efter ett par varv. Kvar att bedöma för redaktören:
+      spelbarhet som andra fokusområde är tunt i grundformen, där rörelsen är att möta bollen och
+      vända kroppen. Det blir ett riktigt spelbarhetsmoment först i den svårare varianten med
+      platsbyte. Jag låter det stå kvar, eftersom övningen annars är bankens enda med spelbarhet i
+      passdelen Öva för 5 mot 5.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

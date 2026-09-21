@@ -1,8 +1,7 @@
 schema: 1
 id: forsvara-zonen
 namn: Försvara zonen
-syfte: Spelarna ska försvara tillsammans genom att pressa bollhållaren och täcka
-  bakom.
+syfte: Spelarna ska försvara tillsammans genom att pressa bollhållaren och täcka bakom.
 beskrivning: |
   En zon på 15 x 12 meter markeras mitt i en yta om 25 x 18 meter. Tre spelare
   försvarar zonen tillsammans. Övriga spelare bildar par och ställer sig växelvis bakom
@@ -65,61 +64,61 @@ coachningspunkter:
   - Styr paret mot sidan av zonen, inte rakt mot mitten.
   - Vinn bollen tillsammans, ingen pressar ensam längre än nödvändigt.
 varianter:
-  lattare: Bredare zon, till exempel 18 x 14 meter, så att försvararna hinner ställa om.
-    Då blir det bara några meter fritt utanför kortsidorna, så låt paren sakta in direkt
-    efter zonen.
-  svarare: Smalare zon, till exempel 12 x 10 meter, och paret får bara två passningar
-    innan de måste dribbla igenom.
+  lattare: Bredare zon, till exempel 18 x 14 meter, så att försvararna hinner ställa om. Då blir det
+    bara några meter fritt utanför kortsidorna, så låt paren sakta in direkt efter zonen.
+  svarare: Smalare zon, till exempel 12 x 10 meter, och paret får bara två passningar innan de måste
+    dribbla igenom.
 anpassning:
-  fler_spelare: Vid fler än tio spelare delas gruppen och en andra zon byggs på en yta
-    bredvid, med tre nya försvarare.
-  udda_antal: En trio går igenom i stället för ett par. Då är alla i gång, och trion har
-    en extra spelbar medspelare.
-  ledare: Utan ledare håller gruppen själv koll på antal försök och byter försvarare i
-    tur och ordning. Med en ledare kan hen styra byten och peka på var pressen eller
-    täckningen brast. Fler zoner klaras då av en ledare som rör sig mellan dem.
-kalla: Egen övning, inspirerad av vanliga övningar för att öva press och täckning
-  tillsammans i lagförsvar.
-status: granskad
+  fler_spelare: Vid fler än tio spelare delas gruppen och en andra zon byggs på en yta bredvid, med
+    tre nya försvarare.
+  udda_antal: En trio går igenom i stället för ett par. Då är alla i gång, och trion har en extra
+    spelbar medspelare.
+  ledare: Utan ledare håller gruppen själv koll på antal försök och byter försvarare i tur och
+    ordning. Med en ledare kan hen styra byten och peka på var pressen eller täckningen brast. Fler
+    zoner klaras då av en ledare som rör sig mellan dem.
+kalla: Egen övning, inspirerad av vanliga övningar för att öva press och täckning tillsammans i
+  lagförsvar.
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Innehållet är rätt tänkt: press och täckning i zon passar fas-10-12, och fokusområdena
-      stämmer med syftet. Tre saker ska ändras.
-      1. Sätt ledarbehov 0 och ta bort fältet ledaruppgift. Flytta innehållet till anpassningen för
-      ledare. Låt i stället gruppen räkna försöken högt och byta försvarare efter ett bestämt
-      antal, och låt den vunna bollen rullas till nästa par i stället för till ledaren. Skriv om
-      beskrivningen och organisationen efter det. Skäl: det ledaruppgiften beskriver är coachning,
-      inte ett villkor för att övningen ska fungera (R-006), och med ledarbehov 1 kan ett lag med
-      fjorton spelare och en ledare inte använda övningen alls (R-055).
-      2. Korta väntetiden. Med tolv spelare är fem aktiva och sju väntar, mot riktvärdet tre till
-      fyra per station för fas-10-12 (aldrar-och-fokus.md). Låt paren starta växelvis från båda
-      sidor av zonen, så att nästa par går in i samma sekund som det föregående är klart. Ett
-      sämre alternativ är att sänka högsta antal till nio.
-      3. Se till att materiallistan räcker för det antal par som högsta antalet spelare ger.
-      Nivåerna niva-2 och niva-3, ytan 25 x 18 meter, zonen 15 x 12 meter och tiderna är rätt och
-      behöver inte ändras. Utförligare motivering står i granskningsrapporten för omgång 2.
+      Innehållet är rätt tänkt: press och täckning i zon passar fas-10-12, och fokusområdena stämmer
+      med syftet. Tre saker ska ändras. 1. Sätt ledarbehov 0 och ta bort fältet ledaruppgift. Flytta
+      innehållet till anpassningen för ledare. Låt i stället gruppen räkna försöken högt och byta
+      försvarare efter ett bestämt antal, och låt den vunna bollen rullas till nästa par i stället
+      för till ledaren. Skriv om beskrivningen och organisationen efter det. Skäl: det
+      ledaruppgiften beskriver är coachning, inte ett villkor för att övningen ska fungera (R-006),
+      och med ledarbehov 1 kan ett lag med fjorton spelare och en ledare inte använda övningen alls
+      (R-055). 2. Korta väntetiden. Med tolv spelare är fem aktiva och sju väntar, mot riktvärdet
+      tre till fyra per station för fas-10-12 (aldrar-och-fokus.md). Låt paren starta växelvis från
+      båda sidor av zonen, så att nästa par går in i samma sekund som det föregående är klart. Ett
+      sämre alternativ är att sänka högsta antal till nio. 3. Se till att materiallistan räcker för
+      det antal par som högsta antalet spelare ger. Nivåerna niva-2 och niva-3, ytan 25 x 18 meter,
+      zonen 15 x 12 meter och tiderna är rätt och behöver inte ändras. Utförligare motivering står i
+      granskningsrapporten för omgång 2.
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Granskad efter åtgärd. Ledarfrågan är löst rätt: gruppen räknar försöken själv och rullar
       vunnen boll till nästa par. Ledarbehov 0 stämmer nu med R-006, och ett lag med en ledare kan
-      använda övningen (R-055).
-      Den växelvisa starten löste bara halva kötiden, så resten har jag rättat själv. Att dela kön
-      i två tar bort återgången, men bara ett par är i zonen åt gången, så med tolv spelare väntade
-      fortfarande nio på sin tur. Mitt förra förslag räckte alltså inte. Jag har sänkt högsta antal
-      från tolv till tio. Då är fem spelare i gång och fem väntar, ungefär tre per sida, vilket
-      ligger på riktvärdet tre till fyra per station för fas-10-12 (aldrar-och-fokus.md). Vid fler
-      spelare delar generatorn gruppen, och en andra zon bredvid klarar en ensam ledare eftersom
-      ledarbehovet är 0.
-      Övrigt jag rättat: paren startar bakom zonens kortsidor och tar sig igenom den långa vägen,
-      så att de har fem meter fritt att sakta in på; den lättare varianten är sänkt från 20 x 15
-      till 18 x 14 meter, eftersom en zon på 20 x 15 i en yta på 25 x 18 bara lämnar två och en
-      halv meter utanför kortsidorna; antalet försök har fått ett exempel (åtta); och vid udda
-      antal går en trio igenom i stället för att en spelare rullar bollar åt andra.
-      Ytan 25 x 18 och zonen 15 x 12 står kvar och stämmer med förloppet, och materialet räcker nu.
-      Kvar att bedöma för redaktören: om spelbarhet ska stå kvar som andra fokusområde. Det är
-      anfallarparets del av övningen, inte huvudsaken.
+      använda övningen (R-055). Den växelvisa starten löste bara halva kötiden, så resten har jag
+      rättat själv. Att dela kön i två tar bort återgången, men bara ett par är i zonen åt gången,
+      så med tolv spelare väntade fortfarande nio på sin tur. Mitt förra förslag räckte alltså inte.
+      Jag har sänkt högsta antal från tolv till tio. Då är fem spelare i gång och fem väntar,
+      ungefär tre per sida, vilket ligger på riktvärdet tre till fyra per station för fas-10-12
+      (aldrar-och-fokus.md). Vid fler spelare delar generatorn gruppen, och en andra zon bredvid
+      klarar en ensam ledare eftersom ledarbehovet är 0. Övrigt jag rättat: paren startar bakom
+      zonens kortsidor och tar sig igenom den långa vägen, så att de har fem meter fritt att sakta
+      in på; den lättare varianten är sänkt från 20 x 15 till 18 x 14 meter, eftersom en zon på 20 x
+      15 i en yta på 25 x 18 bara lämnar två och en halv meter utanför kortsidorna; antalet försök
+      har fått ett exempel (åtta); och vid udda antal går en trio igenom i stället för att en
+      spelare rullar bollar åt andra. Ytan 25 x 18 och zonen 15 x 12 står kvar och stämmer med
+      förloppet, och materialet räcker nu. Kvar att bedöma för redaktören: om spelbarhet ska stå
+      kvar som andra fokusområde. Det är anfallarparets del av övningen, inte huvudsaken.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

@@ -1,8 +1,7 @@
 schema: 1
 id: tva-mot-ett-till-mal
 namn: 2 mot 1 till mål
-syfte: Spelarna ska utnyttja ett numerärt överläge för att ta sig till ett fritt
-  avslutsläge.
+syfte: Spelarna ska utnyttja ett numerärt överläge för att ta sig till ett fritt avslutsläge.
 beskrivning: |
   Två anfallare möter en försvarare på en yta om 15 x 10 meter med ett minimål utan
   målvakt i ena änden. Anfallarna samarbetar med passningar eller dribbling för att
@@ -56,17 +55,15 @@ coachningspunkter:
   - Avsluta så fort ni har ett fritt läge, tveka inte.
   - Som försvarare, styr anfallaren mot sidan och bort från mål.
 varianter:
-  lattare: Försvararen får bara jaga och störa passningar de första omgångarna, inte
-    tackla.
+  lattare: Försvararen får bara jaga och störa passningar de första omgångarna, inte tackla.
   svarare: Sätt en tidsgräns på tio sekunder från start till avslut.
 anpassning:
   fler_spelare: Bygg fler ytor med samma uppställning bredvid varandra.
-  udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare nästa
-    omgång.
-  ledare: Övningen sköter sig själv när gruppen har förstått rollerna. En ledare kan gå
-    mellan ytorna och ge tips.
+  udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare nästa omgång.
+  ledare: Övningen sköter sig själv när gruppen har förstått rollerna. En ledare kan gå mellan ytorna
+    och ge tips.
 kalla: Egen övning, inspirerad av vanliga överlägesövningar mot mål.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -77,13 +74,17 @@ granskning:
       trots motstånd, och det är precis vad passuppbyggnad.md efterfrågar för de lägre nivåerna.
       Syftet hänger ihop med huvudfokus avslut, och spelbarhet som andra fokus stämmer med att
       anfallarna måste sprida sig för att skapa läget. Båda är kärnområden för fas-10-12. Med tre
-      spelare per yta är alla aktiva hela tiden och kötiden är noll, vilket är det viktigaste
-      måttet i den här åldern. Ytan 15 x 10 meter är rimlig för två mot en, och minimålet utan
-      målvakt gör att skottmomentet inte har någon träffrisk. Ledarbehov 0 stämmer, eftersom
-      rollerna roterar efter en turordning som gruppen bestämmer själv. Fast storlek tre med
-      lösning för udda antal ger hela grupper vid alla vanliga antal, eftersom en grupp får vara
-      fyra. Varianterna är verkliga steg: passiv försvarare som lättare, tidsgräns som svårare.
-      En egen rättelse. Beskrivningen sa att ledaren eller en spelare vid sidan rullar in nya
-      bollar, men med bara tre spelare i gruppen står ingen vid sidan och ledarbehovet är 0. Jag
-      skrev om omstarten så att den som blir ny försvarare hämtar reservbollen och rullar in den.
-      Materiallistans två bollar räcker då för förloppet.
+      spelare per yta är alla aktiva hela tiden och kötiden är noll, vilket är det viktigaste måttet
+      i den här åldern. Ytan 15 x 10 meter är rimlig för två mot en, och minimålet utan målvakt gör
+      att skottmomentet inte har någon träffrisk. Ledarbehov 0 stämmer, eftersom rollerna roterar
+      efter en turordning som gruppen bestämmer själv. Fast storlek tre med lösning för udda antal
+      ger hela grupper vid alla vanliga antal, eftersom en grupp får vara fyra. Varianterna är
+      verkliga steg: passiv försvarare som lättare, tidsgräns som svårare. En egen rättelse.
+      Beskrivningen sa att ledaren eller en spelare vid sidan rullar in nya bollar, men med bara tre
+      spelare i gruppen står ingen vid sidan och ledarbehovet är 0. Jag skrev om omstarten så att
+      den som blir ny försvarare hämtar reservbollen och rullar in den. Materiallistans två bollar
+      räcker då för förloppet.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

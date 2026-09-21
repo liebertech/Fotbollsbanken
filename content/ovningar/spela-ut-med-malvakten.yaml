@@ -49,62 +49,62 @@ material:
 coachningspunkter:
   - Målvakten lägger ner bollen och passar i stället för att sparka långt.
   - Sök en fri medspelare innan du spelar ut bollen.
-  - Sprid ut er när er målvakt har bollen, gärna en åt vardera sidan, så att det finns
-    någon att passa till.
+  - Sprid ut er när er målvakt har bollen, gärna en åt vardera sidan, så att det finns någon att
+    passa till.
 varianter:
   lattare: Målvakten får kasta ut bollen med händerna till en fri medspelare.
   svarare: Utespelarna har bara två toucher i egen planhalva.
 anpassning:
   fler_spelare: Gör ytan större och spela med fler utespelare per lag.
   udda_antal: Ett lag får en utespelare extra i stället för att sakna målvakt.
-  ledare: Övningen går att spela utan ledare, men reglerna om mittlinjen behöver påminnas om
-    till en början. Med en ledare kan hen coacha målvakterna i utkast, mottagning och spel med
-    fötterna, och påminna om mittlinjen.
+  ledare: Övningen går att spela utan ledare, men reglerna om mittlinjen behöver påminnas om till en
+    början. Med en ledare kan hen coacha målvakterna i utkast, mottagning och spel med fötterna, och
+    påminna om mittlinjen.
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fokus på uppspel från målvakten.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Idén är bra och banken behöver den, men fyra saker ska ändras.
-      1. Retreatregeln är fel. I 5 mot 5 backar motståndarna till sin egen planhalva när målvakten
-      har bollen och stannar där tills bollen har lämnat målvaktens händer. Linjen sju meter från
-      mitten gäller 7 mot 7 (spelformer.md, SvFF:s spelformsblad, hämtade 2026-09-11). På en yta
-      som är tjugo meter lång hamnar den dessutom tre meter från motståndarnas eget mål. Skriv att
-      motståndarna backar över mittlinjen, och låt konerna markera mittlinjen.
-      2. Spelare och yta går inte ihop: organisationen säger högst åtta, fältet säger tio. Jag
-      rekommenderar högst elva spelare på en yta om ungefär 26 x 18 meter, där den elfte är en
-      extra utespelare i ena laget. Då blir trängseln matchlik, och alla antal från sex och uppåt
-      går jämnt ihop när generatorn delar gruppen, vilket de inte gör med sex till åtta.
-      3. Sätt ledarbehov 0 och ta bort fältet ledaruppgift. Flytta innehållet till anpassningen för
-      ledare. Att coacha målvakterna växelvis från sidan är coachning, inte ett villkor, och med
-      ledarbehov 1 kan ett lag med tolv spelare och en ledare inte använda övningen (R-055).
-      4. Sätt niva-2 och niva-3. Uppspel från målvakten kräver att korta passningar oftast går
-      fram, vilket är niva-2, och den svårare varianten med två toucher på egen planhalva räcker
-      för niva-3.
-      Tiderna, fokusområdena och syftet är i övrigt i ordning. Utförligare motivering står i
-      granskningsrapporten för omgång 2.
+      Idén är bra och banken behöver den, men fyra saker ska ändras. 1. Retreatregeln är fel. I 5
+      mot 5 backar motståndarna till sin egen planhalva när målvakten har bollen och stannar där
+      tills bollen har lämnat målvaktens händer. Linjen sju meter från mitten gäller 7 mot 7
+      (spelformer.md, SvFF:s spelformsblad, hämtade 2026-09-11). På en yta som är tjugo meter lång
+      hamnar den dessutom tre meter från motståndarnas eget mål. Skriv att motståndarna backar över
+      mittlinjen, och låt konerna markera mittlinjen. 2. Spelare och yta går inte ihop:
+      organisationen säger högst åtta, fältet säger tio. Jag rekommenderar högst elva spelare på en
+      yta om ungefär 26 x 18 meter, där den elfte är en extra utespelare i ena laget. Då blir
+      trängseln matchlik, och alla antal från sex och uppåt går jämnt ihop när generatorn delar
+      gruppen, vilket de inte gör med sex till åtta. 3. Sätt ledarbehov 0 och ta bort fältet
+      ledaruppgift. Flytta innehållet till anpassningen för ledare. Att coacha målvakterna växelvis
+      från sidan är coachning, inte ett villkor, och med ledarbehov 1 kan ett lag med tolv spelare
+      och en ledare inte använda övningen (R-055). 4. Sätt niva-2 och niva-3. Uppspel från målvakten
+      kräver att korta passningar oftast går fram, vilket är niva-2, och den svårare varianten med
+      två toucher på egen planhalva räcker för niva-3. Tiderna, fokusområdena och syftet är i övrigt
+      i ordning. Utförligare motivering står i granskningsrapporten för omgång 2.
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad efter åtgärd. Retreatregeln är nu rätt återgiven: i 5 mot 5 backar motståndarna
-      till egen planhalva och stannar där tills bollen har lämnat målvaktens händer (spelformer.md,
+      Granskad efter åtgärd. Retreatregeln är nu rätt återgiven: i 5 mot 5 backar motståndarna till
+      egen planhalva och stannar där tills bollen har lämnat målvaktens händer (spelformer.md,
       SvFF:s spelformsblad 5 mot 5, hämtat 2026-09-11). Konerna markerar mittlinjen, nivå 2 och 3
-      stämmer, och ledarbehov 0 är rätt: reglerna är få, och att döma sig själv i smålagsspel är
-      ett eget innehåll i fas-8-9 (aldrar-och-fokus.md).
-      Ytan 26 x 18 har jag räknat på och godtar. Den ger 468 kvadratmeter. Vid nio spelare blir det
-      52 per spelare och vid elva 43, mot 45 till 60 i en riktig 5 mot 5-match på 30 x 15 till 20
-      meter (spelformer.md). Trängseln är alltså matchlik i övre delen av spannet och rymlig i
-      nedre. Att korta planen från 30 till 26 meter är dessutom rätt riktning här: uppspelen
-      kommer oftare när avstånden är kortare. Med mittlinjen som retreatlinje står motståndarna 13
-      meter från målvakten, ungefär som i match.
-      En sak har jag rättat själv. Beskrivningen sa två till fem utespelare per lag och samtidigt
-      högst elva spelare, vilket inte går ihop, eftersom fem plus fem plus två målvakter är tolv.
-      Nu står det två till fyra utespelare per lag, och att ett lag får en femte vid udda antal.
-      Det stämmer med anpassningen och med högsta antal elva. Jag har också lagt till en
-      coachningspunkt för utespelarna, eftersom båda de tidigare handlade om målvakten medan
-      syftet gäller hela laget.
+      stämmer, och ledarbehov 0 är rätt: reglerna är få, och att döma sig själv i smålagsspel är ett
+      eget innehåll i fas-8-9 (aldrar-och-fokus.md). Ytan 26 x 18 har jag räknat på och godtar. Den
+      ger 468 kvadratmeter. Vid nio spelare blir det 52 per spelare och vid elva 43, mot 45 till 60
+      i en riktig 5 mot 5-match på 30 x 15 till 20 meter (spelformer.md). Trängseln är alltså
+      matchlik i övre delen av spannet och rymlig i nedre. Att korta planen från 30 till 26 meter är
+      dessutom rätt riktning här: uppspelen kommer oftare när avstånden är kortare. Med mittlinjen
+      som retreatlinje står motståndarna 13 meter från målvakten, ungefär som i match. En sak har
+      jag rättat själv. Beskrivningen sa två till fem utespelare per lag och samtidigt högst elva
+      spelare, vilket inte går ihop, eftersom fem plus fem plus två målvakter är tolv. Nu står det
+      två till fyra utespelare per lag, och att ett lag får en femte vid udda antal. Det stämmer med
+      anpassningen och med högsta antal elva. Jag har också lagt till en coachningspunkt för
+      utespelarna, eftersom båda de tidigare handlade om målvakten medan syftet gäller hela laget.
       Kvar att bedöma för redaktören: högsta antal tolv hade gett full 5 mot 5-form med målvakter,
       men kräver en större yta, ungefär 30 x 18. Jag låter elva stå.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

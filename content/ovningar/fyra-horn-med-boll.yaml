@@ -55,27 +55,29 @@ anpassning:
   udda_antal: Alla har egen boll och rör sig fritt i samma ruta, så udda antal spelar ingen roll.
   ledare: En ledare räcker för att ropa hörn. Med fler ledare kan de ropa växelvis från olika sidor.
 kalla: Egen övning, inspirerad av allmänt känd lek med fyra hörn.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Bra uppvärmning för fas-8-9. Alla har egen boll, ingen kö uppstår, organisationen går att
-      visa på under en halv minut och leken kommer igång direkt, vilket är precis vad
-      uppvärmningen ska göra i den här åldern. Lek och koordination är båda kärnområden för fasen
-      och stämmer med syftet. Ledarbehov 0 är rätt: ledaren ropar hörn, men en och samma ledare
-      kan ropa till två rutor som ligger bredvid varandra, och det är just den skillnaden R-006
-      beskriver.
-      Två egna rättelser. Nivålistan var för snäv. Övningen är inte svårare på niva-2 än på
-      niva-1, den blir bara snabbare, och den svårare varianten med två hörn efter varandra är en
-      verklig höjning som en niva-2-grupp klarar. Jag har lagt till niva-2. Niva-3 lämnar jag
-      utanför: en grupp som klarar sin spelform bra behöver mer bollstyrning under press än den
-      här leken ger, och kapplöpning med boll täcker den nivån i uppvärmningen.
-      Jag har också sänkt högsta antal från sexton till tolv och lagt till en coachningspunkt om
-      att sakta ner i hörnet. Skälet är att alla spelare springer mot samma kon samtidigt. Sexton
-      åttaåringar med varsin boll som möts i ett hörn på en ruta om 18 x 18 meter ger en onödig
-      krockrisk. Med tolv spelare blir det knappt trettio kvadratmeter per spelare, och över tolv
-      bygger ledaren en andra ruta, vilket redan står i anpassningen. Ledarbehov 0 gör att en
-      ledare räcker även då. Tiderna ligger inom fasens gräns för uppvärmning och materialet
-      räcker för förloppet.
+      Bra uppvärmning för fas-8-9. Alla har egen boll, ingen kö uppstår, organisationen går att visa
+      på under en halv minut och leken kommer igång direkt, vilket är precis vad uppvärmningen ska
+      göra i den här åldern. Lek och koordination är båda kärnområden för fasen och stämmer med
+      syftet. Ledarbehov 0 är rätt: ledaren ropar hörn, men en och samma ledare kan ropa till två
+      rutor som ligger bredvid varandra, och det är just den skillnaden R-006 beskriver. Två egna
+      rättelser. Nivålistan var för snäv. Övningen är inte svårare på niva-2 än på niva-1, den blir
+      bara snabbare, och den svårare varianten med två hörn efter varandra är en verklig höjning som
+      en niva-2-grupp klarar. Jag har lagt till niva-2. Niva-3 lämnar jag utanför: en grupp som
+      klarar sin spelform bra behöver mer bollstyrning under press än den här leken ger, och
+      kapplöpning med boll täcker den nivån i uppvärmningen. Jag har också sänkt högsta antal från
+      sexton till tolv och lagt till en coachningspunkt om att sakta ner i hörnet. Skälet är att
+      alla spelare springer mot samma kon samtidigt. Sexton åttaåringar med varsin boll som möts i
+      ett hörn på en ruta om 18 x 18 meter ger en onödig krockrisk. Med tolv spelare blir det knappt
+      trettio kvadratmeter per spelare, och över tolv bygger ledaren en andra ruta, vilket redan
+      står i anpassningen. Ledarbehov 0 gör att en ledare räcker även då. Tiderna ligger inom fasens
+      gräns för uppvärmning och materialet räcker för förloppet.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

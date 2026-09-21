@@ -54,7 +54,7 @@ anpassning:
   udda_antal: Jokern spelar alltid med laget som har bollen, så udda antal löser sig automatiskt.
   ledare: Övningen är självgående när lagen och poängregeln är satta.
 kalla: Egen övning, inspirerad av allmänt kända rondoövningar med joker.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -62,21 +62,24 @@ granskning:
     kommentar: >-
       Formen är rätt för fas-8-9. Jokern som alltid spelar med bollhållande laget ger ett övertag
       som gör att passningar hinner gå fram, och det är precis vad en spelövning på de lägre
-      nivåerna ska ge. Spelbarhet och passning-mottagning är båda kärnområden för fasen och
-      stämmer med syftet. Ledarbehov 0 är rätt: när lagen och poängregeln är satta driver spelet
-      sig självt.
+      nivåerna ska ge. Spelbarhet och passning-mottagning är båda kärnområden för fasen och stämmer
+      med syftet. Ledarbehov 0 är rätt: när lagen och poängregeln är satta driver spelet sig självt.
       En egen rättelse av antalet spelare, och det är en viktig sådan. Fältet spelare gäller en
       grupp, alltså en yta, men det stod högst fjorton medan organisationen och beskrivningen säger
       sju per yta. Med fjorton spelare i en ruta om 14 x 12 meter hade generatorn packat tolv
-      kvadratmeter per spelare, vilket varken går att spela eller är säkert. Jag har satt högst
-      sju, som är tre mot tre med joker och det övningen faktiskt beskriver. Samtidigt sänkte jag
-      minsta antal från sex till fyra och skrev in i organisationen att mindre grupper spelar två
-      mot två med eller utan joker. Skälet är att generatorn delar gruppen: med minst sex och högst
-      sju hade övningen inte gått att använda vid åtta till elva spelare, som är de vanligaste
-      antalen på en träning i den här åldern. Med fyra till sju går varje antal från fyra och uppåt
-      jämnt ihop. Materiallistan räcker fortfarande, eftersom det största laget är tre spelare.
-      En egen rättelse av nivålistan. Övningen stod som enbart niva-1. Med jokern, den lättare
-      varianten utan press de första sekunderna och den svårare med två toucher täcker den både
-      niva-1 och niva-2, och niva-2 är egentligen dess naturliga hemvist. Jag har lagt till
-      niva-2. Niva-3 lämnar jag utanför: en grupp som håller bollen under press behöver ett spel
-      med riktning och mål, inte enbart bollhållning med övertag.
+      kvadratmeter per spelare, vilket varken går att spela eller är säkert. Jag har satt högst sju,
+      som är tre mot tre med joker och det övningen faktiskt beskriver. Samtidigt sänkte jag minsta
+      antal från sex till fyra och skrev in i organisationen att mindre grupper spelar två mot två
+      med eller utan joker. Skälet är att generatorn delar gruppen: med minst sex och högst sju hade
+      övningen inte gått att använda vid åtta till elva spelare, som är de vanligaste antalen på en
+      träning i den här åldern. Med fyra till sju går varje antal från fyra och uppåt jämnt ihop.
+      Materiallistan räcker fortfarande, eftersom det största laget är tre spelare. En egen rättelse
+      av nivålistan. Övningen stod som enbart niva-1. Med jokern, den lättare varianten utan press
+      de första sekunderna och den svårare med två toucher täcker den både niva-1 och niva-2, och
+      niva-2 är egentligen dess naturliga hemvist. Jag har lagt till niva-2. Niva-3 lämnar jag
+      utanför: en grupp som håller bollen under press behöver ett spel med riktning och mål, inte
+      enbart bollhållning med övertag.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

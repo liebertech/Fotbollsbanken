@@ -1,7 +1,8 @@
 schema: 1
 id: rorelsebana-skadeforebyggande
 namn: Rörelsebana, skadeförebyggande
-syfte: Spelarna ska öva balans, landningsteknik och grundrörelser på ett lekfullt sätt som förebygger skador.
+syfte: Spelarna ska öva balans, landningsteknik och grundrörelser på ett lekfullt sätt som
+  förebygger skador.
 beskrivning: |
   Varje spelare får en egen markeringsplatta och lägger den så att det är minst två meter till
   närmaste kompis, med ledaren väl synlig framför gruppen. Fem rörelser görs i tur och ordning,
@@ -52,66 +53,65 @@ coachningspunkter:
   - Håll balansen några sekunder innan gruppen går vidare till nästa rörelse.
 varianter:
   lattare: Hoppa i sidled med båda fötterna samtidigt och håll balansen kortare stunder.
-  svarare: Gör två varv genom de fem rörelserna, håll balansen längre på ett ben och gör
-    hoppen något högre.
+  svarare: Gör två varv genom de fem rörelserna, håll balansen längre på ett ben och gör hoppen något högre.
 anpassning:
-  fler_spelare: Dela gruppen så att varje ledare har högst tio spelare, och gör samma
-    rörelser på var sin yta bredvid varandra.
-  udda_antal: Alla gör rörelserna samtidigt på sin egen platta, aldrig i par, så udda antal
-    spelar ingen roll.
+  fler_spelare: Dela gruppen så att varje ledare har högst tio spelare, och gör samma rörelser på var
+    sin yta bredvid varandra.
+  udda_antal: Alla gör rörelserna samtidigt på sin egen platta, aldrig i par, så udda antal spelar ingen roll.
   ledare: Med fler ledare blir grupperna mindre, och varje ledare hinner rätta fler.
 kalla: Egen övning, inspirerad av principerna i skadeförebyggande uppvärmningsprogram för barn.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Innehållet är rätt: balans, landning, knäböj och utfallssteg är kärnan i de
-      skadeförebyggande program SvFF rekommenderar från sju år, och att lägga dem i uppvärmningen
-      stämmer med passuppbyggnad.md. Fokusområdena och åldern är rätt. Fyra saker ska ändras.
-      1. Beskrivningen och organisationen säger emot varandra. Beskrivningen säger att gruppen går
-      igenom banan tillsammans, station för station, med ledaren som visar före varje station.
-      Organisationen säger att alla går i sin egen takt. Det är två helt olika upplägg med olika
-      krav på material och tid. Välj ett och skriv samma sak på båda ställena. Jag rekommenderar
-      det första, alltså att hela gruppen gör en station i taget samtidigt, eftersom det är så
-      programmen är tänkta och eftersom det ger noll kötid.
-      2. Materiallistan räcker inte för förloppet. Med en markeringsplatta, en käpp och en kon kan
-      bara en spelare i taget göra varje station, medan upp till tio ska vara aktiva. Ange
-      material för hela gruppen, till exempel en markering per spelare och två till tre käppar och
-      koner, och skriv i anteckningen att antalet gäller en grupp.
-      3. Kötiden följer av punkt 1 och 2. Riktvärdet för fas-8-9 är högst två till tre spelare per
-      station. Med tio spelare och en uppsättning material står åtta still.
-      4. Nivålistan är för snäv. Innehållet är inte nivåberoende: en grupp på niva-1 och en på
-      niva-3 behöver samma landningsteknik, och skillnaden ligger i tempo och antal repetitioner,
-      vilket varianterna redan täcker. Sätt niva-1, niva-2 och niva-3. Det här är i dag bankens
-      enda skadeförebyggande övning för 5 mot 5, och med bara niva-2 kan två tredjedelar av lagen
-      inte få den prioritet R-044 beskriver för uppvärmningen.
-      Ytan 12 x 8 meter behöver troligen räknas om när punkt 1 och 2 är lösta. Ledarbehov 1 med
-      högst tio spelare är däremot rätt: här behövs en vuxen som visar och rättar hela tiden, och
-      tio är precis taket per ledare för fasen.
+      Innehållet är rätt: balans, landning, knäböj och utfallssteg är kärnan i de skadeförebyggande
+      program SvFF rekommenderar från sju år, och att lägga dem i uppvärmningen stämmer med
+      passuppbyggnad.md. Fokusområdena och åldern är rätt. Fyra saker ska ändras. 1. Beskrivningen
+      och organisationen säger emot varandra. Beskrivningen säger att gruppen går igenom banan
+      tillsammans, station för station, med ledaren som visar före varje station. Organisationen
+      säger att alla går i sin egen takt. Det är två helt olika upplägg med olika krav på material
+      och tid. Välj ett och skriv samma sak på båda ställena. Jag rekommenderar det första, alltså
+      att hela gruppen gör en station i taget samtidigt, eftersom det är så programmen är tänkta och
+      eftersom det ger noll kötid. 2. Materiallistan räcker inte för förloppet. Med en
+      markeringsplatta, en käpp och en kon kan bara en spelare i taget göra varje station, medan upp
+      till tio ska vara aktiva. Ange material för hela gruppen, till exempel en markering per
+      spelare och två till tre käppar och koner, och skriv i anteckningen att antalet gäller en
+      grupp. 3. Kötiden följer av punkt 1 och 2. Riktvärdet för fas-8-9 är högst två till tre
+      spelare per station. Med tio spelare och en uppsättning material står åtta still. 4.
+      Nivålistan är för snäv. Innehållet är inte nivåberoende: en grupp på niva-1 och en på niva-3
+      behöver samma landningsteknik, och skillnaden ligger i tempo och antal repetitioner, vilket
+      varianterna redan täcker. Sätt niva-1, niva-2 och niva-3. Det här är i dag bankens enda
+      skadeförebyggande övning för 5 mot 5, och med bara niva-2 kan två tredjedelar av lagen inte få
+      den prioritet R-044 beskriver för uppvärmningen. Ytan 12 x 8 meter behöver troligen räknas om
+      när punkt 1 och 2 är lösta. Ledarbehov 1 med högst tio spelare är däremot rätt: här behövs en
+      vuxen som visar och rättar hela tiden, och tio är precis taket per ledare för fasen.
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Granskad efter åtgärd. Beskrivning och organisation säger nu samma sak, och nivåerna är
-      vidgade till alla tre, vilket var rätt.
-      Mer material löste däremot inte kön, det flyttade den. Med tre käppar och tre koner stod sju
-      av tio spelare still vid två av de fem rörelserna, mot riktvärdet två till tre per station
-      för fas-8-9. Jag har rättat det själv genom att ta bort käppar och koner: hoppet i sidled
-      görs över den egna markeringsplattan och utfallssteget framåt på stället. Plattan är platt
-      och går att springa på (materialtyperna i passuppbyggnad.md), så det finns inget att snubbla
-      på, vilket en käpp på marken hade inneburit. Nu är alla tio i gång i alla fem rörelser, och
-      materiallistan är en platta per spelare. Anpassningarna och varianterna är omskrivna efter
-      det, och jag har lagt till coachningspunkten om att knät ska peka åt samma håll som foten.
-      Det är den viktigaste punkten i knäskadeförebyggande träning.
-      Ytan 12 x 15 meter godtar jag. Den ger 180 kvadratmeter, alltså 18 per spelare vid tio, och
-      det räcker med marginal när alla står utspridda med två meter mellan sig och gör sidohopp
-      och utfall på stället. Gamla 12 x 8 hade gett 96 kvadratmeter, vilket är i knappaste laget.
-      Ledarbehov 1 och högst tio spelare står kvar med flit. Tio är taket per ledare för fas-8-9
-      (generatorregler.md), så ett lag med fjorton spelare och en ledare får inte den här
-      övningen. Rätt knä- och fotisättning kräver en vuxen som ser varje spelare. R-044 är en
-      prioritet, och för fas-8-9 räcker lek, bollkänsla eller koordination för att uppfylla den,
-      så inget pass blockeras.
-      Kvar att bedöma för redaktören: namnet innehåller ordet bana, men någon bana finns inte
-      längre. Överväg att döpa om övningen och filen.
+      vidgade till alla tre, vilket var rätt. Mer material löste däremot inte kön, det flyttade den.
+      Med tre käppar och tre koner stod sju av tio spelare still vid två av de fem rörelserna, mot
+      riktvärdet två till tre per station för fas-8-9. Jag har rättat det själv genom att ta bort
+      käppar och koner: hoppet i sidled görs över den egna markeringsplattan och utfallssteget
+      framåt på stället. Plattan är platt och går att springa på (materialtyperna i
+      passuppbyggnad.md), så det finns inget att snubbla på, vilket en käpp på marken hade
+      inneburit. Nu är alla tio i gång i alla fem rörelser, och materiallistan är en platta per
+      spelare. Anpassningarna och varianterna är omskrivna efter det, och jag har lagt till
+      coachningspunkten om att knät ska peka åt samma håll som foten. Det är den viktigaste punkten
+      i knäskadeförebyggande träning. Ytan 12 x 15 meter godtar jag. Den ger 180 kvadratmeter,
+      alltså 18 per spelare vid tio, och det räcker med marginal när alla står utspridda med två
+      meter mellan sig och gör sidohopp och utfall på stället. Gamla 12 x 8 hade gett 96
+      kvadratmeter, vilket är i knappaste laget. Ledarbehov 1 och högst tio spelare står kvar med
+      flit. Tio är taket per ledare för fas-8-9 (generatorregler.md), så ett lag med fjorton spelare
+      och en ledare får inte den här övningen. Rätt knä- och fotisättning kräver en vuxen som ser
+      varje spelare. R-044 är en prioritet, och för fas-8-9 räcker lek, bollkänsla eller
+      koordination för att uppfylla den, så inget pass blockeras. Kvar att bedöma för redaktören:
+      namnet innehåller ordet bana, men någon bana finns inte längre. Överväg att döpa om övningen
+      och filen.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

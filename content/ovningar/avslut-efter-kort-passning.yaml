@@ -58,64 +58,64 @@ coachningspunkter:
   - Ta emot bollen i rörelse mot mål, stanna den inte helt.
   - Sikta lågt mot ett hörn av målet i stället för att skjuta mitt på eller högt.
 varianter:
-  lattare: Ingen inspelning. Bollen ligger still framför skytten, som startar från
-    stillastående och avslutar.
+  lattare: Ingen inspelning. Bollen ligger still framför skytten, som startar från stillastående och
+    avslutar.
   svarare: Spelaren tar emot med ryggen mot målet och måste vända innan avslutet.
 anpassning:
-  fler_spelare: Bygg en till station vid ett eget mål. Ställ målen så att avsluten går åt
-    olika håll, bort från den andra stationen.
+  fler_spelare: Bygg en till station vid ett eget mål. Ställ målen så att avsluten går åt olika håll,
+    bort från den andra stationen.
   udda_antal: Vid udda antal blir en av de två köerna en spelare kortare, det spelar ingen roll.
-  ledare: Övningen går utan ledare när den har visats en gång. Med en ledare kan hen i
-    stället själv passa in bollarna för att hålla jämn takt, och ge korta tips om första
-    touchen och avslutet.
+  ledare: Övningen går utan ledare när den har visats en gång. Med en ledare kan hen i stället själv
+    passa in bollarna för att hålla jämn takt, och ge korta tips om första touchen och avslutet.
 kalla: Egen övning, inspirerad av vanlig avslutsträning med inspel.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Avslut är kärnområde för fas-8-9 och banken behöver den här övningen, men tre saker måste
-      ändras innan den kan bli granskad.
-      1. Kön är för lång. Med tio spelare vid ett mål och en spelare i gång åt gången väntar nio.
-      Riktvärdet för fas-8-9 är två till tre spelare per boll eller mål, och många bollkontakter
-      med kort kö är det viktigaste kravet i den här åldern. Sänk högsta antal till sex och skriv
-      in ett förlopp som håller flera i gång: två köer, en på var sida om skottlinjen, som startar
-      växelvis, och att den som just avslutat hämtar sin boll och går till andra kön. Då blir
-      väntan några sekunder i stället för en halv minut. Minsta antal fyra kan stå kvar.
-      2. Meningen om målvakten måste bort eller skrivas om. Som den står nu, att en kompis utan
-      handskar kan stå i det tomma målet på längre avstånd, går den inte att förstå och den
-      beskriver dessutom ett moment jag inte kan rekommendera: en åtta- eller nioåring utan
+      ändras innan den kan bli granskad. 1. Kön är för lång. Med tio spelare vid ett mål och en
+      spelare i gång åt gången väntar nio. Riktvärdet för fas-8-9 är två till tre spelare per boll
+      eller mål, och många bollkontakter med kort kö är det viktigaste kravet i den här åldern. Sänk
+      högsta antal till sex och skriv in ett förlopp som håller flera i gång: två köer, en på var
+      sida om skottlinjen, som startar växelvis, och att den som just avslutat hämtar sin boll och
+      går till andra kön. Då blir väntan några sekunder i stället för en halv minut. Minsta antal
+      fyra kan stå kvar. 2. Meningen om målvakten måste bort eller skrivas om. Som den står nu, att
+      en kompis utan handskar kan stå i det tomma målet på längre avstånd, går den inte att förstå
+      och den beskriver dessutom ett moment jag inte kan rekommendera: en åtta- eller nioåring utan
       handskar som möter avslut på tio meter. Skriv antingen att målet lämnas tomt, eller att en
-      målvakt med handskar står i mål och att avsluten då ska hållas låga. Övningen fungerar bra
-      med tomt mål, och målvaktsmomentet finns i banken på annat håll.
-      3. Nivålistan är för snäv. Att ta emot en inspelad boll i rörelse och avsluta är grunden i
-      avslutsträning, inte en niva-3-uppgift. Den lättare varianten, stillaliggande boll och
-      stillastående start, är gjord för niva-1, och den svårare, mottagning med ryggen mot mål,
-      räcker för niva-3. Sätt niva-1, niva-2 och niva-3.
-      Övrigt är i ordning: ledarbehov 1 med en ledare per mål är rätt när ledaren passar in
-      bollarna i jämn takt, kön står vid sidan om skottlinjen, ytan och tiderna stämmer och båda
-      fokusområdena är kärnområden för fasen. Notera att övningen i dag är bankens enda Öva-övning
-      med avslut för 5 mot 5, så den luckan står öppen tills den är åtgärdad.
+      målvakt med handskar står i mål och att avsluten då ska hållas låga. Övningen fungerar bra med
+      tomt mål, och målvaktsmomentet finns i banken på annat håll. 3. Nivålistan är för snäv. Att ta
+      emot en inspelad boll i rörelse och avsluta är grunden i avslutsträning, inte en
+      niva-3-uppgift. Den lättare varianten, stillaliggande boll och stillastående start, är gjord
+      för niva-1, och den svårare, mottagning med ryggen mot mål, räcker för niva-3. Sätt niva-1,
+      niva-2 och niva-3. Övrigt är i ordning: ledarbehov 1 med en ledare per mål är rätt när ledaren
+      passar in bollarna i jämn takt, kön står vid sidan om skottlinjen, ytan och tiderna stämmer
+      och båda fokusområdena är kärnområden för fasen. Notera att övningen i dag är bankens enda
+      Öva-övning med avslut för 5 mot 5, så den luckan står öppen tills den är åtgärdad.
   - datum: 2026-09-14
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Granskad efter åtgärd. Kön är löst, målvaktsmomentet är borta, målet är tomt genomgående och
-      nivåerna är vidgade till alla tre.
-      Sänkningen från tio till sex flyttade däremot problemet till ledarna, och det har jag rättat
-      själv. Med ledarbehov 1 och högst sex per grupp delar generatorn ett lag på tolv i två
-      grupper, och då krävs två ledare (R-050, R-055). Ett lag med en ledare hade alltså inte
-      kunnat använda bankens enda avslutsövning i Öva för 5 mot 5. När jag godtog ledarbehov 1
-      förra gången var högsta antal tio, och då gick en enda grupp ihop. Det gör den inte längre.
-      Rättelsen är att spelarna spelar in bollarna åt varandra: den först i ena kön rullar in
-      bollen till den först i andra kön, som avslutar, och nästa boll går åt andra hållet. Var och
-      en passar en gång och avslutar en gång innan hen hämtar sin boll och ställer sig sist.
-      Ledarbehovet är därför 0 och ledaruppgiften ligger i anpassningen för ledare. Sex per mål är
-      fler än riktvärdet två till tre för fas-8-9, men två av sex är i gång i varje försök och ett
-      varv tar några sekunder, så väntan blir kort. Den lättare varianten behöver ingen inspelning
-      alls, vilket passar niva-1.
-      Säkerhet: köerna står nu ett par meter ut åt sidan utanför skottets väg, den som hämtar sin
-      boll går tillbaka utanför ytan och aldrig tvärs framför målet, och två stationer ställs så
-      att avsluten går åt olika håll. Jag la också till en coachningspunkt för den som passar in.
-      Ytan 15 x 10, tiderna, materialet och fokusområdena står kvar och stämmer.
+      nivåerna är vidgade till alla tre. Sänkningen från tio till sex flyttade däremot problemet
+      till ledarna, och det har jag rättat själv. Med ledarbehov 1 och högst sex per grupp delar
+      generatorn ett lag på tolv i två grupper, och då krävs två ledare (R-050, R-055). Ett lag med
+      en ledare hade alltså inte kunnat använda bankens enda avslutsövning i Öva för 5 mot 5. När
+      jag godtog ledarbehov 1 förra gången var högsta antal tio, och då gick en enda grupp ihop. Det
+      gör den inte längre. Rättelsen är att spelarna spelar in bollarna åt varandra: den först i ena
+      kön rullar in bollen till den först i andra kön, som avslutar, och nästa boll går åt andra
+      hållet. Var och en passar en gång och avslutar en gång innan hen hämtar sin boll och ställer
+      sig sist. Ledarbehovet är därför 0 och ledaruppgiften ligger i anpassningen för ledare. Sex
+      per mål är fler än riktvärdet två till tre för fas-8-9, men två av sex är i gång i varje
+      försök och ett varv tar några sekunder, så väntan blir kort. Den lättare varianten behöver
+      ingen inspelning alls, vilket passar niva-1. Säkerhet: köerna står nu ett par meter ut åt
+      sidan utanför skottets väg, den som hämtar sin boll går tillbaka utanför ytan och aldrig tvärs
+      framför målet, och två stationer ställs så att avsluten går åt olika håll. Jag la också till
+      en coachningspunkt för den som passar in. Ytan 15 x 10, tiderna, materialet och fokusområdena
+      står kvar och stämmer.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

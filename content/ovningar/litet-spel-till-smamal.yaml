@@ -52,12 +52,12 @@ varianter:
   lattare: Försvararna får bara gå, inte springa, när de pressar bollhållaren.
   svarare: Bara en touch tillåten den sista metern innan avslut.
 anpassning:
-  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum, hellre
-    än att lägga in fler spelare på samma yta.
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum, hellre än att
+    lägga in fler spelare på samma yta.
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -65,22 +65,25 @@ granskning:
     kommentar: >-
       Ett riktigt spel i passets spel-del, med två lag, riktning och mål, precis som R-008 kräver.
       Formen är den bästa som finns för fas-8-9: små lag på liten yta ger flest bollkontakter och
-      flest avslut per spelare, och minimål utan målvakt tar bort träffrisken. Fokusområdena 1 mot
-      1 och avslut är båda kärnområden för fasen och stämmer med syftet. Ledarbehov 0 är rätt,
-      ledaren dömer och peppar från sidan, och tiderna ligger inom fasens gräns för spel.
-      En egen rättelse av antalet spelare. Fältet gäller en yta, men det stod högst tio medan
-      organisationen säger två till tre spelare per lag och västarna räckte till tre. Tio spelare
-      på 18 x 12 meter är drygt tjugo kvadratmeter per spelare, alltså långt trängre än en 5 mot
-      5-match, och då försvinner både utmaningarna i 1 mot 1 och avsluten. Jag har satt högst sju,
-      vilket rymmer tre mot tre plus en extra spelare i ena laget, och höjt västarna till fyra.
-      Minsta antal fyra står kvar, och med fyra till sju går varje antal från fyra och uppåt jämnt
-      ihop när generatorn delar gruppen. Jag har också skrivit om anpassningen för fler spelare:
-      den sa att ytan skulle göras större och lagen fyras, vilket säger emot både organisationen
-      och det fasta ytmåttet. Nu står det att fler ytor läggs bredvid varandra, vilket är samma
-      sak som organisationen säger och det som ger mest speltid.
-      En egen rättelse av nivålistan. Övningen stod som niva-1 och niva-2. Ett litet spel till
-      småmål är rätt för alla tre nivåerna i den här åldern: spelet anpassar sig efter spelarna,
-      och den svårare varianten med en touch den sista metern före avslut ger en van grupp något
-      att bita i. Jag har lagt till niva-3. Utan det hade ett niva-3-lag med elva till femton
-      spelare inte kunnat få något spel alls, eftersom det andra spelet i banken kräver åtta till
-      tio spelare i gruppen.
+      flest avslut per spelare, och minimål utan målvakt tar bort träffrisken. Fokusområdena 1 mot 1
+      och avslut är båda kärnområden för fasen och stämmer med syftet. Ledarbehov 0 är rätt, ledaren
+      dömer och peppar från sidan, och tiderna ligger inom fasens gräns för spel. En egen rättelse
+      av antalet spelare. Fältet gäller en yta, men det stod högst tio medan organisationen säger
+      två till tre spelare per lag och västarna räckte till tre. Tio spelare på 18 x 12 meter är
+      drygt tjugo kvadratmeter per spelare, alltså långt trängre än en 5 mot 5-match, och då
+      försvinner både utmaningarna i 1 mot 1 och avsluten. Jag har satt högst sju, vilket rymmer tre
+      mot tre plus en extra spelare i ena laget, och höjt västarna till fyra. Minsta antal fyra står
+      kvar, och med fyra till sju går varje antal från fyra och uppåt jämnt ihop när generatorn
+      delar gruppen. Jag har också skrivit om anpassningen för fler spelare: den sa att ytan skulle
+      göras större och lagen fyras, vilket säger emot både organisationen och det fasta ytmåttet. Nu
+      står det att fler ytor läggs bredvid varandra, vilket är samma sak som organisationen säger
+      och det som ger mest speltid. En egen rättelse av nivålistan. Övningen stod som niva-1 och
+      niva-2. Ett litet spel till småmål är rätt för alla tre nivåerna i den här åldern: spelet
+      anpassar sig efter spelarna, och den svårare varianten med en touch den sista metern före
+      avslut ger en van grupp något att bita i. Jag har lagt till niva-3. Utan det hade ett
+      niva-3-lag med elva till femton spelare inte kunnat få något spel alls, eftersom det andra
+      spelet i banken kräver åtta till tio spelare i gruppen.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

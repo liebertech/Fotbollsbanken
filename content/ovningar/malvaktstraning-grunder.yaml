@@ -56,7 +56,7 @@ anpassning:
   udda_antal: Tre spelare delar en port och roterar som målvakt, kastare och vilande.
   ledare: Övningen är självgående efter att ledaren visat grundställning och fångteknik en gång.
 kalla: Egen övning, inspirerad av vanlig grundträning för unga målvakter.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -67,14 +67,17 @@ granskning:
       betyder att alla får prova målvaktsrollen, vilket är min rekommendation för den här åldern,
       och att ingen står i kö. Målvaktsspel är relevant för fasen och passning-mottagning
       kärnområde, så märkningen är tillåten. Säkerheten är bra löst: bollen kastas eller rullas
-      mjukt från fem meter, inga hårda skott mot ett barn utan skydd.
-      En egen rättelse av nivålistan. Övningen stod som niva-1 och niva-2. Målvaktsteknik är nytt
-      för alla i den här åldern, oavsett hur bra gruppen spelar i sin spelform, och den svårare
-      varianten, där bollen kastas åt sidan så att målvakten måste förflytta sig och falla mjukt,
-      är en verklig utmaning också för en van grupp. Eftersom det här är bankens enda Öva-övning
-      med målvaktsspel för 5 mot 5 skulle en snävare lista dessutom lämna niva-3-lag helt utan
-      målvaktsträning. Jag har lagt till niva-3.
-      Jag har också lagt till en coachningspunkt om att falla på sidan och aldrig ta emot med raka
-      armar. Den svårare varianten innehåller ett fallmoment, och då ska ledaren ha den punkten
-      framför sig. Ledarbehov 0, ytan 6 x 5 meter, tiderna och materialet stämmer med
+      mjukt från fem meter, inga hårda skott mot ett barn utan skydd. En egen rättelse av
+      nivålistan. Övningen stod som niva-1 och niva-2. Målvaktsteknik är nytt för alla i den här
+      åldern, oavsett hur bra gruppen spelar i sin spelform, och den svårare varianten, där bollen
+      kastas åt sidan så att målvakten måste förflytta sig och falla mjukt, är en verklig utmaning
+      också för en van grupp. Eftersom det här är bankens enda Öva-övning med målvaktsspel för 5 mot
+      5 skulle en snävare lista dessutom lämna niva-3-lag helt utan målvaktsträning. Jag har lagt
+      till niva-3. Jag har också lagt till en coachningspunkt om att falla på sidan och aldrig ta
+      emot med raka armar. Den svårare varianten innehåller ett fallmoment, och då ska ledaren ha
+      den punkten framför sig. Ledarbehov 0, ytan 6 x 5 meter, tiderna och materialet stämmer med
       beskrivningen.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

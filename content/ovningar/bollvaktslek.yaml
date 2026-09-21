@@ -1,8 +1,8 @@
 schema: 1
 id: bollvaktslek
 namn: Bollvaktslek
-syfte: Spelarna ska skydda sin egen boll och samtidigt störa andras bollkontroll, i
-  en lekfull tävling som bygger bollkänsla under press.
+syfte: Spelarna ska skydda sin egen boll och samtidigt störa andras bollkontroll, i en lekfull
+  tävling som bygger bollkänsla under press.
 beskrivning: |
   Alla spelare startar med varsin boll inne i en yta om 18 x 18 meter som är markerad
   med koner. På signal ska alla samtidigt försöka peta ut andras bollar utanför
@@ -56,18 +56,16 @@ coachningspunkter:
   - Peta bara på bollen, aldrig mot någon annans fot eller ben.
   - Kom snabbt tillbaka in i ytan med bollen om den åker ut.
 varianter:
-  lattare: Större yta, till exempel 22 x 22 meter, och bara lätta beröringar mot
-    bollen tillåtna.
-  svarare: Mindre yta, till exempel 14 x 14 meter, och bara insidan av foten får
-    användas för att peta ut andras bollar.
+  lattare: Större yta, till exempel 22 x 22 meter, och bara lätta beröringar mot bollen tillåtna.
+  svarare: Mindre yta, till exempel 14 x 14 meter, och bara insidan av foten får användas för att peta
+    ut andras bollar.
 anpassning:
   fler_spelare: Bygg en yta till bredvid med samma lek, och dela gruppen i två.
   udda_antal: Spelar ingen roll, alla har varsin boll oavsett hur många de är.
-  ledare: En ledare räcker för att hålla koll på säkerheten, också när gruppen är delad
-    i två ytor.
-kalla: Egen övning, inspirerad av en allmänt känd lekövning där spelarna skyddar sin
-  egen boll och stör andras.
-status: granskad
+  ledare: En ledare räcker för att hålla koll på säkerheten, också när gruppen är delad i två ytor.
+kalla: Egen övning, inspirerad av en allmänt känd lekövning där spelarna skyddar sin egen boll och
+  stör andras.
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -76,14 +74,18 @@ granskning:
       Övningen fyller luckan den skrevs för: en lek med lek som huvudfokus i uppvärmningen för
       fas-10-12. Både lek och bollkänsla är relevanta för fasen, så märkningen är tillåten, och
       syftet hänger ihop med huvudfokus. Aktiviteten är det starkaste med övningen: alla har egen
-      boll, ingen slås ut, ingen kö uppstår och den som förlorar bollen är tillbaka i leken på
-      några sekunder. Att ingen blir utslagen är viktigt och rätt tänkt för åldern. Nivåerna
-      niva-1 till niva-3 är rimliga, eftersom svårigheten sätts av hur nära kompisarna är och av
-      varianterna med större eller mindre yta, inte av någon regel spelarna måste förstå.
-      Ledarbehov 0 stämmer: leken driver sig själv, och en ledare kan ha uppsikt över två ytor
-      bredvid varandra. Säkerheten är hanterad där den behöver hanteras. Coachningspunkten om att
-      bara peta på bollen och aldrig mot fot eller ben är den viktigaste i övningen, och den står
-      också i beskrivningen. Ytan 18 x 18 meter för högst sexton spelare ger drygt tjugo
-      kvadratmeter per spelare, vilket är trängt men rimligt när alla rör sig utåt och ingen samlas
-      på ett ställe. Tiderna ligger inom fasens gräns för uppvärmning och rundorna om två minuter
-      ger naturlig vila. Inga ändringar gjorda.
+      boll, ingen slås ut, ingen kö uppstår och den som förlorar bollen är tillbaka i leken på några
+      sekunder. Att ingen blir utslagen är viktigt och rätt tänkt för åldern. Nivåerna niva-1 till
+      niva-3 är rimliga, eftersom svårigheten sätts av hur nära kompisarna är och av varianterna med
+      större eller mindre yta, inte av någon regel spelarna måste förstå. Ledarbehov 0 stämmer:
+      leken driver sig själv, och en ledare kan ha uppsikt över två ytor bredvid varandra.
+      Säkerheten är hanterad där den behöver hanteras. Coachningspunkten om att bara peta på bollen
+      och aldrig mot fot eller ben är den viktigaste i övningen, och den står också i beskrivningen.
+      Ytan 18 x 18 meter för högst sexton spelare ger drygt tjugo kvadratmeter per spelare, vilket
+      är trängt men rimligt när alla rör sig utåt och ingen samlas på ett ställe. Tiderna ligger
+      inom fasens gräns för uppvärmning och rundorna om två minuter ger naturlig vila. Inga
+      ändringar gjorda.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

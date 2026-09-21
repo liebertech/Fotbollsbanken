@@ -50,13 +50,14 @@ coachningspunkter:
   - Anfall snabbt så fort ni vunnit tillbaka bollen.
 varianter:
   lattare: Det försvarande laget får två sekunder utan press innan det ska erövra bollen.
-  svarare: Laget har bara tio sekunder på sig att vinna tillbaka bollen efter en förlust, annars får motståndarna en extra poäng.
+  svarare: Laget har bara tio sekunder på sig att vinna tillbaka bollen efter en förlust, annars får
+    motståndarna en extra poäng.
 anpassning:
   fler_spelare: Bygg en till yta bredvid med samma mått.
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående när lagen och reglerna är satta.
 kalla: Egen övning, inspirerad av allmänt kända försvars- och omställningsspel.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -66,18 +67,22 @@ granskning:
       och en annan täcker bakom, och att bollvinsten direkt ska följas av ett snabbt anfall gör att
       både försvarsspel och omställning händer många gånger per minut. Båda fokusområdena är
       relevanta för fasen och stämmer med syftet. Ledarbehov 0 är rätt, minimålen utan målvakt tar
-      bort träffrisken i avsluten, och tiderna ligger inom fasens gränser.
-      En egen rättelse av antalet spelare. Fältet gäller en grupp, alltså en yta, men det stod
-      högst fjorton medan ytan är 20 x 14 meter. Fjorton spelare där ger tjugo kvadratmeter per
-      spelare, alltså ett 7 mot 7 på en yta för 3 mot 3, vilket varken går att spela eller är
-      säkert. Jag har satt fyra till åtta spelare, alltså två mot två upp till fyra mot fyra, och
-      skrivit in det i organisationen. Med fyra som minsta antal går varje antal från fyra och
-      uppåt jämnt ihop när generatorn delar gruppen, vilket inte hade skett med sex som minsta
-      antal: då hade nio, tio och elva spelare inte gått att fördela. Två mot två håller kvar
-      poängen med övningen, eftersom en pressar och en täcker även där. Jag har också höjt antalet
-      västar från tre till fyra, så att de räcker till det största laget.
-      En egen rättelse av nivålistan. Övningen stod som enbart niva-3. Med den lättare varianten,
-      två sekunder utan press innan bollen ska erövras, är den fullt användbar på niva-2, och
-      niva-2 beskrivs i nivaer.md som gruppen som vet åt vilket håll den ska men tappar det när det
-      går fort, vilket är precis vad övningen tränar. Jag har lagt till niva-2. Niva-1 lämnar jag
-      utanför: en grupp som samlas runt bollen har ännu inte nytta av att öva täckning.
+      bort träffrisken i avsluten, och tiderna ligger inom fasens gränser. En egen rättelse av
+      antalet spelare. Fältet gäller en grupp, alltså en yta, men det stod högst fjorton medan ytan
+      är 20 x 14 meter. Fjorton spelare där ger tjugo kvadratmeter per spelare, alltså ett 7 mot 7
+      på en yta för 3 mot 3, vilket varken går att spela eller är säkert. Jag har satt fyra till
+      åtta spelare, alltså två mot två upp till fyra mot fyra, och skrivit in det i organisationen.
+      Med fyra som minsta antal går varje antal från fyra och uppåt jämnt ihop när generatorn delar
+      gruppen, vilket inte hade skett med sex som minsta antal: då hade nio, tio och elva spelare
+      inte gått att fördela. Två mot två håller kvar poängen med övningen, eftersom en pressar och
+      en täcker även där. Jag har också höjt antalet västar från tre till fyra, så att de räcker
+      till det största laget. En egen rättelse av nivålistan. Övningen stod som enbart niva-3. Med
+      den lättare varianten, två sekunder utan press innan bollen ska erövras, är den fullt
+      användbar på niva-2, och niva-2 beskrivs i nivaer.md som gruppen som vet åt vilket håll den
+      ska men tappar det när det går fort, vilket är precis vad övningen tränar. Jag har lagt till
+      niva-2. Niva-1 lämnar jag utanför: en grupp som samlas runt bollen har ännu inte nytta av att
+      öva täckning.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."

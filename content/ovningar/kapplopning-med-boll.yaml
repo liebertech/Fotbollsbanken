@@ -57,7 +57,7 @@ anpassning:
   udda_antal: Tre spelare bildar ett lag och springer var sin sträcka som en stafett.
   ledare: En ledare räcker för att starta omgångarna. Fler ledare kan starta flera banor samtidigt.
 kalla: Egen övning, inspirerad av vanliga kapplöpningslekar med boll.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert
@@ -66,16 +66,19 @@ granskning:
       Formen passar fas-8-9 bra. Snabbhet ska enligt aldrar-och-fokus.md tränas i korta lekar och
       tävlingar med boll i den här åldern, och det är precis vad övningen är. Två spelare per bana
       med varsin boll ger många bollkontakter och naturlig vila mellan omgångarna, och bollkänsla
-      som huvudfokus stämmer med syftet, eftersom det är bollstyrningen i fart som avgör.
-      En egen rättelse av säkerhetsskäl. Beskrivningen hade en enda vändkon som båda i paret skulle
-      runda samtidigt, och materiallistan hade också bara en kon. Två åttaåringar som sprinter mot
-      samma kon och vänder där är en onödig krockrisk. Jag har gett varje spelare en egen vändkon
-      ett par meter från kompisens, lagt till en coachningspunkt om att hålla sig i sin bana och
-      rättat materiallistan till två koner. Banans mått 18 x 5 meter räcker för två banor bredvid
-      varandra i paret.
-      En egen rättelse av nivålistan. Övningen stod som enbart niva-3, och det håller inte. En
-      kapplöpning med boll ställer inga krav på spelförståelse eller på att passningar går fram,
+      som huvudfokus stämmer med syftet, eftersom det är bollstyrningen i fart som avgör. En egen
+      rättelse av säkerhetsskäl. Beskrivningen hade en enda vändkon som båda i paret skulle runda
+      samtidigt, och materiallistan hade också bara en kon. Två åttaåringar som sprinter mot samma
+      kon och vänder där är en onödig krockrisk. Jag har gett varje spelare en egen vändkon ett par
+      meter från kompisens, lagt till en coachningspunkt om att hålla sig i sin bana och rättat
+      materiallistan till två koner. Banans mått 18 x 5 meter räcker för två banor bredvid varandra
+      i paret. En egen rättelse av nivålistan. Övningen stod som enbart niva-3, och det håller inte.
+      En kapplöpning med boll ställer inga krav på spelförståelse eller på att passningar går fram,
       och den lättare varianten, att jogga banan i stället för att sprinta, är gjord just för en
       grupp som ännu tappar bollen i fart. Den svårare varianten med två varv i följd räcker för
       niva-3. Jag har satt niva-1, niva-2 och niva-3. Ledarbehov 0 är rätt: ledaren startar
       omgångarna, men samma signal startar alla banor samtidigt.
+  - datum: 2026-09-21
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #8."
