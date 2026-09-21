@@ -23,12 +23,12 @@ Status: utkast (ändring inför K4, 2026-09-21)
 13. **Givet** att antalet spelare är fler än antalet ledare gånger taket per ledare för åldersfasen (se `docs/doman/passuppbyggnad.md`), **när** passet genereras, **då** genereras passet ändå, och appen visar ett tips om att ta hjälp av fler vuxna (R-021).
 14. **Givet** att ledaren är 13 år eller äldre, **när** passet genereras, **då** är den sammanlagda tiden för alla övningar i passet som har `nickspel` bland sina fokusområden högst 10 minuter för åldersfasen 13–14 år och högst 20 minuter för åldersfasen 15–19 år (R-082). Taket gäller oavsett hur många sådana övningar som annars skulle matcha, och oavsett om `nickspel` är övningens huvudfokus eller inte – alltså även för en övning som valts in för ett annat fokus men som är märkt med `nickspel` (R-081).
 15. **Givet** att någon övning i passet har mål i sitt material, **då** visar appen en påminnelse om att alla mål ska vara förankrade så att de inte kan välta. **Givet** att passet genereras, **då** visar appen alltid en påminnelse om benskydd, eftersom Spel alltid innehåller närkamper (R-084, R-085).
-16. **Givet** att en del inte kan fyllas med en övning som träffar valt fokus, **då** prövar appen först fallbacken på ett närliggande fokusområde för just den delen (berättelse 03, kriterium 5–7) innan delen visas som att övning saknas. **Givet** att inga övningar alls matchar underlaget för en del, varken med valt fokus eller efter fallbacken, **då** hanteras det enligt berättelse 03, inte genom att visa ett tomt eller felaktigt pass.
+16. **Givet** att `del-ovning` eller `del-spelovning` inte kan fyllas med en övning som träffar valt fokus, **då** prövar appen först ett ersättningsfokus enligt R-121 för just den delen (berättelse 03, kriterium 5–7) innan delen visas som att övning saknas. `del-uppvarmning` och `del-spel` fylls fortfarande utan krav på träff mot valt fokus (R-044 till R-046, kriterium 10) och berörs inte av ersättningsfokuset. **Givet** att inga övningar alls matchar underlaget för en del, varken med valt fokus eller – för `del-ovning` och `del-spelovning` – med ett ersättningsfokus, **då** hanteras det enligt berättelse 03, inte genom att visa ett tomt eller felaktigt pass.
 
 ## Beroenden
 
 - 01 (ange underlag och spelform).
-- 03 (inget matchande resultat), för fallbacken på närliggande fokusområde som kriterium 16 hänvisar till.
+- 03 (inget matchande resultat), för ersättningsfokuset (R-121) som kriterium 16 hänvisar till.
 - Innehåll: kräver att det finns godkända övningar i banken som matchar olika kombinationer av ålder, spelform, nivå, spelarantal och fokusområde (se `content/ovningar/`).
 
 ## Utanför denna berättelse
@@ -45,3 +45,4 @@ Status: utkast (ändring inför K4, 2026-09-21)
 | Datum | Ändring |
 |---|---|
 | 2026-09-21 | Kriterium 16 kompletterat med en hänvisning till fallbacken på närliggande fokusområde (se berättelse 03, kriterium 5–7). Innehållet i kriteriet är i övrigt oförändrat. |
+| 2026-09-21 | Kriterium 16 rättat sedan fotbollsexperten publicerat regeln som **R-121** (grupp 5). Ersättningsfokuset gäller bara `del-ovning` och `del-spelovning`, inte `del-uppvarmning` eller `del-spel`, som redan fylls utan krav på träff mot valt fokus (R-044 till R-046). Generisk hänvisning bytt mot R-121. |
