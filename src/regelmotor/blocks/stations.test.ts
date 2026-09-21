@@ -65,7 +65,13 @@ describe('R-061 Antal stationer', () => {
 describe('R-062 Stationernas övningar', () => {
   it('R-062 kräver att alla stationsövningar är olika', () => {
     expect(
-      buildStationBlock([station('ovning-a'), station('ovning-a')], 'fas-10-12', 'del-ovning', 12, 3),
+      buildStationBlock(
+        [station('ovning-a'), station('ovning-a')],
+        'fas-10-12',
+        'del-ovning',
+        12,
+        3,
+      ),
     ).toBeNull();
   });
 });
@@ -125,7 +131,10 @@ describe('R-065 Tid vid stationer', () => {
 
   it('R-065 håller stationstiden inom varje övnings gränser', () => {
     const kort = bankExercise({ id: 'ovning-a', tid: { kortast: 5, rekommenderad: 6, langst: 8 } });
-    const lang = bankExercise({ id: 'ovning-b', tid: { kortast: 7, rekommenderad: 10, langst: 12 } });
+    const lang = bankExercise({
+      id: 'ovning-b',
+      tid: { kortast: 7, rekommenderad: 10, langst: 12 },
+    });
     const block = buildStationBlock([kort, lang], 'fas-10-12', 'del-ovning', 12, 2);
     expect(block?.minStation).toBe(7);
     expect(block?.maxStation).toBe(8);

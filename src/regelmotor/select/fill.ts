@@ -5,11 +5,7 @@
  * Här bor också begreppet *Delen kan fyllas* ur generatorreglernas avsnitt *Begrepp*, som
  * R-100, R-101, R-103 och R-121 alla vilar på.
  */
-import {
-  HEADING_MINUTES_CAP,
-  PART_TOLERANCE,
-  WARMUP_BODY_FOCUS,
-} from '../keys.ts';
+import { HEADING_MINUTES_CAP, PART_TOLERANCE, WARMUP_BODY_FOCUS } from '../keys.ts';
 import type { FocusArea, Phase, SessionPartFromBank } from '../keys.ts';
 import { compareIds } from '../random/rng.ts';
 import type { Rng } from '../random/rng.ts';
@@ -201,11 +197,7 @@ export interface FillContext extends BuildContext {
  * @regel R-047
  * @regel R-038
  */
-export function rankKey(
-  set: BlockSet,
-  part: SessionPartFromBank,
-  context: FillContext,
-): number[] {
+export function rankKey(set: BlockSet, part: SessionPartFromBank, context: FillContext): number[] {
   const exercises = setExercises(set.blocks);
   const key: number[] = [];
 
@@ -271,7 +263,11 @@ export function compareKeys(a: readonly number[], b: readonly number[]): number 
  * Sorterar uppsättningarna, bäst först. Sista utslagsgivare är övningarnas id, så att
  * ordningen är oberoende av den ordning banken kom i (R-072).
  */
-export function sortSets(sets: BlockSet[], part: SessionPartFromBank, context: FillContext): BlockSet[] {
+export function sortSets(
+  sets: BlockSet[],
+  part: SessionPartFromBank,
+  context: FillContext,
+): BlockSet[] {
   return [...sets].sort((a, b) => {
     const compared = compareKeys(rankKey(b, part, context), rankKey(a, part, context));
     if (compared !== 0) {
@@ -290,7 +286,12 @@ export function sortSets(sets: BlockSet[], part: SessionPartFromBank, context: F
  * @regel R-067
  * @regel R-072
  */
-export function pickAmongEqual(sets: BlockSet[], part: SessionPartFromBank, context: FillContext, rng: Rng): BlockSet[] {
+export function pickAmongEqual(
+  sets: BlockSet[],
+  part: SessionPartFromBank,
+  context: FillContext,
+  rng: Rng,
+): BlockSet[] {
   const sorted = sortSets(sets, part, context);
   const first = sorted[0];
   if (first === undefined) {

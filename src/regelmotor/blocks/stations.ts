@@ -102,10 +102,7 @@ export function buildStationBlock(
   }
   const recommendedStation = Math.min(
     maxStation,
-    Math.max(
-      minStation,
-      Math.min(...exercises.map((exercise) => exercise.tid.rekommenderad)),
-    ),
+    Math.max(minStation, Math.min(...exercises.map((exercise) => exercise.tid.rekommenderad))),
   );
 
   const layout: Layout = {

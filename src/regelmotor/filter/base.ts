@@ -23,11 +23,7 @@ export interface Rejection {
  * @regel R-026
  * @regel R-027
  */
-export function baseRejection(
-  exercise: Exercise,
-  input: Input,
-  phase: Phase,
-): string | null {
+export function baseRejection(exercise: Exercise, input: Input, phase: Phase): string | null {
   // R-022: bara godkända övningar ur den gemensamma banken.
   if (exercise.status !== 'godkand') {
     return 'R-022';

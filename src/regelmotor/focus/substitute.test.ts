@@ -60,9 +60,9 @@ describe('R-121 Närliggande fokusområde när kärnan annars blir tom', () => {
 
   it('R-121 steg 2 och 3: kandidatlistan byggs i tabellens ordning och rensas', () => {
     // Avvikelsen för lek i del-ovning gäller från fas-10-12.
-    expect(candidateFocusList(['lek'], 'del-ovning', { input: underlag, phase: 'fas-10-12' })).toEqual(
-      ['dribbling', 'koordination', 'bollkansla'],
-    );
+    expect(
+      candidateFocusList(['lek'], 'del-ovning', { input: underlag, phase: 'fas-10-12' }),
+    ).toEqual(['dribbling', 'koordination', 'bollkansla']);
     expect(
       candidateFocusList(['lek'], 'del-ovning', {
         input: { ...underlag, alder: 9, spelform: '5mot5' },

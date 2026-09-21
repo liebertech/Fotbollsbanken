@@ -6,11 +6,7 @@
  * klubbens egna övningar kan inte nå generatorn, eftersom det inte finns någon parameter
  * att skicka in dem i.
  */
-import {
-  CORE_PARTS,
-  PARTS_REQUIRED_FOR_SESSION,
-  PART_PRIORITY_ORDER,
-} from './keys.ts';
+import { CORE_PARTS, PARTS_REQUIRED_FOR_SESSION, PART_PRIORITY_ORDER } from './keys.ts';
 import type { CorePart, FocusArea, Phase, SessionPartFromBank } from './keys.ts';
 import { createRng } from './random/rng.ts';
 import { validateInput } from './input/validate.ts';

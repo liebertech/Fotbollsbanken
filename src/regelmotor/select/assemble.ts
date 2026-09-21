@@ -157,10 +157,7 @@ export function assembleDraft(selection: Selection, context: AssembleContext): D
     });
 
     // R-082: nicktaket gäller hela passet.
-    const heading = fills.reduce(
-      (sum, fill) => sum + headingMinutes(fill.blocks, fill.minutes),
-      0,
-    );
+    const heading = fills.reduce((sum, fill) => sum + headingMinutes(fill.blocks, fill.minutes), 0);
     if (heading > HEADING_MINUTES_CAP[context.phase]) {
       continue;
     }

@@ -225,9 +225,7 @@ describe('R-102 Underlaget ändras aldrig av generatorn', () => {
 describe('R-103 Vilka val som kan ändras', () => {
   it('R-103 pekar ut val som var för sig skulle kunna ge en övning i delen', () => {
     const bank = testbank.map((exercise) =>
-      exercise.id === 'ova-passa'
-        ? bankExercise({ ...exercise, niva: ['niva-3'] })
-        : exercise,
+      exercise.id === 'ova-passa' ? bankExercise({ ...exercise, niva: ['niva-3'] }) : exercise,
     );
     const value = session(underlag, bank);
     const tom = value.parts.find((part) => part.part === 'del-ovning');

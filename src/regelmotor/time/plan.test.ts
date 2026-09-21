@@ -85,17 +85,20 @@ describe('R-032 Måltider för delarna', () => {
     ]);
   });
 
-  it.each(TABELLER)('R-032 stämmer med tidsplanen för $phase i passuppbyggnad.md', ({ phase, rows }) => {
-    for (const [minutes, uppvarmning, ovning, spelovning, spel, vatten, avslutning] of rows) {
-      const plan = planTime(phase, minutes);
-      expect(plan.closingMinutes).toBe(avslutning);
-      expect(plan.breakMinutes).toBe(vatten);
-      expect(target(phase, minutes, 'del-uppvarmning')).toBe(uppvarmning);
-      expect(target(phase, minutes, 'del-ovning')).toBe(ovning ?? undefined);
-      expect(target(phase, minutes, 'del-spelovning')).toBe(spelovning ?? undefined);
-      expect(target(phase, minutes, 'del-spel')).toBe(spel);
-    }
-  });
+  it.each(TABELLER)(
+    'R-032 stämmer med tidsplanen för $phase i passuppbyggnad.md',
+    ({ phase, rows }) => {
+      for (const [minutes, uppvarmning, ovning, spelovning, spel, vatten, avslutning] of rows) {
+        const plan = planTime(phase, minutes);
+        expect(plan.closingMinutes).toBe(avslutning);
+        expect(plan.breakMinutes).toBe(vatten);
+        expect(target(phase, minutes, 'del-uppvarmning')).toBe(uppvarmning);
+        expect(target(phase, minutes, 'del-ovning')).toBe(ovning ?? undefined);
+        expect(target(phase, minutes, 'del-spelovning')).toBe(spelovning ?? undefined);
+        expect(target(phase, minutes, 'del-spel')).toBe(spel);
+      }
+    },
+  );
 });
 
 describe('R-033 För korta delar tas bort', () => {

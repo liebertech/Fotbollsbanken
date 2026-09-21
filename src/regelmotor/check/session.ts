@@ -246,7 +246,9 @@ export function checkSession(session: Session): string[] {
 
     // R-034 och R-065: tiderna.
     const maxMinutes =
-      row.part === 'del-spel' ? EXERCISE_MAX_MINUTES[phase].spel : EXERCISE_MAX_MINUTES[phase].ovrigt;
+      row.part === 'del-spel'
+        ? EXERCISE_MAX_MINUTES[phase].spel
+        : EXERCISE_MAX_MINUTES[phase].ovrigt;
     const minutes = row.kind === 'station' ? (row.stationMinutes ?? 0) : blockMinutes(rows, row);
     if (minutes < EXERCISE_MIN_MINUTES || minutes > maxMinutes) {
       problems.push(`R-034: ${exercise.id} har ${minutes} minuter i ${row.part}`);
@@ -338,11 +340,12 @@ export function checkSession(session: Session): string[] {
     if (!exercise.fokusomraden.includes(FOCUS_AREA_HEADING)) {
       continue;
     }
-    headingMinutes +=
-      row.kind === 'station' ? (row.stationMinutes ?? 0) : blockMinutes(rows, row);
+    headingMinutes += row.kind === 'station' ? (row.stationMinutes ?? 0) : blockMinutes(rows, row);
   }
   if (headingMinutes > HEADING_MINUTES_CAP[phase]) {
-    problems.push(`R-082: ${headingMinutes} minuter nickning, taket är ${HEADING_MINUTES_CAP[phase]}`);
+    problems.push(
+      `R-082: ${headingMinutes} minuter nickning, taket är ${HEADING_MINUTES_CAP[phase]}`,
+    );
   }
 
   return problems;

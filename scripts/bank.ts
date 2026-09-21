@@ -51,7 +51,10 @@ export function loadBank(dir: string = CONTENT_DIR): BankResult {
     }
     const result = exerciseSchema.safeParse(document);
     if (!result.success) {
-      problems.push({ file, message: result.error.issues.map((issue) => issue.message).join('; ') });
+      problems.push({
+        file,
+        message: result.error.issues.map((issue) => issue.message).join('; '),
+      });
       continue;
     }
     exercises.push(result.data);

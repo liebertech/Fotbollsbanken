@@ -585,7 +585,9 @@ export function coachCap(phase: Phase): number {
  * @regel R-034
  */
 export function maxExerciseMinutes(phase: Phase, part: SessionPart): number {
-  return part === 'del-spel' ? EXERCISE_MAX_MINUTES[phase].spel : EXERCISE_MAX_MINUTES[phase].ovrigt;
+  return part === 'del-spel'
+    ? EXERCISE_MAX_MINUTES[phase].spel
+    : EXERCISE_MAX_MINUTES[phase].ovrigt;
 }
 
 /**

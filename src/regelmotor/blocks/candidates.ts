@@ -4,11 +4,7 @@
  * Ett kandidatmoment bär sina grupper, sina ledare och ett tidsintervall, inte en bestämd
  * tid (ADR 0011 avsnitt 5, steg 1). Det är det som gör tidstilldelningen exakt lösbar.
  */
-import {
-  EXERCISE_MIN_MINUTES,
-  STATION_COUNT,
-  maxExerciseMinutes,
-} from '../keys.ts';
+import { EXERCISE_MIN_MINUTES, STATION_COUNT, maxExerciseMinutes } from '../keys.ts';
 import type { FocusArea, Phase, SessionPartFromBank } from '../keys.ts';
 import { compareIds } from '../random/rng.ts';
 import { baseRejection, fitsPart, hasMainHit, hitsFocus } from '../filter/base.ts';
@@ -16,7 +12,12 @@ import { safetyRejection } from '../filter/safety.ts';
 import { exerciseArea, momentFitsArea } from '../filter/area.ts';
 import type { Size } from '../filter/area.ts';
 import { planWholeGroups } from './groups.ts';
-import { buildStationBlock, maxStations, stationBlockMinutes, stationsAllowed } from './stations.ts';
+import {
+  buildStationBlock,
+  maxStations,
+  stationBlockMinutes,
+  stationsAllowed,
+} from './stations.ts';
 import type { Block, Exercise, Input, StationBlock, WholeBlock } from '../types.ts';
 
 /** Högst så här många övningar går in i kombinationerna för ett stationsmoment. */

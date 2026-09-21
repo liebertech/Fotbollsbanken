@@ -115,9 +115,9 @@ describe('R-018 Passlängd', () => {
 describe('R-019 Val av fokusområden', () => {
   it('R-019 kräver minst ett och högst tre fokusområden', () => {
     expect(fel({ fokus: [] })).toContain('fokus:R-019');
-    expect(
-      fel({ fokus: ['passning-mottagning', 'dribbling', 'avslut', 'spelbarhet'] }),
-    ).toContain('fokus:R-019');
+    expect(fel({ fokus: ['passning-mottagning', 'dribbling', 'avslut', 'spelbarhet'] })).toContain(
+      'fokus:R-019',
+    );
   });
 
   it('R-019 visar bara fokusområden som är K eller R för fasen', () => {

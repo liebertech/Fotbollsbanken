@@ -50,45 +50,49 @@ describe('R-049 Det här klarar ett genererat pass alltid', () => {
     expect(checkSession(session(underlag))).toEqual([]);
   });
 
-  it('R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till', { timeout: 60_000 }, () => {
-    let skapade = 0;
-    for (const alder of [9, 11]) {
-      const phase = phaseForAge(alder);
-      if (phase === undefined) {
-        continue;
-      }
-      for (const spelform of allowedGameFormats(alder)) {
-        for (const niva of ['niva-1', 'niva-2', 'niva-3'] as const) {
-          for (const spelare of [8, 12, 14, 20]) {
-            for (const ledare of [1, 2, 4]) {
-              for (const passlangd of [30, 60, Math.min(75, SESSION_LENGTH_MAX[phase])]) {
-                for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
-                  const input: Input = {
-                    alder,
-                    spelform,
-                    niva,
-                    spelare,
-                    ledare,
-                    passlangd,
-                    fokus,
-                  };
-                  const result = generateSession(input, banken, 'fro');
-                  if (result.kind === 'none') {
-                    // Kontrollen får aldrig vara skälet till att inget pass skapades.
-                    expect(result.reason.internalProblems).toEqual([]);
-                    continue;
+  it(
+    'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till',
+    { timeout: 60_000 },
+    () => {
+      let skapade = 0;
+      for (const alder of [9, 11]) {
+        const phase = phaseForAge(alder);
+        if (phase === undefined) {
+          continue;
+        }
+        for (const spelform of allowedGameFormats(alder)) {
+          for (const niva of ['niva-1', 'niva-2', 'niva-3'] as const) {
+            for (const spelare of [8, 12, 14, 20]) {
+              for (const ledare of [1, 2, 4]) {
+                for (const passlangd of [30, 60, Math.min(75, SESSION_LENGTH_MAX[phase])]) {
+                  for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
+                    const input: Input = {
+                      alder,
+                      spelform,
+                      niva,
+                      spelare,
+                      ledare,
+                      passlangd,
+                      fokus,
+                    };
+                    const result = generateSession(input, banken, 'fro');
+                    if (result.kind === 'none') {
+                      // Kontrollen får aldrig vara skälet till att inget pass skapades.
+                      expect(result.reason.internalProblems).toEqual([]);
+                      continue;
+                    }
+                    skapade += 1;
+                    expect(checkSession(result.session)).toEqual([]);
                   }
-                  skapade += 1;
-                  expect(checkSession(result.session)).toEqual([]);
                 }
               }
             }
           }
         }
       }
-    }
-    expect(skapade).toBeGreaterThan(100);
-  });
+      expect(skapade).toBeGreaterThan(100);
+    },
+  );
 });
 
 describe('R-072 Gränsen mellan fotbollsregler och algoritmval', () => {

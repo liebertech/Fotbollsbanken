@@ -17,11 +17,7 @@ import type { Exercise, Layout } from '../types.ts';
  * @regel R-050
  * @regel R-057
  */
-export function largestGroup(
-  exercise: Exercise,
-  phase: Phase,
-  part: SessionPartFromBank,
-): number {
+export function largestGroup(exercise: Exercise, phase: Phase, part: SessionPartFromBank): number {
   const limits: number[] = [];
   if (exercise.grupptyp === 'fast-storlek' && exercise.udda_antal_losning === true) {
     limits.push(exercise.spelare.max + 1);
@@ -51,10 +47,7 @@ export function splitPlayers(players: number, groups: number): number[] {
  *
  * @regel R-054
  */
-function oddHandling(
-  exercise: Exercise,
-  sizes: number[],
-): Pick<Layout, 'oddSolution' | 'oddText'> {
+function oddHandling(exercise: Exercise, sizes: number[]): Pick<Layout, 'oddSolution' | 'oddText'> {
   const ownText = exercise.anpassning?.udda_antal ?? null;
   const hasOdd = sizes.some((size) => size % 2 === 1);
   if (exercise.grupptyp === 'par' && hasOdd) {

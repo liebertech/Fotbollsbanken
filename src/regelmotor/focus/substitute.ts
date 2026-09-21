@@ -6,7 +6,12 @@
  * `del-ovning` och `del-spelovning`: `del-uppvarmning` och `del-spel` har egna lösningar,
  * eftersom fokus är en prioritet där (R-044 till R-046).
  */
-import { CORE_PARTS, FOCUS_NEVER_SUBSTITUTE, focusNeighbours, isFocusAreaRelevant } from '../keys.ts';
+import {
+  CORE_PARTS,
+  FOCUS_NEVER_SUBSTITUTE,
+  focusNeighbours,
+  isFocusAreaRelevant,
+} from '../keys.ts';
 import type { CorePart, FocusArea } from '../keys.ts';
 import type { BuildContext } from '../blocks/candidates.ts';
 import { canFillPart } from '../select/fill.ts';

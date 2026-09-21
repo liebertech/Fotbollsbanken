@@ -29,7 +29,10 @@ function copy(selection: Selection): Selection {
   return next;
 }
 
-function usedIds(selection: Selection, skip?: { part: SessionPartFromBank; index: number }): Set<string> {
+function usedIds(
+  selection: Selection,
+  skip?: { part: SessionPartFromBank; index: number },
+): Set<string> {
   const ids = new Set<string>();
   for (const [part, blocks] of selection) {
     for (const [index, block] of blocks.entries()) {

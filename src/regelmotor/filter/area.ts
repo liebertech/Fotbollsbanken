@@ -30,9 +30,7 @@ export function exerciseArea(exercise: Exercise, format: GameFormat): Size | nul
 
 function fitsInside(size: Size, area: Size): boolean {
   const { langd: a, bredd: b } = area;
-  return (
-    (size.langd <= a && size.bredd <= b) || (size.langd <= b && size.bredd <= a)
-  );
+  return (size.langd <= a && size.bredd <= b) || (size.langd <= b && size.bredd <= a);
 }
 
 /**

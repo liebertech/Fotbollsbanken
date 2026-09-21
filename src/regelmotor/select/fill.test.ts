@@ -19,7 +19,12 @@ const ovning = (id: string, tid: { kortast: number; rekommenderad: number; langs
   bankExercise({ id, tid, passdelar: ['del-ovning'], spelare: { min: 2, max: 12 } });
 
 function blocks(bank: Exercise[]) {
-  return blocksForPart(candidatesForPart(bank, 'del-ovning', context), 'del-ovning', context, underlag.fokus);
+  return blocksForPart(
+    candidatesForPart(bank, 'del-ovning', context),
+    'del-ovning',
+    context,
+    underlag.fokus,
+  );
 }
 
 describe('R-034 Tid för en övning', () => {

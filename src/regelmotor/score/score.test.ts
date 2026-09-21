@@ -59,9 +59,7 @@ function draft(
   }
   return {
     fills,
-    emptyParts: plan.parts
-      .map((item) => item.part)
-      .filter((part) => parts[part] === undefined),
+    emptyParts: plan.parts.map((item) => item.part).filter((part) => parts[part] === undefined),
     effectiveFocus,
     substituteFocus: new Map(),
     totalMinutes: 60,
@@ -76,7 +74,10 @@ const huvudtraff = bankExercise({
   id: 'huvudtraff',
   fokusomraden: ['passning-mottagning', 'spelbarhet'],
 });
-const sidotraff = bankExercise({ id: 'sidotraff', fokusomraden: ['dribbling', 'passning-mottagning'] });
+const sidotraff = bankExercise({
+  id: 'sidotraff',
+  fokusomraden: ['dribbling', 'passning-mottagning'],
+});
 const annat = bankExercise({ id: 'annat-fokus', fokusomraden: ['dribbling'] });
 const uppvarmning = bankExercise({
   id: 'uppvarmning-kropp',
@@ -143,7 +144,10 @@ describe('R-046 Spelet träffar valt fokus', () => {
 
 describe('R-047 Alla valda fokus finns med', () => {
   it('R-047 prövas mot ledarens val, aldrig mot ett ersättningsfokus', () => {
-    const tva = { ...context, input: { ...input, fokus: ['passning-mottagning', 'dribbling'] as FocusArea[] } };
+    const tva = {
+      ...context,
+      input: { ...input, fokus: ['passning-mottagning', 'dribbling'] as FocusArea[] },
+    };
     expect(scoreSession(draft({ 'del-ovning': [huvudtraff] }), tva)[5]).toBe(0);
     expect(scoreSession(draft({ 'del-ovning': [huvudtraff, annat] }), tva)[5]).toBe(1);
   });
@@ -169,8 +173,14 @@ describe('R-048 Hur två pass jämförs', () => {
     const fler = scoreSession(draft({ 'del-ovning': [huvudtraff, sidotraff] }), context);
     expect(compareScores(faerre, fler)).toBeGreaterThan(0);
 
-    const kort = scoreSession(draft({ 'del-ovning': [huvudtraff] }, { longestStretch: 18 }), context);
-    const lang = scoreSession(draft({ 'del-ovning': [huvudtraff] }, { longestStretch: 25 }), context);
+    const kort = scoreSession(
+      draft({ 'del-ovning': [huvudtraff] }, { longestStretch: 18 }),
+      context,
+    );
+    const lang = scoreSession(
+      draft({ 'del-ovning': [huvudtraff] }, { longestStretch: 25 }),
+      context,
+    );
     expect(compareScores(kort, lang)).toBeGreaterThan(0);
   });
 

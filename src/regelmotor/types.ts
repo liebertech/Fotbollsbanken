@@ -51,8 +51,7 @@ export interface InputError {
 }
 
 export type InputResult =
-  | { ok: true; input: Input; phase: Phase }
-  | { ok: false; errors: InputError[] };
+  { ok: true; input: Input; phase: Phase } | { ok: false; errors: InputError[] };
 
 /** Gruppindelningen för ett moment (R-051 till R-056, ADR 0011 avsnitt 3, `layout`). */
 export interface Layout {
@@ -139,13 +138,7 @@ export interface Draft {
 
 /** Radslagen i tidslinjen (ADR 0011 avsnitt 3). */
 export type RowKind =
-  | 'exercise'
-  | 'period'
-  | 'stations'
-  | 'station'
-  | 'break'
-  | 'closing'
-  | 'empty';
+  'exercise' | 'period' | 'stations' | 'station' | 'break' | 'closing' | 'empty';
 
 export interface Row {
   kind: RowKind;
@@ -224,7 +217,15 @@ export interface NoSessionReason {
 }
 
 export type GenerationResult =
-  | { kind: 'session'; session: Session }
-  | { kind: 'none'; reason: NoSessionReason };
+  { kind: 'session'; session: Session } | { kind: 'none'; reason: NoSessionReason };
 
-export type { AreaKey, CorePart, FocusArea, GameFormat, Level, Phase, SessionPart, SessionPartFromBank };
+export type {
+  AreaKey,
+  CorePart,
+  FocusArea,
+  GameFormat,
+  Level,
+  Phase,
+  SessionPart,
+  SessionPartFromBank,
+};
