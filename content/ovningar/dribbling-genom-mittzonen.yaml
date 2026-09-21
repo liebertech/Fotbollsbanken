@@ -1,0 +1,65 @@
+schema: 1
+id: dribbling-genom-mittzonen
+namn: Dribbling genom mittzonen
+syfte: Spelarna ska driva bollen genom en försvarad zon på väg mot mål.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 20 x 14 meter med ett litet mål i var
+  ände. En zon på mitten, 6 meter bred, är markerad tvärs över ytan. Ett lag får en extra
+  poäng om en spelare driver bollen genom zonen, med bollen i egna fötter, innan laget gör
+  mål i samma anfall. En passning genom zonen räknas inte, bollen måste drivas dit av samma
+  spelare.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters mellanrum.
+fokusomraden:
+  - dribbling
+  - spelbarhet
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 20
+    bredd: 14
+material:
+  - typ: minimal
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar zonens hörn tvärs över ytan
+  - typ: vast
+    antal: 3
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 2
+coachningspunkter:
+  - Driv bollen i fart genom zonen i stället för att passa runt den.
+  - Skydda bollen med kroppen när en försvarare möter dig i zonen.
+  - Byt riktning för att hitta en öppen väg genom zonen.
+varianter:
+  lattare: Zonen görs bredare, till exempel 8 meter, så att det finns mer plats att driva i.
+  svarare: Zonen görs smalare, till exempel 4 meter, och spelaren får bara två toucher genom den.
+anpassning:
+  fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
+  udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
+  ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar
+    från sidan.
+kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
+status: utkast
+granskning: []

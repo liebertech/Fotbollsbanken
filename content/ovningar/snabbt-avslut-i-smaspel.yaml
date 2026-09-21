@@ -1,0 +1,62 @@
+schema: 1
+id: snabbt-avslut-i-smaspel
+namn: Snabbt avslut i litet spel
+syfte: Spelarna ska avsluta snabbt mot mål så fort ett bra läge uppstår.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 18 x 12 meter med ett litet mål i var
+  ände utan målvakt. Vanliga mål ger en poäng. En extra poäng ges om spelaren skjuter inom
+  två toucher efter att ha tagit emot bollen eller vunnit den, så att laget lär sig att
+  avsluta direkt i stället för att dribblera för länge.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters mellanrum.
+fokusomraden:
+  - avslut
+  - spelbarhet
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 10
+yta:
+  alla:
+    langd: 18
+    bredd: 12
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 3
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+    anteckning: extra bollar så att spelet kommer i gång snabbt igen
+coachningspunkter:
+  - Skjut så fort du har ett öppet läge, vänta inte på ett bättre.
+  - Sikta lågt mot ett hörn av målet.
+  - Sök läge nära mål i stället för att stanna långt bak.
+varianter:
+  lattare: Ta bort touchgränsen. Alla mål ger en poäng oavsett hur snabbt de görs.
+  svarare: Bonuspoängen kräver avslut med en enda touch.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
+kalla: Egen övning, inspirerad av vanliga smålagsspel med bonusregler för snabbt avslut.
+status: utkast
+granskning: []

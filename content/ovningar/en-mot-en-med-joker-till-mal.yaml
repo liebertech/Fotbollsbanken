@@ -1,0 +1,62 @@
+schema: 1
+id: en-mot-en-med-joker-till-mal
+namn: 1 mot 1 med joker till mål
+syfte: Spelarna ska utmana motståndaren i 1 mot 1 och avsluta mot mål med stöd av en joker.
+beskrivning: |
+  Två lag om två spelare möts på en yta om 16 x 10 meter med ett litet mål i var ände. En
+  joker spelar alltid med det lag som har bollen och gör att anfallarna oftast är i överläge
+  mot den sista försvararen. Extra poäng ges för mål som föregås av att en spelare dribblat
+  förbi en direkt motståndare.
+organisation: |
+  Två lag om två spelare per yta, totalt fyra spelare. Är gruppen fem blir den femte en joker
+  som alltid spelar med laget som har bollen. Flera ytor läggs bredvid varandra om gruppen är
+  större.
+fokusomraden:
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 5
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 10
+yta:
+  alla:
+    langd: 16
+    bredd: 10
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 3
+    anteckning: två i en färg till det ena laget, en i annan färg till jokern
+  - typ: boll
+    antal: 2
+coachningspunkter:
+  - Utmana motståndaren i stället för att passa bort bollen direkt.
+  - Använd jokern för att skapa ett överläge och en öppen väg till mål.
+  - Skydda bollen med kroppen när en försvarare är nära.
+varianter:
+  lattare: Jokern får bara passa, inte göra mål själv, så att en av de andra måste avsluta.
+  svarare: Ta bort jokern så lagen möts jämnt, två mot två.
+anpassning:
+  fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
+  udda_antal: Den femte spelaren är jokern och spelar alltid med laget som har bollen.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen bekräfta bonuspoängen för
+    dribblingar och peppa laget.
+kalla: Egen övning, inspirerad av vanliga smålagsspel med joker och bonuspoäng för 1 mot 1.
+status: utkast
+granskning: []

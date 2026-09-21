@@ -1,0 +1,63 @@
+schema: 1
+id: bygg-upp-fran-malvakten
+namn: Bygg upp från målvakten
+syfte: Spelarna ska sprida ut sig och ta emot uppspel från målvakten utan press.
+beskrivning: |
+  En målvakt och tre utespelare håller till på en yta om 25 x 18 meter med ett mål i ena
+  änden och en markerad linje 18 meter bort. Målvakten lägger ner bollen och spelar ut till en
+  utespelare, som ska ta sig med passningar hela vägen till linjen utan någon motståndare.
+  När gruppen når linjen rullas bollen tillbaka till målvakten och gruppen startar om, gärna
+  med en ny fördelning av vem som springer var.
+organisation: |
+  En grupp om fyra spelare per yta: målvakt och tre utespelare. Gruppen turas om att stå i
+  mål, en femte spelare roterar in som ny målvakt efter ett bestämt antal försök.
+fokusomraden:
+  - speluppbyggnad
+  - malvaktsspel
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 25
+    bredd: 18
+material:
+  - typ: mal
+    antal: 1
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar linjen 18 meter från målet
+coachningspunkter:
+  - Målvakten lägger ner bollen och passar med fötterna, sparkar inte ut den.
+  - Sprid ut er i bredd så att det finns flera passningsvägar.
+  - Möt bollen på väg mot den i stället för att stå still och vänta.
+varianter:
+  lattare: Målvakten får kasta ut bollen med händerna till en fri utespelare.
+  svarare: Lägg till en passiv försvarare som får röra sig men inte tackla eller vinna bollen.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En femte spelare roterar in som målvakt så att alla turas om.
+  ledare: Utan extra ledare styr gruppen själv vem som är målvakt och byter efter ett bestämt antal
+    försök. Med en ledare kan hen coacha målvaktens utkast och passningsval.
+kalla: Egen övning, inspirerad av vanlig uppspelsträning från målvakten utan press.
+status: utkast
+granskning: []

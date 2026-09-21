@@ -1,0 +1,59 @@
+schema: 1
+id: dribbling-mot-tidspress
+namn: Dribbling mot tidspress
+syfte: Spelarna ska dribbla förbi en aktiv försvarare snabbt och med flera finter i följd.
+beskrivning: |
+  Två spelare möts på en yta om 10 x 8 meter med en port av två koner i bortre änden.
+  Anfallaren har åtta sekunder på sig att dribbla bollen genom porten, medan försvararen
+  försvarar aktivt från start. Vinner försvararen bollen eller tar tiden slut byter paret
+  roll och startar om direkt med en ny boll.
+organisation: |
+  Ett par per yta. Fler par får varsin egen yta bredvid, med tre meters mellanrum.
+fokusomraden:
+  - dribbling
+  - ett-mot-ett
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 6
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 10
+    bredd: 8
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv så att paret kan starta om direkt
+  - typ: kon
+    antal: 6
+    anteckning: fyra till ytans hörn och två till porten i bortre änden
+coachningspunkter:
+  - Sätt fart direkt efter finten, stanna inte upp.
+  - Skydda bollen med kroppen när försvararen är tätt inpå.
+  - Håll blicken uppe för att se när porten är öppen.
+varianter:
+  lattare: Höj tidsgränsen till tolv sekunder.
+  svarare: Sänk tidsgränsen till sex sekunder och gör porten smalare.
+anpassning:
+  fler_spelare: Bygg fler ytor bredvid varandra med samma mått.
+  udda_antal: Tre spelare delar en yta och roterar, två dribblar och byter mot den tredje efter
+    varje försök.
+  ledare: Med en ledare i närheten kan hen hålla tiden och ropa ut när tiden är slut för alla par
+    samtidigt.
+kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
+status: utkast
+granskning: []

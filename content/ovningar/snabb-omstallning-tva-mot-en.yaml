@@ -1,0 +1,69 @@
+schema: 1
+id: snabb-omstallning-tva-mot-en
+namn: Snabb omställning två mot en
+syfte: Spelarna ska reagera snabbt och pressa direkt när de tappar bollen.
+beskrivning: |
+  Två anfallare möter en försvarare på en yta om 20 x 15 meter med ett litet mål utan
+  målvakt. Anfallarna spelar mot försvararen i överläge. Vinner försvararen bollen har
+  anfallarna sex sekunder på sig att pressa tillbaka och vinna tillbaka bollen innan en ny
+  boll sätts i spel. Efter varje mål eller misslyckad återpress byts försvararen ut.
+organisation: |
+  En grupp om tre spelare per yta: två anfallare och en försvarare. Gruppen bestämmer i
+  början en turordning, och försvararrollen går vidare ett steg i den ordningen efter varje
+  mål eller bollvinst.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 3
+  max: 3
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 20
+    bredd: 15
+material:
+  - typ: minimal
+    antal: 1
+  - typ: vast
+    antal: 1
+    anteckning: till försvararen
+  - typ: boll
+    antal: 3
+    anteckning: så att en ny boll snabbt kan sättas i spel efter varje omgång
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Reagera direkt när ni tappar bollen, stå inte kvar.
+  - Pressa den som har bollen i stället för att jaga efter ett läge.
+  - Sök snabbt framåt igen så fort ni vunnit tillbaka bollen.
+varianter:
+  lattare: Tidsgränsen för att pressa tillbaka höjs till tio sekunder.
+  svarare: Tidsgränsen sänks till fyra sekunder, och lyckas det inte blir det en poäng till
+    försvararen.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare efter varje
+    omgång.
+  ledare: Utan extra ledare håller gruppen själv koll på tiden och byter roller i tur och ordning.
+    Med en ledare kan hen hålla tiden och servar nya bollar.
+kalla: Egen övning, inspirerad av vanlig omställningsträning i överläge.
+status: utkast
+granskning: []
