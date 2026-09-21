@@ -44,7 +44,7 @@ Huvudsessionen leder arbetet. Den delegerar till agenterna, samlar in deras rapp
 | 0 Grund | Agenter, `CLAUDE.md`, mappstruktur | K0: agentlaget. Godkänd 2026-09-11 |
 | 1 Krav och domän | Krav och backlog, domänmodell, generatorregler | K1: godkänd 2026-09-11 |
 | 2 Design och arkitektur | Flöden, teknikval, datamodell, skissformat, behörighetsmodell | K2: godkänd 2026-09-12 |
-| 3 Övningsbank | Övningar i omgångar per spelform. Pågår parallellt med fas 4 | K3 per omgång. Omgång 1, 7 mot 7, godkänd 2026-09-14 |
+| 3 Övningsbank | Övningar i omgångar per spelform. Pågår parallellt med fas 4 | K3 per omgång. Omgång 1, 7 mot 7, godkänd 2026-09-14. Omgång 2, 5 mot 5, och omgång 3, hålen i båda spelformerna, godkända 2026-09-21. Banken är 42 övningar |
 | 4 Bygge i inkrement | Se ordningen nedan | K4 per inkrement |
 | 5 Lansering | Säkerhets- och GDPR-genomgång, integritetspolicy, kontroll av åldersfaserna mot SvFF:s spelarutbildningsplan, byte från deploy-nyckel till GitHub-app (ADR 0014), driftsättning | K5 |
 
