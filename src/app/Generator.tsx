@@ -7,21 +7,19 @@
  * samma underlag med ett nytt frö (R-072, ADR 0011 avsnitt 2).
  */
 import { useEffect, useState } from 'react';
-import { generateSession, validateInput } from '../regelmotor/index.ts';
-import type { Exercise, Input, InputError, NoSessionReason, Session } from '../regelmotor/index.ts';
+import type { Exercise, InputError } from '../regelmotor/index.ts';
+import { attemptGeneration } from './generate.ts';
+import type { GeneratedResult } from './generate.ts';
 import { InputForm } from './input/InputForm.tsx';
-import { EMPTY_FORM, toInput } from './input/form.ts';
+import { EMPTY_FORM } from './input/form.ts';
 import type { InputFormState } from './input/form.ts';
 import { SessionView } from './session/SessionView.tsx';
 import { NoSessionView } from './session/NoSessionView.tsx';
 
-type Result =
-  { kind: 'session'; session: Session } | { kind: 'none'; input: Input; reason: NoSessionReason };
-
 interface GeneratorProps {
   /** Den gemensamma banken. Generatorn väljer bara härifrån (R-022). */
   bank: readonly Exercise[];
-  /** Ett nytt frö per generering. Testerna skickar in ett bestämt frö. */
+  /** Ett nytt frö per generering (ADR 0011 avsnitt 2). */
   createSeed?: () => string;
 }
 
@@ -32,7 +30,7 @@ function randomSeed(): string {
 export function Generator({ bank, createSeed = randomSeed }: GeneratorProps) {
   const [form, setForm] = useState<InputFormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<readonly InputError[]>([]);
-  const [result, setResult] = useState<Result | null>(null);
+  const [result, setResult] = useState<GeneratedResult | null>(null);
 
   useEffect(() => {
     // Vyn byts högst upp, inte där ledaren råkade ha skrollat.
@@ -40,28 +38,18 @@ export function Generator({ bank, createSeed = randomSeed }: GeneratorProps) {
   }, [result]);
 
   const generate = () => {
-    const validated = validateInput(toInput(form));
-    if (!validated.ok) {
-      setErrors(validated.errors);
-      setResult(null);
-      return;
-    }
-    setErrors([]);
-
     const seed = createSeed();
-    const outcome = generateSession(validated.input, bank, seed);
-    if (outcome.kind === 'session') {
-      setResult({ kind: 'session', session: outcome.session });
-      return;
-    }
-    if (outcome.reason.internalProblems.length > 0) {
-      // Ett pass som faller på kontrollen är alltid en bugg i motorn (ADR 0011 avsnitt 1).
+    const attempt = attemptGeneration(form, bank, seed);
+    setErrors(attempt.errors);
+    setResult(attempt.result);
+
+    // Ett pass som faller på kontrollen är alltid en bugg i motorn (ADR 0011 avsnitt 1).
+    if (attempt.result?.kind === 'none' && attempt.result.reason.internalProblems.length > 0) {
       console.error('Passet klarade inte kontrollen', {
         seed,
-        problems: outcome.reason.internalProblems,
+        problems: attempt.result.reason.internalProblems,
       });
     }
-    setResult({ kind: 'none', input: validated.input, reason: outcome.reason });
   };
 
   if (result === null) {
