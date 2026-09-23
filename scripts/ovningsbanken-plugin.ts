@@ -6,8 +6,8 @@
  * valideringsskriptet och testerna använder (scripts/bank.ts). YAML-filerna och yaml-tolken
  * hamnar därför aldrig i paketet: allt det sker i Node vid bygget.
  */
-import { loadBank } from './bank.ts';
-import { CONTENT_DIR, findExerciseFiles } from './validera-ovningar.ts';
+import { CONTENT_DIR, loadBank } from './bank.ts';
+import { findExerciseFiles } from './validera-ovningar.ts';
 
 /** Modulnamnet appen importerar. Bara src/data/bank.ts gör det (ADR 0015). */
 export const BANK_MODULE_ID = 'virtual:ovningsbanken';
@@ -27,15 +27,29 @@ export interface BankPluginOptions {
  * @regel R-022
  */
 export function buildBankModule(dir: string = CONTENT_DIR): string {
-  const { exercises, problems } = loadBank(dir);
+  return buildBank(dir).code;
+}
+
+/**
+ * Modulen och en rad om vad som byggdes in. Raden skrivs i byggloggen, så att ett fall från
+ * 42 till 41 övningar syns i bygget och inte bara i valideringen (S-30).
+ */
+export function buildBank(dir: string = CONTENT_DIR): { code: string; summary: string } {
+  const { exercises, problems, skipped } = loadBank(dir);
   if (problems.length > 0) {
     const lines = problems.map((problem) => `${problem.file}: ${problem.message}`);
     throw new Error(`Övningsbanken går inte att läsa:\n${lines.join('\n')}`);
   }
-  return [
+  const code = [
     '// Byggd av scripts/ovningsbanken-plugin.ts (ADR 0015). Ändra övningarna i content/ovningar/.',
     `export const bank = ${JSON.stringify(exercises)};`,
   ].join('\n');
+  const skippedFiles = skipped.map((item) => `${item.file} (${item.status})`);
+  const summary = [
+    `${exercises.length} övningar inbyggda, ${skipped.length} överhoppade`,
+    ...skippedFiles.map((file) => `  överhoppad: ${file}`),
+  ].join('\n');
+  return { code, summary };
 }
 
 /** Insticket. Returtypen är Vites `Plugin`, men skrivs strukturellt för att slippa importen. */
@@ -46,7 +60,10 @@ export function ovningsbanken(options: BankPluginOptions = {}) {
     resolveId(id: string): string | undefined {
       return id === BANK_MODULE_ID ? RESOLVED_BANK_MODULE_ID : undefined;
     },
-    load(this: { addWatchFile?: (file: string) => void }, id: string): string | undefined {
+    load(
+      this: { addWatchFile?: (file: string) => void; info?: (message: string) => void },
+      id: string,
+    ): string | undefined {
       if (id !== RESOLVED_BANK_MODULE_ID) {
         return undefined;
       }
@@ -54,7 +71,13 @@ export function ovningsbanken(options: BankPluginOptions = {}) {
       for (const file of findExerciseFiles(dir)) {
         this.addWatchFile?.(file);
       }
-      return buildBankModule(dir);
+      const { code, summary } = buildBank(dir);
+      if (this.info === undefined) {
+        console.log(summary);
+      } else {
+        this.info(summary);
+      }
+      return code;
     },
   };
 }

@@ -12,9 +12,8 @@ import { basename, extname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse as parseYaml } from 'yaml';
 import { LIMITS, exerciseFileSchema } from '../src/regelmotor/schema/ovning.ts';
-
-/** Mappen med övningsbanken, relativt repots rot. */
-export const CONTENT_DIR = 'content/ovningar';
+// Mappen med övningsbanken har en enda definition, i scripts/bank.ts (S-34).
+import { CONTENT_DIR } from './bank.ts';
 
 export interface ValidationError {
   /** Filens sökväg, relativt den katalog skriptet startades i. */
