@@ -285,6 +285,22 @@ export function generateSession(
   // Steg 5 i kedjan: ett pass som inte klarar kontrollen lämnas aldrig ut (ADR 0011).
   const problems = checkSession(session);
   if (problems.length > 0) {
+    /*
+     * Det här är den enda vägen till orsaken `gar-inte-att-kombinera` för hela passet, och
+     * den öppnas bara av en bugg. Leta alltså inte efter ett underlag som ger den.
+     *
+     * Vid anropsplatsen ovan kan orsaken strukturellt inte uppstå. Säger `noSessionCause`
+     * att en av Öva, Spelövning och Spel går att fylla för sig, kom den delen också med i
+     * urvalet, och de tre ligger först i `PART_PRIORITY_ORDER`. `assembleWithFallback` tar
+     * bort delar i omvänd prioritetsordning och slutar vid första lyckade montering, så den
+     * högst prioriterade delen i urvalet finns alltid kvar i det som kommer ut — och en
+     * ensam del går alltid att montera, eftersom `blockSets` redan har prövat den mot
+     * måltiden och nicktaket. Då är `anyRequiredFilled` sant och grenen ovan tas inte.
+     *
+     * Här är läget ett annat: passet är färdigmonterat, men den oberoende kontrollen
+     * underkänner det. Monteringen och kontrollen är oense, och `internalProblems` säger om
+     * vad.
+     */
     return {
       kind: 'none',
       reason: {
