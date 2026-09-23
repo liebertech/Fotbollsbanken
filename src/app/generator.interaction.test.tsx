@@ -24,11 +24,12 @@ afterEach(() => {
 });
 
 /**
- * Fokusområdenas kryssrutor har namnet ur `FOCUS_AREA_NAMES`, men InputForm.tsx lägger till
- * " (K)" i etiketten när området är kärnområde för åldern (isCoreFocus). "Passning och
- * mottagning", "Dribbling och driva bollen", "Avslut" och "1 mot 1" är alla kärnområden för
- * 11 år (fas-10-12), så den riktiga tillgängliga namnen är till exempel
- * "Passning och mottagning (K)". Testerna matchar därför bara början av namnet.
+ * Fokusområdenas kryssrutor har namnet ur `FOCUS_AREA_NAMES`, men InputForm.tsx märker ett
+ * kärnområde för åldern (isCoreFocus) med " (K)" för ögat och med ordet "kärnområde" för en
+ * skärmläsare. "Passning och mottagning", "Dribbling och driva bollen", "Avslut" och
+ * "1 mot 1" är alla kärnområden för 11 år (fas-10-12), så de riktiga tillgängliga namnen är
+ * till exempel "Passning och mottagning, kärnområde". Testerna matchar därför bara början av
+ * namnet.
  */
 function focusCheckbox(name: string) {
   return screen.getByRole('checkbox', { name: new RegExp(`^${name}\\b`) });
@@ -69,6 +70,22 @@ describe('Berättelse 01 och 02: fylla i underlaget och generera ett pass', () =
     // Fortfarande på underlagssteget, inget pass visas.
     expect(screen.getByRole('heading', { name: 'Nytt pass' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Ditt pass' })).not.toBeInTheDocument();
+  });
+
+  /*
+   * Tillgänglighet, skisser/01-underlag.md: märkningen "(K)" syns men läses aldrig
+   * bokstavligt. Ett område som inte är kärnområde för åldern får ingen märkning alls.
+   */
+  it('01.9: en skärmläsare hör "kärnområde", inte bokstaven K', async () => {
+    const user = userEvent.setup();
+    render(<Generator bank={FULL_BANK} createSeed={() => 'fro-1'} />);
+    await user.type(screen.getByLabelText('Ålder'), String(INPUT.alder));
+
+    expect(
+      screen.getByRole('checkbox', { name: 'Passning och mottagning, kärnområde' }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole('checkbox', { name: /\(K\)/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: 'Bollkänsla' })).toBeInTheDocument();
   });
 
   it('R-019: går inte att kryssa i ett fjärde fokusområde', async () => {

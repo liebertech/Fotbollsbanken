@@ -23,6 +23,12 @@ export const TEXTS = {
     focus: 'Fokusområden (välj 1–3)',
     focusFull: 'Inaktiverad, redan tre valda',
     /*
+     * Märkningen "(K)" visas för ögat men läses aldrig bokstavligt: kryssrutans tillgängliga
+     * namn får ordet i stället, så att en skärmläsare inte säger "K" utan sammanhang. Förslaget
+     * är ux-designerns, se docs/design/skisser/01-underlag.md, avsnittet Tillgänglighet.
+     */
+    focusCore: 'kärnområde',
+    /*
      * Visas i stället för fokuslistan innan ålder är ifylld (R-019, listan kan inte filtreras
      * mot en åldersfas förrän åldern finns). Tillagd av ux-designern vid granskningen inför K4
      * (2026-09-23), se docs/design/texter.md avsnitt 3.

@@ -255,7 +255,17 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
                         />
                         <span>
                           {FOCUS_AREA_NAMES[area]}
-                          {isCoreFocus(area, phase) ? ' (K)' : ''}
+                          {/*
+                           * "(K)" syns men läses inte bokstavligt: en skärmläsare får ordet
+                           * i stället (skisser/01-underlag.md, Tillgänglighet).
+                           */}
+                          {isCoreFocus(area, phase) && (
+                            <>
+                              <span aria-hidden="true"> (K)</span>
+                              {/* Kommatecknet skiljer orden åt i det tillgängliga namnet. */}
+                              <span className="visually-hidden">{`, ${texts.focusCore}`}</span>
+                            </>
+                          )}
                           {blocked && <span className="visually-hidden"> {texts.focusFull}</span>}
                         </span>
                       </label>

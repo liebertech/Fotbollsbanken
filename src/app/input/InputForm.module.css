@@ -82,10 +82,11 @@
   margin: 0 0 var(--space-1);
 }
 
+/* Minst 8 px mellan intilliggande träffytor (designsystem.md avsnitt 4, skisser/01-underlag.md). */
 .checkboxes {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: var(--space-2);
 }
 
 /* Hela raden är träffyta (designsystem.md avsnitt 6.2). */
