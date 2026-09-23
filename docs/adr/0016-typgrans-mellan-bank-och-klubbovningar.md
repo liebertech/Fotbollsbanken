@@ -1,6 +1,6 @@
 # 0016: Typgräns mellan den gemensamma banken och klubbens egna övningar
 
-Status: föreslagen (läggs fram vid K4 inkrement 1)
+Status: beslutad (K4 inkrement 1, 2026-09-23)
 
 ## Kontext
 
