@@ -162,4 +162,44 @@ describe('R-101 När inget pass skapas', () => {
       expect(result.reason.internalProblems).toEqual([]);
     }
   });
+
+  /**
+   * Banken har i dag bara övningar för 5mot5 och 7mot7. 3mot3, 9mot9 och 11mot11 är därför
+   * tomma spelformer, och åldersgränserna 6 och 19 år är samtidigt gränsvärdena för R-011.
+   */
+  it('R-101 skapar inget pass för 3 mot 3 vid nedre åldersgränsen (6 år), som banken saknar övningar för', () => {
+    const result = generateSession(
+      { ...underlag, alder: 6, spelform: '3mot3', passlangd: 60, fokus: ['lek'] },
+      banken,
+      'fro',
+    );
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.internalProblems).toEqual([]);
+    }
+  });
+
+  it('R-101 skapar inget pass för 9 mot 9, som banken saknar övningar för', () => {
+    const result = generateSession(
+      { ...underlag, alder: 13, spelform: '9mot9', passlangd: 90, fokus: ['avslut'] },
+      banken,
+      'fro',
+    );
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.internalProblems).toEqual([]);
+    }
+  });
+
+  it('R-101 skapar inget pass för 11 mot 11 vid övre åldersgränsen (19 år)', () => {
+    const result = generateSession(
+      { ...underlag, alder: 19, spelform: '11mot11', passlangd: 90, fokus: ['avslut'] },
+      banken,
+      'fro',
+    );
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.internalProblems).toEqual([]);
+    }
+  });
 });

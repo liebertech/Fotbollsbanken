@@ -195,6 +195,32 @@ describe('R-100 En del som saknar övning', () => {
       planTime('fas-10-12', 60).parts.find((part) => part.part === 'del-ovning')?.target,
     );
   });
+
+  it('R-100 andra punkten: en del som kan fyllas för sig men inte ihop med resten (R-070)', () => {
+    // Övningen passar både Öva och Spelövning, men R-070 tillåter den bara på en plats.
+    // Öva fylls först (post 2 i R-048), så Spelövning blir kvar utan övning, trots att den
+    // för sig själv skulle kunna fyllas av exakt samma övning.
+    const shared = bankExercise({
+      id: 'delad-ovning',
+      fokusomraden: ['passning-mottagning'],
+      passdelar: ['del-ovning', 'del-spelovning'],
+      spelare: { min: 2, max: 14 },
+      tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+    });
+    const bank = [
+      testbank.find((exercise) => exercise.id === 'uppvarmning-passa')!,
+      shared,
+      testbank.find((exercise) => exercise.id === 'spel-passa')!,
+    ];
+    const value = session(underlag, bank);
+    expect(exerciseIds(value, 'del-ovning')).toEqual(['delad-ovning']);
+    const spelovning = value.parts.find((part) => part.part === 'del-spelovning');
+    expect(spelovning?.status).toBe('saknar-ovning');
+    // R-103: ingen lista med fält, eftersom orsaken inte är ett enskilt val (R-100, andra
+    // punkten) utan att övningen redan behövs i Öva.
+    expect(spelovning?.emptyReason).toBe('gar-inte-att-kombinera');
+    expect(spelovning?.changeableFields).toEqual([]);
+  });
 });
 
 describe('R-101 När inget pass skapas', () => {
@@ -241,6 +267,17 @@ describe('R-103 Vilka val som kan ändras', () => {
         expect(part.status).toBe('fylld');
         expect(part.changeableFields).toEqual([]);
       }
+    }
+  });
+
+  it('R-103 pekar ut val på hela underlaget, också när inget pass alls kunde skapas (kind: none)', () => {
+    // Hela banken är märkt niva-3, men underlaget ber om niva-2: inget pass kan skapas alls.
+    const bank = testbank.map((exercise) => bankExercise({ ...exercise, niva: ['niva-3'] }));
+    const result = generateSession(underlag, bank, 'fro');
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.changeableFields).toContain('niva');
+      expect(result.reason.internalProblems).toEqual([]);
     }
   });
 });
@@ -339,5 +376,75 @@ describe('R-030 Delar och ordning', () => {
       'del-spel',
       'del-avslutning',
     ]);
+  });
+});
+
+describe('R-072 Gränsen mellan fotbollsregler och algoritmval', () => {
+  /** Två likvärdiga övningar för Öva, så att slumpen faktiskt har något att välja mellan. */
+  const tiedBank: Exercise[] = [
+    ...testbank.filter((exercise) => exercise.id !== 'ova-passa'),
+    bankExercise({
+      id: 'ova-passa-a',
+      fokusomraden: ['passning-mottagning'],
+      passdelar: ['del-ovning'],
+      spelare: { min: 2, max: 14 },
+      tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+    }),
+    bankExercise({
+      id: 'ova-passa-b',
+      fokusomraden: ['passning-mottagning'],
+      passdelar: ['del-ovning'],
+      spelare: { min: 2, max: 14 },
+      tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+    }),
+  ];
+
+  it('R-072 punkt 4: samma frö ger exakt samma pass, också när flera övningar är lika bra', () => {
+    const first = session(underlag, tiedBank, 'samma-fro');
+    const second = session(underlag, tiedBank, 'samma-fro');
+    expect(JSON.stringify(second.rows)).toBe(JSON.stringify(first.rows));
+  });
+
+  it('R-072: olika frön kan faktiskt ge olika pass när flera övningar är lika bra', () => {
+    const chosen = new Set<string>();
+    for (const seed of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']) {
+      const value = session(underlag, tiedBank, seed);
+      for (const id of exerciseIds(value, 'del-ovning')) {
+        chosen.add(id);
+      }
+    }
+    // Slumpen väljer bara mellan ova-passa-a och ova-passa-b, som är lika bra (R-072 punkt 1).
+    expect(chosen).toEqual(new Set(['ova-passa-a', 'ova-passa-b']));
+  });
+
+  it('R-072 punkt 3: golvet (R-049) gäller varje frö, även när flera övningar är lika bra', () => {
+    for (const seed of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']) {
+      expect(checkSession(session(underlag, tiedBank, seed))).toEqual([]);
+    }
+  });
+});
+
+describe('generateSession är en ren funktion', () => {
+  /** Fryser ett objekt och dess direkta listfält, så att en mutation kastar i strict mode. */
+  function freeze<T extends object>(value: T): T {
+    for (const entry of Object.values(value)) {
+      if (Array.isArray(entry)) {
+        Object.freeze(entry);
+      }
+    }
+    return Object.freeze(value);
+  }
+
+  it('muterar varken underlaget eller övningarna i den inskickade banken', () => {
+    const frozenInput = freeze({ ...underlag, fokus: [...underlag.fokus] });
+    const frozenBank = Object.freeze(testbank.map((exercise) => freeze({ ...exercise })));
+
+    expect(() => generateSession(frozenInput, frozenBank, 'fro-frys')).not.toThrow();
+
+    // Efteråt är underlaget och banken bit för bit oförändrade.
+    expect(frozenInput).toEqual({ ...underlag, fokus: [...underlag.fokus] });
+    expect(frozenBank.map((exercise) => exercise.id)).toEqual(
+      testbank.map((exercise) => exercise.id),
+    );
   });
 });

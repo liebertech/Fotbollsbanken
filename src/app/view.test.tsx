@@ -115,9 +115,10 @@ describe('Berättelse 03: delar utan övning och inget matchande resultat', () =
 
   it('03.6 visar vilket fokus som saknade övningar och vilket som användes i stället', () => {
     const markup = sessionHtml(BANK_NEEDING_SUBSTITUTE, { ...INPUT, fokus: ['lek'] });
-    expect(markup).toContain('Vi hittade ingen övning för Lek');
+    // Ordalydelsen ur texts.ts (ändrad vid ux-designerns granskning inför K4, 2026-09-23).
+    expect(markup).toContain('Inga övningar för Lek passade den här delen');
     expect(markup).toContain('Dribbling och driva bollen');
-    expect(markup).toContain('Dina val står kvar oförändrade.');
+    expect(markup).toContain('Dina val i underlaget är oförändrade.');
   });
 
   it('03.1 och 03.2 visar rubriken, de val som kan ändras och trygghetstexten', () => {

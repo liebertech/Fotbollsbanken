@@ -71,6 +71,20 @@ describe('R-121 Närliggande fokusområde när kärnan annars blir tom', () => {
     ).toEqual(['bollkansla', 'dribbling', 'koordination']);
   });
 
+  it('R-121: avvikelsen för lek i del-spelovning gäller från fas-13-14, inte fas-10-12', () => {
+    // fas-10-12 har ingen avvikelse för lek i del-spelovning: tabellens ordning gäller.
+    expect(
+      candidateFocusList(['lek'], 'del-spelovning', { input: underlag, phase: 'fas-10-12' }),
+    ).toEqual(['ett-mot-ett', 'spelbarhet']);
+    // Avvikelsen byter ordning och gäller från fas-13-14.
+    expect(
+      candidateFocusList(['lek'], 'del-spelovning', {
+        input: { ...underlag, alder: 13, spelform: '9mot9' },
+        phase: 'fas-13-14',
+      }),
+    ).toEqual(['spelbarhet', 'ett-mot-ett']);
+  });
+
   it('R-121 steg 3: ledarens egna val tas bort ur listan', () => {
     const list = candidateFocusList(['lek', 'dribbling'], 'del-ovning', {
       input: { ...underlag, fokus: ['lek', 'dribbling'] },
@@ -148,6 +162,21 @@ describe('R-121 Närliggande fokusområde när kärnan annars blir tom', () => {
     expect(beslut(bank, underlag, 'fas-10-12')).toEqual([
       { part: 'del-ovning', substituteFocus: 'dribbling', cannotFill: false },
       { part: 'del-spelovning', substituteFocus: 'spelbarhet', cannotFill: false },
+    ]);
+  });
+
+  it('R-121: bara en av delarna behöver ersättningsfokus', () => {
+    // del-ovning fylls direkt med det valda fokuset. Bara del-spelovning saknar en övning
+    // för bollkänsla och måste falla tillbaka på en granne (steg 4 för en enda del, inte
+    // steg 5:s parvisa sökning, eftersom bara en del ligger i needsSubstitute).
+    const bank = [
+      ovning('bollkansla-ovning', ['bollkansla']),
+      spelovning('dribbling-spelovning', ['dribbling']),
+    ];
+    const input = { ...underlag, fokus: ['bollkansla' as const] };
+    expect(beslut(bank, input, 'fas-10-12')).toEqual([
+      { part: 'del-ovning', substituteFocus: null, cannotFill: false },
+      { part: 'del-spelovning', substituteFocus: 'dribbling', cannotFill: false },
     ]);
   });
 
