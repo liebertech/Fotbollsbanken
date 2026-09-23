@@ -256,12 +256,14 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
                         <span>
                           {FOCUS_AREA_NAMES[area]}
                           {/*
-                           * "(K)" syns men läses inte bokstavligt: en skärmläsare får ordet
-                           * i stället (skisser/01-underlag.md, Tillgänglighet).
+                           * "(K)" ingår ordagrant i kryssrutans tillgängliga namn, eftersom
+                           * WCAG 2.5.3 (Label in Name) kräver att den synliga etiketten finns
+                           * i namnet. Ordet "kärnområde" läggs till efter, det ersätter inte
+                           * "(K)" (skisser/01-underlag.md, Tillgänglighet).
                            */}
                           {isCoreFocus(area, phase) && (
                             <>
-                              <span aria-hidden="true"> (K)</span>
+                              {' (K)'}
                               {/* Kommatecknet skiljer orden åt i det tillgängliga namnet. */}
                               <span className="visually-hidden">{`, ${texts.focusCore}`}</span>
                             </>

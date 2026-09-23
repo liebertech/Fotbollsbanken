@@ -23,9 +23,11 @@ export const TEXTS = {
     focus: 'Fokusområden (välj 1–3)',
     focusFull: 'Inaktiverad, redan tre valda',
     /*
-     * Märkningen "(K)" visas för ögat men läses aldrig bokstavligt: kryssrutans tillgängliga
-     * namn får ordet i stället, så att en skärmläsare inte säger "K" utan sammanhang. Förslaget
-     * är ux-designerns, se docs/design/skisser/01-underlag.md, avsnittet Tillgänglighet.
+     * Märkningen "(K)" visas för ögat och ingår ordagrant i kryssrutans tillgängliga namn
+     * (WCAG 2.5.3, Label in Name). Ordet här läggs till efter "(K)", så att en skärmläsare
+     * får sammanhanget till bokstaven utan att den synliga texten försvinner ur namnet:
+     * "Passning och mottagning (K), kärnområde". Se docs/design/skisser/01-underlag.md,
+     * avsnittet Tillgänglighet, och docs/design/texter.md avsnitt 3.
      */
     focusCore: 'kärnområde',
     /*

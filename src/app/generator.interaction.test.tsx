@@ -25,11 +25,11 @@ afterEach(() => {
 
 /**
  * Fokusområdenas kryssrutor har namnet ur `FOCUS_AREA_NAMES`, men InputForm.tsx märker ett
- * kärnområde för åldern (isCoreFocus) med " (K)" för ögat och med ordet "kärnområde" för en
+ * kärnområde för åldern (isCoreFocus) med " (K)" följt av ordet "kärnområde" för en
  * skärmläsare. "Passning och mottagning", "Dribbling och driva bollen", "Avslut" och
  * "1 mot 1" är alla kärnområden för 11 år (fas-10-12), så de riktiga tillgängliga namnen är
- * till exempel "Passning och mottagning, kärnområde". Testerna matchar därför bara början av
- * namnet.
+ * till exempel "Passning och mottagning (K), kärnområde". Testerna matchar därför bara början
+ * av namnet.
  */
 function focusCheckbox(name: string) {
   return screen.getByRole('checkbox', { name: new RegExp(`^${name}\\b`) });
@@ -73,18 +73,19 @@ describe('Berättelse 01 och 02: fylla i underlaget och generera ett pass', () =
   });
 
   /*
-   * Tillgänglighet, skisser/01-underlag.md: märkningen "(K)" syns men läses aldrig
-   * bokstavligt. Ett område som inte är kärnområde för åldern får ingen märkning alls.
+   * Tillgänglighet, skisser/01-underlag.md: den synliga märkningen "(K)" ingår ordagrant i
+   * det tillgängliga namnet (WCAG 2.5.3, Label in Name), och ordet "kärnområde" läggs till
+   * efter den i stället för att ersätta den – annars kan en röststyrningsanvändare inte säga
+   * det hon ser. Ett område som inte är kärnområde för åldern får ingen märkning alls.
    */
-  it('01.9: en skärmläsare hör "kärnområde", inte bokstaven K', async () => {
+  it('01.9: namnet innehåller både "(K)" och ordet kärnområde', async () => {
     const user = userEvent.setup();
     render(<Generator bank={FULL_BANK} createSeed={() => 'fro-1'} />);
     await user.type(screen.getByLabelText('Ålder'), String(INPUT.alder));
 
     expect(
-      screen.getByRole('checkbox', { name: 'Passning och mottagning, kärnområde' }),
+      screen.getByRole('checkbox', { name: 'Passning och mottagning (K), kärnområde' }),
     ).toBeInTheDocument();
-    expect(screen.queryByRole('checkbox', { name: /\(K\)/ })).not.toBeInTheDocument();
     expect(screen.getByRole('checkbox', { name: 'Bollkänsla' })).toBeInTheDocument();
   });
 
