@@ -1,10 +1,15 @@
-Status: ändrad vid K3 (2026-09-14), tillägg 2026-09-23
+Status: ändrad vid K3 (2026-09-14), två tillägg 2026-09-23
 
 # Passuppbyggnad
 
 **Ägare:** fotbollsexpert
 
-*Ändring 2026-09-23:* nytt avsnitt *Yta per spelare* efter *Tillgänglig yta*, med ett golv för hur liten yta per spelare en övning får ha i varje åldersfas, skilt för övningar med och utan motståndare, samt fyra uppräknade undantag. Tillägget är ett **granskningskriterium** som övningsförfattaren och jag använder innan en övning lämnas in och granskas. Det är **inte en generatorregel** och ingen ny regel har lagts till i `generatorregler.md`. Användaren godkände tillägget 2026-09-23. Inga siffror och inga andra principer i filen är ändrade.
+*Ändring 2026-09-23. Två tillägg i det nya avsnittet "Yta per spelare", som ligger efter "Tillgänglig yta":*
+
+1. *Ett **golv** för hur liten yta per spelare en övning får ha i varje åldersfas, skilt för övningar med och utan motståndare, med matchens värden som referens och fyra uppräknade undantag.*
+2. *Ett **minsta längdmått** för övningar i `fas-13-14` och `fas-15-19` som ska öva spel bakom en försvarslinje eller uppbyggnad genom lagdelar: minst 35 respektive 40 meter. Längdmåttet behövs därför att ett kvadratmetertal inte kan uttrycka djupled, och djupled är en del av skälet till att golvet för `fas-13-14` är satt så högt som det är.*
+
+*Båda tilläggen är **granskningskriterier** som övningsförfattaren och jag använder innan en övning lämnas in och granskas. De är **inte generatorregler**, och ingen ny regel har lagts till i `generatorregler.md`. Användaren godkände båda tilläggen 2026-09-23. Inga siffror och inga andra principer i filen är ändrade.*
 
 *Ändring 2026-09-14:* två tillägg om att taket per ledare inte gäller i delen Spel, i avsnitten *Hur spelarna delas i grupper* och *Hur många spelare en ledare kan ha*. Tilläggen speglar den nya regeln R-057 i `generatorregler.md`, godkänd av användaren 2026-09-14. Inga siffror och inga andra principer i filen är ändrade.
 
@@ -265,11 +270,16 @@ Ledaren kan välja om passet ska göras på hel, halv eller kvarts plan, eller l
 
 *Avsnittet är tillagt 2026-09-23, godkänt av användaren samma dag.*
 
-### Det här är ett granskningskriterium, inte en regel
+### Det här är granskningskriterier, inte regler
 
-Avsnittet säger hur stor en övnings yta måste vara i förhållande till antalet spelare på den. Det används på **ett** ställe: när en övning skrivs och när jag granskar den. Övningsförfattaren ska kunna räkna själv innan filen lämnas in, i stället för att jag räknar om samma sak i varje omgång.
+Avsnittet innehåller **två** kriterier:
 
-**Generatorn använder inte de här talen.** Generatorn väljer aldrig bort en övning för att ytan är trång eller rymlig. Den enda ytkontroll generatorn gör är R-092: att momentet får plats på den yta ledaren har valt, med 3 meters marginal mellan grupper. Ingenting i det här avsnittet ska läsas in som en ny regel, och ingen ny regel har lagts till i `generatorregler.md`. Om det någon gång ska bli en regel för generatorn är det ett eget beslut av användaren och en egen ändring av regelfilen.
+- **Golvet**, som säger hur stor en övnings yta måste vara i förhållande till antalet spelare på den. Gäller alla fem åldersfaser.
+- **Minsta längd**, som säger hur lång ytan måste vara när övningen ska öva spel bakom en försvarslinje eller uppbyggnad genom lagdelar. Gäller bara `fas-13-14` och `fas-15-19`. Se sista underavsnittet.
+
+Båda används på **ett** ställe: när en övning skrivs och när jag granskar den. Övningsförfattaren ska kunna räkna själv innan filen lämnas in, i stället för att jag räknar om samma sak i varje omgång.
+
+**Generatorn använder inte de här talen.** Generatorn väljer aldrig bort en övning för att ytan är trång, rymlig eller kort. Den enda ytkontroll generatorn gör är R-092: att momentet får plats på den yta ledaren har valt, med 3 meters marginal mellan grupper. Ingenting i det här avsnittet ska läsas in som en ny regel, varken kvadratmetertalen eller längdmåtten, och ingen ny regel har lagts till i `generatorregler.md`. Om något av det någon gång ska bli en regel för generatorn är det ett eget beslut av användaren och en egen ändring av regelfilen.
 
 Bakgrunden är konkret: i tre omgångar i rad har övningar fällts för att måtten från en yngre spelform har återanvänts för en äldre. I omgång 3 föll `dribbling-mot-tidspress` med 40 kvadratmeter per spelare och `en-mot-en-till-tva-mal` med 36, båda för 10–12 år. Båda gick igenom efter att ytan gjorts större. Det är den sortens omtagning avsnittet ska ta bort.
 
@@ -345,7 +355,7 @@ Golvet ligger alltid under matchens värde, och det är meningen. Träning ska v
 
 Det finns övningar där trängsel är själva poängen. Listan nedan är **sluten**. En övning som ligger under golvet och inte finns på listan är fel, inte en bedömningsfråga. Ett undantag gäller bara om övningens egen text i `beskrivning`, `organisation` eller `anpassning` gör det tydligt att det är den sortens övning. Ett undantag som inte syns i texten räknas inte.
 
-1. **Positionsspel och bollhållningsspel i övertal, utan mål och utan riktning.** Till exempel 4 mot 2, 5 mot 2 eller behåll bollen med joker. Poängen är att pressen ska nå fram på ett par sekunder, så att spelaren tvingas välja passningen tidigt och med rätt fot. En stor yta förstör övningen. *I stället gäller:* ytan ska vara så stor att den som har bollen kan vända bort från press, alltså minst 10 × 10 meter för 8–12 år och minst 12 × 12 meter för 13–19 år, oavsett antal spelare. Undantaget gäller inte så fort det finns mål och riktning, för då ska laget kunna spela framåt.
+1. **Positionsspel och bollhållningsspel i övertal, utan mål och utan riktning.** Till exempel 4 mot 2, 5 mot 2 eller behåll bollen med joker. Poängen är att pressen ska nå fram på ett par sekunder, så att spelaren tvingas välja passningen tidigt och med rätt fot. En stor yta förstör övningen. *I stället gäller:* ytan ska vara så stor att den som har bollen kan vända bort från press, alltså minst 10 × 10 meter för 8–12 år och minst 12 × 12 meter för 13–19 år. Undantaget gäller inte så fort det finns mål och riktning, för då ska laget kunna spela framåt. **De alternativa måtten är satta för positionsspel med upp till åtta spelare på ytan**, alltså storlekar som 4 mot 2 och 5 mot 2. För större positionsspel, till exempel 6 mot 3 och 7 mot 4, säger kriteriet ingenting: 12 × 12 meter är då en gräns som inte biter. Det talet sätts när banken har sådant innehåll att sätta det mot, och kräver ett eget beslut av användaren (öppen fråga 2026-09-23). Till dess bedömer jag stora positionsspel för hand och skriver motiveringen i `granskning`.
 2. **Lekar där alla har egen boll och poängen är att störa varandras boll.** Till exempel bollvaktslek. Ingen ska ta sig förbi någon, alla har boll och kontakten är låg, så trängseln ger fler bollkontakter i stället för färre. *I stället gäller:* varje spelare har egen boll, ingen tacklar eller sparkar mot ben, och ytan är minst 10 kvadratmeter per spelare i alla åldrar.
 3. **Övningar där spelarna står på egna platser eller följer en bestämd bana.** Till exempel skadeförebyggande program som Knäkontroll och FIFA 11+ Kids, passningsrutor med fasta positioner och målvaktens grundteknik. Rörelsen är förutsägbar och ingen krockar med någon oväntat, så kvadratmeter per spelare säger ingenting. *I stället gäller:* minst 2 meter mellan två spelares arbetsplatser, och arbetsvägarna korsar inte varandra.
 4. **Spel i matchens egen spelform på matchens egen plan.** Ligger per definition på matchens värde och är alltid rätt.
@@ -357,6 +367,47 @@ Det finns övningar där trängsel är själva poängen. Listan nedan är **slut
 - **Under golvet men träffas av ett undantag:** övningen går vidare, och jag skriver i `granskning` vilket undantag som åberopats. Saknas motiveringen i övningens egen text sätts `atgarda` med kommentaren att texten ska säga varför ytan är trång.
 - **Över taket:** inte automatiskt fel, men jag frågar varför. Oftast är svaret att ytan är kopierad från matchen när övningen har färre spelare än matchen. Då sätts `atgarda`.
 - **En godkänd övning som ligger under golvet** ändras inte i efterhand av det här avsnittet. Golvet gäller övningar som granskas från och med 2026-09-23. Om en sådan övning ändå öppnas för ändring tas ytan upp då.
+
+### Minsta längd när övningen ska öva djupled
+
+*Tillagt 2026-09-23, godkänt av användaren samma dag.*
+
+Golvet mäter yta, och yta kan inte uttrycka djupled. Det är ett problem just i `fas-13-14`, eftersom en del av skälet till att golvet där är satt så högt som 70 kvadratmeter är att offside och inspark gäller från 9 mot 9 och att spelet börjar handla om att spela bakom en försvarslinje (`spelformer.md`). En övning kan klara golvet och ändå ha fel form för det den säger sig träna: 30 × 20 meter för ett 4 mot 4 ger 75 kvadratmeter per spelare och går igenom, men 30 meters längd räcker inte för att ett inspel bakom en linje ska hinna bli ett inspel. Därför finns ett eget mått för längden.
+
+| Fas | Minsta längd |
+|---|---|
+| `fas-13-14` | 35 m |
+| `fas-15-19` | 40 m |
+
+**Kriteriet gäller inte `fas-6-7`, `fas-8-9` och `fas-10-12`.** Offside finns inte i 3 mot 3, 5 mot 5 och 7 mot 7, och i de spelformerna finns ingen försvarslinje att spela bakom. Att kräva längd av en övning för tioåringar vore att lägga in ett moment som spelformen inte har.
+
+#### När kriteriet slår till
+
+**Det är vad övningen gör enligt sin `beskrivning` som avgör, inte vad den är märkt med.** Fokusmärkningen i `fokusomraden` utlöser aldrig kriteriet på egen hand. En övning märkt `omstallning` som handlar om att kontra på tvären i en liten yta är inte en djupledsövning och ska inte tvingas bli 35 meter lång.
+
+Frågan jag ställer vid granskning är denna: **finns det i beskrivningen ett bakre lag eller en försvarslinje som ska passeras i ytans längdriktning, och är poängen att bollen eller en spelare ska ta sig bakom den?** Är svaret ja gäller längdmåttet. Är svaret nej gäller det inte, oavsett märkning.
+
+Kriteriet slår till på:
+
+- inspel eller löpning bakom en försvarslinje, alltså timing mellan den som passar och den som löper,
+- uppbyggnad från målvakt eller backlinje genom lagdelar fram till ett mål eller en målzon i andra änden,
+- övningar som säger att offside gäller, eftersom offside bara är meningsfullt när det finns ett djup att spela i.
+
+Kriteriet slår inte till på:
+
+- omställningar och kontringar på tvären eller i en liten yta,
+- avslutsövningar mot ett mål utan försvarslinje att passera,
+- positionsspel och bollhållningsspel utan riktning,
+- dueller som ett mot ett och två mot två, där poängen är att ta sig förbi en spelare och inte en linje.
+
+#### Vad som händer när längden inte räcker
+
+Här är det **inte** alltid ytan som ska ändras. Övningen gör anspråk på något den inte har plats för, och anspråket kan tas tillbaka. Jag sätter `atgarda` och skriver båda vägarna i `granskning`. Övningsförfattaren väljer:
+
+1. **Förläng ytan** till måttet för fasen. Kontrollera då att golvet fortfarande stämmer med det nya måttet. En övning som bara blir längre och inte bredare får mer yta per spelare, och det är sällan ett problem, men om längdmåttet gör att övningen närmar sig taket är det ett tecken på att övningen behöver fler spelare, inte en smalare yta.
+2. **Eller behåll ytan och skriv om övningen** så att den inte gör anspråk på djupled: ta bort försvarslinjen eller inspelet bakom ur beskrivningen och ändra fokusmärkningen därefter. Då är övningen inte fel, den är något annat, och den ska bedömas som det.
+
+Det andra alternativet är ofta det bättre när ytan redan fungerar och övningen är bra på det den faktiskt gör. En kort och tät omställningsövning är fullt användbar för 13–14 år, så länge den inte påstår att den övar spel bakom en linje.
 
 ## Material
 
