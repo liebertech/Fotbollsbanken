@@ -90,3 +90,14 @@ listan. Det är precis det felet som S-27 fann.
   Inkrement 2 måste lägga till `planskiss` där.
 - `toBankExercise` kastar för en övning som inte är godkänd. Det kan bara inträffa om
   statusfiltret i `scripts/bank.ts` går sönder, och då är ett avbrott rätt svar.
+
+  **Det gäller bara den inbyggda vägen (noterat 2026-09-23, S-37).** `src/data/bank.ts`
+  anropar `toBankExercise` på modulens toppnivå, och där är ett kast rätt: bygget har redan
+  gallrat, så en övning med fel status betyder att byggkedjan är trasig. När banken i
+  inkrement 3 i stället hämtas över nätet är förutsättningen en annan. Data kan då vara
+  gammal, delvis skriven eller manipulerad, och en enda rad med fel status skulle ge ett kast
+  under modulladdning, alltså en vit sida utan felmeddelande. **Körtidsvägen ska därför
+  filtrera och redovisa i stället för att kasta:** den hoppar över raden, tar med resten och
+  lämnar tillbaka de överhoppade raderna med skäl, precis som `loadBank` i `scripts/bank.ts`
+  gör med sin `skipped`-lista. Gränsen ligger kvar: det är fortfarande bara `toBankExercise`
+  som gör en `BankExercise`, och en rad som inte är godkänd blir aldrig en.
