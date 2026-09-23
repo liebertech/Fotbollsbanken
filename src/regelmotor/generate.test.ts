@@ -12,7 +12,7 @@ import { partCanBeFilled } from './output/explain.ts';
 import { planTime } from './time/plan.ts';
 import { PART_TOLERANCE, SESSION_SHORTFALL } from './keys.ts';
 import { bankExercise, gameExercise } from './__testdata__/bank-fixtur.ts';
-import type { Input, Session } from './types.ts';
+import type { Exercise, Input, Session } from './types.ts';
 import type { BankExercise } from './origin.ts';
 
 const underlag: Input = {
@@ -133,6 +133,37 @@ describe('R-049 Det här klarar ett genererat pass alltid', () => {
       );
       expect(part.emptyReason).toBe(fillable ? 'gar-inte-att-kombinera' : 'val-kan-andras');
     }
+  });
+});
+
+/*
+ * S-28: `checkSession` nycklar R-022 mot ursprunget (`isBankExercise`), inte bara mot
+ * statusfältet, eftersom R-106 i inkrement 4 upphäver statuskravet för en egen övning som
+ * ledaren byter in. Alla andra tester i den här filen bygger sina pass av `bankExercise`, så
+ * `ursprung` är alltid satt och den nya grenen i `checkSession` prövas aldrig av dem. Testet
+ * tar bort ursprungsmärket från en övning i ett annars giltigt pass, precis som en klubbövning
+ * utan märket skulle se ut om den någonsin nådde fram till en rad.
+ */
+describe('R-022 Slutkontrollen prövar ursprunget, inte bara statusfältet (S-28)', () => {
+  it('R-022 underkänner ett pass där en rad har en övning utan bankens ursprungsmärke', () => {
+    const value = session(underlag);
+    const row = value.rows.find((item) => item.part === 'del-ovning' && item.exercise !== null);
+    expect(row).toBeDefined();
+    const exercise = row!.exercise!;
+    const exerciseId = exercise.id;
+    const utanUrsprung: Exercise = { ...exercise, ursprung: undefined } as Exercise;
+    const utanUrsprungSession: Session = {
+      ...value,
+      rows: value.rows.map((item) => (item === row ? { ...item, exercise: utanUrsprung } : item)),
+    };
+    expect(checkSession(utanUrsprungSession)).toContain(
+      `R-022: ${exerciseId} kommer inte ur den gemensamma banken`,
+    );
+  });
+
+  it('R-022 släpper igenom passet när ursprunget står kvar (jämförelsepunkt)', () => {
+    // Samma pass, orört: visar att det inte är någon annan skillnad som fäller föregående test.
+    expect(checkSession(session(underlag))).toEqual([]);
   });
 });
 
