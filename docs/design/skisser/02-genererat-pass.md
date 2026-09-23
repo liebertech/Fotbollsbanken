@@ -108,3 +108,4 @@ Status: godkänd (K2, 2026-09-12)
 | Datum | Ändring |
 |---|---|
 | 2026-09-23 | Tillagt: ersättningsfokus (R-121) som en egen informationsrad per del, och ett tredje läge för en tom del ("inget enskilt val hjälper"), utöver de två som redan fanns. Båda saknades vid K2 eftersom R-121 och det tredje läget tillkom senare. Upptäckt vid granskningen av det byggda gränssnittet inför K4. Statusraden överst ändras inte av en agent. |
+| 2026-09-23 (uppföljning samma dag) | Bekräftat mot koden: till skillnad från vy 03 (se `03-inget-matchande-resultat.md`) hade den här vyn redan en riktig per-del-signal (`emptyReason` i `PartResult`) när det tredje läget skrevs, så beskrivningen ovan krävde ingen ändring – `SessionView.tsx` är nu kopplad exakt så här. |
