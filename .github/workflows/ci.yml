@@ -67,7 +67,21 @@ jobs:
               exit 1
             fi
           done
-          echo "Säkerhetsheaders på plats i $fil."
+          # S-35: headernamnet säger ingenting om innehållet. En CSP försvagad till
+          # default-src * hade passerat kontrollen ovan, så de bärande direktiven prövas var
+          # för sig. Listan är avsiktligt kort: den fångar en försvagning, inte varje tillägg.
+          csp=$(grep -m1 "^  Content-Security-Policy:" "$fil")
+          for direktiv in "default-src 'self'" "form-action 'self'" "object-src 'none'" "base-uri 'none'" "frame-ancestors 'none'"; do
+            case "$csp" in
+              *"$direktiv"*) ;;
+              *)
+                echo "CSP:n i $fil saknar $direktiv (ADR 0002 beslut 1, S-35)."
+                echo "Policyn som lästes: $csp"
+                exit 1
+                ;;
+            esac
+          done
+          echo "Säkerhetsheaders och de bärande CSP-direktiven på plats i $fil."
 
       - name: Kända sårbarheter
         run: npm audit --audit-level=high

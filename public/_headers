@@ -7,8 +7,12 @@
 # connect-src 'self' gäller till dess att Supabase-domänen och Turnstile finns. Den utökas i
 # inkrement 3, när inloggningen byggs: CSP:n är då det verkliga skyddet för förnyelsetoken i
 # localStorage (ADR 0004, ADR 0005).
+#
+# form-action ärver inte från default-src, och underlagsvyn är ett riktigt formulär. Utan
+# direktivet kan kod som ändå tagit sig in posta ledarens uppgifter till valfri domän, alltså
+# samma exfiltreringsväg som connect-src stänger fast genom en annan dörr (S-35).
 /*
-  Content-Security-Policy: default-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; connect-src 'self'; form-action 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
