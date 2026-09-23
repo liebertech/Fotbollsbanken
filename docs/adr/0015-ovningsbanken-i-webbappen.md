@@ -1,6 +1,6 @@
 # 0015: Övningsbanken byggs in i webbappen som en virtuell modul
 
-Status: beslutad (K4 inkrement 1, 2026-09-21)
+Status: beslutad (K4 inkrement 1, 2026-09-23)
 
 ## Kontext
 
