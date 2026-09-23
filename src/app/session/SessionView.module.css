@@ -1,0 +1,128 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: 0 var(--space-4) var(--space-8);
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.summaryLine {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.notices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Varningar och tips: ikon, färg och text tillsammans (designsystem.md avsnitt 6.4). */
+.notice {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.partHeading {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.substitute {
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.empty {
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.emptyHeading {
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.emptyText {
+  margin: 0;
+}
+
+.fields {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-6);
+}
+
+.break {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.closing {
+  margin: 0;
+}
+
+.stations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stationsHeading {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.primary,
+.secondary {
+  min-height: var(--tap-target);
+  flex: 1 1 12rem;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.secondary {
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+}

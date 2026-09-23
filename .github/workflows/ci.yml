@@ -49,6 +49,40 @@ jobs:
       - name: Validera övningsbanken
         run: npm run validera:ovningar
 
+      # Bygget körs i CI och inte bara hos Cloudflare, så att en övning som tyst faller ur
+      # banken och ett bygge utan säkerhetsheaders upptäcks här (S-26, S-30, ADR 0002).
+      - name: Bygge
+        run: npm run build
+
+      - name: Säkerhetsheaders i bygget
+        run: |
+          fil=dist/_headers
+          if [ ! -f "$fil" ]; then
+            echo "Bygget saknar $fil. ADR 0002 beslut 1 kräver headerfilen i det som laddas upp."
+            exit 1
+          fi
+          for header in Content-Security-Policy Strict-Transport-Security X-Content-Type-Options Referrer-Policy; do
+            if ! grep -q "^  $header:" "$fil"; then
+              echo "$fil saknar $header (ADR 0002 beslut 1)."
+              exit 1
+            fi
+          done
+          # S-35: headernamnet säger ingenting om innehållet. En CSP försvagad till
+          # default-src * hade passerat kontrollen ovan, så de bärande direktiven prövas var
+          # för sig. Listan är avsiktligt kort: den fångar en försvagning, inte varje tillägg.
+          csp=$(grep -m1 "^  Content-Security-Policy:" "$fil")
+          for direktiv in "default-src 'self'" "form-action 'self'" "object-src 'none'" "base-uri 'none'" "frame-ancestors 'none'"; do
+            case "$csp" in
+              *"$direktiv"*) ;;
+              *)
+                echo "CSP:n i $fil saknar $direktiv (ADR 0002 beslut 1, S-35)."
+                echo "Policyn som lästes: $csp"
+                exit 1
+                ;;
+            esac
+          done
+          echo "Säkerhetsheaders och de bärande CSP-direktiven på plats i $fil."
+
       - name: Kända sårbarheter
         run: npm audit --audit-level=high
 

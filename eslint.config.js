@@ -6,6 +6,19 @@ import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
 
+/**
+ * Den virtuella bankmodulen får bara importeras av src/data/bank.ts (S-29, ADR 0015).
+ *
+ * Där, och bara där, märks övningarna som den gemensamma bankens (ADR 0016). En import
+ * någon annanstans skulle gå förbi den märkningen, och i inkrement 4 kunna blanda ihop
+ * bankens övningar med klubbens egna. Egenskapen höll på konvention tills nu.
+ */
+const FORBIDDEN_BANK_MODULE = {
+  name: 'virtual:ovningsbanken',
+  message:
+    'Den inbyggda banken läses bara av src/data/bank.ts, som märker övningarna som bankens (S-29, ADR 0015, ADR 0016).',
+};
+
 /** Bibliotek och API:er som src/regelmotor/ inte får importera (ADR 0001, kodstruktur). */
 const FORBIDDEN_IMPORTS_IN_ENGINE = {
   paths: [
@@ -15,6 +28,8 @@ const FORBIDDEN_IMPORTS_IN_ENGINE = {
       name: '@supabase/supabase-js',
       message: 'src/regelmotor/ får inte importera Supabase (ADR 0001).',
     },
+    // Regelmotorn tar emot banken som argument och hämtar den aldrig själv (ADR 0011).
+    FORBIDDEN_BANK_MODULE,
   ],
   patterns: [
     {
@@ -121,6 +136,16 @@ export default tseslint.config(
           message: 'localeCompare sorterar olika i olika miljöer. Jämför med < på id (ADR 0011).',
         },
       ],
+    },
+  },
+
+  {
+    // Alla utom src/data/bank.ts. Regelmotorn har sin egen lista ovan, som redan innehåller
+    // modulen, och skulle annars få den här regeln i stället för sin egen.
+    files: ['**/*.{ts,tsx}'],
+    ignores: ['src/data/bank.ts', 'src/regelmotor/**/*.ts'],
+    rules: {
+      'no-restricted-imports': ['error', { paths: [FORBIDDEN_BANK_MODULE] }],
     },
   },
 

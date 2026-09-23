@@ -79,6 +79,8 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Fel, för kort pass | Passet måste vara minst 30 minuter. |
 | Fel, för långt pass | Det längsta passet för den här åldern är {maxlängd} minuter. |
 | Fält, fokusområden | Fokusområden (välj 1–3) |
+| Fokusområden, väntar på ålder | Ange ålder först, så visar vi de fokusområden som passar åldern. |
+| Fokusområden, kärnområde (skärmläsarord för "(K)", tillagd vid uppföljningen 2026-09-23) | kärnområde |
 | Fel, inget fokus valt | Välj minst ett fokusområde. |
 | Fel, för många fokus | Du kan välja högst tre fokusområden. Ta bort ett för att lägga till ett nytt. |
 | Fel, bara nickspel valt | Nickspel måste väljas tillsammans med minst ett annat fokusområde. |
@@ -86,6 +88,8 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Alternativ, yta | Ingen / Hel plan / Halv plan / Kvarts plan |
 | Fel, ofullständigt underlag (samlat) | Några uppgifter saknas eller stämmer inte – se markeringarna ovan. |
 | Primärknapp | Generera pass |
+
+**Kärnområde och "(K)" (tillagd vid uppföljningen 2026-09-23):** varje kärnområde (K) i fokuslistan visar "(K)" för ögat. Ordet "kärnområde" läggs till *efter* "(K)" i kryssrutans tillgängliga namn, det ersätter inte "(K)": till exempel "Passning och mottagning (K), kärnområde". Se `skisser/01-underlag.md`, avsnittet Tillgänglighet, för skälet – kortfattat att WCAG 2.5.3 kräver att den synliga texten, inklusive "(K)", ordagrant ingår i det tillgängliga namnet, samtidigt som en ensam bokstav "K" utan sammanhang är obegriplig för en skärmläsare.
 
 ---
 
@@ -105,7 +109,14 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Varning, benskydd (R-085) | Använd benskydd på träningen – spel innehåller alltid närkamper. |
 | Tom del, kan lösas med ett val (R-100/R-103) | Vi kunde inte hitta en övning som passar här. Testa att ändra ett av de här: {lista av fält, t.ex. "Nivå, Antal spelare"}. |
 | Tom del, går inte att kombinera (R-100 andra punkten) | De övningar som annars skulle passa här gick inte att kombinera med resten av passet. |
+| Tom del, inget enskilt val hjälper (R-100/R-103, tredje läget, tillagd K4 2026-09-23) | Vi hittade inga övningar som passar den här delen, och inget enskilt val skulle ensamt lösa det. Prova att ändra flera uppgifter i underlaget samtidigt. |
+| Ersättningsfokus i en del (R-121, tillagd K4 2026-09-23) | Inga övningar för {missing} passade den här delen, så vi använde {substitute} i stället. Dina val i underlaget är oförändrade. |
 | Del borttagen pga för kort tid (R-033) | (visas inte alls – delen tas bort helt och nämns inte i passet) |
+
+**Tillagt vid granskningen inför K4 (2026-09-23):**
+
+- **Ersättningsfokus (R-121):** visas som en egen informationsrad direkt under delens rubrik, före övningskortet, när `del-ovning` eller `del-spelovning` fylldes med ett annat fokus än det ledaren valde. `{missing}` är det eller de valda fokusområden som saknade övning i just den delen (kommaseparerat om flera), `{substitute}` är fokusområdet som användes i stället. Texten ändrar aldrig innebörden av R-102: underlagets fokusval står kvar precis som ledaren skrev dem.
+- **Tom del, inget enskilt val hjälper:** en tredje variant av "tom del"-texten, som tidigare saknades. Den behövs för att "Tom del, går inte att kombinera" annars visas även när det inte stämmer att andra övningar skulle passa var för sig – till exempel när banken helt saknar övningar för den valda spelformen. Visas när delens `emptyReason` är `val-kan-andras` **och** listan över ändringsbara fält är tom (alltså varken en bekräftad kombinationskonflikt eller en lista att visa). `emptyReason` är en riktig, bekräftad signal från regelmotorn (samma prövning som `partCanBeFilled` gör för delen), inte en gissning utifrån att listan råkar vara tom – det gäller båda de två återstående lägena. Se `skisser/02-genererat-pass.md` för var i vyn den ska stå.
 
 ---
 
@@ -116,11 +127,14 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Rubrik | Vi kunde inte skapa ett pass med de här uppgifterna |
 | Ingress, val kan lösa det (R-103) | Det finns för få övningar som matchar allt du valt. Prova att ändra ett av de här: |
 | Ingress, kan inte kombineras (R-100 andra punkten) | Det finns övningar som skulle kunna passa var för sig, men de går inte att kombinera till ett helt pass med dina val. |
+| Ingress, inget enskilt val hjälper (tillagd K4 2026-09-23) | Vi hittade inga övningar som matchar de här valen, och vi kan inte peka ut ett enskilt val som skulle lösa det. Prova att ändra flera uppgifter i underlaget samtidigt. |
 | Trygghetstext | Vi ändrar ingenting åt dig – gå tillbaka och justera det du vill testa. |
 | Knapp | Ändra uppgifter |
 | Sammanfattning, rubrik | Ditt underlag just nu |
 
-**Viktigt:** de två ingresserna ovan används aldrig samtidigt och ska vara tydligt olika formulerade, eftersom de betyder olika saker för ledaren (ett eget val löser det, respektive inget enskilt val löser det).
+**Viktigt:** de tre ingresserna ovan används aldrig samtidigt och ska vara tydligt olika formulerade, eftersom de betyder olika saker för ledaren (ett eget val löser det, ett kombinationsproblem som inget enskilt val löser, respektive att ingen övning matchar alls och inget enskilt val hjälper).
+
+**Vilken av de tre som visas (rättat vid uppföljningen 2026-09-23):** `NoSessionReason` har fältet `cause` (`inget-matchar` eller `gar-inte-att-kombinera`), beräknat med samma prövning som `emptyReason` gör per del (se avsnitt 4 ovan). Ordningen: är listan över ändringsbara fält (`changeableFields`) inte tom, visas "val kan lösa det", oavsett `cause`. Är listan tom, avgör `cause`: `gar-inte-att-kombinera` ger "kan inte kombineras", `inget-matchar` ger "inget enskilt val hjälper" (se exemplet med 11 mot 11, där banken helt saknar övningar). En tidigare version av den här raden sa att en tom lista alltid skulle ge "inget enskilt val hjälper", i väntan på just den här signalen från regelmotorn – det gäller inte längre, se `skisser/03-inget-matchande-resultat.md`.
 
 ---
 
@@ -330,3 +344,17 @@ Vad som faktiskt fungerar utan nät styrs av `docs/adr/0005-daligt-nat-och-offli
 3. **Appen ändrar aldrig ledarens val åt henne eller honom** – texterna säger alltid "testa att ändra" eller "kontrollera", aldrig "vi har ändrat".
 4. **Samma ord som ledare använder:** spelform (inte "matchformat"), station (inte "grupp" när det gäller stationer), coachningspunkter (inte "tips till tränaren"), planskiss (inte "diagram").
 5. **Varningar om säkerhet är alltid synliga, aldrig gömda** bakom en meny eller ett klick, eftersom de handlar om barns säkerhet (mål, benskydd, nickspel).
+
+---
+
+## Ändringar efter K2
+
+Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillägg som gjordes vid granskningen av det byggda gränssnittet inför K4 (2026-09-23), eftersom R-121 (ersättningsfokus) och det tredje "inget matchande resultat"-läget tillkom efter K2. Statusraden överst ändras inte av en agent – det gör huvudsessionen tillsammans med användaren.
+
+| Datum | Ändring |
+|---|---|
+| 2026-09-23 | **Avsnitt 3:** ny rad för texten som visas i stället för fokuslistan innan ålder är ifylld. |
+| 2026-09-23 | **Avsnitt 4:** två nya rader – ersättningsfokus (R-121) och "tom del, inget enskilt val hjälper", det tredje läget för en tom del. Texter.md hade bara två lägen för en tom del sedan tidigare; det tredje saknades eftersom det upptäcktes först vid granskningen inför K4. |
+| 2026-09-23 | **Avsnitt 5:** ny rad för "inget enskilt val hjälper" samt ett tillägg som förklarar vilken av de tre ingresserna som ska visas, eftersom vyn i praktiken bara kan skilja på "lista med fält" och "listan är tom" (se `skisser/03-inget-matchande-resultat.md`). |
+| 2026-09-23 (uppföljning samma dag) | **Avsnitt 4 och 5:** förklaringarna om vilken "tom del"/"inget matchande resultat"-text som visas är omskrivna. Regelmotorn har fått den bekräftade signalen (`emptyReason` per del fanns redan, `NoSessionReason.cause` är ny) som avsnitten tidigare sa saknades – "kan inte kombineras" visas nu bara när orsaken är bekräftad, inte som en gissning utifrån en tom fältlista. |
+| 2026-09-23 (uppföljning samma dag) | **Avsnitt 3:** ny rad för skärmläsarordet "kärnområde" och en förklaring av hur det vävs in i fokuskryssrutornas tillgängliga namn tillsammans med "(K)" (WCAG 2.5.3). |

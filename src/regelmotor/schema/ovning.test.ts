@@ -369,6 +369,60 @@ describe('S-21 inga e-postadresser i fält som blir publika', () => {
 
   it('S-21: en omskriven e-postadress känns igen', () => {
     expect(looksLikeEmail('bjorn (at) exempel (dot) se')).toBe(true);
+    expect(looksLikeEmail('bjorn snabel-a exempel.se')).toBe(true);
+  });
+
+  /*
+   * Tidsgränsen är kontrollen: med obegränsade kvantifierare i mönstret tog en text på
+   * 100 000 tecken över en minut, och det är precis så långt ett `beskrivning`-fält kan
+   * vara i en fil. Testet faller på timeouten om sökningen börjar skena igen.
+   */
+  it('S-32: en mycket lång text kontrolleras utan att sökningen skenar', { timeout: 2_000 }, () => {
+    expect(looksLikeEmail('abc.'.repeat(25_000))).toBe(false);
+    expect(looksLikeEmail('aaaa at '.repeat(12_500))).toBe(false);
+    expect(looksLikeEmail(`${'a'.repeat(50_000)} at exempel.se`)).toBe(true);
+  });
+
+  it.each([
+    ['namn', { namn: 'Passa till bjorn@example.com' }],
+    ['syfte', { syfte: 'Spelarna ska passa. Fragor: tranare@example.com tar emot dem.' }],
+    [
+      'beskrivning',
+      {
+        beskrivning:
+          'Fyra spelare star i varsitt horn av en kvadrat och passar runt. Hor av dig till tranare@example.com om du undrar nagot om upplagget.',
+      },
+    ],
+    ['organisation', { organisation: 'En boll per grupp. Kontakt: tranare@example.com' }],
+    ['ledaruppgift', { ledaruppgift: 'Ledaren mailar tranare@example.com efter passet.' }],
+    [
+      'coachningspunkter.0',
+      { coachningspunkter: ['Fraga tranare@example.com.', 'Titta upp mellan touchningarna.'] },
+    ],
+    [
+      'varianter.lattare',
+      { varianter: { lattare: 'Fraga tranare@example.com.', svarare: 'Tva bollar i gang.' } },
+    ],
+    [
+      'anpassning.udda_antal',
+      {
+        anpassning: {
+          fler_spelare: 'Fler kvadrater bredvid varandra.',
+          udda_antal: 'Fraga tranare@example.com.',
+          ledare: 'En ledare per grupp.',
+        },
+      },
+    ],
+    [
+      'material.0.anteckning',
+      { material: [{ typ: 'boll', antal: 1, anteckning: 'lanas av tranare@example.com' }] },
+    ],
+    [
+      'granskning.0.kommentar',
+      { granskning: [reviewEntry({ kommentar: 'Fraga tranare@example.com.' })] },
+    ],
+  ])('S-32: %s får inte innehålla en e-postadress', (field, overrides) => {
+    expect(failsWith(validExercise(overrides), field, 'S-21')).toBe(true);
   });
 
   it('S-21: roll och förnamn är tillåtet', () => {

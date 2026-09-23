@@ -1,0 +1,275 @@
+/**
+ * Vyerna renderade till HTML. Testet prövar att det som motorn svarar också syns för
+ * ledaren: delar, tider, påminnelser, tomma delar, ersättningsfokus och förklaringen när
+ * inget pass kunde skapas.
+ *
+ * Renderingen sker med react-dom/server, så att testet klarar sig utan webbläsarmiljö.
+ * Klick och tangentbord prövas av kvalitetssäkraren i Playwright (ADR 0001).
+ */
+import { renderToStaticMarkup } from 'react-dom/server';
+import { describe, expect, it } from 'vitest';
+import { InputForm } from './input/InputForm.tsx';
+import { EMPTY_FORM, withAge, withFocusToggled } from './input/form.ts';
+import { SessionView } from './session/SessionView.tsx';
+import { NoSessionView } from './session/NoSessionView.tsx';
+import { validateInput } from '../regelmotor/index.ts';
+import type { InputError } from '../regelmotor/index.ts';
+import {
+  BANK_FIXABLE_EMPTY_PART,
+  BANK_NEEDING_SUBSTITUTE,
+  BANK_SHARED_EXERCISE,
+  BANK_WITHOUT_GAME_PRACTICE,
+  BANK_WRONG_LEVEL,
+  FULL_BANK,
+  INPUT,
+  generate,
+  sessionOf,
+} from './__testdata__/session-fixture.ts';
+
+function html(element: React.ReactElement): string {
+  // Renderad HTML utan entiteter, så att svenska texter kan jämföras som de skrivs.
+  return renderToStaticMarkup(element)
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&quot;', '"')
+    .replaceAll('&amp;', '&')
+    .replaceAll('&#183;', '·')
+    .replaceAll('&middot;', '·');
+}
+
+function sessionHtml(bank = FULL_BANK, input = INPUT): string {
+  return html(
+    <SessionView
+      session={sessionOf(bank, input)}
+      onChangeInput={() => undefined}
+      onGenerateAgain={() => undefined}
+    />,
+  );
+}
+
+describe('Berättelse 02: det genererade passet', () => {
+  it('02.2 visar varje del med namn och varje övning med namn, syfte och tid', () => {
+    const markup = sessionHtml();
+    for (const name of ['Uppvärmning', 'Öva', 'Spelövning', 'Spel', 'Avslutning']) {
+      expect(markup).toContain(name);
+    }
+    expect(markup).toContain('Passning med vändning');
+    expect(markup).toContain('Spelarna ska öva på det som testet handlar om.');
+    expect(markup).toMatch(/\d+ min/);
+    // R-052: gruppindelningen skrivs ut för varje moment.
+    expect(markup).toContain('En grupp med 12 spelare');
+  });
+
+  it('02.8 visar passets faktiska tid mot den begärda', () => {
+    const session = sessionOf(FULL_BANK);
+    const markup = sessionHtml();
+    expect(markup).toContain(`Faktisk tid: ${session.totalMinutes} min`);
+  });
+
+  it('02.15 visar påminnelsen om benskydd och om förankrade mål', () => {
+    const markup = sessionHtml();
+    expect(markup).toContain('Använd benskydd på träningen');
+    expect(markup).toContain('förankrade så att de inte kan välta');
+  });
+
+  it('02.13 visar tipset om fler vuxna när spelarna är fler än taket per ledare', () => {
+    const markup = sessionHtml(FULL_BANK, { ...INPUT, spelare: 20, ledare: 1 });
+    expect(markup).toContain('Ta gärna hjälp av en förälder');
+  });
+
+  it('02.2 visar fokusområdena med sina namn, inte med sina nycklar', () => {
+    const markup = sessionHtml();
+    expect(markup).toContain('Passning och mottagning');
+    expect(markup).not.toContain('passning-mottagning');
+  });
+});
+
+describe('Berättelse 03: delar utan övning och inget matchande resultat', () => {
+  it('03.4 visar en tom del med sitt namn, sin måltid och att övning saknas', () => {
+    const session = sessionOf(BANK_WITHOUT_GAME_PRACTICE);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('Övning saknas');
+    expect(markup).toContain(`Måltid: ${part?.target} min.`);
+  });
+
+  it('03.2 visar vilka val som kan ändras när ett enskilt val skulle fylla delen', () => {
+    const session = sessionOf(BANK_FIXABLE_EMPTY_PART);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('val-kan-andras');
+    expect(part?.changeableFields).toContain('niva');
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('Testa att ändra ett av de här');
+    expect(markup).toContain('Nivå');
+    expect(markup).not.toContain('gick inte att kombinera med resten av passet');
+    expect(markup).not.toContain('inget enskilt val skulle ensamt lösa det');
+  });
+
+  /*
+   * Läge 3 i docs/design/skisser/02-genererat-pass.md. Banken saknar spelövningar helt, så
+   * texten om att övningarna inte gick att kombinera vore ett felaktigt påstående: det finns
+   * inga övningar som skulle passa var för sig.
+   */
+  it('03.2 säger att inget enskilt val hjälper när delen varken kan fyllas eller lösas med ett val', () => {
+    const session = sessionOf(BANK_WITHOUT_GAME_PRACTICE);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('val-kan-andras');
+    expect(part?.changeableFields).toEqual([]);
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('inget enskilt val skulle ensamt lösa det');
+    expect(markup).not.toContain('gick inte att kombinera med resten av passet');
+  });
+
+  it('03.2 säger att delen inte gick att kombinera bara när motorn har sagt det', () => {
+    // Övningen passar både Öva och Spelövning, men R-070 tillåter den bara på en plats.
+    const session = sessionOf(BANK_SHARED_EXERCISE);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('gar-inte-att-kombinera');
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('gick inte att kombinera med resten av passet');
+    expect(markup).not.toContain('inget enskilt val skulle ensamt lösa det');
+  });
+
+  it('03.6 visar vilket fokus som saknade övningar och vilket som användes i stället', () => {
+    const markup = sessionHtml(BANK_NEEDING_SUBSTITUTE, { ...INPUT, fokus: ['lek'] });
+    // Ordalydelsen ur texts.ts (ändrad vid ux-designerns granskning inför K4, 2026-09-23).
+    expect(markup).toContain('Inga övningar för Lek passade den här delen');
+    expect(markup).toContain('Dribbling och driva bollen');
+    expect(markup).toContain('Dina val i underlaget är oförändrade.');
+  });
+
+  it('03.1 och 03.2 visar rubriken, de val som kan ändras och trygghetstexten', () => {
+    const result = generate(BANK_WRONG_LEVEL);
+    expect(result.kind).toBe('none');
+    if (result.kind !== 'none') {
+      return;
+    }
+    const markup = html(
+      <NoSessionView input={INPUT} reason={result.reason} onChangeInput={() => undefined} />,
+    );
+    expect(markup).toContain('Vi kunde inte skapa ett pass med de här uppgifterna');
+    expect(markup).toContain('Nivå');
+    expect(markup).toContain('Vi ändrar ingenting åt dig');
+    expect(markup).toContain('Ändra uppgifter');
+  });
+
+  /*
+   * Motsvarande tre lägen för hela passet, docs/design/skisser/03-inget-matchande-resultat.md.
+   * En tom bank är precis fallet med en spelform som banken saknar övningar för (11 mot 11).
+   */
+  it('03.2 säger att ingenting matchar när banken saknar övningar, inte att det inte går att kombinera', () => {
+    const result = generate([]);
+    expect(result.kind).toBe('none');
+    if (result.kind !== 'none') {
+      return;
+    }
+    expect(result.reason.cause).toBe('inget-matchar');
+    expect(result.reason.changeableFields).toEqual([]);
+    const markup = html(
+      <NoSessionView input={INPUT} reason={result.reason} onChangeInput={() => undefined} />,
+    );
+    expect(markup).toContain('Vi hittade inga övningar som matchar de här valen');
+    expect(markup).not.toContain('går inte att kombinera till ett helt pass');
+  });
+
+  it('03.2 säger att övningarna inte går att kombinera bara när motorn har bekräftat det', () => {
+    const markup = html(
+      <NoSessionView
+        input={INPUT}
+        reason={{
+          cause: 'gar-inte-att-kombinera',
+          changeableFields: [],
+          internalProblems: [],
+        }}
+        onChangeInput={() => undefined}
+      />,
+    );
+    expect(markup).toContain('går inte att kombinera till ett helt pass');
+    expect(markup).not.toContain('Vi hittade inga övningar som matchar de här valen');
+  });
+
+  it('03.3 visar ledarens underlag oförändrat', () => {
+    const result = generate(BANK_WRONG_LEVEL);
+    if (result.kind !== 'none') {
+      throw new Error('förväntade inget pass');
+    }
+    const markup = html(
+      <NoSessionView input={INPUT} reason={result.reason} onChangeInput={() => undefined} />,
+    );
+    expect(markup).toContain('Ditt underlag just nu');
+    expect(markup).toContain('11 år');
+    expect(markup).toContain('7 mot 7');
+    expect(markup).toContain('Fortsättning');
+    expect(markup).toContain('12 spelare');
+  });
+});
+
+describe('Berättelse 01: underlagsformuläret', () => {
+  const render = (form = withAge(EMPTY_FORM, '11'), errors: InputError[] = []) =>
+    html(
+      <InputForm
+        form={form}
+        errors={errors}
+        onChange={() => undefined}
+        onGenerate={() => undefined}
+      />,
+    );
+
+  it('01.2 visar bara den föreslagna spelformen och dess grannar', () => {
+    const markup = render();
+    expect(markup).toContain('7 mot 7');
+    expect(markup).toContain('5 mot 5');
+    expect(markup).toContain('9 mot 9');
+    expect(markup).not.toContain('11 mot 11');
+  });
+
+  it('01.9 och 01.10 visar fokusområdena för åldern, utan nickspel före 13 år', () => {
+    expect(render()).toContain('Passning och mottagning');
+    expect(render()).not.toContain('Nickspel');
+    expect(render(withAge(EMPTY_FORM, '14'))).toContain('Nickspel');
+  });
+
+  it('01.3 och 01.5 visar motorns felmeddelanden och en samlad rad', () => {
+    const invalid = withFocusToggled(withAge(EMPTY_FORM, '3'), 'lek');
+    const result = validateInput({ alder: 3, niva: 'niva-2', fokus: [] });
+    expect(result.ok).toBe(false);
+    const errors = result.ok ? [] : result.errors;
+    const markup = render(invalid, errors);
+    expect(markup).toContain('Ange en ålder mellan 6 och 19 år.');
+    expect(markup).toContain('Några uppgifter saknas eller stämmer inte');
+  });
+
+  it('01.11 visar hjälptexten om vilken ålder som ska anges', () => {
+    expect(render()).toContain('Ange den ålder som flest i gruppen fyller i år.');
+  });
+
+  it('01.12 visar yta som ett valfritt val med Ingen som förval', () => {
+    const markup = render();
+    expect(markup).toContain('Yta (valfritt)');
+    expect(markup).toContain('Hel plan');
+    expect(markup).toContain('Ingen');
+  });
+});

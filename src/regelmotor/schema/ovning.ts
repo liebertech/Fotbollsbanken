@@ -114,14 +114,20 @@ export const BANK_FIELD_NAMES = Object.keys(BANK_FIELDS) as (keyof typeof BANK_F
 /**
  * Sant när texten innehåller ett `@` eller ett mönster som liknar en e-postadress.
  *
+ * Varje kvantifierare är begränsad. Kontrollen gäller sedan S-32 också `beskrivning` och de
+ * andra långa fälten, och med obegränsade kvantifierare blir sökningen katastrofalt
+ * långsam på en lång text: en `beskrivning` på 100 000 tecken tog över en minut. Gränserna
+ * är rundligt tilltagna mot de längsta delar en riktig adress har.
+ *
  * @sakerhet S-21
+ * @sakerhet S-32
  */
 export function looksLikeEmail(text: string): boolean {
   if (text.includes('@')) {
     return true;
   }
   const obfuscated =
-    /[\p{L}\p{N}._%+-]+\s*(?:\(at\)|\[at\]|\{at\}|\bat\b|\bsnabel-?a\b)\s*[\p{L}\p{N}-]+(?:\s*(?:\(dot\)|\[dot\]|\.)\s*[\p{L}]{2,})+/iu;
+    /[\p{L}\p{N}._%+-]{1,64}\s{0,4}(?:\(at\)|\[at\]|\{at\}|\bat\b|\bsnabel-?a\b)\s{0,4}[\p{L}\p{N}-]{1,64}(?:\s{0,4}(?:\(dot\)|\[dot\]|\.)\s{0,4}[\p{L}]{2,64}){1,4}/iu;
   return obfuscated.test(text);
 }
 
@@ -247,12 +253,63 @@ type ExerciseObject = ReturnType<typeof buildObject>;
 /** En komplett bankövning. */
 export type Exercise = z.infer<ExerciseObject>;
 
+// Vitlistan över de fält som publiceras ligger i schema/published.ts, utan beroende på zod,
+// eftersom den läses i klienten (S-27).
+
 /** En fil i content/ovningar/, där bankfälten får saknas så länge statusen är `utkast`. */
 export type ExerciseFile = Partial<Exercise> &
   Pick<Exercise, 'schema' | 'id' | 'status'> & { granskning?: Exercise['granskning'] };
 
 function addIssue(ctx: z.RefinementCtx, path: (string | number)[], message: string): void {
   ctx.addIssue({ code: 'custom', path, message });
+}
+
+/**
+ * Samtliga fritextfält i övningen, med sin sökväg. Kontrollen mot e-postadresser gällde
+ * tidigare bara `kalla` och `granskning[].av`, medan de stora texterna – som är de en ledare
+ * skriver själv i inkrement 4 – var okontrollerade.
+ *
+ * @sakerhet S-32
+ */
+function freeTextFields(value: Partial<Exercise>): { path: (string | number)[]; text: string }[] {
+  const fields: { path: (string | number)[]; text: string }[] = [];
+  const add = (path: (string | number)[], text: string | undefined): void => {
+    if (typeof text === 'string' && text.length > 0) {
+      fields.push({ path, text });
+    }
+  };
+
+  add(['namn'], value.namn);
+  add(['syfte'], value.syfte);
+  add(['beskrivning'], value.beskrivning);
+  add(['organisation'], value.organisation);
+  add(['ledaruppgift'], value.ledaruppgift);
+  add(['kalla'], value.kalla);
+  add(['varianter', 'lattare'], value.varianter?.lattare);
+  add(['varianter', 'svarare'], value.varianter?.svarare);
+  add(['anpassning', 'fler_spelare'], value.anpassning?.fler_spelare);
+  add(['anpassning', 'udda_antal'], value.anpassning?.udda_antal);
+  add(['anpassning', 'ledare'], value.anpassning?.ledare);
+  value.coachningspunkter?.forEach((point, index) => add(['coachningspunkter', index], point));
+  value.material?.forEach((item, index) => add(['material', index, 'anteckning'], item.anteckning));
+  value.granskning?.forEach((entry, index) => {
+    add(['granskning', index, 'av'], entry.av);
+    add(['granskning', index, 'kommentar'], entry.kommentar);
+  });
+
+  return fields;
+}
+
+/** Felmeddelandet för fältet, med den vägledning som passar just det fältet. */
+function emailMessage(path: (string | number)[]): string {
+  const field = path.join('.');
+  if (field === 'kalla') {
+    return 'kalla får inte innehålla en e-postadress. Hänvisa till publicerat material (S-21)';
+  }
+  if (path[0] === 'granskning' && path[2] === 'av') {
+    return 'av ska vara roll och förnamn eller ett handtag, aldrig en e-postadress (S-21)';
+  }
+  return `${field} får inte innehålla en e-postadress. Övningen publiceras, och kontaktuppgifter hör inte hemma i den (S-21, S-32)`;
 }
 
 /**
@@ -433,23 +490,10 @@ function checkCrossRules(value: Partial<Exercise>, ctx: z.RefinementCtx): void {
     }
   }
 
-  // S-21: inga e-postadresser i fält som blir publika.
-  if (value.kalla && looksLikeEmail(value.kalla)) {
-    addIssue(
-      ctx,
-      ['kalla'],
-      'kalla får inte innehålla en e-postadress. Hänvisa till publicerat material (S-21)',
-    );
-  }
-  if (value.granskning) {
-    for (const [index, entry] of value.granskning.entries()) {
-      if (looksLikeEmail(entry.av)) {
-        addIssue(
-          ctx,
-          ['granskning', index, 'av'],
-          'av ska vara roll och förnamn eller ett handtag, aldrig en e-postadress (S-21)',
-        );
-      }
+  // S-21 och S-32: inga e-postadresser i något fritextfält.
+  for (const { path, text } of freeTextFields(value)) {
+    if (looksLikeEmail(text)) {
+      addIssue(ctx, path, emailMessage(path));
     }
   }
 
