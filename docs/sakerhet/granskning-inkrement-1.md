@@ -193,3 +193,41 @@ Värdena är lika i dag. Skulle de glida isär kan bygget läsa en annan katalog
 **Verifierat:** grendiffen mot main (13 commits, 66 filer, +8 895 rader); tom diff av `package.json` och `package-lock.json`; `npm audit --audit-level=high` med noll sårbarheter; licensavläsning av produktionsberoendena; `npm test` med 311 gröna tester; provbygge med sökning i det byggda paketet efter YAML-tolk, Zod, e-postadresser och granskningsrader; mätning av bankens storlek med och utan granskningsrader; mönstersökningar efter lagrings-API:er, nätanrops-API:er, farliga DOM-anrop, miljövariabler och hemligheter, samtliga utan träff; ett egenskrivet utbrottstest med sex farliga teckenföljder mot inbäddningen; sökning efter `_headers` och wrangler-filer i repot och i bygget, som saknas i båda.
 
 **Kvarstår:** nio fynd, S-26 till S-34. Fotbollsinnehållet, tillgängligheten och kriterietäckningen ligger hos fotbollsexperten, ux-designern och kvalitetssäkraren. Playwright, pgTAP och tillgänglighetsjobben som ADR 0002 räknar upp finns inte ännu, så ingen av dem har kört mot den här koden. Storleksbudgeten som ADR 0015 säger ska sättas i inkrement 1 är inte satt: bygget ger i dag en enda klump på 445 kB, inte den separata bankdelen som ADR 0015 förutsätter. Ingenting är driftsatt, så bedömningen av S-29 gäller kodläget och inte en levande adress.
+
+## 7 Uppföljning 2026-09-23: kontrollräkning av åtgärderna
+
+**Gren:** `feature/generatorn`, tio commits efter granskningspunkten `9fed605`, 39 filer och +2 407 rader.
+
+**Samtliga nio fynd är stängda.** Åtgärderna motsvarar det granskaren menade, och i tre fall — S-27, S-28 och S-31 — är de starkare än vad som föreslogs. Varje fynd är kontrollerat med en egen mätning och inte genom att läsa koden: typgränsen med en kompilator, vitlistan mot det byggda paketet, ReDoS-rättningen med egna tidtagningar.
+
+**S-27.** Vitlistan har 22 fält och ligger i en zod-fri fil. Utöver det som begärdes är motorns `Exercise` numera den publicerade typen, så `granskning` finns inte ens som typ i motorn och kan inte smyga tillbaka genom en vy. Kontrollerat mot paketet: noll förekomster av `granskning`, `kommentar`, `benbom`, `fotbollsexpert` och `kalla`, mot 42 respektive 46 före. Bankens JSON 82 982 byte mot 166 182, paketet 365,61 kB mot 445,74 kB, gzip 106,28 mot 128,55.
+
+**S-28.** Typgränsen är prövad med en probfil och en kompilator, i fyra fall. Den gemensamma banken går igenom. Klubbövningar rakt in faller med TS2345. Klubbövningar inblandade i banken faller med TS2345 — det fall granskaren oroade sig mest för. Ett objekt med rätt status men utan ursprung faller med TS2741. Märkningen sker bara i `src/data/bank.ts`. Anmärkning utan åtgärdskrav: ursprunget är ett vanligt strängfält och inte ett varumärkt symbolfält, så en medveten typomvandling går fortfarande att skriva; avvägningen mot läsbarhet tillstyrks.
+
+**S-26.** Headrarna hamnar i bygget och CI underkänner ett bygge utan dem. CSP:n bryter ingenting i dagens app: bygget har bara ett externt skript och en extern stilmall, och paketets JS innehåller inga inline-stilar. HSTS utan `preload` är rätt på en delad `pages.dev`-domän. I inkrement 3 behöver `connect-src` Supabase-domänen och Turnstile, och `frame-src` behöver Turnstile, som renderas i en iframe och i dag skulle blockeras.
+
+**S-31.** Prövat genom hela den riktiga byggkedjan med en övning vars namn och syfte innehöll backtick, ett mallsträngsuttryck, en avslutande skripttagg och U+2028. Minifieraren växlade själv till enkelfnutt, escapade skripttaggen och lät U+2028 stå som escape-sekvens. Värdet round-trippar oförändrat och ingen kod kördes.
+
+**S-32 och ReDoS-rättningen.** Reproducerad oberoende: det gamla mönstret tog 40 119 ms på 100 000 tecken, det nya 77 ms. Det gamla skalade kvadratiskt, det nya linjärt. Sju egna värsta-fall-former mot det nya mönstret gav ingen superlinjär tillväxt, värsta uppmätta 84,6 ms på 100 800 tecken. Samtliga reguljära uttryck i `src/` och `scripts/` är genomgångna: inget annat har nästlade obegränsade kvantifierare.
+
+**S-30, S-33 och S-34** är stängda enligt åtgärdsförslagen. **S-29** är stängd som beslut: ADR 0015 har fått avsnittet om undantaget med de tre villkoren ordagrant, och ADR 0016 lägger typgränsen som ett eget beslut.
+
+### Nya fynd i uppföljningen
+
+| Nr | Allvarlighet | Kort |
+|---|---|---|
+| S-35 | Låg | CSP saknar `form-action`, och CI-steget kontrollerar bara headernamn, inte innehåll |
+| S-36 | Låg | De fyra nya utvecklingsberoendena bryter projektets versionsfästning |
+| S-37 | Låg | `toBankExercise` kastar vid modulladdning, vilket blir en vit sida i inkrement 3 |
+
+**S-35.** `form-action` ärver inte från `default-src`, och appen har ett formulär. Utan direktivet kan kod som ändå tagit sig in posta till vilken domän som helst, alltså samma exfiltreringsväg som `connect-src` stänger fast genom en annan dörr. CI-steget söker bara efter headernamnen, så en CSP som försvagats till `default-src *` skulle passera. *Åtgärd:* lägg till `form-action 'self'`, och låt CI kontrollera ett par bärande teckenföljder i policyn.
+
+**S-36.** Projektet fäster varje beroende vid en exakt version och pinnar arbetsflödenas actions vid SHA. De fyra nya testberoendena använder `^` och tog dev-trädet från 303 till 361 paket. `npm ci` mot låsfilen är reproducerbart, men ett `npm install` eller en beroendehöjning drar in nya minorversioner av fyra paket med byggtidsåtkomst till filsystemet. *Åtgärd:* fäst dem vid exakta versioner. I övrigt är kvalitetssäkrarens uppgifter kontrollerade och stämmer: noll sårbarheter över 365 paket, oförändrat produktionsträd, och noll förekomster av testbiblioteken i det byggda paketet.
+
+**S-37.** `toBankExercise` kastar på fel status och anropas på modulens toppnivå. I dag är den grenen oåtkomlig eftersom bygget redan har gallrat. I inkrement 3 får samma funktion data över nätet, och en enda rad med fel status ger då ett kast under modulladdning, alltså en vit sida utan felmeddelande. *Åtgärd:* ingen ändring nu; notera i ADR 0016 att körtidsvägen ska filtrera och redovisa i stället för att kasta, som `loadBank` numera gör.
+
+### Kvarstår efter uppföljningen
+
+Den automatiserade importgränsen från S-29 finns inte: ingen regel hindrar en framtida import av den virtuella modulen utanför `src/data/bank.ts`. Egenskapen håller i dag men vilar på konvention, och `eslint.config.js` har redan mönstret för regelmotorn. Bör in före inkrement 4.
+
+ADR 0016 står som *föreslagen* och behöver användarens godkännande vid K4. Hela avsnitt 4, *Vad som måste vara på plats före inkrement 3*, står oförändrat kvar. Storleksbudgeten är fortfarande inte satt.
