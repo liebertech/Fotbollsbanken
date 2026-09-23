@@ -1,0 +1,72 @@
+schema: 1
+id: hornor-med-nickar
+namn: Hörnor med nickar
+syfte: Spelarna ska öva löpmönster, inspel och avslut med huvudet vid hörnor, och att
+  försvara sitt mål vid samma situation.
+beskrivning: |
+  Fyra anfallare och tre försvarare med målvakt övar hörnor på en yta om 30 x 20 meter.
+  Ledaren slår in bollen från hörnflaggan. Anfallarna löper i tajmade mönster mot när och
+  bortre stolpen och avslutar med huvudet när inlägget passar, annars med foten.
+  Försvararna ska markera varsin anfallare och rensa undan faran. Antalet nickar hålls
+  lågt och blandas med foten, i linje med taket för nickträning i åldern.
+organisation: |
+  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. Ledaren
+  slår in hörnorna och styr rotationen mellan anfallare och försvarare.
+fokusomraden:
+  - fasta-situationer
+  - nickspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren slår in hörnorna från hörnflaggan, håller koll på hur många nickar
+  som gjorts och styr rotationen mellan anfallare och försvarare.
+spelare:
+  min: 8
+  max: 8
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 30
+    bredd: 20
+material:
+  - typ: mal
+    antal: 1
+  - typ: vast
+    antal: 3
+    anteckning: till de tre försvararna
+  - typ: boll
+    antal: 4
+  - typ: kon
+    antal: 1
+    anteckning: markerar hörnflaggans plats
+coachningspunkter:
+  - Tajma löpningen så att du möter bollen i stället för att stå still och vänta.
+  - Möt bollen med pannan, blunda inte, och styr nicken nedåt mot mål.
+  - Försvarare ska markera varsin anfallare redan innan hörnan slås.
+varianter:
+  lattare: Bara inlägg längs marken till en spelare som avslutar med foten, inga nickar.
+  svarare: Två inlägg i följd från olika hörnor utan paus, så att försvararna måste
+    organisera om snabbt.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En spelare vilar och byter in med en av försvararna efter varje omgång.
+  ledare: En ledare krävs för att slå in hörnorna och hålla koll på nicktaket. Utan extra
+    ledare håller den ordinarie ledaren i båda delarna.
+kalla: Egen övning, inspirerad av vanlig hörnträning, anpassad efter SvFF:s riktlinje om
+  begränsad nickmängd för 13-14 år.
+status: utkast
+granskning: []

@@ -1,0 +1,63 @@
+schema: 1
+id: forsvara-i-overtal
+namn: Försvara i underläge 3 mot 1
+syfte: Spelarna ska öva att jockeya, vinna tid och till slut vinna bollen som ensam
+  försvarare mot tre anfallare.
+beskrivning: |
+  Tre anfallare håller bollen inom en yta mot en ensam försvarare. Försvararen ska inte
+  rusa in, utan jockeya, tvinga anfallarna åt ett håll och leta efter ett läge att sticka
+  ut foten eller pressa en dålig touch. Byt försvarare efter en bestämd tid eller så fort
+  bollen vinns eller spelas ut ur ytan.
+organisation: |
+  En yta om 20 x 15 meter per grupp om fyra: tre anfallare och en försvarare. Försvararen
+  byts av efter en minut eller vid bollvinst. Ledaren styr byten och tiden.
+fokusomraden:
+  - forsvarsspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 1
+ledaruppgift: Ledaren tar tiden, styr byte av försvarare och påminner om att jockeya i
+  stället för att rusa in.
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 20
+    bredd: 15
+material:
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Jockeya i stället för att rusa rakt mot bollhållaren.
+  - Tvinga bollhållaren åt en sida i stället för att låta alla vägar vara öppna.
+  - Stick ut foten först när touchen är dålig, chansa inte i onödan.
+varianter:
+  lattare: Anfallarna får bara två touchar var, vilket ger försvararen mer tid att jockeya.
+  svarare: Krymp ytan till 16 x 12 meter så att beslutstiden blir kortare.
+anpassning:
+  fler_spelare: Bygg fler ytor med samma uppställning bredvid.
+  udda_antal: Den femte spelaren väntar vid sidan och byter in som ny försvarare vid nästa
+    byte.
+  ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare
+    håller den ordinarie ledaren i både tid och byten.
+kalla: Egen övning, inspirerad av vanlig överlägesträning i försvarsspel.
+status: utkast
+granskning: []

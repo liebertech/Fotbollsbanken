@@ -1,0 +1,70 @@
+schema: 1
+id: matchspel-9mot9-brett
+namn: Matchspel 9 mot 9 i bredd
+syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i bredd och djup i ett
+  matchlikt spel.
+beskrivning: |
+  Två lag möts på en yta om 65 x 50 meter med mål i var ände, alltid med varsin målvakt.
+  Antalet utespelare i varje lag beror på gruppens storlek: tio spelare ger fyra mot fyra,
+  fjorton ger sex mot sex och arton, fullstort 9 mot 9, ger åtta mot åtta. Är antalet udda
+  spelar det ena laget med en utespelare mer. Laget som har boll ska sprida ut sig i bredd
+  och djup och hålla bollen genom passningar, i stället för att klumpa ihop sig runt
+  bollhållaren. Vanliga regler i 9 mot 9 gäller, inklusive offside.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Tio spelare: fyra mot fyra. Fjorton spelare:
+  sex mot sex. Arton spelare: åtta mot åtta. Vid ojämnt antal spelar det ena laget med en
+  utespelare mer än det andra. Målvakterna byts av under passet så att fler får prova.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 10
+  max: 18
+grupptyp: tva-lag
+tid:
+  kortast: 15
+  rekommenderad: 25
+  langst: 30
+yta:
+  alla:
+    langd: 65
+    bredd: 50
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 9
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Sprid ut er i bredd och djup så att bollhållaren har flera passningsval.
+  - Rör dig direkt efter din passning för att bli spelbar igen.
+  - Spela enkla, säkra passningar när pressen är hög i stället för att tvinga fram en svår
+    passning.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst fyra passningar i följd.
+anpassning:
+  fler_spelare: Vid fler än arton spelare, dela gruppen i två separata matcher på varsin
+    yta.
+  udda_antal: Ett lag spelar med en utespelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer, uppmärksammar offsidelinjen och peppar
+    från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i 9 mot 9-format.
+status: utkast
+granskning: []

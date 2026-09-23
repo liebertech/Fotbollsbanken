@@ -1,0 +1,65 @@
+schema: 1
+id: skadeforebyggande-9mot9
+namn: Skadeförebyggande program 13-14 år
+syfte: Spelarna ska öva knä- och fotledskontroll, bålstabilitet och landningsteknik som
+  förberedelse inför träningens mer intensiva delar.
+beskrivning: |
+  Spelarna joggar mellan sju markerade stationer i en cirkel och gör en övning vid varje
+  station: enbenshopp med mjuk landning, utfallssteg, sidohopp över en linje, planka,
+  balans på ett ben med lätt knuff från en medspelare och rak löpning med höga knän.
+  Ledaren visar varje övning innan gruppen sätter igång och går runt för att rätta till
+  knäläget vid landning och hopp.
+organisation: |
+  En cirkel med sju stationer per grupp om upp till fjorton spelare, en till två vid varje
+  station med minst två meters avstånd mellan spelarna på samma station. Spelarna roterar
+  medurs mellan stationerna på ledarens signal. Fler grupper bygger en egen cirkel bredvid.
+fokusomraden:
+  - skadeforebyggande
+  - koordination
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 1
+ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget vid landning
+  och hopp så att knäna inte viker inåt.
+spelare:
+  min: 7
+  max: 14
+grupptyp: fri
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 14
+    bredd: 12
+material:
+  - typ: markering
+    antal: 7
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Landa mjukt på hela foten med lätt böjda knän.
+  - Låt inte knäna vika inåt vid landning eller riktningsbyte.
+  - Håll bålen stilla och blicken framåt, inte ner mot fötterna.
+varianter:
+  lattare: Ta bort hoppen och gör bara balans- och stabilitetsövningarna vid varje station.
+  svarare: Håll balansen fem sekunder efter varje landning och lägg till en snabb
+    riktningsändring efter utfallssteget.
+anpassning:
+  fler_spelare: Bygg en andra cirkel med samma sju stationer bredvid.
+  udda_antal: Spelarna roterar i egen takt inom sin cirkel, så udda antal spelar ingen roll.
+  ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
+kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
+  13-19 år.
+status: utkast
+granskning: []

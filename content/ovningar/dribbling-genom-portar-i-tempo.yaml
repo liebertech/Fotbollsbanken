@@ -1,0 +1,60 @@
+schema: 1
+id: dribbling-genom-portar-i-tempo
+namn: Dribbling genom portar i tempo
+syfte: Spelarna ska föra bollen med kontroll i hög fart och läsa vilken port som är öppen.
+beskrivning: |
+  Sex konportar är utspridda i en yta. Varje spelare driver sin egen boll genom så många
+  portar som möjligt på en bestämd tid, i valfri ordning, utan att köra genom samma port
+  två gånger i följd. Ingen motståndare är med, men tempot ska vara högt hela tiden.
+organisation: |
+  En gemensam yta med sex portar, en boll per spelare. Ledaren tar tiden och byter
+  arbetspass efter en till två minuter med kort vila emellan. Är gruppen större delas den
+  i två ytor bredvid varandra.
+fokusomraden:
+  - dribbling
+  - bollkansla
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 8
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 18
+    bredd: 14
+material:
+  - typ: boll
+    antal: 8
+    anteckning: en per spelare
+  - typ: kon
+    antal: 12
+    anteckning: sex portar med två koner vardera
+coachningspunkter:
+  - Håll bollen nära foten, särskilt genom portarna.
+  - Titta upp och välj nästa port innan du är framme vid den du redan är i.
+  - Använd båda fötterna för att styra bollen genom porten.
+varianter:
+  lattare: Färre portar, fyra i stället för sex, och lägre tempo.
+  svarare: Bara vänsterfoten, eller bara högerfoten, genom alla portar under en omgång.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma sex portar bredvid.
+  udda_antal: Spelar ingen roll, alla har egen boll och arbetar fritt i ytan.
+  ledare: Övningen är självgående när tiden är satt. Med en andra ledare kan denne peppa
+    och påminna om att använda båda fötterna.
+kalla: Egen övning, inspirerad av vanlig dribbling genom portar mot klockan.
+status: utkast
+granskning: []

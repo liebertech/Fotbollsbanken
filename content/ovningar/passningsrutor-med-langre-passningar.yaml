@@ -1,0 +1,64 @@
+schema: 1
+id: passningsrutor-med-langre-passningar
+namn: Passningsrutor med längre passningar
+syfte: Spelarna ska passa och ta emot längre bollar med rätt kraft och röra sig för att bli
+  spelbara igen.
+beskrivning: |
+  Fyra spelare rör sig fritt inne i en stor ruta och håller bollen inom gruppen med
+  passningar på minst tio meter. Efter varje passning ska mottagaren ta första touchen i
+  en ny riktning innan nästa passning slås. Ingen motståndare är med, men spelarna ska
+  hela tiden söka en öppen yta i stället för att stå still.
+organisation: |
+  En ruta om 20 x 20 meter per grupp om fyra, en boll per grupp. Fler grupper läggs
+  bredvid varandra med tre meters mellanrum om gruppen är större.
+fokusomraden:
+  - passning-mottagning
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 14
+yta:
+  alla:
+    langd: 20
+    bredd: 20
+material:
+  - typ: boll
+    antal: 1
+    anteckning: en per grupp
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Sätt tillräcklig kraft på passningen så att den bär hela sträckan.
+  - Ta första touchen bort från den du passade till.
+  - Sök en ny öppen yta så fort du har passat bollen.
+varianter:
+  lattare: Krymp rutan till 14 x 14 meter tills passningarna sitter säkert på avstånd.
+  svarare: Högst två touchar per spelare, och en av spelarna byter riktning på bollen med
+    en volley eller halvvolley när det går.
+anpassning:
+  fler_spelare: Bygg fler rutor bredvid varandra, tre meters mellanrum.
+  udda_antal: Den femte spelaren är alltid spelbar som en extra mottagare och räknas inte
+    som en fast position.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
+    kraft och om att söka ny yta.
+kalla: Egen övning, inspirerad av allmänt kända passningsrutor med rörelse.
+status: utkast
+granskning: []

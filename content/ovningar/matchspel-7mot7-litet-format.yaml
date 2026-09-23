@@ -1,0 +1,65 @@
+schema: 1
+id: matchspel-7mot7-litet-format
+namn: Matchspel 7 mot 7 i litet format
+syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i ett litet matchspel med målvakt.
+beskrivning: |
+  Två lag möts på en yta om 32 x 20 meter med mål i var ände, alltid med varsin målvakt.
+  Åtta spelare ger tre mot tre plus målvakter. Nio spelare ger tre mot tre plus målvakter,
+  där det ena laget har en extra utespelare. Laget som har bollen ska sprida ut sig och
+  hålla bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren.
+  Målvakten lägger ner bollen och passar ut den, precis som i vanligt 7 mot 7, i stället för
+  att sparka den ur händerna.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Åtta spelare: tre mot tre. Nio spelare: tre
+  mot tre där ena laget har en extra utespelare. Målvakterna byts av under passet så att
+  fler får prova.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 8
+  max: 9
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 32
+    bredd: 20
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er i bredd så att bollhållaren har flera passningsval.
+  - Rör dig direkt efter din passning för att bli spelbar igen.
+  - Lägg ner bollen och passa den, spela inte ut den med en spark ur händerna.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst tre passningar i följd.
+anpassning:
+  fler_spelare: Vid tio spelare eller fler, byt till Matchspel 7 mot 7 i bredd, som är byggd
+    för större grupper.
+  udda_antal: Vid nio spelare spelar det ena laget med en utespelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
+status: utkast
+granskning: []

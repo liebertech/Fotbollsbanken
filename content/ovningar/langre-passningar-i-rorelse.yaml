@@ -1,0 +1,63 @@
+schema: 1
+id: langre-passningar-i-rorelse
+namn: Längre passningar i rörelse
+syfte: Spelarna ska passa längre bollar med rätt kraft och röra sig direkt efter sin egen
+  passning.
+beskrivning: |
+  Fyra spelare står i varsitt hörn av en stor kvadrat. Spelaren med boll passar diagonalt
+  eller till nästa hörn och följer alltid efter sin egen passning in i den positionen.
+  Passningarna ska vara längre än i en vanlig passningsruta, åtta till arton meter, så att
+  spelarna vänjer sig vid att slå och ta emot bollar i den fart som gäller på en stor plan.
+organisation: |
+  En kvadrat om 18 x 18 meter per grupp om fyra, en boll per grupp. Byt riktning efter
+  halva tiden. Fler grupper läggs bredvid varandra med tre meters mellanrum.
+fokusomraden:
+  - passning-mottagning
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 18
+    bredd: 18
+material:
+  - typ: boll
+    antal: 1
+    anteckning: en per grupp
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Sätt fart och riktning på passningen så att den bär hela sträckan.
+  - Ta första touchen i den riktning du ska röra dig vidare.
+  - Rör dig direkt efter din passning, stå inte kvar i hörnet.
+varianter:
+  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert.
+  svarare: Bara en touch tillåten innan bollen ska passas vidare.
+anpassning:
+  fler_spelare: Bygg fler kvadrater bredvid varandra, tre meters mellanrum.
+  udda_antal: Den femte spelaren står i mitten och rör sig till det hörn som blir ledigt,
+    så att gruppen alltid är fem i rotation.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
+    kraft och riktning.
+kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
+status: utkast
+granskning: []

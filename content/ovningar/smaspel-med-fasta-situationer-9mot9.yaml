@@ -1,0 +1,69 @@
+schema: 1
+id: smaspel-med-fasta-situationer-9mot9
+namn: Smålagsspel med fasta situationer, 9 mot 9
+syfte: Spelarna ska öva fasta situationer, inklusive inspark, som en naturlig del av ett
+  vanligt matchspel.
+beskrivning: |
+  Två lag spelar mot varandra på en yta om 45 x 30 meter med fasta mål och varsin
+  målvakt. Varje gång bollen går över kortlinjen efter att ha rört ett anfallande lag
+  spelas ett inspark, precis som i 9 mot 9: bollen läggs i straffområdet och motståndarna
+  ska stå minst nio meter bort tills den är i spel. Hörnor, inkast och frisparkar spelas
+  också enligt de vanliga reglerna. Ledaren påminner om avstånd och snabb återstart.
+organisation: |
+  Två lag om upp till sju spelare, inklusive målvakt om gruppen är tillräckligt stor.
+  Spelplanens hörn märks ut med markeringar.
+fokusomraden:
+  - fasta-situationer
+  - forsvarsspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 10
+  max: 14
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 18
+  langst: 22
+yta:
+  alla:
+    langd: 45
+    bredd: 30
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 7
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: markering
+    antal: 4
+    anteckning: hörnmarkeringar
+coachningspunkter:
+  - Var snabb ut i position vid en fast situation, stå inte still.
+  - Håll rätt avstånd vid inspark, minst nio meter från bollen.
+  - Organisera försvaret gemensamt inför varje fast situation, markera varsin
+    motståndare.
+  - Leta efter en snabb återstart när motståndarna inte är klara.
+varianter:
+  lattare: Bara inkast och frisparkar, inga hörnor eller inspark från straffområdet.
+  svarare: Bara två toucher tillåtna efter varje fast situation.
+anpassning:
+  fler_spelare: Gör planen större och spela med fler spelare i varje lag.
+  udda_antal: Ett lag får en spelare mer, eller en joker spelar med laget som har färre.
+  ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare
+    dömer lagen själva, vilket också tränar fair play.
+kalla: Egen övning, inspirerad av vanligt smålagsspel med fasta situationer inbyggda.
+status: utkast
+granskning: []

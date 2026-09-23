@@ -1,0 +1,67 @@
+schema: 1
+id: en-mot-en-till-mal
+namn: 1 mot 1 till mål
+syfte: Spelarna ska både utmana en motståndare med bollen och försvara sitt mål i enkla dueller en mot en.
+beskrivning: |
+  Anfallaren startar med bollen åtta meter från ett litet mål. Försvararen startar fyra
+  meter från målet och får inte gå fram och pressa förrän anfallaren har rört bollen.
+  Anfallaren försöker göra mål, försvararen försöker vinna bollen eller få den utanför
+  ytan. Nästa par i kön går in direkt efter varje försök, och alla turas om att både
+  anfalla och försvara.
+organisation: |
+  En yta per par med ett minimål i ena änden. Ledaren står vid målet, ger startsignal och
+  hämtar bollen mellan varje försök. Kön står utanför den markerade ytan, på motsatt
+  kortlinje från målet. Flera ytor läggs bredvid varandra om gruppen är större.
+fokusomraden:
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren står vid målet, ger startsignal för varje duell, hämtar bollen efter
+  varje försök och ropar in nästa par så att rotationen går snabbt.
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 6
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 10
+    bredd: 8
+material:
+  - typ: minimal
+    antal: 1
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv vid målet
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Möt anfallaren i vinkel, spring inte rakt mot bollen.
+  - Skydda bollen med kroppen när försvararen kommer nära.
+  - Var snabb med avslutet så fort vägen till mål är öppen.
+varianter:
+  lattare: Försvararen väntar en extra sekund innan hen får gå fram och pressa.
+  svarare: Försvararen får gå fram samtidigt som anfallaren startar, utan fördröjning.
+anpassning:
+  fler_spelare: Lägg fler ytor med samma uppställning bredvid, tre meters mellanrum.
+  udda_antal: Den udda spelaren väntar en omgång extra i kön och rullar in en ny boll åt
+    nästa par.
+  ledare: En ledare krävs för tydlig rotation och rättvis startsignal. Med en andra ledare
+    kan denne stå i kön och förbereda nästa par så att det aldrig blir stopp.
+kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i ungdomsfotboll.
+status: utkast
+granskning: []

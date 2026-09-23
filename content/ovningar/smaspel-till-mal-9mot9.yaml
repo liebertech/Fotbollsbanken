@@ -1,0 +1,61 @@
+schema: 1
+id: smaspel-till-mal-9mot9
+namn: Smålagsspel 4 mot 4 till mål
+syfte: Spelarna ska avsluta ofta och försvara sitt mål i ett litet matchspel utan målvakt.
+beskrivning: |
+  Två lag om tre till fyra spelare möts på en yta om 32 x 20 meter med ett mål i var ände
+  utan målvakt. Lagen spelar match med vanliga regler i litet format, med mycket bolltid
+  och många avslutsförsök för alla. Extra poäng ges för mål som föregås av minst tre
+  passningar i följd inom laget.
+organisation: |
+  Två lag om tre till fyra spelare per yta. Flera ytor läggs bredvid varandra om gruppen
+  är större, med tre meters mellanrum.
+fokusomraden:
+  - avslut
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 8
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 32
+    bredd: 20
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er över hela ytan så att ni är lätta att hitta för den som har boll.
+  - Skjut tidigt när vägen till mål är öppen.
+  - Pressa bollhållaren direkt om ditt lag förlorar bollen.
+varianter:
+  lattare: Vanliga mål räcker för poäng, bonuspoängen för tre passningar tas bort.
+  svarare: Bara två touchar per spelare tillåtna i eget lags planhalva.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått, hellre än fler spelare på
+    samma yta.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
+status: utkast
+granskning: []

@@ -1,0 +1,62 @@
+schema: 1
+id: rorelse-och-bollkansla-i-fart
+namn: Rörelse och bollkänsla i fart
+syfte: Spelarna ska hålla kontrollen på bollen i högre fart och samtidigt hålla koll på sina
+  medspelare i en yta full av rörelse.
+beskrivning: |
+  Alla spelare har egen boll i en gemensam yta och driver i valfri riktning i rask
+  gångfart eller lätt jogg. På ledarens signal löser alla en uppgift utan att stanna
+  bollen: vänd med insidan, dra bollen bakåt och vänd, eller byt riktning med en fint.
+  Spelarna ska hela tiden titta upp och välja en öppen yta, inte köra rakt in i någon
+  annan.
+organisation: |
+  En gemensam yta för hela gruppen, en boll per spelare. Ledaren ropar eller visar nästa
+  uppgift med jämna mellanrum. Är gruppen större än sexton delas den i två ytor bredvid
+  varandra.
+fokusomraden:
+  - koordination
+  - bollkansla
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-uppvarmning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 14
+yta:
+  alla:
+    langd: 24
+    bredd: 18
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Titta upp innan du väljer riktning, kör inte in i en annan spelare.
+  - Håll bollen nära foten även när farten ökar.
+  - Använd båda fötterna när du vänder.
+varianter:
+  lattare: Sänk farten till gångtempo och ta bort finterna, bara raka vändningar.
+  svarare: Lägg till att spelarna ska byta yta helt vid varje signal, inte bara vända.
+anpassning:
+  fler_spelare: Bygg en andra yta bredvid med samma uppställning.
+  udda_antal: Spelar ingen roll, alla har egen boll och rör sig fritt.
+  ledare: Övningen är självgående när uppgifterna är visade. Med en andra ledare kan denne
+    gå runt och rätta till teknik hos enskilda spelare.
+kalla: Egen övning, inspirerad av vanlig bollkänsla i rörelse för äldre ungdomar.
+status: utkast
+granskning: []
