@@ -16,10 +16,12 @@ export default defineConfig({
      *
      * Vitests förval är `availableParallelism() - 1` arbetsprocesser. På en fyrkärnig maskin
      * blir det tre processer plus huvudprocessen om fyra kärnor, och då slåss allt om samma
-     * CPU: samma egenskapstest mättes till 7,2 s ensamt, 12,2 s och 20,9 s med förvalet, och
-     * 10,4 s med två processer. Hälften av kärnorna lämnar utrymme åt huvudprocessen och gör
-     * körningen både snabbare och jämnare. (Förvalet var aldrig 24 processer – 24 är antalet
-     * testfiler.)
+     * CPU. Hälften av kärnorna lämnar utrymme åt huvudprocessen. Uppmätt på den här maskinen:
+     * egenskapstestet tog 7,2 s ensamt, 12,2 s och 20,9 s med tre processer och 10,4 s med
+     * två. En senare jämförelse, när CPU:n klockade ned till 1,7 av 3,0 GHz, gav samma tid
+     * för två och tre processer. Ändringen är alltså i värsta fall verkningslös och i bästa
+     * fall märkbar – den tar bort översatsningen, den gör inte maskinen snabbare.
+     * (Förvalet var aldrig 24 processer: 24 är antalet testfiler.)
      */
     maxWorkers: '50%',
 

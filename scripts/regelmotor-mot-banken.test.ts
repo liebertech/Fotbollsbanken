@@ -70,9 +70,16 @@ describe('R-049 Det här klarar ett genererat pass alltid', () => {
     expect(checkSession(session(underlag))).toEqual([]);
   });
 
+  /*
+   * Egen tidsgräns: testet går igenom varje underlag banken räcker till och räknar i tiotals
+   * sekunder, alltså långt över sviten förval. Uppmätt: 7,2 s ensamt på full klockfrekvens,
+   * 26-28 s när maskinen klockade ned till 1,7 av 3,0 GHz. 60 s gav bara dubbla marginalen
+   * mot det sämsta mätvärdet, vilket räckte för att testet skulle störas när sviten var
+   * flakig. 120 s tål samma nedklockning med marginal och fäller fortfarande en oändlig loop.
+   */
   it(
     'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till',
-    { timeout: 60_000 },
+    { timeout: 120_000 },
     () => {
       let skapade = 0;
       for (const alder of [9, 11]) {
