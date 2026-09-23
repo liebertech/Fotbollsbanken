@@ -23,6 +23,14 @@ interface GeneratorProps {
   createSeed?: () => string;
 }
 
+/**
+ * Ett frö till motorn. `Math.random` räcker: fröet ska vara varierat, inte oförutsägbart
+ * (ADR 0011 avsnitt 2).
+ *
+ * **Fröet är ett algoritmvärde och får aldrig bli en identifierare.** Sparade och delade pass
+ * i inkrement 5 till 7 ska adresseras med `crypto.randomUUID()`, aldrig med `Session.seed`:
+ * ett gissningsbart frö skulle göra ett klubbpass läsbart för utomstående (S-33).
+ */
 function randomSeed(): string {
   return Math.random().toString(36).slice(2);
 }

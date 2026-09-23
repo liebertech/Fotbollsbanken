@@ -197,6 +197,11 @@ export interface Notice {
 export interface Session {
   input: Input;
   phase: Phase;
+  /**
+   * Fröet passet genererades med, så att det går att återskapa i en felrapport. Det är ett
+   * algoritmvärde och aldrig en identifierare: ett sparat eller delat pass adresseras med
+   * `crypto.randomUUID()`, aldrig med fröet (S-33).
+   */
   seed: string;
   /** Passets faktiska totaltid, summan av radernas minuter utom stationsrader (R-036). */
   totalMinutes: number;
