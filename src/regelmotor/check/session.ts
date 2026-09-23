@@ -1,7 +1,8 @@
 /**
  * Kontroll av samtliga krav mot det färdiga passet.
  *
- * Modulen importerar bara `keys` och `types`, aldrig den kod den kontrollerar. Det är
+ * Modulen importerar bara `keys`, `types` och typgränsen i `origin`, aldrig den kod den
+ * kontrollerar (`origin` är en typgräns, inte genereringens kod). Det är
  * avsiktligt: kontrollen är en oberoende andra implementation av kraven och används som
  * orakel i testerna (ADR 0011 avsnitt 1 och 7). Den räknar därför fram tidsplanen själv i
  * stället för att lita på `time/plan.ts`.
@@ -33,6 +34,8 @@ import {
   SESSION_PARTS,
 } from '../keys.ts';
 import type { FocusArea, GameFormat, Phase, SessionPartFromBank } from '../keys.ts';
+// Typgränsen mellan bank och klubb, inte genereringens kod (S-28).
+import { isBankExercise } from '../origin.ts';
 import type { Exercise, Row, Session } from '../types.ts';
 
 interface Targets {
@@ -205,9 +208,10 @@ export function checkSession(session: Session): string[] {
   }
 
   for (const { row, exercise } of exerciseRows(rows)) {
-    // Grundfiltret (grupp 3).
-    if (exercise.status !== 'godkand') {
-      problems.push(`R-022: ${exercise.id} har status ${exercise.status}`);
+    // Grundfiltret (grupp 3). R-022 nycklas mot ursprunget och inte bara mot statusfältet,
+    // så att kontrollen håller när R-106 släpper in klubbens egna övningar (S-28).
+    if (!isBankExercise(exercise)) {
+      problems.push(`R-022: ${exercise.id} kommer inte ur den gemensamma banken`);
     }
     if (input.alder < exercise.alder.min || input.alder > exercise.alder.max) {
       problems.push(`R-023: ${exercise.id} passar inte åldern ${input.alder}`);

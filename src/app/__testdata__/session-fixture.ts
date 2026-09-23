@@ -7,7 +7,7 @@
  */
 import { bankExercise, gameExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
 import { generateSession } from '../../regelmotor/index.ts';
-import type { Exercise, GenerationResult, Input, Session } from '../../regelmotor/index.ts';
+import type { BankExercise, GenerationResult, Input, Session } from '../../regelmotor/index.ts';
 
 /** Ett underlag för 11 år, som fixturerna är märkta för. */
 export const INPUT: Input = {
@@ -52,19 +52,19 @@ const game = gameExercise({
 });
 
 /** En bank som räcker till alla delar. */
-export const FULL_BANK: Exercise[] = [warmup, practice, gamePractice, game];
+export const FULL_BANK: BankExercise[] = [warmup, practice, gamePractice, game];
 
 /**
  * Samma bank utan spelövningar: Spelövning blir tom (R-100). Ingen spelövning finns alls,
  * så inget enskilt val i underlaget skulle kunna fylla delen (R-103).
  */
-export const BANK_WITHOUT_GAME_PRACTICE: Exercise[] = [warmup, practice, game];
+export const BANK_WITHOUT_GAME_PRACTICE: BankExercise[] = [warmup, practice, game];
 
 /**
  * Samma bank, men spelövningen finns bara för niva-3. Delen blir tom och nivån är ett val
  * som var för sig skulle lösa det (R-103).
  */
-export const BANK_FIXABLE_EMPTY_PART: Exercise[] = [
+export const BANK_FIXABLE_EMPTY_PART: BankExercise[] = [
   warmup,
   practice,
   { ...gamePractice, niva: ['niva-3'] },
@@ -76,7 +76,7 @@ export const BANK_FIXABLE_EMPTY_PART: Exercise[] = [
  * och R-070 tillåter inte övningen på två platser, så Spelövning blir tom med en bekräftad
  * kombinationsorsak (R-100, andra punkten).
  */
-export const BANK_SHARED_EXERCISE: Exercise[] = [
+export const BANK_SHARED_EXERCISE: BankExercise[] = [
   warmup,
   bankExercise({
     id: 'delad-ovning',
@@ -93,7 +93,7 @@ export const BANK_SHARED_EXERCISE: Exercise[] = [
  * En bank vars kärna bara har `dribbling`. Väljer ledaren `lek` får kärnan ett
  * ersättningsfokus (R-121).
  */
-export const BANK_NEEDING_SUBSTITUTE: Exercise[] = [
+export const BANK_NEEDING_SUBSTITUTE: BankExercise[] = [
   warmup,
   bankExercise({
     id: 'ova-dribbling',
@@ -111,16 +111,20 @@ export const BANK_NEEDING_SUBSTITUTE: Exercise[] = [
 ];
 
 /** En bank som bara har övningar för niva-1: inget pass går att skapa för niva-2 (R-101). */
-export const BANK_WRONG_LEVEL: Exercise[] = [warmup, practice, gamePractice, game].map(
+export const BANK_WRONG_LEVEL: BankExercise[] = [warmup, practice, gamePractice, game].map(
   (exercise) => ({ ...exercise, niva: ['niva-1'] }),
 );
 
-export function generate(bank: Exercise[], input: Input = INPUT, seed = 'fro'): GenerationResult {
+export function generate(
+  bank: BankExercise[],
+  input: Input = INPUT,
+  seed = 'fro',
+): GenerationResult {
   return generateSession(input, bank, seed);
 }
 
 /** Passet, eller ett fel som säger varför inget skapades. */
-export function sessionOf(bank: Exercise[], input: Input = INPUT, seed = 'fro'): Session {
+export function sessionOf(bank: BankExercise[], input: Input = INPUT, seed = 'fro'): Session {
   const result = generate(bank, input, seed);
   if (result.kind !== 'session') {
     throw new Error(`inget pass skapades: ${JSON.stringify(result.reason)}`);

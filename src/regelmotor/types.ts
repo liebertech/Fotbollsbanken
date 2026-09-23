@@ -12,9 +12,15 @@ import type {
   SessionPart,
   SessionPartFromBank,
 } from './keys.ts';
-import type { Exercise } from './schema/ovning.ts';
+import type { PublishedExercise } from './schema/published.ts';
 
-export type { Exercise };
+/**
+ * Övningen som motorn och gränssnittet ser den: bara de fält som byggs in i paketet
+ * (vitlistan `PUBLISHED_FIELDS` i schema/published.ts, S-27). Redaktionella fält som
+ * `granskning` finns varken som typ eller som data här. Hela filens form heter `Exercise`
+ * i schema/ovning.ts och används av valideringen och av inläsningen i scripts/.
+ */
+export type Exercise = PublishedExercise;
 
 /** Underlaget ledaren anger (R-020). */
 export interface Input {
@@ -205,7 +211,6 @@ export interface Session {
   longestStretch: number;
 }
 
-/** Förklaringen när inget pass kunde skapas (R-101, R-103). */
 /**
  * Varför inget pass alls kunde skapas. Samma skillnad som `EmptyReason` gör för en enskild
  * del, fast för passet: gränssnittet ska kunna säga att inget matchar utan att påstå att det

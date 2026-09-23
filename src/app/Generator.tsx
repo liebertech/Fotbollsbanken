@@ -7,7 +7,7 @@
  * samma underlag med ett nytt frö (R-072, ADR 0011 avsnitt 2).
  */
 import { useEffect, useState } from 'react';
-import type { Exercise, InputError } from '../regelmotor/index.ts';
+import type { BankExercise, InputError } from '../regelmotor/index.ts';
 import { attemptGeneration } from './generate.ts';
 import type { GeneratedResult } from './generate.ts';
 import { InputForm } from './input/InputForm.tsx';
@@ -18,7 +18,7 @@ import { NoSessionView } from './session/NoSessionView.tsx';
 
 interface GeneratorProps {
   /** Den gemensamma banken. Generatorn väljer bara härifrån (R-022). */
-  bank: readonly Exercise[];
+  bank: readonly BankExercise[];
   /** Ett nytt frö per generering (ADR 0011 avsnitt 2). */
   createSeed?: () => string;
 }

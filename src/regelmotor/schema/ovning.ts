@@ -247,6 +247,9 @@ type ExerciseObject = ReturnType<typeof buildObject>;
 /** En komplett bankövning. */
 export type Exercise = z.infer<ExerciseObject>;
 
+// Vitlistan över de fält som publiceras ligger i schema/published.ts, utan beroende på zod,
+// eftersom den läses i klienten (S-27).
+
 /** En fil i content/ovningar/, där bankfälten får saknas så länge statusen är `utkast`. */
 export type ExerciseFile = Partial<Exercise> &
   Pick<Exercise, 'schema' | 'id' | 'status'> & { granskning?: Exercise['granskning'] };

@@ -2,9 +2,9 @@
  * Regelmotorns publika API. Det här är det enda appen importerar (ADR 0011 avsnitt 1).
  *
  * `generateSession` är en ren funktion: samma underlag, samma bank och samma frö ger alltid
- * exakt samma pass. Att funktionen bara tar `bank` gör R-022 till en egenskap hos typerna –
- * klubbens egna övningar kan inte nå generatorn, eftersom det inte finns någon parameter
- * att skicka in dem i.
+ * exakt samma pass. Att funktionen bara tar `bank`, och att banken har typen `BankExercise`,
+ * gör R-022 till en egenskap hos typerna: klubbens egna övningar kan inte nå generatorn,
+ * varken genom en egen parameter eller genom att blandas in i banken (S-28, origin.ts).
  */
 import { CORE_PARTS, PARTS_REQUIRED_FOR_SESSION, PART_PRIORITY_ORDER } from './keys.ts';
 import type { CorePart, FocusArea, Phase, SessionPartFromBank } from './keys.ts';
@@ -23,6 +23,7 @@ import { buildRows, totalMinutesOfRows } from './output/build.ts';
 import { buildNotices } from './output/notices.ts';
 import { explainEmptyPart, partCanBeFilled } from './output/explain.ts';
 import { changeableFields } from './output/explain.ts';
+import type { BankExercise } from './origin.ts';
 import type {
   Block,
   Draft,
@@ -42,6 +43,7 @@ export { planTime } from './time/plan.ts';
 export { checkSession } from './check/session.ts';
 export { scoreSession } from './score/score.ts';
 export * from './types.ts';
+export * from './origin.ts';
 
 /**
  * Tabellvärdena och härledningarna som gränssnittet behöver för att bygga formuläret:
@@ -217,7 +219,7 @@ function partResults(
  */
 export function generateSession(
   input: Input,
-  bank: readonly Exercise[],
+  bank: readonly BankExercise[],
   seed: string,
 ): GenerationResult {
   const validated = validateInput(input);

@@ -4,7 +4,13 @@
  * 03 möts och därför är det som behöver prövas med tester.
  */
 import { generateSession, validateInput } from '../regelmotor/index.ts';
-import type { Exercise, Input, InputError, NoSessionReason, Session } from '../regelmotor/index.ts';
+import type {
+  BankExercise,
+  Input,
+  InputError,
+  NoSessionReason,
+  Session,
+} from '../regelmotor/index.ts';
 import { toInput } from './input/form.ts';
 import type { InputFormState } from './input/form.ts';
 
@@ -27,7 +33,7 @@ export interface Attempt {
  */
 export function attemptGeneration(
   form: InputFormState,
-  bank: readonly Exercise[],
+  bank: readonly BankExercise[],
   seed: string,
 ): Attempt {
   const validated = validateInput(toInput(form));

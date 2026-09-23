@@ -12,7 +12,8 @@ import { partCanBeFilled } from './output/explain.ts';
 import { planTime } from './time/plan.ts';
 import { PART_TOLERANCE, SESSION_SHORTFALL } from './keys.ts';
 import { bankExercise, gameExercise } from './__testdata__/bank-fixtur.ts';
-import type { Exercise, Input, Session } from './types.ts';
+import type { Input, Session } from './types.ts';
+import type { BankExercise } from './origin.ts';
 
 const underlag: Input = {
   alder: 11,
@@ -25,7 +26,7 @@ const underlag: Input = {
 };
 
 /** En liten bank med exakt en användbar övning per del. */
-const testbank: Exercise[] = [
+const testbank: BankExercise[] = [
   bankExercise({
     id: 'uppvarmning-passa',
     fokusomraden: ['koordination', 'passning-mottagning'],
@@ -57,7 +58,7 @@ const testbank: Exercise[] = [
 ];
 
 /** Samma bank, men med en lek-övning i uppvärmningen och dribbling i kärnan. */
-const lekbank: Exercise[] = [
+const lekbank: BankExercise[] = [
   bankExercise({
     id: 'lek-uppvarmning',
     fokusomraden: ['lek'],
@@ -88,7 +89,7 @@ const lekbank: Exercise[] = [
   }),
 ];
 
-function session(input: Input, bank: Exercise[] = testbank, seed = 'fro-1'): Session {
+function session(input: Input, bank: BankExercise[] = testbank, seed = 'fro-1'): Session {
   const result = generateSession(input, bank, seed);
   if (result.kind !== 'session') {
     throw new Error(`inget pass skapades: ${JSON.stringify(result.reason)}`);
@@ -403,7 +404,7 @@ describe('R-030 Delar och ordning', () => {
 
 describe('R-072 Gränsen mellan fotbollsregler och algoritmval', () => {
   /** Två likvärdiga övningar för Öva, så att slumpen faktiskt har något att välja mellan. */
-  const tiedBank: Exercise[] = [
+  const tiedBank: BankExercise[] = [
     ...testbank.filter((exercise) => exercise.id !== 'ova-passa'),
     bankExercise({
       id: 'ova-passa-a',

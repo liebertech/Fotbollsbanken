@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { baseFilter, baseRejection, fitsPart, hasMainHit, hitsFocus } from './base.ts';
-import { bankExercise } from '../__testdata__/bank-fixtur.ts';
+import { bankExercise, contentExercise } from '../__testdata__/bank-fixtur.ts';
 import type { Input } from '../types.ts';
 
 const underlag: Input = {
@@ -14,8 +14,14 @@ const underlag: Input = {
 };
 
 describe('R-022 Bara godkända övningar ur den gemensamma banken', () => {
+  /*
+   * Grundfiltret är ett av tre lager för R-022. Det prövar statusfältet på en övning som
+   * den ligger i content/ovningar/. Att en övning ur klubbens egna aldrig ens kan nå
+   * generatorn är en egenskap hos typerna (S-28, src/regelmotor/origin.ts), och
+   * slutkontrollen prövar ursprunget (check/session.ts).
+   */
   it('R-022 väljer bort en övning som inte är godkänd', () => {
-    const granskad = bankExercise({ status: 'granskad' });
+    const granskad = contentExercise({ status: 'granskad' });
     expect(baseRejection(granskad, underlag, 'fas-10-12')).toBe('R-022');
   });
 

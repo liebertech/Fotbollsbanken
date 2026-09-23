@@ -6,7 +6,12 @@
  */
 import { describe, expect, it } from 'vitest';
 import { loadBank } from './bank.ts';
-import { checkSession, generateSession, selectableFocusAreas } from '../src/regelmotor/index.ts';
+import {
+  checkSession,
+  generateSession,
+  selectableFocusAreas,
+  toBankExercise,
+} from '../src/regelmotor/index.ts';
 import {
   PART_TOLERANCE,
   SESSION_LENGTH_MAX,
@@ -16,7 +21,11 @@ import {
 } from '../src/regelmotor/keys.ts';
 import type { Input } from '../src/regelmotor/types.ts';
 
-const banken = loadBank().exercises;
+/**
+ * Banken som generatorn tar emot: de godkända övningarna märkta med sitt ursprung, precis
+ * som src/data/bank.ts gör i appen (S-28).
+ */
+const banken = loadBank().exercises.map(toBankExercise);
 
 const underlag: Input = {
   alder: 11,
@@ -42,6 +51,17 @@ describe('R-022 Bara godkända övningar ur den gemensamma banken', () => {
     expect(problems).toEqual([]);
     expect(exercises.length).toBeGreaterThan(0);
     expect(exercises.every((exercise) => exercise.status === 'godkand')).toBe(true);
+  });
+
+  it('S-28 märker varje övning som generatorn får med sitt ursprung', () => {
+    expect(banken.length).toBe(loadBank().exercises.length);
+    expect(banken.every((exercise) => exercise.ursprung === 'bank')).toBe(true);
+  });
+
+  it('S-28 vägrar märka en övning som inte är godkänd', () => {
+    const [first] = loadBank().exercises;
+    expect(first).toBeDefined();
+    expect(() => toBankExercise({ ...first!, status: 'granskad' })).toThrow(/R-022/);
   });
 });
 

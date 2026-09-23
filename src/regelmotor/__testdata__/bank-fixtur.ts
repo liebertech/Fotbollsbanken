@@ -7,11 +7,17 @@
  */
 import { exerciseSchema } from '../schema/ovning.ts';
 import type { Exercise } from '../schema/ovning.ts';
+import { toBankExercise } from '../origin.ts';
+import type { BankExercise } from '../origin.ts';
 
 type Overrides = Record<string, unknown>;
 
-/** En godkänd bankövning. Skicka in det som är intressant för just testet. */
-export function bankExercise(overrides: Overrides = {}): Exercise {
+/**
+ * En övning som den ligger i content/ovningar/, utan ursprungsmärkning. Den formen tar
+ * grundfiltret och schemat emot, och det är här ett test kan sätta en annan status än
+ * `godkand` (S-28).
+ */
+export function contentExercise(overrides: Overrides = {}): Exercise {
   const base: Overrides = {
     schema: 1,
     id: 'testovning',
@@ -48,15 +54,25 @@ export function bankExercise(overrides: Overrides = {}): Exercise {
       },
     ],
   };
-  const merged = { ...base, ...overrides };
+  // Ursprungsmärket hör inte till filens form: ett test kan skicka in en färdig bankövning
+  // med ändringar, och schemat tar inte emot okända fält.
+  const { ursprung: _origin, ...merged } = { ...base, ...overrides };
   if (merged.ledarbehov !== 0 && merged.ledaruppgift === undefined) {
     merged.ledaruppgift = 'Ledaren servar bollar och styr tempot.';
   }
   return exerciseSchema.parse(merged);
 }
 
+/**
+ * En godkänd bankövning, märkt med sitt ursprung: formen generatorn tar emot (S-28).
+ * Skicka in det som är intressant för just testet.
+ */
+export function bankExercise(overrides: Overrides = {}): BankExercise {
+  return toBankExercise(contentExercise(overrides));
+}
+
 /** En övning för `del-spel`. Grupptypen är alltid `tva-lag` (R-008). */
-export function gameExercise(overrides: Overrides = {}): Exercise {
+export function gameExercise(overrides: Overrides = {}): BankExercise {
   return bankExercise({
     id: 'testspel',
     namn: 'Testspel',
