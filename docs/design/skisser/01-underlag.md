@@ -80,6 +80,7 @@ Status: godkänd (K2, 2026-09-12)
 - **Blandad ålder (01.11):** infotexten `(i)` bredvid Ålder öppnar/visar alltid en kort rad: "Har gruppen flera åldrar? Ange den ålder som flest fyller i år." På mobil kan detta stå som statisk hjälptext direkt under fältet i stället för ett ikon-info, eftersom utrymmet finns.
 - **Nivå (i):** infotext länkar till en kort beskrivning från `docs/doman/nivaer.md` (två av tre spelare-regeln), som en utfällbar textruta, inte en ny sida.
 - **Fokusområden (01.9, 01.10):**
+  - Innan ålder är ifylld kan listan inte filtreras mot en åldersfas. Fokusfältet visar då bara texten "Ange ålder först, så visar vi de fokusområden som passar åldern." i stället för grupperna (tillagd vid granskningen inför K4, 2026-09-23, se `texter.md` avsnitt 3).
   - Listan grupperas som i `fokusomraden.md`, grupperna kan fällas ihop/ut. Kärnområden (K) märks med "(K)" efter namnet och ligger överst i sin grupp.
   - Bara fokusområden som är K eller R för den valda åldersfasen visas alls.
   - Kryssrutor låser sig vid tre valda: övriga blir inaktiva (men fortfarande lästa av skärmläsare som "inaktiverad, redan tre valda") tills ledaren avmarkerar en.
@@ -93,9 +94,17 @@ Status: godkänd (K2, 2026-09-12)
 
 - Alla knappgrupper (spelform, nivå, yta) är riktiga knappgrupper (radiogrupp-semantik), inte bara färgade rutor – markerat val har både färg och en synlig bock/prick, aldrig färg som enda signal (WCAG 1.4.1).
 - Kryssrutor för fokus har minst 48 × 48 px träffyta inklusive textetiketten (hela raden är klickbar).
+- **Avstånd mellan kryssrutornas rader (förtydligat 2026-09-23):** minst 8 px mellan varje rad i fokuslistan, som mellan alla andra intilliggande träffytor (`designsystem.md` avsnitt 4) – annars är kravet om 48 × 48 px otillräckligt när raderna ligger direkt an mot varandra.
+- **"(K)" är en del av etiketten, inte en separat markering:** när `<label>` omsluter kryssrutan och texten (som här), blir hela etiketten, inklusive "(K)", kryssrutans tillgängliga namn för en skärmläsare, till exempel "Passning och mottagning (K)". Det uppfyller WCAG 2.5.3 (synlig text ingår i det tillgängliga namnet), men en skärmläsare läser bokstaven "K" utan sammanhang. Se rapporten från granskningen inför K4 (2026-09-23) för en rekommendation om en dold utläsning av "(K)" som "kärnområde".
 - Kontrastkrav: se `designsystem.md`.
 
 ## Vad som INTE är med här
 
 - Materialfilter, inomhushall, antal målvakter – utanför version 1 (se backlog).
 - Koppling till lag – sker vid spara (se `05-sparade-pass.md`), inte här.
+
+## Ändringar efter K2
+
+| Datum | Ändring |
+|---|---|
+| 2026-09-23 | Tillagt vid granskningen av det byggda gränssnittet inför K4: texten för fokusfältet innan ålder är ifylld, ett förtydligande om avståndet mellan kryssrutornas rader, och en anmärkning om hur "(K)" läses upp av skärmläsare. Statusraden överst ändras inte av en agent. |

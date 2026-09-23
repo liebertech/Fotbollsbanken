@@ -79,6 +79,7 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Fel, för kort pass | Passet måste vara minst 30 minuter. |
 | Fel, för långt pass | Det längsta passet för den här åldern är {maxlängd} minuter. |
 | Fält, fokusområden | Fokusområden (välj 1–3) |
+| Fokusområden, väntar på ålder | Ange ålder först, så visar vi de fokusområden som passar åldern. |
 | Fel, inget fokus valt | Välj minst ett fokusområde. |
 | Fel, för många fokus | Du kan välja högst tre fokusområden. Ta bort ett för att lägga till ett nytt. |
 | Fel, bara nickspel valt | Nickspel måste väljas tillsammans med minst ett annat fokusområde. |
@@ -105,7 +106,14 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Varning, benskydd (R-085) | Använd benskydd på träningen – spel innehåller alltid närkamper. |
 | Tom del, kan lösas med ett val (R-100/R-103) | Vi kunde inte hitta en övning som passar här. Testa att ändra ett av de här: {lista av fält, t.ex. "Nivå, Antal spelare"}. |
 | Tom del, går inte att kombinera (R-100 andra punkten) | De övningar som annars skulle passa här gick inte att kombinera med resten av passet. |
+| Tom del, inget enskilt val hjälper (R-100/R-103, tredje läget, tillagd K4 2026-09-23) | Vi hittade inga övningar som passar den här delen, och inget enskilt val skulle ensamt lösa det. Prova att ändra flera uppgifter i underlaget samtidigt. |
+| Ersättningsfokus i en del (R-121, tillagd K4 2026-09-23) | Inga övningar för {missing} passade den här delen, så vi använde {substitute} i stället. Dina val i underlaget är oförändrade. |
 | Del borttagen pga för kort tid (R-033) | (visas inte alls – delen tas bort helt och nämns inte i passet) |
+
+**Tillagt vid granskningen inför K4 (2026-09-23):**
+
+- **Ersättningsfokus (R-121):** visas som en egen informationsrad direkt under delens rubrik, före övningskortet, när `del-ovning` eller `del-spelovning` fylldes med ett annat fokus än det ledaren valde. `{missing}` är det eller de valda fokusområden som saknade övning i just den delen (kommaseparerat om flera), `{substitute}` är fokusområdet som användes i stället. Texten ändrar aldrig innebörden av R-102: underlagets fokusval står kvar precis som ledaren skrev dem.
+- **Tom del, inget enskilt val hjälper:** en tredje variant av "tom del"-texten, som tidigare saknades. Den behövs för att "Tom del, går inte att kombinera" annars visas även när det inte stämmer att andra övningar skulle passa var för sig – till exempel när banken helt saknar övningar för den valda spelformen. Använd den när delens `emptyReason` är `val-kan-andras` **och** listan över ändringsbara fält är tom (alltså varken en bekräftad kombinationskonflikt eller en lista att visa). Se `skisser/02-genererat-pass.md` för var i vyn den ska stå och rapporten från granskningen för dagens avvikelse i `SessionView.tsx`.
 
 ---
 
@@ -116,11 +124,14 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Rubrik | Vi kunde inte skapa ett pass med de här uppgifterna |
 | Ingress, val kan lösa det (R-103) | Det finns för få övningar som matchar allt du valt. Prova att ändra ett av de här: |
 | Ingress, kan inte kombineras (R-100 andra punkten) | Det finns övningar som skulle kunna passa var för sig, men de går inte att kombinera till ett helt pass med dina val. |
+| Ingress, inget enskilt val hjälper (tillagd K4 2026-09-23) | Vi hittade inga övningar som matchar de här valen, och vi kan inte peka ut ett enskilt val som skulle lösa det. Prova att ändra flera uppgifter i underlaget samtidigt. |
 | Trygghetstext | Vi ändrar ingenting åt dig – gå tillbaka och justera det du vill testa. |
 | Knapp | Ändra uppgifter |
 | Sammanfattning, rubrik | Ditt underlag just nu |
 
-**Viktigt:** de två ingresserna ovan används aldrig samtidigt och ska vara tydligt olika formulerade, eftersom de betyder olika saker för ledaren (ett eget val löser det, respektive inget enskilt val löser det).
+**Viktigt:** de tre ingresserna ovan används aldrig samtidigt och ska vara tydligt olika formulerade, eftersom de betyder olika saker för ledaren (ett eget val löser det, ett kombinationsproblem som inget enskilt val löser, respektive att ingen övning matchar alls och inget enskilt val hjälper).
+
+**Tillagt vid granskningen inför K4 (2026-09-23) – vilken av de tre som visas:** vyn känner bara till listan över ändringsbara fält (`changeableFields`), aldrig om ett kombinationsproblem faktiskt är bekräftat. Är listan fylld, visa "val kan lösa det". Är listan tom, visa **"inget enskilt val hjälper"** – inte "kan inte kombineras", eftersom vyn i dag inte har något sätt att veta att övningar som passar var för sig faktiskt finns (se exemplet med 11 mot 11, där banken helt saknar övningar och listan därför också blir tom). "Kan inte kombineras" sparas för den dag regelmotorn kan lämna en bekräftad signal om just den orsaken – se rapporten från granskningen inför K4.
 
 ---
 
@@ -330,3 +341,15 @@ Vad som faktiskt fungerar utan nät styrs av `docs/adr/0005-daligt-nat-och-offli
 3. **Appen ändrar aldrig ledarens val åt henne eller honom** – texterna säger alltid "testa att ändra" eller "kontrollera", aldrig "vi har ändrat".
 4. **Samma ord som ledare använder:** spelform (inte "matchformat"), station (inte "grupp" när det gäller stationer), coachningspunkter (inte "tips till tränaren"), planskiss (inte "diagram").
 5. **Varningar om säkerhet är alltid synliga, aldrig gömda** bakom en meny eller ett klick, eftersom de handlar om barns säkerhet (mål, benskydd, nickspel).
+
+---
+
+## Ändringar efter K2
+
+Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillägg som gjordes vid granskningen av det byggda gränssnittet inför K4 (2026-09-23), eftersom R-121 (ersättningsfokus) och det tredje "inget matchande resultat"-läget tillkom efter K2. Statusraden överst ändras inte av en agent – det gör huvudsessionen tillsammans med användaren.
+
+| Datum | Ändring |
+|---|---|
+| 2026-09-23 | **Avsnitt 3:** ny rad för texten som visas i stället för fokuslistan innan ålder är ifylld. |
+| 2026-09-23 | **Avsnitt 4:** två nya rader – ersättningsfokus (R-121) och "tom del, inget enskilt val hjälper", det tredje läget för en tom del. Texter.md hade bara två lägen för en tom del sedan tidigare; det tredje saknades eftersom det upptäcktes först vid granskningen inför K4. |
+| 2026-09-23 | **Avsnitt 5:** ny rad för "inget enskilt val hjälper" samt ett tillägg som förklarar vilken av de tre ingresserna som ska visas, eftersom vyn i praktiken bara kan skilja på "lista med fält" och "listan är tom" (se `skisser/03-inget-matchande-resultat.md`). |

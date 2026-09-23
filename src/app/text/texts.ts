@@ -22,7 +22,11 @@ export const TEXTS = {
     lengthHelp: 'Kortast {min}, längst {max} min för den här åldern.',
     focus: 'Fokusområden (välj 1–3)',
     focusFull: 'Inaktiverad, redan tre valda',
-    /* Egen text: listan visar bara fokusområden som passar åldern (R-019). */
+    /*
+     * Visas i stället för fokuslistan innan ålder är ifylld (R-019, listan kan inte filtreras
+     * mot en åldersfas förrän åldern finns). Tillagd av ux-designern vid granskningen inför K4
+     * (2026-09-23), se docs/design/texter.md avsnitt 3.
+     */
     focusNeedsAge: 'Ange ålder först, så visar vi de fokusområden som passar åldern.',
     area: 'Yta (valfritt)',
     areaNone: 'Ingen',
@@ -63,12 +67,22 @@ export const TEXTS = {
     emptyCombination:
       'De övningar som annars skulle passa här gick inte att kombinera med resten av passet.',
     /**
-     * Ersättningsfokus (R-121, berättelse 03 kriterium 6). Texten saknas i texter.md, som
-     * godkändes vid K2 innan regeln fanns. Förslaget nedan följer principerna i avsnittet
-     * *Principer bakom formuleringarna* och ska granskas av ux-designern.
+     * R-100/R-103, tredje läget (ux-designer, granskning K4 2026-09-23): visas när delen varken
+     * kan fyllas som den står (`emptyReason: 'val-kan-andras'`) eller genom att ändra ett enda
+     * fält (`changeableFields` tom). Skiljer sig medvetet från både emptyChangeable (en lista med
+     * fält finns) och emptyCombination (påstår att övningar som passar var för sig finns – det
+     * vet vi inte här). Kräver att `SessionView.tsx` skiljer detta läge från emptyCombination i
+     * stället för att, som i dag, visa emptyCombination så fort fältlistan är tom (se rapporten).
+     */
+    emptyNoSingleFix:
+      'Vi hittade inga övningar som passar den här delen, och inget enskilt val skulle ensamt lösa det. Prova att ändra flera uppgifter i underlaget samtidigt.',
+    /**
+     * Ersättningsfokus (R-121, berättelse 03 kriterium 6). Texten saknades i texter.md, som
+     * godkändes vid K2 innan regeln fanns – tillagd av ux-designern vid granskningen inför K4
+     * (2026-09-23), se docs/design/texter.md avsnitt 4.
      */
     substituteFocus:
-      'Vi hittade ingen övning för {missing} i den här delen, så vi valde {substitute} i stället. Dina val står kvar oförändrade.',
+      'Inga övningar för {missing} passade den här delen, så vi använde {substitute} i stället. Dina val i underlaget är oförändrade.',
     newSession: 'Nytt pass',
     changeInput: 'Ändra uppgifter',
     generateAgain: 'Generera igen',
@@ -79,8 +93,25 @@ export const TEXTS = {
     heading: 'Vi kunde inte skapa ett pass med de här uppgifterna',
     changeable:
       'Det finns för få övningar som matchar allt du valt. Prova att ändra ett av de här:',
+    /**
+     * R-100 andra punkten. OBS (ux-designer, granskning K4 2026-09-23): `NoSessionReason`
+     * innehåller bara den samlade `changeableFields`-listan, aldrig en bekräftad kombinations-
+     * orsak. Den här texten kräver alltså att vy:n *vet* att övningar som passar var för sig
+     * ändå inte gick att kombinera – något dagens underlag för vyn inte kan bekräfta. Använd
+     * den bara om/när regelmotorn en dag lämnar en sådan bekräftad signal. Tills dess, när
+     * fältlistan är tom, ska `noMatch` nedan visas i stället – se rapporten och
+     * docs/design/skisser/03-inget-matchande-resultat.md.
+     */
     combination:
       'Det finns övningar som skulle kunna passa var för sig, men de går inte att kombinera till ett helt pass med dina val.',
+    /**
+     * Tom fältlista utan bekräftad kombinationsorsak (t.ex. banken saknar övningar helt för den
+     * valda spelformen, som för 11 mot 11 i dag). Påstår inte att övningar som passar var för
+     * sig finns – till skillnad från `combination` ovan. Tillagd av ux-designern vid
+     * granskningen inför K4 (2026-09-23).
+     */
+    noMatch:
+      'Vi hittade inga övningar som matchar de här valen, och vi kan inte peka ut ett enskilt val som skulle lösa det. Prova att ändra flera uppgifter i underlaget samtidigt.',
     reassurance: 'Vi ändrar ingenting åt dig – gå tillbaka och justera det du vill testa.',
     button: 'Ändra uppgifter',
     summaryHeading: 'Ditt underlag just nu',
