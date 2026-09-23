@@ -1,8 +1,10 @@
-Status: ändrad vid K3 (2026-09-14)
+Status: ändrad vid K3 (2026-09-14), tillägg 2026-09-23
 
 # Passuppbyggnad
 
 **Ägare:** fotbollsexpert
+
+*Ändring 2026-09-23:* nytt avsnitt *Yta per spelare* efter *Tillgänglig yta*, med ett golv för hur liten yta per spelare en övning får ha i varje åldersfas, skilt för övningar med och utan motståndare, samt fyra uppräknade undantag. Tillägget är ett **granskningskriterium** som övningsförfattaren och jag använder innan en övning lämnas in och granskas. Det är **inte en generatorregel** och ingen ny regel har lagts till i `generatorregler.md`. Användaren godkände tillägget 2026-09-23. Inga siffror och inga andra principer i filen är ändrade.
 
 *Ändring 2026-09-14:* två tillägg om att taket per ledare inte gäller i delen Spel, i avsnitten *Hur spelarna delas i grupper* och *Hur många spelare en ledare kan ha*. Tilläggen speglar den nya regeln R-057 i `generatorregler.md`, godkänd av användaren 2026-09-14. Inga siffror och inga andra principer i filen är ändrade.
 
@@ -258,6 +260,103 @@ Regler för stationer (R-060 till R-066):
 ## Tillgänglig yta
 
 Ledaren kan välja om passet ska göras på hel, halv eller kvarts plan, eller låta bli (beslut 2026-09-11). När ledaren har valt yta används bara moment som får plats på den, med 3 meter mellan grupper eller stationer som ligger bredvid varandra. Momenten görs efter varandra och får använda samma yta. Reglerna är R-090 till R-094. Appen tar inte hänsyn till hur mycket material klubben har, som antal bollar och koner, i version 1 (se nästa avsnitt). Inomhushall kommer i en senare version.
+
+## Yta per spelare
+
+*Avsnittet är tillagt 2026-09-23, godkänt av användaren samma dag.*
+
+### Det här är ett granskningskriterium, inte en regel
+
+Avsnittet säger hur stor en övnings yta måste vara i förhållande till antalet spelare på den. Det används på **ett** ställe: när en övning skrivs och när jag granskar den. Övningsförfattaren ska kunna räkna själv innan filen lämnas in, i stället för att jag räknar om samma sak i varje omgång.
+
+**Generatorn använder inte de här talen.** Generatorn väljer aldrig bort en övning för att ytan är trång eller rymlig. Den enda ytkontroll generatorn gör är R-092: att momentet får plats på den yta ledaren har valt, med 3 meters marginal mellan grupper. Ingenting i det här avsnittet ska läsas in som en ny regel, och ingen ny regel har lagts till i `generatorregler.md`. Om det någon gång ska bli en regel för generatorn är det ett eget beslut av användaren och en egen ändring av regelfilen.
+
+Bakgrunden är konkret: i tre omgångar i rad har övningar fällts för att måtten från en yngre spelform har återanvänts för en äldre. I omgång 3 föll `dribbling-mot-tidspress` med 40 kvadratmeter per spelare och `en-mot-en-till-tva-mal` med 36, båda för 10–12 år. Båda gick igenom efter att ytan gjorts större. Det är den sortens omtagning avsnittet ska ta bort.
+
+### Referenspunkten: matchen i den egna spelformen
+
+Det naturliga måttet på hur trångt fotboll ska vara är matchen. Talen nedan är uträknade ur planmåtten i `spelformer.md` (SvFF:s nationella spelformer och planstorleksdokumentet, hämtade 2026-09-11). Alla spelare som står på planen samtidigt räknas, alltså båda lagen och målvakterna där spelformen har målvakt.
+
+| Spelform | Fas | Plan (m) | Spelare på planen | Yta per spelare i match (m²) |
+|---|---|---|---|---|
+| `3mot3` | `fas-6-7` | 15 × 10 till 15 × 12 | 6 | 25–30 |
+| `5mot5` | `fas-8-9` | 30 × 15 till 30 × 20 | 10 | 45–60 |
+| `7mot7` | `fas-10-12` | 50 × 30 till 55 × 35 | 14 | 107–138 |
+| `9mot9` | `fas-13-14` | 65 × 50 till 72 × 55 | 18 | 181–220 |
+| `11mot11` | `fas-15-19` | 100 × 60 till 110 × 68 | 22 | 273–340 |
+
+Det viktiga i tabellen är hur stora stegen är. Matchen blir inte bara större med åldern, den blir **mycket** glesare per spelare: från 25 kvadratmeter för en sexåring till 273 för en sextonåring, alltså elva gånger mer. Ett mått som är lagom trångt i 5 mot 5 är därför extremt trångt i 9 mot 9, och det är precis det felet som har upprepats.
+
+**Matchens trängsta värde används som tak.** En övning som ger mer yta per spelare än matchens lägsta värde i samma spelform är inte fotboll längre, utan löpning: spelarna hinner inte möta varandra, bollkontakterna blir få och avstånden blir längre än de någonsin blir i match. Undantaget är spel i matchens egen form på matchens egen plan, som ligger just på taket. Taket är ett riktvärde jag redan använder när jag granskar. Det användarbeslut som beskrivs här gäller golvet.
+
+### Golvet
+
+Golvet är det minsta antal kvadratmeter per spelare en övning får ha. Talen är **min bedömning som tränarutbildare**. SvFF anger så vitt jag vet inga sådana tal, varken i spelformsbladen eller i *Fotbollens spela, lek och lär*. De är inte uträknade ur en formel, utan valda utifrån vad som händer i respektive ålder.
+
+| Fas | Med motståndare | Utan motståndare | Matchens trängsta värde |
+|---|---|---|---|
+| `fas-6-7` | 15 m² | 8 m² | 25 m² |
+| `fas-8-9` | 25 m² | 10 m² | 45 m² |
+| `fas-10-12` | 45 m² | 15 m² | 107 m² |
+| `fas-13-14` | 70 m² | 20 m² | 181 m² |
+| `fas-15-19` | 90 m² | 25 m² | 273 m² |
+
+Golvet ligger alltid under matchens värde, och det är meningen. Träning ska vara trängre än match, eftersom trängseln är det som ger fler dueller, fler beslut och fler bollkontakter per minut. Andelen sjunker med åldern, från ungefär 60 procent av matchen för de yngsta till ungefär en tredjedel för de äldsta, därför att den stora planen i 9 mot 9 och 11 mot 11 till stor del är löpyta och djupled som en övning inte behöver återskapa.
+
+### Varför talen ser ut så
+
+**`fas-6-7`, 15 kvadratmeter med motståndare.** Sexåringar spelar i en klunga. Bollen är nästan aldrig långt borta, farten är låg och en krock är mjuk. Matchen själv ger bara 25–30 kvadratmeter, alltså det trängsta av alla spelformer, så golvet måste ligga under det. 15 räcker för att ett barn ska hinna få bollen under kontroll och titta upp en gång, och det håller kvar de små rutorna som är själva poängen i den här åldern. Under 15 står barnen på varandras fötter, den som har bollen får aldrig en egen touch och de andra slutar försöka. Det är raka motsatsen till många bollkontakter och alla med.
+
+**`fas-6-7`, 8 kvadratmeter utan motståndare.** Här är golvet relativt sett högre jämfört med duellen än i de äldre faserna. Det beror på att en sexåring med egen boll tittar ner, inte kan styra bollen dit hen tänkt och inte håller en rak linje. Två barn med varsin boll behöver mer marginal mellan sig än två äldre spelare, trots att de rör sig långsammare.
+
+**`fas-8-9`, 25 kvadratmeter med motståndare.** Nu börjar passningen bära. I 5 mot 5 ger retreatlinjen laget tid att spela ut bollen, och det första spelförståelsesteget är att se en fri medspelare. Det kräver att det finns en fri medspelare att se: ytan måste rymma en passning på åtta till tio meter. 25 kvadratmeter per spelare gör att ett 4 mot 4 får ungefär 20 × 12 meter, vilket räcker för att en passning ska vara ett alternativ till att dribbla. Under det blir varje övning en närkamp, oavsett vad den heter.
+
+**`fas-10-12`, 45 kvadratmeter med motståndare.** Det här är åldern då tekniken ska in i hög fart: driva förbi, vända bort från press, ta emot bollen bort från motståndaren. En elvaåring kan springa med bollen, och en duell där anfallaren inte hinner accelerera är ingen duell utan en brottningsmatch mot en kon. 45 ger ett par i ett ett mot ett ungefär 12 × 8 meter, vilket är precis så mycket att en finta-och-gå faktiskt går att genomföra. Det är samtidigt mindre än hälften av matchens 107, så trängseln finns kvar.
+
+**`fas-13-14`, 70 kvadratmeter med motståndare.** Det här är fasen som öppnar i omgång 4 och som det inte finns någon erfarenhet av i banken än. Tre saker gör att golvet måste höjas rejält här:
+
+- **Kroppen har vuxit ifrån kontrollen.** I tillväxtspurten blir armar och ben längre, vikten ökar och farten ökar, men balansen och bromsförmågan hänger inte med lika fort. Krockenergin i en närkamp är högre än i någon tidigare ålder, medan förmågan att undvika krocken är tillfälligt sämre. En trång yta är farligare här än både före och efter.
+- **Touchen bär längre.** En fjortonåring som tar emot bollen med rätt teknik flyttar den fem till tio meter. Det avståndet måste finnas framför spelaren, annars är den tekniskt riktiga mottagningen fel i övningen och spelarna lär sig att stoppa bollen död i stället.
+- **Offside och djupled kommer in.** Från 9 mot 9 gäller offside och inspark (`spelformer.md`). Spelet handlar nu om att spela bakom en försvarslinje och om att försvara ett djup. En övning med motståndare behöver ha ett djup att spela i, annars övar den något annat än det spelformen frågar efter.
+
+70 kvadratmeter ger ett 4 mot 4 ungefär 30 × 20 meter och ett ett mot ett ungefär 16 × 10 meter. Det är fortfarande bara drygt en tredjedel av matchens 181, alltså tydligt trängre än match, men långt ifrån de mått som fungerar i 7 mot 7.
+
+**`fas-15-19`, 90 kvadratmeter med motståndare.** Kroppen är färdigvuxen, toppfarten är den högsta som kommer att nås och tacklingar är hårda och tillåtna. Det som kräver yta är inte längre tekniken utan farten: bromssträckan efter en spurt, utrymmet att ta emot bollen med ryggen mot mål och vända, och avståndet mellan kedjorna. Steget från 70 till 90 är mindre än steget från 45 till 70, eftersom det stora hoppet i kroppsstorlek och löpfart sker mellan tolv och fjorton år, inte mellan fjorton och sjutton.
+
+**Golven utan motståndare, 8 till 25 kvadratmeter.** En teknikbana med egen boll och en duell på samma yta är inte samma sak. Utan motståndare behöver ingen ta sig loss från press, och ingen ska ta sig förbi någon. Det enda ytan behöver klara är att spelaren kan driva, vända och stanna bollen utan att krocka med en annan spelare som tittar ner på sin egen boll. Därför ligger golven där på ungefär en tredjedel av duellgolvet i de äldre faserna. Talen stiger ändå med åldern, av samma skäl som duellgolvet: en sjuttonåring som driver bollen i hög fart behöver längre bromssträcka än en nioåring.
+
+### Så räknas talet fram
+
+1. **Ytan** är övningens `yta` för **en grupp**, längd gånger bredd. Om övningen anger olika ytor för olika spelformer räknas varje spelform för sig.
+2. **Antalet spelare** är övningens `spelare.max`, alltså det största antal spelare som kan vara på ytan samtidigt. Det är det trängsta läget, och det är det som ska hålla.
+3. **Målvakt och joker räknas med**, eftersom de står på ytan.
+4. **En kö utanför den markerade ytan räknas inte.** Om övningen har rotation och de som väntar står utanför konerna räknas bara de som är inne. Då ska `organisation` säga tydligt att kön står utanför ytan, och kötiden bedöms som vanligt under punkten om aktivitet.
+5. **Dela ytan med antalet spelare** och jämför med golvet för fasen. Avrunda aldrig uppåt.
+
+*Exempel:* 24 × 16 meter för högst 6 spelare är 384 / 6 = 64 kvadratmeter per spelare. För `fas-10-12` med motståndare är golvet 45 och taket 107. Övningen ligger inom spannet.
+
+### Med eller utan motståndare, och övningar med båda
+
+- **Med motståndare** betyder att någon på ytan kan vinna bollen eller ska passeras. Det gäller även när försvararen är halvaktiv eller styrd, och även i överlägeslägen som 2 mot 1 och 3 mot 1. Om en spelare ska ta sig förbi någon behöver hen yta att ta sig förbi i.
+- **Utan motståndare** är teknikbanor, bollkänsla med egen boll, passningsövningar utan press och löp- och rörelseövningar. **En målvakt gör inte övningen till en övning med motståndare.** I en avslutsövning mot målvakt är det ingen som tar bollen från anfallaren i en närkamp, så det lägre golvet gäller. Säkerheten kring målvakten hanteras separat, genom skottavstånd och köns placering.
+- **Övningar med båda delarna** bedöms så här: om något moment i övningen har motståndare på ytan gäller motståndargolvet för den ytan. Om övningen uttryckligen byter yta mellan delarna, till exempel att teknikdelen körs i en mindre ruta och duellen i en större, bedöms varje del för sig mot den yta den använder. Då ska båda måtten stå i `organisation`.
+
+### Undantag
+
+Det finns övningar där trängsel är själva poängen. Listan nedan är **sluten**. En övning som ligger under golvet och inte finns på listan är fel, inte en bedömningsfråga. Ett undantag gäller bara om övningens egen text i `beskrivning`, `organisation` eller `anpassning` gör det tydligt att det är den sortens övning. Ett undantag som inte syns i texten räknas inte.
+
+1. **Positionsspel och bollhållningsspel i övertal, utan mål och utan riktning.** Till exempel 4 mot 2, 5 mot 2 eller behåll bollen med joker. Poängen är att pressen ska nå fram på ett par sekunder, så att spelaren tvingas välja passningen tidigt och med rätt fot. En stor yta förstör övningen. *I stället gäller:* ytan ska vara så stor att den som har bollen kan vända bort från press, alltså minst 10 × 10 meter för 8–12 år och minst 12 × 12 meter för 13–19 år, oavsett antal spelare. Undantaget gäller inte så fort det finns mål och riktning, för då ska laget kunna spela framåt.
+2. **Lekar där alla har egen boll och poängen är att störa varandras boll.** Till exempel bollvaktslek. Ingen ska ta sig förbi någon, alla har boll och kontakten är låg, så trängseln ger fler bollkontakter i stället för färre. *I stället gäller:* varje spelare har egen boll, ingen tacklar eller sparkar mot ben, och ytan är minst 10 kvadratmeter per spelare i alla åldrar.
+3. **Övningar där spelarna står på egna platser eller följer en bestämd bana.** Till exempel skadeförebyggande program som Knäkontroll och FIFA 11+ Kids, passningsrutor med fasta positioner och målvaktens grundteknik. Rörelsen är förutsägbar och ingen krockar med någon oväntat, så kvadratmeter per spelare säger ingenting. *I stället gäller:* minst 2 meter mellan två spelares arbetsplatser, och arbetsvägarna korsar inte varandra.
+4. **Spel i matchens egen spelform på matchens egen plan.** Ligger per definition på matchens värde och är alltid rätt.
+
+### Vad som händer när en övning ligger under golvet
+
+- **Under golvet utan att träffas av ett undantag:** jag sätter status `atgarda` och skriver i `granskning` hur många kvadratmeter per spelare övningen har, vad golvet är och vilket mått som skulle räcka. Övningsförfattaren ökar ytan och sätter tillbaka `utkast`. Det är inte en förhandling.
+- **Strax under golvet:** gäller som under golvet. Det finns ingen marginal och ingen avrundning uppåt. En övning på 44 kvadratmeter per spelare i `fas-10-12` ska göras större.
+- **Under golvet men träffas av ett undantag:** övningen går vidare, och jag skriver i `granskning` vilket undantag som åberopats. Saknas motiveringen i övningens egen text sätts `atgarda` med kommentaren att texten ska säga varför ytan är trång.
+- **Över taket:** inte automatiskt fel, men jag frågar varför. Oftast är svaret att ytan är kopierad från matchen när övningen har färre spelare än matchen. Då sätts `atgarda`.
+- **En godkänd övning som ligger under golvet** ändras inte i efterhand av det här avsnittet. Golvet gäller övningar som granskas från och med 2026-09-23. Om en sådan övning ändå öppnas för ändring tas ytan upp då.
 
 ## Material
 
