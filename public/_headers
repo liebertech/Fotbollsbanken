@@ -1,0 +1,14 @@
+# Säkerhetsheaders för Cloudflare Pages (ADR 0002 beslut 1).
+#
+# Filen kopieras oförändrad till bygget av Vite och läses av Cloudflare Pages. CI underkänner
+# ett bygge där den saknas (.github/workflows/ci.yml), eftersom headrarna är det som återstår
+# om en XSS ändå tar sig in via skissdata (S-07) eller ett komprometterat npm-paket.
+#
+# connect-src 'self' gäller till dess att Supabase-domänen och Turnstile finns. Den utökas i
+# inkrement 3, när inloggningen byggs: CSP:n är då det verkliga skyddet för förnyelsetoken i
+# localStorage (ADR 0004, ADR 0005).
+/*
+  Content-Security-Policy: default-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer

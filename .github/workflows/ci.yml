@@ -49,6 +49,26 @@ jobs:
       - name: Validera övningsbanken
         run: npm run validera:ovningar
 
+      # Bygget körs i CI och inte bara hos Cloudflare, så att en övning som tyst faller ur
+      # banken och ett bygge utan säkerhetsheaders upptäcks här (S-26, S-30, ADR 0002).
+      - name: Bygge
+        run: npm run build
+
+      - name: Säkerhetsheaders i bygget
+        run: |
+          fil=dist/_headers
+          if [ ! -f "$fil" ]; then
+            echo "Bygget saknar $fil. ADR 0002 beslut 1 kräver headerfilen i det som laddas upp."
+            exit 1
+          fi
+          for header in Content-Security-Policy Strict-Transport-Security X-Content-Type-Options Referrer-Policy; do
+            if ! grep -q "^  $header:" "$fil"; then
+              echo "$fil saknar $header (ADR 0002 beslut 1)."
+              exit 1
+            fi
+          done
+          echo "Säkerhetsheaders på plats i $fil."
+
       - name: Kända sårbarheter
         run: npm audit --audit-level=high
 
