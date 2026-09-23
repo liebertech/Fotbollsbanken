@@ -61,14 +61,21 @@ function SubstituteNote({ result }: { result: PartResult }) {
 function EmptyPart({ result, minutes }: { result: PartResult | null; minutes: number }) {
   const texts = TEXTS.session;
   const fields = result?.changeableFields ?? [];
-  const combination = result?.emptyReason === 'gar-inte-att-kombinera' || fields.length === 0;
+  /*
+   * Tre lägen, i den ordning docs/design/skisser/02-genererat-pass.md räknar upp dem:
+   * delen går inte att kombinera med resten, inget enskilt val hjälper, eller de val som
+   * var för sig skulle lösa det. Bara `emptyReason` får avgöra det första: en tom fältlista
+   * betyder inte att det finns övningar som passar var för sig.
+   */
+  const combination = result?.emptyReason === 'gar-inte-att-kombinera';
+  const noSingleFix = !combination && fields.length === 0;
   return (
     <div className={styles.empty}>
       <p className={styles.emptyHeading}>{texts.emptyPart}</p>
       <p className={styles.emptyText}>{fill(texts.emptyTarget, { minutes })}</p>
-      {combination ? (
-        <p className={styles.emptyText}>{texts.emptyCombination}</p>
-      ) : (
+      {combination && <p className={styles.emptyText}>{texts.emptyCombination}</p>}
+      {noSingleFix && <p className={styles.emptyText}>{texts.emptyNoSingleFix}</p>}
+      {!combination && !noSingleFix && (
         <>
           <p className={styles.emptyText}>
             {fill(texts.emptyChangeable, { fields: fieldNames(fields) })}

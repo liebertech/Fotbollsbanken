@@ -30,6 +30,7 @@ import type {
   GenerationResult,
   Input,
   InputField,
+  NoSessionCause,
   PartResult,
   Selection,
   Session,
@@ -221,7 +222,11 @@ export function generateSession(
 ): GenerationResult {
   const validated = validateInput(input);
   if (!validated.ok) {
-    return { kind: 'none', reason: { changeableFields: [], internalProblems: [] } };
+    // Underlaget höll inte, så ingen del har prövats mot banken: ingen övning har matchat.
+    return {
+      kind: 'none',
+      reason: { cause: 'inget-matchar', changeableFields: [], internalProblems: [] },
+    };
   }
   const phase = validated.phase;
   const plan = planTime(phase, input.passlangd);
@@ -251,6 +256,7 @@ export function generateSession(
     return {
       kind: 'none',
       reason: {
+        cause: noSessionCause(bank, input, phase, plan, effectiveFocus),
         changeableFields: noSessionFields(bank, input, phase, plan),
         internalProblems: [],
       },
@@ -280,6 +286,7 @@ export function generateSession(
     return {
       kind: 'none',
       reason: {
+        cause: noSessionCause(bank, input, phase, plan, effectiveFocus),
         changeableFields: noSessionFields(bank, input, phase, plan),
         internalProblems: problems,
       },
@@ -287,6 +294,36 @@ export function generateSession(
   }
 
   return { kind: 'session', session };
+}
+
+/**
+ * Varför inget pass kunde skapas: matchar ingen övning alls, eller gick delarna inte ihop?
+ *
+ * Prövningen är densamma som `explainEmptyPart` gör för en enskild del (R-100): kan minst en
+ * av Öva, Spelövning och Spel fyllas för sig, men inget pass ändå kom ut, är orsaken att
+ * delarna inte gick att kombinera. Annars finns ingen matchande övning att kombinera.
+ *
+ * @regel R-100
+ * @regel R-101
+ */
+function noSessionCause(
+  bank: readonly Exercise[],
+  input: Input,
+  phase: Phase,
+  plan: TimePlan,
+  effectiveFocus: Map<SessionPartFromBank, FocusArea[]>,
+): NoSessionCause {
+  for (const part of PARTS_REQUIRED_FOR_SESSION) {
+    const target = plan.parts.find((item) => item.part === part)?.target;
+    if (target === undefined) {
+      continue;
+    }
+    const focus = effectiveFocus.get(part) ?? input.fokus;
+    if (partCanBeFilled(bank, input, phase, part, target, focus)) {
+      return 'gar-inte-att-kombinera';
+    }
+  }
+  return 'inget-matchar';
 }
 
 /**

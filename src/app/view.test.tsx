@@ -15,7 +15,9 @@ import { NoSessionView } from './session/NoSessionView.tsx';
 import { validateInput } from '../regelmotor/index.ts';
 import type { InputError } from '../regelmotor/index.ts';
 import {
+  BANK_FIXABLE_EMPTY_PART,
   BANK_NEEDING_SUBSTITUTE,
+  BANK_SHARED_EXERCISE,
   BANK_WITHOUT_GAME_PRACTICE,
   BANK_WRONG_LEVEL,
   FULL_BANK,
@@ -96,9 +98,11 @@ describe('Berättelse 03: delar utan övning och inget matchande resultat', () =
     expect(markup).toContain(`Måltid: ${part?.target} min.`);
   });
 
-  it('03.2 visar antingen vilka val som kan ändras eller att delen inte gick att kombinera', () => {
-    const session = sessionOf(BANK_WITHOUT_GAME_PRACTICE);
+  it('03.2 visar vilka val som kan ändras när ett enskilt val skulle fylla delen', () => {
+    const session = sessionOf(BANK_FIXABLE_EMPTY_PART);
     const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('val-kan-andras');
+    expect(part?.changeableFields).toContain('niva');
     const markup = html(
       <SessionView
         session={session}
@@ -106,11 +110,47 @@ describe('Berättelse 03: delar utan övning och inget matchande resultat', () =
         onGenerateAgain={() => undefined}
       />,
     );
-    if ((part?.changeableFields.length ?? 0) > 0) {
-      expect(markup).toContain('Testa att ändra ett av de här');
-    } else {
-      expect(markup).toContain('gick inte att kombinera med resten av passet');
-    }
+    expect(markup).toContain('Testa att ändra ett av de här');
+    expect(markup).toContain('Nivå');
+    expect(markup).not.toContain('gick inte att kombinera med resten av passet');
+    expect(markup).not.toContain('inget enskilt val skulle ensamt lösa det');
+  });
+
+  /*
+   * Läge 3 i docs/design/skisser/02-genererat-pass.md. Banken saknar spelövningar helt, så
+   * texten om att övningarna inte gick att kombinera vore ett felaktigt påstående: det finns
+   * inga övningar som skulle passa var för sig.
+   */
+  it('03.2 säger att inget enskilt val hjälper när delen varken kan fyllas eller lösas med ett val', () => {
+    const session = sessionOf(BANK_WITHOUT_GAME_PRACTICE);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('val-kan-andras');
+    expect(part?.changeableFields).toEqual([]);
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('inget enskilt val skulle ensamt lösa det');
+    expect(markup).not.toContain('gick inte att kombinera med resten av passet');
+  });
+
+  it('03.2 säger att delen inte gick att kombinera bara när motorn har sagt det', () => {
+    // Övningen passar både Öva och Spelövning, men R-070 tillåter den bara på en plats.
+    const session = sessionOf(BANK_SHARED_EXERCISE);
+    const part = session.parts.find((item) => item.part === 'del-spelovning');
+    expect(part?.emptyReason).toBe('gar-inte-att-kombinera');
+    const markup = html(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(markup).toContain('gick inte att kombinera med resten av passet');
+    expect(markup).not.toContain('inget enskilt val skulle ensamt lösa det');
   });
 
   it('03.6 visar vilket fokus som saknade övningar och vilket som användes i stället', () => {
@@ -134,6 +174,41 @@ describe('Berättelse 03: delar utan övning och inget matchande resultat', () =
     expect(markup).toContain('Nivå');
     expect(markup).toContain('Vi ändrar ingenting åt dig');
     expect(markup).toContain('Ändra uppgifter');
+  });
+
+  /*
+   * Motsvarande tre lägen för hela passet, docs/design/skisser/03-inget-matchande-resultat.md.
+   * En tom bank är precis fallet med en spelform som banken saknar övningar för (11 mot 11).
+   */
+  it('03.2 säger att ingenting matchar när banken saknar övningar, inte att det inte går att kombinera', () => {
+    const result = generate([]);
+    expect(result.kind).toBe('none');
+    if (result.kind !== 'none') {
+      return;
+    }
+    expect(result.reason.cause).toBe('inget-matchar');
+    expect(result.reason.changeableFields).toEqual([]);
+    const markup = html(
+      <NoSessionView input={INPUT} reason={result.reason} onChangeInput={() => undefined} />,
+    );
+    expect(markup).toContain('Vi hittade inga övningar som matchar de här valen');
+    expect(markup).not.toContain('går inte att kombinera till ett helt pass');
+  });
+
+  it('03.2 säger att övningarna inte går att kombinera bara när motorn har bekräftat det', () => {
+    const markup = html(
+      <NoSessionView
+        input={INPUT}
+        reason={{
+          cause: 'gar-inte-att-kombinera',
+          changeableFields: [],
+          internalProblems: [],
+        }}
+        onChangeInput={() => undefined}
+      />,
+    );
+    expect(markup).toContain('går inte att kombinera till ett helt pass');
+    expect(markup).not.toContain('Vi hittade inga övningar som matchar de här valen');
   });
 
   it('03.3 visar ledarens underlag oförändrat', () => {

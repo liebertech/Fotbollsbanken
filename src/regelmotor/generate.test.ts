@@ -228,6 +228,25 @@ describe('R-101 När inget pass skapas', () => {
     expect(generateSession(underlag, [], 'fro').kind).toBe('none');
   });
 
+  it('R-101 säger att ingen övning matchar när banken är tom, inte att den inte går att kombinera', () => {
+    const result = generateSession(underlag, [], 'fro');
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.cause).toBe('inget-matchar');
+      expect(result.reason.changeableFields).toEqual([]);
+    }
+  });
+
+  it('R-101 säger att ingen övning matchar när ingen av Öva, Spelövning och Spel kan fyllas', () => {
+    // Bara uppvärmningen finns: ingen av de tre delar som krävs kan fyllas ens för sig.
+    const bank = testbank.filter((exercise) => exercise.id === 'uppvarmning-passa');
+    const result = generateSession(underlag, bank, 'fro');
+    expect(result.kind).toBe('none');
+    if (result.kind === 'none') {
+      expect(result.reason.cause).toBe('inget-matchar');
+    }
+  });
+
   it('R-101 skapar ett pass när bara Spel kan fyllas', () => {
     const bank = testbank.filter((exercise) => exercise.id === 'spel-passa');
     expect(generateSession(underlag, bank, 'fro').kind).toBe('session');
@@ -278,6 +297,9 @@ describe('R-103 Vilka val som kan ändras', () => {
     if (result.kind === 'none') {
       expect(result.reason.changeableFields).toContain('niva');
       expect(result.reason.internalProblems).toEqual([]);
+      // Orsaken och listan är två skilda uppgifter: ingen övning matchar nivån som den står,
+      // men nivån är ändå ett val som var för sig skulle lösa det.
+      expect(result.reason.cause).toBe('inget-matchar');
     }
   });
 });

@@ -42,6 +42,12 @@ export function NoSessionView({ input, reason, onChangeInput }: NoSessionViewPro
   const texts = TEXTS.noSession;
   // R-103: finns inget val som var för sig skulle lösa det är orsaken inte ett enskilt val.
   const fields = reason.changeableFields;
+  /*
+   * När listan är tom skiljer motorns `cause` de två återstående lägena åt
+   * (docs/design/skisser/03-inget-matchande-resultat.md): `combination` påstår att det finns
+   * övningar som passar var för sig, och får bara visas när motorn har bekräftat det.
+   */
+  const combination = reason.cause === 'gar-inte-att-kombinera';
 
   return (
     <div className={styles.view}>
@@ -57,7 +63,7 @@ export function NoSessionView({ input, reason, onChangeInput }: NoSessionViewPro
           </ul>
         </>
       ) : (
-        <p className={styles.text}>{texts.combination}</p>
+        <p className={styles.text}>{combination ? texts.combination : texts.noMatch}</p>
       )}
 
       <p className={styles.reassurance}>{texts.reassurance}</p>

@@ -54,8 +54,40 @@ const game = gameExercise({
 /** En bank som räcker till alla delar. */
 export const FULL_BANK: Exercise[] = [warmup, practice, gamePractice, game];
 
-/** Samma bank utan spelövningar: Spelövning blir tom (R-100). */
+/**
+ * Samma bank utan spelövningar: Spelövning blir tom (R-100). Ingen spelövning finns alls,
+ * så inget enskilt val i underlaget skulle kunna fylla delen (R-103).
+ */
 export const BANK_WITHOUT_GAME_PRACTICE: Exercise[] = [warmup, practice, game];
+
+/**
+ * Samma bank, men spelövningen finns bara för niva-3. Delen blir tom och nivån är ett val
+ * som var för sig skulle lösa det (R-103).
+ */
+export const BANK_FIXABLE_EMPTY_PART: Exercise[] = [
+  warmup,
+  practice,
+  { ...gamePractice, niva: ['niva-3'] },
+  game,
+];
+
+/**
+ * En bank där samma övning passar både Öva och Spelövning. Öva fylls först (post 2 i R-048)
+ * och R-070 tillåter inte övningen på två platser, så Spelövning blir tom med en bekräftad
+ * kombinationsorsak (R-100, andra punkten).
+ */
+export const BANK_SHARED_EXERCISE: Exercise[] = [
+  warmup,
+  bankExercise({
+    id: 'delad-ovning',
+    namn: 'Passning i ruta',
+    passdelar: ['del-ovning', 'del-spelovning'],
+    fokusomraden: ['passning-mottagning'],
+    spelare: { min: 2, max: 14 },
+    tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+  }),
+  game,
+];
 
 /**
  * En bank vars kärna bara har `dribbling`. Väljer ledaren `lek` får kärnan ett

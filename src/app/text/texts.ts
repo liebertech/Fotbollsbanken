@@ -71,8 +71,8 @@ export const TEXTS = {
      * kan fyllas som den står (`emptyReason: 'val-kan-andras'`) eller genom att ändra ett enda
      * fält (`changeableFields` tom). Skiljer sig medvetet från både emptyChangeable (en lista med
      * fält finns) och emptyCombination (påstår att övningar som passar var för sig finns – det
-     * vet vi inte här). Kräver att `SessionView.tsx` skiljer detta läge från emptyCombination i
-     * stället för att, som i dag, visa emptyCombination så fort fältlistan är tom (se rapporten).
+     * vet vi inte här). `SessionView.tsx` skiljer lägena åt på `emptyReason`, aldrig på att
+     * fältlistan råkar vara tom.
      */
     emptyNoSingleFix:
       'Vi hittade inga övningar som passar den här delen, och inget enskilt val skulle ensamt lösa det. Prova att ändra flera uppgifter i underlaget samtidigt.',
@@ -94,18 +94,15 @@ export const TEXTS = {
     changeable:
       'Det finns för få övningar som matchar allt du valt. Prova att ändra ett av de här:',
     /**
-     * R-100 andra punkten. OBS (ux-designer, granskning K4 2026-09-23): `NoSessionReason`
-     * innehåller bara den samlade `changeableFields`-listan, aldrig en bekräftad kombinations-
-     * orsak. Den här texten kräver alltså att vy:n *vet* att övningar som passar var för sig
-     * ändå inte gick att kombinera – något dagens underlag för vyn inte kan bekräfta. Använd
-     * den bara om/när regelmotorn en dag lämnar en sådan bekräftad signal. Tills dess, när
-     * fältlistan är tom, ska `noMatch` nedan visas i stället – se rapporten och
-     * docs/design/skisser/03-inget-matchande-resultat.md.
+     * R-100 andra punkten. Texten påstår att det finns övningar som passar var för sig, och
+     * får därför bara visas när motorn har bekräftat det: `NoSessionReason.cause` är
+     * `gar-inte-att-kombinera`. Villkoret var ux-designerns krav vid granskningen inför K4
+     * (2026-09-23), och bekräftelsen lades till i motorn samtidigt.
      */
     combination:
       'Det finns övningar som skulle kunna passa var för sig, men de går inte att kombinera till ett helt pass med dina val.',
     /**
-     * Tom fältlista utan bekräftad kombinationsorsak (t.ex. banken saknar övningar helt för den
+     * Tom fältlista och `cause: 'inget-matchar'` (t.ex. banken saknar övningar helt för den
      * valda spelformen, som för 11 mot 11 i dag). Påstår inte att övningar som passar var för
      * sig finns – till skillnad från `combination` ovan. Tillagd av ux-designern vid
      * granskningen inför K4 (2026-09-23).

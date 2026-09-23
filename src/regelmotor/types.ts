@@ -206,7 +206,20 @@ export interface Session {
 }
 
 /** Förklaringen när inget pass kunde skapas (R-101, R-103). */
+/**
+ * Varför inget pass alls kunde skapas. Samma skillnad som `EmptyReason` gör för en enskild
+ * del, fast för passet: gränssnittet ska kunna säga att inget matchar utan att påstå att det
+ * finns övningar som passar var för sig (docs/design/skisser/03-inget-matchande-resultat.md).
+ */
+export type NoSessionCause =
+  /** Ingen av Öva, Spelövning och Spel kan fyllas ens för sig. */
+  | 'inget-matchar'
+  /** Minst en av dem kan fyllas för sig, men delarna gick inte ihop till ett pass. */
+  | 'gar-inte-att-kombinera';
+
 export interface NoSessionReason {
+  /** Vilken av de två orsakerna det är (R-100 andra punkten, R-101). */
+  cause: NoSessionCause;
   /** Val som var för sig skulle kunna ge ett pass (R-103). */
   changeableFields: InputField[];
   /**
