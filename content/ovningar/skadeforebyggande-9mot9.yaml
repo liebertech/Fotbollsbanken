@@ -66,7 +66,7 @@ anpassning:
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: utkast
+status: atgarda
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -106,3 +106,23 @@ granskning:
       tillåt tre spelare på de stationer som tål det, till exempel planka, sidohopp och höga knän,
       och skriv ut vilka. Tvåmetersavståndet gäller oavsett vilket, och ytan 14 x 12 meter rymmer
       det. Undantag 3 gäller oförändrat, så ytan ska inte växa.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Platsräkningen går ihop nu, men vägen som valdes stänger övningen för de vanligaste
+      gruppstorlekarna. Genomräknat med R-050 till R-055 för fas-13-14, där taket per ledare är 14
+      och ledarbehovet är 1: med spelare 7 till 12 blir största grupp 12. Sju till tolv spelare ger
+      en grupp och en ledare, det fungerar. Tretton kräver två grupper, sju och sex, och sexan är
+      under minsta antal, så övningen kan inte användas alls, oavsett hur många ledare som finns
+      (R-051, R-052). Fjorton ger sju och sju, vilket fungerar men kräver två ledare (R-055). Med
+      max 14 räckte en grupp och en ledare hela vägen upp till fjorton. Förlusten landar mitt i ett
+      normalt 9 mot 9-lag, och det här är bankens enda skadeförebyggande övning för spelformen, ett
+      kärnområde som SvFF vill se två gånger i veckan. Använd väg 2 i stället. Sätt tillbaka
+      spelare.max till 14, vilket ligger precis på taket per ledare, och skriv i organisationen att
+      planka, sidohopp och höga knän tar upp till tre spelare, att enbenshopp och utfallssteg tar
+      upp till två och att balansstationen alltid har två. Det ger femton platser, alltså marginal
+      till fjorton. Tvåmetersavståndet håller: en cirkel i ytan 14 x 12 meter ger ungefär sex meter
+      per station, och tre platser med två meters lucka tar fyra. Ytan ska inte växa, undantag 3
+      gäller. Behåll meningen om att en spelare kan göra en station två gånger i rad, så att
+      balansstationen alltid får ett par.
