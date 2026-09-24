@@ -61,7 +61,7 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
     kraft och riktning.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -81,3 +81,14 @@ granskning:
       båda kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus. Tiden ligger inom
       fasens gräns, och fast storlek fyra med en femte spelare i mitten löser udda antal (R-050).
       Ett tips utan krav: en andra boll i kvadraten när gruppen är van dubblar bollkontakterna.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat. Avstånden i beskrivningen stämmer nu med geometrin. Kontrollräknat: sidan i en
+      kvadrat om 18 x 18 meter är arton meter och diagonalen 25,5, och den lättare varianten med
+      tolv meters sida ger tolv meter längs sidan och 17,0 diagonalt. Båda stämmer med texten.
+      Därmed kan ingen ledare läsa ut ett kortare mått och bygga en mindre ruta, vilket var hela
+      invändningen, och syftet med längre passningar bär. Övrigt är oförändrat och håller: 324
+      kvadratmeter är 81 per spelare vid fyra, över golvet 20 utan motståndare och under taket 181
+      för fas-13-14.

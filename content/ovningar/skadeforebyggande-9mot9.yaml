@@ -66,7 +66,7 @@ anpassning:
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: utkast
+status: atgarda
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -89,3 +89,20 @@ granskning:
       SvFF anger för Knäkontroll i uppvärmningen (passuppbyggnad.md, hämtat 2026-09-11), ledarbehov
       1 med högst fjorton spelare stämmer med taket per ledare (R-050), och texten är egen och inte
       en avskrift av något program.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Två av tre punkter är åtgärdade, men ändringen till sex stationer har öppnat en lucka i
+      räkningen. Klart: sex stationer i beskrivningen, i organisationen och i materiallistan (sex
+      markeringar), balansstationen alltid bemannad av två, en coachningspunkt om att knuffen ska
+      vara lätt och kontrollerad, och en enad rotation, medurs på ledarens signal, där anpassningen
+      för udda antal nu bara handlar om hur balansstationen får sitt par. En sak ska ändras.
+      Platserna räcker inte till det högsta antalet spelare. Organisationen säger upp till fjorton
+      spelare, men också att balansstationen har två och de övriga fem stationerna en till två var.
+      Det är som mest 2 plus 5 gånger 2, alltså tolv platser. Med fjorton spelare vet ledaren inte
+      var de två sista ska stå, och det var sju stationer som tidigare fick summan att gå jämnt ut.
+      Välj en väg. 1. Sätt spelare.max till 12 och skriv upp till tolv i organisationen. 2. Eller
+      tillåt tre spelare på de stationer som tål det, till exempel planka, sidohopp och höga knän,
+      och skriv ut vilka. Tvåmetersavståndet gäller oavsett vilket, och ytan 14 x 12 meter rymmer
+      det. Undantag 3 gäller oförändrat, så ytan ska inte växa.

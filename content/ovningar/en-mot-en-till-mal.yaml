@@ -64,7 +64,7 @@ anpassning:
   ledare: Övningen sköter sig själv när paret har förstått rotationen. En ledare kan gå
     mellan ytorna och ge tips om vinkel och timing.
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i ungdomsfotboll.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -86,3 +86,17 @@ granskning:
       inne (passuppbyggnad.md, Så räknas talet fram, punkt 4), och kötiden håller riktvärdet 2-3 per
       mål. 2. Eller sätt ledarbehov 0 och låt det par som just kört hämta reservbollen och starta om,
       som i godkända 2 mot 1 till mål. Då kan en ensam ledare ha flera ytor igång (R-055).
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat, och väg 2 var det rätta valet. Ledarbehov 0 tillsammans med grupptypen par gör att
+      en ensam ledare kan ha flera ytor igång samtidigt (R-055), vilket är just vad övningen behöver
+      för att kunna väljas till en vanlig grupp. Kön är borta ur organisationen, och texten hänger
+      nu ihop med spelare 2 till 2: paret byter roll efter varje försök, och reservbollen vid målet
+      gör att nästa duell startar utan att någon utifrån behöver komma in. Materiallistan har de två
+      bollarna. Anpassningen för ledare är omskriven och säger inte längre emot fältet. Aktiviteten
+      blir hög, i praktiken en ny duell var tionde sekund, vilket var poängen med övningen.
+      Lösningen för udda antal, en trio med anfallare, försvarare och en vilande som rullar in
+      bollen, fungerar och ger fortfarande kort väntan. Ytan är oförändrad: 10 x 8 meter är 40
+      kvadratmeter per spelare, över golvet 25 för fas-8-9 med motståndare.

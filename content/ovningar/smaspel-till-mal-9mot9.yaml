@@ -60,7 +60,7 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -81,3 +81,17 @@ granskning:
       ligger under fasens gräns för spel, 35 minuter, ledarbehov 0 är rätt (R-057) och grupptypen
       tva-lag stämmer med del-spel (R-008). En liten sak: namnet säger 4 mot 4 men spannet sex till
       åtta betyder 3 mot 3 till 4 mot 4. Skriv gärna om namnet.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Båda punkterna är åtgärdade. Målen är nu minimal, ungefär 1 till 1,5 meter breda, och då
+      hänger spelet utan målvakt ihop: ett litet mål går att försvara med kropp och press, och
+      avslutet kräver träff i stället för bara ett skott åt rätt håll. Påminnelsen om förankrade mål
+      gäller fortfarande, eftersom minimal räknas (R-084). Konerna är sex, fyra till hörnen och två
+      till mittlinjen, så den svårare varianten om eget lags planhalva går nu att genomföra. Namnet
+      stämmer med spannet sex till åtta spelare. Ytan är oförändrad och håller: 32 x 20 meter är 640
+      kvadratmeter, alltså 80,0 per spelare vid åtta och 106,7 vid sex, mellan golvet 70 och taket
+      181 för fas-13-14. Utan krav: den lättare varianten säger Vanliga mål räcker för poäng, vilket
+      nu kan läsas som mål i en spelforms storlek. Skriv hellre att varje mål ger poäng och att
+      bonuspoängen för tre passningar tas bort.

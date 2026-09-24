@@ -68,7 +68,7 @@ anpassning:
   ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den
     ordinarie ledaren i både domandet och coachningen.
 kalla: Egen övning, inspirerad av lagförsvar med offsidefälla i 9 mot 9 och äldre.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -91,3 +91,17 @@ granskning:
       offsidefälla kräver ett lag som redan kan hålla ihop. Ledarbehov 1 är rätt, någon måste döma.
       Ingen retreatlinje finns i texten, vilket stämmer: den hör till 5 mot 5 och 7 mot 7, inte till
       9 mot 9 (spelformer.md).
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Båda punkterna är åtgärdade. Offside gäller i hela ytan, utan egen planhalva, och det står i
+      beskrivningen. Det är en medveten avvikelse från spelreglerna, där ingen kan vara offside på
+      egen planhalva, och avvikelsen är rätt val här: ledaren dömer från sidan, fällan ska fungera
+      också när linjen står lågt, och regeln blir en sak att hålla reda på i stället för två. Utan
+      krav: nämn gärna för spelarna att det skiljer sig från match. Konerna är fyra och markerar
+      ytans hörn, och de står nu både i beskrivningen och i materiallistan. Någon mittlinje behövs
+      inte längre, eftersom halvorna inte styr offside. Måtten är oförändrade och håller: 42 x 28
+      meter är 1176 kvadratmeter, alltså 117,6 per spelare vid tio och 147 vid åtta, mellan golvet
+      70 och taket 181 för fas-13-14, och längden 42 meter passerar minsta längd 35 meter, som
+      gäller just därför att övningen säger att offside gäller.

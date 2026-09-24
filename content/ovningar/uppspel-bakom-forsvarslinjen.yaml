@@ -73,7 +73,7 @@ anpassning:
   ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
-status: utkast
+status: atgarda
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -95,3 +95,20 @@ granskning:
       (fokusomraden.md). Det som stämmer: offsideförklaringen är en rimlig förenkling för en ideell
       ledare, coachningspunkterna är korrekta, nivå 2 till 3 är rätt och ledarbehov 1 med åtta
       spelare ligger under taket per ledare.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Punkt 2 är åtgärdad, punkt 1 behöver en mening till. Klart: omställningen står nu i texten,
+      försvararna vänder och anfaller målet vid bollvinst, och det finns en egen coachningspunkt om
+      det. Fokusområdet omstallning är därmed rätt märkt. Slutpunkten finns också, men måttet går
+      att läsa på två sätt och bara det ena fungerar. En tre meter bred målzon i ytans bortre ände,
+      markerad med två koner, kan läsas som en tre meter djup remsa tvärs över hela bredden, vilket
+      är rätt, eller som en tre meter bred grind mitt i bortre änden, vilket är fel. Med fyra
+      anfallare mot tre försvarare på tjugosex meters bredd blir en grind på tre meter nästan
+      omöjlig att träffa, försvararna behöver bara täcka den, och inspelet slutar ge poäng. Skriv ut
+      det otvetydigt i beskrivningen, i organisationen och i konernas anteckning, till exempel: en
+      zon som går tvärs över hela bredden längs bortre kortlinjen, tre till fem meter djup, markerad
+      med en kon på vardera sidlinjen. Övrigt är oförändrat och håller: 40 x 26 meter är 1040
+      kvadratmeter, alltså 130 per spelare vid åtta, mellan golvet 70 och taket 181, och längden 40
+      meter passerar minsta längd 35 meter för fas-13-14.
