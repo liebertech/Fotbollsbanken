@@ -60,5 +60,25 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
     kraft och om att söka ny yta.
 kalla: Egen övning, inspirerad av allmänt kända passningsrutor med rörelse.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 20 x 20 meter är 400 kvadratmeter, alltså 100 per spelare vid fyra. Golvet
+      utan motståndare för fas-13-14 är 20 och taket, 9 mot 9-matchens trängsta värde, är 181, så
+      övningen ligger i spannet (passuppbyggnad.md). Rutan är stor nog för de passningar på minst
+      tio meter som beskrivningen kräver. Längdkriteriet på 35 meter gäller inte: ingen
+      försvarslinje att spela bakom och ingen riktning, bara bollhållning utan press. Passning och
+      mottagning och spelbarhet är kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus.
+      Coachningspunkterna är korrekta och begripliga: kraft på passningen, första touchen bort från
+      den du passade till och att söka ny yta direkt. Tiden 6 till 14 minuter ligger inom fasens
+      gräns för en övning, 20 minuter. Fast storlek fyra med en femte spelare som extra mottagare är
+      en fungerande lösning för udda antal (R-050). Nivå 1 till 3 godtar jag: den lättare varianten
+      krymper rutan till 14 x 14 meter, där tio meters passningar fortfarande får plats. Två saker
+      att veta, ingen av dem stoppar övningen. 1. Riktvärdet för fasen är en boll per två spelare i
+      passningsdelar (aldrar-och-fokus.md), och här delar fyra på en boll. Det är normalt i en
+      passningsruta, men en andra boll när gruppen är van ger fler bollkontakter. 2. Volleyn i den
+      svårare varianten är ett fotmoment, inte nickning, så märkningen nickspel ska inte läggas till
+      här (R-081).

@@ -59,5 +59,23 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
     kraft och riktning.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      En sak ska ändras, och den är konkret. Beskrivningen säger att passningarna ska vara åtta till
+      arton meter, men i en kvadrat om 18 x 18 meter är den kortaste passningen mellan två hörn
+      arton meter och den diagonala drygt tjugofem. Ingen passning i övningen är åtta meter. Det
+      spelar roll, eftersom hela poängen är längre passningar: en ledare som läser åtta till arton
+      kan bygga en mindre ruta, och då är övningen borta. Skriv i stället ut de verkliga avstånden,
+      ungefär arton meter längs sidan och tjugofem diagonalt, och nämn att den lättare varianten med
+      tolv meters sida ger tolv respektive sjutton. Det som stämmer. Ytan 18 x 18 meter är 324
+      kvadratmeter, alltså 81 per spelare vid fyra. Golvet utan motståndare för fas-13-14 är 20 och
+      taket, 9 mot 9-matchens trängsta värde, är 181, så övningen ligger i spannet
+      (passuppbyggnad.md). Längdkriteriet på 35 meter gäller inte: det finns ingen försvarslinje att
+      spela bakom, bara en passningsruta utan riktning. Passning och mottagning och spelbarhet är
+      båda kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus. Tiden ligger inom
+      fasens gräns, och fast storlek fyra med en femte spelare i mitten löser udda antal (R-050).
+      Ett tips utan krav: en andra boll i kvadraten när gruppen är van dubblar bollkontakterna.

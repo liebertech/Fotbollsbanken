@@ -58,5 +58,24 @@ anpassning:
   ledare: Övningen är självgående när uppgifterna är visade. Med en andra ledare kan denne
     gå runt och rätta till teknik hos enskilda spelare.
 kalla: Egen övning, inspirerad av vanlig bollkänsla i rörelse för äldre ungdomar.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 24 x 18 meter är 432 kvadratmeter, alltså 27,0 per spelare vid sexton. Ingen
+      tar bollen från någon och alla har egen boll, så golvet utan motståndare gäller: 20 för
+      fas-13-14 (passuppbyggnad.md). Övningen klarar det. Längdkriteriet på 35 meter gäller inte,
+      eftersom det inte finns någon försvarslinje att spela bakom. Innehållet passar fasen.
+      Bollkänsla och vändningar i högre fart är just det som ska hålla när tempot stiger i 9 mot 9,
+      och koordination och bollkänsla är båda relevanta fokusområden för 13-14 år (fokusomraden.md).
+      Tiden 6 till 14 minuter ligger inom fasens gräns för en övning, 20 minuter, och nivå 1 till 2
+      stämmer. Alla är aktiva hela tiden med egen boll, alltså ingen kö alls. Två saker att veta,
+      ingen av dem stoppar övningen. 1. Ledarbehov 0 samtidigt som både beskrivningen och organisationen
+      bygger på att ledaren ropar nästa uppgift. Jag godtar det, eftersom uppvärmningen alltid körs
+      samlat med ledaren på plats (passuppbyggnad.md) och en ledare hinner ropa till två ytor
+      bredvid varandra. Hade ledarbehovet varit 1 hade högsta antalet behövt sänkas till fjorton,
+      taket per ledare i fasen (R-050). 2. Sexton spelare i rask fart på 432 kvadratmeter är i
+      underkant på utrymme även om golvet klaras. Har ledaren gott om plats är 28 x 20 meter
+      bekvämare.

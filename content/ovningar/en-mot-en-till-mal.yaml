@@ -63,5 +63,25 @@ anpassning:
   ledare: En ledare krävs för tydlig rotation och rättvis startsignal. Med en andra ledare
     kan denne stå i kön och förbereda nästa par så att det aldrig blir stopp.
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i ungdomsfotboll.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen fyller luckan jag bad om i omgång 3: en enkel spelövning i 1 mot 1 på nivå 1 för 8-9
+      år. Ytan håller. 10 x 8 meter för två spelare är 40 kvadratmeter per spelare, över golvet 25
+      för fas-8-9 med motståndare och under 5 mot 5-matchens trängsta värde 45 (passuppbyggnad.md).
+      Den nedre gränsen 12 x 8 som jag satte för en duell i en-mot-en-till-smamal gällde fas-10-12,
+      där golvet är 45 och en elvaåring behöver längre sträcka för att hinna accelerera förbi. 10 x 8
+      är rätt mått för den här åldern, så den gränsen ska inte flyttas hit. En sak ska ändras.
+      Fälten och texten säger emot varandra. Organisationen beskriver en kö utanför ytan och att
+      nästa par går in efter varje försök, men spelare är 2 till 2 och grupptypen är par, alltså
+      finns ingen kö: gruppen ÄR de två som duellerar. Tillsammans med ledarbehov 1 blir följden att
+      varje par kräver en egen ledare (R-050, R-055). Med tolv spelare och två ledare blir det sex
+      par och sex ledare, och generatorn kan då aldrig välja övningen. Välj en av två vägar. 1.
+      Behåll ledarbehov 1 och gör gruppen större, till exempel 4 spelare, där två är inne på ytan och
+      två står i kö utanför. Skriv det i organisationen. Ytan räknas då fortfarande på de två som är
+      inne (passuppbyggnad.md, Så räknas talet fram, punkt 4), och kötiden håller riktvärdet 2-3 per
+      mål. 2. Eller sätt ledarbehov 0 och låt det par som just kört hämta reservbollen och starta om,
+      som i godkända 2 mot 1 till mål. Då kan en ensam ledare ha flera ytor igång (R-055).

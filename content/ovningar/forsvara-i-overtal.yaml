@@ -59,5 +59,26 @@ anpassning:
   ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare
     håller den ordinarie ledaren i både tid och byten.
 kalla: Egen övning, inspirerad av vanlig överlägesträning i försvarsspel.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ytan klarar golvet men har fel form för övningen, och det är mitt eget golv som har dragit
+      måttet dit. Kontrollräknat: 20 x 15 meter är 300 kvadratmeter, alltså 75,0 per spelare vid
+      fyra, fem över golvet 70 för fas-13-14 med motståndare. Men golvet är satt för dueller och
+      spel med riktning. Det här är ett bollhållningsspel i övertal utan mål och utan riktning, och
+      för den sortens övning gäller undantag 1 i passuppbyggnad.md, som finns just för att golvet
+      annars trycker upp ytan till något som förstör övningen: pressen ska nå fram på ett par
+      sekunder, och måttet är minst 12 x 12 meter för 13-19 år. En ensam försvarare som ska täcka
+      300 kvadratmeter mot tre anfallare hinner aldrig fram i den position syftet beskriver. Hen
+      jagar i stället, och coachningspunkten om att sticka ut foten först när touchen är dålig får
+      sällan något läge. Krymp ytan till ungefär 14 x 12 meter, och skriv i beskrivningen eller
+      organisationen att ytan är liten med flit, så att anfallarna tvingas välja passningen tidigt.
+      Undantaget gäller bara om texten visar att det är den sortens övning. Den svårare varianten
+      kan då bli 12 x 10 meter. Det som stämmer: försvarsspel är kärnområde för fas-13-14, syftet
+      hänger ihop med det, coachningspunkterna om att jockeya, styra åt en sida och vänta på en
+      dålig touch är korrekta, nivå 2 till 3 är rätt och ledarbehov 1 med fyra spelare ligger under
+      taket per ledare. Utan krav: namnet säger underläge och id:t övertal. Namnet är det rätta,
+      id:t ändras aldrig.

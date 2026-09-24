@@ -65,5 +65,25 @@ anpassning:
   ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare
     dömer lagen själva, vilket också tränar fair play.
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fasta situationer inbyggda.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Insparken är rätt återgiven, men två saker gör att övningen inte går att köra som den står.
+      Räkningen först: 45 x 30 meter är 1350 kvadratmeter, alltså 96,4 per spelare vid fjorton och
+      135 vid tio, mellan golvet 70 och taket 181 för fas-13-14. Längden 45 meter passerar också
+      minsta längd, 35 meter, även om längdkriteriet inte slår till här. Insparken: bollen ligger
+      still i straffområdet och är i spel när den har sparkats och tydligt rört sig, motståndarna
+      minst nio meter bort. Det stämmer med spelformer.md och SvFF:s spelformsblad för 9 mot 9,
+      hämtat 2026-09-11. Två saker ska ändras. 1. Målvakten. Organisationen säger "inklusive
+      målvakt om gruppen är tillräckligt stor", utan något antal. Det är samma otydlighet som jag
+      fällde i matchspel 7 mot 7 i bredd i omgång 3, och här väger den tyngre: utan målvakt finns
+      ingen inspark, och insparken är hela syftet. Skriv att båda lagen alltid har målvakt, och
+      skriv ut lagstorleken per gruppstorlek, tio ger fyra mot fyra plus målvakter och fjorton sex
+      mot sex plus målvakter. 2. Straffområdet finns inte utmärkt. Bollen ska läggas i
+      straffområdet, men ytan har bara fyra hörnmarkeringar. Ange hur det markeras, eller skriv att
+      insparken tas från en punkt ungefär fem meter framför mål och att motståndarna står nio meter
+      därifrån. Det som stämmer i övrigt: fasta situationer och försvarsspel är kärnområden, tiden
+      ligger under gränsen för spel och ledarbehov 0 är rätt (R-057).

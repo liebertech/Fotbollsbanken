@@ -68,5 +68,25 @@ anpassning:
   ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Längden håller, och det är det viktigaste här. Kontrollräknat: 40 x 26 meter är 1040
+      kvadratmeter, alltså 130 per spelare vid åtta, mellan golvet 70 och taket 181 för fas-13-14
+      (passuppbyggnad.md). Längdkriteriet slår till precis som det ska: beskrivningen har ett bakre
+      lag som ska passeras i ytans längdriktning, poängen är att bollen ska bakom det, och offside
+      gäller uttryckligen. Minsta längd för fas-13-14 är 35 meter och övningen har 40. Två saker ska
+      ändras. 1. Anfallet saknar slutpunkt. Det enda målet står i anfallarnas egen ände med deras
+      målvakt, så när bollen väl är spelad bakom linjen finns inget att göra med den. Skriv in vad
+      som ger poäng: en målzon eller ett minimål i bortre änden, eller att en medspelare ska ta emot
+      bollen bakom linjen inne i ytan. Utan det vet varken spelarna eller ledaren när försöket
+      lyckades. 2. Omställning är andra fokusområde men syns ingenstans i texten. Av materiallistan
+      förstår jag att tanken är att försvararna får anfalla målet när de vinner bollen, men det står
+      inte. Skriv ut det, så får försvararna dessutom ett eget skäl att stiga upp. Annars ska
+      fokusområdet tas bort, eftersom taggen ska beskriva vad spelarna faktiskt övar
+      (fokusomraden.md). Det som stämmer: offsideförklaringen är en rimlig förenkling för en ideell
+      ledare, coachningspunkterna är korrekta, nivå 2 till 3 är rätt och ledarbehov 1 med åtta
+      spelare ligger under taket per ledare.

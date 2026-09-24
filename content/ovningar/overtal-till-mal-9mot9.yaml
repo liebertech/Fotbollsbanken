@@ -62,5 +62,24 @@ anpassning:
   ledare: En ledare krävs för att spela in bollen och hålla tempo i rotationen. Utan extra
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av vanlig överlägesträning mot mål.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 30 x 20 meter är 600 kvadratmeter, alltså 85,7 per spelare vid sju. Golvet för
+      fas-13-14 med motståndare är 70 och taket 181, så övningen ligger i spannet
+      (passuppbyggnad.md). Målvakten är medräknad, eftersom hen står på ytan. Längdkriteriet på 35
+      meter slår inte till, och det är rätt bedömt: det här är en avslutsövning mot ett mål, och de
+      två försvararna är inte en försvarslinje som ska passeras i längdriktningen. Kriteriet gäller
+      uttryckligen inte avslutsövningar utan linje att passera. Innehållet håller. Avslut och
+      spelbarhet är kärnområden för fas-13-14, syftet hänger ihop med huvudfokus, och alla sju är
+      med i varje försök, så kötiden är noll. Övertalet fyra mot två gör att anfallarna hinner
+      lyckas, vilket är rätt för nivå 1 och 2. Coachningspunkterna är korrekta och den lättare
+      varianten, fem mot en, går jämnt ut på sju spelare. Tiden 8 till 16 minuter ligger inom fasens
+      gräns för en övning, 20 minuter, och ledarbehov 1 med sju spelare ligger under taket per
+      ledare. Två småsaker, ingen av dem stoppar övningen. 1. Materiallistan saknar koner. Ytan på
+      30 x 20 meter behöver markeras, fyra koner räcker. 2. Skriv gärna var ledaren står när hen
+      spelar in bollen. Det ska vara vid sidan och utanför skottlinjen, eftersom det skjuts ofta och
+      hårt i den här åldern.

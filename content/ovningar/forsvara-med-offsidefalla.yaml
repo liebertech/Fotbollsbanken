@@ -64,5 +64,26 @@ anpassning:
   ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den
     ordinarie ledaren i både domandet och coachningen.
 kalla: Egen övning, inspirerad av lagförsvar med offsidefälla i 9 mot 9 och äldre.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Måtten håller, två saker i texten gör det inte. Kontrollräknat: 42 x 28 meter är 1176
+      kvadratmeter, alltså 117,6 per spelare vid tio och 147 vid åtta, mellan golvet 70 och taket
+      181 för fas-13-14. Längdkriteriet slår till, korrekt: övningen säger att offside gäller, och
+      offside är bara meningsfullt när det finns ett djup att spela i. Minsta längd för fas-13-14 är
+      35 meter och övningen har 42 (passuppbyggnad.md). Två saker ska ändras. 1. Det står inte var
+      offside gäller. Enligt spelreglerna kan ingen vara offside på egen planhalva, men ytan har
+      varken mittlinje eller markering. Ledaren, som ska döma offside, vet alltså inte om en spelare
+      bakom linjen på egen halva är offside, och det är just den bedömningen övningen står och
+      faller med. Skriv ut vad som gäller. Mitt förslag: offside gäller i hela ytan. Det är enklast
+      att döma och gör att fällan fungerar också när linjen står lågt. 2. Materiallistan saknar
+      markering av ytan. Fyra koner till hörnen, och två till om en mittlinje ska synas. Det som
+      stämmer: försvarsspel och omställning är båda kärnområden för fas-13-14, och omställningen
+      syns på riktigt i texten och inte bara i märkningen. Coachningspunkterna om att stiga upp
+      tillsammans och prata med varandra är korrekta och begripliga. Nivå 2 till 3 är rätt, en
+      offsidefälla kräver ett lag som redan kan hålla ihop. Ledarbehov 1 är rätt, någon måste döma.
+      Ingen retreatlinje finns i texten, vilket stämmer: den hör till 5 mot 5 och 7 mot 7, inte till
+      9 mot 9 (spelformer.md).

@@ -57,5 +57,24 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ytan håller, målen gör det inte. Kontrollräknat: 32 x 20 meter är 640 kvadratmeter, alltså
+      80,0 per spelare vid åtta och 106,7 vid sex, över golvet 70 och under taket 181 för fas-13-14.
+      Längdkriteriet slår inte till, rätt bedömt: ingen försvarslinje att spela bakom och ingen
+      offside i texten, bara ett smålagsspel till mål. Två saker ska ändras. 1. Materiallistan säger
+      mal, alltså mål i en spelforms storlek, och spelet är utan målvakt. I 9 mot 9 är målet 6 x 2,2
+      meter (spelformer.md). Två obevakade sexmetersmål i en yta som bara är tjugo meter bred gör
+      att skott från var som helst går in, och då är varken avslutet eller försvarsspelet värt
+      något. Byt till minimal, ungefär 1 till 1,5 meter breda, eller behåll målen och sätt in
+      målvakter. Skriv ut vilket. Påminnelsen om förankrade mål gäller i båda fallen (R-084). 2.
+      Materiallistan saknar markering av ytan, och den svårare varianten talar om eget lags
+      planhalva utan att någon mittlinje finns. Lägg till koner till hörnen och till mittlinjen. Det
+      som stämmer: avslut och spelbarhet är kärnområden för fas-13-14, tiden 10 till 20 minuter
+      ligger under fasens gräns för spel, 35 minuter, ledarbehov 0 är rätt (R-057) och grupptypen
+      tva-lag stämmer med del-spel (R-008). En liten sak: namnet säger 4 mot 4 men spannet sex till
+      åtta betyder 3 mot 3 till 4 mot 4. Skriv gärna om namnet.

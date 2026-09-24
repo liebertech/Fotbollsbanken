@@ -61,5 +61,26 @@ anpassning:
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Undantaget håller, innehållet har tre luckor. Först ytan: 14 x 12 meter är 168 kvadratmeter,
+      alltså 12,0 per spelare vid fjorton, mot golvet 20 utan motståndare för fas-13-14. Övningen
+      träffas av undantag 3, spelare på egna platser eller bestämd bana, och texten visar det:
+      organisationen säger sju fasta stationer, en till två spelare per station och minst två meters
+      avstånd mellan spelarna på samma station. Det är precis vad undantaget kräver
+      (passuppbyggnad.md). Ytan godtas alltså. Tre saker ska ändras. 1. Antalet stationer stämmer
+      inte. Beskrivningen räknar upp sex övningar (enbenshopp, utfallssteg, sidohopp, planka, balans
+      på ett ben och höga knän), medan organisationen och materiallistan säger sju. Lägg till en
+      sjunde eller ändra till sex överallt. 2. Balansstationen kräver en medspelare som knuffar
+      lätt, men organisationen tillåter en ensam spelare per station. Skriv att den stationen alltid
+      bemannas av två, och lägg till en coachningspunkt om att knuffen ska vara lätt och
+      kontrollerad. I den här åldern eskalerar den annars snabbt. 3. Rotationen beskrivs på två
+      sätt: medurs på ledarens signal i beskrivningen, i egen takt i anpassningen för udda antal.
+      Välj ett. Det som stämmer: tiden 8 till 15 minuter ligger i nivå med de 10 till 15 minuter
+      SvFF anger för Knäkontroll i uppvärmningen (passuppbyggnad.md, hämtat 2026-09-11), ledarbehov
+      1 med högst fjorton spelare stämmer med taket per ledare (R-050), och texten är egen och inte
+      en avskrift av något program.
