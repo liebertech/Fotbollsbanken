@@ -4,11 +4,13 @@ namn: Hörnor med nickar
 syfte: Spelarna ska öva löpmönster, inspel och avslut med huvudet vid hörnor, och att
   försvara sitt mål vid samma situation.
 beskrivning: |
-  Fyra anfallare och tre försvarare med målvakt övar hörnor på en yta om 30 x 20 meter.
+  Fyra anfallare och tre försvarare med målvakt övar hörnor på en yta om 30 x 45 meter,
+  matchens planbredd, så att hörnflaggan ligger på rätt avstånd från båda stolparna.
   Ledaren slår in bollen från hörnflaggan. Anfallarna löper i tajmade mönster mot när och
   bortre stolpen och avslutar med huvudet när inlägget passar, annars med foten.
-  Försvararna ska markera varsin anfallare och rensa undan faran. Antalet nickar hålls
-  lågt och blandas med foten, i linje med taket för nickträning i åldern.
+  Försvararna ska markera varsin anfallare och rensa undan faran. Varje anfallare nickar
+  högst två gånger per omgång, och de första omgångarna slås som lätta, långsamma inlägg
+  från nära håll innan avståndet och farten ökar.
 organisation: |
   En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. Ledaren
   slår in hörnorna och styr rotationen mellan anfallare och försvarare.
@@ -21,7 +23,6 @@ alder:
 spelformer:
   - 9mot9
 niva:
-  - niva-1
   - niva-2
   - niva-3
 passdelar:
@@ -41,7 +42,7 @@ tid:
 yta:
   alla:
     langd: 30
-    bredd: 20
+    bredd: 45
 material:
   - typ: mal
     antal: 1
@@ -68,7 +69,7 @@ anpassning:
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av vanlig hörnträning, anpassad efter SvFF:s riktlinje om
   begränsad nickmängd för 13-14 år.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

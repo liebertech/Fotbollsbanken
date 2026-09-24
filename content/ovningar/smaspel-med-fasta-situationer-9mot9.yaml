@@ -4,14 +4,16 @@ namn: Smålagsspel med fasta situationer, 9 mot 9
 syfte: Spelarna ska öva fasta situationer, inklusive inspark, som en naturlig del av ett
   vanligt matchspel.
 beskrivning: |
-  Två lag spelar mot varandra på en yta om 45 x 30 meter med fasta mål och varsin
+  Två lag spelar mot varandra på en yta om 45 x 30 meter med fasta mål, alltid med varsin
   målvakt. Varje gång bollen går över kortlinjen efter att ha rört ett anfallande lag
-  spelas ett inspark, precis som i 9 mot 9: bollen läggs i straffområdet och motståndarna
-  ska stå minst nio meter bort tills den är i spel. Hörnor, inkast och frisparkar spelas
-  också enligt de vanliga reglerna. Ledaren påminner om avstånd och snabb återstart.
+  spelas ett inspark, precis som i 9 mot 9: bollen läggs på en markerad punkt ungefär fem
+  meter framför mål och motståndarna ska stå minst nio meter bort tills den är i spel.
+  Hörnor, inkast och frisparkar spelas också enligt de vanliga reglerna. Ledaren påminner
+  om avstånd och snabb återstart.
 organisation: |
-  Två lag om upp till sju spelare, inklusive målvakt om gruppen är tillräckligt stor.
-  Spelplanens hörn märks ut med markeringar.
+  Två lag per yta, alltid med varsin målvakt. Tio spelare: fyra mot fyra plus målvakter.
+  Fjorton spelare: sex mot sex plus målvakter. Spelplanens hörn märks ut med markeringar,
+  liksom insparkspunkten fem meter framför vartdera målet.
 fokusomraden:
   - fasta-situationer
   - forsvarsspel
@@ -50,6 +52,9 @@ material:
   - typ: markering
     antal: 4
     anteckning: hörnmarkeringar
+  - typ: markering
+    antal: 2
+    anteckning: insparkspunkter, fem meter framför vartdera målet
 coachningspunkter:
   - Var snabb ut i position vid en fast situation, stå inte still.
   - Håll rätt avstånd vid inspark, minst nio meter från bollen.
@@ -65,7 +70,7 @@ anpassning:
   ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare
     dömer lagen själva, vilket också tränar fair play.
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fasta situationer inbyggda.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

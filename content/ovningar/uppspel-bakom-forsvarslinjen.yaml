@@ -7,12 +7,16 @@ beskrivning: |
   Fyra anfallare med målvakt bygger upp bollen från egen backlinje mot tre försvarare som
   håller en gemensam linje ungefär i mitten av ytan och försöker spela anfallarna
   offside. Anfallarna ska hitta ett läge att spela en boll bakom linjen till en medspelare
-  som tajmar sin löpning, i stället för att alltid dribbla eller passa kort. Vanliga
-  offsideregler gäller: en löpare som redan är bakom linjen när passningen slås är
-  offside. Byt roller mellan anfallare och försvarare efter halva tiden.
+  som tajmar sin löpning och tar emot bollen inne i en tre meter bred målzon i ytans
+  bortre ände, i stället för att alltid dribbla eller passa kort. Ett mottaget inspel i
+  målzonen räknas som ett lyckat anfall. Vanliga offsideregler gäller: en löpare som redan
+  är bakom linjen när passningen slås är offside. Vinner försvararna bollen vänder de
+  direkt och anfaller anfallarnas mål och målvakt i egen ände, en snabb omställning från
+  bollvinst till avslut. Byt roller mellan anfallare och försvarare efter halva tiden.
 organisation: |
-  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. Ledaren
-  styr byte av roller och dömer offside från sidan.
+  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. En tre
+  meter bred målzon, markerad med koner, ligger i ytans bortre ände. Ledaren styr byte av
+  roller och dömer offside från sidan.
 fokusomraden:
   - speluppbyggnad
   - omstallning
@@ -51,12 +55,13 @@ material:
   - typ: boll
     antal: 3
   - typ: kon
-    antal: 4
-    anteckning: markerar ytans hörn
+    antal: 6
+    anteckning: fyra markerar ytans hörn, två markerar målzonens bredd i bortre änden
 coachningspunkter:
   - Titta upp innan du tar emot bollen så att du ser om en löpare är på väg.
   - Tajma löpningen så att du startar när passningen slås, inte före.
   - Försvarare ska stiga upp tillsammans, hela linjen på en gång.
+  - Vid bollvinst, vänd snabbt och anfall målet direkt, innan anfallarna hinner organisera om.
 varianter:
   lattare: Försvararna håller en fast linje och pressar inte bollhållaren.
   svarare: Sätt en tidsgräns för hur länge anfallarna får hålla bollen innan inspelet
@@ -68,7 +73,7 @@ anpassning:
   ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

@@ -4,15 +4,17 @@ namn: Skadeförebyggande program 13-14 år
 syfte: Spelarna ska öva knä- och fotledskontroll, bålstabilitet och landningsteknik som
   förberedelse inför träningens mer intensiva delar.
 beskrivning: |
-  Spelarna joggar mellan sju markerade stationer i en cirkel och gör en övning vid varje
+  Spelarna joggar mellan sex markerade stationer i en cirkel och gör en övning vid varje
   station: enbenshopp med mjuk landning, utfallssteg, sidohopp över en linje, planka,
-  balans på ett ben med lätt knuff från en medspelare och rak löpning med höga knän.
-  Ledaren visar varje övning innan gruppen sätter igång och går runt för att rätta till
-  knäläget vid landning och hopp.
+  balans på ett ben med lätt och kontrollerad knuff från en medspelare och rak löpning med
+  höga knän. Ledaren visar varje övning innan gruppen sätter igång och går runt för att
+  rätta till knäläget vid landning och hopp.
 organisation: |
-  En cirkel med sju stationer per grupp om upp till fjorton spelare, en till två vid varje
-  station med minst två meters avstånd mellan spelarna på samma station. Spelarna roterar
-  medurs mellan stationerna på ledarens signal. Fler grupper bygger en egen cirkel bredvid.
+  En cirkel med sex stationer per grupp om upp till fjorton spelare, med minst två meters
+  avstånd mellan spelarna på samma station. Balansstationen bemannas alltid av två
+  spelare, eftersom övningen kräver en medspelare som knuffar. De övriga fem stationerna
+  har en till två spelare var. Spelarna roterar medurs mellan stationerna på ledarens
+  signal. Fler grupper bygger en egen cirkel bredvid.
 fokusomraden:
   - skadeforebyggande
   - koordination
@@ -44,24 +46,27 @@ yta:
     bredd: 12
 material:
   - typ: markering
-    antal: 7
+    antal: 6
   - typ: kon
     antal: 4
 coachningspunkter:
   - Landa mjukt på hela foten med lätt böjda knän.
   - Låt inte knäna vika inåt vid landning eller riktningsbyte.
   - Håll bålen stilla och blicken framåt, inte ner mot fötterna.
+  - Knuffen på balansstationen ska vara lätt och kontrollerad, inte ett knuff-slag.
 varianter:
   lattare: Ta bort hoppen och gör bara balans- och stabilitetsövningarna vid varje station.
   svarare: Håll balansen fem sekunder efter varje landning och lägg till en snabb
     riktningsändring efter utfallssteget.
 anpassning:
-  fler_spelare: Bygg en andra cirkel med samma sju stationer bredvid.
-  udda_antal: Spelarna roterar i egen takt inom sin cirkel, så udda antal spelar ingen roll.
+  fler_spelare: Bygg en andra cirkel med samma sex stationer bredvid.
+  udda_antal: Udda antal spelar ingen roll utom vid balansstationen, som alltid ska ha två.
+    Låt vid behov en spelare göra en station två gånger i rad så att balansstationen får
+    ett par.
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

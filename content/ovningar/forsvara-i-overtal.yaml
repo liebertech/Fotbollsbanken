@@ -9,8 +9,12 @@ beskrivning: |
   ut foten eller pressa en dålig touch. Byt försvarare efter en bestämd tid eller så fort
   bollen vinns eller spelas ut ur ytan.
 organisation: |
-  En yta om 20 x 15 meter per grupp om fyra: tre anfallare och en försvarare. Försvararen
-  byts av efter en minut eller vid bollvinst. Ledaren styr byten och tiden.
+  En yta om 14 x 12 meter per grupp om fyra: tre anfallare och en försvarare. Ytan är
+  trång med flit: det här är ett positionsspel i övertal utan mål och utan riktning, där
+  passuppbyggnad.md, undantag 1, sätter minst 12 x 12 meter för 13-19 år i stället för det
+  vanliga golvet, eftersom pressen ska nå fram på ett par sekunder och tvinga fram ett
+  tidigt val. Försvararen byts av efter en minut eller vid bollvinst. Ledaren styr byten
+  och tiden.
 fokusomraden:
   - forsvarsspel
 alder:
@@ -37,8 +41,8 @@ tid:
   langst: 15
 yta:
   alla:
-    langd: 20
-    bredd: 15
+    langd: 14
+    bredd: 12
 material:
   - typ: boll
     antal: 2
@@ -51,7 +55,7 @@ coachningspunkter:
   - Stick ut foten först när touchen är dålig, chansa inte i onödan.
 varianter:
   lattare: Anfallarna får bara två touchar var, vilket ger försvararen mer tid att jockeya.
-  svarare: Krymp ytan till 16 x 12 meter så att beslutstiden blir kortare.
+  svarare: Krymp ytan till 12 x 10 meter så att beslutstiden blir ännu kortare.
 anpassning:
   fler_spelare: Bygg fler ytor med samma uppställning bredvid.
   udda_antal: Den femte spelaren väntar vid sidan och byter in som ny försvarare vid nästa
@@ -59,7 +63,7 @@ anpassning:
   ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare
     håller den ordinarie ledaren i både tid och byten.
 kalla: Egen övning, inspirerad av vanlig överlägesträning i försvarsspel.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

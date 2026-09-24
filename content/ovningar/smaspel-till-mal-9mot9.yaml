@@ -1,15 +1,15 @@
 schema: 1
 id: smaspel-till-mal-9mot9
-namn: Smålagsspel 4 mot 4 till mål
+namn: Smålagsspel 3 mot 3 till 4 mot 4, till mål
 syfte: Spelarna ska avsluta ofta och försvara sitt mål i ett litet matchspel utan målvakt.
 beskrivning: |
-  Två lag om tre till fyra spelare möts på en yta om 32 x 20 meter med ett mål i var ände
-  utan målvakt. Lagen spelar match med vanliga regler i litet format, med mycket bolltid
-  och många avslutsförsök för alla. Extra poäng ges för mål som föregås av minst tre
-  passningar i följd inom laget.
+  Två lag om tre till fyra spelare möts på en yta om 32 x 20 meter med ett minimål,
+  ungefär 1 till 1,5 meter brett, i var ände och utan målvakt. Lagen spelar match med
+  vanliga regler i litet format, med mycket bolltid och många avslutsförsök för alla.
+  Extra poäng ges för mål som föregås av minst tre passningar i följd inom laget.
 organisation: |
-  Två lag om tre till fyra spelare per yta. Flera ytor läggs bredvid varandra om gruppen
-  är större, med tre meters mellanrum.
+  Två lag om tre till fyra spelare per yta. Ytans hörn och mittlinje markeras med koner.
+  Flera ytor läggs bredvid varandra om gruppen är större, med tre meters mellanrum.
 fokusomraden:
   - avslut
   - spelbarhet
@@ -37,13 +37,16 @@ yta:
     langd: 32
     bredd: 20
 material:
-  - typ: mal
+  - typ: minimal
     antal: 2
   - typ: vast
     antal: 4
     anteckning: till det ena laget
   - typ: boll
     antal: 3
+  - typ: kon
+    antal: 6
+    anteckning: fyra markerar ytans hörn, två markerar mittlinjen
 coachningspunkter:
   - Sprid ut er över hela ytan så att ni är lätta att hitta för den som har boll.
   - Skjut tidigt när vägen till mål är öppen.
@@ -57,7 +60,7 @@ anpassning:
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

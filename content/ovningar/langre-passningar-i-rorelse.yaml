@@ -4,10 +4,11 @@ namn: Längre passningar i rörelse
 syfte: Spelarna ska passa längre bollar med rätt kraft och röra sig direkt efter sin egen
   passning.
 beskrivning: |
-  Fyra spelare står i varsitt hörn av en stor kvadrat. Spelaren med boll passar diagonalt
-  eller till nästa hörn och följer alltid efter sin egen passning in i den positionen.
-  Passningarna ska vara längre än i en vanlig passningsruta, åtta till arton meter, så att
-  spelarna vänjer sig vid att slå och ta emot bollar i den fart som gäller på en stor plan.
+  Fyra spelare står i varsitt hörn av en stor kvadrat om 18 x 18 meter. Spelaren med boll
+  passar diagonalt eller till nästa hörn och följer alltid efter sin egen passning in i
+  den positionen. Passningarna längs sidan är arton meter och de diagonala drygt tjugofem,
+  klart längre än i en vanlig passningsruta, så att spelarna vänjer sig vid att slå och ta
+  emot bollar i den fart som gäller på en stor plan.
 organisation: |
   En kvadrat om 18 x 18 meter per grupp om fyra, en boll per grupp. Byt riktning efter
   halva tiden. Fler grupper läggs bredvid varandra med tre meters mellanrum.
@@ -50,7 +51,8 @@ coachningspunkter:
   - Ta första touchen i den riktning du ska röra dig vidare.
   - Rör dig direkt efter din passning, stå inte kvar i hörnet.
 varianter:
-  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert.
+  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert. Ger
+    tolv meter längs sidan och ungefär sjutton meter diagonalt.
   svarare: Bara en touch tillåten innan bollen ska passas vidare.
 anpassning:
   fler_spelare: Bygg fler kvadrater bredvid varandra, tre meters mellanrum.
@@ -59,7 +61,7 @@ anpassning:
   ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
     kraft och riktning.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

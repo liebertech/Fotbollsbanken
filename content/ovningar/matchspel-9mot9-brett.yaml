@@ -4,16 +4,19 @@ namn: Matchspel 9 mot 9 i bredd
 syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i bredd och djup i ett
   matchlikt spel.
 beskrivning: |
-  Två lag möts på en yta om 65 x 50 meter med mål i var ände, alltid med varsin målvakt.
-  Antalet utespelare i varje lag beror på gruppens storlek: tio spelare ger fyra mot fyra,
-  fjorton ger sex mot sex och arton, fullstort 9 mot 9, ger åtta mot åtta. Är antalet udda
-  spelar det ena laget med en utespelare mer. Laget som har boll ska sprida ut sig i bredd
-  och djup och hålla bollen genom passningar, i stället för att klumpa ihop sig runt
-  bollhållaren. Vanliga regler i 9 mot 9 gäller, inklusive offside.
+  Två lag möts på en yta med mål i var ände, alltid med varsin målvakt. Antalet utespelare
+  i varje lag beror på gruppens storlek: fjorton spelare ger sex mot sex och arton,
+  fullstort 9 mot 9, ger åtta mot åtta. Vid fjorton spelare krymps ytan till ungefär 55 x
+  40 meter, eftersom matchens fulla yta blir för gles för ett så litet lag. Vid arton
+  spelas på hela ytan, 65 x 50 meter, matchens egen plan. Är antalet udda spelar det ena
+  laget med en utespelare mer. Laget som har boll ska sprida ut sig i bredd och djup och
+  hålla bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren.
+  Vanliga regler i 9 mot 9 gäller, inklusive offside.
 organisation: |
-  Två lag per yta, alltid med varsin målvakt. Tio spelare: fyra mot fyra. Fjorton spelare:
-  sex mot sex. Arton spelare: åtta mot åtta. Vid ojämnt antal spelar det ena laget med en
-  utespelare mer än det andra. Målvakterna byts av under passet så att fler får prova.
+  Två lag per yta, alltid med varsin målvakt. Fjorton spelare: sex mot sex, på en krympt
+  yta om ungefär 55 x 40 meter. Arton spelare: åtta mot åtta, på hela ytan 65 x 50 meter.
+  Vid ojämnt antal spelar det ena laget med en utespelare mer än det andra. Målvakterna
+  byts av under passet så att fler får prova.
 fokusomraden:
   - spelbarhet
   - passning-mottagning
@@ -30,7 +33,7 @@ passdelar:
   - del-spel
 ledarbehov: 0
 spelare:
-  min: 10
+  min: 14
   max: 18
 grupptyp: tva-lag
 tid:
@@ -61,12 +64,13 @@ varianter:
   svarare: Poäng bara för mål som föregås av minst fyra passningar i följd.
 anpassning:
   fler_spelare: Vid fler än arton spelare, dela gruppen i två separata matcher på varsin
-    yta.
+    yta. Vid färre än fjorton spelare, se en annan övning, matchens plan blir för gles för
+    ett mindre lag.
   udda_antal: Ett lag spelar med en utespelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer, uppmärksammar offsidelinjen och peppar
     från sidan.
 kalla: Egen övning, inspirerad av vanligt matchspel i 9 mot 9-format.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert

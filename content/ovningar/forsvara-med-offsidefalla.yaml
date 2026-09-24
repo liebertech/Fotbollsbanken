@@ -5,10 +5,11 @@ syfte: Spelarna ska försvara tillsammans som lag och använda offsideregeln fö
   tillbaka initiativet.
 beskrivning: |
   Två lag om fyra utespelare och varsin målvakt möts på en yta om 42 x 28 meter med mål i
-  var ände. Vanliga regler gäller, inklusive offside: laget utan boll ska hålla en
-  gemensam linje och stiga upp tillsammans för att spela motståndarnas anfallare offside,
-  i stället för att en och en falla tillbaka. Så fort bollen vinns ska laget ställa om
-  snabbt och söka djup innan motståndarna hinner organisera sig.
+  var ände, markerad i hörnen med koner. Offside gäller i hela ytan, utan egen planhalva:
+  laget utan boll ska hålla en gemensam linje och stiga upp tillsammans för att spela
+  motståndarnas anfallare offside, i stället för att en och en falla tillbaka. Så fort
+  bollen vinns ska laget ställa om snabbt och söka djup innan motståndarna hinner
+  organisera sig.
 organisation: |
   Två lag om fyra utespelare plus varsin målvakt, totalt tio spelare per yta. Är gruppen
   åtta eller nio spelare spelas tre mot tre med målvakt, och den nionde blir en extra
@@ -49,6 +50,9 @@ material:
     anteckning: till det ena laget
   - typ: boll
     antal: 3
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
 coachningspunkter:
   - Stig upp tillsammans, hela linjen på en gång, inte en spelare i taget.
   - Kommunicera högt med varandra om när ni håller linjen.
@@ -64,7 +68,7 @@ anpassning:
   ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den
     ordinarie ledaren i både domandet och coachningen.
 kalla: Egen övning, inspirerad av lagförsvar med offsidefälla i 9 mot 9 och äldre.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
