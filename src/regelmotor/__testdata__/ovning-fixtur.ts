@@ -28,6 +28,7 @@ export function validExercise(overrides: Record<string, unknown> = {}): Record<s
     udda_antal_losning: true,
     tid: { kortast: 8, rekommenderad: 12, langst: 15 },
     yta: { '7mot7': { langd: 15, bredd: 15 } },
+    ytreferens: { '7mot7': 'ungefär en tredjedel av stora planens straffområde' },
     material: [
       { typ: 'boll', antal: 1, anteckning: 'en per grupp' },
       { typ: 'kon', antal: 4 },

@@ -16,7 +16,13 @@ import {
   HEADING_MIN_AGE,
   SESSION_PARTS_FROM_BANK,
 } from '../keys.ts';
-import { LIMITS, createExerciseSchemas, exerciseFileSchema, looksLikeEmail } from './ovning.ts';
+import {
+  LIMITS,
+  containsMeasurement,
+  createExerciseSchemas,
+  exerciseFileSchema,
+  looksLikeEmail,
+} from './ovning.ts';
 import { reviewEntry, validExercise } from '../__testdata__/ovning-fixtur.ts';
 
 /** Felen som schemat ger, en rad per fel som `fält: meddelande`. */
@@ -317,6 +323,88 @@ describe('R-092 ytan per spelform', () => {
       yta: { alla: { langd: 20, bredd: 15 }, '7mot7': { langd: 15, bredd: 15 } },
     });
     expect(failsWith(input, 'yta.7mot7', 'R-092')).toBe(true);
+  });
+});
+
+describe('ADR 0017 ytreferensen', () => {
+  it('en övning utan ytreferens godkänns, också som godkänd bankövning', () => {
+    expect(issuesFor(validExercise({ ytreferens: undefined }))).toEqual([]);
+    const godkand = validExercise({
+      ytreferens: undefined,
+      status: 'godkand',
+      granskning: [reviewEntry()],
+    });
+    expect(issuesFor(godkand)).toEqual([]);
+  });
+
+  it('en referens per spelform godkänns', () => {
+    const input = validExercise({
+      ytreferens: { '7mot7': 'ungefär en fjärdedel av stora planens straffområde' },
+    });
+    expect(issuesFor(input)).toEqual([]);
+  });
+
+  it('en nyckel som inte finns bland spelformerna underkänns', () => {
+    const input = validExercise({ ytreferens: { '5mot5': 'stora planens målområde' } });
+    expect(failsWith(input, 'ytreferens.5mot5', 'ADR 0017')).toBe(true);
+  });
+
+  it('en spelform får inte täckas både av alla och av sin egen nyckel', () => {
+    const input = validExercise({
+      ytreferens: { alla: 'stora planens målområde', '7mot7': 'ert eget straffområde' },
+    });
+    expect(failsWith(input, 'ytreferens.7mot7', 'ADR 0017')).toBe(true);
+  });
+
+  it('en tom ytreferens underkänns, eftersom fältet i stället ska utelämnas', () => {
+    expect(isValid(validExercise({ ytreferens: {} }))).toBe(false);
+  });
+
+  it.each([
+    ['ungefär 20 meter brett'],
+    ['två meter mellan arbetsplatserna'],
+    ['20 m brett'],
+    ['ungefär 18 × 12'],
+    ['en yta på 200 m²'],
+    ['ungefär 30 kvadratmeter'],
+    ['ungefär 900 cm djupt'],
+  ])('ett mått i referensen underkänns: %s', (text) => {
+    const input = validExercise({ ytreferens: { alla: text } });
+    expect(failsWith(input, 'ytreferens.alla', 'ADR 0017')).toBe(true);
+  });
+
+  it.each([
+    ['stora planens målområde, dubbelt så djupt'],
+    ['ungefär en fjärdedel av stora planens straffområde'],
+    ['en ruta som rymmer mittcirkeln'],
+    ['hela 7 mot 7-planen, alltså en fjärdedel av stora planen'],
+    ['straffområdets bredd, från mållinjen till tolv steg utanför straffområdet'],
+    ['straffområdets djup, två tredjedelar av dess bredd'],
+  ])('fotbollsexpertens formuleringar godkänns: %s', (text) => {
+    expect(containsMeasurement(text)).toBe(false);
+    expect(issuesFor(validExercise({ ytreferens: { alla: text } }))).toEqual([]);
+  });
+
+  it('ordgränsen räknar svenska bokstäver, så målområde och diameter inte tas för mått', () => {
+    // `\b` i JavaScript räknar bara ASCII som ord: `\bm\b` matchar m:et i "målområde".
+    expect(containsMeasurement('målområde')).toBe(false);
+    expect(containsMeasurement('mittcirkelns diameter')).toBe(false);
+    expect(containsMeasurement('7 mot 7-planen')).toBe(false);
+    expect(containsMeasurement('kvadratmeter')).toBe(true);
+    expect(containsMeasurement('18 m')).toBe(true);
+  });
+
+  it('en referens som är längre än taket underkänns', () => {
+    const long = 'a'.repeat(LIMITS.ytreferens.max + 1);
+    expect(isValid(validExercise({ ytreferens: { alla: long } }))).toBe(false);
+    expect(
+      isValid(validExercise({ ytreferens: { alla: 'b'.repeat(LIMITS.ytreferens.max) } })),
+    ).toBe(true);
+  });
+
+  it('S-21: en e-postadress i ytreferensen underkänns', () => {
+    const input = validExercise({ ytreferens: { alla: 'fraga tranare@example.com om ytan' } });
+    expect(failsWith(input, 'ytreferens.alla', 'S-21')).toBe(true);
   });
 });
 
