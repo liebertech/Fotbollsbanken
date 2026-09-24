@@ -6,7 +6,8 @@
  * (docs/design/skisser/02-genererat-pass.md).
  */
 import { useId, useState } from 'react';
-import type { Exercise, Layout } from '../../regelmotor/index.ts';
+import { exerciseArea } from '../../regelmotor/index.ts';
+import type { Exercise, GameFormat, Layout } from '../../regelmotor/index.ts';
 import { materialText } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
 import styles from './ExerciseCard.module.css';
@@ -15,8 +16,33 @@ interface ExerciseCardProps {
   exercise: Exercise;
   minutes: number;
   layout: Layout | null;
+  /** Spelformen ledaren valde. Ytan och ytreferensen anges per spelform (R-092, ADR 0017). */
+  format: GameFormat;
   /** Stationens eller periodens etikett, när kortet ligger i ett sådant moment. */
   label?: string;
+}
+
+/** Ett mått med svenskt decimaltecken: 18 × 12, eller 18,3 × 5,5. */
+function sizeText(langd: number, bredd: number): string {
+  const number = (value: number): string => String(value).replace('.', ',');
+  return `${number(langd)} × ${number(bredd)}`;
+}
+
+/**
+ * Ytraden: metertalet, och ytreferensen i parentes när övningen har en för spelformen.
+ * Referensen står aldrig ensam och räknas aldrig fram ur måttet (ADR 0017).
+ */
+function areaLine(exercise: Exercise, format: GameFormat): string | null {
+  const area = exerciseArea(exercise, format);
+  if (area === null) {
+    return null;
+  }
+  const size = sizeText(area.langd, area.bredd);
+  const reference = exercise.ytreferens?.[format] ?? exercise.ytreferens?.alla;
+  const texts = TEXTS.session;
+  return reference === undefined
+    ? fill(texts.area, { size })
+    : fill(texts.areaWithReference, { size, reference });
 }
 
 /** Gruppindelningen i ord (R-051 till R-056). */
@@ -32,10 +58,11 @@ function layoutText(layout: Layout): string {
     : fill(texts.groupsMixed, { groups: layout.groups, sizes: layout.sizes.join(' + ') });
 }
 
-export function ExerciseCard({ exercise, minutes, layout, label }: ExerciseCardProps) {
+export function ExerciseCard({ exercise, minutes, layout, format, label }: ExerciseCardProps) {
   const [open, setOpen] = useState(false);
   const detailsId = useId();
   const texts = TEXTS.session;
+  const area = areaLine(exercise, format);
 
   return (
     <article className={styles.card}>
@@ -57,6 +84,8 @@ export function ExerciseCard({ exercise, minutes, layout, label }: ExerciseCardP
           {layout.oddText !== null && ` · ${texts.oddSolution} ${layout.oddText}`}
         </p>
       )}
+
+      {area !== null && <p className={styles.area}>{area}</p>}
 
       <button
         className={styles.toggle}

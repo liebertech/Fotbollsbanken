@@ -19,6 +19,7 @@ import {
   BANK_NEEDING_SUBSTITUTE,
   BANK_SHARED_EXERCISE,
   BANK_WITHOUT_GAME_PRACTICE,
+  BANK_WITH_AREA_REFERENCE,
   BANK_WRONG_LEVEL,
   FULL_BANK,
   INPUT,
@@ -74,6 +75,28 @@ describe('Berättelse 02: det genererade passet', () => {
   it('02.13 visar tipset om fler vuxna när spelarna är fler än taket per ledare', () => {
     const markup = sessionHtml(FULL_BANK, { ...INPUT, spelare: 20, ledare: 1 });
     expect(markup).toContain('Ta gärna hjälp av en förälder');
+  });
+
+  /*
+   * ADR 0017. Metertalet är huvudmåttet och står alltid först. Ytreferensen följer efter i
+   * parentes när övningen har en för spelformen, och raden ser ut som förut när den saknas.
+   */
+  it('ADR 0017 visar ytans mått i meter på varje övningskort', () => {
+    const markup = sessionHtml();
+    expect(markup).toContain('Yta: 20 × 20 meter');
+  });
+
+  it('ADR 0017 visar ytreferensen i parentes efter måttet', () => {
+    const markup = sessionHtml(BANK_WITH_AREA_REFERENCE);
+    expect(markup).toContain('Yta: 20 × 20 meter (något större än mittcirkeln)');
+  });
+
+  it('ADR 0017 visar måttet utan parentes när övningen saknar ytreferens', () => {
+    // Fixturbanken har inga ytreferenser alls: raden ser ut precis som förut.
+    expect(sessionHtml()).toMatch(/Yta: 20 × 20 meter(?!\s*\()/u);
+    expect(sessionHtml()).not.toContain('meter (');
+    // I banken med en referens är det bara uppvärmningen som får sin parentes.
+    expect(sessionHtml(BANK_WITH_AREA_REFERENCE)).toMatch(/Yta: 20 × 20 meter(?!\s*\()/u);
   });
 
   it('02.2 visar fokusområdena med sina namn, inte med sina nycklar', () => {

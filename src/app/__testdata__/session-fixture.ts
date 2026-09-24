@@ -55,6 +55,23 @@ const game = gameExercise({
 export const FULL_BANK: BankExercise[] = [warmup, practice, gamePractice, game];
 
 /**
+ * Samma bank, men uppvärmningen har en ytreferens (ADR 0017). De andra övningarna saknar
+ * den, så samma pass visar både kortet med parentes och korten utan.
+ */
+export const BANK_WITH_AREA_REFERENCE: BankExercise[] = [
+  bankExercise({
+    id: 'uppvarmning-ytreferens',
+    namn: 'Passningslek i ruta',
+    passdelar: ['del-uppvarmning'],
+    fokusomraden: ['passning-mottagning', 'lek'],
+    ytreferens: { alla: 'något större än mittcirkeln' },
+  }),
+  practice,
+  gamePractice,
+  game,
+];
+
+/**
  * Samma bank utan spelövningar: Spelövning blir tom (R-100). Ingen spelövning finns alls,
  * så inget enskilt val i underlaget skulle kunna fylla delen (R-103).
  */

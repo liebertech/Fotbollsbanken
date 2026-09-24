@@ -59,6 +59,16 @@ export const TEXTS = {
     easier: 'Lättare',
     harder: 'Svårare',
     material: 'Material',
+    /**
+     * Ytan på övningskortet (ADR 0017). Metertalet är huvudmåttet och står alltid först;
+     * ytreferensen följer efter i parentes när övningen har en, och raden ser ut som i dag
+     * när den saknas — ingen tom parentes och ingen platshållare.
+     *
+     * Texterna saknas i docs/design/texter.md, som godkändes vid K2 innan fältet fanns. De
+     * läggs fram för ux-designern vid granskningen av den här ändringen (2026-09-24).
+     */
+    area: 'Yta: {size} meter',
+    areaWithReference: 'Yta: {size} meter ({reference})',
     groups: '{groups} grupper à {size} spelare',
     groupsMixed: '{groups} grupper: {sizes} spelare',
     oneGroup: 'En grupp med {size} spelare',

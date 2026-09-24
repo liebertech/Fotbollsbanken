@@ -38,6 +38,14 @@
   font-size: 0.875rem;
 }
 
+/* Ytan är ett nyckeltal som gruppindelningen och ser likadan ut (designsystem.md 6.3).
+   Ytreferensen får ingen egen färg eller storlek: den hör ihop med måttet den följer. */
+.area {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
 /* Planskissen ritas i inkrement 2. Tills dess visas platsen tydligt inramad
    (designsystem.md avsnitt 7). */
 .sketch {
