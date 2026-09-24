@@ -24,8 +24,8 @@ interface ExerciseCardProps {
 
 /** Ett mått med svenskt decimaltecken: 18 × 12, eller 18,3 × 5,5. */
 function sizeText(langd: number, bredd: number): string {
-  const number = (value: number): string => String(value).replace('.', ',');
-  return `${number(langd)} × ${number(bredd)}`;
+  const decimal = (value: number): string => String(value).replace('.', ',');
+  return `${decimal(langd)} × ${decimal(bredd)}`;
 }
 
 /**
