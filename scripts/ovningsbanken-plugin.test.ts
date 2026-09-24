@@ -81,7 +81,7 @@ describe('ADR 0015 Övningsbanken som virtuell modul', () => {
     );
     const [exercise] = bankFromModule(buildBankModule(dir));
     expect(exercise?.ytreferens).toEqual({
-      '7mot7': 'ungefär en tredjedel av stora planens straffområde',
+      alla: 'ungefär en tredjedel av stora planens straffområde',
     });
   });
 

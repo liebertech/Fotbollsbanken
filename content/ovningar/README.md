@@ -56,6 +56,7 @@ Fullständiga regler, typer och intervall står i ADR 0010, avsnitt 1. `Krävs` 
 | `udda_antal_losning` | `true` eller `false`. Bara för `fast-storlek` | villkorat | R-008 |
 | `tid` | `kortast`, `rekommenderad` och `langst` i hela minuter, minst 5 | ja | R-009 |
 | `yta` | Mått per spelform, eller `alla` för samma mått överallt | ja | R-092 |
+| `ytreferens` | Kort text som säger hur stor ytan är, jämfört med något ledaren känner igen. Samma nycklar som `yta`. Se nedan | nej | |
 | `material` | Lista med `typ`, `antal` och `anteckning`. `typ` väljs ur den slutna listan i `docs/doman/passuppbyggnad.md`: `boll`, `kon`, `markering`, `vast`, `mal`, `minimal`, `hinder`, `ovrigt`. `ovrigt` kräver en anteckning | ja | R-084, R-120 |
 | `coachningspunkter` | 2–4 punkter | ja | |
 | `varianter` | `lattare` och `svarare` | ja | R-029 |
@@ -71,6 +72,31 @@ Att tänka på:
 - **`spelare` och `ledarbehov` gäller en grupp**, inte hela laget. En övning för fyra spelare i taget har `spelare: min 4, max 4`, inte lagets storlek.
 - **Skriv inga spelarnamn** någonstans i filen. Banken innehåller inga uppgifter om spelare.
 - **Kopiera inte SvFF:s texter eller övningar ordagrant.** Bygg på principerna och ange källa i `kalla`.
+
+### `ytreferens`, ytan i något ledaren känner igen
+
+Ett mått som "30 × 20 meter" går inte att använda på en plan utan måttband. Appen visar därför måttet först och ytreferensen efter det, i parentes: **"30 × 20 meter (ungefär stora planens straffområde)"**. Beslutet står i [ADR 0017](../../docs/adr/0017-ytreferens-i-ovningsformatet.md).
+
+```yaml
+yta:
+  alla:
+    langd: 18
+    bredd: 12
+ytreferens:
+  alla: stora planens målområde, dubbelt så djupt
+```
+
+Så här skriver du den:
+
+- **Ordlistan står i `docs/doman/`.** Referensen bygger på den, och fotbollsexperten granskar att den gör det. Hitta inte på en egen jämförelse.
+- **Skriv aldrig ett mått i texten.** Metertalet står redan före parentesen, och referensen är en jämförelse, inte ett andra mått. Valideringen underkänner `meter`, `m`, `cm`, `kvadratmeter` och deras släktingar, och mönstret tal × tal. Siffror är tillåtna i övrigt, eftersom spelformernas namn innehåller dem: *hela 7 mot 7-planen*. Steg är också tillåtna: *tio steg utanför straffområdet*.
+- **Håll den kort**, ungefär 70 tecken, så att den ryms efter måttet på en mobilskärm. Taket är 90.
+- **Skriv liten begynnelsebokstav och ingen punkt.** Texten står inuti en parentes mitt i en rad.
+- **Säg vems plandel du menar.** *Straffområdet*, *målområdet* och *mittcirkeln* betyder alltid den fullstora planens, och formuleringen skriver ut det: *stora planens straffområde*. Menar du lagets eget, skriv *ert eget straffområde*. En andel av en spelforms plan skriver alltid ut spelformen: *halva 7 mot 7-planen*, aldrig bara *halva planen*.
+- **Ange den per spelform när samma mått förtjänar olika referens.** 18 × 12 meter är *stora planens målområde, dubbelt så djupt* för ett 5 mot 5-lag och *ert eget straffområde* för ett 9 mot 9-lag. Nycklarna följer `yta`: `alla`, eller en spelform som finns i `spelformer`.
+- **Utelämna fältet hellre än att hitta på.** Ingen status kräver det, och för en del övningar är det rätt svar att inte ge någon referens: positionsspel och stationer där måttet är själva poängen, och dueller med startavstånd. En parentes som antyder "ungefär" är direkt fel där.
+
+Fältet visas bara. Det filtrerar ingenting och påverkar inte vilka övningar generatorn väljer: ytkontrollen räknar vidare på `langd` och `bredd` (R-092).
 
 ## Validering
 
@@ -123,6 +149,8 @@ yta:
   alla:
     langd: 15
     bredd: 15
+ytreferens:
+  alla: ungefär en tredjedel av stora planens straffområde
 material:
   - typ: boll
     antal: 1
