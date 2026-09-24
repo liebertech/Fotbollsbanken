@@ -7,16 +7,18 @@ beskrivning: |
   Fyra anfallare med målvakt bygger upp bollen från egen backlinje mot tre försvarare som
   håller en gemensam linje ungefär i mitten av ytan och försöker spela anfallarna
   offside. Anfallarna ska hitta ett läge att spela en boll bakom linjen till en medspelare
-  som tajmar sin löpning och tar emot bollen inne i en tre meter bred målzon i ytans
-  bortre ände, i stället för att alltid dribbla eller passa kort. Ett mottaget inspel i
-  målzonen räknas som ett lyckat anfall. Vanliga offsideregler gäller: en löpare som redan
+  som tajmar sin löpning och tar emot bollen inne i en målzon som går tvärs över hela
+  ytans bredd längs bortre kortlinjen, tre meter djup, i stället för att alltid dribbla
+  eller passa kort. Ett mottaget inspel i målzonen räknas som ett lyckat anfall. Vanliga
+  offsideregler gäller: en löpare som redan
   är bakom linjen när passningen slås är offside. Vinner försvararna bollen vänder de
   direkt och anfaller anfallarnas mål och målvakt i egen ände, en snabb omställning från
   bollvinst till avslut. Byt roller mellan anfallare och försvarare efter halva tiden.
 organisation: |
-  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. En tre
-  meter bred målzon, markerad med koner, ligger i ytans bortre ände. Ledaren styr byte av
-  roller och dömer offside från sidan.
+  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. En målzon
+  som går tvärs över hela ytans bredd ligger längs bortre kortlinjen, tre meter djup,
+  markerad med en kon vid respektive sidlinje. Ledaren styr byte av roller och dömer
+  offside från sidan.
 fokusomraden:
   - speluppbyggnad
   - omstallning
@@ -56,7 +58,8 @@ material:
     antal: 3
   - typ: kon
     antal: 6
-    anteckning: fyra markerar ytans hörn, två markerar målzonens bredd i bortre änden
+    anteckning: fyra markerar ytans hörn, två markerar målzonens främre gräns vid
+      respektive sidlinje, tre meter in från bortre kortlinjen
 coachningspunkter:
   - Titta upp innan du tar emot bollen så att du ser om en löpare är på väg.
   - Tajma löpningen så att du startar när passningen slås, inte före.
@@ -73,7 +76,7 @@ anpassning:
   ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
     ledare håller den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
