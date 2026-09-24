@@ -67,7 +67,7 @@ anpassning:
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -127,3 +127,22 @@ granskning:
       per station, och tre platser med två meters lucka tar fyra. Ytan ska inte växa, undantag 3
       gäller. Behåll meningen om att en spelare kan göra en station två gånger i rad, så att
       balansstationen alltid får ett par.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat, och nu går både platserna och gruppdelningen ihop. Platserna, kontrollräknat: balans
+      2, planka 3, sidohopp 3, höga knän 3, enbenshopp 2 och utfallssteg 2 är femton platser, alltså
+      en över fjorton. Nedre änden går också ut: sju spelare blir två på balansstationen och en på
+      var och en av de fem övriga. Gruppdelningen, räknad på nytt mot R-050 till R-055 för
+      fas-13-14: största grupp är det minsta av övningens fjorton och taket per ledare fjorton,
+      alltså fjorton. Sju till fjorton spelare ger en grupp och en ledare, så tretton och fjorton,
+      de två tal som föll ut förra gången, fungerar igen. Femton ger två grupper, åtta och sju, båda
+      över minsta antal sju, och kräver två ledare (R-055). Någon ny lucka uppstår inte högre upp,
+      eftersom den minsta gruppen vid två grupper redan är sju vid fjorton (R-052).
+      Tvåmetersavståndet håller med tre på en station: en cirkel i ytan 14 x 12 meter har omkretsen
+      ungefär trettioåtta meter, alltså drygt sex meter per station, och tre arbetsplatser med två
+      meters lucka tar fyra. Arbetsvägarna korsar inte varandra, de tre banorna med höga knän löper
+      parallellt, så undantag 3 gäller oförändrat och ytan ska stå kvar. Anpassningen för udda antal
+      är orörd och behövs när ett block om tre roterar in på balansstationen. Utan krav: skriv gärna
+      ut ett exempel för fjorton spelare, så slipper ledaren räkna vid planen.
