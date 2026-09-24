@@ -10,11 +10,12 @@ beskrivning: |
   höga knän. Ledaren visar varje övning innan gruppen sätter igång och går runt för att
   rätta till knäläget vid landning och hopp.
 organisation: |
-  En cirkel med sex stationer per grupp om upp till tolv spelare, med minst två meters
+  En cirkel med sex stationer per grupp om upp till fjorton spelare, med minst två meters
   avstånd mellan spelarna på samma station. Balansstationen bemannas alltid av två
-  spelare, eftersom övningen kräver en medspelare som knuffar. De övriga fem stationerna
-  har en till två spelare var. Spelarna roterar medurs mellan stationerna på ledarens
-  signal. Fler grupper bygger en egen cirkel bredvid.
+  spelare, eftersom övningen kräver en medspelare som knuffar. Planka, sidohopp och höga
+  knän tar upp till tre spelare var. Enbenshopp och utfallssteg tar upp till två spelare
+  var. Spelarna roterar medurs mellan stationerna på ledarens signal. Fler grupper bygger
+  en egen cirkel bredvid.
 fokusomraden:
   - skadeforebyggande
   - koordination
@@ -34,7 +35,7 @@ ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget
   och hopp så att knäna inte viker inåt.
 spelare:
   min: 7
-  max: 12
+  max: 14
 grupptyp: fri
 tid:
   kortast: 8
@@ -66,7 +67,7 @@ anpassning:
   ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för
   13-19 år.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
