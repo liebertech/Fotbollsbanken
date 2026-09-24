@@ -1,0 +1,109 @@
+schema: 1
+id: hornor-med-nickar
+namn: Hörnor med nickar
+syfte: Spelarna ska öva löpmönster, inspel och avslut med huvudet vid hörnor, och att
+  försvara sitt mål vid samma situation.
+beskrivning: |
+  Fyra anfallare och tre försvarare med målvakt övar hörnor på en yta om 30 x 45 meter,
+  matchens planbredd, så att hörnflaggan ligger på rätt avstånd från båda stolparna.
+  Ledaren slår in bollen från hörnflaggan. Anfallarna löper i tajmade mönster mot när och
+  bortre stolpen och avslutar med huvudet när inlägget passar, annars med foten.
+  Försvararna ska markera varsin anfallare och rensa undan faran. Varje anfallare nickar
+  högst två gånger per omgång, och de första omgångarna slås som lätta, långsamma inlägg
+  från nära håll innan avståndet och farten ökar.
+organisation: |
+  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. Ledaren
+  slår in hörnorna och styr rotationen mellan anfallare och försvarare.
+fokusomraden:
+  - fasta-situationer
+  - nickspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren slår in hörnorna från hörnflaggan, håller koll på hur många nickar
+  som gjorts och styr rotationen mellan anfallare och försvarare.
+spelare:
+  min: 8
+  max: 8
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 30
+    bredd: 45
+material:
+  - typ: mal
+    antal: 1
+  - typ: vast
+    antal: 3
+    anteckning: till de tre försvararna
+  - typ: boll
+    antal: 4
+  - typ: kon
+    antal: 1
+    anteckning: markerar hörnflaggans plats
+coachningspunkter:
+  - Tajma löpningen så att du möter bollen i stället för att stå still och vänta.
+  - Möt bollen med pannan, blunda inte, och styr nicken nedåt mot mål.
+  - Försvarare ska markera varsin anfallare redan innan hörnan slås.
+varianter:
+  lattare: Bara inlägg längs marken till en spelare som avslutar med foten, inga nickar.
+  svarare: Två inlägg i följd från olika hörnor utan paus, så att försvararna måste
+    organisera om snabbt.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En spelare vilar och byter in med en av försvararna efter varje omgång.
+  ledare: En ledare krävs för att slå in hörnorna och hålla koll på nicktaket. Utan extra
+    ledare håller den ordinarie ledaren i båda delarna.
+kalla: Egen övning, inspirerad av vanlig hörnträning, anpassad efter SvFF:s riktlinje om
+  begränsad nickmängd för 13-14 år.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Märkningen är rätt, geometrin är det inte. Nickspel ska stå där: spelarna nickar som en
+      planerad del, och då krävs märkningen oavsett om nickning är huvudfokus (R-081). Minsta ålder
+      13 stämmer med SvFF, som för in nickning först i 9 mot 9 (aldrar-och-fokus.md; SvFF, Får barn
+      nicka?, hämtad 2026-09-11). Ytan: 30 x 20 meter är 600 kvadratmeter, alltså 75,0 per spelare
+      vid åtta, över golvet 70. Längdkriteriet slår inte till, korrekt, en hörna har ingen linje att
+      spela bakom. Tre saker ska ändras. 1. Ytan är för smal för en hörna. Med mål i ena änden av en
+      tjugo meter bred yta ligger hörnflaggan sju meter från närmaste stolpe och tretton från den
+      bortre. I 9 mot 9 är planen 50 till 55 meter bred, alltså drygt tjugofyra meter till närmaste
+      stolpe (spelformer.md). Inlägget blir en kort tvärpassning, inte en hörna, och löpmönstren
+      blir något annat än det som ska tränas. Lägg ytan på matchens bredd, till exempel 30 x 45
+      meter, vilket ger 168,8 per spelare, fortfarande under taket 181. 2. Nivå 1 ska bort. Nickade
+      hörnor är det svåraste nickmomentet som finns: inlägg i fart, hopp och närkamp. Sätt nivå 2
+      och 3. 3. Skriv ut mängden. "Antalet nickar hålls lågt" säger inget. Ange ett tal per spelare,
+      och att 13-åringar börjar med lätta bollar från nära håll. Att veta: hela övningens tid räknas
+      mot nicktaket 10 minuter per pass, så längsta tid 10 minuter fyller taket ensam (R-082).
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Alla tre punkterna är åtgärdade. Ytan, kontrollräknat: 30 x 45 meter är 1350 kvadratmeter,
+      alltså 168,8 per spelare vid åtta, över golvet 70 och under taket 181 för fas-13-14. Stämmer.
+      Bredden 45 meter ger med ett sexmetersmål drygt nitton meter från hörnflaggan till närmaste
+      stolpe, alltså ett riktigt hörnavstånd; matchens är drygt tjugofyra (spelformer.md). Nivå 1 är
+      borttagen och nivå 2 till 3 står kvar, rätt. Nickmängden är utskriven som ett tal ledaren kan
+      räkna: högst två nickar per anfallare och omgång, och de första omgångarna som lätta,
+      långsamma inlägg från nära håll. Ledaruppgiften säger att ledaren håller räkningen. Totalen
+      hålls dessutom nere av att hela övningens tid räknas mot nicktaket 10 minuter per pass
+      (R-082), så längsta tid 10 minuter fyller taket ensam. SvFF anger ingen mängd
+      (aldrar-och-fokus.md, avsnittet Nickning; SvFF, Får barn nicka?, hämtad 2026-09-11), så talet
+      är författarens och min bedömning. Utan krav, två saker: skriv gärna hur många inlägg en
+      omgång är, så vet ledaren vad hen räknar, och notera att fältet yta här har större bredd än
+      längd, eftersom målet står på den fyrtiofem meter långa linjen.

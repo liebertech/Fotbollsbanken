@@ -1,0 +1,107 @@
+schema: 1
+id: forsvara-med-offsidefalla
+namn: Försvara med offsidefälla
+syfte: Spelarna ska försvara tillsammans som lag och använda offsideregeln för att vinna
+  tillbaka initiativet.
+beskrivning: |
+  Två lag om fyra utespelare och varsin målvakt möts på en yta om 42 x 28 meter med mål i
+  var ände, markerad i hörnen med koner. Offside gäller i hela ytan, utan egen planhalva:
+  laget utan boll ska hålla en gemensam linje och stiga upp tillsammans för att spela
+  motståndarnas anfallare offside, i stället för att en och en falla tillbaka. Så fort
+  bollen vinns ska laget ställa om snabbt och söka djup innan motståndarna hinner
+  organisera sig.
+organisation: |
+  Två lag om fyra utespelare plus varsin målvakt, totalt tio spelare per yta. Är gruppen
+  åtta eller nio spelare spelas tre mot tre med målvakt, och den nionde blir en extra
+  utespelare i ena laget. Ledaren dömer offside från sidan.
+fokusomraden:
+  - forsvarsspel
+  - omstallning
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren dömer offside från sidan och fryser spelet kort för att visa när
+  linjen inte höll ihop.
+spelare:
+  min: 8
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 18
+yta:
+  alla:
+    langd: 42
+    bredd: 28
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Stig upp tillsammans, hela linjen på en gång, inte en spelare i taget.
+  - Kommunicera högt med varandra om när ni håller linjen.
+  - Ställ om snabbt och sök djup så fort ni vinner bollen.
+varianter:
+  lattare: Försvararna får ett extra ord från ledaren, "stig", som signal för när linjen
+    ska stiga upp.
+  svarare: Poäng till försvararna för varje lyckad offsidefälla, utöver poängen för mål.
+anpassning:
+  fler_spelare: Gör ytan större, upp mot 48 x 32 meter, och spela med fler utespelare i
+    varje lag.
+  udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
+  ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den
+    ordinarie ledaren i både domandet och coachningen.
+kalla: Egen övning, inspirerad av lagförsvar med offsidefälla i 9 mot 9 och äldre.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Måtten håller, två saker i texten gör det inte. Kontrollräknat: 42 x 28 meter är 1176
+      kvadratmeter, alltså 117,6 per spelare vid tio och 147 vid åtta, mellan golvet 70 och taket
+      181 för fas-13-14. Längdkriteriet slår till, korrekt: övningen säger att offside gäller, och
+      offside är bara meningsfullt när det finns ett djup att spela i. Minsta längd för fas-13-14 är
+      35 meter och övningen har 42 (passuppbyggnad.md). Två saker ska ändras. 1. Det står inte var
+      offside gäller. Enligt spelreglerna kan ingen vara offside på egen planhalva, men ytan har
+      varken mittlinje eller markering. Ledaren, som ska döma offside, vet alltså inte om en spelare
+      bakom linjen på egen halva är offside, och det är just den bedömningen övningen står och
+      faller med. Skriv ut vad som gäller. Mitt förslag: offside gäller i hela ytan. Det är enklast
+      att döma och gör att fällan fungerar också när linjen står lågt. 2. Materiallistan saknar
+      markering av ytan. Fyra koner till hörnen, och två till om en mittlinje ska synas. Det som
+      stämmer: försvarsspel och omställning är båda kärnområden för fas-13-14, och omställningen
+      syns på riktigt i texten och inte bara i märkningen. Coachningspunkterna om att stiga upp
+      tillsammans och prata med varandra är korrekta och begripliga. Nivå 2 till 3 är rätt, en
+      offsidefälla kräver ett lag som redan kan hålla ihop. Ledarbehov 1 är rätt, någon måste döma.
+      Ingen retreatlinje finns i texten, vilket stämmer: den hör till 5 mot 5 och 7 mot 7, inte till
+      9 mot 9 (spelformer.md).
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Båda punkterna är åtgärdade. Offside gäller i hela ytan, utan egen planhalva, och det står i
+      beskrivningen. Det är en medveten avvikelse från spelreglerna, där ingen kan vara offside på
+      egen planhalva, och avvikelsen är rätt val här: ledaren dömer från sidan, fällan ska fungera
+      också när linjen står lågt, och regeln blir en sak att hålla reda på i stället för två. Utan
+      krav: nämn gärna för spelarna att det skiljer sig från match. Konerna är fyra och markerar
+      ytans hörn, och de står nu både i beskrivningen och i materiallistan. Någon mittlinje behövs
+      inte längre, eftersom halvorna inte styr offside. Måtten är oförändrade och håller: 42 x 28
+      meter är 1176 kvadratmeter, alltså 117,6 per spelare vid tio och 147 vid åtta, mellan golvet
+      70 och taket 181 för fas-13-14, och längden 42 meter passerar minsta längd 35 meter, som
+      gäller just därför att övningen säger att offside gäller.

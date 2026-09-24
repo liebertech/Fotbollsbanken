@@ -1,0 +1,134 @@
+schema: 1
+id: uppspel-bakom-forsvarslinjen
+namn: Uppspel bakom försvarslinjen
+syfte: Spelarna ska bygga upp bollen genom lagdelarna och tajma ett inspel bakom
+  motståndarnas backlinje.
+beskrivning: |
+  Fyra anfallare med målvakt bygger upp bollen från egen backlinje mot tre försvarare som
+  håller en gemensam linje ungefär i mitten av ytan och försöker spela anfallarna
+  offside. Anfallarna ska hitta ett läge att spela en boll bakom linjen till en medspelare
+  som tajmar sin löpning och tar emot bollen inne i en målzon som går tvärs över hela
+  ytans bredd längs bortre kortlinjen, tre meter djup, i stället för att alltid dribbla
+  eller passa kort. Ett mottaget inspel i målzonen räknas som ett lyckat anfall. Vanliga
+  offsideregler gäller: en löpare som redan
+  är bakom linjen när passningen slås är offside. Vinner försvararna bollen vänder de
+  direkt och anfaller anfallarnas mål och målvakt i egen ände, en snabb omställning från
+  bollvinst till avslut. Byt roller mellan anfallare och försvarare efter halva tiden.
+organisation: |
+  En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. En målzon
+  som går tvärs över hela ytans bredd ligger längs bortre kortlinjen, tre meter djup,
+  markerad med en kon vid respektive sidlinje. Ledaren styr byte av roller och dömer
+  offside från sidan.
+fokusomraden:
+  - speluppbyggnad
+  - omstallning
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren styr när rollerna byts, dömer offside från sidan och påminner
+  försvararna om att stiga upp tillsammans.
+spelare:
+  min: 8
+  max: 8
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 10
+  rekommenderad: 14
+  langst: 18
+yta:
+  alla:
+    langd: 40
+    bredd: 26
+material:
+  - typ: mal
+    antal: 1
+  - typ: vast
+    antal: 3
+    anteckning: till de tre försvararna
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 6
+    anteckning: fyra markerar ytans hörn, två markerar målzonens främre gräns vid
+      respektive sidlinje, tre meter in från bortre kortlinjen
+coachningspunkter:
+  - Titta upp innan du tar emot bollen så att du ser om en löpare är på väg.
+  - Tajma löpningen så att du startar när passningen slås, inte före.
+  - Försvarare ska stiga upp tillsammans, hela linjen på en gång.
+  - Vid bollvinst, vänd snabbt och anfall målet direkt, innan anfallarna hinner organisera om.
+varianter:
+  lattare: Försvararna håller en fast linje och pressar inte bollhållaren.
+  svarare: Sätt en tidsgräns för hur länge anfallarna får hålla bollen innan inspelet
+    måste komma.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En spelare vilar och byter in med den som var mest aktiv i föregående
+    omgång.
+  ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
+    ledare håller den ordinarie ledaren i båda delarna.
+kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Längden håller, och det är det viktigaste här. Kontrollräknat: 40 x 26 meter är 1040
+      kvadratmeter, alltså 130 per spelare vid åtta, mellan golvet 70 och taket 181 för fas-13-14
+      (passuppbyggnad.md). Längdkriteriet slår till precis som det ska: beskrivningen har ett bakre
+      lag som ska passeras i ytans längdriktning, poängen är att bollen ska bakom det, och offside
+      gäller uttryckligen. Minsta längd för fas-13-14 är 35 meter och övningen har 40. Två saker ska
+      ändras. 1. Anfallet saknar slutpunkt. Det enda målet står i anfallarnas egen ände med deras
+      målvakt, så när bollen väl är spelad bakom linjen finns inget att göra med den. Skriv in vad
+      som ger poäng: en målzon eller ett minimål i bortre änden, eller att en medspelare ska ta emot
+      bollen bakom linjen inne i ytan. Utan det vet varken spelarna eller ledaren när försöket
+      lyckades. 2. Omställning är andra fokusområde men syns ingenstans i texten. Av materiallistan
+      förstår jag att tanken är att försvararna får anfalla målet när de vinner bollen, men det står
+      inte. Skriv ut det, så får försvararna dessutom ett eget skäl att stiga upp. Annars ska
+      fokusområdet tas bort, eftersom taggen ska beskriva vad spelarna faktiskt övar
+      (fokusomraden.md). Det som stämmer: offsideförklaringen är en rimlig förenkling för en ideell
+      ledare, coachningspunkterna är korrekta, nivå 2 till 3 är rätt och ledarbehov 1 med åtta
+      spelare ligger under taket per ledare.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Punkt 2 är åtgärdad, punkt 1 behöver en mening till. Klart: omställningen står nu i texten,
+      försvararna vänder och anfaller målet vid bollvinst, och det finns en egen coachningspunkt om
+      det. Fokusområdet omstallning är därmed rätt märkt. Slutpunkten finns också, men måttet går
+      att läsa på två sätt och bara det ena fungerar. En tre meter bred målzon i ytans bortre ände,
+      markerad med två koner, kan läsas som en tre meter djup remsa tvärs över hela bredden, vilket
+      är rätt, eller som en tre meter bred grind mitt i bortre änden, vilket är fel. Med fyra
+      anfallare mot tre försvarare på tjugosex meters bredd blir en grind på tre meter nästan
+      omöjlig att träffa, försvararna behöver bara täcka den, och inspelet slutar ge poäng. Skriv ut
+      det otvetydigt i beskrivningen, i organisationen och i konernas anteckning, till exempel: en
+      zon som går tvärs över hela bredden längs bortre kortlinjen, tre till fem meter djup, markerad
+      med en kon på vardera sidlinjen. Övrigt är oförändrat och håller: 40 x 26 meter är 1040
+      kvadratmeter, alltså 130 per spelare vid åtta, mellan golvet 70 och taket 181, och längden 40
+      meter passerar minsta längd 35 meter för fas-13-14.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat, och formuleringen är entydig. Målzonen beskrivs likadant på tre ställen:
+      beskrivningen, organisationen och konernas anteckning säger alla en zon som går tvärs över
+      hela ytans bredd längs bortre kortlinjen, tre meter djup. Grindtolkningen är omöjlig nu.
+      Konantalet stämmer med hur zonen faktiskt markeras: sex koner, fyra i ytans hörn och två som
+      visar zonens främre gräns vid respektive sidlinje, tre meter in från bortre kortlinjen. En
+      ledare kan ställa upp det utan att fundera. Eftersom zonen går tvärs över hela bredden får
+      inspelet komma var som helst i sidled, vilket var hela poängen. Övrigt är oförändrat och
+      håller: 40 x 26 meter är 1040 kvadratmeter, alltså 130 per spelare vid åtta, mellan golvet 70
+      och taket 181, och längden 40 meter passerar minsta längd 35 meter. Två saker utan krav. 1.
+      Tre meters djup är det grundaste jag föreslog, så mottagningen måste ske nära kortlinjen.
+      Lyckas gruppen sällan, öka till fem meter; timingen blir densamma men marginalen större. 2.
+      Beskrivningen har en kort radbrytning mitt i meningen om offsidereglerna. Slå ihop raden nästa
+      gång filen ändå ändras.

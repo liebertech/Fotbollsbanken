@@ -1,0 +1,84 @@
+schema: 1
+id: matchspel-7mot7-litet-format
+namn: Matchspel 7 mot 7 i litet format
+syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i ett litet matchspel med målvakt.
+beskrivning: |
+  Två lag möts på en yta om 32 x 20 meter med mål i var ände, alltid med varsin målvakt.
+  Åtta spelare ger tre mot tre plus målvakter. Nio spelare ger tre mot tre plus målvakter,
+  där det ena laget har en extra utespelare. Laget som har bollen ska sprida ut sig och
+  hålla bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren.
+  Målvakten lägger ner bollen och passar ut den, precis som i vanligt 7 mot 7, i stället för
+  att sparka den ur händerna.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Åtta spelare: tre mot tre. Nio spelare: tre
+  mot tre där ena laget har en extra utespelare. Målvakterna byts av under passet så att
+  fler får prova.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 8
+  max: 9
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 32
+    bredd: 20
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er i bredd så att bollhållaren har flera passningsval.
+  - Rör dig direkt efter din passning för att bli spelbar igen.
+  - Lägg ner bollen och passa den, spela inte ut den med en spark ur händerna.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst tre passningar i följd.
+anpassning:
+  fler_spelare: Vid tio spelare eller fler, byt till Matchspel 7 mot 7 i bredd, som är byggd
+    för större grupper.
+  udda_antal: Vid nio spelare spelar det ena laget med en utespelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 32 x 20 meter är 640 kvadratmeter, alltså 71,1 per spelare vid nio och 80,0 vid
+      åtta. Golvet för fas-10-12 med motståndare är 45 och taket, 7 mot 7-matchens trängsta värde,
+      är 107, så övningen ligger i spannet (passuppbyggnad.md). Målvakterna är medräknade. Övningen
+      fyller luckan jag skrev om när matchspel 7 mot 7 i bredd granskades: ett spel med spelbarhet
+      som fokus för grupper på åtta till nio, som annars bara hade smålagsspel med fasta situationer
+      att välja på. Lagstorleken står utskriven per gruppstorlek och målvakt är alltid med, vilket är
+      just det jag krävde då. Målvaktsregeln är rätt återgiven: i 7 mot 7 lägger målvakten ner bollen
+      och passar ut den, hen får inte sparka den ur händerna (spelformer.md, SvFF:s spelformsblad 7
+      mot 7, hämtat 2026-09-11). Tiden 10 till 20 minuter ligger under fasens gräns för spel, 30
+      minuter, ledarbehov 0 är rätt (R-057) och grupptypen tva-lag stämmer med del-spel (R-008).
+      Två saker att veta, ingen av dem stoppar övningen. 1. Retreatlinjen nämns inte. Det är ett
+      rimligt val i ett litet format, där linjen sju meter från mittlinjen skulle hamna nio meter
+      från mållinjen, men skriv gärna en mening om att den inte används här, så att ledaren slipper
+      gissa. 2. Med spannet 8-9 faller grupper på tio till femton spelare utanför (R-051, R-052).
+      Det är avsiktligt och rätt: matchspel 7 mot 7 i bredd täcker tio till fjorton.

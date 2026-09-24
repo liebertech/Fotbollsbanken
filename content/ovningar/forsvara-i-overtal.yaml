@@ -1,0 +1,104 @@
+schema: 1
+id: forsvara-i-overtal
+namn: Försvara i underläge 3 mot 1
+syfte: Spelarna ska öva att jockeya, vinna tid och till slut vinna bollen som ensam
+  försvarare mot tre anfallare.
+beskrivning: |
+  Tre anfallare håller bollen inom en yta mot en ensam försvarare. Försvararen ska inte
+  rusa in, utan jockeya, tvinga anfallarna åt ett håll och leta efter ett läge att sticka
+  ut foten eller pressa en dålig touch. Byt försvarare efter en bestämd tid eller så fort
+  bollen vinns eller spelas ut ur ytan.
+organisation: |
+  En yta om 14 x 12 meter per grupp om fyra: tre anfallare och en försvarare. Ytan är
+  trång med flit: det här är ett positionsspel i övertal utan mål och utan riktning, där
+  passuppbyggnad.md, undantag 1, sätter minst 12 x 12 meter för 13-19 år i stället för det
+  vanliga golvet, eftersom pressen ska nå fram på ett par sekunder och tvinga fram ett
+  tidigt val. Försvararen byts av efter en minut eller vid bollvinst. Ledaren styr byten
+  och tiden.
+fokusomraden:
+  - forsvarsspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 1
+ledaruppgift: Ledaren tar tiden, styr byte av försvarare och påminner om att jockeya i
+  stället för att rusa in.
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 14
+    bredd: 12
+material:
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Jockeya i stället för att rusa rakt mot bollhållaren.
+  - Tvinga bollhållaren åt en sida i stället för att låta alla vägar vara öppna.
+  - Stick ut foten först när touchen är dålig, chansa inte i onödan.
+varianter:
+  lattare: Anfallarna får bara två touchar var, vilket ger försvararen mer tid att jockeya.
+  svarare: Krymp ytan till 12 x 10 meter så att beslutstiden blir ännu kortare.
+anpassning:
+  fler_spelare: Bygg fler ytor med samma uppställning bredvid.
+  udda_antal: Den femte spelaren väntar vid sidan och byter in som ny försvarare vid nästa
+    byte.
+  ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare
+    håller den ordinarie ledaren i både tid och byten.
+kalla: Egen övning, inspirerad av vanlig överlägesträning i försvarsspel.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ytan klarar golvet men har fel form för övningen, och det är mitt eget golv som har dragit
+      måttet dit. Kontrollräknat: 20 x 15 meter är 300 kvadratmeter, alltså 75,0 per spelare vid
+      fyra, fem över golvet 70 för fas-13-14 med motståndare. Men golvet är satt för dueller och
+      spel med riktning. Det här är ett bollhållningsspel i övertal utan mål och utan riktning, och
+      för den sortens övning gäller undantag 1 i passuppbyggnad.md, som finns just för att golvet
+      annars trycker upp ytan till något som förstör övningen: pressen ska nå fram på ett par
+      sekunder, och måttet är minst 12 x 12 meter för 13-19 år. En ensam försvarare som ska täcka
+      300 kvadratmeter mot tre anfallare hinner aldrig fram i den position syftet beskriver. Hen
+      jagar i stället, och coachningspunkten om att sticka ut foten först när touchen är dålig får
+      sällan något läge. Krymp ytan till ungefär 14 x 12 meter, och skriv i beskrivningen eller
+      organisationen att ytan är liten med flit, så att anfallarna tvingas välja passningen tidigt.
+      Undantaget gäller bara om texten visar att det är den sortens övning. Den svårare varianten
+      kan då bli 12 x 10 meter. Det som stämmer: försvarsspel är kärnområde för fas-13-14, syftet
+      hänger ihop med det, coachningspunkterna om att jockeya, styra åt en sida och vänta på en
+      dålig touch är korrekta, nivå 2 till 3 är rätt och ledarbehov 1 med fyra spelare ligger under
+      taket per ledare. Utan krav: namnet säger underläge och id:t övertal. Namnet är det rätta,
+      id:t ändras aldrig.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat. Ytan 14 x 12 meter är 168 kvadratmeter, alltså 42,0 per spelare vid fyra. Den prövas
+      mot undantag 1 i passuppbyggnad.md och inte mot golvet 70, och undantagets eget mått för 13-19
+      år är minst 12 x 12. 14 x 12 ligger sjutton procent över det, vilket inte är väsentligt större:
+      de två extra metrarna i längdled ger försvararen en vinkel att jockeya i utan att pressen
+      tappar de par sekunder som är poängen. Det var också det mått jag själv angav i runda ett.
+      Organisationen skriver ut undantaget och varför ytan är liten med flit, vilket krävs för att
+      undantaget ska gälla. Godtas. Den svårare varianten, 12 x 10 meter, ligger under undantagets
+      eget mått. Jag låter den stå: den är min egen formulering från runda ett, den gäller en
+      tillfällig skärpning och inte övningens fält yta, och i ett tre mot ett utan mål, utan riktning
+      och utan tacklingar är risken låg. Att kriteriet inte säger något om varianter är en lucka i
+      min egen text, inte ett fel av författaren. Frågan går vidare till användaren. Övrigt är
+      oförändrat sedan runda ett och håller.

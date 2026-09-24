@@ -1,0 +1,94 @@
+schema: 1
+id: langre-passningar-i-rorelse
+namn: Längre passningar i rörelse
+syfte: Spelarna ska passa längre bollar med rätt kraft och röra sig direkt efter sin egen
+  passning.
+beskrivning: |
+  Fyra spelare står i varsitt hörn av en stor kvadrat om 18 x 18 meter. Spelaren med boll
+  passar diagonalt eller till nästa hörn och följer alltid efter sin egen passning in i
+  den positionen. Passningarna längs sidan är arton meter och de diagonala drygt tjugofem,
+  klart längre än i en vanlig passningsruta, så att spelarna vänjer sig vid att slå och ta
+  emot bollar i den fart som gäller på en stor plan.
+organisation: |
+  En kvadrat om 18 x 18 meter per grupp om fyra, en boll per grupp. Byt riktning efter
+  halva tiden. Fler grupper läggs bredvid varandra med tre meters mellanrum.
+fokusomraden:
+  - passning-mottagning
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 4
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 12
+yta:
+  alla:
+    langd: 18
+    bredd: 18
+material:
+  - typ: boll
+    antal: 1
+    anteckning: en per grupp
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Sätt fart och riktning på passningen så att den bär hela sträckan.
+  - Ta första touchen i den riktning du ska röra dig vidare.
+  - Rör dig direkt efter din passning, stå inte kvar i hörnet.
+varianter:
+  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert. Ger
+    tolv meter längs sidan och ungefär sjutton meter diagonalt.
+  svarare: Bara en touch tillåten innan bollen ska passas vidare.
+anpassning:
+  fler_spelare: Bygg fler kvadrater bredvid varandra, tre meters mellanrum.
+  udda_antal: Den femte spelaren står i mitten och rör sig till det hörn som blir ledigt,
+    så att gruppen alltid är fem i rotation.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
+    kraft och riktning.
+kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      En sak ska ändras, och den är konkret. Beskrivningen säger att passningarna ska vara åtta till
+      arton meter, men i en kvadrat om 18 x 18 meter är den kortaste passningen mellan två hörn
+      arton meter och den diagonala drygt tjugofem. Ingen passning i övningen är åtta meter. Det
+      spelar roll, eftersom hela poängen är längre passningar: en ledare som läser åtta till arton
+      kan bygga en mindre ruta, och då är övningen borta. Skriv i stället ut de verkliga avstånden,
+      ungefär arton meter längs sidan och tjugofem diagonalt, och nämn att den lättare varianten med
+      tolv meters sida ger tolv respektive sjutton. Det som stämmer. Ytan 18 x 18 meter är 324
+      kvadratmeter, alltså 81 per spelare vid fyra. Golvet utan motståndare för fas-13-14 är 20 och
+      taket, 9 mot 9-matchens trängsta värde, är 181, så övningen ligger i spannet
+      (passuppbyggnad.md). Längdkriteriet på 35 meter gäller inte: det finns ingen försvarslinje att
+      spela bakom, bara en passningsruta utan riktning. Passning och mottagning och spelbarhet är
+      båda kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus. Tiden ligger inom
+      fasens gräns, och fast storlek fyra med en femte spelare i mitten löser udda antal (R-050).
+      Ett tips utan krav: en andra boll i kvadraten när gruppen är van dubblar bollkontakterna.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat. Avstånden i beskrivningen stämmer nu med geometrin. Kontrollräknat: sidan i en
+      kvadrat om 18 x 18 meter är arton meter och diagonalen 25,5, och den lättare varianten med
+      tolv meters sida ger tolv meter längs sidan och 17,0 diagonalt. Båda stämmer med texten.
+      Därmed kan ingen ledare läsa ut ett kortare mått och bygga en mindre ruta, vilket var hela
+      invändningen, och syftet med längre passningar bär. Övrigt är oförändrat och håller: 324
+      kvadratmeter är 81 per spelare vid fyra, över golvet 20 utan motståndare och under taket 181
+      för fas-13-14.
