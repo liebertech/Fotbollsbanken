@@ -13,6 +13,7 @@ Här beskrivs vad appen vet om fotboll. Dokumenten bygger på SvFF:s spelarutbil
 | `passuppbyggnad.md` | Passets delar, tidsfördelning, stationer per antal ledare och materialtyperna |
 | `generatorregler.md` | Regler för regelmotorn, med ID:n (R-001 …) |
 | `sasongsprogression.md` | Progression över säsongen |
+| `ytreferenser.md` | Ordlistan för fältet `ytreferens` (ADR 0017): vad som är uppritat per spelform, konventioner, när referens inte ges, och referensen per övning |
 
 När regelmotorn byggs ska koden och testerna hänvisa till regel-ID:n i `generatorregler.md`. En regel som inte står här ska inte finnas i koden.
 
