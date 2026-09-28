@@ -1,0 +1,80 @@
+schema: 1
+id: omstallningsspel-9mot9
+namn: Omställningsspel 9 mot 9
+syfte: Spelarna ska ställa om snabbt till anfall och försvar i ett matchlikt spel med
+  målvakt.
+beskrivning: |
+  Två lag om tre till fyra utespelare och varsin målvakt spelar på en yta om 36 x 22
+  meter med mål i var ände. Så fort ett lag vinner bollen ska det anfalla snabbt innan
+  motståndarna hinner organisera sig. Extra poäng ges för mål som görs inom tio sekunder
+  efter en bollvinst.
+organisation: |
+  Två lag om tre till fyra utespelare plus varsin målvakt, totalt åtta till tio spelare
+  per yta. Målvakterna byts av under passet så att fler får prova.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 8
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 36
+    bredd: 22
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Reagera direkt när bollen byter lag, stå inte kvar.
+  - Sök djup snabbt när ditt lag just vunnit bollen.
+  - Pressa bollhållaren direkt om ditt lag förlorar bollen.
+varianter:
+  lattare: Ta bort tidsgränsen och ge poäng för alla mål som görs efter en bollvinst.
+  svarare: Bonuspoängen kräver mål inom fem sekunder efter bollvinsten i stället för tio.
+anpassning:
+  fler_spelare: Gör ytan större och spela med fler utespelare i varje lag.
+  udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
+  ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
+kalla: Egen övning, inspirerad av allmänt kända omställningsspel i matchform.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 36 x 22 meter är 792 kvadratmeter, alltså 79,2 per spelare vid tio och 99,0
+      vid åtta, över golvet 70 och under taket 181 för fas-13-14. Längdkriteriet slår inte till, och
+      det är rätt bedömt: en omställning i en liten yta är uttryckligen undantagen
+      (passuppbyggnad.md). Det gör ingen skillnad här ändå, eftersom 36 meter redan passerar minsta
+      längd på 35. Innehållet håller. Omställning och försvarsspel är kärnområden för fas-13-14,
+      syftet hänger ihop med huvudfokus, och bonuspoängen för mål inom tio sekunder efter bollvinst
+      är just en sådan regel som gör att fokuset händer ofta. Coachningspunkterna är korrekta och
+      begripliga. Nivå 2 till 3 är rätt: en snabb omställning förutsätter att spelarna redan vet var
+      de ska. Tiden 10 till 20 minuter ligger under fasens gräns för spel, 35 minuter, ledarbehov 0
+      stämmer (R-057) och grupptypen tva-lag stämmer med del-spel (R-008). Två saker att veta, ingen
+      av dem stoppar övningen. 1. Materiallistan säger mal utan storlek. Med målvakt fungerar både 7
+      mot 7-målet och 9 mot 9-målet, men skriv gärna vilket, eftersom ett sex meter brett mål i en
+      tjugotvå meter bred yta är relativt sett dubbelt så brett som i match. 2. Med spannet 8-10 kan
+      generatorn inte använda övningen vid elva till femton spelare, eftersom två grupper då blir
+      mindre än åtta (R-051, R-052). Smålagsspel med fasta situationer täcker de storlekarna.

@@ -1,0 +1,112 @@
+schema: 1
+id: matchspel-9mot9-brett
+namn: Matchspel 9 mot 9 i bredd
+syfte: Spelarna ska hålla bollen inom laget och sprida ut sig i bredd och djup i ett
+  matchlikt spel.
+beskrivning: |
+  Två lag möts på en yta med mål i var ände, alltid med varsin målvakt. Antalet utespelare
+  i varje lag beror på gruppens storlek: fjorton spelare ger sex mot sex och arton,
+  fullstort 9 mot 9, ger åtta mot åtta. Vid fjorton spelare krymps ytan till ungefär 55 x
+  40 meter, eftersom matchens fulla yta blir för gles för ett så litet lag. Vid arton
+  spelas på hela ytan, 65 x 50 meter, matchens egen plan. Är antalet udda spelar det ena
+  laget med en utespelare mer. Laget som har boll ska sprida ut sig i bredd och djup och
+  hålla bollen genom passningar, i stället för att klumpa ihop sig runt bollhållaren.
+  Vanliga regler i 9 mot 9 gäller, inklusive offside.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Fjorton spelare: sex mot sex, på en krympt
+  yta om ungefär 55 x 40 meter. Arton spelare: åtta mot åtta, på hela ytan 65 x 50 meter.
+  Vid ojämnt antal spelar det ena laget med en utespelare mer än det andra. Målvakterna
+  byts av under passet så att fler får prova.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 14
+  max: 18
+grupptyp: tva-lag
+tid:
+  kortast: 15
+  rekommenderad: 25
+  langst: 30
+yta:
+  alla:
+    langd: 65
+    bredd: 50
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 9
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Sprid ut er i bredd och djup så att bollhållaren har flera passningsval.
+  - Rör dig direkt efter din passning för att bli spelbar igen.
+  - Spela enkla, säkra passningar när pressen är hög i stället för att tvinga fram en svår
+    passning.
+varianter:
+  lattare: Ledaren fryser spelet kort och pekar ut en ledig yta när laget klumpar ihop sig.
+  svarare: Poäng bara för mål som föregås av minst fyra passningar i följd.
+anpassning:
+  fler_spelare: Vid fler än arton spelare, dela gruppen i två separata matcher på varsin
+    yta. Vid färre än fjorton spelare, se en annan övning, matchens plan blir för gles för
+    ett mindre lag.
+  udda_antal: Ett lag spelar med en utespelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer, uppmärksammar offsidelinjen och peppar
+    från sidan.
+kalla: Egen övning, inspirerad av vanligt matchspel i 9 mot 9-format.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Undantaget bär bara i toppen av spannet, och det är problemet. Kontrollräknat: 65 x 50 meter
+      är 3250 kvadratmeter. Vid arton spelare blir det 180,6 per spelare, alltså precis på 9 mot
+      9-matchens eget värde, och där stämmer undantag 4 i passuppbyggnad.md: matchens spelform på
+      matchens minsta planmått, och texten visar det. Men undantag 4 gäller golvet, och övningen
+      ligger inte under golvet utan på taket. Vid minsta antal tio spelare, fyra mot fyra plus
+      målvakter, ger samma yta 325 kvadratmeter per spelare. Det är åttio procent över taket och mer
+      än en sextonåring får i 11 mot 11-match. Då är det inte längre matchens form på matchens plan,
+      och undantaget bär inte. Det blir spring, få bollkontakter och avstånd som aldrig uppstår i
+      match, alltså tvärtemot syftet att hålla bollen inom laget. Jag fällde samma sak i matchspel 7
+      mot 7 i bredd i omgång 3, där minsta antal höjdes till tio. Välj en väg. 1. Höj minsta antal
+      till fjorton, sex mot sex plus målvakter, och skriv i anpassningen att ytan krymps till
+      ungefär 55 x 40 meter vid fjorton. 2. Eller behåll tio och skriv ut en mindre yta för tio till
+      tretton, till exempel 45 x 30 meter. Det som stämmer: offside gäller i 9 mot 9 och står i
+      texten, ingen retreatlinje har smugit in (spelformer.md), tiden 15 till 30 minuter ligger
+      under fasens gräns för spel, 35 minuter, och ledarbehov 0 är rätt (R-057). Överlappet med
+      smålagsspel med fasta situationer är inget problem: olika fokus och olika ytor.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärdat, och lösningen håller. Författaren gjorde både och, vilket var rätt: ett höjt minsta
+      antal räckte inte ensamt, eftersom 3250 delat på fjorton är 232,1 och fortfarande över taket
+      181. Nu finns två lägen som prövas var för sig, precis som passuppbyggnad.md gör med övningar
+      som byter yta mellan delarna, och båda måtten står i organisationen. Kontrollräknat: fjorton
+      spelare på 55 x 40 meter är 2200 kvadratmeter, alltså 157,1 per spelare, under taket. Arton
+      spelare på 65 x 50 meter är 180,6, alltså matchens eget värde i 9 mot 9, och där bär undantag
+      4. Längden 55 respektive 65 meter passerar minsta längd 35 meter, som gäller eftersom texten
+      säger att offside gäller. Fältet yta ska bära 65 x 50 och inte den mindre ytan. Generatorn
+      använder fältet för att se att momentet får plats på den yta ledaren valt (R-092), och det
+      måste därför vara det största övningen kan kräva. En lägre siffra skulle kunna lägga ett spel
+      med arton spelare på en för liten plan. Följden är att den som räknar kvadratmeter per spelare
+      rakt på fältet vid minsta antal får 232 och fäller övningen fel. Texten är det som gäller, och
+      frågan om fältet går vidare till användaren. Materialet stämmer: nio västar räcker till det
+      största laget.
