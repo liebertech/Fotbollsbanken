@@ -91,8 +91,19 @@ function EmptyPart({ result, minutes }: { result: PartResult | null; minutes: nu
   );
 }
 
-/** `format` är ledarens val, och styr vilken yta och ytreferens korten visar (R-092, ADR 0017). */
-function Part({ part, format }: { part: PartView; format: GameFormat }) {
+/**
+ * `format` är ledarens val, och styr vilken yta och ytreferens korten visar (R-092, ADR 0017).
+ * `areaHelpKey` är det enda kort i passet som visar ytförklaringen.
+ */
+function Part({
+  part,
+  format,
+  areaHelpKey,
+}: {
+  part: PartView;
+  format: GameFormat;
+  areaHelpKey: string | null;
+}) {
   const texts = TEXTS.session;
   const empty = part.result?.status === 'saknar-ovning';
   return (
@@ -117,6 +128,7 @@ function Part({ part, format }: { part: PartView; format: GameFormat }) {
                 label={
                   item.period === null ? undefined : fill(texts.period, { number: item.period })
                 }
+                showAreaHelp={item.key === areaHelpKey}
               />
             );
 
@@ -131,12 +143,13 @@ function Part({ part, format }: { part: PartView; format: GameFormat }) {
                 </p>
                 {item.stations.map((station) => (
                   <ExerciseCard
-                    key={`${item.key}-${station.station}`}
+                    key={station.key}
                     exercise={station.exercise}
                     minutes={item.stationMinutes ?? 0}
                     layout={station.layout}
                     format={format}
                     label={stationLabel(station.station)}
+                    showAreaHelp={station.key === areaHelpKey}
                   />
                 ))}
               </div>
@@ -205,7 +218,12 @@ export function SessionView({ session, onChangeInput, onGenerateAgain }: Session
       </ul>
 
       {view.parts.map((part) => (
-        <Part key={part.part} part={part} format={input.spelform} />
+        <Part
+          key={part.part}
+          part={part}
+          format={input.spelform}
+          areaHelpKey={view.firstAreaReferenceKey}
+        />
       ))}
 
       <div className={styles.actions}>

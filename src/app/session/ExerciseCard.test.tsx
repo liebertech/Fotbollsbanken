@@ -121,3 +121,33 @@ describe('ADR 0017 ytreferensens uppslagning per spelform', () => {
     expect(markup).not.toContain('stora planens målområde');
   });
 });
+
+describe('Ytförklaringen på kortet', () => {
+  function withHelp(overrides: Record<string, unknown>, showAreaHelp: boolean): string {
+    return renderToStaticMarkup(
+      <ExerciseCard
+        exercise={contentExercise(overrides)}
+        minutes={10}
+        layout={null}
+        format="7mot7"
+        showAreaHelp={showAreaHelp}
+      />,
+    );
+  }
+
+  it('visas fälld, utan texten i DOM:en, när kortet har en referens och är utpekat', () => {
+    const markup = withHelp({ ytreferens: { alla: 'stora planens målområde' } }, true);
+    expect(markup).toContain('Vad betyder måttet i parentes?');
+    expect(markup).toMatch(/aria-expanded="false"[^>]*>Vad betyder/u);
+    expect(markup).not.toContain('Referensen jämför storlek.');
+  });
+
+  it('visas inte på ett kort som inte är utpekat', () => {
+    const markup = withHelp({ ytreferens: { alla: 'stora planens målområde' } }, false);
+    expect(markup).not.toContain('Vad betyder måttet i parentes?');
+  });
+
+  it('visas inte när kortet saknar en referens att förklara', () => {
+    expect(withHelp({}, true)).not.toContain('Vad betyder måttet i parentes?');
+  });
+});

@@ -10,6 +10,7 @@ import { exerciseArea } from '../../regelmotor/index.ts';
 import type { Exercise, GameFormat, Layout } from '../../regelmotor/index.ts';
 import { materialText } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
+import { areaReference } from './model.ts';
 import styles from './ExerciseCard.module.css';
 
 interface ExerciseCardProps {
@@ -20,6 +21,11 @@ interface ExerciseCardProps {
   format: GameFormat;
   /** Stationens eller periodens etikett, när kortet ligger i ett sådant moment. */
   label?: string;
+  /**
+   * Sant på det första kortet i passet med en ytreferens (`firstAreaReferenceKey` i
+   * model.ts). Förklaringen visas bara om kortet också har en referens att förklara.
+   */
+  showAreaHelp?: boolean;
 }
 
 /**
@@ -41,9 +47,9 @@ function areaLine(exercise: Exercise, format: GameFormat): string | null {
     return null;
   }
   const size = sizeText(area.langd, area.bredd);
-  const reference = exercise.ytreferens?.[format] ?? exercise.ytreferens?.alla;
+  const reference = areaReference(exercise, format);
   const texts = TEXTS.session;
-  return reference === undefined
+  return reference === null
     ? fill(texts.area, { size })
     : fill(texts.areaWithReference, { size, reference });
 }
@@ -61,11 +67,47 @@ function layoutText(layout: Layout): string {
     : fill(texts.groupsMixed, { groups: layout.groups, sizes: layout.sizes.join(' + ') });
 }
 
-export function ExerciseCard({ exercise, minutes, layout, format, label }: ExerciseCardProps) {
+/**
+ * Ytförklaringen: en egen disclosure, inte kopplad till "Visa mer". Texten finns bara i DOM:en
+ * när den är utfälld, och ingenting ges bara vid hovring (skisser/02-genererat-pass.md).
+ */
+function AreaHelp() {
+  const [open, setOpen] = useState(false);
+  const helpId = useId();
+  const texts = TEXTS.session;
+  return (
+    <>
+      <button
+        className={styles.helpToggle}
+        type="button"
+        aria-expanded={open}
+        aria-controls={helpId}
+        onClick={() => setOpen(!open)}
+      >
+        {open ? texts.areaHelpHide : texts.areaHelpShow}
+      </button>
+      {open && (
+        <p className={styles.helpText} id={helpId}>
+          {texts.areaHelpText}
+        </p>
+      )}
+    </>
+  );
+}
+
+export function ExerciseCard({
+  exercise,
+  minutes,
+  layout,
+  format,
+  label,
+  showAreaHelp = false,
+}: ExerciseCardProps) {
   const [open, setOpen] = useState(false);
   const detailsId = useId();
   const texts = TEXTS.session;
   const area = areaLine(exercise, format);
+  const areaHelp = showAreaHelp && areaReference(exercise, format) !== null;
 
   return (
     <article className={styles.card}>
@@ -89,6 +131,8 @@ export function ExerciseCard({ exercise, minutes, layout, format, label }: Exerc
       )}
 
       {area !== null && <p className={styles.area}>{area}</p>}
+
+      {areaHelp && <AreaHelp />}
 
       <button
         className={styles.toggle}

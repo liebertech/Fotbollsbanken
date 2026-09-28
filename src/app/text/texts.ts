@@ -70,6 +70,14 @@ export const TEXTS = {
      */
     area: 'Yta:\u00a0{size}\u00a0meter',
     areaWithReference: 'Yta:\u00a0{size}\u00a0meter\u00a0({reference})',
+    /**
+     * Ytförklaringen (docs/design/texter.md avsnitt 4, uppföljning till ADR 0017): visas bara
+     * på det första kortet i passet vars yta har en ytreferens, så att referensen läses som en
+     * jämförelse av storlek och inte som en plats.
+     */
+    areaHelpShow: 'Vad betyder måttet i parentes?',
+    areaHelpHide: 'Dölj förklaringen',
+    areaHelpText: 'Referensen jämför storlek. Var målen står följer övningens beskrivning.',
     groups: '{groups} grupper à {size} spelare',
     groupsMixed: '{groups} grupper: {sizes} spelare',
     oneGroup: 'En grupp med {size} spelare',
