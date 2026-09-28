@@ -21,9 +21,11 @@ function facitRows(): [string, string, number][] {
     .split('\n')
     .filter((line) => line.startsWith('| `'))
     .map((line) => {
-      const cells = line.split('|').map((cell) => cell.trim());
       // | övning | spelform | mått | referens | tecken | var |
-      return [cells[1].replaceAll('`', ''), cells[4], Number(cells[5])];
+      const [, exercise = '', , , reference = '', count] = line
+        .split('|')
+        .map((cell) => cell.trim());
+      return [exercise.replaceAll('`', ''), reference, Number(count)];
     });
 }
 
