@@ -36,6 +36,8 @@ yta:
   alla:
     langd: 35
     bredd: 25
+ytreferens:
+  alla: ungefär halva 7 mot 7-planen
 material:
   - typ: vast
     antal: 6

@@ -40,6 +40,8 @@ yta:
   alla:
     langd: 18
     bredd: 18
+ytreferens:
+  alla: en ruta som rymmer stora planens mittcirkel
 material:
   - typ: boll
     antal: 1

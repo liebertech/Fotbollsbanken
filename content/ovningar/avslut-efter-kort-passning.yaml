@@ -44,6 +44,8 @@ yta:
   alla:
     langd: 15
     bredd: 10
+ytreferens:
+  alla: ungefär en fjärdedel av stora planens straffområde
 material:
   - typ: boll
     antal: 4

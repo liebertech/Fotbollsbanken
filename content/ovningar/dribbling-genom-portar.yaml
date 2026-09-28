@@ -36,6 +36,8 @@ yta:
   alla:
     langd: 18
     bredd: 12
+ytreferens:
+  alla: stora planens målområde, dubbelt så djupt
 material:
   - typ: minimal
     antal: 2

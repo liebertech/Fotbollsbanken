@@ -43,6 +43,8 @@ yta:
   alla:
     langd: 30
     bredd: 45
+ytreferens:
+  alla: stora planens straffområde, nästan dubbelt så djupt
 material:
   - typ: mal
     antal: 1
