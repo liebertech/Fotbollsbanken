@@ -64,11 +64,12 @@ export const TEXTS = {
      * ytreferensen följer efter i parentes när övningen har en, och raden ser ut som i dag
      * när den saknas — ingen tom parentes och ingen platshållare.
      *
-     * Texterna saknas i docs/design/texter.md, som godkändes vid K2 innan fältet fanns. De
-     * läggs fram för ux-designern vid granskningen av den här ändringen (2026-09-24).
+     * Se docs/design/texter.md avsnitt 4. "Yta: {size} meter (" hålls ihop med hårda
+     * mellanslag (U+00A0), så att måttet och parentesens början aldrig bryts isär; själva
+     * referensen har vanliga mellanslag och bryter fritt.
      */
-    area: 'Yta: {size} meter',
-    areaWithReference: 'Yta: {size} meter ({reference})',
+    area: 'Yta:\u00a0{size}\u00a0meter',
+    areaWithReference: 'Yta:\u00a0{size}\u00a0meter\u00a0({reference})',
     groups: '{groups} grupper à {size} spelare',
     groupsMixed: '{groups} grupper: {sizes} spelare',
     oneGroup: 'En grupp med {size} spelare',

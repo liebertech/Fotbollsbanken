@@ -83,20 +83,24 @@ describe('Berättelse 02: det genererade passet', () => {
    */
   it('ADR 0017 visar ytans mått i meter på varje övningskort', () => {
     const markup = sessionHtml();
-    expect(markup).toContain('Yta: 20 × 20 meter');
+    expect(markup).toContain('Yta:\u00a020\u00a0×\u00a020\u00a0meter');
   });
 
   it('ADR 0017 visar ytreferensen i parentes efter måttet', () => {
     const markup = sessionHtml(BANK_WITH_AREA_REFERENCE);
-    expect(markup).toContain('Yta: 20 × 20 meter (något större än mittcirkeln)');
+    expect(markup).toContain(
+      'Yta:\u00a020\u00a0×\u00a020\u00a0meter\u00a0(något större än mittcirkeln)',
+    );
   });
 
   it('ADR 0017 visar måttet utan parentes när övningen saknar ytreferens', () => {
     // Fixturbanken har inga ytreferenser alls: raden ser ut precis som förut.
-    expect(sessionHtml()).toMatch(/Yta: 20 × 20 meter(?!\s*\()/u);
-    expect(sessionHtml()).not.toContain('meter (');
+    expect(sessionHtml()).toMatch(/Yta:\u00a020\u00a0×\u00a020\u00a0meter(?!\s*\()/u);
+    expect(sessionHtml()).not.toMatch(/meter\s*\(/u);
     // I banken med en referens är det bara uppvärmningen som får sin parentes.
-    expect(sessionHtml(BANK_WITH_AREA_REFERENCE)).toMatch(/Yta: 20 × 20 meter(?!\s*\()/u);
+    expect(sessionHtml(BANK_WITH_AREA_REFERENCE)).toMatch(
+      /Yta:\u00a020\u00a0×\u00a020\u00a0meter(?!\s*\()/u,
+    );
   });
 
   it('02.2 visar fokusområdena med sina namn, inte med sina nycklar', () => {

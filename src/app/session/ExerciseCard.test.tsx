@@ -55,14 +55,14 @@ describe('ADR 0017 ytreferensens uppslagning per spelform', () => {
       },
       '5mot5',
     );
-    expect(markup).toContain('Yta: 18 × 12 meter');
+    expect(markup).toContain('Yta:\u00a018\u00a0×\u00a012\u00a0meter');
     expect(markup).not.toContain('ert eget straffområde');
-    expect(markup).not.toContain('meter (');
+    expect(markup).not.toMatch(/meter\s*\(/u);
   });
 
   it('måttet visas med svenskt decimaltecken, med och utan referens', () => {
     const withoutReference = cardHtml({ yta: { alla: { langd: 18.5, bredd: 12.3 } } }, '7mot7');
-    expect(withoutReference).toContain('Yta: 18,5 × 12,3 meter');
+    expect(withoutReference).toContain('Yta:\u00a018,5\u00a0×\u00a012,3\u00a0meter');
 
     const withReference = cardHtml(
       {
@@ -71,7 +71,30 @@ describe('ADR 0017 ytreferensens uppslagning per spelform', () => {
       },
       '7mot7',
     );
-    expect(withReference).toContain('Yta: 18,5 × 12,3 meter (ungefär en fjärdedel av stora planen)');
+    expect(withReference).toContain(
+      'Yta:\u00a018,5\u00a0×\u00a012,3\u00a0meter\u00a0(ungefär en fjärdedel av stora planen)',
+    );
+  });
+
+  /*
+   * docs/design/texter.md avsnitt 4: "Yta: {mått} meter (" hålls ihop med hårda mellanslag,
+   * så att "×" eller "(" aldrig hamnar ensamt på en rad. Referensen bryter fritt och behåller
+   * sina vanliga mellanslag.
+   */
+  it('måttet och parentesens början hålls ihop, referensen bryter fritt', () => {
+    const markup = cardHtml(
+      {
+        yta: { alla: { langd: 18, bredd: 12 } },
+        ytreferens: { alla: 'stora planens målområde, dubbelt så djupt' },
+      },
+      '7mot7',
+    );
+    const line = /Yta:[^<]*\)/u.exec(markup)?.[0] ?? '';
+    const [measure = '', reference = ''] = line.split('(');
+    expect(measure).toBe('Yta:\u00a018\u00a0×\u00a012\u00a0meter\u00a0');
+    expect(measure).not.toContain(' ');
+    expect(reference).toBe('stora planens målområde, dubbelt så djupt)');
+    expect(reference).not.toContain('\u00a0');
   });
 
   /*

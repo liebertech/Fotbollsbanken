@@ -22,10 +22,13 @@ interface ExerciseCardProps {
   label?: string;
 }
 
-/** Ett mått med svenskt decimaltecken: 18 × 12, eller 18,3 × 5,5. */
+/**
+ * Ett mått med svenskt decimaltecken: 18 × 12, eller 18,3 × 5,5. Hårda mellanslag runt "×"
+ * så att tecknet aldrig hamnar ensamt på en rad (docs/design/texter.md avsnitt 4).
+ */
 function sizeText(langd: number, bredd: number): string {
   const decimal = (value: number): string => String(value).replace('.', ',');
-  return `${decimal(langd)} × ${decimal(bredd)}`;
+  return `${decimal(langd)}\u00a0×\u00a0${decimal(bredd)}`;
 }
 
 /**
