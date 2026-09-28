@@ -32,8 +32,15 @@ function facitRows(): [string, string, number][] {
 describe('ADR 0017 ordlistan för ytreferenser mot schemat', () => {
   const rows = facitRows();
 
-  it('facit i avsnitt 6.1 hittas och har 45 övningar', () => {
-    expect(rows).toHaveLength(45);
+  // Antalet rader ligger inte fast: facit ändras i samma pull request som övningarna, och en
+  // sådan pull request får inte röra testerna (ADR 0013 avsnitt 3). Testet kontrollerar i
+  // stället att tabellen gick att läsa.
+  it('facit i avsnitt 6.1 hittas och varje rad kan läsas', () => {
+    expect(rows.length).toBeGreaterThan(0);
+    for (const [exercise, , count] of rows) {
+      expect(exercise).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(Number.isInteger(count)).toBe(true);
+    }
   });
 
   it.each(rows)('%s: "%s" godkänns av måttkontrollen och längdgränserna', (_, text, count) => {
