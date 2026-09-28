@@ -1,0 +1,85 @@
+schema: 1
+id: overtal-till-mal-9mot9
+namn: Övertal 4 mot 2 till mål
+syfte: Spelarna ska utnyttja ett överläge för att skapa och avsluta målchanser snabbt.
+beskrivning: |
+  Fyra anfallare möter två försvarare och en målvakt på en yta om 30 x 20 meter med ett
+  mål i ena änden. Anfallarna startar utanför ytan och spelas in av ledaren. De ska hitta
+  ett avslut inom en bestämd tid genom att utnyttja överläget med snabba passningar och
+  rörelse, i stället för att hålla bollen i onödan. Byt vilka som anfaller och försvarar
+  efter varje försök.
+organisation: |
+  En grupp om sju spelare per yta: fyra anfallare, två försvarare och en målvakt. Ledaren
+  spelar in bollen till anfallarna och styr rotationen mellan rollerna.
+fokusomraden:
+  - avslut
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren spelar in bollen till anfallarna vid varje försök, tar tiden och
+  styr rotationen mellan anfallare och försvarare.
+spelare:
+  min: 7
+  max: 7
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 16
+yta:
+  alla:
+    langd: 30
+    bredd: 20
+material:
+  - typ: mal
+    antal: 1
+  - typ: vast
+    antal: 2
+    anteckning: till de två försvararna
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er direkt så att överläget syns i bredd.
+  - Spela snabbt, håll inte bollen längre än nödvändigt.
+  - Skjut tidigt när vägen till mål är öppen i stället för att leta efter det perfekta
+    läget.
+varianter:
+  lattare: Fem anfallare mot en försvarare, så att överläget blir ännu större.
+  svarare: Sätt en tidsgräns på åtta sekunder från inspel till avslut.
+anpassning:
+  fler_spelare: Bygg en andra yta med samma uppställning bredvid.
+  udda_antal: En spelare vilar och byter in med en av anfallarna efter varje omgång.
+  ledare: En ledare krävs för att spela in bollen och hålla tempo i rotationen. Utan extra
+    ledare håller den ordinarie ledaren i båda delarna.
+kalla: Egen övning, inspirerad av vanlig överlägesträning mot mål.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollräknat: 30 x 20 meter är 600 kvadratmeter, alltså 85,7 per spelare vid sju. Golvet för
+      fas-13-14 med motståndare är 70 och taket 181, så övningen ligger i spannet
+      (passuppbyggnad.md). Målvakten är medräknad, eftersom hen står på ytan. Längdkriteriet på 35
+      meter slår inte till, och det är rätt bedömt: det här är en avslutsövning mot ett mål, och de
+      två försvararna är inte en försvarslinje som ska passeras i längdriktningen. Kriteriet gäller
+      uttryckligen inte avslutsövningar utan linje att passera. Innehållet håller. Avslut och
+      spelbarhet är kärnområden för fas-13-14, syftet hänger ihop med huvudfokus, och alla sju är
+      med i varje försök, så kötiden är noll. Övertalet fyra mot två gör att anfallarna hinner
+      lyckas, vilket är rätt för nivå 1 och 2. Coachningspunkterna är korrekta och den lättare
+      varianten, fem mot en, går jämnt ut på sju spelare. Tiden 8 till 16 minuter ligger inom fasens
+      gräns för en övning, 20 minuter, och ledarbehov 1 med sju spelare ligger under taket per
+      ledare. Två småsaker, ingen av dem stoppar övningen. 1. Materiallistan saknar koner. Ytan på
+      30 x 20 meter behöver markeras, fyra koner räcker. 2. Skriv gärna var ledaren står när hen
+      spelar in bollen. Det ska vara vid sidan och utanför skottlinjen, eftersom det skjuts ofta och
+      hårt i den här åldern.

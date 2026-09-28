@@ -1,0 +1,97 @@
+schema: 1
+id: smaspel-till-mal-9mot9
+namn: Smålagsspel 3 mot 3 till 4 mot 4, till mål
+syfte: Spelarna ska avsluta ofta och försvara sitt mål i ett litet matchspel utan målvakt.
+beskrivning: |
+  Två lag om tre till fyra spelare möts på en yta om 32 x 20 meter med ett minimål,
+  ungefär 1 till 1,5 meter brett, i var ände och utan målvakt. Lagen spelar match med
+  vanliga regler i litet format, med mycket bolltid och många avslutsförsök för alla.
+  Extra poäng ges för mål som föregås av minst tre passningar i följd inom laget.
+organisation: |
+  Två lag om tre till fyra spelare per yta. Ytans hörn och mittlinje markeras med koner.
+  Flera ytor läggs bredvid varandra om gruppen är större, med tre meters mellanrum.
+fokusomraden:
+  - avslut
+  - spelbarhet
+alder:
+  min: 13
+  max: 14
+spelformer:
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 8
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 32
+    bredd: 20
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 6
+    anteckning: fyra markerar ytans hörn, två markerar mittlinjen
+coachningspunkter:
+  - Sprid ut er över hela ytan så att ni är lätta att hitta för den som har boll.
+  - Skjut tidigt när vägen till mål är öppen.
+  - Pressa bollhållaren direkt om ditt lag förlorar bollen.
+varianter:
+  lattare: Vanliga mål räcker för poäng, bonuspoängen för tre passningar tas bort.
+  svarare: Bara två touchar per spelare tillåtna i eget lags planhalva.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått, hellre än fler spelare på
+    samma yta.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer och peppar från sidan.
+kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål.
+status: granskad
+granskning:
+  - datum: 2026-09-23
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ytan håller, målen gör det inte. Kontrollräknat: 32 x 20 meter är 640 kvadratmeter, alltså
+      80,0 per spelare vid åtta och 106,7 vid sex, över golvet 70 och under taket 181 för fas-13-14.
+      Längdkriteriet slår inte till, rätt bedömt: ingen försvarslinje att spela bakom och ingen
+      offside i texten, bara ett smålagsspel till mål. Två saker ska ändras. 1. Materiallistan säger
+      mal, alltså mål i en spelforms storlek, och spelet är utan målvakt. I 9 mot 9 är målet 6 x 2,2
+      meter (spelformer.md). Två obevakade sexmetersmål i en yta som bara är tjugo meter bred gör
+      att skott från var som helst går in, och då är varken avslutet eller försvarsspelet värt
+      något. Byt till minimal, ungefär 1 till 1,5 meter breda, eller behåll målen och sätt in
+      målvakter. Skriv ut vilket. Påminnelsen om förankrade mål gäller i båda fallen (R-084). 2.
+      Materiallistan saknar markering av ytan, och den svårare varianten talar om eget lags
+      planhalva utan att någon mittlinje finns. Lägg till koner till hörnen och till mittlinjen. Det
+      som stämmer: avslut och spelbarhet är kärnområden för fas-13-14, tiden 10 till 20 minuter
+      ligger under fasens gräns för spel, 35 minuter, ledarbehov 0 är rätt (R-057) och grupptypen
+      tva-lag stämmer med del-spel (R-008). En liten sak: namnet säger 4 mot 4 men spannet sex till
+      åtta betyder 3 mot 3 till 4 mot 4. Skriv gärna om namnet.
+  - datum: 2026-09-24
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Båda punkterna är åtgärdade. Målen är nu minimal, ungefär 1 till 1,5 meter breda, och då
+      hänger spelet utan målvakt ihop: ett litet mål går att försvara med kropp och press, och
+      avslutet kräver träff i stället för bara ett skott åt rätt håll. Påminnelsen om förankrade mål
+      gäller fortfarande, eftersom minimal räknas (R-084). Konerna är sex, fyra till hörnen och två
+      till mittlinjen, så den svårare varianten om eget lags planhalva går nu att genomföra. Namnet
+      stämmer med spannet sex till åtta spelare. Ytan är oförändrad och håller: 32 x 20 meter är 640
+      kvadratmeter, alltså 80,0 per spelare vid åtta och 106,7 vid sex, mellan golvet 70 och taket
+      181 för fas-13-14. Utan krav: den lättare varianten säger Vanliga mål räcker för poäng, vilket
+      nu kan läsas som mål i en spelforms storlek. Skriv hellre att varje mål ger poäng och att
+      bonuspoängen för tre passningar tas bort.
