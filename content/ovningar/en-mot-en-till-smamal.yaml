@@ -65,3 +65,11 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: för liten eller ingen plandel med rätt form. 12 x 8 meter är mindre än varje
+      jämförelse i ordlistan som har rätt form. Facit i ytreferenser.md, avsnitt 6.2, anger kategorin
+      duell med startavstånd, men övningen har inga bestämda startavstånd, båda spelarna rör sig fritt
+      mellan två mål. Jag föreslår att facit rättas. Utfallet, ingen referens, är detsamma.

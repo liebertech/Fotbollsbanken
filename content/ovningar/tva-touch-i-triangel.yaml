@@ -87,3 +87,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: fasta positioner, där avståndet är det som övas. Tre spelare står i hörnen av
+      en triangel med åtta meters sidor, och det är det avståndet som ska hållas, inte ytans storlek
+      (ytreferenser.md, avsnitt 4).

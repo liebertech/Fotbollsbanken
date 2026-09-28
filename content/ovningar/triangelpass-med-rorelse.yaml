@@ -109,3 +109,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: för liten eller ingen plandel med rätt form. En triangel med åtta meters
+      sidor har ingen motsvarighet bland planens linjer, och spelarna står dessutom i fasta hörn där
+      avståndet är det som övas (ytreferenser.md, avsnitt 4).

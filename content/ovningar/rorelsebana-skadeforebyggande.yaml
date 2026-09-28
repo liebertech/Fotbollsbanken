@@ -115,3 +115,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: fasta positioner, där avståndet är det som skyddar. Varje spelare arbetar på
+      sin egen platta med minst två meter till närmaste kompis, och det avståndet är det som ska
+      hållas, inte ytans storlek (ytreferenser.md, avsnitt 4).

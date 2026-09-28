@@ -78,3 +78,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: för liten eller ingen plandel med rätt form. Rutan 6 x 6 meter är mindre än
+      allt som finns uppritat på en plan, och portarna i var ände är måttkritiska för duellen
+      (ytreferenser.md, avsnitt 4).

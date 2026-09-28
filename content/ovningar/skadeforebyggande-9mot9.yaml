@@ -146,3 +146,10 @@ granskning:
       parallellt, så undantag 3 gäller oförändrat och ytan ska stå kvar. Anpassningen för udda antal
       är orörd och behövs när ett block om tre roterar in på balansstationen. Utan krav: skriv gärna
       ut ett exempel för fjorton spelare, så slipper ledaren räkna vid planen.
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: stationer. Det som styr är avståndet mellan stationerna och de två metrarna
+      mellan spelarna på samma station, och ytan följer undantag 3 i passuppbyggnad.md
+      (ytreferenser.md, avsnitt 4).
