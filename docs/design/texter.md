@@ -187,8 +187,28 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 
 | Sammanhang | Text |
 |---|---|
-| Saknad skiss | Planskiss saknas |
-| Alt-text för skärmläsare, skiss finns | Planskiss: {övningsnamn}, yta {mått} meter |
+| Saknad skiss (kriterium 2) | Planskiss saknas |
+| Skissdata kunde inte valideras vid läsning (kriterium 3) | Planskissen kunde inte visas |
+| Tillgängligt namn, SVG:ns `<title>` (kriterium 8, ADR 0012 avsnitt 5) | {övningsnamn}, planskiss |
+| Tillgänglig beskrivning, SVG:ns `<desc>`, när `skiss.beskrivning` finns | {skiss.beskrivning}, ordagrant och utan tillägg |
+| Tillgänglig beskrivning, SVG:ns `<desc>`, när `skiss.beskrivning` saknas (genererad) | Se mallen nedan |
+
+**Löser motsägelsen mellan detta avsnitt och ADR 0012 (tillagd 2026-09-28, förarbete till inkrement 2, se berättelse 06 kriterium 8):** den tidigare enda raden här ("Planskiss: {övningsnamn}, yta {mått} meter") utgick från en `<img>`s `alt`-text. ADR 0012 (beslutad vid K2, ändras inte i efterhand) valde ett annat mönster: SVG med `role="img"` och `aria-labelledby` som pekar på ett `<title>` och ett `<desc>` (ADR 0012 avsnitt 5). Raderna ovan ersätter den gamla raden helt och följer ADR:ns struktur i stället för att gå runt den.
+
+**`<title>`:** alltid "{övningsnamn}, planskiss" – aldrig ytans mått eller annan information, för att hålla namnet kort och stabilt oavsett spelform eller antal spelare.
+
+**`<desc>`, mallen när `skiss.beskrivning` saknas** (algoritmen och fälten – yta, spelare per lag, mål, rörelser per typ – kommer från ADR 0012 avsnitt 5; ordningen, orden och uteslutningsreglerna fastställs här):
+
+> Yta {langd} gånger {bredd} meter. [{spelare lag A} spelare i lag A][, {spelare lag B} i lag B][, {neutrala} neutral/neutrala][, {målvakter} målvakt/målvakter]. [{mål} mål.] [{rörelser per typ, uppräknade}.] [Så här ser en av {antal ytor} ytor ut.]
+
+Regler för mallen:
+
+- **Hakparenteser `[...]` markerar klausuler som tas bort helt** när antalet är noll eller fältet saknas i skissen – aldrig "0 mål.", ett kommatecken som pekar mot ingenting, eller en tom uppräkning. Saknar skissen spelare helt utelämnas hela den andra meningen, och "Yta {langd} gånger {bredd} meter." står då som en egen, fullständig mening.
+- **Rörelsetyperna räknas upp i ADR 0012 avsnitt 3:s ordning** (`passning`, `lopning`, `dribbling`, `skott`), kommaseparerade, med "och" före den sista typ som förekommer – samma stil som ADR:ns eget exempel ("3 passningar och 2 löpningar"). `skott` skrivs ut som **"avslut"**, samma ord som ADR:ns teckenförklaring använder för rörelsetypen ("Avslut mot mål", ADR 0012 avsnitt 3), inte "skott".
+- **Ytans mått och ytreferensen (ADR 0017) tas inte med.** `<desc>` innehåller bara metertalet, inte en eventuell ytreferens ("stora planens målområde …"). Skälet är dubbelt: ADR 0012 avsnitt 5 räknar uttryckligen upp vad sammanfattningen innehåller (yta, spelare, mål, rörelser) och nämner ingen ytreferens – fältet fanns inte när ADR:n beslutades, och att lägga till det nu vore att utöka en beslutad ADR i efterhand. Dessutom visas ytreferensen redan som synlig text i "Yta: {mått} meter ({ytreferens})" på övningskortet (avsnitt 4 ovan), som en skärmläsare når på egen hand – att upprepa den inuti `<desc>` skulle bara göra texten längre utan att ge ny information.
+- **"Så här ser en av {antal ytor} ytor ut."** läggs till sist i `<desc>` bara när skissens `skalning.strategi` är `parallella-ytor` och det totala antalet spelare kräver fler än en yta (ADR 0012 avsnitt 4). Meningen läggs till **även när `skiss.beskrivning` finns** och används i stället för den genererade sammanfattningen – den beskriver hur just den här renderingen ska tolkas (en av flera identiska ytor), inte övningen i sig, och hör därför inte till valet mellan författarens text och den genererade sammanfattningen.
+
+**Varför "gånger" ersätter tecknet "×" i title/desc, i stället för samma dolda tillägg som avsnitt 4** (samma öppna fråga som redan fanns för ytraden, löst här med samma grundidé): avsnitt 4 föreslår, om kvalitetssäkrarens skärmläsartest visar att tecknet "×" läses oklart, att lösa det med ett dolt `.visually-hidden`-tillägg *vid sidan av* den synliga texten – "till exempel som 'gånger'" – utan att ändra den synliga texten. Den lösningen förutsätter en synlig text och en separat dold text, och det går inte att bygga i `<title>`/`<desc>`: de är rena textnoder utan nästlad markup (ADR 0012 avsnitt 5, samma slutna elementlista som avsnitt 6 hänvisar till), och de visas aldrig för ögat – hela innehållet är redan bara till för skärmläsaren, så det finns ingen synlig variant att bevara vid sidan av ett tillägg. Den här texten använder därför **samma ord som avsnitt 4 redan föreslår** ("gånger") men skriver ut det direkt i stället för att lägga till det: "30 gånger 20 meter", inte "30 × 20 meter". Det görs oavsett vad testet i avsnitt 4 landar i, eftersom det – till skillnad från den synliga ytraden på kortet – inte kostar något att välja ordet här i förväg: ingen tappar något visuellt, eftersom `<desc>` aldrig visas.
 
 ---
 
@@ -372,3 +392,4 @@ Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillä
 | 2026-09-23 (uppföljning samma dag) | **Avsnitt 3:** ny rad för skärmläsarordet "kärnområde" och en förklaring av hur det vävs in i fokuskryssrutornas tillgängliga namn tillsammans med "(K)" (WCAG 2.5.3). |
 | 2026-09-28 | **Avsnitt 4:** två nya rader för ytan på övningskortet och en förklaring av placering, radbrytning och skärmläsarläsning av "×" (ADR 0017, `feature/ytreferens`). Fältet fanns inte vid K2, och måttet visades inte alls på kortet innan den här ändringen. |
 | 2026-09-28 (uppföljning samma dag) | **Avsnitt 4:** tre nya rader och en ny förklaring för ytförklaringen – en utfällbar text som säger att ytreferensen bara jämför storlek, inte pekar ut en plats. Tillagd efter att fotbollsexperten vid granskningen såg att en ledare kan läsa referensen som var målen ska stå. Grenen `design/ytreferens-hjalptext`. |
+| 2026-09-28 (förarbete till inkrement 2) | **Avsnitt 8 skrivet om i sin helhet.** Löser motsägelsen mellan den gamla enda raden (en `alt`-text för en `<img>`) och ADR 0012 avsnitt 5 (beslutad, `<title>` + `<desc>` + `aria-labelledby`). Nytt: exakt text för `<title>` ("{övningsnamn}, planskiss"), en fullständig mall för `<desc>` med uteslutningsregler när fält saknas, ett beslut att ytreferensen (ADR 0017) inte tas med i `<desc>` eftersom den redan är synlig text på kortet och inte står i ADR 0012:s uppräkning, en rad för "Planskissen kunde inte visas" som saknades helt trots att ADR 0012 avsnitt 7 och berättelse 06 kriterium 3 redan förutsatte den, och en lösning på "×"-frågan (skrivs ut som "gånger" i title/desc, eftersom avsnitt 4:s dolda tillägg inte går att bygga i en textnod utan synlig motsvarighet). Grenen `feature/planskisser-forarbete`. Svarar på berättelse 06 kriterium 8. |
