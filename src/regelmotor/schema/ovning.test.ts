@@ -356,6 +356,15 @@ describe('ADR 0017 ytreferensen', () => {
     expect(failsWith(input, 'ytreferens.7mot7', 'ADR 0017')).toBe(true);
   });
 
+  it('överlappet mellan alla och en egen nyckel fälls även när spelformer saknas', () => {
+    // Avsiktligt olikt R-092 för `yta`: överlappet kan avgöras ur kartan ensam.
+    const input = validExercise({
+      spelformer: undefined,
+      ytreferens: { alla: 'stora planens målområde', '7mot7': 'ert eget straffområde' },
+    });
+    expect(failsWith(input, 'ytreferens.7mot7', 'ADR 0017')).toBe(true);
+  });
+
   it('en tom ytreferens underkänns, eftersom fältet i stället ska utelämnas', () => {
     expect(isValid(validExercise({ ytreferens: {} }))).toBe(false);
   });
@@ -378,18 +387,17 @@ describe('ADR 0017 ytreferensen', () => {
   });
 
   /*
-   * FYND (kvalitetssäkring 2026-09-28): måttenheten känns bara igen som ett eget ord när den
-   * inte har en siffra klistrad direkt intill sig. `WORD_START` underkänner en ordgräns när
-   * tecknet före är `\p{N}`, så en siffra direkt före enheten (utan mellanslag) gör att
-   * `containsMeasurement` missar måttet helt. De fyra fallen nedan är alla mått i klartext
-   * ("12 meter", "18,5 meter", "5 decimeter", "3 kilometer") som en ytreferens enligt ADR
-   * 0017 punkt 3 aldrig får innehålla, men som i dag INTE fälls av schemat. Det här testet
-   * dokumenterar luckan; det ska inte försvagas för att gå igenom – se granskningsrapporten.
+   * Regressionstest för fyndet i kvalitetssäkringen 2026-09-28: en siffra direkt före
+   * enheten gjorde att `containsMeasurement` missade måttet, eftersom ordgränsen före
+   * enheten också uteslöt siffror. Fallen är mått i klartext som en ytreferens enligt
+   * ADR 0017 aldrig får innehålla.
    */
-  it.each([['12m'], ['18,5m'], ['5dm'], ['3km'], ['spring 5m och vänd']])(
-    'LUCKA: ett mått utan mellanslag före enheten fälls inte i dag: %s',
+  it.each([['12m'], ['18,5m'], ['5dm'], ['3km'], ['spring 5m och vänd'], ['12m²'], ['200m2']])(
+    'ett mått utan mellanslag före enheten fälls: %s',
     (text) => {
       expect(containsMeasurement(text)).toBe(true);
+      const input = validExercise({ ytreferens: { alla: `ungefär ${text}` } });
+      expect(failsWith(input, 'ytreferens.alla', 'ADR 0017')).toBe(true);
     },
   );
 
@@ -410,6 +418,9 @@ describe('ADR 0017 ytreferensen', () => {
     expect(containsMeasurement('målområde')).toBe(false);
     expect(containsMeasurement('mittcirkelns diameter')).toBe(false);
     expect(containsMeasurement('7 mot 7-planen')).toBe(false);
+    expect(containsMeasurement('nästan en hel 5 mot 5-plan')).toBe(false);
+    expect(containsMeasurement('7mot7')).toBe(false);
+    expect(containsMeasurement('tolv steg utanför det')).toBe(false);
     expect(containsMeasurement('kvadratmeter')).toBe(true);
     expect(containsMeasurement('18 m')).toBe(true);
   });

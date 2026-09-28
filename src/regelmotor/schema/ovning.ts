@@ -164,8 +164,12 @@ const ytaSchema = z
  * Ordgränser som klarar svenska bokstäver. `\b` i JavaScript räknar bara ASCII som ord, så
  * `\bm\b` matchar m:et i "målområde" — å är ingen ordbokstav för `\b`. Lookaround mot
  * `\p{L}\p{N}` ger den gräns som menas.
+ *
+ * Före enheten räcker det att tecknet inte är en bokstav. En siffra får stå direkt före,
+ * eftersom "12m" och "3km" är mått lika mycket som "12 m". Efter enheten stoppar också en
+ * siffra eller bokstav, så att spelformsnyckeln "7mot7" inte läses som "7m".
  */
-const WORD_START = '(?<![\\p{L}\\p{N}])';
+const WORD_START = '(?<!\\p{L})';
 const WORD_END = '(?![\\p{L}\\p{N}])';
 
 /** Måttenheter som egna ord. `kvadratmeter` står med för sig, eftersom `meter` i det ordet inte börjar vid en ordgräns. */
@@ -548,6 +552,9 @@ function checkCrossRules(value: Partial<Exercise>, ctx: z.RefinementCtx): void {
   // ADR 0017: ytreferensens nycklar hör ihop med spelformerna, precis som ytans (R-092).
   // Skillnaden mot R-092 är att ingen spelform behöver ha en referens: att sakna den är ett
   // riktigt svar för den övning där måttet är själva poängen.
+  // Överlappet mellan `alla` och en egen nyckel prövas med avsikt även utan `spelformer`,
+  // till skillnad från R-092: det går att avgöra ur kartan ensam, och R-092:s kontroll
+  // räknar per spelform och kan därför inte göra det. Fler fel på en gång är bättre än färre.
   if (value.ytreferens) {
     const reference = value.ytreferens as Record<string, string | undefined>;
     for (const key of Object.keys(reference)) {
