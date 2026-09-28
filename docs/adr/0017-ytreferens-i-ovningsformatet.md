@@ -53,8 +53,10 @@ vad som når klienten, och ett fält som ligger inuti ett annat går inte att st
 står inte i `BANK_FIELDS`, så en övning kan bli `granskad` och `godkand` utan det. Saknas det
 visas bara metertalet, utan tom parentes och utan platshållare.
 
-**3. Texten är fri, inte en sluten lista.** Vokabulären står i domändokumentet och
-fotbollsexperten granskar att referensen bygger på den. En enum i schemat skulle tvinga fram
+**3. Texten är fri, inte en sluten lista.** Vokabulären står i domändokumentet
+`docs/doman/ytreferenser.md`, och fotbollsexperten granskar att referensen bygger på den. Ett
+test läser facit där och prövar varje formulering mot schemats kontroller, så att ordlistan och
+valideringen inte glider isär. En enum i schemat skulle tvinga fram
 långsökta referenser i just de fall där svaret är att ingen referens ska ges (punkt 2 i
 kontexten), och listan skulle behöva ändras varje gång en ny formulering behövs.
 
@@ -62,14 +64,17 @@ Schemat kontrollerar därför formen, inte innehållet:
 
 - **Nycklarna hör ihop med spelformerna.** En nyckel som inte är `alla` måste finnas i
   `spelformer`, och en spelform får inte täckas både av `alla` och av sin egen nyckel. Samma
-  kontroll som R-092 gör för `yta`, men utan kravet att någon nyckel alls ska finnas.
+  kontroll som R-092 gör för `yta`, men utan kravet att någon nyckel alls ska finnas. Till
+  skillnad från R-092 prövas överlappet också när `spelformer` saknas, eftersom det går att
+  avgöra ur kartan ensam.
 - **Texten får inte innehålla ett mått.** Metern står redan före parentesen, och referensen är en
   jämförelse, inte ett andra mått. Valideringen underkänner måttenheter (`meter`, `cm`, `m` och
-  deras släktingar som egna ord) och mönstret tal × tal. Siffror i övrigt är tillåtna, eftersom
+  deras släktingar som egna ord, också direkt efter en siffra som i `12m`) och mönstret tal ×
+  tal. Siffror i övrigt är tillåtna, eftersom
   spelformernas namn innehåller dem: *hela 7 mot 7-planen* är en giltig referens. Steg är också
   tillåtna, eftersom de uttrycker ungefärlighet: *tio steg utanför straffområdet*.
 - **Texten är kort.** Högst 90 tecken. Fotbollsexpertens riktmärke är ungefär 70, så att texten
-  ryms i en parentes efter måttet på en mobilskärm. Expertens längsta färdiga formulering är 73
+  ryms i en parentes efter måttet på en mobilskärm. Expertens längsta färdiga formulering är 76
   tecken, och taket är satt med marginal över den, inte som ett andra riktmärke.
 
 **4. Fältet rör ingenting i generatorn.** Det läses inte av R-092, det filtrerar inte och det
@@ -125,7 +130,7 @@ oavsiktligt.
   ingen validering fångar det, eftersom "ingen referens" är ett giltigt och ofta riktigt svar.
   Fotbollsexperten är den som kan se skillnad på en glömd och en medvetet utelämnad referens.
 - Kontrollen mot måttenheter är en textkontroll och kan i princip fälla en formulering som råkar
-  innehålla ordet `m` för sig självt. Ingen av expertens 24 färdiga formuleringar gör det, och en
+  innehålla ordet `m` för sig självt. Ingen av expertens 21 färdiga formuleringar gör det, och en
   referens ska ändå inte innehålla en enhet.
 - Fältet är fri text som skrivs in i banken och visas för ledaren. Det är samma klass av innehåll
   som `syfte` och `beskrivning` och går genom samma kontroller mot e-postadresser (S-21, S-32)
