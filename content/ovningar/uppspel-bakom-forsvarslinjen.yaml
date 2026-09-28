@@ -49,7 +49,7 @@ yta:
     langd: 40
     bredd: 26
 ytreferens:
-  alla: stora planens straffområdes bredd, från mållinjen till tio steg utanför det
+  alla: lika lång som stora planens straffområde är brett
 material:
   - typ: mal
     antal: 1
