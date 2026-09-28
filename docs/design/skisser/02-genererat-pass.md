@@ -78,6 +78,8 @@ Status: godkänd (K2, 2026-09-12)
 └────────────────────────────────┘
 ```
 
+**Om "▾" i wireframen (klargjort vid granskningen 2026-09-28):** symbolen markerar bara för ögat att en kontroll fäller ut eller ihop – "Vad betyder måttet i parentes? ▾", "Visa mer ▾", "Mer ▾" – den är inte del av knapptexten. Den knapptext som ska implementeras är den som står i `texter.md` avsnitt 4, ordagrant och utan "▾" (till exempel "Vad betyder måttet i parentes?", "Visa mer"). Samma konvention används i flera andra wireframes (`01-underlag.md`, `05-sparade-pass.md`, `06-planlage.md`, `11-hantera-egna-ovningar.md`) och gäller där på samma sätt. Vill man visa en pil i gränssnittet ska den vara en dekorativ ikon (`aria-hidden`, till exempel via CSS), aldrig inbakad i den klickbara texten eller i det tillgängliga namnet – annars bryter det mot att knapptexten ska vara exakt den som står i `texter.md`. Se `designsystem.md` avsnitt 6.7.
+
 ## Beteende och tillstånd
 
 - **Delnamn och ordning (02.2, R-030):** delarna visas alltid i fast ordning: Uppvärmning, Öva, Spelövning, Spel, Avslutning, med sina fasta nycklar dolda för ledaren (bara namnen visas).
@@ -119,3 +121,4 @@ Status: godkänd (K2, 2026-09-12)
 | 2026-09-23 (uppföljning samma dag) | Bekräftat mot koden: till skillnad från vy 03 (se `03-inget-matchande-resultat.md`) hade den här vyn redan en riktig per-del-signal (`emptyReason` i `PartResult`) när det tredje läget skrevs, så beskrivningen ovan krävde ingen ändring – `SessionView.tsx` är nu kopplad exakt så här. |
 | 2026-09-28 | Tillagt: ytraden på övningskortet (ADR 0017, `feature/ytreferens`) – metertalet och en eventuell ytreferens i parentes. Fanns inte vid K2; måttet visades inte alls på kortet innan den här ändringen. Wireframen och tillgänglighetsavsnittet uppdaterade. |
 | 2026-09-28 (uppföljning samma dag) | Tillagt: en utfällbar ytförklaring på den första övningen i passet som har en ytreferens, efter att fotbollsexperten vid granskningen såg att referensen kan läsas som en plats i stället för en jämförelse av storlek. Grenen `design/ytreferens-hjalptext`. Wireframen, beteendeavsnittet och tillgänglighetsavsnittet uppdaterade. |
+| 2026-09-28 (granskning av det byggda gränssnittet) | Två frågor från senior-systemutvecklaren avgjorda. (1) `.helpToggle` får se ut som en länk i stället för en kantad knapp – godkänt, se `designsystem.md` avsnitt 6.7, "Länkliknande utfällningsknapp". (2) "▾" i wireframen är bara en sketchkonvention, inte del av knapptexten – utvecklaren gjorde rätt i att inte lägga till "▾" i `AreaHelp`, eftersom `texter.md` avsnitt 4 aldrig innehållit tecknet. Klargörande tillagt ovanför "Beteende och tillstånd" och i `designsystem.md` avsnitt 6.7. Ingen kod ändrad av ux-designern. |

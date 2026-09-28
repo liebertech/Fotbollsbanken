@@ -151,6 +151,10 @@ Används i "Sparade pass" (Mina pass/Lag) och i säsongsöversikten (perioder). 
 
 Används för "Visa mer" i pass-vyer och för fokusgrupper i underlaget. `aria-expanded` krävs. Fällda paneler döljer innehållet helt för skärmläsare (inte bara visuellt), så att navigeringen inte blir onödigt lång.
 
+**Symbolen "▾" i wireframes** (klargjort vid granskningen av ytförklaringen, 2026-09-28) markerar bara för ögat att kontrollen fäller ut eller ihop – den är inte del av knapptexten. Knapptexten är alltid den som står ordagrant i `texter.md`, till exempel "Visa mer"/"Visa mindre", utan "▾". Vill man visa en pil i det byggda gränssnittet ska den vara en dekorativ ikon (`aria-hidden`), aldrig inbakad i den klickbara texten eller i det tillgängliga namnet.
+
+**Länkliknande utfällningsknapp** (tillagt vid samma granskning): en utfällningsknapp får se ut som en textlänk (primärfärg, understruken, ingen kantlinje) i stället för en kantad knapp, när den är en mindre framträdande hjälp till ett annat innehåll på kortet snarare än korets huvudhandling – till exempel ytförklaringen i `skisser/02-genererat-pass.md`, som annars skulle konkurrera visuellt med "Byt övning" och "Visa mer". Kraven i avsnitt 5 (minst 48 × 48 px träffyta) och avsnitt 8 (fokusram, kontrast) gäller som vanligt. Understrykningen är ett medvetet val, inte bara ett estetiskt: eftersom knappen ser ut som en länk ska den även vara urskiljbar utan att bara luta sig mot färg (WCAG 1.4.1).
+
 ### 6.8 Dialog/modal
 
 Används för bekräftelser (ta bort, arkivera) och för att skicka åtgärda-kommentar. Fångar tangentbordsfokus, går att stänga med Escape, återger fokus till utlösande knapp vid stängning. Får aldrig vara det enda sättet att nå kritisk information (WCAG 2.4.11 – fokuserat innehåll får inte skymmas av annat gränssnitt, t.ex. en sticky-knapp som täcker en dialogs bekräftelseknapp).
