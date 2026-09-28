@@ -368,10 +368,30 @@ describe('ADR 0017 ytreferensen', () => {
     ['en yta på 200 m²'],
     ['ungefär 30 kvadratmeter'],
     ['ungefär 900 cm djupt'],
+    ['12 x 8, ungefär'],
+    ['12*8, ungefär'],
+    ['ungefär 18,5 x 12,3'],
+    ['m.'],
   ])('ett mått i referensen underkänns: %s', (text) => {
     const input = validExercise({ ytreferens: { alla: text } });
     expect(failsWith(input, 'ytreferens.alla', 'ADR 0017')).toBe(true);
   });
+
+  /*
+   * FYND (kvalitetssäkring 2026-09-28): måttenheten känns bara igen som ett eget ord när den
+   * inte har en siffra klistrad direkt intill sig. `WORD_START` underkänner en ordgräns när
+   * tecknet före är `\p{N}`, så en siffra direkt före enheten (utan mellanslag) gör att
+   * `containsMeasurement` missar måttet helt. De fyra fallen nedan är alla mått i klartext
+   * ("12 meter", "18,5 meter", "5 decimeter", "3 kilometer") som en ytreferens enligt ADR
+   * 0017 punkt 3 aldrig får innehålla, men som i dag INTE fälls av schemat. Det här testet
+   * dokumenterar luckan; det ska inte försvagas för att gå igenom – se granskningsrapporten.
+   */
+  it.each([['12m'], ['18,5m'], ['5dm'], ['3km'], ['spring 5m och vänd']])(
+    'LUCKA: ett mått utan mellanslag före enheten fälls inte i dag: %s',
+    (text) => {
+      expect(containsMeasurement(text)).toBe(true);
+    },
+  );
 
   it.each([
     ['stora planens målområde, dubbelt så djupt'],
@@ -399,6 +419,17 @@ describe('ADR 0017 ytreferensen', () => {
     expect(isValid(validExercise({ ytreferens: { alla: long } }))).toBe(false);
     expect(
       isValid(validExercise({ ytreferens: { alla: 'b'.repeat(LIMITS.ytreferens.max) } })),
+    ).toBe(true);
+  });
+
+  it('en referens som är kortare än undre gränsen underkänns, gränsvärdet godkänns', () => {
+    // LIMITS.ytreferens.min = 5. Bokstäver som `containsMeasurement` inte reagerar på, så
+    // testet prövar bara längdgränsen och inte måttkontrollen.
+    expect(
+      isValid(validExercise({ ytreferens: { alla: 'a'.repeat(LIMITS.ytreferens.min - 1) } })),
+    ).toBe(false);
+    expect(
+      isValid(validExercise({ ytreferens: { alla: 'a'.repeat(LIMITS.ytreferens.min) } })),
     ).toBe(true);
   });
 
@@ -509,8 +540,17 @@ describe('S-21 inga e-postadresser i fält som blir publika', () => {
       'granskning.0.kommentar',
       { granskning: [reviewEntry({ kommentar: 'Fraga tranare@example.com.' })] },
     ],
+    // ADR 0017: ytreferensen är fritext som publiceras och hör hemma i samma svep (S-21, S-32).
+    ['ytreferens.alla', { ytreferens: { alla: 'Fraga tranare@example.com om ytan' } }],
   ])('S-32: %s får inte innehålla en e-postadress', (field, overrides) => {
     expect(failsWith(validExercise(overrides), field, 'S-21')).toBe(true);
+  });
+
+  it('S-21: en omskriven e-postadress i ytreferensen känns igen (ADR 0017)', () => {
+    const input = validExercise({
+      ytreferens: { alla: 'fraga bjorn snabel-a exempel.se om ytan' },
+    });
+    expect(failsWith(input, 'ytreferens.alla', 'S-21')).toBe(true);
   });
 
   it('S-21: roll och förnamn är tillåtet', () => {
