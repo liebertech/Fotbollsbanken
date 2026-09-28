@@ -108,7 +108,10 @@ describe('ADR 0017 ytreferensens uppslagning per spelform', () => {
    */
   it('en spelformsnyckel vinner över alla, om ett objekt ändå skulle ha båda (kortet validerar inte om)', () => {
     const exercise = {
-      ...contentExercise({ spelformer: ['5mot5', '7mot7'], yta: { alla: { langd: 18, bredd: 12 } } }),
+      ...contentExercise({
+        spelformer: ['5mot5', '7mot7'],
+        yta: { alla: { langd: 18, bredd: 12 } },
+      }),
       ytreferens: { alla: 'stora planens målområde', '7mot7': 'ert eget straffområde' },
     } as Exercise;
     const markup = renderToStaticMarkup(
