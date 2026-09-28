@@ -115,12 +115,29 @@ describe('ADR 0017 Det första kortet med ytreferens', () => {
     const view = buildSessionView(
       sessionOf(BANK_WITH_STATION_REFERENCE, STATION_INPUT, STATION_SEED),
     );
+    // Valet mellan stationer och en enskild övning avgörs av slumpen (R-072). Ger fröet inte
+    // längre stationer skulle testet prövas mot vanliga kort och gå igenom av fel skäl.
+    const stations = view.parts
+      .flatMap((part) => part.items)
+      .find((item) => item.kind === 'stations');
+    expect(stations?.kind === 'stations' && stations.stations.length).toBeGreaterThanOrEqual(2);
     const keys = view.parts.flatMap((part) =>
       part.items.flatMap((item) =>
         item.kind === 'stations' ? [item.key, ...item.stations.map((s) => s.key)] : [item.key],
       ),
     );
     expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('ger samma nycklar varje gång samma pass visas', () => {
+    const session = sessionOf(BANK_WITH_STATION_REFERENCE, STATION_INPUT, STATION_SEED);
+    const keysOf = (): string[] =>
+      buildSessionView(session)
+        .parts.flatMap((part) => part.items)
+        .flatMap((item) =>
+          item.kind === 'stations' ? [item.key, ...item.stations.map((s) => s.key)] : [item.key],
+        );
+    expect(keysOf()).toEqual(keysOf());
   });
 });
 

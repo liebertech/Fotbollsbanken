@@ -106,7 +106,7 @@ export const BANK_WITH_STATION_REFERENCE: BankExercise[] = [
   { ...gamePractice, ytreferens: { alla: 'ungefär en fjärdedel av stora planen' } },
   game,
 ];
-export const STATION_INPUT: Input = { ...INPUT, ledare: 2 };
+export const STATION_INPUT: Input = INPUT;
 export const STATION_SEED = 'b';
 
 /**
