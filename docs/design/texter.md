@@ -103,6 +103,9 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Stationsetikett | Station A / Station B / Station C / Station D |
 | Yta på övningskortet | Yta: {mått} meter |
 | Yta på övningskortet, med ytreferens (ADR 0017) | Yta: {mått} meter ({ytreferens}) |
+| Knapp, ytförklaring (fälld) | Vad betyder måttet i parentes? |
+| Knapp, ytförklaring (utfälld) | Dölj förklaringen |
+| Hjälptext, ytförklaring | Referensen jämför storlek. Var målen står följer övningens beskrivning. |
 | Knapp, mer info | Visa mer |
 | Knapp, mindre info | Visa mindre |
 | Knapp, byt övning | Byt övning |
@@ -125,6 +128,7 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 - **Yta på övningskortet:** en egen rad på varje övningskort, direkt under gruppindelningen (eller direkt under syftet om delen saknar gruppindelning), i samma stil som gruppindelningen (sekundär textfärg, mindre storlek). `{mått}` är längd × bredd i meter med svenskt decimaltecken, till exempel "18 × 12". Saknar övningen en ytreferens för spelformen visas bara måttet – ingen tom parentes, ingen platshållare. Referensen står aldrig ensam (se `docs/adr/0017-ytreferens-i-ovningsformatet.md` beslut 6). Se `skisser/02-genererat-pass.md`.
 - **Radbrytning:** `{ytreferens}` kan bli upp till 90 tecken (fotbollsexpertens riktmärke ~70) och ska kunna radbryta fritt på en mobilskärm, precis som en statustagg (designsystem.md 6.5). Själva måttet – "Yta: {mått} meter" och parentesens inledande tecken – ska däremot hållas ihop med ett hårt mellanslag runt "×" och före "(", så att till exempel "×" eller "(" aldrig hamnar ensamt på en egen rad. Det är samma typ av åtgärd som redan finns i koden (`.visually-hidden`, se kärnområdes-noten i avsnitt 3), fast här för radbrytning i stället för tillgängligt namn.
 - **Skärmläsare:** tecknet "×" ska läsas begripligt (till exempel som "gånger"). Kontrolleras av kvalitetssäkraren med en riktig skärmläsare (NVDA/VoiceOver). Läses det oklart, används samma mönster som för "(K)"/kärnområde ovan: den synliga symbolen står kvar, och ett `.visually-hidden`-tillägg ger en tydlig accessible name – inte en ersättning av den synliga texten.
+- **Ytförklaring (tillagd 2026-09-28, uppföljning till ADR 0017):** fotbollsexperten påpekade vid granskningen att en ledare kan läsa ytreferensen som en plats – till exempel ställa målet på straffområdets riktiga mållinje – i stället för en jämförelse av storlek. Var målen står följer övningens beskrivning, inte referensen. Lösningen är en liten utfällbar förklaring, samma mönster som "Visa mer" (accordion, `designsystem.md` avsnitt 6.7: riktig disclosure-knapp med `aria-expanded`, innehållet helt dolt för skärmläsare när den är fälld, ingen information bara vid hovring). Den visas **bara på den första övningen i passet vars yta har en ytreferens** – inte upprepad på varje kort, för att inte göra varje kort tyngre. Fälld: "Vad betyder måttet i parentes?". Utfälld: "Referensen jämför storlek. Var målen står följer övningens beskrivning." och knapptexten byter till "Dölj förklaringen". Har inget kort i passet en ytreferens visas ingenting. Se `skisser/02-genererat-pass.md`.
 
 ---
 
@@ -367,3 +371,4 @@ Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillä
 | 2026-09-23 (uppföljning samma dag) | **Avsnitt 4 och 5:** förklaringarna om vilken "tom del"/"inget matchande resultat"-text som visas är omskrivna. Regelmotorn har fått den bekräftade signalen (`emptyReason` per del fanns redan, `NoSessionReason.cause` är ny) som avsnitten tidigare sa saknades – "kan inte kombineras" visas nu bara när orsaken är bekräftad, inte som en gissning utifrån en tom fältlista. |
 | 2026-09-23 (uppföljning samma dag) | **Avsnitt 3:** ny rad för skärmläsarordet "kärnområde" och en förklaring av hur det vävs in i fokuskryssrutornas tillgängliga namn tillsammans med "(K)" (WCAG 2.5.3). |
 | 2026-09-28 | **Avsnitt 4:** två nya rader för ytan på övningskortet och en förklaring av placering, radbrytning och skärmläsarläsning av "×" (ADR 0017, `feature/ytreferens`). Fältet fanns inte vid K2, och måttet visades inte alls på kortet innan den här ändringen. |
+| 2026-09-28 (uppföljning samma dag) | **Avsnitt 4:** tre nya rader och en ny förklaring för ytförklaringen – en utfällbar text som säger att ytreferensen bara jämför storlek, inte pekar ut en plats. Tillagd efter att fotbollsexperten vid granskningen såg att en ledare kan läsa referensen som var målen ska stå. Grenen `design/ytreferens-hjalptext`. |
