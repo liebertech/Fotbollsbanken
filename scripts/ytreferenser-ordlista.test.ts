@@ -32,8 +32,8 @@ function facitRows(): [string, string, number][] {
 describe('ADR 0017 ordlistan för ytreferenser mot schemat', () => {
   const rows = facitRows();
 
-  it('facit i avsnitt 6.1 hittas och har 45 övningar', () => {
-    expect(rows).toHaveLength(45);
+  it('facit i avsnitt 6.1 hittas och har 46 övningar', () => {
+    expect(rows).toHaveLength(46);
   });
 
   it.each(rows)('%s: "%s" godkänns av måttkontrollen och längdgränserna', (_, text, count) => {
