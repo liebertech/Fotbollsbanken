@@ -46,6 +46,28 @@
   font-size: 0.875rem;
 }
 
+/* Ytförklaringen är en liten hjälp till ytraden, inte en handling på kortet: den ser ut som en
+   länk men är en knapp med full träffyta (designsystem.md avsnitt 5 och 6.7). Texten får
+   radbryta, och träffytan växer då med den. */
+.helpToggle {
+  min-height: var(--tap-target);
+  min-width: var(--tap-target);
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.helpText {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
 /* Planskissen ritas i inkrement 2. Tills dess visas platsen tydligt inramad
    (designsystem.md avsnitt 7). */
 .sketch {

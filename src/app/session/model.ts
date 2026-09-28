@@ -3,9 +3,19 @@
  * (ADR 0011 avsnitt 3). Modellen räknar inte om något och lägger inte till något; den
  * ordnar bara raderna så att vyn kan rita dem.
  */
-import type { Exercise, Layout, PartResult, Session, SessionPart } from '../../regelmotor/index.ts';
+import { exerciseArea } from '../../regelmotor/index.ts';
+import type {
+  Exercise,
+  GameFormat,
+  Layout,
+  PartResult,
+  Session,
+  SessionPart,
+} from '../../regelmotor/index.ts';
 
 export interface StationView {
+  /** Kortets nyckel i vyn, unik i passet. */
+  key: string;
   station: number;
   exercise: Exercise;
   layout: Layout | null;
@@ -50,6 +60,39 @@ export interface SessionView {
   requestedMinutes: number;
   /** Sant när passet blev kortare än den begärda längden (R-036, R-039). */
   shorterThanRequested: boolean;
+  /**
+   * Nyckeln till det första kortet i passet, i visningsordning och med stationerna inräknade,
+   * vars yta har en ytreferens för passets spelform. Bara det kortet visar ytförklaringen
+   * (docs/design/texter.md avsnitt 4). `null` när inget kort har en ytreferens.
+   */
+  firstAreaReferenceKey: string | null;
+}
+
+/**
+ * Ytreferensen för spelformen, eller `null`. En spelformsnyckel går före `alla`. Referensen
+ * står aldrig ensam: saknar övningen en yta för spelformen finns ingen referens att visa
+ * (ADR 0017).
+ */
+export function areaReference(exercise: Exercise, format: GameFormat): string | null {
+  if (exerciseArea(exercise, format) === null) {
+    return null;
+  }
+  return exercise.ytreferens?.[format] ?? exercise.ytreferens?.alla ?? null;
+}
+
+/** Korten i visningsordning: övningar och perioder som de står, stationerna var för sig. */
+function cardsInOrder(parts: readonly PartView[]): { key: string; exercise: Exercise }[] {
+  return parts.flatMap((part) =>
+    part.items.flatMap((item) => {
+      if (item.kind === 'exercise') {
+        return [{ key: item.key, exercise: item.exercise }];
+      }
+      if (item.kind === 'stations') {
+        return item.stations.map((station) => ({ key: station.key, exercise: station.exercise }));
+      }
+      return [];
+    }),
+  );
 }
 
 /**
@@ -145,6 +188,7 @@ export function buildSessionView(session: Session): SessionView {
         const last = current.items.at(-1);
         if (last?.kind === 'stations' && row.exercise !== null && row.station !== null) {
           last.stations.push({
+            key: `${last.key}-${row.station}`,
             station: row.station,
             exercise: row.exercise,
             layout: row.layout,
@@ -163,10 +207,16 @@ export function buildSessionView(session: Session): SessionView {
     }
   }
 
+  const format = session.input.spelform;
+  const firstWithReference = cardsInOrder(parts).find(
+    (card) => areaReference(card.exercise, format) !== null,
+  );
+
   return {
     parts,
     totalMinutes: session.totalMinutes,
     requestedMinutes: session.requestedMinutes,
     shorterThanRequested: session.totalMinutes < session.requestedMinutes,
+    firstAreaReferenceKey: firstWithReference?.key ?? null,
   };
 }

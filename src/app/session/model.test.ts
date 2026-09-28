@@ -2,12 +2,17 @@
  * Vymodellen för ett pass: motorns rader grupperade per del.
  */
 import { describe, expect, it } from 'vitest';
-import { buildSessionView } from './model.ts';
+import { areaReference, buildSessionView } from './model.ts';
+import { contentExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
 import {
   BANK_NEEDING_SUBSTITUTE,
   BANK_WITHOUT_GAME_PRACTICE,
+  BANK_WITH_STATION_REFERENCE,
+  BANK_WITH_TWO_AREA_REFERENCES,
   FULL_BANK,
   INPUT,
+  STATION_INPUT,
+  STATION_SEED,
   sessionOf,
 } from '../__testdata__/session-fixture.ts';
 
@@ -70,5 +75,82 @@ describe('R-031 Pauser i tidslinjen', () => {
     const breaks = view.parts.flatMap((part) => part.items.filter((item) => item.kind === 'break'));
     expect(breaks.length).toBeGreaterThan(0);
     expect(breaks.every((item) => item.minutes === 2)).toBe(true);
+  });
+});
+
+/*
+ * Ytförklaringen (docs/design/texter.md avsnitt 4, uppföljning till ADR 0017): bara det
+ * första kortet i passet, i visningsordning och med stationerna inräknade, vars yta har en
+ * ytreferens för passets spelform.
+ */
+describe('ADR 0017 Det första kortet med ytreferens', () => {
+  it('är null när inget kort i passet har en ytreferens', () => {
+    expect(buildSessionView(sessionOf(FULL_BANK)).firstAreaReferenceKey).toBeNull();
+  });
+
+  it('pekar på det första kortet med referens, inte på de senare', () => {
+    const view = buildSessionView(sessionOf(BANK_WITH_TWO_AREA_REFERENCES));
+    const warmup = view.parts.find((part) => part.part === 'del-uppvarmning')?.items[0];
+    expect(warmup?.kind).toBe('exercise');
+    expect(view.firstAreaReferenceKey).toBe(warmup?.key);
+  });
+
+  it('räknar stationerna var för sig, i sin ordning', () => {
+    const view = buildSessionView(
+      sessionOf(BANK_WITH_STATION_REFERENCE, STATION_INPUT, STATION_SEED),
+    );
+    const stations = view.parts
+      .flatMap((part) => part.items)
+      .find((item) => item.kind === 'stations');
+    expect(stations?.kind).toBe('stations');
+    const withReference =
+      stations?.kind === 'stations'
+        ? stations.stations.find((station) => station.exercise.id === 'station-med-ytreferens')
+        : undefined;
+    expect(withReference).toBeDefined();
+    expect(view.firstAreaReferenceKey).toBe(withReference?.key);
+  });
+
+  it('ger stationerna unika nycklar', () => {
+    const view = buildSessionView(
+      sessionOf(BANK_WITH_STATION_REFERENCE, STATION_INPUT, STATION_SEED),
+    );
+    // Valet mellan stationer och en enskild övning avgörs av slumpen (R-072). Ger fröet inte
+    // längre stationer skulle testet prövas mot vanliga kort och gå igenom av fel skäl.
+    const stations = view.parts
+      .flatMap((part) => part.items)
+      .find((item) => item.kind === 'stations');
+    expect(stations?.kind === 'stations' && stations.stations.length).toBeGreaterThanOrEqual(2);
+    const keys = view.parts.flatMap((part) =>
+      part.items.flatMap((item) =>
+        item.kind === 'stations' ? [item.key, ...item.stations.map((s) => s.key)] : [item.key],
+      ),
+    );
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('ger samma nycklar varje gång samma pass visas', () => {
+    const session = sessionOf(BANK_WITH_STATION_REFERENCE, STATION_INPUT, STATION_SEED);
+    const keysOf = (): string[] =>
+      buildSessionView(session)
+        .parts.flatMap((part) => part.items)
+        .flatMap((item) =>
+          item.kind === 'stations' ? [item.key, ...item.stations.map((s) => s.key)] : [item.key],
+        );
+    expect(keysOf()).toEqual(keysOf());
+  });
+});
+
+describe('ADR 0017 areaReference', () => {
+  // Schemat kräver en yta för varje spelform övningen har (R-092), så fallet prövas med en
+  // spelform som övningen inte finns för: referensen står aldrig utan ett mått.
+  it('ger ingen referens för en spelform som övningen saknar yta för', () => {
+    const exercise = contentExercise({
+      spelformer: ['7mot7'],
+      yta: { '7mot7': { langd: 18, bredd: 12 } },
+      ytreferens: { alla: 'stora planens målområde' },
+    });
+    expect(areaReference(exercise, '7mot7')).toBe('stora planens målområde');
+    expect(areaReference(exercise, '5mot5')).toBeNull();
   });
 });

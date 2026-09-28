@@ -72,6 +72,44 @@ export const BANK_WITH_AREA_REFERENCE: BankExercise[] = [
 ];
 
 /**
+ * Både uppvärmningen och spelövningen har en ytreferens. Ytförklaringen ska bara stå på den
+ * första av dem, uppvärmningen.
+ */
+export const BANK_WITH_TWO_AREA_REFERENCES: BankExercise[] = [
+  ...BANK_WITH_AREA_REFERENCE.filter((exercise) => exercise !== gamePractice),
+  { ...gamePractice, ytreferens: { alla: 'ungefär en fjärdedel av stora planen' } },
+];
+
+/**
+ * Stationer i Öva där bara station B har en ytreferens, och spelövningen efter har en egen.
+ * Den första referensen i visningsordning är alltså station B. `STATION_INPUT` och
+ * `STATION_SEED` ger ett pass med två stationer; testerna kontrollerar det, så att de inte
+ * tyst prövar ett pass utan stationer om motorn en dag väljer annorlunda.
+ */
+export const BANK_WITH_STATION_REFERENCE: BankExercise[] = [
+  warmup,
+  bankExercise({
+    id: 'station-utan-ytreferens',
+    namn: 'Passning i par',
+    passdelar: ['del-ovning'],
+    fokusomraden: ['passning-mottagning'],
+    spelare: { min: 2, max: 8 },
+  }),
+  bankExercise({
+    id: 'station-med-ytreferens',
+    namn: 'Vändning i ruta',
+    passdelar: ['del-ovning'],
+    fokusomraden: ['passning-mottagning'],
+    spelare: { min: 2, max: 8 },
+    ytreferens: { alla: 'halva straffområdet' },
+  }),
+  { ...gamePractice, ytreferens: { alla: 'ungefär en fjärdedel av stora planen' } },
+  game,
+];
+export const STATION_INPUT: Input = INPUT;
+export const STATION_SEED = 'b';
+
+/**
  * Samma bank utan spelövningar: Spelövning blir tom (R-100). Ingen spelövning finns alls,
  * så inget enskilt val i underlaget skulle kunna fylla delen (R-103).
  */
