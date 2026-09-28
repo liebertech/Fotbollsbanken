@@ -35,6 +35,8 @@ yta:
   alla:
     langd: 24
     bredd: 16
+ytreferens:
+  alla: halva stora planens straffområde, några steg bredare
 material:
   - typ: minimal
     antal: 2

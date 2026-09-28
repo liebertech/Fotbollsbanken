@@ -40,7 +40,7 @@ Tre saker följer av tabellen:
 Skriv *stora planens straffområde*, *stora planens målområde*, *stora planens mittcirkel*. Om lagets eget straffområde passar bättre skriver du *ert eget straffområde*, och då gäller referensen bara den spelformen (se konvention 3 och avsnitt 3.4).
 
 **Konvention 2: referensen jämför storlek, den pekar inte ut en plats.**
-Skriv "ungefär så stor som", inte "ställ upp i". Ledaren ska kunna bygga ytan var som helst, också på en plan utan de linjer som nämns. Två undantag är tillåtna, där platsen hör till övningen: `spela-ut-med-malvakten` och `hornor-med-nickar`, som båda spelas vid ett mål. Också där ska texten gå att läsa som ren storlek.
+Skriv "ungefär så stor som", inte "ställ upp i". Ledaren ska kunna bygga ytan var som helst, också på en plan utan de linjer som nämns. Det gäller också övningar som spelas vid ett mål: referensen säger hur stor ytan är, och var den läggs står i beskrivningen. Det finns inga undantag.
 
 **Konvention 3: en andel av en spelforms plan skriver alltid ut spelformen.**
 Skriv *halva 7 mot 7-planen*, aldrig *halva planen*. Halva planen är 15 × 15 meter för ett 8-årslag och 50 × 60 för ett 16-årslag.
@@ -77,6 +77,8 @@ Stora planens straffområde är ungefär 40 meter brett och 16,5 meter djupt. **
 | stora planens målområde | 18 × 5,5 | 100 m² | Smala banor. Bredden 18 är ett av bankens vanligaste mått |
 | stora planens målområde, *n* gånger så djupt | 18 × 5,5*n* | | 18 × 12 är "dubbelt så djupt" |
 | en ruta som rymmer stora planens mittcirkel | 18 × 18 | 325 m² | Den enda referensen som ger en kvadrat |
+| lika lång som stora planens straffområde är brett | 40 i längd | | Djupledsövningar, där längden är det som styr. Ledaren mäter längden mot straffområdeslinjen. Bredden står bara i metertalet |
+| något längre än stora planens straffområde är brett | drygt 40 i längd | | Samma, när längden är några meter mer än 40 |
 | ert eget straffområde (bara nyckeln `7mot7`) | 19 × 7 | 130 m² | Avlånga små ytor för 7 mot 7-lag |
 | ert eget straffområde (bara nyckeln `9mot9`) | 24 × 9 | 215 m² | 9 mot 9-lag vid 18 × 12. Exakt samma yta |
 | hela, halva, en fjärdedel av *spelformens* plan | se `spelformer.md` | | Bara stora spelövningar och matchspel |
@@ -103,7 +105,7 @@ Stegmåttet skrivs inte i referensen, eftersom metertalet redan står före pare
 
 > Ett långt vuxensteg är ungefär en meter. Alla mått i övningarna kan stegas i stället för mätas. Kontrollera ditt steg en gång: tio steg längs mållinjen ska vara ungefär hälften av bredden på stora planens målområde.
 
-Steg står bara i referensen när de anger något som saknar egen linje, som djupet i de två djupledsövningarna.
+Steg står bara i referensen när de anger något som saknar egen linje, som det extra djupet i `omstallningsspel-9mot9` (*sex steg djupare*).
 
 ## 4. När referens inte ska ges
 
@@ -112,13 +114,15 @@ Ingen referens är ofta det rätta svaret. Det gäller i fyra fall:
 | Kategori | Varför | Övningar i banken |
 |---|---|---|
 | **Positionsspel där måttet är både golv och tak** | En större yta förstör övningen, och en parentes som säger *ungefär* antyder att måttet går att förhandla om. | `behall-bollen-i-gruppen`, `forsvara-i-overtal` |
-| **Stationer och fasta positioner, där avståndet är det som övas eller det som skyddar** | Det som styr är avståndet mellan spelare eller arbetsplatser, inte ytans storlek. En storleksjämförelse lockar till att sprida ut övningen. | `malvaktstraning-grunder`, `passningsruta-i-rorelse`, `tva-touch-i-triangel`, `knakontroll-uppvarmning`, `rorelsebana-skadeforebyggande`, `skadeforebyggande-9mot9`, `passningsrutor-med-langre-passningar` |
-| **Dueller med startavstånd** | Anfallarens och försvararens startavstånd är måttkritiska och får inte skuggas av en ungefärlig parentes. | `en-mot-en-till-mal`, `en-mot-en-till-smamal` |
-| **För liten eller ingen plandel med rätt form** | Ingenting på en fotbollsplan är så litet, eller har den formen. En långsökt jämförelse är sämre än ingen. | `driva-forbi-i-par`, `triangelpass-med-rorelse` |
+| **Stationer och fasta positioner, där avståndet är det som övas eller det som skyddar** | Det som styr är avståndet mellan spelare eller arbetsplatser, inte ytans storlek. En storleksjämförelse lockar till att sprida ut övningen. | `malvaktstraning-grunder`, `tva-touch-i-triangel`, `knakontroll-uppvarmning`, `rorelsebana-skadeforebyggande`, `skadeforebyggande-9mot9` |
+| **Dueller med startavstånd** | Anfallarens och försvararens startavstånd är måttkritiska och får inte skuggas av en ungefärlig parentes. | `en-mot-en-till-mal` |
+| **För liten eller ingen plandel med rätt form** | Ingenting på en fotbollsplan är så litet, eller har den formen. En långsökt jämförelse är sämre än ingen. | `driva-forbi-i-par`, `triangelpass-med-rorelse`, `en-mot-en-till-smamal`, `passningsruta-i-rorelse` |
 
 De två första kategorierna motsvarar de ytundantag för positionsspel och stationer som infördes med omgång 4 (undantag 1 och undantag 3 i underlaget till den omgången). Där gäller redan ett eget, strängare mått i stället för kvadratmeter per spelare.
 
-**Referensen kan inte räknas fram ur måttet.** `jonglera-och-boll-i-rorelse` och `passningsrutor-med-langre-passningar` är båda 20 × 20 meter. Den första är fri rörelse med egen boll och får en referens. Den andra har fasta positioner där avståndet mellan dem är det som övas, och får ingen.
+**Fasta positioner utesluter inte alltid en referens.** Risken med fasta positioner är att en ungefärlig jämförelse lockar ledaren att sprida ut övningen. Om jämförelsen är exakt finns inte den risken, och då får referensen ges. `langre-passningar-i-rorelse` har fyra spelare i hörnen av en kvadrat om 18 × 18 meter och får *en ruta som rymmer stora planens mittcirkel*, eftersom mittcirkeln är 18 meter tvärs över. Står det *ungefär*, *nästan* eller *något större* i referensen är jämförelsen inte exakt, och då ges ingen referens till en övning med fasta positioner.
+
+**Referensen kan inte räknas fram ur måttet.** Om en övning ska ha en referens avgörs av vad som händer i ytan, inte bara av hur stor den är. Pröva därför varje övning för sig, också när en annan övning med samma mått redan har en referens eller saknar en. Två övningar med samma mått kan dessutom sakna referens av olika skäl: `passningsruta-i-rorelse` och `tva-touch-i-triangel` är båda 10 × 10 meter, men den första saknar referens för att ingen plandel har den formen, och den andra för att spelarna har fasta positioner.
 
 ## 5. En utelämnad referens är ett värde, inte en lucka
 
@@ -130,9 +134,9 @@ Fältet är valfritt, och ingen validering kan se skillnad på en referens som g
 
 ## 6. Referens per övning
 
-Den här tabellen är underlaget för att skriva in fältet i ett svep. Referensen skrivs exakt som i kolumnen, med nyckeln `alla`. Rader med *ingen* ska inte få fältet alls. Kolumnen *Var* anger var övningen finns 2026-09-28: *main* betyder main och den här grenen, *omg. 4* betyder grenen `omgang/4-9mot9-och-luckor` (PR #15). Måtten för omgång 4 är hämtade ur mitt underlag från 2026-09-24 och inte kontrollerade mot filerna, se avsnitt 7.
+Den här tabellen är underlaget för att skriva in fältet i ett svep. Referensen skrivs exakt som i kolumnen, med nyckeln `alla`. Rader med *ingen* ska inte få fältet alls. Kolumnen *Var* anger var övningen finns 2026-09-28. Alla 58 övningar, också de 16 från omgång 4, finns nu i main, och mått och spelform är kontrollerade mot filerna samma dag (avsnitt 8).
 
-### 6.1 Med referens (45 övningar)
+### 6.1 Med referens (46 övningar)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -147,7 +151,7 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `snabbt-avslut-i-smaspel` | 5 mot 5 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | main |
 | `avslut-efter-inspel` | 7 mot 7 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | main |
 | `tre-mot-en-till-mal` | 7 mot 7 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | main |
-| `dribbling-genom-portar-i-tempo` | 9 mot 9 | 18 × 14 | stora planens målområde, två och en halv gång så djupt | 54 | omg. 4 |
+| `dribbling-genom-portar-i-tempo` | 9 mot 9 | 18 × 14 | stora planens målområde, två och en halv gång så djupt | 54 | main |
 | `forsvara-tillsammans` | 5 mot 5 | 20 × 14 | ungefär halva stora planens straffområde | 40 | main |
 | `dribbling-genom-mittzonen` | 7 mot 7 | 20 × 14 | ungefär halva stora planens straffområde | 40 | main |
 | `dribbling-i-eget-tempo` | 7 mot 7 | 20 × 15 | ungefär halva stora planens straffområde | 40 | main |
@@ -155,61 +159,63 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `snabb-omstallning-tva-mot-en` | 7 mot 7 | 20 × 15 | ungefär halva stora planens straffområde | 40 | main |
 | `fyra-horn-med-boll` | 5 mot 5 | 18 × 18 | en ruta som rymmer stora planens mittcirkel | 43 | main |
 | `bollvaktslek` | 7 mot 7 | 18 × 18 | en ruta som rymmer stora planens mittcirkel | 43 | main |
-| `langre-passningar-i-rorelse` | 9 mot 9 | 18 × 18 | en ruta som rymmer stora planens mittcirkel | 43 | omg. 4 |
+| `langre-passningar-i-rorelse` | 9 mot 9 | 18 × 18 | en ruta som rymmer stora planens mittcirkel | 43 | main |
 | `en-mot-en-till-tva-mal` | 7 mot 7 | 24 × 16 | halva stora planens straffområde, några steg bredare | 52 | main |
 | `jonglera-och-boll-i-rorelse` | 7 mot 7 | 20 × 20 | en ruta något större än stora planens mittcirkel | 48 | main |
-| `rorelse-och-bollkansla-i-fart` | 9 mot 9 | 24 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | omg. 4 |
+| `passningsrutor-med-langre-passningar` | 9 mot 9 | 20 × 20 | en ruta något större än stora planens mittcirkel | 48 | main |
+| `rorelse-och-bollkansla-i-fart` | 9 mot 9 | 24 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | main |
 | `bygg-upp-fran-malvakten` | 7 mot 7 | 25 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | main |
 | `forsvara-zonen` | 7 mot 7 | 25 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | main |
 | `overtal-i-forsvar` | 7 mot 7 | 25 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | main |
-| `spela-ut-med-malvakten` | 5 mot 5 | 26 × 18 | stora planens straffområdes djup, två tredjedelar av bredden | 60 | main |
+| `spela-ut-med-malvakten` | 5 mot 5 | 26 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | main |
 | `reaktionskull-med-boll` | 7 mot 7 | 25 × 20 | ungefär tre fjärdedelar av stora planens straffområde | 53 | main |
 | `matchspel-5mot5-med-malvakt` | 5 mot 5 | 28 × 18 | nästan en hel 5 mot 5-plan | 26 | main |
 | `matchspel-med-snabb-omstallning` | 5 mot 5 | 28 × 18 | nästan en hel 5 mot 5-plan | 26 | main |
 | `spela-ut-bakifran` | 7 mot 7 | 30 × 20 | ungefär stora planens straffområde | 34 | main |
 | `tre-passningar-fore-skott` | 7 mot 7 | 30 × 20 | ungefär stora planens straffområde | 34 | main |
-| `overtal-till-mal-9mot9` | 9 mot 9 | 30 × 20 | ungefär stora planens straffområde | 34 | omg. 4 |
-| `matchspel-7mot7-litet-format` | 7 mot 7 | 32 × 20 | ungefär stora planens straffområde | 34 | omg. 4 |
-| `smaspel-till-mal-9mot9` | 9 mot 9 | 32 × 20 | ungefär stora planens straffområde | 34 | omg. 4 |
-| `omstallningsspel-9mot9` | 9 mot 9 | 36 × 22 | stora planens straffområde, lite smalare men sex steg djupare | 61 | omg. 4 |
+| `overtal-till-mal-9mot9` | 9 mot 9 | 30 × 20 | ungefär stora planens straffområde | 34 | main |
+| `matchspel-7mot7-litet-format` | 7 mot 7 | 32 × 20 | ungefär stora planens straffområde | 34 | main |
+| `smaspel-till-mal-9mot9` | 9 mot 9 | 32 × 20 | ungefär stora planens straffområde | 34 | main |
+| `omstallningsspel-9mot9` | 9 mot 9 | 36 × 22 | stora planens straffområde, lite smalare men sex steg djupare | 61 | main |
 | `omstallning-med-jokrar` | 7 mot 7 | 35 × 25 | ungefär halva 7 mot 7-planen | 28 | main |
-| `uppspel-bakom-forsvarslinjen` | 9 mot 9 | 40 × 26 | stora planens straffområdes bredd, från mållinjen till tio steg utanför det | 75 | omg. 4 |
-| `forsvara-med-offsidefalla` | 9 mot 9 | 42 × 28 | stora planens straffområdes bredd, från mållinjen till tolv steg utanför det | 76 | omg. 4 |
-| `hornor-med-nickar` | 9 mot 9 | 30 × 45 | stora planens straffområde, nästan dubbelt så djupt | 51 | omg. 4 |
-| `smaspel-med-fasta-situationer-9mot9` | 9 mot 9 | 45 × 30 | nästan en hel 7 mot 7-plan | 26 | omg. 4 |
+| `uppspel-bakom-forsvarslinjen` | 9 mot 9 | 40 × 26 | lika lång som stora planens straffområde är brett | 49 | main |
+| `forsvara-med-offsidefalla` | 9 mot 9 | 42 × 28 | något längre än stora planens straffområde är brett | 51 | main |
+| `hornor-med-nickar` | 9 mot 9 | 30 × 45 | stora planens straffområde, nästan dubbelt så djupt | 51 | main |
+| `smaspel-med-fasta-situationer-9mot9` | 9 mot 9 | 45 × 30 | nästan en hel 7 mot 7-plan | 26 | main |
 | `malvaktsspel-i-smaspel` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `smaspel-fasta-situationer` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `matchspel-7mot7-brett` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
-| `matchspel-9mot9-brett` | 9 mot 9 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | omg. 4 |
+| `matchspel-9mot9-brett` | 9 mot 9 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | main |
 
-### 6.2 Utan referens (13 övningar)
+### 6.2 Utan referens (12 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
 | `malvaktstraning-grunder` | 5 mot 5 | 6 × 5 | Station, fasta positioner. Målvaktens grundteknik tar den plats den tar och ska inte spridas ut | main |
 | `driva-forbi-i-par` | 5 mot 5 | 6 × 6 | För liten. Portarna är dessutom måttkritiska | main |
 | `triangelpass-med-rorelse` | 5 mot 5 | 8 × 8 | Ingen plandel med rätt form | main |
-| `en-mot-en-till-mal` | 5 mot 5 | 10 × 8 | Duell med startavstånd | omg. 4 |
-| `en-mot-en-till-smamal` | 7 mot 7 | 12 × 8 | Duell med startavstånd | main |
-| `passningsruta-i-rorelse` | 7 mot 7 | 10 × 10 | Fasta positioner. Måttet är också minsta tillåtna för positionsspel 8–12 år | main |
-| `tva-touch-i-triangel` | 7 mot 7 | 10 × 10 | Fasta positioner. Samma skäl | main |
+| `en-mot-en-till-mal` | 5 mot 5 | 10 × 8 | Duell med startavstånd | main |
+| `en-mot-en-till-smamal` | 7 mot 7 | 12 × 8 | För liten eller ingen plandel med rätt form. Övningen har inga bestämda startavstånd, båda spelarna rör sig fritt mellan två mål | main |
+| `passningsruta-i-rorelse` | 7 mot 7 | 10 × 10 | För liten eller ingen plandel med rätt form. Spelarna rör sig fritt i rutan, så det är inte fasta positioner | main |
+| `tva-touch-i-triangel` | 7 mot 7 | 10 × 10 | Fasta positioner. Tre spelare står i hörnen av en triangel, och avståndet mellan dem är det som övas | main |
 | `knakontroll-uppvarmning` | 7 mot 7 | 12 × 10 | Station. Det som styr är avståndet mellan arbetsplatserna | main |
 | `rorelsebana-skadeforebyggande` | 5 mot 5 | 12 × 15 | Station. Samma skäl | main |
 | `behall-bollen-i-gruppen` | 5 mot 5 | 14 × 12 | Positionsspel där måttet är golv och tak | main |
-| `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | omg. 4 |
-| `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | omg. 4 |
-| `passningsrutor-med-langre-passningar` | 9 mot 9 | 20 × 20 | Fasta positioner, trots samma mått som `jonglera-och-boll-i-rorelse` | omg. 4 |
+| `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | main |
+| `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | main |
 
 ### 6.3 Anmärkningar
 
 - **18 × 12** är bankens bästa träff. Målområdets bredd är ytans långsida, så ledaren behöver bara fördubbla djupet. Ingen av övningarna med det måttet är i dag en 9 mot 9-övning, så alternativet *ert eget straffområde* (avsnitt 3.4) används inte ännu.
 - **15 × 10.** En fjärdedel av stora planens straffområde har samma yta men är något längre, därför *ungefär*. För 7 mot 7-lagen vore *ert eget straffområde* 11 procent mindre och tydligt mer avlångt. Jag har valt stora planens straffområde för att formen stämmer bättre.
-- **26 × 18, `spela-ut-med-malvakten`.** Övningen spelas vid ett mål, så ytan läggs naturligt i straffområdet med mållinjen som kortsida. Formuleringen säger därför både storlek och plats.
-- **40 × 26 och 42 × 28, de två djupledsövningarna.** Straffområdets bredd är en uppritad linje och ett exaktare sätt att få 40 meter än att stega. Djupet anges i steg utanför straffområdeslinjen. Referensen skärper alltså det exakta längdmåttet som djupledsövningarna kräver, i stället för att luckra upp det. De två texterna är bankens längsta, 75 och 76 tecken. De ligger över riktmärket men under taket, och de kan inte kortas utan att tappa *stora planens*, som är nödvändigt för ett 9 mot 9-lag vars eget straffområde bara är 24 meter brett.
+- **40 × 26 och 42 × 28, de två djupledsövningarna.** I en djupledsövning är längden det som styr, och den ska inte luckras upp av en ungefärlig parentes. Referensen jämför därför bara längden, med stora planens straffområdes bredd, som är en uppritad linje på drygt 40 meter. Ledaren kan lägga ytans längd längs straffområdeslinjen i stället för att stega. 40 meter är *lika lång*, 42 meter *något längre*. Bredden, 26 och 28 meter, står bara i metertalet. *Stora planens* är nödvändigt, eftersom ett 9 mot 9-lags eget straffområde bara är 24 meter brett.
+- **20 × 20, `passningsrutor-med-langre-passningar`.** Övningen stod först utan referens, med kategorin fasta positioner. Vid kontrollen mot filen visade det sig att spelarna rör sig fritt i rutan, så den får samma referens som `jonglera-och-boll-i-rorelse`.
 - **28 × 18 för 5 mot 5.** *Nästan en hel 5 mot 5-plan* är vald framför *tre fjärdedelar av stora planens straffområde*, som är lika sant. Ett 8-årslags ledare vet exakt hur stor lagets matchplan är.
 - **50 × 30 och 65 × 50** får både spelformens plan och stora planen. En klubb med en uppritad 7 mot 7-plan använder den. En klubb utan tar en fjärdedel av den stora.
 
-## 7. Ändringar mot underlaget från 2026-09-24
+## 7. Ändringslogg
+
+### 7.1 Ändringar mot underlaget från 2026-09-24
 
 Vid kontrollen inför det här dokumentet ändrade jag åtta formuleringar i mitt eget underlag, för sammanlagt 14 övningar. Ingen ändring påverkar någon övnings innehåll.
 
@@ -224,7 +230,24 @@ Vid kontrollen inför det här dokumentet ändrade jag åtta formuleringar i mit
 | `smaspel-med-fasta-situationer-9mot9` | ungefär en 7 mot 7-plan | nästan en hel 7 mot 7-plan | Ytan är 10–30 procent mindre än en 7 mot 7-plan. *Ungefär* låg på gränsen till 20-procentsregeln, *nästan* säger vilket håll avvikelsen går |
 | `malvaktsspel-i-smaspel`, `smaspel-fasta-situationer`, `matchspel-7mot7-brett`, `matchspel-9mot9-brett` | alltså en fjärdedel (halva) av stora planen | ungefär en fjärdedel (halva) av stora planen | Stämmer bara ungefär, 10–12 procent under |
 
-Följden för ADR 0017: där står att den längsta färdiga formuleringen är 73 tecken. Efter ändringarna är den längsta 76. Taket på 90 håller fortfarande.
+Följden för ADR 0017: där står att den längsta färdiga formuleringen är 73 tecken. Efter ändringarna var den längsta 76. Taket på 90 höll. Efter ändringarna i 7.2 är den längsta 61 tecken.
+
+### 7.2 Användarens beslut 2026-09-28
+
+När de 16 övningarna i omgång 4 hade kommit in i main kontrollerade jag hela facit mot filerna och granskade varje övning. Användaren beslutade 2026-09-28 om det som kom fram. Inget beslut ändrar någon övnings innehåll, bara referensen eller skälet till att den saknas.
+
+| Övning | Förut | Nu | Varför |
+|---|---|---|---|
+| `uppspel-bakom-forsvarslinjen` | stora planens straffområdes bredd, från mållinjen till tio steg utanför det | lika lång som stora planens straffområde är brett | Den gamla texten pekade ut en plats och var 75 tecken. Den nya jämför bara längden, som är det som styr i övningen. Ny konstruktion i avsnitt 3.2 |
+| `forsvara-med-offsidefalla` | stora planens straffområdes bredd, från mållinjen till tolv steg utanför det | något längre än stora planens straffområde är brett | Samma skäl. 42 meter är något längre än 40 |
+| `passningsrutor-med-langre-passningar` | ingen, fasta positioner | en ruta något större än stora planens mittcirkel | Spelarna rör sig fritt i rutan, så kategorin var fel. Flyttad från 6.2 till 6.1 |
+| `langre-passningar-i-rorelse` | en ruta som rymmer stora planens mittcirkel | oförändrad | Övningen har fasta positioner, men jämförelsen är exakt. Avsnitt 4 har fått en mening om när fasta positioner får en referens |
+| `spela-ut-med-malvakten` | stora planens straffområdes djup, två tredjedelar av bredden | ungefär två tredjedelar av stora planens straffområde | Samma form som i trappan i avsnitt 3.1. Undantaget i konvention 2 behövs inte längre och är struket |
+| `hornor-med-nickar` | stora planens straffområde, nästan dubbelt så djupt | oförändrad | Användaren valde bort tillägget *några steg bredare*. Texten är redan ren storlek, så den ryms i konvention 2 utan undantag |
+| `en-mot-en-till-smamal` | ingen, duell med startavstånd | ingen, för liten eller ingen plandel med rätt form | Övningen har inga bestämda startavstånd. Kategorin rättad så att den stämmer med granskningskommentaren |
+| `passningsruta-i-rorelse` | ingen, fasta positioner | ingen, för liten eller ingen plandel med rätt form | Spelarna rör sig fritt. Kategorin rättad så att den stämmer med granskningskommentaren |
+
+Exemplet i avsnitt 4 om att referensen inte kan räknas fram ur måttet byggde på att `jonglera-och-boll-i-rorelse` och `passningsrutor-med-langre-passningar` behandlades olika. Nu har de samma referens, så exemplet är utbytt.
 
 ## 8. Källor
 
@@ -235,8 +258,9 @@ Följden för ADR 0017: där står att den längsta färdiga formuleringen är 7
 | *Spelregler 9 mot 9*, Kristianstad FC:s domarsida, https://www.svenskalag.se/kristianstadfc-domare/sida/64622/spelregler-9-mot-9 | Straffområdet 24 × 9 och att det kan konmarkeras, straffpunkten, att mittcirkel och målområde inte nämns | 2026-09-24 |
 | SvFF, *Spelregler och planmått för fotbollens nationella spelformer*, https://aktiva.svenskfotboll.se/tranare/spelformer/spelregler/ | Att SvFF har ett dokument om hur spelformerna ryms på en 11 mot 11-yta | 2026-09-24 |
 | `docs/doman/spelformer.md` | Planmått och målstorlekar per spelform | 2026-09-28 |
-| `content/ovningar/` på grenen `feature/ytreferens` | Mått och spelform för de 42 övningarna märkta *main* i avsnitt 6. Kontrollerade mot filerna | 2026-09-28 |
-| Fotbollsexpertens underlag om ytreferenser | Mått och spelform för de 16 övningarna i omgång 4 | 2026-09-24 |
+| `content/ovningar/` på grenen `feature/ytreferens` | Mått och spelform för de 42 övningarna från omgång 1–3. Kontrollerade mot filerna | 2026-09-28 |
+| `content/ovningar/` på grenen `innehall/ytreferenser`, som utgår från main | Mått och spelform för de 16 övningarna från omgång 4, som nu finns i main. Kontrollerade mot filerna | 2026-09-28 |
+| Fotbollsexpertens underlag om ytreferenser | Utgångspunkten för ändringarna i avsnitt 7.1 | 2026-09-24 |
 
 **Inte läst i original:** SvFF:s planstorleksdokument och spelformsbladen är bilddokument som jag inte kunnat läsa som text. Uppgifterna ovan kommer från distriktsförbunds och klubbars återgivningar av samma regler, och de stämmer med `spelformer.md` där de överlappar. Måtten för 11 mot 11-planens straffområde, målområde och mittcirkel är fotbollens allmänna spelregelmått.
 

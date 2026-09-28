@@ -40,6 +40,8 @@ yta:
   alla:
     langd: 30
     bredd: 20
+ytreferens:
+  alla: ungefär stora planens straffområde
 material:
   - typ: mal
     antal: 1

@@ -44,6 +44,8 @@ yta:
   alla:
     langd: 65
     bredd: 50
+ytreferens:
+  alla: hela 9 mot 9-planen, ungefär halva stora planen
 material:
   - typ: mal
     antal: 2

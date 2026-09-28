@@ -83,3 +83,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: positionsspel där måttet är både golv och tak. En större ruta tar bort den
+      press som gör passningsvalet svårt, och en parentes med ungefär skulle antyda att måttet går att
+      förhandla om (ytreferenser.md, avsnitt 4).

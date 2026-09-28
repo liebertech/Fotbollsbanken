@@ -39,6 +39,8 @@ yta:
   alla:
     langd: 25
     bredd: 18
+ytreferens:
+  alla: ungefär två tredjedelar av stora planens straffområde
 material:
   - typ: kon
     antal: 6

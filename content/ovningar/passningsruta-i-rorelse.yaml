@@ -64,3 +64,11 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: för liten eller ingen plandel med rätt form. En kvadrat om 10 x 10 meter har
+      ingen motsvarighet bland planens linjer. Facit i ytreferenser.md, avsnitt 6.2, anger fasta
+      positioner, men spelarna rör sig fritt i rutan och ingen motståndare är med. Jag föreslår att
+      facit rättas. Utfallet, ingen referens, är detsamma.

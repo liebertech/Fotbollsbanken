@@ -65,3 +65,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: stationer. Det som styr är avståndet mellan de sex arbetsplatserna i cirkeln,
+      inte ytans storlek, och en storleksjämförelse skulle locka till att sprida ut stationerna
+      (ytreferenser.md, avsnitt 4).

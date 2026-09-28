@@ -35,6 +35,8 @@ yta:
   alla:
     langd: 20
     bredd: 20
+ytreferens:
+  alla: en ruta något större än stora planens mittcirkel
 material:
   - typ: boll
     antal: 1

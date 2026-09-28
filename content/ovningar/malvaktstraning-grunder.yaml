@@ -81,3 +81,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-09-28
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ingen ytreferens: station med fasta positioner. Det som styr övningen är kastavståndet fem
+      meter och den lilla porten, inte ytans storlek, och 6 x 5 meter är dessutom mindre än allt som
+      finns uppritat på en plan (ytreferenser.md, avsnitt 4).

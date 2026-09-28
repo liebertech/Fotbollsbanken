@@ -41,6 +41,8 @@ yta:
   alla:
     langd: 45
     bredd: 30
+ytreferens:
+  alla: nästan en hel 7 mot 7-plan
 material:
   - typ: mal
     antal: 2

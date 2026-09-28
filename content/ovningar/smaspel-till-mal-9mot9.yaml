@@ -36,6 +36,8 @@ yta:
   alla:
     langd: 32
     bredd: 20
+ytreferens:
+  alla: ungefär stora planens straffområde
 material:
   - typ: minimal
     antal: 2

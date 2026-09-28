@@ -37,6 +37,8 @@ yta:
   alla:
     langd: 36
     bredd: 22
+ytreferens:
+  alla: stora planens straffområde, lite smalare men sex steg djupare
 material:
   - typ: mal
     antal: 2

@@ -42,6 +42,8 @@ yta:
   alla:
     langd: 42
     bredd: 28
+ytreferens:
+  alla: något längre än stora planens straffområde är brett
 material:
   - typ: mal
     antal: 2

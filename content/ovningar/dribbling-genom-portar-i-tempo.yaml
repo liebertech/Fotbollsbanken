@@ -36,6 +36,8 @@ yta:
   alla:
     langd: 18
     bredd: 14
+ytreferens:
+  alla: stora planens målområde, två och en halv gång så djupt
 material:
   - typ: boll
     antal: 8

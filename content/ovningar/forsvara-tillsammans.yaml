@@ -37,6 +37,8 @@ yta:
   alla:
     langd: 20
     bredd: 14
+ytreferens:
+  alla: ungefär halva stora planens straffområde
 material:
   - typ: vast
     antal: 4

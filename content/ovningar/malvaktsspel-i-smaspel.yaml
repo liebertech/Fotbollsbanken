@@ -38,6 +38,8 @@ yta:
   alla:
     langd: 50
     bredd: 30
+ytreferens:
+  alla: hela 7 mot 7-planen, ungefär en fjärdedel av stora planen
 material:
   - typ: mal
     antal: 2

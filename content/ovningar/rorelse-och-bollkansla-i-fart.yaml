@@ -39,6 +39,8 @@ yta:
   alla:
     langd: 24
     bredd: 18
+ytreferens:
+  alla: ungefär två tredjedelar av stora planens straffområde
 material:
   - typ: boll
     antal: 16
