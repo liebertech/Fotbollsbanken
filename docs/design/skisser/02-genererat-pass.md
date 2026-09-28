@@ -32,6 +32,8 @@ Status: godkänd (K2, 2026-09-12)
 │ │ Passningslek i ruta         │  │
 │ │ Syfte: komma igång, träna   │  │
 │ │ första touchen              │  │
+│ │ Yta: 20 × 15 meter          │  │
+│ │ (något större än cirkeln)   │  │
 │ │ [Byt övning]  [Visa mer ▾] │  │
 │ └───────────────────────────┘  │
 │                                 │
@@ -77,7 +79,8 @@ Status: godkänd (K2, 2026-09-12)
 ## Beteende och tillstånd
 
 - **Delnamn och ordning (02.2, R-030):** delarna visas alltid i fast ordning: Uppvärmning, Öva, Spelövning, Spel, Avslutning, med sina fasta nycklar dolda för ledaren (bara namnen visas).
-- **Varje övning visar minst** namn, syfte, tilldelad tid och planskiss (eller "Planskiss saknas") (02.2, 06.2). Full beskrivning, coachningspunkter och varianter (R-029) nås via "Visa mer" som fäller ut i samma kort, utan sidbyte.
+- **Varje övning visar minst** namn, syfte, tilldelad tid, yta och planskiss (eller "Planskiss saknas") (02.2, 06.2). Full beskrivning, coachningspunkter och varianter (R-029) nås via "Visa mer" som fäller ut i samma kort, utan sidbyte.
+- **Yta (tillagd 2026-09-28, ADR 0017):** en egen rad längst ner bland korets nyckeltal, efter gruppindelningen och före "Visa mer". Visar alltid metertalet, till exempel "Yta: 18 × 12 meter". Har övningen en ytreferens för spelformen står den direkt efter i parentes: "Yta: 18 × 12 meter (stora planens målområde, dubbelt så djupt)". Saknar övningen en referens visas bara måttet – ingen tom parentes. Referensen kan bli lång (upp till 90 tecken) och radbryter då fritt, men själva måttet ("Yta: 18 × 12 meter" och parentesens första tecken) ska hållas ihop så att till exempel "×" eller "(" aldrig hamnar ensamt på en rad. Se `texter.md` avsnitt 4.
 - **Stationer (02.4):** när en del har ett stationsmoment visas varje station som en egen rad inom samma kort, tydligt numrerad A, B, C … med egen tid och egen "Byt"-knapp (byte gäller den stationens övning).
 - **Tom del (02.16, 03.4, R-100):** visas med delens namn, måltid och texten "Vi kunde inte hitta en övning …". Tre lägen, inte två (det tredje tillagt vid granskningen inför K4, 2026-09-23):
   1. Orsaken är ett enskilt val som skulle kunna lösa det (R-103): de valen listas.
@@ -98,6 +101,7 @@ Status: godkänd (K2, 2026-09-12)
 - Varningar (⚠) och tips (💡) har text som förmedlar innebörden utan ikonen (ikonen är dekorativ, inte enda bäraren av information).
 - Ersättningsfokus-raden (ⓘ, tillagd 2026-09-23) följer samma mönster: ikonen är dekorativ, texten ensam förklarar vad som hänt och varför.
 - Kontrast: se `designsystem.md` för varnings-/tipsfärger i ljust och mörkt läge.
+- Ytraden (tillagd 2026-09-28): "×" i måttet ska läsas begripligt av en skärmläsare (till exempel som "gånger"). Kvalitetssäkraren kontrollerar detta med en riktig skärmläsare. Läses det oklart, läggs ett `.visually-hidden`-tillägg till på samma sätt som för "kärnområde" i `01-underlag.md` – den synliga symbolen ändras inte.
 
 ## Utskrift och planläge
 
@@ -109,3 +113,4 @@ Status: godkänd (K2, 2026-09-12)
 |---|---|
 | 2026-09-23 | Tillagt: ersättningsfokus (R-121) som en egen informationsrad per del, och ett tredje läge för en tom del ("inget enskilt val hjälper"), utöver de två som redan fanns. Båda saknades vid K2 eftersom R-121 och det tredje läget tillkom senare. Upptäckt vid granskningen av det byggda gränssnittet inför K4. Statusraden överst ändras inte av en agent. |
 | 2026-09-23 (uppföljning samma dag) | Bekräftat mot koden: till skillnad från vy 03 (se `03-inget-matchande-resultat.md`) hade den här vyn redan en riktig per-del-signal (`emptyReason` i `PartResult`) när det tredje läget skrevs, så beskrivningen ovan krävde ingen ändring – `SessionView.tsx` är nu kopplad exakt så här. |
+| 2026-09-28 | Tillagt: ytraden på övningskortet (ADR 0017, `feature/ytreferens`) – metertalet och en eventuell ytreferens i parentes. Fanns inte vid K2; måttet visades inte alls på kortet innan den här ändringen. Wireframen och tillgänglighetsavsnittet uppdaterade. |
