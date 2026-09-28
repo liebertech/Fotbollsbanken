@@ -28,6 +28,8 @@ Beslutat vid K1 (2026-09-11, se `kravspec.md`): generatorn har ett valfritt ytfi
 | 06 | [Visa planskiss för en övning](berattelser/06-visa-planskiss-for-ovning.md) | Must |
 | 07 | [Visa planskisser för alla övningar i ett pass](berattelser/07-visa-planskisser-i-pass.md) | Must |
 
+Skärpt inför K4 (2026-09-28, förarbete på `feature/planskisser-forarbete`): ingen av bankens 58 övningar har i dag skissdata (`docs/adr/0012-planskissformat.md`, beslutad K2). Hur stor del av banken som behöver skissdata för att inkrementet ska räknas som klart är inte beslutat – se berättelse 06, *Beslut som behövs* i produktägarens rapport.
+
 ## Inkrement 3 – Konton med klubbar och lag
 
 | # | Berättelse | Prioritet |
