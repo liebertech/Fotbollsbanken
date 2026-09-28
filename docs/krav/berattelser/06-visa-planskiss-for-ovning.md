@@ -20,7 +20,7 @@ Status: utkast (skärpt inför K4, 2026-09-28)
 
 ## Beroenden
 
-- Innehåll: kräver övningar med giltig `planskiss` i `content/ovningar/`, skrivna av övningsförfattaren och fotbollsfackligt granskade av fotbollsexperten (se `content/ovningar/README.md`). **Omfattningen som krävs för att den här berättelsen ska räknas som klar är inte beslutad, se *Beslut som behövs*.**
+- Innehåll: kräver övningar med giltig `planskiss` i `content/ovningar/`, skrivna av övningsförfattaren och fotbollsfackligt granskade av fotbollsexperten (se `content/ovningar/README.md`). **Omfattning, beslutad av användaren 2026-09-28: alla godkända övningar (i dag 42) ska ha giltig `planskiss` innan K4. De granskade övningarna får skiss på vägen till godkänd.**
 - Skissformatet, ritmotorn och felhanteringen: `docs/adr/0012-planskissformat.md`, beslutad vid K2. Formatet ägs av senior-systemutvecklare och planskissutvecklare.
 - Hur skissen ska rymmas i varje vy, färger och lägen: `docs/design/designsystem.md`, avsnitt 1, 2, 7 och 8.
 - Texter: `docs/design/texter.md`, avsnitt 8.
