@@ -1,6 +1,6 @@
 # 0017: Ytreferens i övningsformatet
 
-Status: föreslagen
+Status: beslutad (2026-09-28)
 
 ## Kontext
 
