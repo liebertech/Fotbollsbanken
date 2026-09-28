@@ -56,6 +56,12 @@ export const LIMITS = {
   },
   /** Ytans mått i meter. Samma gränser som `omrade` i ADR 0012 avsnitt 2. */
   yta: { langd: { min: 5, max: 120 }, bredd: { min: 5, max: 80 } },
+  /**
+   * Ytreferensen, texten i parentesen efter måttet (ADR 0017). Riktmärket är ungefär 70
+   * tecken, så att den ryms efter måttet på en mobilskärm; taket ligger över
+   * fotbollsexpertens längsta färdiga formulering på 73 tecken.
+   */
+  ytreferens: { min: 5, max: 90 },
   /** Övningens tid i minuter. Övre gränsen är längsta tillåtna passlängd (R-018). */
   tid: { min: 5, max: 120 },
   spelare: { min: 1, max: 40 },
@@ -154,6 +160,65 @@ const ytaSchema = z
     message: 'yta måste ange minst en yta, `alla` eller en spelformsnyckel (R-092)',
   });
 
+/**
+ * Ordgränser som klarar svenska bokstäver. `\b` i JavaScript räknar bara ASCII som ord, så
+ * `\bm\b` matchar m:et i "målområde" — å är ingen ordbokstav för `\b`. Lookaround mot
+ * `\p{L}\p{N}` ger den gräns som menas.
+ *
+ * Före enheten räcker det att tecknet inte är en bokstav. En siffra får stå direkt före,
+ * eftersom "12m" och "3km" är mått lika mycket som "12 m". Efter enheten stoppar också en
+ * siffra eller bokstav, så att spelformsnyckeln "7mot7" inte läses som "7m".
+ */
+const WORD_START = '(?<!\\p{L})';
+const WORD_END = '(?![\\p{L}\\p{N}])';
+
+/** Måttenheter som egna ord. `kvadratmeter` står med för sig, eftersom `meter` i det ordet inte börjar vid en ordgräns. */
+const MEASUREMENT_UNIT = new RegExp(
+  `${WORD_START}(?:kvadratmetern|kvadratmeter|centimeter|decimeter|kilometer|metrarna|metrar|metern|meter|kvm|km|cm|dm|m2|m)${WORD_END}`,
+  'iu',
+);
+
+/** Ett mått skrivet som tal × tal, oavsett vilket gångertecken som används. */
+const MEASUREMENT_DIMENSION = /\d\s*[x×*]\s*\d/iu;
+
+/**
+ * Sant när texten innehåller ett mått. Referensen är en jämförelse och aldrig ett andra
+ * mått: metertalet står redan före parentesen (ADR 0017).
+ *
+ * Siffror för sig är tillåtna, eftersom spelformernas namn innehåller dem ("hela 7 mot
+ * 7-planen"), och stegtal är tillåtna, eftersom de uttrycker ungefärlighet ("tio steg
+ * utanför straffområdet").
+ */
+export function containsMeasurement(text: string): boolean {
+  return MEASUREMENT_UNIT.test(text) || MEASUREMENT_DIMENSION.test(text) || text.includes('m²');
+}
+
+const areaReferenceText = trimmedText(LIMITS.ytreferens.min, LIMITS.ytreferens.max).refine(
+  (value) => !containsMeasurement(value),
+  {
+    message:
+      'ytreferensen får inte innehålla ett mått. Metertalet står före parentesen, och referensen är en jämförelse (ADR 0017)',
+  },
+);
+
+/**
+ * `ytreferens` har samma nycklar som `yta`: `alla` eller en spelform. Till skillnad från
+ * `yta` är fältet valfritt i sin helhet, men en karta utan nycklar säger ingenting och
+ * underkänns hellre än att tolkas som "ingen referens" (ADR 0017).
+ */
+const ytreferensSchema = z
+  .strictObject({
+    alla: areaReferenceText.optional(),
+    '3mot3': areaReferenceText.optional(),
+    '5mot5': areaReferenceText.optional(),
+    '7mot7': areaReferenceText.optional(),
+    '9mot9': areaReferenceText.optional(),
+    '11mot11': areaReferenceText.optional(),
+  })
+  .refine((value) => Object.keys(value).length > 0, {
+    message: 'utelämna ytreferens helt hellre än att ange den tom (ADR 0017)',
+  });
+
 const materialItemSchema = z.strictObject({
   typ: z.enum(MATERIAL_TYPES),
   antal: positiveInt(1, LIMITS.material.maxAntal),
@@ -227,6 +292,9 @@ function buildObject(planskiss: z.ZodType<unknown>) {
       langst: positiveInt(LIMITS.tid.min, LIMITS.tid.max),
     }),
     yta: ytaSchema,
+    // ADR 0017: valfri, också för en godkänd övning. Tretton av bankens övningar ska
+    // medvetet sakna den, och fältet står därför inte i BANK_FIELDS.
+    ytreferens: ytreferensSchema.optional(),
     material: z.array(materialItemSchema).max(LIMITS.material.maxCount),
     coachningspunkter: z
       .array(trimmedText(LIMITS.coachningspunkter.min, LIMITS.coachningspunkter.max))
@@ -291,6 +359,10 @@ function freeTextFields(value: Partial<Exercise>): { path: (string | number)[]; 
   add(['anpassning', 'udda_antal'], value.anpassning?.udda_antal);
   add(['anpassning', 'ledare'], value.anpassning?.ledare);
   value.coachningspunkter?.forEach((point, index) => add(['coachningspunkter', index], point));
+  // ADR 0017: ytreferensen är fritext som publiceras, och går genom samma kontroll.
+  for (const [key, text] of Object.entries(value.ytreferens ?? {})) {
+    add(['ytreferens', key], text);
+  }
   value.material?.forEach((item, index) => add(['material', index, 'anteckning'], item.anteckning));
   value.granskning?.forEach((entry, index) => {
     add(['granskning', index, 'av'], entry.av);
@@ -473,6 +545,30 @@ function checkCrossRules(value: Partial<Exercise>, ctx: z.RefinementCtx): void {
             `${format} täcks både av alla och av sin egen nyckel. Bara en av dem (R-092)`,
           );
         }
+      }
+    }
+  }
+
+  // ADR 0017: ytreferensens nycklar hör ihop med spelformerna, precis som ytans (R-092).
+  // Skillnaden mot R-092 är att ingen spelform behöver ha en referens: att sakna den är ett
+  // riktigt svar för den övning där måttet är själva poängen.
+  // Överlappet mellan `alla` och en egen nyckel prövas med avsikt även utan `spelformer`,
+  // till skillnad från R-092: det går att avgöra ur kartan ensam, och R-092:s kontroll
+  // räknar per spelform och kan därför inte göra det. Fler fel på en gång är bättre än färre.
+  if (value.ytreferens) {
+    const reference = value.ytreferens as Record<string, string | undefined>;
+    for (const key of Object.keys(reference)) {
+      if (key === 'alla') {
+        continue;
+      }
+      if (spelformer && !spelformer.includes(key as (typeof GAME_FORMATS)[number])) {
+        addIssue(ctx, ['ytreferens', key], `${key} finns inte i spelformer (ADR 0017)`);
+      } else if ('alla' in reference) {
+        addIssue(
+          ctx,
+          ['ytreferens', key],
+          `${key} täcks både av alla och av sin egen nyckel. Bara en av dem (ADR 0017)`,
+        );
       }
     }
   }

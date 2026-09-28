@@ -101,6 +101,8 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Faktisk tid, avviker | Faktisk tid: {x} min (du bad om {y} min) |
 | Del, namn | Uppvärmning / Öva / Spelövning / Spel / Avslutning |
 | Stationsetikett | Station A / Station B / Station C / Station D |
+| Yta på övningskortet | Yta: {mått} meter |
+| Yta på övningskortet, med ytreferens (ADR 0017) | Yta: {mått} meter ({ytreferens}) |
 | Knapp, mer info | Visa mer |
 | Knapp, mindre info | Visa mindre |
 | Knapp, byt övning | Byt övning |
@@ -117,6 +119,12 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 
 - **Ersättningsfokus (R-121):** visas som en egen informationsrad direkt under delens rubrik, före övningskortet, när `del-ovning` eller `del-spelovning` fylldes med ett annat fokus än det ledaren valde. `{missing}` är det eller de valda fokusområden som saknade övning i just den delen (kommaseparerat om flera), `{substitute}` är fokusområdet som användes i stället. Texten ändrar aldrig innebörden av R-102: underlagets fokusval står kvar precis som ledaren skrev dem.
 - **Tom del, inget enskilt val hjälper:** en tredje variant av "tom del"-texten, som tidigare saknades. Den behövs för att "Tom del, går inte att kombinera" annars visas även när det inte stämmer att andra övningar skulle passa var för sig – till exempel när banken helt saknar övningar för den valda spelformen. Visas när delens `emptyReason` är `val-kan-andras` **och** listan över ändringsbara fält är tom (alltså varken en bekräftad kombinationskonflikt eller en lista att visa). `emptyReason` är en riktig, bekräftad signal från regelmotorn (samma prövning som `partCanBeFilled` gör för delen), inte en gissning utifrån att listan råkar vara tom – det gäller båda de två återstående lägena. Se `skisser/02-genererat-pass.md` för var i vyn den ska stå.
+
+**Tillagt vid granskningen av ytreferensen (2026-09-28, ADR 0017):**
+
+- **Yta på övningskortet:** en egen rad på varje övningskort, direkt under gruppindelningen (eller direkt under syftet om delen saknar gruppindelning), i samma stil som gruppindelningen (sekundär textfärg, mindre storlek). `{mått}` är längd × bredd i meter med svenskt decimaltecken, till exempel "18 × 12". Saknar övningen en ytreferens för spelformen visas bara måttet – ingen tom parentes, ingen platshållare. Referensen står aldrig ensam (se `docs/adr/0017-ytreferens-i-ovningsformatet.md` beslut 6). Se `skisser/02-genererat-pass.md`.
+- **Radbrytning:** `{ytreferens}` kan bli upp till 90 tecken (fotbollsexpertens riktmärke ~70) och ska kunna radbryta fritt på en mobilskärm, precis som en statustagg (designsystem.md 6.5). Själva måttet – "Yta: {mått} meter" och parentesens inledande tecken – ska däremot hållas ihop med ett hårt mellanslag runt "×" och före "(", så att till exempel "×" eller "(" aldrig hamnar ensamt på en egen rad. Det är samma typ av åtgärd som redan finns i koden (`.visually-hidden`, se kärnområdes-noten i avsnitt 3), fast här för radbrytning i stället för tillgängligt namn.
+- **Skärmläsare:** tecknet "×" ska läsas begripligt (till exempel som "gånger"). Kontrolleras av kvalitetssäkraren med en riktig skärmläsare (NVDA/VoiceOver). Läses det oklart, används samma mönster som för "(K)"/kärnområde ovan: den synliga symbolen står kvar, och ett `.visually-hidden`-tillägg ger en tydlig accessible name – inte en ersättning av den synliga texten.
 
 ---
 
@@ -358,3 +366,4 @@ Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillä
 | 2026-09-23 | **Avsnitt 5:** ny rad för "inget enskilt val hjälper" samt ett tillägg som förklarar vilken av de tre ingresserna som ska visas, eftersom vyn i praktiken bara kan skilja på "lista med fält" och "listan är tom" (se `skisser/03-inget-matchande-resultat.md`). |
 | 2026-09-23 (uppföljning samma dag) | **Avsnitt 4 och 5:** förklaringarna om vilken "tom del"/"inget matchande resultat"-text som visas är omskrivna. Regelmotorn har fått den bekräftade signalen (`emptyReason` per del fanns redan, `NoSessionReason.cause` är ny) som avsnitten tidigare sa saknades – "kan inte kombineras" visas nu bara när orsaken är bekräftad, inte som en gissning utifrån en tom fältlista. |
 | 2026-09-23 (uppföljning samma dag) | **Avsnitt 3:** ny rad för skärmläsarordet "kärnområde" och en förklaring av hur det vävs in i fokuskryssrutornas tillgängliga namn tillsammans med "(K)" (WCAG 2.5.3). |
+| 2026-09-28 | **Avsnitt 4:** två nya rader för ytan på övningskortet och en förklaring av placering, radbrytning och skärmläsarläsning av "×" (ADR 0017, `feature/ytreferens`). Fältet fanns inte vid K2, och måttet visades inte alls på kortet innan den här ändringen. |

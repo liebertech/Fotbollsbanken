@@ -72,6 +72,19 @@ describe('ADR 0015 Övningsbanken som virtuell modul', () => {
     }
   });
 
+  it('ADR 0017 bygger in ytreferensen, så att den når ledaren', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'ovningsbank-'));
+    writeFileSync(
+      join(dir, 'passa-och-folj.yaml'),
+      stringifyYaml(validExercise({ status: 'godkand', granskning: [reviewEntry()] })),
+      'utf8',
+    );
+    const [exercise] = bankFromModule(buildBankModule(dir));
+    expect(exercise?.ytreferens).toEqual({
+      alla: 'ungefär en tredjedel av stora planens straffområde',
+    });
+  });
+
   it('S-30 redovisar hur många övningar som byggdes in och hur många som hoppades över', () => {
     const dir = mkdtempSync(join(tmpdir(), 'ovningsbank-'));
     writeFileSync(

@@ -38,6 +38,12 @@ import type {
 } from './types.ts';
 
 export { validateInput } from './input/validate.ts';
+/**
+ * Övningens yta för den valda spelformen (R-092). Ytfiltret räknar på den, och kortet visar
+ * samma mått för ledaren, så att uppslagningen `spelform ?? alla` bara finns på ett ställe.
+ */
+export { exerciseArea } from './filter/area.ts';
+export type { Size } from './filter/area.ts';
 export { selectableFocusAreas } from './input/validate.ts';
 export { planTime } from './time/plan.ts';
 export { checkSession } from './check/session.ts';

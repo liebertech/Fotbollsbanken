@@ -35,6 +35,9 @@ export const PUBLISHED_FIELDS = [
   'udda_antal_losning',
   'tid',
   'yta',
+  // ADR 0017: ytreferensen visas efter måttet på övningskortet. Utan den här raden når den
+  // aldrig ledaren, hur många filer den än skrivs in i.
+  'ytreferens',
   'material',
   'coachningspunkter',
   'varianter',

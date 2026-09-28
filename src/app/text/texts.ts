@@ -59,6 +59,17 @@ export const TEXTS = {
     easier: 'Lättare',
     harder: 'Svårare',
     material: 'Material',
+    /**
+     * Ytan på övningskortet (ADR 0017). Metertalet är huvudmåttet och står alltid först;
+     * ytreferensen följer efter i parentes när övningen har en, och raden ser ut som i dag
+     * när den saknas — ingen tom parentes och ingen platshållare.
+     *
+     * Se docs/design/texter.md avsnitt 4. "Yta: {size} meter (" hålls ihop med hårda
+     * mellanslag (U+00A0), så att måttet och parentesens början aldrig bryts isär; själva
+     * referensen har vanliga mellanslag och bryter fritt.
+     */
+    area: 'Yta:\u00a0{size}\u00a0meter',
+    areaWithReference: 'Yta:\u00a0{size}\u00a0meter\u00a0({reference})',
     groups: '{groups} grupper à {size} spelare',
     groupsMixed: '{groups} grupper: {sizes} spelare',
     oneGroup: 'En grupp med {size} spelare',

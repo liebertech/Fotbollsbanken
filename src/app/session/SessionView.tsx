@@ -4,7 +4,7 @@
  * Vyn räknar ingenting själv: tider, delar, ersättningsfokus och förklaringar kommer som de
  * är ur motorns svar (ADR 0011 avsnitt 1).
  */
-import type { PartResult, Session } from '../../regelmotor/index.ts';
+import type { GameFormat, PartResult, Session } from '../../regelmotor/index.ts';
 import { buildSessionView } from './model.ts';
 import type { PartView } from './model.ts';
 import { ExerciseCard } from './ExerciseCard.tsx';
@@ -91,7 +91,8 @@ function EmptyPart({ result, minutes }: { result: PartResult | null; minutes: nu
   );
 }
 
-function Part({ part }: { part: PartView }) {
+/** `format` är ledarens val, och styr vilken yta och ytreferens korten visar (R-092, ADR 0017). */
+function Part({ part, format }: { part: PartView; format: GameFormat }) {
   const texts = TEXTS.session;
   const empty = part.result?.status === 'saknar-ovning';
   return (
@@ -112,6 +113,7 @@ function Part({ part }: { part: PartView }) {
                 exercise={item.exercise}
                 minutes={item.minutes}
                 layout={item.layout}
+                format={format}
                 label={
                   item.period === null ? undefined : fill(texts.period, { number: item.period })
                 }
@@ -133,6 +135,7 @@ function Part({ part }: { part: PartView }) {
                     exercise={station.exercise}
                     minutes={item.stationMinutes ?? 0}
                     layout={station.layout}
+                    format={format}
                     label={stationLabel(station.station)}
                   />
                 ))}
@@ -202,7 +205,7 @@ export function SessionView({ session, onChangeInput, onGenerateAgain }: Session
       </ul>
 
       {view.parts.map((part) => (
-        <Part key={part.part} part={part} />
+        <Part key={part.part} part={part} format={input.spelform} />
       ))}
 
       <div className={styles.actions}>
