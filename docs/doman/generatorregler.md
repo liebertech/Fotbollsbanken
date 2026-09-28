@@ -1,4 +1,4 @@
-Status: ändrad 2026-09-21 (fas 4, inkrement 1)
+Status: ändrad 2026-09-23 (läsanvisning tillagd, inga regler ändrade)
 
 # Generatorregler
 
@@ -32,6 +32,7 @@ Domänmodellen godkändes vid K1 den 2026-09-11. Sedan dess har den här filen �
 | 2026-09-14 | **R-050 hänvisar till R-057.** Strecksatsen om taket per ledare pekar nu på undantaget, så att regeln inte blir missvisande läst för sig. Vad R-050 kräver är oförändrat. |
 | 2026-09-21 | **R-121 tillagd.** Ledaren får välja vilket fokusområde som helst som är K eller R för fasen, men om `del-ovning` eller `del-spelovning` annars skulle bli tom fyller generatorn delen med ett närliggande fokusområde och talar om för ledaren att den gjorde det. Regeln anger vilket fokusområde som är närliggande vilket, per passdel och med avvikelser per åldersfas, och vad som gäller när inget närliggande fokus heller har någon övning. Frågan kom fram när `lek` eller `koordination` valdes som enda fokus i en bank med 31 godkända övningar: båda delarna i kärnan blev då tomma. Alternativen att skriva nya övningar eller att begränsa valet i gränssnittet valdes bort. Godkänd av användaren 2026-09-21. |
 | 2026-09-21 | **R-041, R-100, R-101, R-102, R-103 och R-104 hänvisar till R-121.** Hänvisningarna visar var ersättningsfokuset kommer in, så att reglerna inte blir missvisande lästa för sig. Vad reglerna kräver är oförändrat. |
+| 2026-09-23 | **Läsanvisning i grupp 10, ingen regel.** Inledningen till grupp 10 pekar nu ut att avsnittet *Yta per spelare* i `passuppbyggnad.md` innehåller granskningskriterier för övningsbanken, inte något generatorn använder. Det gäller båda kriterierna där: golvet för yta per spelare och det minsta längdmåttet för djupledsövningar i `fas-13-14` och `fas-15-19`. Anledningen är att kvadratmetertalen och längdmåtten annars kan hittas i domänfilen och implementeras som filter, alltså regler som ingen har beslutat. Inget nytt regel-ID, ingen ändrad regel och inget nytt krav på koden. Användaren godkände båda granskningskriterierna 2026-09-23. |
 
 ## Så läser du reglerna
 
@@ -666,6 +667,8 @@ Krav. Varje pass visar en påminnelse om benskydd, eftersom `del-spel` alltid in
 **Varför:** ytan avgör i praktiken vilka övningar som går att genomföra. Många lag delar planen med andra och har en halv eller en kvarts plan. Ett spel 9 mot 9 får inte plats på en kvarts plan, och fyra smålagsspel sida vid sida kräver mer yta än ett. Om generatorn inte vet det kan den föreslå pass som inte går att genomföra.
 
 *Beslut 2026-09-11 (kravspec, Beslut vid K1, punkt 1):* version 1 har ett valfritt ytfilter med hel, halv och kvarts plan. Det finns inget materialfilter (bollar, koner, mål) i version 1. Inomhushall som yta kommer i en senare version och kräver egna mått, som inte finns här än.
+
+*Läsanvisning, ingen regel (2026-09-23, preciserad 2026-09-24):* avsnittet *Yta per spelare* i `passuppbyggnad.md` innehåller två **granskningskriterier** för övningsbanken: ett golv för yta per spelare och ett minsta längdmått för övningar i `fas-13-14` och `fas-15-19` som ska öva djupled. Båda används när en övning skrivs och granskas, inte av generatorn. Generatorn väljer aldrig bort ett moment för att ytan är trång, rymlig eller kort; den kontrollerar bara att momentet får plats på den yta ledaren har valt (R-092). **Inget tal i det avsnittet ska implementeras som filter:** varken golvet, taket, längdmåtten eller undantagens egna mått. Detsamma gäller att golvet räknas på `spelare.max` och taket på `spelare.min` (precisering 2026-09-24) — det är en räkneanvisning för granskningen, inte något generatorn gör. Om något av talen någon gång ska bli en regel är det ett eget beslut av användaren och en egen ändring av den här filen, med ett nytt regel-ID.
 
 ### R-090 Ledaren kan ange yta
 Krav. Ledaren kan välja en av `yta-hel`, `yta-halv` och `yta-kvart`, eller låta bli. Yta är valfri (R-020). Om ledaren inte väljer någon yta används inget ytfilter, och R-092 och R-093 gäller inte.
