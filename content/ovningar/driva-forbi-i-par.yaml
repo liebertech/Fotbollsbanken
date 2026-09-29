@@ -54,6 +54,32 @@ anpassning:
   fler_spelare: Bygg fler rutor bredvid varandra med samma mått.
   udda_antal: Tre spelare delar en ruta och roterar, två spelar medan en väntar på sin tur.
   ledare: Övningen är självgående när paren har fått en ruta och sett ett exempel.
+planskiss:
+  version: 1
+  omrade:
+    langd: 6
+    bredd: 6
+  beskrivning: >-
+    Ruta 6 x 6 meter med en liten port av två koner i var ände. Anfallaren startar med boll
+    vid sin egen port och försöker dribbla igenom försvararens port i andra änden.
+    Försvararen försöker vinna bollen eller stoppa passagen. Efter varje försök byter
+    spelarna roll.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 6, bredd: 6, stil: heldragen }
+    - { typ: kon, x: 0, y: 2 }
+    - { typ: kon, x: 0, y: 4 }
+    - { typ: kon, x: 6, y: 2 }
+    - { typ: kon, x: 6, y: 4 }
+    - { id: anf, typ: spelare, x: 0.5, y: 3, lag: a, etikett: A }
+    - { id: fors, typ: spelare, x: 4, y: 3, lag: b, etikett: F }
+    - { typ: boll, x: 0.8, y: 3 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: anf }
+      till: { x: 5.5, y: 3 }
+      via: [{ x: 3, y: 3.5 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: fors }, till: { x: 3, y: 3 }, ordning: 1 }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-rutor med portar.
 status: godkand
 granskning:
