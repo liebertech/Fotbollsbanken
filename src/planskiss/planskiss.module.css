@@ -270,3 +270,10 @@
 .matt {
   font-weight: 400;
 }
+
+/* Symbolen i teckenförklaringen: 4 × 2 m, alltid i samma storlek. */
+.teckensymbol {
+  flex: none;
+  width: 2.5rem;
+  height: 1.25rem;
+}

@@ -9,3 +9,7 @@
 export { Planskiss, INSTANCE_ID_PATTERN, sketchLayout } from './Planskiss.tsx';
 export type { PlanskissProps, PlanskissStorlek, SketchLayout } from './Planskiss.tsx';
 export { notDrawnText, parallelAreasText, sketchDescription, sketchTitle } from './beskrivning.ts';
+export { Teckensymbol } from './Teckensymbol.tsx';
+export type { TeckensymbolProps } from './Teckensymbol.tsx';
+export { LEGEND_KINDS, LEGEND_NAMES, legendEntries } from './teckenforklaring.ts';
+export type { LegendEntry, LegendKind } from './teckenforklaring.ts';

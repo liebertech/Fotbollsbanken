@@ -1,0 +1,30 @@
+/* Planskissen i vyerna (designsystem.md avsnitt 7). */
+
+/* Teckenförklaringen: symbol och benämning, radbryts fritt och tål 200 % text (avsnitt 8). */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.legendHeading {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.legendList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

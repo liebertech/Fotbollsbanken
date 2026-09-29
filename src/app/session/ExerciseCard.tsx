@@ -119,7 +119,7 @@ export function ExerciseCard({
       </div>
 
       {/* Planskissen ritas i inkrement 2 (docs/design/designsystem.md avsnitt 7). */}
-      <p className={styles.sketch}>{texts.sketchMissing}</p>
+      <p className={styles.sketch}>{TEXTS.sketch.missing}</p>
 
       <p className={styles.purpose}>{exercise.syfte}</p>
 
