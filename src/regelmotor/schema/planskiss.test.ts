@@ -51,7 +51,12 @@ function failsOn(input: unknown, field: string, text: string): boolean {
   return issues(input).some((line) => line.startsWith(`${field}: `) && line.includes(text));
 }
 
-/** Exemplet i ADR 0012 avsnitt 9, ordagrant i sak. */
+/**
+ * Exemplet i ADR 0012 avsnitt 9, ordagrant i sak. Det är fortfarande en giltig skiss enligt
+ * schemat, och används därför som bas för testerna, men enligt ADR 0018 punkt 7 är det ingen
+ * fotbollsmässig förebild: passa och följ med fyra hörn kräver minst fem spelare, och
+ * övningen ska inte ritas med `parallella-ytor`. Förebilden står i content/ovningar/README.md.
+ */
 const ADR_EXAMPLE: Sketch = {
   version: 1,
   omrade: { langd: 15, bredd: 15 },
@@ -1223,6 +1228,47 @@ describe('ändringarna efter säkerhetsgranskningen och ADR 0018', () => {
     }
     expect(isValid(sketch({ beskrivning: 'En kvadrat 15 x 15 m, två lag – A och B.' }))).toBe(true);
     expect(FORBIDDEN_TEXT_CHARACTERS.test('vanlig text')).toBe(false);
+  });
+
+  it('underkänner formateringstecken, avgränsare, privata och otilldelade tecken i beskrivning (F6)', () => {
+    const cases: [string, string][] = [
+      ['LRM', '\u200E'],
+      ['RLM', '\u200F'],
+      ['ALM', '\u061C'],
+      ['ZWSP', '\u200B'],
+      ['ZWJ', '\u200D'],
+      ['BOM', '\uFEFF'],
+      ['mjukt bindestreck', '\u00AD'],
+      ['taggtecken', '\u{E0041}\u{E0042}'],
+      ['radavgränsare', '\u2028'],
+      ['styckeavgränsare', '\u2029'],
+      ['privat bruk', '\uE000'],
+      ['otilldelat', '\u0378'],
+    ];
+    for (const [name, character] of cases) {
+      const inside = sketch({ beskrivning: `en${character}text` });
+      expect(failsOn(inside, 'beskrivning', 'styrtecken'), name).toBe(true);
+    }
+  });
+
+  it('underkänner ett styrtecken i kanten av beskrivning i stället för att ta bort det (F6)', () => {
+    for (const edge of ['\ttext', 'text\n', '\u200Ftext', 'text\uFEFF']) {
+      expect(failsOn(sketch({ beskrivning: edge }), 'beskrivning', 'styrtecken')).toBe(true);
+    }
+    // Vanliga mellanslag i kanten tas fortfarande bort.
+    const result = readPlanskiss(sketch({ beskrivning: '  En kvadrat.  ' }));
+    expect(result.status === 'giltig' && result.skiss.beskrivning).toBe('En kvadrat.');
+  });
+
+  it('godkänner vanlig svensk text med å, ä, ö, é, tankstreck och gångertecken i beskrivning', () => {
+    for (const good of [
+      'Yta 15 × 9 meter – anfallaren startar vid konen.',
+      'Två lag på en yta 30 × 20 m. Målvakten står i målet – spelarna väljer själva.',
+      'Kvadrat med åtta koner. Passa, följ och byt plats: Å, Ä, Ö, é och É går bra.',
+      'Citat ”så här” och ’så här’, 1,5 m mellan spelarna (ungefär).',
+    ]) {
+      expect(isValid(sketch({ beskrivning: good })), good).toBe(true);
+    }
   });
 
   it('godkänner lag neutral på en plats, för jokrar', () => {

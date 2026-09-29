@@ -87,20 +87,32 @@ export const LABEL_PATTERN = /^[\p{L}\p{N} .,:\-/+()]*$/u;
 export const SHORT_LABEL_PATTERN = /^[\p{Lu}\p{N}]{0,3}$/u;
 
 /**
- * Tecken som underkänns i `beskrivning` (F6): styrtecken (`\p{Cc}`, bland annat radbrytning
- * och tabb) och tecknen som styr skrivriktningen, U+202A–202E och U+2066–2069. Skärmläsare
- * läser upp dem, och bidi-tecknen kan vända på texten runt omkring.
+ * Tecken som underkänns i `beskrivning` (F6). Skärmläsare läser upp dem, och en del kan vända
+ * på texten runt omkring eller gömma text för en granskare:
+ * - `\p{Cc}`: styrtecken, bland annat radbrytning och tabb,
+ * - `\p{Cf}`: formateringstecken, bland annat bidi-tecknen U+202A–202E och U+2066–2069,
+ *   LRM, RLM, ALM, nollbreddstecken, BOM och taggtecknen U+E0000–E007F,
+ * - `\p{Zl}` och `\p{Zp}`: rad- och styckeavgränsare,
+ * - `\p{Co}` och `\p{Cn}`: tecken för privat bruk och tecken som inte är tilldelade.
  */
-export const FORBIDDEN_TEXT_CHARACTERS = /[\p{Cc}\u202A-\u202E\u2066-\u2069]/u;
+export const FORBIDDEN_TEXT_CHARACTERS = /[\p{Cc}\p{Cf}\p{Zl}\p{Zp}\p{Co}\p{Cn}]/u;
 
 /** Längsta upprepade värde i ett felmeddelande (F4). */
 const MAX_ECHO = 40;
 /** Flest okända fältnamn som räknas upp i ett felmeddelande (F4). */
 const MAX_LISTED_KEYS = 5;
 
-/** En text ur indata, kortad till 40 tecken (F4). */
-function shorten(text: string): string {
-  return text.length > MAX_ECHO ? `${text.slice(0, MAX_ECHO)}…` : text;
+/** En text ur indata, kortad till 40 tecken eller till `max` (F4). */
+function shorten(text: string, max: number = MAX_ECHO): string {
+  return text.length > max ? `${text.slice(0, max)}…` : text;
+}
+
+/**
+ * Ett id ur indata i ett felmeddelande. Ett giltigt id är högst 24 tecken, så det visas alltid
+ * helt, och ett längre kortas dit (F4). Id-fältet har redan fått sitt eget fel om mönstret.
+ */
+function echoId(id: string): string {
+  return `"${shorten(id, 24)}"`;
 }
 
 /**
@@ -219,7 +231,10 @@ function strict<const T extends z.ZodRawShape>(shape: T, what: string) {
   return z.strictObject(shape, {
     error: (issue) => {
       if (issue.code === 'unrecognized_keys') {
-        const listed = issue.keys.slice(0, MAX_LISTED_KEYS).map(shorten).join(', ');
+        const listed = issue.keys
+          .slice(0, MAX_LISTED_KEYS)
+          .map((key) => shorten(key))
+          .join(', ');
         const rest = issue.keys.length - MAX_LISTED_KEYS;
         const more = rest > 0 ? ` och ${rest} till` : '';
         return `okänt fält i ${what}: ${listed}${more}. Tillåtna fält är ${allowed}`;
@@ -570,7 +585,7 @@ function checkSketch(sketch: z.output<typeof sketchObject>, ctx: z.RefinementCtx
         addIssue(
           ctx,
           [...path, 'id'],
-          `id "${item.id}" används redan av objekt ${previous.index}. Ett id ska vara unikt i skissen`,
+          `id ${echoId(item.id)} används redan av objekt ${previous.index}. Ett id ska vara unikt i skissen`,
         );
       } else {
         byId.set(item.id, { index, typ: item.typ });
@@ -606,7 +621,7 @@ function checkSketch(sketch: z.output<typeof sketchObject>, ctx: z.RefinementCtx
         addIssue(
           ctx,
           [...path, 'objekt'],
-          `objekt "${endpoint.objekt}" finns inte i skissen. Ge objektet det id:t, eller rätta stavningen`,
+          `objekt ${echoId(endpoint.objekt)} finns inte i skissen. Kontrollera stavningen`,
         );
       }
     } else {
@@ -631,7 +646,7 @@ function checkSketch(sketch: z.output<typeof sketchObject>, ctx: z.RefinementCtx
       const target = byId.get(queue.vid);
       const path: Path = ['skalning', 'koer', index, 'vid'];
       if (target === undefined) {
-        addIssue(ctx, path, `vid pekar på "${queue.vid}", som inte finns i skissen`);
+        addIssue(ctx, path, `vid pekar på ${echoId(queue.vid)}, som inte finns i skissen`);
       } else if (target.typ !== 'spelare') {
         // Köspelaren ärver laget från startobjektet (avsnitt 4), och bara en spelare har ett lag.
         addIssue(
@@ -667,14 +682,15 @@ const sketchObject = strict(
     ),
     beskrivning: z
       .string({ error: typeError('beskrivning', 'text') })
+      // Teckenkontrollen före trim: ett styrtecken i kanten ska underkännas, inte tas bort tyst.
+      .refine(
+        (value) => !FORBIDDEN_TEXT_CHARACTERS.test(value),
+        'beskrivning får inte innehålla radbrytningar, tabbar, styrtecken, osynliga tecken eller tecken som vänder skrivriktningen. Skriv texten på en rad, i YAML med >-',
+      )
       .trim()
       .max(
         PLANSKISS_LIMITS.beskrivning,
         `beskrivning får vara högst ${PLANSKISS_LIMITS.beskrivning} tecken`,
-      )
-      .refine(
-        (value) => !FORBIDDEN_TEXT_CHARACTERS.test(value),
-        'beskrivning får inte innehålla radbrytningar, tabbar, styrtecken eller tecken som vänder skrivriktningen. Skriv texten på en rad, i YAML med >-',
       )
       .optional(),
     objekt: z
