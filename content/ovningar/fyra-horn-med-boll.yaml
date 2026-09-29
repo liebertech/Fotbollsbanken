@@ -84,9 +84,9 @@ planskiss:
     - { typ: boll, x: 9.3, y: 15 }
     - { typ: boll, x: 14.3, y: 14 }
   rorelser:
-    - { typ: dribbling, fran: { objekt: p1 }, till: { x: 16, y: 16 }, ordning: 1 }
-    - { typ: dribbling, fran: { objekt: p4 }, till: { x: 16, y: 16 }, ordning: 1 }
-    - { typ: dribbling, fran: { objekt: p6 }, till: { x: 16, y: 16 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: p1 }, till: { x: 12.5, y: 15.5 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: p5 }, till: { x: 14, y: 17 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: p6 }, till: { x: 16.5, y: 16.5 }, ordning: 1 }
   skalning:
     strategi: platser
     platser:
