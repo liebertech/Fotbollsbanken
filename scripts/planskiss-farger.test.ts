@@ -7,7 +7,11 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const CSS = readFileSync(join(import.meta.dirname, 'planskiss.module.css'), 'utf8');
+// Testet ligger i scripts/, eftersom det läser CSS-filen som text med Node.
+const CSS = readFileSync(
+  join(import.meta.dirname, '..', 'src', 'planskiss', 'planskiss.module.css'),
+  'utf8',
+);
 
 /** Innehållet i första regeln med exakt den här väljaren, efter `start` i filen. */
 function block(selector: string, start = 0): string {
