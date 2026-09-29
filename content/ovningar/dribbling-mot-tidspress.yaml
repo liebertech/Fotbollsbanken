@@ -59,6 +59,37 @@ anpassning:
   udda_antal: Tre spelare delar en yta och roterar, två dribblar och byter mot den tredje efter varje försök.
   ledare: Med en ledare i närheten kan hen hålla tiden och ropa ut när tiden är slut för alla par
     samtidigt.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med en port av två koner i bortre änden. Anfallaren (A)
+    startar med boll och har åtta sekunder på sig att dribbla genom porten,
+    medan försvararen (F) försvarar aktivt från start.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 15, y: 0 }
+    - { typ: kon, x: 15, y: 10 }
+    - { typ: kon, x: 0, y: 10 }
+    - { typ: kon, x: 13, y: 3.5 }
+    - { typ: kon, x: 13, y: 6.5 }
+    - { id: sp-anf, typ: spelare, x: 2, y: 5, lag: a, etikett: A }
+    - { id: sp-forsv, typ: spelare, x: 6, y: 5, lag: b, etikett: F }
+    - { typ: boll, x: 2.3, y: 5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-anf }
+      till: { x: 13, y: 5 }
+      via: [{ x: 7, y: 7 }, { x: 10, y: 3 }]
+      ordning: 1
+    - typ: lopning
+      fran: { objekt: sp-forsv }
+      till: { x: 9, y: 6 }
+      ordning: 2
+      etikett: Försvarar aktivt
 kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
 status: godkand
 granskning:
