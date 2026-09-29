@@ -178,7 +178,7 @@ Själva ritningen av en planskiss (SVG från skissdata) ägs av planskissutveckl
 | Skapa egen övning (`10`) | Inget skissfält alls | Version 1 har ingen ritredigerare (beslutat i backlogen). En egen övning saknar alltid planskiss och visas med "Planskiss saknas", enligt den genomgående regeln nedan – formuläret lovar ingen ritfunktion |
 | Redaktörskö (`12`) | Samma storlek som i pass-vyn, för att redaktören ska se samma sak som ledaren kommer se | – |
 
-Genomgående regel: saknas skissdata visas alltid en tydligt inramad yta med texten "Planskiss saknas" i samma mått som skissen skulle haft, aldrig en tom lucka eller ett brutet bildikon (06.2, 07.2, jämför komponent 6.3).
+Genomgående regel: saknas skissdata visas alltid en tydligt inramad yta med texten "Planskiss saknas" i samma mått som skissen skulle haft, aldrig en tom lucka eller ett brutet bildikon (06.2, 07.2, jämför komponent 6.3). Är skissdatan ogiltig visas på samma sätt texten "Planskissen kunde inte visas" (06.3, 07.3, ADR 0012 avsnitt 7), så att ett fel inte kan tas för en skiss som ännu inte är ritad.
 
 ---
 
