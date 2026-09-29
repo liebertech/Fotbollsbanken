@@ -1,0 +1,175 @@
+/**
+ * Skalning efter antal spelare (ADR 0012 avsnitt 4, ADR 0018 punkt 4, 5 och 8).
+ *
+ * Funktionen är ren och deterministisk (S-4): samma skiss och samma antal ger alltid samma
+ * utplacering. Den lägger aldrig till rörelser (S-6) och gör aldrig en tillagd spelare till
+ * målvakt (S-7).
+ */
+import type { Planskissdata } from '../regelmotor/schema/planskiss.ts';
+import { direction, toDrawn } from './matt.ts';
+import type { AreaFrame, Point } from './matt.ts';
+
+type SketchObject = Planskissdata['objekt'][number];
+export type Team = 'a' | 'b' | 'neutral';
+
+/** Högst så här många spelarsymboler ritas (S-5, RK-6). */
+export const MAX_PLAYER_SYMBOLS = 40;
+/** Antalet klamras till högst basantalet plus 30 (avsnitt 4, *Två gränser*). */
+export const MAX_EXTRA = 30;
+/** En kö ritas med högst 8 spelare (avsnitt 4, RK-6). */
+export const MAX_QUEUE_DRAWN = 8;
+/** Förvalt avstånd mellan spelarna i en kö, i meter (avsnitt 4). */
+export const DEFAULT_QUEUE_SPACING = 1.5;
+
+/** En spelare som skalningen har lagt till. Alltid utespelare och alltid utan etikett (S-7). */
+export interface AddedPlayer {
+  /** Positionen i den ritade ytans meter. */
+  at: Point;
+  lag: Team;
+}
+
+/** En kö som har fått minst en spelare. */
+export interface DrawnQueue {
+  /** Köns index i `skalning.koer`, för att hämta etiketten i ritningen. */
+  index: number;
+  /** Den första köspelaren, där köns etikett ritas. */
+  first: Point;
+  /** Den sista ritade köspelaren, där ett överskott skrivs som "+N". */
+  last: Point;
+  /** Köns riktning i grader. */
+  riktning: number;
+  /** Köspelare utöver de 8 som ritas. */
+  hidden: number;
+}
+
+export interface ScaledPlayers {
+  /** Antalet spelare i basskissen, alltså `spelare`-objekten. */
+  baseCount: number;
+  /** Antalet som skissen ritas för, efter klamringen. Basantalet när antalet inte är känt. */
+  count: number;
+  added: AddedPlayer[];
+  queues: DrawnQueue[];
+  /** Spelare som varken fick en plats eller en kö, eller som föll över taket på 40. */
+  notDrawn: number;
+  /** Antal ytor vid `parallella-ytor`, annars 1. */
+  areas: number;
+}
+
+function basePlayers(sketch: Planskissdata) {
+  return sketch.objekt.filter(
+    (item): item is Extract<SketchObject, { typ: 'spelare' }> => item.typ === 'spelare',
+  );
+}
+
+/**
+ * Antalet som skissen ska ritas för (S-2, avsnitt 4). Ett okänt antal ger basskissen
+ * (berättelse 06, kriterium 5), och ett orimligt antal klamras till [basantal, basantal + 30].
+ */
+export function clampCount(baseCount: number, count: number | undefined): number {
+  if (count === undefined || !Number.isFinite(count)) {
+    return baseCount;
+  }
+  return Math.min(baseCount + MAX_EXTRA, Math.max(baseCount, Math.floor(count)));
+}
+
+/**
+ * Fördelar överskottet enligt `skalning`. Platserna fylls först och köerna sedan, oavsett
+ * vilken strategi som anges (ADR 0018 punkt 8).
+ */
+export function scalePlayers(
+  sketch: Planskissdata,
+  frame: AreaFrame,
+  count: number | undefined,
+): ScaledPlayers {
+  const base = basePlayers(sketch);
+  const baseCount = base.length;
+  const total = clampCount(baseCount, count);
+  const result: ScaledPlayers = {
+    baseCount,
+    count: total,
+    added: [],
+    queues: [],
+    notDrawn: 0,
+    areas: 1,
+  };
+  const scaling = sketch.skalning ?? { strategi: 'fast' as const };
+
+  if (scaling.strategi === 'fast') {
+    return result;
+  }
+  if (scaling.strategi === 'parallella-ytor') {
+    // Ingen spelare läggs till. Skissen visar en yta och antalet ytor skrivs i text.
+    result.areas = Math.max(1, Math.ceil(total / scaling.per_yta));
+    return result;
+  }
+
+  let extra = total - baseCount;
+  // Taket gäller alla ritade spelarsymboler, basskissens medräknade (S-5).
+  let room = Math.max(0, MAX_PLAYER_SYMBOLS - baseCount);
+
+  for (const place of scaling.platser ?? []) {
+    if (extra === 0) {
+      break;
+    }
+    extra -= 1;
+    if (room === 0) {
+      result.notDrawn += 1;
+      continue;
+    }
+    room -= 1;
+    // Posten har inget fält för målvakt, så platsen blir alltid en utespelare (S-7).
+    result.added.push({ at: toDrawn(frame, place), lag: place.lag });
+  }
+
+  const queues = scaling.koer ?? [];
+  if (queues.length === 0) {
+    result.notDrawn += extra;
+    return result;
+  }
+
+  // Cykliskt: spelare 1 till kö 1, spelare 2 till kö 2 och så vidare (avsnitt 4).
+  const perQueue = queues.map(
+    (_, index) => Math.floor(extra / queues.length) + (index < extra % queues.length ? 1 : 0),
+  );
+
+  queues.forEach((queue, index) => {
+    const size = perQueue[index] ?? 0;
+    const start = base.find((player) => player.id === queue.vid);
+    if (size === 0) {
+      return;
+    }
+    if (start === undefined) {
+      // Kan inte hända med validerad data (ADR 0018 punkt 5), men ger aldrig en trasig bild.
+      result.notDrawn += size;
+      return;
+    }
+    const origin = toDrawn(frame, start);
+    const step = direction(queue.riktning);
+    const spacing = queue.avstand ?? DEFAULT_QUEUE_SPACING;
+    const drawable = Math.min(size, MAX_QUEUE_DRAWN, room);
+    room -= drawable;
+    const positions: Point[] = [];
+    for (let k = 1; k <= drawable; k += 1) {
+      // Avståndet är i meter på marken och skalas inte med ytan.
+      const at = { x: origin.x + step.x * k * spacing, y: origin.y + step.y * k * spacing };
+      positions.push(at);
+      // Köspelaren ärver bara laget, aldrig målvaktsmarkeringen (S-7).
+      result.added.push({ at, lag: start.lag });
+    }
+    const first = positions[0];
+    const last = positions[positions.length - 1];
+    if (first !== undefined && last !== undefined) {
+      result.queues.push({
+        index,
+        first,
+        last,
+        riktning: queue.riktning,
+        hidden: size - drawable,
+      });
+    } else {
+      result.notDrawn += size;
+    }
+  });
+
+  return result;
+}

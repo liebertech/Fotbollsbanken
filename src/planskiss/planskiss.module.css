@@ -1,0 +1,272 @@
+/*
+ * Planskissens färger (ADR 0012 avsnitt 5, designsystem.md avsnitt 2 och 8).
+ *
+ * Ritmotorn skriver aldrig en färg i ett attribut. Varje fyllning och kontur kommer från en
+ * klass här, och klasserna pekar på fasta CSS-variabler. Ingen `style` byggs av data (RK-5,
+ * S-17). Lagen skiljs åt av form och mönster, rörelserna av linjeform, så ingenting går
+ * förlorat i svartvitt.
+ */
+
+.skiss {
+  /* Ljust läge, designsystem.md avsnitt 2.1. */
+  --skiss-yta: #eef4ee;
+  --skiss-bakgrund: #ffffff;
+  --skiss-linje: #1a1a1a;
+  --skiss-tunn: #595959;
+  --skiss-lag-a: #0b6b3a;
+  --skiss-pa-lag-a: #ffffff;
+  --skiss-lag-b: #1a1a1a;
+  --skiss-neutral: #6b4300;
+  --skiss-ledare: #1a1a1a;
+  --skiss-kon: #b3261e;
+  --skiss-monster: #8a938b;
+  --skiss-text: #1a1a1a;
+  --skiss-halo: #ffffff;
+
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .skiss {
+    /* Mörkt läge, designsystem.md avsnitt 2.2. */
+    --skiss-yta: #1e2620;
+    --skiss-bakgrund: #121212;
+    --skiss-linje: #f2f2f2;
+    --skiss-tunn: #c7c7c7;
+    --skiss-lag-a: #57c98a;
+    --skiss-pa-lag-a: #121212;
+    --skiss-lag-b: #f2f2f2;
+    --skiss-neutral: #f5d98a;
+    --skiss-ledare: #f2f2f2;
+    --skiss-kon: #e4685d;
+    --skiss-monster: #7d877f;
+    --skiss-text: #f2f2f2;
+    --skiss-halo: #121212;
+  }
+}
+
+/* Planläget (inkrement 5): svart på vitt med kraftigare linjer, designsystem.md avsnitt 2.3. */
+.planlage {
+  --skiss-yta: #ffffff;
+  --skiss-bakgrund: #ffffff;
+  --skiss-linje: #000000;
+  --skiss-tunn: #000000;
+  --skiss-lag-a: #000000;
+  --skiss-pa-lag-a: #ffffff;
+  --skiss-lag-b: #000000;
+  --skiss-neutral: #000000;
+  --skiss-ledare: #000000;
+  --skiss-kon: #000000;
+  --skiss-monster: #595959;
+  --skiss-text: #000000;
+  --skiss-halo: #ffffff;
+}
+
+/* Utskriften (inkrement 6) och all utskrift: svart, vitt och grått (avsnitt 5). */
+.utskrift {
+  --skiss-yta: #ffffff;
+  --skiss-bakgrund: #ffffff;
+  --skiss-linje: #000000;
+  --skiss-tunn: #404040;
+  --skiss-lag-a: #000000;
+  --skiss-pa-lag-a: #ffffff;
+  --skiss-lag-b: #000000;
+  --skiss-neutral: #000000;
+  --skiss-ledare: #000000;
+  --skiss-kon: #000000;
+  --skiss-monster: #808080;
+  --skiss-text: #000000;
+  --skiss-halo: #ffffff;
+}
+
+@media print {
+  .skiss {
+    --skiss-yta: #ffffff;
+    --skiss-bakgrund: #ffffff;
+    --skiss-linje: #000000;
+    --skiss-tunn: #404040;
+    --skiss-lag-a: #000000;
+    --skiss-pa-lag-a: #ffffff;
+    --skiss-lag-b: #000000;
+    --skiss-neutral: #000000;
+    --skiss-ledare: #000000;
+    --skiss-kon: #000000;
+    --skiss-monster: #808080;
+    --skiss-text: #000000;
+    --skiss-halo: #ffffff;
+  }
+}
+
+.yta {
+  fill: var(--skiss-yta);
+}
+
+/* Spelarna. Lag A är fylld, lag B och neutrala är ofyllda (ADR 0012 avsnitt 2). */
+.spelare {
+  stroke-linejoin: round;
+}
+
+.lagA {
+  fill: var(--skiss-lag-a);
+  stroke: var(--skiss-lag-a);
+}
+
+.lagB {
+  fill: var(--skiss-bakgrund);
+  stroke: var(--skiss-lag-b);
+}
+
+.lagNeutral {
+  fill: var(--skiss-bakgrund);
+  stroke: var(--skiss-neutral);
+}
+
+/* Målvakten fylls med randmönstret i fill-attributet. En klass med fill skulle vinna över
+   attributet, så målvaktens klasser sätter bara konturen. */
+.konturA {
+  stroke: var(--skiss-lag-a);
+}
+
+.konturB {
+  stroke: var(--skiss-lag-b);
+}
+
+.konturNeutral {
+  stroke: var(--skiss-neutral);
+}
+
+.randA {
+  fill: var(--skiss-lag-a);
+}
+
+.randB {
+  fill: var(--skiss-lag-b);
+}
+
+.randNeutral {
+  fill: var(--skiss-neutral);
+}
+
+.randBakgrund {
+  fill: var(--skiss-bakgrund);
+}
+
+.riktning {
+  stroke: var(--skiss-linje);
+  stroke-linecap: round;
+}
+
+.ledare {
+  fill: var(--skiss-bakgrund);
+  stroke: var(--skiss-ledare);
+  stroke-linejoin: round;
+}
+
+.kon {
+  fill: var(--skiss-kon);
+}
+
+.boll {
+  fill: var(--skiss-bakgrund);
+  stroke: var(--skiss-linje);
+}
+
+.bollKryss {
+  stroke: var(--skiss-linje);
+}
+
+.platta {
+  fill: none;
+  stroke: var(--skiss-linje);
+}
+
+.prick {
+  fill: var(--skiss-linje);
+}
+
+.markeringLinje {
+  stroke: var(--skiss-linje);
+}
+
+.malNat {
+  stroke: none;
+}
+
+.malRam {
+  fill: none;
+  stroke: var(--skiss-linje);
+  stroke-linejoin: round;
+}
+
+.malStolpe {
+  fill: var(--skiss-linje);
+}
+
+.monsterLinje {
+  stroke: var(--skiss-monster);
+}
+
+.monsterPrick {
+  fill: var(--skiss-monster);
+}
+
+/* Zonens mönster sätts i fill-attributet, så klassen sätter bara konturen. */
+.zon {
+  stroke: var(--skiss-tunn);
+}
+
+.zonTom {
+  fill: none;
+}
+
+.ruta {
+  fill: none;
+  stroke: var(--skiss-linje);
+}
+
+.rorelse {
+  fill: none;
+  stroke: var(--skiss-linje);
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.pilspets {
+  fill: var(--skiss-linje);
+}
+
+.ordningRing {
+  fill: var(--skiss-bakgrund);
+  stroke: var(--skiss-linje);
+}
+
+/* Text ur skissen isoleras från omgivande skrivriktning (RK-7). */
+.etikett {
+  fill: var(--skiss-text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+.etikettPaFylld {
+  fill: var(--skiss-pa-lag-a);
+}
+
+/* En ljus kant runt texten, så att den går att läsa ovanpå linjer och mönster. */
+.etikettHalo {
+  paint-order: stroke;
+  stroke: var(--skiss-halo);
+  stroke-width: 0.25em;
+  stroke-linejoin: round;
+}
+
+.ordningText {
+  font-weight: 700;
+}
+
+.matt {
+  font-weight: 400;
+}
