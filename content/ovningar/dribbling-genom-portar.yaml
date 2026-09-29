@@ -74,12 +74,12 @@ planskiss:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
     - { id: mal-b, typ: mal, x: 18, y: 6, storlek: smamal, riktning: vanster }
-    - { typ: kon, x: 9, y: 1 }
-    - { typ: kon, x: 9, y: 3 }
-    - { typ: kon, x: 9, y: 5 }
-    - { typ: kon, x: 9, y: 7 }
-    - { typ: kon, x: 9, y: 9 }
-    - { typ: kon, x: 9, y: 11 }
+    - { typ: kon, x: 7, y: 1.5 }
+    - { typ: kon, x: 7, y: 3.5 }
+    - { typ: kon, x: 11, y: 5 }
+    - { typ: kon, x: 11, y: 7 }
+    - { typ: kon, x: 7, y: 8.5 }
+    - { typ: kon, x: 7, y: 10.5 }
     - { id: a1, typ: spelare, x: 4, y: 4, lag: a, etikett: "A1" }
     - { id: a2, typ: spelare, x: 4, y: 8, lag: a, etikett: "A2" }
     - { id: b1, typ: spelare, x: 14, y: 4, lag: b, etikett: "B1" }
@@ -88,11 +88,11 @@ planskiss:
   rorelser:
     - typ: dribbling
       fran: { objekt: a1 }
-      till: { x: 12, y: 6 }
-      via: [{ x: 9, y: 6 }]
+      till: { x: 10, y: 2.5 }
+      via: [{ x: 7, y: 2.5 }]
       ordning: 1
-    - { typ: lopning, fran: { objekt: b1 }, till: { x: 9, y: 6 }, ordning: 1 }
-    - { typ: skott, fran: { x: 12, y: 6 }, till: { objekt: mal-b }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 11.5, y: 5.5 }, ordning: 1 }
+    - { typ: skott, fran: { x: 10, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
   skalning:
     strategi: platser
     platser:
