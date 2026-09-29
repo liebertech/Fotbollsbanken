@@ -54,6 +54,36 @@ anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: Tre spelare turas om, två spelar och en väntar med en ny boll redo.
   ledare: Övningen sköter sig själv när paren väl har kommit igång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 8
+  beskrivning: >-
+    Yta 12 x 8 meter med ett litet mål i var ände. Båda spelarna kan göra mål
+    i båda målen, och den som vinner bollen blir direkt anfallare. Extra
+    bollar ligger vid sidan av ytan.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 12, y: 0 }
+    - { typ: kon, x: 12, y: 8 }
+    - { typ: kon, x: 0, y: 8 }
+    - { id: mal-1, typ: mal, x: 0, y: 4, storlek: smamal, riktning: hoger }
+    - { id: mal-2, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
+    - { id: sp-1, typ: spelare, x: 4, y: 4, lag: a, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 8, y: 4, lag: b, etikett: "2" }
+    - { typ: boll, x: 4.3, y: 4 }
+    - { typ: boll, x: 5, y: 8.5 }
+    - { typ: boll, x: 7, y: 8.5 }
+  rorelser:
+    - typ: lopning
+      fran: { objekt: sp-2 }
+      till: { x: 9, y: 5 }
+      ordning: 1
+      etikett: Möter i vinkel
+    - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 9, y: 4 }, ordning: 2 }
+    - { typ: skott, fran: { x: 9, y: 4 }, till: { objekt: mal-2 }, ordning: 3 }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
 status: godkand
 granskning:

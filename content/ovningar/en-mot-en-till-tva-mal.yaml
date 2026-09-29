@@ -59,6 +59,45 @@ anpassning:
   fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum.
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
   ledare: Övningen är självgående. Ledaren dömer bonuspoängen och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 24
+    bredd: 16
+  beskrivning: >-
+    Yta 24 x 16 meter med ett litet mål i var ände. Två lag möts, och en extra
+    poäng ges när ett mål föregås av en dribbling förbi en direkt
+    motståndare. Vid udda antal blir en spelare joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 24, bredd: 16, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 24, y: 0 }
+    - { typ: kon, x: 24, y: 16 }
+    - { typ: kon, x: 0, y: 16 }
+    - { id: mal-1, typ: mal, x: 0, y: 8, storlek: smamal, riktning: hoger }
+    - { id: mal-2, typ: mal, x: 24, y: 8, storlek: smamal, riktning: vanster }
+    - { id: sp-a1, typ: spelare, x: 6, y: 6, lag: a, etikett: "A1" }
+    - { id: sp-a2, typ: spelare, x: 6, y: 10, lag: a, etikett: "A2" }
+    - { id: sp-b1, typ: spelare, x: 18, y: 6, lag: b, etikett: "B1" }
+    - { id: sp-b2, typ: spelare, x: 18, y: 10, lag: b, etikett: "B2" }
+    - { typ: boll, x: 6.3, y: 6 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-a1 }
+      till: { x: 16, y: 6 }
+      via: [{ x: 11, y: 5 }]
+      ordning: 1
+    - { typ: skott, fran: { x: 16, y: 6 }, till: { objekt: mal-2 }, ordning: 2 }
+    - typ: lopning
+      fran: { objekt: sp-b1 }
+      till: { x: 11, y: 6 }
+      ordning: 3
+      etikett: Möter i vinkel
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 8, lag: a }
+      - { x: 18, y: 8, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål med bonus för 1 mot 1.
 status: godkand
 granskning:
