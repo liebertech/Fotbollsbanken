@@ -61,7 +61,7 @@ Fullständiga regler, typer och intervall står i ADR 0010, avsnitt 1. `Krävs` 
 | `coachningspunkter` | 2–4 punkter | ja | |
 | `varianter` | `lattare` och `svarare` | ja | R-029 |
 | `anpassning` | `fler_spelare`, `udda_antal` och `ledare` | ja | |
-| `planskiss` | Skissdata. Formatet beslutas av planskissutvecklaren. Får utelämnas | nej | |
+| `planskiss` | Skissdata som appen ritar planskissen ur. Se avsnittet *`planskiss`, planskissen* nedan | nej | |
 | `kalla` | Inspiration eller källa, om det finns någon | nej | |
 | `status` | Se tabellen ovan | ja | |
 | `granskning` | Lista med `datum`, `av`, `roll` och `kommentar` | ja | |
@@ -98,6 +98,251 @@ Så här skriver du den:
 
 Fältet visas bara. Det filtrerar ingenting och påverkar inte vilka övningar generatorn väljer: ytkontrollen räknar vidare på `langd` och `bredd` (R-092).
 
+## `planskiss`, planskissen
+
+Appen ritar planskissen själv ur fältet `planskiss`. Du skriver inga bilder, bara var saker står och hur de rör sig, i meter. Formatet beslutas i [ADR 0012](../../docs/adr/0012-planskissformat.md). Det här avsnittet räcker för att skriva en skiss.
+
+Fältet får utelämnas. Då visar appen "Planskiss saknas". Finns fältet måste det vara giltigt: `npm run validera:ovningar` underkänner filen annars, med fältet och orsaken, till exempel `planskiss.objekt.3.etikett – etiketten får vara högst 3 tecken`.
+
+### Koordinaterna
+
+- **Allt anges i meter**, med högst en decimal. Fler decimaler avrundas till närmaste decimeter.
+- **Origo är ytans övre vänstra hörn.** `x` går längs ytans längd åt höger, `y` längs bredden **nedåt**. Skissen ritas alltid liggande.
+- **Lag A anfaller åt höger**, mot växande `x`, när skissen har mål.
+- **Marginalen är 3 m.** Objekt får stå upp till 3 m utanför ytan, för köer, ledare vid sidan och mål på kortlinjen: `-3 ≤ x ≤ langd + 3` och `-3 ≤ y ≤ bredd + 3`.
+- **Vinklar** (`riktning` på spelare och köer) anges i hela grader 0–359. 0 är åt höger (växande `x`), 90 nedåt (växande `y`), 180 åt vänster och 270 uppåt.
+- **`omrade` ska vara samma mått som övningens `yta`.** Skriv måtten från `yta.alla`, eller från den spelform du ritar för. Appen ritar alltid efter övningens `yta` och skalar om koordinaterna när en spelform har andra mått. Skiljer sig sidornas förhållande mer än 25 % skalas skissen inte om. Ange då hellre `yta` per spelform och rita för den vanligaste.
+
+### Fälten på toppnivån
+
+| Fält | Innehåll | Krävs |
+|---|---|---|
+| `version` | Alltid `1` | ja |
+| `omrade` | `langd` 5–120 och `bredd` 5–80 i meter | ja |
+| `beskrivning` | Kort text om skissen, högst 300 tecken. Läses upp av skärmläsare | nej |
+| `objekt` | 1–60 objekt, se nedan. Högst 40 av dem får vara spelare | ja |
+| `rorelser` | 0–30 pilar, se nedan | nej |
+| `skalning` | Var fler spelare hamnar, se nedan. Utelämnad betyder `fast` | nej |
+
+Okända fält underkänns överallt i skissen. Ett stavfel blir alltså ett fel och inte ett fält som tyst ignoreras.
+
+### Objekten
+
+Alla objekt har `typ`, `x` och `y`. `id` behövs bara om en rörelse eller en kö pekar på objektet, och är då 1–24 tecken med gemena a–z, siffror och bindestreck, unikt i skissen.
+
+| `typ` | Egna fält | `x`, `y` är |
+|---|---|---|
+| `spelare` | `lag`: `a`, `b` eller `neutral` (krävs). `malvakt`: `true` eller `false`. `etikett`: 0–3 versaler eller siffror. `riktning`: grader, visas som ett kort streck | mitten |
+| `ledare` | `etikett`: 0–3 versaler eller siffror. Utan etikett visas `L` | mitten |
+| `kon` | – | mitten |
+| `boll` | – | mitten |
+| `markering` | `form`: `platta`, `prick` eller `linje` (krävs). `till: { x, y }` krävs för `linje` och får inte anges annars | mitten, eller linjens ena ände |
+| `mal` | `storlek` (krävs, se nedan). `riktning`: `hoger`, `vanster`, `upp` eller `ner`, åt vilket håll målöppningen vetter (krävs). `bredd`: 0,5–8 m, bara för `storlek: eget` och då krävs den | målets mitt |
+| `zon` | `langd`, `bredd` i meter (krävs). `monster`: `diagonal`, `prickar` eller `tom` (krävs). `etikett`: 0–24 tecken | övre vänstra hörnet |
+| `ruta` | `langd`, `bredd` i meter (krävs). `stil`: `heldragen` eller `streckad` (krävs). `etikett`: 0–24 tecken | övre vänstra hörnet |
+
+En zon eller ruta ska rymmas inom ytan plus marginalen också med sitt bortre hörn.
+
+Målets bredd hämtas ur `storlek`, så att samma skiss ger rätt mål i varje spelform:
+
+| `storlek` | `3mot3` | `5mot5` | `7mot7` | `9mot9` | `11mot11` | `smamal` | `eget` |
+|---|---|---|---|---|---|---|---|
+| Bredd (m) | 1,5 | 3 | 5 | 6 | 7,32 | 1 | fältet `bredd` |
+
+En målvakt skrivs som `malvakt: true` på det lag hen tillhör, eller med `lag: neutral` när övningen har en gemensam målvakt.
+
+### Rörelserna
+
+| Fält | Innehåll | Krävs |
+|---|---|---|
+| `typ` | `passning`, `lopning`, `dribbling` eller `skott` | ja |
+| `fran`, `till` | En punkt `{ x: 5, y: 3 }` eller ett objekt `{ objekt: sp-1 }`. Pekar du på ett objekt börjar eller slutar pilen vid symbolens kant | ja |
+| `via` | 0–2 punkter som gör pilen böjd | nej |
+| `ordning` | 1–9, en siffra i en ring som visar i vilken ordning saker händer | nej |
+| `etikett` | 0–24 tecken vid pilens mitt | nej |
+
+Teckenförklaringen, som appen alltid visar bredvid skissen: **passning** heldragen linje, **löpning** streckad linje, **dribbling** vågig linje och **skott** dubbel linje.
+
+### Skalningen: när gruppen har fler spelare
+
+Skissen ritas för ett bestämt antal spelare, som appen känner till när passet är genererat.
+
+- **Rita basskissen för övningens minsta grupp,** `spelare.min`. Då kan skissen bara växa. Antalet `spelare`-objekt i basskissen ska vara lika med `spelare.min`, och så räknar du:
+  - **Målvakter räknas.**
+  - **En joker räknas**, och ritas som en spelare med `lag: neutral`.
+  - **Spelare som står i kö i basskissen räknas**, till exempel den andra spelaren i starthörnet.
+  - **Ledaren räknas inte.** Ett `ledare`-objekt är aldrig en av spelarna.
+- **`skalning` säger var de extra spelarna hamnar.** En tillagd spelare ritas alltid som utespelare, aldrig som målvakt. Behövs fler målvakter skriver du dem som egna objekt.
+- **Pilarna hör till basskissen.** Tillagda spelare får inga pilar.
+
+| `strategi` | Fält | Så fördelas de extra spelarna |
+|---|---|---|
+| `fast` | – | Inga läggs till |
+| `koer` | `koer`: 1–6 köer `{ vid, riktning, avstand, etikett }`. `vid` är `id` på en **spelare** (krävs). `riktning` i grader (krävs). `avstand` 0,5–5 m, förval 1,5. `etikett` 0–24 tecken, visas en gång vid köns början | En i taget till köerna i tur och ordning. Köspelaren får samma lag som spelaren kön utgår från |
+| `platser` | `platser`: 1–20 platser `{ x, y, lag }`. `lag` är `a`, `b` eller `neutral` | Platserna fylls i listans ordning. Varva `a` och `b` för två lag. En plats kan inte vara målvakt |
+| `parallella-ytor` | `per_yta`: 2–20 | En yta ritas, och texten säger hur många likadana ytor gruppen behöver |
+
+`koer` och `platser` kan kombineras: skriv båda listorna under samma `skalning`. Platserna fylls först, därefter köerna.
+
+**En kö utgår alltid från en spelare** ([ADR 0018](../../docs/adr/0018-kompletteringar-av-planskissformatet.md), punkt 5). `vid` pekar på ett `spelare`-objekt, aldrig på en kon eller en ledare, eftersom köspelarna ärver spelarens lag. Ska kön stå bakom en kon eller vid ledaren ritar du den **första i kön** som en spelare vid konen eller ledaren, och låter kön utgå från den spelaren. Står redan två spelare i kön i basskissen låter du kön utgå från den bakersta, så att nästa spelare hamnar bakom dem. Välj `riktning` och `avstand` så att hela kön ryms inom marginalen på 3 m, för det antal spelare övningen kan få. Ryms den inte, kortar du `avstand` eller låter kön gå längs linjen i stället för rakt ut.
+
+**Fast storlek och udda antal** (ADR 0018, punkt 4). En övning med `grupptyp: fast-storlek` ritar med `fast` om `udda_antal_losning` är `false`. Är den `true` ska skissen visa den extra spelaren så som övningen löser udda antal i `anpassning.udda_antal`:
+
+- **Har den extra spelaren en roll utanför formen**, använd `koer` med **en** kö. Etiketten återger övningens egen lösning med egna ord, högst 24 tecken, till exempel `Rullar in bollar`, `Nästa målvakt` eller `Byter in efter varvet`. Det finns ingen fast etikett.
+- **Ger den extra spelaren en ny form**, till exempel en fjärde punkt så att en triangel blir en kvadrat, använd `platser` med platsen i den nya formen.
+
+Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kontrollerar den.
+
+**Behov som saknar en egen form** (ADR 0018, punkt 6). Formatet har ännu ingen egen form för följande. Rita dem tills vidare så här:
+
+| Behov | Så ritar du det |
+|---|---|
+| Jokrar som går in i lagen vid udda antal eller när gruppen växer | `platser` med platser för lag `a` och `b`. Skriv i `beskrivning` hur jokrarna går in i lagen, till exempel ”Vid udda antal blir en spelare joker.” Jokrar som finns redan i basskissen ritas med `lag: neutral` |
+| Låga hinder | En liten `ruta` med etikett, till exempel `Hinder` |
+| Stationer | En liten `ruta` med stationens etikett, till exempel `Station 2` |
+| Kast, inkast och hörna | En `passning` med etikett, till exempel `Inkast` |
+
+### Etiketter och text
+
+- **Etiketten på en spelare eller en ledare** är högst 3 tecken och får bara innehålla **versaler och siffror**, till exempel `A`, `F`, `MV`, `L`, `1` eller `12`. Gemener, mellanslag och skiljetecken underkänns (ADR 0018, punkt 2).
+- **Övriga etiketter**, på zoner, rutor, rörelser och köer, är högst 24 tecken och får innehålla bokstäver, siffror, mellanslag och tecknen `. , : - / + ( )`.
+- **Skriv siffror inom citattecken:** `etikett: "1"`. Utan citattecken läser YAML det som ett tal, och det underkänns.
+- **`beskrivning` skrivs på en rad.** Radbrytningar, tabbar och andra styrtecken underkänns. Skriv längre texter med `>-` i YAML, som i exemplen, så blir radbrytningarna i filen mellanslag.
+- **Skriv inga namn, e-postadresser eller andra personuppgifter**, varken i etiketterna eller i `beskrivning`. En e-postadress underkänns av valideringen. Använd roller: `A`, `F`, `MV`, `Anfallare`.
+- Hela skissen får vara högst 8 192 byte som JSON. En skiss som håller sig inom taken ovan brukar vara 2–4 kB.
+
+### Exempel per spelform
+
+Exemplen visar formatet, inte granskade skisser för bankens övningar. Varje exempel är giltigt, och ett test (`scripts/planskiss-readme.test.ts`) kontrollerar det, så exemplen kan kopieras som utgångspunkt. Raden `# Spelform:` används av testet.
+
+**7 mot 7: passa och följ i en kvadrat, 15 × 15 meter, fem spelare.** Passa och följ med fyra hörn kräver minst fem spelare: den som passar springer till nästa hörn, och där måste någon stå kvar och ta emot. Basskissen har därför två spelare i starthörnet. Fler spelare ställs i kö vid hörnen 2, 3, 4 och 1, i den ordningen, med 1,5 m mellan spelarna i kön. Exemplet är fristående från exempelövningen längst ned i filen men gäller samma antal spelare, 5–9.
+
+```yaml
+# Spelform: 7mot7
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 15
+  beskrivning: >-
+    Kvadrat 15 x 15 meter med en kon i varje hörn och en spelare vid varje kon.
+    Två spelare står i övre vänstra hörnet, där bollen börjar. Bollen passas
+    medsols och den som passar följer efter till nästa hörn.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 15, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 15, y: 0 }
+    - { typ: kon, x: 15, y: 15 }
+    - { typ: kon, x: 0, y: 15 }
+    - { id: sp-1, typ: spelare, x: -0.8, y: -0.8, lag: a, etikett: "1" }
+    - { id: sp-5, typ: spelare, x: -1.9, y: -1.9, lag: a, etikett: "5" }
+    - { id: sp-2, typ: spelare, x: 15.8, y: -0.8, lag: a, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 15.8, y: 15.8, lag: a, etikett: "3" }
+    - { id: sp-4, typ: spelare, x: -0.8, y: 15.8, lag: a, etikett: "4" }
+    - { typ: boll, x: 0.3, y: 0.3 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-1 }, till: { objekt: sp-2 }, ordning: 1 }
+    - typ: lopning
+      fran: { objekt: sp-1 }
+      till: { x: 16.6, y: -1.6 }
+      via: [{ x: 7.5, y: -2.5 }]
+      ordning: 2
+    - { typ: passning, fran: { objekt: sp-2 }, till: { objekt: sp-3 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-2, riktning: 315 }
+      - { vid: sp-3, riktning: 45 }
+      - { vid: sp-4, riktning: 135 }
+      - { vid: sp-5, riktning: 225 }
+```
+
+Kön vid hörn 1 utgår från spelare 5, den bakersta i starthörnet, så att nästa spelare ställer sig bakom hen. Med 1,5 m avstånd ryms en spelare till i varje kö inom marginalen, alltså upp till nio spelare.
+
+**5 mot 5: ett mot ett till mål med målvakt, 15 × 9 meter.** Tre spelare i basskissen: målvakten, en anfallare och en försvarare. Två köer, en för anfallarna och en för försvararna. Köerna har 1 m mellan spelarna så att tre spelare i varje kö ryms inom marginalen.
+
+```yaml
+# Spelform: 5mot5
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 9
+  beskrivning: >-
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren
+    startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 9, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 15, y: 4.5, storlek: 5mot5, riktning: vanster }
+    - { typ: spelare, x: 14.2, y: 4.5, lag: b, malvakt: true, etikett: MV }
+    - { id: anf, typ: spelare, x: 0, y: 4.5, lag: a, etikett: A }
+    - { id: forsv, typ: spelare, x: 7, y: 9, lag: b, etikett: F }
+    - { typ: boll, x: 0.9, y: 4.5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: anf }
+      till: { x: 10, y: 3 }
+      via: [{ x: 5, y: 3 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: forsv }, till: { x: 9, y: 5 }, ordning: 1 }
+    - { typ: skott, fran: { x: 10, y: 3 }, till: { objekt: mal-1 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: anf, riktning: 180, avstand: 1, etikett: Anfallare }
+      - { vid: forsv, riktning: 90, avstand: 1, etikett: Försvarare }
+```
+
+**9 mot 9: smålagsspel med målvakter, 40 × 30 meter.** Tre mot tre ute. Fler spelare fyller på lagen i tur och ordning. Ytan har ingen mittlinje, eftersom 9 mot 9 inte har någon retreatlinje. Behöver en övning en linje, till exempel för en zon, ritar du den som en `markering` med `form: linje` och skriver i `beskrivning` vad den betyder.
+
+```yaml
+# Spelform: 9mot9
+planskiss:
+  version: 1
+  omrade:
+    langd: 40
+    bredd: 30
+  beskrivning: >-
+    Yta 40 x 30 meter med ett mål och en målvakt på varje kortsida. Tre mot tre
+    ute. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 40, bredd: 30, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 9mot9, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 40, y: 15, storlek: 9mot9, riktning: vanster }
+    - { typ: spelare, x: 1, y: 15, lag: a, malvakt: true }
+    - { typ: spelare, x: 39, y: 15, lag: b, malvakt: true }
+    - { id: a1, typ: spelare, x: 12, y: 8, lag: a }
+    - { id: a2, typ: spelare, x: 12, y: 22, lag: a }
+    - { id: a3, typ: spelare, x: 22, y: 15, lag: a, riktning: 0 }
+    - { typ: spelare, x: 28, y: 8, lag: b }
+    - { typ: spelare, x: 28, y: 22, lag: b }
+    - { typ: spelare, x: 18, y: 12, lag: b }
+    - { typ: boll, x: 13, y: 9 }
+    - { typ: ledare, x: 20, y: 32 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 30, y: 20 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a3 }, till: { x: 30, y: 20 }, ordning: 3 }
+    - { typ: skott, fran: { x: 30, y: 20 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 20, y: 4, lag: a }
+      - { x: 20, y: 26, lag: b }
+      - { x: 8, y: 15, lag: a }
+      - { x: 34, y: 9, lag: b }
+```
+
+**Parallella ytor.** När övningen körs i flera likadana uppställningar bredvid varandra ritar du en av dem och skriver hur många spelare den tar:
+
+```yaml
+  skalning:
+    strategi: parallella-ytor
+    per_yta: 4
+```
+
+Banken har i dag inga övningar för 3 mot 3 och 11 mot 11. Formatet är detsamma där; välj `storlek: 3mot3` eller `storlek: 11mot11` på målen.
+
 ## Validering
 
 ```
@@ -117,10 +362,12 @@ id: passa-och-folj
 namn: Passa och följ
 syfte: Spelarna ska passa med rätt kraft och röra sig efter passningen.
 beskrivning: |
-  Fyra spelare står i varsitt hörn av en kvadrat. Spelaren med boll passar
-  till nästa hörn och följer efter sin egen passning.
+  Fem spelare står vid en kvadrat: två i det första hörnet och en i vart
+  och ett av de tre andra. Spelaren med boll passar till nästa hörn och
+  följer efter sin egen passning, så att det alltid står någon kvar i
+  hörnet som passar.
 organisation: |
-  En kvadrat per grupp om fyra. En boll per grupp. Byt riktning efter halva tiden.
+  En kvadrat per grupp om fem till nio spelare. En boll per grupp. Byt riktning efter halva tiden.
 fokusomraden:
   - passning-mottagning
   - spelbarhet
@@ -137,10 +384,9 @@ passdelar:
   - del-ovning
 ledarbehov: 0
 spelare:
-  min: 4
-  max: 4
-grupptyp: fast-storlek
-udda_antal_losning: true
+  min: 5
+  max: 9
+grupptyp: fri
 tid:
   kortast: 8
   rekommenderad: 12
@@ -165,7 +411,7 @@ varianter:
   svarare: Två bollar i gång samtidigt.
 anpassning:
   fler_spelare: Fler kvadrater bredvid varandra.
-  udda_antal: Den femte spelaren vilar ett varv och byter in.
+  udda_antal: Spelar ingen roll. En extra spelare ställer sig bara i kö vid nästa hörn, precis som de andra.
   ledare: Med en ledare per grupp kan coachningen ske under gång.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning.
 status: utkast

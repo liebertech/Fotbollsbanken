@@ -25,7 +25,7 @@ import {
   allowedGameFormats,
   phasesForAgeSpan,
 } from '../keys.ts';
-import { planskissPlaceholderSchema } from './planskiss.ts';
+import { planskissSchema, planskissTexts } from './planskiss.ts';
 
 /** Versionen av det här schemat. Källa: ADR 0010 avsnitt 1. */
 export const SCHEMA_VERSION = 1;
@@ -240,15 +240,7 @@ const reviewEntrySchema = z.strictObject({
   kommentar: z.string().trim().max(LIMITS.granskning.kommentar.max).optional(),
 });
 
-export interface ExerciseSchemaOptions {
-  /**
-   * Planskissens schema (ADR 0012). Utan det underkänns varje övning som har fältet,
-   * eftersom skissdata aldrig får släppas igenom ovaliderad (S-07).
-   */
-  planskiss?: z.ZodType<unknown>;
-}
-
-function buildObject(planskiss: z.ZodType<unknown>) {
+function buildObject() {
   return z.strictObject({
     schema: z.literal(SCHEMA_VERSION),
     id: z
@@ -309,7 +301,8 @@ function buildObject(planskiss: z.ZodType<unknown>) {
       udda_antal: trimmedText(LIMITS.fritext.min, LIMITS.fritext.max),
       ledare: trimmedText(LIMITS.fritext.min, LIMITS.fritext.max),
     }),
-    planskiss: planskiss.optional(),
+    // ADR 0012: valideras fullt ut när fältet finns (ADR 0010 avsnitt 1, S-07).
+    planskiss: planskissSchema.optional(),
     kalla: trimmedText(LIMITS.kalla.min, LIMITS.kalla.max).optional(),
     status: z.enum(EXERCISE_STATUSES),
     granskning: z.array(reviewEntrySchema).max(LIMITS.granskning.maxCount),
@@ -368,6 +361,12 @@ function freeTextFields(value: Partial<Exercise>): { path: (string | number)[]; 
     add(['granskning', index, 'av'], entry.av);
     add(['granskning', index, 'kommentar'], entry.kommentar);
   });
+  // ADR 0012: skissens beskrivning och etiketter publiceras med övningen.
+  if (value.planskiss !== undefined) {
+    for (const { path, text } of planskissTexts(value.planskiss)) {
+      add(['planskiss', ...path], text);
+    }
+  }
 
   return fields;
 }
@@ -642,12 +641,12 @@ function checkStatusRules(
 }
 
 /**
- * Bygger schemana. Planskissens schema skickas in, så att övningsschemat inte behöver
- * känna till src/planskiss/ (ADR 0010 avsnitt 1, ADR 0012 avsnitt 6).
+ * Bygger schemana. Planskissens schema ligger i schema/planskiss.ts (ADR 0010 avsnitt 1,
+ * ADR 0012 avsnitt 6), så att ritmotorn i src/planskiss/ läser formatet därifrån och
+ * regelmotorn aldrig beror på ritmotorn.
  */
-export function createExerciseSchemas(options: ExerciseSchemaOptions = {}) {
-  const planskiss = options.planskiss ?? planskissPlaceholderSchema;
-  const object = buildObject(planskiss);
+export function createExerciseSchemas() {
+  const object = buildObject();
 
   return {
     /** Alla fält, som en godkänd bankövning. */

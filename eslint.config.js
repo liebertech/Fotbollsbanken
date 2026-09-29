@@ -67,8 +67,101 @@ const FORBIDDEN_RANDOMNESS = [
   },
 ];
 
-/** SVG-element som ritmotorn aldrig får skapa (ADR 0012, avsnitt 6, S-07). */
-const FORBIDDEN_SVG_ELEMENTS = ['foreignObject', 'image', 'use', 'script', 'style', 'a', 'animate'];
+/**
+ * De enda element som ritmotorn får skapa: den slutna listan i ADR 0012 avsnitt 6 (S-07).
+ * Regeln är en vitlista, så ett element som inte står här underkänns även om ingen har tänkt
+ * på det (säkerhetsgranskningen av schemat, F9).
+ */
+const ALLOWED_SVG_ELEMENTS = [
+  'svg',
+  'title',
+  'desc',
+  'defs',
+  'pattern',
+  'g',
+  'rect',
+  'circle',
+  'polygon',
+  'line',
+  'path',
+  'text',
+  'tspan',
+];
+
+/** Attribut som kan ladda en resurs, köra kod eller bära data som CSS (F9, RK-2, RK-5). */
+const FORBIDDEN_SVG_ATTRIBUTES = ['href', 'xlinkHref', 'style', 'dangerouslySetInnerHTML'];
+
+/**
+ * `as Planskissdata` gör ett ovaliderat värde till validerad skissdata och går förbi
+ * `readPlanskiss` (F8, RK-1). Typen får man bara ur schemat.
+ */
+const VALIDATED_TYPES = ['Planskissdata', 'PlanskissReadResult'];
+const VALIDATED_TYPES_PATTERN = `/^(${VALIDATED_TYPES.join('|')})$/`;
+const RENAME_MESSAGE =
+  'Planskissdata och PlanskissReadResult får inte byta namn vid import eller export, eftersom förbudet mot as bygger på namnet (F8).';
+const FORBIDDEN_PLANSKISSDATA_CAST = [
+  {
+    // Nedärvande: fångar också Planskissdata[], Array<Planskissdata>, S.Planskissdata och
+    // PlanskissReadResult var som helst i typen efter as.
+    selector: `TSAsExpression > .typeAnnotation Identifier[name=${VALIDATED_TYPES_PATTERN}]`,
+    message:
+      'Skissdata blir Planskissdata bara genom readPlanskiss eller planskissSchema, aldrig med as (F8, ADR 0012 avsnitt 6).',
+  },
+  {
+    selector: `TSTypeAssertion > .typeAnnotation Identifier[name=${VALIDATED_TYPES_PATTERN}]`,
+    message:
+      'Skissdata blir Planskissdata bara genom readPlanskiss eller planskissSchema, aldrig med en typomvandling (F8, ADR 0012 avsnitt 6).',
+  },
+  {
+    // Ett annat namn vid import skulle gå förbi selektorerna ovan.
+    selector: `ImportSpecifier[imported.name=${VALIDATED_TYPES_PATTERN}]:not([local.name=${VALIDATED_TYPES_PATTERN}])`,
+    message: RENAME_MESSAGE,
+  },
+  {
+    selector: `ExportSpecifier[local.name=${VALIDATED_TYPES_PATTERN}]:not([exported.name=${VALIDATED_TYPES_PATTERN}])`,
+    message: RENAME_MESSAGE,
+  },
+];
+
+/**
+ * Importer som kan skapa element utan JSX och därmed gå förbi vitlistan (F9). Namnen spärras
+ * också när de importeras under ett annat namn. Den inbyggda banken får inte heller importeras
+ * här, eftersom den här listan ersätter den allmänna regeln för src/planskiss/.
+ */
+const FORBIDDEN_IMPORTS_IN_RENDERER = {
+  paths: [
+    FORBIDDEN_BANK_MODULE,
+    {
+      name: 'react',
+      importNames: ['createElement', 'cloneElement', 'createFactory'],
+      message: 'Ritmotorn skapar element bara med JSX, så att vitlistan gäller (S-07, F9).',
+    },
+    {
+      name: 'react/jsx-runtime',
+      message: 'jsx och jsxs skapar element utan JSX och går förbi vitlistan (S-07, F9).',
+    },
+    {
+      name: 'react/jsx-dev-runtime',
+      message: 'jsxDEV skapar element utan JSX och går förbi vitlistan (S-07, F9).',
+    },
+    {
+      name: 'react-dom',
+      message:
+        'Ritmotorn ritar bara SVG och behöver varken createPortal eller DOM-API:er (S-07, F9).',
+    },
+  ],
+  patterns: [
+    {
+      group: ['react-dom/*'],
+      message: 'Ritmotorn ritar bara SVG och behöver inga DOM-API:er (S-07, F9).',
+    },
+  ],
+};
+
+/** Namn i PascalCase, som React tolkar som en komponent när det står först i en JSX-tagg. */
+const PASCAL_CASE = '/^[A-Z][a-z]/';
+const PASCAL_BINDING_MESSAGE =
+  'Ett namn med versal kan användas som JSX-tagg och välja element under körning, förbi vitlistan. Ge variabeln ett namn med gemen, eller skriv en komponent som funktion (S-07, F9).';
 
 export default tseslint.config(
   { ignores: ['dist/**', 'node_modules/**', 'coverage/**'] },
@@ -98,6 +191,7 @@ export default tseslint.config(
           selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
           message: 'dangerouslySetInnerHTML är förbjudet i hela projektet (S-07, ADR 0001).',
         },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -135,6 +229,7 @@ export default tseslint.config(
           selector: "MemberExpression[property.name='localeCompare']",
           message: 'localeCompare sorterar olika i olika miljöer. Jämför med < på id (ADR 0011).',
         },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
     },
   },
@@ -155,14 +250,99 @@ export default tseslint.config(
       'no-restricted-syntax': [
         'error',
         {
-          selector: `JSXOpeningElement[name.name=/^(${FORBIDDEN_SVG_ELEMENTS.join('|')})$/]`,
-          message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07). Förbjudna: ${FORBIDDEN_SVG_ELEMENTS.join(', ')}.`,
+          // Små bokstäver är element i DOM:en. Komponenter (stor bokstav) prövas där de skrivs.
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=/^(${ALLOWED_SVG_ELEMENTS.join('|')})$/])`,
+          message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07, F9): ${ALLOWED_SVG_ELEMENTS.join(', ')}.`,
         },
         {
-          selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
-          message: 'dangerouslySetInnerHTML är förbjudet (S-07, ADR 0012).',
+          selector: 'JSXOpeningElement[name.type=/^JSX(NamespacedName|MemberExpression)$/]',
+          message:
+            'Ritmotorn får bara skapa elementen i ADR 0012 avsnitt 6, inte element med namnrymd eller via ett objekt (S-07, F9).',
         },
+        {
+          selector: `JSXAttribute[name.name=/^(${FORBIDDEN_SVG_ATTRIBUTES.join('|')})$/]`,
+          message: `Attributen ${FORBIDDEN_SVG_ATTRIBUTES.join(', ')} är förbjudna i ritmotorn (S-07, S-17, F9, RK-5).`,
+        },
+        {
+          selector: 'JSXAttribute[name.name=/^on/]',
+          message:
+            'Händelseattribut (on…) är förbjudna i ritmotorn. Skissen är en ren bild (S-07, F9).',
+        },
+        {
+          selector: 'JSXAttribute[name.type="JSXNamespacedName"]',
+          message:
+            'Attribut med namnrymd, till exempel xlink:href, är förbjudna i ritmotorn (S-07, F9).',
+        },
+        {
+          selector: 'JSXSpreadAttribute',
+          message:
+            'Spridda attribut ({...props}) går förbi attributkontrollen. Skriv ut varje attribut (S-07, F9).',
+        },
+        {
+          selector:
+            'CallExpression[callee.property.name=/^(createElement|createElementNS|cloneElement)$/]',
+          message:
+            'createElement och cloneElement kan skapa godtyckliga element och går förbi vitlistan. Skriv JSX (S-07, F9).',
+        },
+        {
+          selector: 'CallExpression[callee.name=/^(createElement|createElementNS|cloneElement)$/]',
+          message:
+            'createElement och cloneElement kan skapa godtyckliga element och går förbi vitlistan. Skriv JSX (S-07, F9).',
+        },
+        {
+          selector: "JSXAttribute[name.name='ref']",
+          message:
+            'ref ger åtkomst till DOM-noden och därmed till innerHTML och setAttribute. Ritmotorn behöver det inte (S-07, F9).',
+        },
+        {
+          selector:
+            'MemberExpression[property.name=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
+          message:
+            'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i ritmotorn (S-07, F9).',
+        },
+        {
+          selector:
+            'MemberExpression[computed=true][property.value=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
+          message:
+            'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i ritmotorn (S-07, F9).',
+        },
+        {
+          // const Tag = 'script' eller let Tag. En komponent skrivs som funktion.
+          selector: `VariableDeclarator[id.name=${PASCAL_CASE}]:not([init.type=/^(ArrowFunctionExpression|FunctionExpression)$/])`,
+          message: PASCAL_BINDING_MESSAGE,
+        },
+        {
+          // Bara bindningar, aldrig typannoteringar: const { Tag } = props, const [Tag] = lista,
+          // function Skiss({ as: Tag }), function Skiss(Tag) och standardvärden som { as: Tag = 'g' }.
+          selector: `:matches(VariableDeclarator, :function) :matches(ObjectPattern > Property > Identifier.value, ObjectPattern > Property > AssignmentPattern > Identifier.left, ArrayPattern > Identifier, RestElement > Identifier.argument)[name=${PASCAL_CASE}]`,
+          message: PASCAL_BINDING_MESSAGE,
+        },
+        {
+          selector: `:matches(:function > Identifier.params, :function > AssignmentPattern > Identifier.left)[name=${PASCAL_CASE}]`,
+          message: PASCAL_BINDING_MESSAGE,
+        },
+        {
+          selector: `AssignmentExpression[left.name=${PASCAL_CASE}]`,
+          message: PASCAL_BINDING_MESSAGE,
+        },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
+      'no-restricted-imports': ['error', FORBIDDEN_IMPORTS_IN_RENDERER],
+    },
+  },
+
+  {
+    // Typad lint där skissdata tas emot och ritas (F8). no-unsafe-* hindrar att ett värde av
+    // typen any, till exempel ur JSON.parse eller en databasrad, blir Planskissdata utan
+    // readPlanskiss. Bara de här mapparna, så att resten av lintningen förblir snabb.
+    files: ['src/planskiss/**/*.{ts,tsx}', 'src/data/**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
+    },
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
     },
   },
 
