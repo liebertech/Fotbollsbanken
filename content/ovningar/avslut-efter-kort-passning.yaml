@@ -90,12 +90,9 @@ planskiss:
     - { id: sp-b2, typ: spelare, x: 3.5, y: 8.4, lag: a, etikett: "4" }
     - { typ: boll, x: 5.3, y: 1.6 }
   rorelser:
-    - { typ: passning, fran: { objekt: sp-a1 }, till: { objekt: sp-b1 }, ordning: 1 }
-    - typ: dribbling
-      fran: { objekt: sp-b1 }
-      till: { x: 12, y: 5 }
-      ordning: 2
-    - { typ: skott, fran: { x: 12, y: 5 }, till: { objekt: mal-1 }, ordning: 3 }
+    - { typ: passning, fran: { objekt: sp-a1 }, till: { x: 7, y: 6 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-b1 }, till: { x: 7, y: 6 }, ordning: 1 }
+    - { typ: skott, fran: { x: 7, y: 6 }, till: { objekt: mal-1 }, ordning: 2 }
   skalning:
     strategi: koer
     koer:
