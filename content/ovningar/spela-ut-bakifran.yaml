@@ -87,7 +87,7 @@ planskiss:
   rorelser:
     - { typ: passning, fran: { objekt: mv }, till: { objekt: a3 }, ordning: 1 }
     - { typ: passning, fran: { objekt: a3 }, till: { objekt: a1 }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: b1 }, till: { x: 12, y: 6 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 13, y: 8 }, ordning: 1 }
   skalning:
     strategi: koer
     koer:

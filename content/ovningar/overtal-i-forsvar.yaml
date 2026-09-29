@@ -90,10 +90,10 @@ planskiss:
     - typ: dribbling
       fran: { objekt: a3 }
       till: { x: 18, y: 6 }
-      via: [{ x: 14, y: 5 }]
+      via: [{ x: 14, y: 3 }]
       ordning: 1
-    - { typ: lopning, fran: { objekt: b1 }, till: { x: 16, y: 7 }, ordning: 2 }
-    - { typ: skott, fran: { x: 18, y: 6 }, till: { objekt: mal-1 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 13, y: 8 }, ordning: 1 }
+    - { typ: skott, fran: { x: 18, y: 6 }, till: { objekt: mal-1 }, ordning: 2 }
   skalning:
     strategi: koer
     koer:

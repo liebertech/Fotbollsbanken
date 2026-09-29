@@ -82,8 +82,8 @@ planskiss:
     - { typ: boll, x: 1.8, y: 1 }
   rorelser:
     - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: jag }, till: { x: 6, y: 2 }, ordning: 2 }
-    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: jag }, till: { x: 6, y: 2 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 2 }
   skalning:
     strategi: platser
     platser:

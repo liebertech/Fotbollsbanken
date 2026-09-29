@@ -86,8 +86,8 @@ planskiss:
       till: { x: 15, y: 5 }
       via: [{ x: 9, y: 3 }]
       ordning: 1
-    - { typ: lopning, fran: { objekt: a2 }, till: { x: 15, y: 10 }, ordning: 2 }
-    - { typ: skott, fran: { x: 15, y: 5 }, till: { objekt: mal-1 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 15, y: 10 }, ordning: 1 }
+    - { typ: skott, fran: { x: 15, y: 5 }, till: { objekt: mal-1 }, ordning: 2 }
   skalning:
     strategi: koer
     koer:

@@ -79,7 +79,7 @@ planskiss:
     - typ: dribbling
       fran: { objekt: a1 }
       till: { x: 13, y: 5 }
-      via: [{ x: 8, y: 3 }]
+      via: [{ x: 8, y: 1 }]
       ordning: 1
   skalning:
     strategi: koer

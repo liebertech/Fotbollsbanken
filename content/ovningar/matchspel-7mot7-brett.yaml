@@ -96,7 +96,7 @@ planskiss:
   rorelser:
     - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 1 }
     - { typ: passning, fran: { objekt: a3 }, till: { objekt: a4 }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: a1 }, till: { x: 14, y: 12 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 14, y: 12 }, ordning: 2 }
   skalning:
     strategi: platser
     platser:
