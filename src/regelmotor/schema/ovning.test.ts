@@ -9,20 +9,13 @@
  * verkligen är regeln som fäller övningen och inte en felaktig typ i ett annat fält.
  */
 import { describe, expect, it } from 'vitest';
-import { z } from 'zod';
 import {
   CLOSING_PART,
   FOCUS_AREA_HEADING,
   HEADING_MIN_AGE,
   SESSION_PARTS_FROM_BANK,
 } from '../keys.ts';
-import {
-  LIMITS,
-  containsMeasurement,
-  createExerciseSchemas,
-  exerciseFileSchema,
-  looksLikeEmail,
-} from './ovning.ts';
+import { LIMITS, containsMeasurement, exerciseFileSchema, looksLikeEmail } from './ovning.ts';
 import { reviewEntry, validExercise } from '../__testdata__/ovning-fixtur.ts';
 
 /** Felen som schemat ger, en rad per fel som `fält: meddelande`. */
@@ -450,36 +443,78 @@ describe('ADR 0017 ytreferensen', () => {
   });
 });
 
-describe('S-07 och S-08 planskiss', () => {
-  it('S-07: en övning med planskiss underkänns så länge ADR 0012:s schema saknas', () => {
-    const input = validExercise({ planskiss: { former: [] } });
-    expect(failsWith(input, 'planskiss', 'S-07')).toBe(true);
+describe('S-07, S-08 och S-21 planskiss', () => {
+  const liten = {
+    version: 1,
+    omrade: { langd: 15, bredd: 15 },
+    objekt: [{ typ: 'kon', x: 1, y: 1 }],
+  };
+
+  it('S-07: en övning med en giltig planskiss godkänns', () => {
+    expect(issuesFor(validExercise({ planskiss: liten }))).toEqual([]);
   });
 
-  it('S-08: skissdata över databasens gräns underkänns', () => {
-    // Platshållaren underkänner varje skiss, och Zod hoppar då över korsreglerna. Storleks-
-    // kontrollen prövas därför med ett tillåtande skissschema, som ADR 0012 senare ersätter.
-    const schemas = createExerciseSchemas({ planskiss: z.unknown() });
-    const stor = { former: Array.from({ length: 500 }, (_, index) => ({ typ: 'kon', x: index })) };
+  it('S-07: en övning med ogiltig planskiss underkänns, med felet på skissens fält', () => {
+    const input = validExercise({ planskiss: { ...liten, former: [] } });
+    expect(issuesFor(input).some((line) => line.startsWith('planskiss: okänt fält'))).toBe(true);
+  });
+
+  it('S-07: en övning utan planskiss godkänns (berättelse 06, kriterium 2)', () => {
+    const input = validExercise();
+    delete input.planskiss;
+    expect(isValid(input)).toBe(true);
+  });
+
+  it('S-08: en giltig skiss över databasens gräns underkänns', () => {
+    // Skissen håller varje tak i ADR 0012 men blir ändå större än 8 192 byte, eftersom taken
+    // tillsammans rymmer mer än kolumnens gräns.
+    const langEtikett = 'Zon med lång etikett 123';
+    const objekt = Array.from({ length: 60 }, (_, index) => ({
+      typ: 'zon',
+      id: `zon-med-langt-idnummer${String(index).padStart(2, '0')}`,
+      x: 0,
+      y: 0,
+      langd: 10.5,
+      bredd: 10.5,
+      monster: 'diagonal',
+      etikett: langEtikett,
+    }));
+    const stor = { version: 1, omrade: { langd: 15, bredd: 15 }, objekt };
     expect(new TextEncoder().encode(JSON.stringify(stor)).length).toBeGreaterThan(
       LIMITS.planskissBytes,
     );
-
-    const result = schemas.exerciseFileSchema.safeParse(validExercise({ planskiss: stor }));
-    const messages = result.success
-      ? []
-      : result.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`);
-    expect(messages.some((line) => line.startsWith('planskiss: ') && line.includes('S-08'))).toBe(
-      true,
-    );
+    expect(failsWith(validExercise({ planskiss: stor }), 'planskiss', 'S-08')).toBe(true);
   });
 
   it('S-08: en liten skiss ryms inom gränsen', () => {
-    const schemas = createExerciseSchemas({ planskiss: z.unknown() });
-    const liten = { former: [{ typ: 'kon', x: 1, y: 1 }] };
-    expect(schemas.exerciseFileSchema.safeParse(validExercise({ planskiss: liten })).success).toBe(
-      true,
-    );
+    expect(isValid(validExercise({ planskiss: liten }))).toBe(true);
+  });
+
+  it('S-21: en e-postadress i skissens beskrivning underkänns på fältet', () => {
+    const input = validExercise({
+      planskiss: { ...liten, beskrivning: 'Fråga tranare@example.com om uppställningen.' },
+    });
+    expect(failsWith(input, 'planskiss.beskrivning', 'S-21')).toBe(true);
+  });
+
+  it('S-21: en förklädd e-postadress i en zons etikett underkänns på fältet', () => {
+    const input = validExercise({
+      planskiss: {
+        ...liten,
+        objekt: [
+          {
+            typ: 'zon',
+            x: 0,
+            y: 0,
+            langd: 5,
+            bredd: 5,
+            monster: 'tom',
+            etikett: 'anna at klubb.se',
+          },
+        ],
+      },
+    });
+    expect(failsWith(input, 'planskiss.objekt.0.etikett', 'S-21')).toBe(true);
   });
 });
 
