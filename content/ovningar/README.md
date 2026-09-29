@@ -362,8 +362,10 @@ id: passa-och-folj
 namn: Passa och följ
 syfte: Spelarna ska passa med rätt kraft och röra sig efter passningen.
 beskrivning: |
-  Fyra spelare står i varsitt hörn av en kvadrat. Spelaren med boll passar
-  till nästa hörn och följer efter sin egen passning.
+  Fem spelare står vid en kvadrat: två i det första hörnet och en i vart
+  och ett av de tre andra. Spelaren med boll passar till nästa hörn och
+  följer efter sin egen passning, så att det alltid står någon kvar i
+  hörnet som passar.
 organisation: |
   En kvadrat per grupp om fyra. En boll per grupp. Byt riktning efter halva tiden.
 fokusomraden:
@@ -382,10 +384,9 @@ passdelar:
   - del-ovning
 ledarbehov: 0
 spelare:
-  min: 4
-  max: 4
-grupptyp: fast-storlek
-udda_antal_losning: true
+  min: 5
+  max: 9
+grupptyp: fri
 tid:
   kortast: 8
   rekommenderad: 12
@@ -410,7 +411,7 @@ varianter:
   svarare: Två bollar i gång samtidigt.
 anpassning:
   fler_spelare: Fler kvadrater bredvid varandra.
-  udda_antal: Den femte spelaren vilar ett varv och byter in.
+  udda_antal: Spelar ingen roll. En extra spelare ställer sig bara i kö vid nästa hörn, precis som de andra.
   ledare: Med en ledare per grupp kan coachningen ske under gång.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning.
 status: utkast
