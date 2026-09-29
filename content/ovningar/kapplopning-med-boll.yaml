@@ -80,13 +80,13 @@ planskiss:
   rorelser:
     - typ: dribbling
       fran: { objekt: sp1 }
-      till: { x: 0.3, y: 1.5 }
-      via: [{ x: 15, y: 1.5 }]
+      till: { x: 0.6, y: 2 }
+      via: [{ x: 21, y: 0 }, { x: 21, y: 3 }]
       ordning: 1
     - typ: dribbling
       fran: { objekt: sp2 }
-      till: { x: 0.3, y: 3.5 }
-      via: [{ x: 15, y: 3.5 }]
+      till: { x: 0.6, y: 4 }
+      via: [{ x: 21, y: 2 }, { x: 21, y: 5 }]
       ordning: 1
 kalla: Egen övning, inspirerad av vanliga kapplöpningslekar med boll.
 status: godkand
