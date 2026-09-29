@@ -59,6 +59,36 @@ anpassning:
     sin yta bredvid varandra.
   udda_antal: Alla gör rörelserna samtidigt på sin egen platta, aldrig i par, så udda antal spelar ingen roll.
   ledare: Med fler ledare blir grupperna mindre, och varje ledare hinner rätta fler.
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 15
+  beskrivning: >-
+    Yta 12 x 15 meter. Varje spelare står på sin egen markeringsplatta, minst två meter till
+    närmaste kompis, vänd mot ledaren som står synlig framför gruppen. Fem rörelser görs i tur
+    och ordning, en i taget, samtidigt och på stället.
+  objekt:
+    - { typ: ledare, x: 6, y: 1 }
+    - { typ: markering, form: platta, x: 2, y: 5 }
+    - { typ: markering, form: platta, x: 6, y: 5 }
+    - { typ: markering, form: platta, x: 10, y: 5 }
+    - { typ: markering, form: platta, x: 2, y: 9 }
+    - { typ: markering, form: platta, x: 6, y: 9 }
+    - { typ: markering, form: platta, x: 10, y: 9 }
+    - { typ: spelare, x: 2, y: 5, lag: a, riktning: 270, etikett: "1" }
+    - { typ: spelare, x: 6, y: 5, lag: a, riktning: 270, etikett: "2" }
+    - { typ: spelare, x: 10, y: 5, lag: a, riktning: 270, etikett: "3" }
+    - { typ: spelare, x: 2, y: 9, lag: a, riktning: 270, etikett: "4" }
+    - { typ: spelare, x: 6, y: 9, lag: a, riktning: 270, etikett: "5" }
+    - { typ: spelare, x: 10, y: 9, lag: a, riktning: 270, etikett: "6" }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 2, y: 13, lag: a }
+      - { x: 6, y: 13, lag: a }
+      - { x: 10, y: 13, lag: a }
+      - { x: 2, y: 1, lag: a }
 kalla: Egen övning, inspirerad av principerna i skadeförebyggande uppvärmningsprogram för barn.
 status: godkand
 granskning:
