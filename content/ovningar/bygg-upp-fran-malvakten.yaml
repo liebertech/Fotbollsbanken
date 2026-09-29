@@ -60,6 +60,41 @@ anpassning:
   udda_antal: En femte spelare roterar in som målvakt så att alla turas om.
   ledare: Utan extra ledare styr gruppen själv vem som är målvakt och byter efter ett bestämt antal
     försök. Med en ledare kan hen coacha målvaktens utkast och passningsval.
+planskiss:
+  version: 1
+  omrade:
+    langd: 25
+    bredd: 18
+  beskrivning: >-
+    Yta 25 x 18 meter med ett mål på vänstra kortsidan och en linje 18 meter
+    därifrån, markerad med fyra koner. Målvakten (MV) lägger ner bollen och
+    spelar till A, som passar vidare till B och C, som tar bollen över linjen.
+    En femte spelare väntar bakom målet som nästa målvakt.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 25, bredd: 18, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 0, y: 9, storlek: 7mot7, riktning: hoger }
+    - { id: sp-mv, typ: spelare, x: 2, y: 9, lag: a, malvakt: true, etikett: MV }
+    - { id: sp-a, typ: spelare, x: 10, y: 4, lag: a, etikett: A }
+    - { id: sp-b, typ: spelare, x: 14, y: 9, lag: a, etikett: B }
+    - { id: sp-c, typ: spelare, x: 10, y: 15, lag: a, etikett: C }
+    - { typ: kon, x: 18, y: 0 }
+    - { typ: kon, x: 18, y: 6 }
+    - { typ: kon, x: 18, y: 12 }
+    - { typ: kon, x: 18, y: 18 }
+    - { typ: boll, x: 2.3, y: 9 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-mv }, till: { objekt: sp-a }, ordning: 1 }
+    - { typ: passning, fran: { objekt: sp-a }, till: { objekt: sp-b }, ordning: 2 }
+    - { typ: passning, fran: { objekt: sp-b }, till: { objekt: sp-c }, ordning: 3 }
+    - typ: lopning
+      fran: { objekt: sp-c }
+      till: { x: 21, y: 15 }
+      ordning: 4
+      etikett: Över linjen
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-mv, riktning: 180, avstand: 1.5, etikett: Nästa målvakt }
 kalla: Egen övning, inspirerad av vanlig uppspelsträning från målvakten utan press.
 status: godkand
 granskning:
