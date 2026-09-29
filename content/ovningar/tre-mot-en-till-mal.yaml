@@ -62,6 +62,35 @@ anpassning:
   udda_antal: En femte spelare rullar in nya bollar och byts in som ny försvarare efter varje mål.
   ledare: Övningen sköter sig själv när gruppen förstått rollerna, men en ledare kan gå mellan ytorna
     och ge tips.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 12
+  beskrivning: >-
+    Yta 18 x 12 meter med ett litet mål utan målvakt på högra kortsidan. Tre
+    anfallare möter en försvarare, sprider ut sig, passar till den som är fri och
+    avslutar mot målet. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { id: mal-1, typ: mal, x: 18, y: 6, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 3, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 3, y: 9, lag: a, etikett: A }
+    - { id: a3, typ: spelare, x: 8, y: 6, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 12, y: 6, lag: b, etikett: F }
+    - { typ: boll, x: 8.8, y: 6 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a1 }, ordning: 1 }
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 15, y: 4 }
+      via: [{ x: 10, y: 2 }]
+      ordning: 2
+    - { typ: skott, fran: { x: 15, y: 4 }, till: { objekt: mal-1 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: f1, riktning: 90, avstand: 1.5, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanliga överlägesövningar mot mål.
 status: godkand
 granskning:
