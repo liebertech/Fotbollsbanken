@@ -60,6 +60,31 @@ anpassning:
   udda_antal: Den fjärde spelaren står vid ett av hörnen och byts in efter varje varv, så att alla får
     lika mycket boll.
   ledare: Övningen är självgående när triangeln är uppbyggd och visad en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 8
+    bredd: 8
+  beskrivning: >-
+    Triangel med åtta meters sidor, markerad med koner, en spelare i varje hörn. Bollen passas
+    runt. Mottagaren möter bollen, tar emot med bortre foten, vänder mot nästa hörn och backar
+    sedan tillbaka. Vid udda antal väntar en spelare vid ett hörn och byts in efter varje varv.
+  objekt:
+    - { typ: kon, x: 4, y: 1 }
+    - { typ: kon, x: 1, y: 7 }
+    - { typ: kon, x: 7, y: 7 }
+    - { id: p1, typ: spelare, x: 4, y: 1.8, lag: a, etikett: "1" }
+    - { id: p2, typ: spelare, x: 1.8, y: 6.5, lag: a, etikett: "2" }
+    - { id: p3, typ: spelare, x: 6.2, y: 6.5, lag: a, etikett: "3" }
+    - { typ: boll, x: 4.2, y: 1.8 }
+  rorelser:
+    - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: p3 }, till: { objekt: p1 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: p1, riktning: 270, avstand: 1.5, etikett: Byter in efter varvet }
 kalla: Egen övning, inspirerad av allmänt känd passningsträning i triangel.
 status: godkand
 granskning:
