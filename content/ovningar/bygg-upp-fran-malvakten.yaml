@@ -86,7 +86,7 @@ planskiss:
     - { typ: passning, fran: { objekt: sp-mv }, till: { objekt: sp-a }, ordning: 1 }
     - { typ: passning, fran: { objekt: sp-a }, till: { objekt: sp-b }, ordning: 2 }
     - { typ: passning, fran: { objekt: sp-b }, till: { objekt: sp-c }, ordning: 3 }
-    - typ: lopning
+    - typ: dribbling
       fran: { objekt: sp-c }
       till: { x: 21, y: 15 }
       ordning: 4
@@ -94,7 +94,7 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: sp-mv, riktning: 180, avstand: 1.5, etikett: Nästa målvakt }
+      - { vid: sp-mv, riktning: 180, avstand: 4, etikett: Nästa målvakt }
 kalla: Egen övning, inspirerad av vanlig uppspelsträning från målvakten utan press.
 status: godkand
 granskning:
