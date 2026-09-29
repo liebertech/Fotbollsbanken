@@ -516,6 +516,52 @@ describe('S-07, S-08 och S-21 planskiss', () => {
     });
     expect(failsWith(input, 'planskiss.objekt.0.etikett', 'S-21')).toBe(true);
   });
+
+  it('S-21: en e-postadress i en rörelses etikett underkänns på fältet', () => {
+    const input = validExercise({
+      planskiss: {
+        ...liten,
+        rorelser: [
+          {
+            typ: 'passning',
+            fran: { x: 1, y: 1 },
+            till: { x: 5, y: 5 },
+            etikett: 'coach at klubb.se',
+          },
+        ],
+      },
+    });
+    expect(failsWith(input, 'planskiss.rorelser.0.etikett', 'S-21')).toBe(true);
+  });
+
+  it('S-21: en e-postadress i en kös etikett underkänns, även när koer kombineras med platser', () => {
+    const input = validExercise({
+      planskiss: {
+        ...liten,
+        objekt: [{ id: 'sp-1', typ: 'spelare', x: 1, y: 1, lag: 'a' }],
+        skalning: {
+          strategi: 'platser',
+          platser: [{ x: 5, y: 5, lag: 'b' }],
+          koer: [{ vid: 'sp-1', riktning: 0, etikett: 'ring coach at klubb.se' }],
+        },
+      },
+    });
+    expect(failsWith(input, 'planskiss.skalning.koer.0.etikett', 'S-21')).toBe(true);
+  });
+
+  it('kastar aldrig när planskiss både är ogiltig (okänt fält) och cyklisk (fientlig indata)', () => {
+    const cyclic: Record<string, unknown> = {
+      version: 1,
+      omrade: { langd: 15, bredd: 15 },
+      objekt: [{ typ: 'kon', x: 1, y: 1 }],
+    };
+    // "extra" gör skissen ogiltig (okänt fält, .strict()) och skissen refererar samtidigt sig
+    // själv, vilket skulle få JSON.stringify (S-08-kontrollen) att kasta om den någonsin fick
+    // det råa, overiferade värdet.
+    cyclic.extra = cyclic;
+    const input = validExercise({ planskiss: cyclic });
+    expect(() => exerciseFileSchema.safeParse(input)).not.toThrow();
+  });
 });
 
 describe('S-21 inga e-postadresser i fält som blir publika', () => {

@@ -453,6 +453,51 @@ describe('objekten (avsnitt 2)', () => {
     ).toBe(true);
   });
 
+  it('prövar zonens och rutans mått mot den odokumenterade rektangelgränsen (0,5 m lägst)', () => {
+    // ADR 0012 sätter ingen egen gräns för zon/ruta langd och bredd (utvecklarens eget val,
+    // se kommentaren vid PLANSKISS_LIMITS.rektangel). Måtten prövas ändå mot ytan.
+    expect(
+      isValid(withObjects({ typ: 'zon', x: 0, y: 0, langd: 0.5, bredd: 0.5, monster: 'tom' })),
+    ).toBe(true);
+    expect(
+      failsOn(
+        withObjects({ typ: 'zon', x: 0, y: 0, langd: 0.4, bredd: 5, monster: 'tom' }),
+        'objekt.0.langd',
+        'mindre än 0,5 m',
+      ),
+    ).toBe(true);
+    expect(
+      failsOn(
+        withObjects({ typ: 'ruta', x: 0, y: 0, langd: 5, bredd: 0.4, stil: 'streckad' }),
+        'objekt.0.bredd',
+        'mindre än 0,5 m',
+      ),
+    ).toBe(true);
+  });
+
+  it('godkänner en ruta vars mått precis når det största omradet plus marginalen på båda sidor', () => {
+    // Med omrade 120x80 och ett objekt vid den tillåtna marginalen (-3) räcker langd/bredd upp
+    // till 126/86 för att nå den bortre marginalen (120+3), som är gränsen i PLANSKISS_LIMITS.
+    const input = sketch({
+      omrade: { langd: 120, bredd: 80 },
+      objekt: [{ typ: 'ruta', x: -3, y: -3, langd: 126, bredd: 86, stil: 'streckad' }],
+    });
+    expect(issues(input)).toEqual([]);
+  });
+
+  it('underkänner en ruta vars mått är större än den odokumenterade rektangelgränsen (126/86)', () => {
+    const overLength = sketch({
+      omrade: { langd: 120, bredd: 80 },
+      objekt: [{ typ: 'ruta', x: -3, y: -3, langd: 126.1, bredd: 80, stil: 'streckad' }],
+    });
+    expect(failsOn(overLength, 'objekt.0.langd', 'större än')).toBe(true);
+    const overWidth = sketch({
+      omrade: { langd: 120, bredd: 80 },
+      objekt: [{ typ: 'ruta', x: -3, y: -3, langd: 120, bredd: 86.1, stil: 'streckad' }],
+    });
+    expect(failsOn(overWidth, 'objekt.0.bredd', 'större än')).toBe(true);
+  });
+
   it('underkänner ett dubblerat id och pekar på det andra objektet', () => {
     const input = withObjects(
       { id: 'kon-1', typ: 'kon', x: 1, y: 1 },
@@ -485,6 +530,20 @@ describe('etiketter (avsnitt 6)', () => {
       withObjects({ typ: 'zon', x: 0, y: 0, langd: 5, bredd: 5, monster: 'tom', etikett });
     expect(isValid(zone('å'.repeat(24)))).toBe(true);
     expect(failsOn(zone('å'.repeat(25)), 'objekt.0.etikett', 'högst 24 tecken')).toBe(true);
+  });
+
+  it('underkänner styrtecken och osynliga formateringstecken i etiketter', () => {
+    // Nolltecken, andra C0-styrtecken och Unicode-riktningsöverstyrning (kan användas för att
+    // dölja text för en granskare, s.k. "Trojan Source"). Inget av dem är \p{L} eller \p{N}.
+    for (const bad of ['a\u0000b', 'a\u0007b', 'a\u001fb', 'a‮b', 'a​b']) {
+      expect(
+        failsOn(
+          withObjects({ typ: 'spelare', x: 1, y: 1, lag: 'a', etikett: bad }),
+          'objekt.0.etikett',
+          'får bara innehålla',
+        ),
+      ).toBe(true);
+    }
   });
 
   it('underkänner tecken utanför den slutna teckenuppsättningen', () => {
@@ -772,6 +831,101 @@ describe('readPlanskiss: saknad, ogiltig och giltig skiss (berättelse 06, krite
     expect(() => readPlanskiss(cyclic)).not.toThrow();
     expect(readPlanskiss(cyclic).status).toBe('ogiltig');
   });
+
+  it('kastar aldrig för mycket djupt nästlade, icke-cykliska värden', () => {
+    let deep: unknown = 'x';
+    for (let i = 0; i < 20000; i += 1) {
+      deep = { nested: deep };
+    }
+    // Fältet som inte är en sträng underkänns bara på typ, men får inte krascha byggnaden av
+    // ett så djupt objekt eller valideringen av det.
+    expect(() => readPlanskiss(sketch({ beskrivning: deep }))).not.toThrow();
+    expect(readPlanskiss(sketch({ beskrivning: deep })).status).toBe('ogiltig');
+  });
+
+  it('kastar aldrig för __proto__ eller constructor som fältnamn, och förorenar aldrig Object.prototype', () => {
+    const viaProto = JSON.parse(
+      '{"version":1,"omrade":{"langd":20,"bredd":10},"objekt":[{"typ":"kon","x":1,"y":1}],"__proto__":{"fororenad":"ja"}}',
+    );
+    expect(() => readPlanskiss(viaProto)).not.toThrow();
+    expect(readPlanskiss(viaProto).status).toBe('ogiltig');
+    expect(({} as Record<string, unknown>).fororenad).toBeUndefined();
+
+    const viaConstructor = withObjects({
+      typ: 'kon',
+      x: 1,
+      y: 1,
+      constructor: { prototype: { fororenad2: 'ja' } },
+    });
+    expect(() => readPlanskiss(viaConstructor)).not.toThrow();
+    expect(readPlanskiss(viaConstructor).status).toBe('ogiltig');
+    expect(({} as Record<string, unknown>).fororenad2).toBeUndefined();
+  });
+
+  it('godkänner -0 som koordinat, och underkänner det stora talet 1e308 som ADR 0012 avsnitt 6 nämner', () => {
+    // -0 accepteras (arittmetiskt lika med 0) och skrivs oförändrat ut ur schemat. Det blir
+    // "0" så fort skissen serialiseras till JSON (JSON.stringify(-0) === "0"), vilket är hur
+    // den alltid lämnar minnet, så skillnaden är utan praktisk betydelse.
+    const result = readPlanskiss(withObjects({ typ: 'kon', x: -0, y: 1 }));
+    expect(result.status).toBe('giltig');
+    expect(JSON.stringify(result)).toBe(
+      JSON.stringify({
+        status: 'giltig',
+        skiss: {
+          version: 1,
+          omrade: { langd: 20, bredd: 10 },
+          objekt: [{ typ: 'kon', x: 0, y: 1 }],
+        },
+      }),
+    );
+    expect(failsOn(withObjects({ typ: 'kon', x: 1e308, y: 1 }), 'objekt.0.x', 'större än')).toBe(
+      true,
+    );
+  });
+
+  it('förblir snabb för en skiss med ett mycket stort antal objekt (inte kvadratisk tidsåtgång)', () => {
+    const huge = sketch({
+      objekt: Array.from({ length: 50000 }, (_, index) => ({
+        typ: 'kon',
+        x: index % 20,
+        y: 1,
+      })),
+    });
+    // Date.now/performance.now och Node-globaler är förbjudna i src/regelmotor/ (ADR 0001,
+    // ADR 0011), så tiden mäts inte explicit här. Testets eget timeout (Vitest, några
+    // sekunder) fäller i stället om valideringen blir kvadratisk eller hänger sig.
+    const result = readPlanskiss(huge);
+    expect(result.status).toBe('ogiltig'); // fler än 60 objekt (avsnitt 2)
+  });
+
+  it.fails(
+    'BUGG: en fientlig getter som kastar när den läses får läsPlanskiss att kasta (bryter "kastar aldrig")',
+    () => {
+      const evil = {
+        version: 1,
+        get omrade() {
+          throw new Error('fientlig getter');
+        },
+        objekt: [{ typ: 'kon', x: 1, y: 1 }],
+      };
+      expect(() => readPlanskiss(evil)).not.toThrow();
+    },
+  );
+
+  it.fails(
+    'BUGG: en Proxy vars has-fälla kastar får läsPlanskiss att kasta (bryter "kastar aldrig")',
+    () => {
+      const evil = new Proxy(
+        { version: 1, omrade: { langd: 10, bredd: 10 }, objekt: [{ typ: 'kon', x: 1, y: 1 }] },
+        {
+          has() {
+            throw new Error('fientlig proxy');
+          },
+        },
+      );
+      expect(() => readPlanskiss(evil)).not.toThrow();
+    },
+  );
 });
 
 describe('planskissTexts', () => {
