@@ -85,10 +85,10 @@ planskiss:
   skalning:
     strategi: platser
     platser:
-      - { x: 2, y: 13, lag: a }
-      - { x: 6, y: 13, lag: a }
-      - { x: 10, y: 13, lag: a }
-      - { x: 2, y: 1, lag: a }
+      - { x: 4.5, y: 13, lag: a }
+      - { x: 7.5, y: 13, lag: a }
+      - { x: 1.5, y: 13, lag: a }
+      - { x: 10.5, y: 13, lag: a }
 kalla: Egen övning, inspirerad av principerna i skadeförebyggande uppvärmningsprogram för barn.
 status: godkand
 granskning:
