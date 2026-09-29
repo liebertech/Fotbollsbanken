@@ -63,4 +63,52 @@ describe('planskissexemplen i content/ovningar/README.md', () => {
     const result = exerciseFileSchema.safeParse(document);
     expect(result.success ? [] : result.error.issues.map((issue) => issue.message)).toEqual([]);
   });
+
+  /**
+   * Det förra testet prövar bara att de två YAML-blocken går att slå ihop till ett giltigt
+   * övningsschema (`exerciseFileSchema` bryr sig inte om hur många spelarobjekt en planskiss
+   * har). Det säger ingenting om att skissen faktiskt visar övningens minsta grupp, vilket är
+   * S-1 i ADR 0012 avsnitt 4: "Basskissen ... ska visa övningens minsta gruppstorlek". README
+   * hade tidigare ett exempel på fyra spelare kopplat till en övning som (efter rättelsen i
+   * bd9380e/a2f28e8) har `spelare.min: 5`, en premiss som inte längre stämde och som det förra
+   * testet inte hade fångat, eftersom det aldrig räknade spelarna. Det här testet räknar dem.
+   */
+  it('basskissens antal spelare i 7 mot 7-exemplet är lika med spelare.min i exempelövningen', () => {
+    const exercise = [...README.matchAll(/```yaml\n(schema: 1[\s\S]*?)```/g)][0]?.[1];
+    const parsedExercise = parseYaml(exercise ?? '') as { spelare?: { min?: number } };
+    expect(parsedExercise.spelare?.min).toBeTypeOf('number');
+
+    const planskiss = examples().find((example) => example.spelform === '7mot7')?.planskiss as
+      { objekt?: { typ?: string }[] } | undefined;
+    const players = (planskiss?.objekt ?? []).filter((item) => item.typ === 'spelare');
+
+    // ADR 0012 avsnitt 4, S-1: räkna alla `spelare`-objekt (målvakter och köade spelare i
+    // basskissen räknas, se content/ovningar/README.md, avsnittet "Skalning efter antal
+    // spelare").
+    expect(players.length).toBe(parsedExercise.spelare?.min);
+  });
+
+  it('README:s prosa om exempelövningens antal spelare stämmer med fältet spelare.min', () => {
+    // README säger uttryckligen att 7 mot 7-exemplet är fristående från exempelövningen
+    // längst ned i filen. Det påståendet får inte tyst bli fel om exempelövningens spelare.min
+    // ändras: texten ska då uppdateras i samma commit.
+    const exercise = [...README.matchAll(/```yaml\n(schema: 1[\s\S]*?)```/g)][0]?.[1];
+    const parsedExercise = parseYaml(exercise ?? '') as {
+      spelare?: { min?: number; max?: number };
+    };
+    const min = parsedExercise.spelare?.min;
+    const max = parsedExercise.spelare?.max;
+    expect(min).toBeTypeOf('number');
+    expect(max).toBeTypeOf('number');
+
+    const section = planskissSection();
+    const introLine = section.split('\n').find((line) => line.includes('Exemplet är fristående'));
+    expect(introLine, 'meningen om exempelövningen saknas i README').toBeDefined();
+    // Meningen ska nämna exempelövningens faktiska spelare.min (och, om den skriver ett
+    // intervall, även max), inte ett tal som inte längre stämmer med fältet i exemplet.
+    expect(introLine).toContain(`${min}`);
+    if (min !== max) {
+      expect(introLine).toContain(`${max}`);
+    }
+  });
 });

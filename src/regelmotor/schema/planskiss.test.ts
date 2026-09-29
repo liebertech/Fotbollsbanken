@@ -538,7 +538,19 @@ describe('etiketter (avsnitt 6)', () => {
   it('underkänner styrtecken och osynliga formateringstecken i etiketter', () => {
     // Nolltecken, andra C0-styrtecken och Unicode-riktningsöverstyrning (kan användas för att
     // dölja text för en granskare, s.k. "Trojan Source"). Inget av dem är \p{L} eller \p{N}.
-    for (const bad of ['a\u0000b', 'a\u0007b', 'a\u001fb', 'a‮b', 'a​b']) {
+    // RIGHT-TO-LEFT OVERRIDE (U+202E) och ZERO WIDTH SPACE (U+200B) byggs med
+    // String.fromCodePoint i stället för att stå som tecken i källkoden, så att den här filen
+    // inte själv innehåller ett osynligt eller riktningsvändande tecken (samma slags fynd som
+    // testet letar efter).
+    const rtlOverride = String.fromCodePoint(0x202e);
+    const zeroWidthSpace = String.fromCodePoint(0x200b);
+    for (const bad of [
+      'a\u0000b',
+      'a\u0007b',
+      'a\u001fb',
+      `a${rtlOverride}b`,
+      `a${zeroWidthSpace}b`,
+    ]) {
       expect(
         failsOn(
           withObjects({ typ: 'spelare', x: 1, y: 1, lag: 'a', etikett: bad }),
@@ -1222,5 +1234,109 @@ describe('ändringarna efter säkerhetsgranskningen och ADR 0018', () => {
     // @ts-expect-error: ett vanligt objekt saknar märket och är ingen Planskissdata.
     const fake: Planskissdata = { version: 1, omrade: { langd: 20, bredd: 10 }, objekt: [] };
     expect(readPlanskiss(fake).status).toBe('ogiltig');
+  });
+});
+
+/**
+ * Kvalitetssäkrarens egna fientliga fall, utöver utvecklarens (andra granskningsvarvet,
+ * 2026-09-29). `readPlanskiss` ska aldrig kasta för något av dem (F1).
+ */
+describe('kvalitetssäkrarens egna fientliga fall (F1, andra granskningsvarvet)', () => {
+  it('kastar aldrig för en array-lik Proxy vars length-fälla kastar, för objekt', () => {
+    const evilArray = new Proxy([{ typ: 'kon', x: 1, y: 1 }], {
+      get(target, prop, receiver) {
+        if (prop === 'length') {
+          throw new Error('fientlig length');
+        }
+        return Reflect.get(target, prop, receiver);
+      },
+    });
+    const input = sketch({ objekt: evilArray });
+    expect(() => readPlanskiss(input)).not.toThrow();
+    expect(readPlanskiss(input).status).toBe('ogiltig');
+  });
+
+  it('kastar aldrig för en array-lik Proxy vars length-fälla kastar, för skalning.koer', () => {
+    const evilArray = new Proxy([{ vid: 'sp-1', riktning: 0 }], {
+      get(target, prop, receiver) {
+        if (prop === 'length') {
+          throw new Error('fientlig length');
+        }
+        return Reflect.get(target, prop, receiver);
+      },
+    });
+    const input = sketch({ skalning: { strategi: 'koer', koer: evilArray } });
+    expect(() => readPlanskiss(input)).not.toThrow();
+    expect(readPlanskiss(input).status).toBe('ogiltig');
+  });
+
+  it('kastar aldrig för en koordinat med fientlig Symbol.toPrimitive och valueOf', () => {
+    const evilCoord = {
+      [Symbol.toPrimitive]() {
+        throw new Error('fientlig toPrimitive');
+      },
+      valueOf() {
+        throw new Error('fientlig valueOf');
+      },
+    };
+    const input = sketch({ objekt: [{ typ: 'kon', x: evilCoord, y: 1 }] });
+    expect(() => readPlanskiss(input)).not.toThrow();
+    expect(readPlanskiss(input).status).toBe('ogiltig');
+  });
+
+  it('en fientlig toJSON kringgår storleksförkontrollen (F5) men skissen underkänns ändå', () => {
+    // precheck() mäter storleken med JSON.stringify(value), som anropar ett toJSON på value om
+    // det finns ett. En angripare kan alltså låta toJSON returnera något litet och gömma en
+    // stor nyttolast i ett annat fält. Förkontrollen missar då skissen, men fältet blir ett
+    // okänt fält som .strict() underkänner i den fulla parsningen, så resultatet är ändå
+    // ogiltigt. Ingen ogiltig skiss slinker igenom som giltig, men förkontrollens snabba väg
+    // fungerar inte för den här varianten (värt att notera, inte ett funktionsfel).
+    const evil: Record<string, unknown> = sketch();
+    Object.defineProperty(evil, 'toJSON', { value: () => ({ x: 1 }), enumerable: true });
+    evil.dolt_falt = 'a'.repeat(20000);
+    expect(() => readPlanskiss(evil)).not.toThrow();
+    expect(readPlanskiss(evil).status).toBe('ogiltig');
+  });
+});
+
+/**
+ * F4 är bara delvis åtgärdat (säkerhetsuppföljningen 2026-09-29,
+ * docs/sakerhet/granskning-inkrement-2-schema.md): `checkSketch` bygger tre felmeddelanden
+ * genom att skriva in `item.id`, `endpoint.objekt` respektive `queue.vid` rakt i strängen,
+ * utan `shorten()`. Till skillnad från `unionError` och de vanliga fältfelen, som kortar långa
+ * värden till 40 tecken, är de här tre meddelandena obegränsade så länge hela skissen ryms
+ * under 8192 byte (F5-gränsen). De här testerna är röda tills dess: de dokumenterar det
+ * kvarstående fyndet i stället för att gissa att det är åtgärdat.
+ */
+describe('F4, kvarstående del: checkSketch upprepar tre värden utan gräns', () => {
+  it('duplicerat id: meddelandet kortar det upprepade id:t', () => {
+    // 200 tecken är för långt för id-mönstret (1–24 tecken) men ryms gott och väl under
+    // 8192-byte-gränsen, så det är checkSketch, inte förkontrollen i F5, som testas här.
+    const bigId = 'a'.repeat(200);
+    const input = withObjects(
+      { id: bigId, typ: 'kon', x: 1, y: 1 },
+      { id: bigId, typ: 'kon', x: 2, y: 1 },
+    );
+    const message = issues(input).find((line) => line.includes('används redan av objekt'));
+    expect(message).toBeDefined();
+    expect(message?.length).toBeLessThan(120);
+  });
+
+  it('en rörelse som pekar på ett okänt objekt: meddelandet kortar hänvisningen', () => {
+    const bigRef = 'x'.repeat(200);
+    const movement = { typ: 'passning', fran: { objekt: bigRef }, till: { x: 1, y: 1 } };
+    const message = issues(sketch({ rorelser: [movement] })).find((line) =>
+      line.includes('finns inte i skissen'),
+    );
+    expect(message).toBeDefined();
+    expect(message?.length).toBeLessThan(120);
+  });
+
+  it('en kö som utgår från ett okänt id: meddelandet kortar id:t i vid', () => {
+    const bigVid = 'y'.repeat(200);
+    const skalning = { strategi: 'koer', koer: [{ vid: bigVid, riktning: 0 }] };
+    const message = issues(sketch({ skalning })).find((line) => line.includes('som inte finns'));
+    expect(message).toBeDefined();
+    expect(message?.length).toBeLessThan(120);
   });
 });

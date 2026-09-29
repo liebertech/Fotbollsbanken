@@ -215,7 +215,7 @@ Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kont
 
 Exemplen visar formatet, inte granskade skisser för bankens övningar. Varje exempel är giltigt, och ett test (`scripts/planskiss-readme.test.ts`) kontrollerar det, så exemplen kan kopieras som utgångspunkt. Raden `# Spelform:` används av testet.
 
-**7 mot 7: passa och följ i en kvadrat, 15 × 15 meter, fem spelare.** Passa och följ med fyra hörn kräver minst fem spelare: den som passar springer till nästa hörn, och där måste någon stå kvar och ta emot. Basskissen har därför två spelare i starthörnet. Fler spelare ställs i kö vid hörnen 2, 3, 4 och 1, i den ordningen, med 1,5 m mellan spelarna i kön. Exemplet är fristående och är inte skissen till exempelövningen längst ned i filen, som har fyra spelare.
+**7 mot 7: passa och följ i en kvadrat, 15 × 15 meter, fem spelare.** Passa och följ med fyra hörn kräver minst fem spelare: den som passar springer till nästa hörn, och där måste någon stå kvar och ta emot. Basskissen har därför två spelare i starthörnet. Fler spelare ställs i kö vid hörnen 2, 3, 4 och 1, i den ordningen, med 1,5 m mellan spelarna i kön. Exemplet är fristående från exempelövningen längst ned i filen men gäller samma antal spelare, 5–9.
 
 ```yaml
 # Spelform: 7mot7
