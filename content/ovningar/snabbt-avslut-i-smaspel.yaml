@@ -78,9 +78,10 @@ planskiss:
     - { id: b2, typ: spelare, x: 14, y: 8, lag: b, etikett: "B2" }
     - { typ: boll, x: 4.3, y: 4 }
   rorelser:
-    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: b2 }, till: { x: 12, y: 8 }, ordning: 1 }
-    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 13, y: 10 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a1 }, till: { x: 13, y: 10 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: b2 }, till: { x: 13, y: 8.5 }, ordning: 2 }
+    - { typ: skott, fran: { x: 13, y: 10 }, till: { objekt: mal-b }, ordning: 3 }
   skalning:
     strategi: platser
     platser:
