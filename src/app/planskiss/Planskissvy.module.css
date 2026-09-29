@@ -58,6 +58,43 @@
   display: block;
 }
 
+/* Skissen på övningskortet: miniatyren är en knapp som fäller ut skissen i kortet. */
+.cardSketch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Miniatyren är 96 × 72 px, men knappen har minst 48 px träffyta (designsystem.md avsnitt 5)
+   och en synlig ram, så att den går att se som klickbar. */
+.thumbnail {
+  align-self: flex-start;
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.thumbnail[aria-expanded='true'] {
+  border-color: var(--color-primary);
+  cursor: zoom-out;
+}
+
+.thumbnail:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.enlarged {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 /* Teckenförklaringen: symbol och benämning, radbryts fritt och tål 200 % text (avsnitt 8). */
 .legend {
   display: flex;

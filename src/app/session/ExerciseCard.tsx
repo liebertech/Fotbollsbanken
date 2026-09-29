@@ -8,6 +8,7 @@
 import { useId, useState } from 'react';
 import { exerciseArea } from '../../regelmotor/index.ts';
 import type { Exercise, GameFormat, Layout } from '../../regelmotor/index.ts';
+import { KortSkiss } from '../planskiss/KortSkiss.tsx';
 import { materialText } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
 import { areaReference } from './model.ts';
@@ -26,6 +27,11 @@ interface ExerciseCardProps {
    * model.ts). Förklaringen visas bara om kortet också har en referens att förklara.
    */
   showAreaHelp?: boolean;
+  /**
+   * Kortets plats i passet (`key` i model.ts). Blir en del av planskissens id:n, så att två
+   * kort med samma övning inte delar mönster (ADR 0012 avsnitt 5, RK-4).
+   */
+  placeKey?: string;
 }
 
 /**
@@ -102,6 +108,7 @@ export function ExerciseCard({
   format,
   label,
   showAreaHelp = false,
+  placeKey = 'kort',
 }: ExerciseCardProps) {
   const [open, setOpen] = useState(false);
   const detailsId = useId();
@@ -118,8 +125,8 @@ export function ExerciseCard({
         <span className={styles.minutes}>{minutes} min</span>
       </div>
 
-      {/* Planskissen ritas i inkrement 2 (docs/design/designsystem.md avsnitt 7). */}
-      <p className={styles.sketch}>{TEXTS.sketch.missing}</p>
+      {/* Miniatyr som fälls ut till normal storlek (designsystem.md avsnitt 7, berättelse 07). */}
+      <KortSkiss exercise={exercise} format={format} layout={layout} placeKey={placeKey} />
 
       <p className={styles.purpose}>{exercise.syfte}</p>
 

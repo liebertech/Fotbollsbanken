@@ -1,0 +1,167 @@
+/**
+ * @vitest-environment jsdom
+ *
+ * Planskissen på övningskortet och i passvyn (berättelse 06 kriterium 1, 5 och 6,
+ * berättelse 07 kriterium 1–4).
+ */
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { cleanup, render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/vitest';
+import { contentExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
+import type { BankExercise, Exercise, Layout } from '../../regelmotor/index.ts';
+import { FEM_MOT_FEM, SJU_MOT_SJU } from '../../planskiss/__testdata__/skisser.ts';
+import { ExerciseCard } from '../session/ExerciseCard.tsx';
+import { SessionView } from '../session/SessionView.tsx';
+import { FULL_BANK, sessionOf } from '../__testdata__/session-fixture.ts';
+import { sketchPlayerCount } from './KortSkiss.tsx';
+
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
+
+const WITH_SKETCH: Exercise = contentExercise({
+  id: 'passa-och-folj',
+  namn: 'Passa och följ',
+  spelare: { min: 5, max: 9 },
+  yta: { alla: { langd: 15, bredd: 15 } },
+  planskiss: SJU_MOT_SJU,
+});
+
+function layout(sizes: number[]): Layout {
+  return {
+    groups: sizes.length,
+    sizes,
+    coachesPerGroup: 0,
+    coachesNeeded: 0,
+    oddSolution: null,
+    oddText: null,
+  };
+}
+
+function card(exercise: Exercise, sizes: number[] | null = null) {
+  return render(
+    <ExerciseCard
+      exercise={exercise}
+      minutes={10}
+      layout={sizes === null ? null : layout(sizes)}
+      format="7mot7"
+      placeKey="rad-1"
+    />,
+  );
+}
+
+describe('miniatyren på övningskortet', () => {
+  it('visar skissen som en bild med övningens namn, i en knapp som är hopfälld', () => {
+    card(WITH_SKETCH);
+    const button = screen.getByRole('button', { name: /Passa och följ, planskiss/ });
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(within(button).getByRole('img')).toBeInTheDocument();
+    expect(screen.queryByText('Teckenförklaring')).toBeNull();
+  });
+
+  it('miniatyren saknar etiketter och måttext (ADR 0012 avsnitt 5)', () => {
+    const { container } = card(WITH_SKETCH);
+    expect(container.querySelectorAll('svg text')).toHaveLength(0);
+  });
+
+  it('ett klick fäller ut skissen i normal storlek med teckenförklaringen, ett till fäller ihop', async () => {
+    const user = userEvent.setup();
+    const { container } = card(WITH_SKETCH);
+    const button = screen.getByRole('button', { name: /Passa och följ, planskiss/ });
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    const region = container.querySelector(`[id="${button.getAttribute('aria-controls') ?? ''}"]`);
+    expect(region).not.toBeNull();
+    const big = within(region as HTMLElement).getByRole('img');
+    // Den stora skissen har måttext och etiketter.
+    expect(within(big).getByText('15 × 15 m')).toBeInTheDocument();
+    expect(screen.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
+    await user.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByText('Teckenförklaring')).toBeNull();
+  });
+
+  it('en övning utan skiss visar "Planskiss saknas" utan knapp', () => {
+    card(contentExercise({ id: 'utan-skiss' }));
+    expect(screen.getByText('Planskiss saknas')).toBeVisible();
+    expect(screen.queryByRole('button', { name: /planskiss/ })).toBeNull();
+    expect(screen.queryByRole('img')).toBeNull();
+  });
+
+  it('en övning med ogiltig skiss visar "Planskissen kunde inte visas" och resten av kortet', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    card({ ...WITH_SKETCH, planskiss: { version: 1, objekt: 'fel' } });
+    expect(screen.getByText('Planskissen kunde inte visas')).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Passa och följ' })).toBeVisible();
+    expect(screen.getByText(WITH_SKETCH.syfte)).toBeVisible();
+  });
+});
+
+describe('berättelse 06 kriterium 5: skalning efter antalet i gruppen', () => {
+  it('utan gruppindelning visas basskissen', () => {
+    const { container } = card(WITH_SKETCH);
+    expect(container.querySelectorAll('svg circle[class*="lagA"]')).toHaveLength(5);
+  });
+
+  it('med en känd grupp ritas skissen för den största gruppen', () => {
+    const { container } = card(WITH_SKETCH, [7, 6]);
+    expect(container.querySelectorAll('svg circle[class*="lagA"]')).toHaveLength(7);
+  });
+
+  it('sketchPlayerCount tar den största gruppen, och inget antal utan grupper', () => {
+    expect(sketchPlayerCount(null)).toBeUndefined();
+    expect(sketchPlayerCount(layout([]))).toBeUndefined();
+    expect(sketchPlayerCount(layout([4, 5, 4]))).toBe(5);
+  });
+});
+
+describe('berättelse 07: skisserna i passvyn', () => {
+  function bankWithSketches(): BankExercise[] {
+    return FULL_BANK.map((exercise, index) => ({
+      ...exercise,
+      planskiss: index % 2 === 0 ? SJU_MOT_SJU : FEM_MOT_FEM,
+    }));
+  }
+
+  it('varje övning i passet har en miniatyr, och alla id:n i vyn är unika', () => {
+    const session = sessionOf(bankWithSketches());
+    const { container } = render(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    const cards = container.querySelectorAll('article');
+    expect(cards.length).toBeGreaterThan(2);
+    for (const article of cards) {
+      expect(within(article as HTMLElement).getAllByRole('img')).toHaveLength(1);
+    }
+    const ids = [...container.querySelectorAll('[id]')].map((element) => element.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('en övning utan skiss och en med ogiltig skiss stoppar inte de andra', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const bank = bankWithSketches().map((exercise, index) =>
+      index === 0
+        ? { ...exercise, planskiss: undefined }
+        : index === 1
+          ? { ...exercise, planskiss: { version: 99 } }
+          : exercise,
+    );
+    const session = sessionOf(bank);
+    render(
+      <SessionView
+        session={session}
+        onChangeInput={() => undefined}
+        onGenerateAgain={() => undefined}
+      />,
+    );
+    expect(screen.getByText('Planskiss saknas')).toBeVisible();
+    expect(screen.getByText('Planskissen kunde inte visas')).toBeVisible();
+    expect(screen.getAllByRole('img').length).toBeGreaterThan(0);
+  });
+});
