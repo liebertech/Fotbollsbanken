@@ -55,6 +55,43 @@ anpassning:
   udda_antal: Alla kör med egen boll i eget tempo, så udda antal spelar ingen roll.
   ledare: En ledare räcker för att visa banan och peppa. Med fler ledare kan en stå vid start och en
     vid slalomen och ge tips under tiden.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 15
+  beskrivning: >-
+    Yta 20 x 15 meter med en startkon, fyra slalomkoner och en målkon i en
+    bana på 15 meter. Spelaren i tur startar vid startkonen, driver bollen
+    genom slalomen och joggar tillbaka till kön för ett nytt varv.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 15, stil: streckad }
+    - { id: kon-start, typ: kon, x: 4.3, y: 7.5 }
+    - { typ: kon, x: 8, y: 4 }
+    - { typ: kon, x: 11, y: 11 }
+    - { typ: kon, x: 14, y: 4 }
+    - { typ: kon, x: 17, y: 11 }
+    - { id: kon-mal, typ: kon, x: 19.5, y: 7.5 }
+    - { id: sp-1, typ: spelare, x: 4, y: 7.5, lag: a, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 3, y: 7.5, lag: a, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 2, y: 7.5, lag: a, etikett: "3" }
+    - { id: sp-4, typ: spelare, x: 1, y: 7.5, lag: a, etikett: "4" }
+    - { typ: boll, x: 4.3, y: 8 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-1 }
+      till: { objekt: kon-mal }
+      via: [{ x: 9, y: 3 }, { x: 15, y: 12 }]
+      ordning: 1
+    - typ: lopning
+      fran: { objekt: kon-mal }
+      till: { objekt: sp-4 }
+      ordning: 2
+      etikett: Joggar tillbaka till kön
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-4, riktning: 180, avstand: 0.75 }
 kalla: Egen övning, inspirerad av vanliga slalombanor för dribbling.
 status: godkand
 granskning:
