@@ -141,3 +141,22 @@ Följande fångas inte:
 1. **Kommatecken i etiketter (F3).** Rekommendation: godkänn, och dokumentera det i en ny ADR.
 2. **Snävare korta etiketter (F2 d)**, `^[\p{Lu}\p{N}]{0,3}$`. Rekommendation: ja, om fotbollsexperten bekräftar att inga gemena förkortningar behövs.
 3. **Redaktörens granskningsvy (F2 a, RK-9)** visar skissen läsbart med texterna i klartext, i strid med tabellen i ADR 0012 avsnitt 5. Rekommendation: ja, som ny ADR.
+
+## Uppföljning 2026-09-29
+
+Säkerhetsagenten prövade fynden igen mot `feature/planskiss-schema` (a2f28e8), efter rättelsen i 502706f. Användaren godkände rekommendationerna under *Beslut som behövs* samma dag, och de står i ADR 0018.
+
+| Fynd | Utfall | Rest |
+|---|---|---|
+| F1 | Åtgärdat | Den nya `catch` fångar också programmeringsfel. Testet med ADR 0012:s exempel fångar en sådan regression. Låg. |
+| F2 | (a) och (c) är krav i berättelse 16, (b) är en not i backloggen, (d) är genomfört | Namn går fortfarande inte att upptäcka tekniskt. |
+| F4 | Delvis | Tre meddelanden i `checkSketch` upprepar `id`, `objekt` och `vid` utan gräns. Övningsschemat anropar schemat utan förkontroll. Låg. |
+| F5 | Åtgärdat i klienten | pgTAP-testet och `octet_length` tas i inkrement 3. |
+| F6 | Delvis | `\p{Cf}` (bland annat LRM, RLM, ZWSP, BOM och taggtecken), `\p{Zl}`, `\p{Zp}`, `\p{Co}` och `\p{Cn}` godtas fortfarande i `beskrivning`. Taggtecken kan gömma text för redaktören. Låg. |
+| F7 | Inte åtgärdat i schemat, enligt plan | Vilar på RK-2 och RK-3. Attributtestet i RK-10 ska finnas innan ritmotorn mergas. |
+| F8 | Delvis | Går att kringgå med ett alias, en namnrymdsimport, `Planskissdata[]` och tilldelning från `any`. Typad lint (`no-unsafe-*`) rekommenderas för `src/planskiss/` och `src/data/`. Låg. |
+| F9 | Delvis | Versala JSX-namn bundna till en variabel, `createElement` under ett annat namn, `jsx()` från `react/jsx-runtime`, `ref` med `innerHTML` eller `setAttribute` och `createPortal` fångas inte. Ett körtest i RK-10 som kontrollerar taggar och attribut mot en vitlista är det starkaste skyddet. Låg. |
+
+**Ny iakttagelse, låg:** version 1 har ingen skisseditor, men en ledare kan skriva `planskiss` i en egen övning direkt via PostgREST. Texten granskas då aldrig. Iakttagelsen står i backloggen under inkrement 3 som en spärr i databasen.
+
+RK-1 till RK-10 är nu ett acceptanskriterium (kriterium 10) i berättelse 06.

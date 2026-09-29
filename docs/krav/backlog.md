@@ -51,6 +51,7 @@ Beslutat 2026-09-29 (ADR 0018, senior-systemutvecklare; säkerhetsgranskning `do
 | – | En person kan vara medlem i flera klubbar samtidigt | Should (rimligt för ledare som tränar i flera klubbar, men inte grundflödet) |
 | – | Egen domän för utskick av inloggningsmejl, för att minska risken att koden hamnar i skräpposten | Could. Beslutat vid K2 (2026-09-12), se berättelse 08, kriterium 6, och kravspec. |
 | – | Exportera sina egna uppgifter innan radering (dataportabilitet enligt GDPR, artikel 20) | Could. Beslutat vid K2 (2026-09-12), se berättelse 26, Utanför. |
+| – | Klubbens egna övningar får inte ha `planskiss` i version 1, eftersom det inte finns någon skisseditor och texten då aldrig granskas. Databasen nekar fältet med en `check` eller trigger | Must. Säkerhetsgranskningen av schemat för skissdata, uppföljningen 2026-09-29 (`docs/sakerhet/granskning-inkrement-2-schema.md`). |
 
 ## Inkrement 4 – Egna och inskickade övningar med redaktörskö
 

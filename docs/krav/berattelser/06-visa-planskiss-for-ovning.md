@@ -17,6 +17,7 @@ Status: utkast (skärpt inför K4, 2026-09-28)
 7. **Givet** att appen visas i ljust respektive mörkt läge (`docs/design/designsystem.md`, avsnitt 1–2), **när** en planskiss visas, **då** använder skissen samma färgtema som resten av appen och förblir läsbar i båda lägena, utan att någon del av skissen förmedlas enbart genom en färgnyans (ADR 0012, avsnitt 5, `designsystem.md` avsnitt 8).
 8. **Givet** att en planskiss visas, **då** har den ett tillgängligt namn och en textbeskrivning som en skärmläsare kan läsa upp (`title`, `desc` och `aria-labelledby`, ADR 0012 avsnitt 5). Den exakta texten, `title` och mallen för `desc`, står i `docs/design/texter.md` avsnitt 8.
 9. **Givet** att ett pass har sparats (berättelse 05), **när** en övnings skissdata i banken senare ändras, **då** visar det redan sparade passet fortfarande den planskiss som fanns när passet sparades (ögonblicksbild, `docs/adr/0003-datamodell.md`), inte en uppdaterad skiss.
+10. **Givet** att ritmotorn ritar en planskiss, **då** uppfyller den säkerhetskraven RK-1 till RK-10 i `docs/sakerhet/granskning-inkrement-2-schema.md`. Bland annat hamnar text från skissen aldrig i ett SVG-attribut, och testerna i RK-10 finns innan ritmotorn mergas.
 
 ## Beroenden
 
