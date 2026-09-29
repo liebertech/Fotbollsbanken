@@ -57,6 +57,49 @@ anpassning:
   fler_spelare: Bygg en andra bana bredvid med samma antal koner och hinder.
   udda_antal: Alla kör med egen boll i eget tempo, så udda antal spelar ingen roll.
   ledare: Med fler ledare kan en peppa vid start och en vid hindren.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 15
+  beskrivning: >-
+    Yta 20 x 15 meter med en startport, fyra slalomkoner, fyra låga hinder
+    och en målport. Spelaren i tur startar vid porten, driver bollen genom
+    slalomen och över hindren, och joggar tillbaka till kön för ett nytt varv.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 15, stil: streckad }
+    - { typ: kon, x: 4, y: 6 }
+    - { typ: kon, x: 4, y: 9 }
+    - { typ: kon, x: 7, y: 10 }
+    - { typ: ruta, x: 8, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
+    - { typ: kon, x: 10, y: 10 }
+    - { typ: ruta, x: 11, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
+    - { typ: kon, x: 13, y: 10 }
+    - { typ: ruta, x: 14, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
+    - { typ: kon, x: 16, y: 10 }
+    - { typ: ruta, x: 17, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
+    - { typ: kon, x: 19, y: 6 }
+    - { typ: kon, x: 19, y: 9 }
+    - { id: sp-1, typ: spelare, x: 4, y: 7.5, lag: a, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 3, y: 7.5, lag: a, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 2, y: 7.5, lag: a, etikett: "3" }
+    - { id: sp-4, typ: spelare, x: 1, y: 7.5, lag: a, etikett: "4" }
+    - { typ: boll, x: 4.3, y: 8 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-1 }
+      till: { x: 19, y: 7.5 }
+      via: [{ x: 9, y: 9 }, { x: 15, y: 7 }]
+      ordning: 1
+    - typ: lopning
+      fran: { x: 19, y: 7.5 }
+      till: { objekt: sp-4 }
+      ordning: 2
+      etikett: Joggar tillbaka till kön
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-4, riktning: 180, avstand: 0.75 }
 kalla: Egen övning, inspirerad av vanliga koordinationsbanor med boll.
 status: godkand
 granskning:
