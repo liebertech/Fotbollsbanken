@@ -32,7 +32,7 @@ Status: utkast (skärpt inför K4, 2026-09-28)
 - Att visa flera övningars planskisser samlat för ett helt pass (se berättelse 07).
 - Storleksvarianten `planlage` (stor skiss, minst 70 % av skärmbredden, i genomförandeläget) – hör till berättelse 19–21 (inkrement 5, planläge med timer).
 - Storleksvarianten `utskrift` (fast bredd cirka 45 mm, svart på vitt, i A4-layouten) – hör till berättelse 22 (inkrement 6, utskrift/PDF).
-- Att visa planskisser i redaktörskön (berättelse 16, inkrement 4) – samma miniatyrformat återanvänds då, men redaktörskön finns inte ännu.
+- Att visa planskisser i redaktörskön (berättelse 16, inkrement 4) – redaktörskön finns inte ännu. Beslutat 2026-09-29 (ADR 0018): till skillnad från passvyns och byt-övning-vyns miniatyr (kriterium 1) visar redaktörskön skissen i storleken `normal`, med alla skisstexter i klartext, så att redaktören kan upptäcka spelaruppgifter i skissen (berättelse 16, kriterium 6).
 - Den exakta utformningen av "Planskiss saknas", "Planskissen kunde inte visas" och teckenförklaringens layout (ux-designerns ansvar, `docs/design/texter.md` och `designsystem.md`).
 
 ## Ändringar efter K2
@@ -40,3 +40,4 @@ Status: utkast (skärpt inför K4, 2026-09-28)
 | Datum | Ändring |
 |---|---|
 | 2026-09-28 | Acceptanskriterierna skärpta inför K4 (bygget av inkrement 2, förarbete på `feature/planskisser-forarbete`). Tillagt: separat fallback för ogiltig skissdata (kriterium 3, skild från "saknas"), krav på skalning efter antal spelare när det är känt (kriterium 5), krav på teckenförklaring (kriterium 6), krav på att skissen följer appens ljusa/mörka läge (kriterium 7), krav på tillgänglig textbeskrivning (kriterium 8) och att ett sparat pass behåller sin ögonblicksbild av skissen (kriterium 9). Tydliggjort i kriterium 1 vilka vyer och storlekar som ingår, och i "Utanför denna berättelse" vilka storleksvarianter som hör till senare inkrement. Beroendeavsnittet utökat med hänvisningar till ADR 0012, designsystem.md och texter.md, och med en öppen fråga om hur stor del av bankens 58 övningar som behöver skissdata för att berättelsen ska räknas som klar – se produktägarens rapport från förarbetet. |
+| 2026-09-29 | Rättat i "Utanför denna berättelse": redaktörskön (berättelse 16) visar skissen i storleken `normal`, inte i miniatyr som tidigare stod här. Beslutat vid ADR 0018, se berättelse 16, kriterium 6. |

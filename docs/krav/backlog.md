@@ -27,8 +27,14 @@ Beslutat vid K1 (2026-09-11, se `kravspec.md`): generatorn har ett valfritt ytfi
 |---|---|---|
 | 06 | [Visa planskiss för en övning](berattelser/06-visa-planskiss-for-ovning.md) | Must |
 | 07 | [Visa planskisser för alla övningar i ett pass](berattelser/07-visa-planskisser-i-pass.md) | Must |
+| – | Uppställning per antal spelare i skissen: en egen skalningsstrategi eller ett nytt fält som gör att en spelare med rollen `neutral` (joker) kan bli lagspelare i skalningen, i stället för att alltid ritas som utespelare med sin ursprungliga roll (dagens fyra strategier, `docs/adr/0012-planskissformat.md` avsnitt 4). Berör övningarna `en-mot-en-till-tva-mal`, `dribbling-genom-portar`, `dribbling-genom-mittzonen`, `omstallning-med-jokrar` och `en-mot-en-med-joker-till-mal`, som till K4 löses med en nödlösning inom dagens format. | Could. Beslutat 2026-09-29 (ADR 0018): nödlösningen räcker till K4, men den riktiga lösningen ändrar det frusna skissformatet och kräver att senior-systemutvecklare (som äger formatet) och fotbollsexperten (som avgör vad en joker ska visas som) utformar den tillsammans. |
+| – | Symbol för låga hinder i planskissen, som saknas i dagens slutna objektlista (`docs/adr/0012-planskissformat.md` avsnitt 2). Berör `hinderbana-med-boll`, som till K4 löses med en nödlösning inom dagens format. | Could. Beslutat 2026-09-29 (ADR 0018): kräver ett nytt objekt i den frusna listan, ett fotbollsfackligt och formatbeslut, inte bara ett innehållsbeslut. |
+| – | Etiketter på stationsmarkeringar i planskissen: `markering` saknar i dag fältet `etikett`, till skillnad från `zon` och `ruta` (`docs/adr/0012-planskissformat.md` avsnitt 2). Berör `knakontroll-uppvarmning`, som till K4 löses med en nödlösning inom dagens format. | Could. Beslutat 2026-09-29 (ADR 0018): litet formattillägg, men ändrar ändå den frusna listan över objektfält, så det är senior-systemutvecklares beslut när det tas upp. |
+| – | Egen rörelsetyp för kast, rull, inkast och hörna, utöver dagens fyra (`passning`, `löpning`, `dribbling`, `skott`, `docs/adr/0012-planskissformat.md` avsnitt 3). Berör `malvaktstraning-grunder` och `smaspel-fasta-situationer`, som till K4 löser det med en nödlösning inom dagens format. | Could. Beslutat 2026-09-29 (ADR 0018): kräver att fotbollsexperten fastställer linjeform och benämning för den nya rörelsetypen, som gjordes för de fyra befintliga (ADR 0012 avsnitt 3, fotbollsfacklig granskning 2026-09-12). |
 
 Skärpt inför K4 (2026-09-28, förarbete på `feature/planskisser-forarbete`): ingen av bankens 58 övningar har i dag skissdata (`docs/adr/0012-planskissformat.md`, beslutad K2). Användaren beslutade 2026-09-28: alla godkända övningar (i dag 42) ska ha skissdata innan K4, se berättelse 06.
+
+Beslutat 2026-09-29 (ADR 0018, senior-systemutvecklare; säkerhetsgranskning `docs/sakerhet/granskning-inkrement-2-schema.md`): de fyra fotbollsbehov som dagens skissformat inte täcker fullt ut löses med nödlösningar inom formatet till K4, se raderna ovan – de riktiga behoven är Could i backloggen. Samtidigt beslutades att redaktörskön ska visa skissen i den läsbara storleken `normal` med alla skisstexter i klartext, så att redaktören kan upptäcka spelaruppgifter som smugit sig in i skissen (fynd F2 och krav RK-9 i säkerhetsgranskningen). Det hör till inkrement 4, berättelse 16, se kriterium 6–7 där.
 
 ## Inkrement 3 – Konton med klubbar och lag
 
@@ -59,7 +65,7 @@ Skärpt inför K4 (2026-09-28, förarbete på `feature/planskisser-forarbete`): 
 | – | Formuläret för egna övningar frågar rakt ut om övningen innehåller nickning och märker den då med `nickspel` (beslut vid K1, punkt 13) | Could |
 | – | Kommentera/diskutera en inskickad övning innan beslut | Could |
 | – | Statistik över hur många övningar en klubb har fått godkända | Could |
-| – | Ledaren kan rita eller redigera en planskiss för sin egen övning | Could. Beslutat vid K2 (2026-09-12): ingen ritredigerare i version 1, så en egen övning saknar planskiss (se berättelse 06, kriterium 2, och berättelse 13, Utanför). |
+| – | Ledaren kan rita eller redigera en planskiss för sin egen övning | Could. Beslutat vid K2 (2026-09-12): ingen ritredigerare i version 1, så en egen övning saknar planskiss (se berättelse 06, kriterium 2, och berättelse 13, Utanför). **Not (ADR 0018, säkerhetsgranskning `docs/sakerhet/granskning-inkrement-2-schema.md`, fynd F2 b):** byggs en sådan editor senare måste den upplysa om att skissens etiketter och beskrivning inte får innehålla spelarnamn, på samma sätt som appens övriga fritextfält (S-20). Inget att göra nu eftersom editorn inte finns i version 1. |
 
 ## Inkrement 5 – Planläge med timer
 
