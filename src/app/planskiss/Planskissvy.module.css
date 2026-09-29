@@ -1,5 +1,63 @@
 /* Planskissen i vyerna (designsystem.md avsnitt 7). */
 
+.sketch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Miniatyren i passet: cirka 96 × 72 px. Skissen behåller sina proportioner inom rutan. */
+.sketch.miniatyr {
+  width: 96px;
+}
+
+.sketch.miniatyr svg {
+  width: 96px;
+  height: 72px;
+}
+
+/* Öppnad skiss: full bredd, höjden följer ytans proportioner (berättelse 06, kriterium 4). */
+.sketch.normal svg {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+/* Platshållaren: tydligt inramad, i skissens storlek, aldrig en tom lucka (avsnitt 7). */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.placeholder.miniatyr {
+  width: 96px;
+  min-height: 72px;
+  font-size: 0.75rem;
+}
+
+.placeholder.normal,
+.placeholder.planlage,
+.placeholder.utskrift {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  font-size: 0.875rem;
+}
+
+.placeholderText {
+  display: block;
+}
+
 /* Teckenförklaringen: symbol och benämning, radbryts fritt och tål 200 % text (avsnitt 8). */
 .legend {
   display: flex;
