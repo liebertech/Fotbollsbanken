@@ -1,0 +1,4792 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`en skiss per skalningsstrategi > fast 1`] = `
+<svg
+  aria-labelledby="fast-titel fast-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 210"
+>
+  <title
+    id="fast-titel"
+  >
+    Fast, planskiss
+  </title>
+  <desc
+    id="fast-beskrivning"
+  >
+    Yta 15 gånger 15 meter. 5 spelare i lag A. 2 passningar och 1 löpning.
+  </desc>
+  <rect
+    class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="150"
+        stroke-dasharray="6 4.2"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.8 -8 L145.4 -8"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150.8,-8 144.8,-10.7 144.8,-5.3"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="8.8"
+          cy="-16.4"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="8.8"
+          y="-16.4"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.94 -9.4 L5.89 -10.65 L12.87 -11.84 L19.89 -12.94 L26.93 -13.95 L34 -14.87 L41.1 -15.7 L48.22 -16.44 L55.38 -17.09 L62.56 -17.65 L69.76 -18.12 L77 -18.5 L84.26 -18.79 L91.56 -18.99 L98.88 -19.09 L106.22 -19.11 L113.6 -19.04 L121 -18.87 L128.43 -18.62 L135.89 -18.28 L143.38 -17.84 L150.89 -17.32 L158.43 -16.7 L160.62 -16.5"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="166,-16 160.28,-19.24 159.78,-13.87"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="7.1"
+          cy="-19.38"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="7.1"
+          y="-19.38"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M158 -0.8 L158 145.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="158,150.8 160.7,144.8 155.3,144.8"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="166.4"
+          cy="8.8"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="166.4"
+          y="8.8"
+        >
+          3
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,-3.3 3,2.7 -3,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,-3.3 153,2.7 147,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,146.7 153,152.7 147,152.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,146.7 3,152.7 -3,152.7"
+    />
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="-8"
+      >
+        1
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-19"
+        cy="-19"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-19"
+        y="-19"
+      >
+        5
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="-8"
+      >
+        2
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="158"
+      >
+        3
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="158"
+      >
+        4
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="3"
+        cy="3"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="1.53"
+        y2="4.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="4.47"
+        y2="1.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="159"
+    >
+      15 × 15 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = `
+<svg
+  aria-labelledby="koer-titel koer-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 150"
+>
+  <title
+    id="koer-titel"
+  >
+    Köer, planskiss
+  </title>
+  <desc
+    id="koer-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="koer-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="koer-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="90"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="90"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#koer-mal-nat)"
+        points="150,30 160,30 160,60 150,60"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M150 30 L160 30 L160 60 L150 60"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="30"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="60"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.92 43 L7.71 40.84 L8.83 39.74 L10.33 40.12 L12.11 41.57 L13.88 43.04 L15.38 43.47 L16.5 42.41 L17.34 40.29 L18.21 38.15 L19.33 37.05 L20.83 37.45 L22.56 38.94 L24.29 40.47 L25.76 40.97 L26.92 39.98 L27.85 37.9 L28.76 35.77 L29.93 34.67 L31.39 35.09 L33.08 36.61 L34.76 38.21 L36.25 38.79 L37.44 37.86 L38.41 35.82 L39.4 33.71 L40.57 32.62 L42.04 33.05 L43.67 34.62 L45.31 36.27 L46.76 36.92 L47.99 36.06 L49.04 34.07 L50.1 31.97 L51.3 30.9 L52.73 31.35 L54.32 32.95 L55.9 34.67 L57.36 35.39 L58.58 34.59 L59.71 32.65 L60.82 30.58 L62.05 29.51 L63.49 29.98 L65.01 31.62 L66.56 33.38 L67.96 34.19 L69.25 33.46 L70.42 31.56 L71.6 29.53 L72.87 28.47 L74.26 28.95 L75.75 30.62 L77.23 32.45 L78.64 33.32 L79.91 32.67 L81.16 30.83 L82.4 28.82 L83.72 27.77 L85.09 28.27 L86.51 29.97 L87.92 31.86 L89.3 32.8 L90.63 32.22 L91.91 30.43 L93.22 28.46 L94.55 27.43"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="100,30 93.98,27.36 94.02,32.76"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="14.11"
+          cy="32.4"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="14.11"
+          y="32.4"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M73.22 83.56 L87.59 54.83"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="90,50 84.9,54.16 89.73,56.57"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="70"
+          cy="71.22"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="70"
+          y="71.22"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M100.47 28.42 L145.3 41.87"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M99.53 31.58 L144.35 45.03"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150,45 145.03,40.69 143.48,45.86"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="111.61"
+          cy="24.71"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="111.61"
+          y="24.71"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#koer-malvakt-b)"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="136.6"
+        y="39.6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="142"
+        y="45"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="45"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="0"
+        y="45"
+      >
+        A
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="84.6"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="70"
+        y="90"
+      >
+        F
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-20"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-30"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-40"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-50"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-60"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-70"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-80"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="94.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="114.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="124.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="134.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="144.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="154.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="164.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="9"
+        cy="45"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="7.53"
+        x2="10.47"
+        y1="43.53"
+        y2="46.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="7.53"
+        x2="10.47"
+        y1="46.47"
+        y2="43.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-10"
+      y="31.8"
+    >
+      Anfallare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-94.4"
+      y="45"
+    >
+      +2
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="83.2"
+      y="100"
+    >
+      Försvarare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="70"
+      y="184.4"
+    >
+      +2
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="99"
+    >
+      15 × 9 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per skalningsstrategi > parallella ytor 1`] = `
+<svg
+  aria-labelledby="parallella-titel parallella-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 210"
+>
+  <title
+    id="parallella-titel"
+  >
+    Parallella ytor, planskiss
+  </title>
+  <desc
+    id="parallella-beskrivning"
+  >
+    Yta 15 gånger 15 meter. 5 spelare i lag A. 2 passningar och 1 löpning. Så här ser en av 3 ytor ut.
+  </desc>
+  <rect
+    class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="150"
+        stroke-dasharray="6 4.2"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.8 -8 L145.4 -8"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150.8,-8 144.8,-10.7 144.8,-5.3"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="8.8"
+          cy="-16.4"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="8.8"
+          y="-16.4"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.94 -9.4 L5.89 -10.65 L12.87 -11.84 L19.89 -12.94 L26.93 -13.95 L34 -14.87 L41.1 -15.7 L48.22 -16.44 L55.38 -17.09 L62.56 -17.65 L69.76 -18.12 L77 -18.5 L84.26 -18.79 L91.56 -18.99 L98.88 -19.09 L106.22 -19.11 L113.6 -19.04 L121 -18.87 L128.43 -18.62 L135.89 -18.28 L143.38 -17.84 L150.89 -17.32 L158.43 -16.7 L160.62 -16.5"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="166,-16 160.28,-19.24 159.78,-13.87"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="7.1"
+          cy="-19.38"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="7.1"
+          y="-19.38"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M158 -0.8 L158 145.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="158,150.8 160.7,144.8 155.3,144.8"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="166.4"
+          cy="8.8"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="166.4"
+          y="8.8"
+        >
+          3
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,-3.3 3,2.7 -3,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,-3.3 153,2.7 147,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,146.7 153,152.7 147,152.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,146.7 3,152.7 -3,152.7"
+    />
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="-8"
+      >
+        1
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-19"
+        cy="-19"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-19"
+        y="-19"
+      >
+        5
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="-8"
+      >
+        2
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="158"
+      >
+        3
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="158"
+      >
+        4
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="3"
+        cy="3"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="1.53"
+        y2="4.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="4.47"
+        y2="1.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="159"
+    >
+      15 × 15 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] = `
+<svg
+  aria-labelledby="platser-titel platser-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 460 360"
+>
+  <title
+    id="platser-titel"
+  >
+    Platser, planskiss
+  </title>
+  <desc
+    id="platser-beskrivning"
+  >
+    Yta 40 gånger 30 meter. 5 spelare i lag A, 5 i lag B, 2 målvakter. 2 mål. 2 passningar, 1 löpning och 1 avslut. 2 spelare till står inte med i skissen.
+  </desc>
+  <defs>
+    <pattern
+      height="4.17"
+      id="platser-malvakt-a"
+      patternUnits="userSpaceOnUse"
+      width="4.17"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="4.17"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randA_a7e2bf"
+        height="2.09"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="4.17"
+      id="platser-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="4.17"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="4.17"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="2.09"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="platser-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="300"
+    width="400"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="300"
+        stroke-width="2.08"
+        width="400"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#platser-mal-nat)"
+        points="0,180 -10,180 -10,120 0,120"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M0 180 L-10 180 L-10 120 L0 120"
+        stroke-width="2.08"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="180"
+        r="1.88"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="120"
+        r="1.88"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#platser-mal-nat)"
+        points="400,120 410,120 410,180 400,180"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M400 120 L410 120 L410 180 L400 180"
+        stroke-width="2.08"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="400"
+        cy="120"
+        r="1.88"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="400"
+        cy="180"
+        r="1.88"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M128.19 85.73 L205.66 139.96"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="211.81,144.27 207.13,136.41 202.83,142.56"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="145.81"
+          cy="83.82"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="145.81"
+          y="83.82"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M129.94 218.9 L292.55 200.83"
+        stroke-dasharray="7.5 7.5"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="300,200 291.3,197.19 292.13,204.65"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="141.9"
+          cy="205.83"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="141.9"
+          y="205.83"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M228.48 155.3 L293.64 196.03"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="300,200 294.92,192.4 290.95,198.76"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="245.97"
+          cy="152.47"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="245.97"
+          y="152.47"
+        >
+          3
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M298.98 197.95 L392.27 151.3"
+        stroke-width="2.08"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M301.02 202.05 L394.32 155.4"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="400,150 390.87,150.37 394.22,157.08"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="306.71"
+          cy="183.6"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="306.71"
+          y="183.6"
+        >
+          4
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _konturA_a7e2bf"
+        cx="10"
+        cy="150"
+        fill="url(#platser-malvakt-a)"
+        r="8.33"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="10"
+        text-anchor="middle"
+        x="10"
+        y="150"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#platser-malvakt-b)"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="382.5"
+        y="142.5"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="10"
+        text-anchor="middle"
+        x="390"
+        y="150"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="120"
+        cy="80"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="120"
+        cy="220"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="220"
+        cy="150"
+        r="8.33"
+      />
+      <line
+        class="_riktning_a7e2bf"
+        stroke-width="2.08"
+        x1="229.58"
+        x2="239.58"
+        y1="150"
+        y2="150"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="272.5"
+        y="72.5"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="272.5"
+        y="212.5"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="172.5"
+        y="112.5"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_ledare_a7e2bf"
+        points="200,310 209.17,326.67 190.83,326.67"
+        stroke-width="2.08"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="6.67"
+        text-anchor="middle"
+        x="200"
+        y="322"
+      >
+        L
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="200"
+        cy="40"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="192.5"
+        y="252.5"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="80"
+        cy="150"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="332.5"
+        y="82.5"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="130"
+        cy="90"
+        r="2.92"
+        stroke-width="0.69"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.69"
+        x1="127.96"
+        x2="132.04"
+        y1="87.96"
+        y2="92.04"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.69"
+        x1="127.96"
+        x2="132.04"
+        y1="92.04"
+        y2="87.96"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="10"
+      text-anchor="start"
+      x="0"
+      y="312.5"
+    >
+      40 × 30 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per storlek > miniatyr 1`] = `
+<svg
+  aria-labelledby="storlek-miniatyr-titel storlek-miniatyr-beskrivning"
+  class="_skiss_a7e2bf _miniatyr_a7e2bf"
+  role="img"
+  viewBox="-30 -30 240 160"
+>
+  <title
+    id="storlek-miniatyr-titel"
+  >
+    Storlek, planskiss
+  </title>
+  <desc
+    id="storlek-miniatyr-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="storlek-miniatyr-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="storlek-miniatyr-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="100"
+        stroke-width="1.5"
+        width="180"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#storlek-miniatyr-mal-nat)"
+        points="180,35 190,35 190,65 180,65"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M180 35 L190 35 L190 65 L180 65"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="35"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="65"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.95 48.13 L7.79 45.99 L8.89 44.9 L10.4 45.3 L12.16 46.77 L13.91 48.26 L15.41 48.71 L16.52 47.69 L17.41 45.59 L18.28 43.45 L19.43 42.33 L20.89 42.73 L22.61 44.22 L24.34 45.76 L25.81 46.3 L26.98 45.35 L27.91 43.29 L28.83 41.15 L29.99 40.02 L31.44 40.4 L33.12 41.91 L34.82 43.51 L36.28 44.13 L37.48 43.25 L38.47 41.23 L39.43 39.1 L40.61 37.96 L42.04 38.33 L43.68 39.85 L45.33 41.51 L46.81 42.21 L48.04 41.4 L49.07 39.42 L50.09 37.3 L51.28 36.15 L52.69 36.5 L54.29 38.04 L55.9 39.75 L57.37 40.53 L58.63 39.8 L59.71 37.87 L60.78 35.76 L61.98 34.59 L63.38 34.94 L64.95 36.49 L66.52 38.26 L67.98 39.11 L69.25 38.45 L70.37 36.57 L71.5 34.48 L72.72 33.3 L74.11 33.63 L75.64 35.2 L77.17 37.01 L78.61 37.94 L79.91 37.36 L81.07 35.54 L82.24 33.47 L83.49 32.27 L84.89 32.58 L86.36 34.17 L87.85 36.03 L89.27 37.03 L90.56 36.53 L91.79 34.77 L93.01 32.72 L94.28 31.51 L95.67 31.81 L97.1 33.4 L98.55 35.31 L99.95 36.38 L101.25 35.97 L102.53 34.27 L103.79 32.23 L105.12 31.02 L106.47 31.31 L107.86 32.9 L109.26 34.85 L110.61 36 L111.95 35.67 L113.27 34.03 L114.58 32.02"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="120,33.33 113.98,30.68 114.02,36.08"
+      />
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M87.42 93.66 L105.43 60.31"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="108,55.56 102.77,59.55 107.52,62.12"
+      />
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M120.44 31.74 L175.24 46.96"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M119.56 34.92 L174.36 50.14"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="180,50 174.94,45.79 173.5,51"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#storlek-miniatyr-malvakt-b)"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="165"
+        y="44.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="50"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="94.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="50"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="10.8"
+        cy="50"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="48.53"
+        y2="51.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="51.47"
+        y2="48.53"
+      />
+    </g>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per storlek > normal 1`] = `
+<svg
+  aria-labelledby="storlek-normal-titel storlek-normal-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 240 160"
+>
+  <title
+    id="storlek-normal-titel"
+  >
+    Storlek, planskiss
+  </title>
+  <desc
+    id="storlek-normal-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="storlek-normal-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="storlek-normal-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="100"
+        stroke-width="1.5"
+        width="180"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#storlek-normal-mal-nat)"
+        points="180,35 190,35 190,65 180,65"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M180 35 L190 35 L190 65 L180 65"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="35"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="65"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.95 48.13 L7.79 45.99 L8.89 44.9 L10.4 45.3 L12.16 46.77 L13.91 48.26 L15.41 48.71 L16.52 47.69 L17.41 45.59 L18.28 43.45 L19.43 42.33 L20.89 42.73 L22.61 44.22 L24.34 45.76 L25.81 46.3 L26.98 45.35 L27.91 43.29 L28.83 41.15 L29.99 40.02 L31.44 40.4 L33.12 41.91 L34.82 43.51 L36.28 44.13 L37.48 43.25 L38.47 41.23 L39.43 39.1 L40.61 37.96 L42.04 38.33 L43.68 39.85 L45.33 41.51 L46.81 42.21 L48.04 41.4 L49.07 39.42 L50.09 37.3 L51.28 36.15 L52.69 36.5 L54.29 38.04 L55.9 39.75 L57.37 40.53 L58.63 39.8 L59.71 37.87 L60.78 35.76 L61.98 34.59 L63.38 34.94 L64.95 36.49 L66.52 38.26 L67.98 39.11 L69.25 38.45 L70.37 36.57 L71.5 34.48 L72.72 33.3 L74.11 33.63 L75.64 35.2 L77.17 37.01 L78.61 37.94 L79.91 37.36 L81.07 35.54 L82.24 33.47 L83.49 32.27 L84.89 32.58 L86.36 34.17 L87.85 36.03 L89.27 37.03 L90.56 36.53 L91.79 34.77 L93.01 32.72 L94.28 31.51 L95.67 31.81 L97.1 33.4 L98.55 35.31 L99.95 36.38 L101.25 35.97 L102.53 34.27 L103.79 32.23 L105.12 31.02 L106.47 31.31 L107.86 32.9 L109.26 34.85 L110.61 36 L111.95 35.67 L113.27 34.03 L114.58 32.02"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="120,33.33 113.98,30.68 114.02,36.08"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="14.32"
+          cy="37.62"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="14.32"
+          y="37.62"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M87.42 93.66 L105.43 60.31"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="108,55.56 102.77,59.55 107.52,62.12"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="84.59"
+          cy="81.23"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="84.59"
+          y="81.23"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M120.44 31.74 L175.24 46.96"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M119.56 34.92 L174.36 50.14"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="180,50 174.94,45.79 173.5,51"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="131.5"
+          cy="27.81"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="131.5"
+          y="27.81"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#storlek-normal-malvakt-b)"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="165"
+        y="44.6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="170.4"
+        y="50"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="50"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="0"
+        y="50"
+      >
+        A
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="94.6"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="84"
+        y="100"
+      >
+        F
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="50"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="10.8"
+        cy="50"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="48.53"
+        y2="51.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="51.47"
+        y2="48.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-10"
+      y="36.8"
+    >
+      Anfallare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="97.2"
+      y="110"
+    >
+      Försvarare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per storlek > planlage 1`] = `
+<svg
+  aria-labelledby="storlek-planlage-titel storlek-planlage-beskrivning"
+  class="_skiss_a7e2bf _planlage_a7e2bf"
+  role="img"
+  viewBox="-30 -30 240 160"
+>
+  <title
+    id="storlek-planlage-titel"
+  >
+    Storlek, planskiss
+  </title>
+  <desc
+    id="storlek-planlage-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="storlek-planlage-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="storlek-planlage-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="100"
+        stroke-width="2"
+        width="180"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#storlek-planlage-mal-nat)"
+        points="180,35 190,35 190,65 180,65"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M180 35 L190 35 L190 65 L180 65"
+        stroke-width="2"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="35"
+        r="1.8"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="65"
+        r="1.8"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.95 48.13 L7.79 45.99 L8.89 44.9 L10.4 45.3 L12.16 46.77 L13.91 48.26 L15.41 48.71 L16.52 47.69 L17.41 45.59 L18.28 43.45 L19.43 42.33 L20.89 42.73 L22.61 44.22 L24.34 45.76 L25.81 46.3 L26.98 45.35 L27.91 43.29 L28.83 41.15 L29.99 40.02 L31.44 40.4 L33.12 41.91 L34.82 43.51 L36.28 44.13 L37.48 43.25 L38.47 41.23 L39.43 39.1 L40.61 37.96 L42.04 38.33 L43.68 39.85 L45.33 41.51 L46.81 42.21 L48.04 41.4 L49.07 39.42 L50.09 37.3 L51.28 36.15 L52.69 36.5 L54.29 38.04 L55.9 39.75 L57.37 40.53 L58.63 39.8 L59.71 37.87 L60.78 35.76 L61.98 34.59 L63.38 34.94 L64.95 36.49 L66.52 38.26 L67.98 39.11 L69.25 38.45 L70.37 36.57 L71.5 34.48 L72.72 33.3 L74.11 33.63 L75.64 35.2 L77.17 37.01 L78.61 37.94 L79.91 37.36 L81.07 35.54 L82.24 33.47 L83.49 32.27 L84.89 32.58 L86.36 34.17 L87.85 36.03 L89.27 37.03 L90.56 36.53 L91.79 34.77 L93.01 32.72 L94.28 31.51 L95.67 31.81 L97.1 33.4 L98.55 35.31 L99.95 36.38 L101.25 35.97 L102.53 34.27 L103.79 32.23 L105.12 31.02 L106.47 31.31 L107.86 32.9 L109.26 34.85 L110.61 36 L111.95 35.67 L113.27 34.03 L114.58 32.02"
+        stroke-width="2"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="120,33.33 113.98,30.68 114.02,36.08"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="14.32"
+          cy="37.62"
+          r="4.32"
+          stroke-width="1.2"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="14.32"
+          y="37.62"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M87.42 93.66 L105.43 60.31"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="2"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="108,55.56 102.77,59.55 107.52,62.12"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="84.59"
+          cy="81.23"
+          r="4.32"
+          stroke-width="1.2"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="84.59"
+          y="81.23"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M120.59 31.21 L175.39 46.43"
+        stroke-width="2"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M119.41 35.45 L174.21 50.67"
+        stroke-width="2"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="180,50 174.94,45.79 173.5,51"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="131.5"
+          cy="27.81"
+          r="4.32"
+          stroke-width="1.2"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="131.5"
+          y="27.81"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#storlek-planlage-malvakt-b)"
+        height="10.8"
+        stroke-width="3.2"
+        width="10.8"
+        x="165"
+        y="44.6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="170.4"
+        y="50"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="50"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="0"
+        y="50"
+      >
+        A
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="3.2"
+        width="10.8"
+        x="78.6"
+        y="94.6"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="84"
+        y="100"
+      >
+        F
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="50"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="3.2"
+        width="10.8"
+        x="78.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="10.8"
+        cy="50"
+        r="2.1"
+        stroke-width="0.67"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.67"
+        x1="9.33"
+        x2="12.27"
+        y1="48.53"
+        y2="51.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.67"
+        x1="9.33"
+        x2="12.27"
+        y1="51.47"
+        y2="48.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-10"
+      y="36.8"
+    >
+      Anfallare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="97.2"
+      y="110"
+    >
+      Försvarare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`en skiss per storlek > utskrift 1`] = `
+<svg
+  aria-labelledby="storlek-utskrift-titel storlek-utskrift-beskrivning"
+  class="_skiss_a7e2bf _utskrift_a7e2bf"
+  role="img"
+  viewBox="-30 -30 240 160"
+>
+  <title
+    id="storlek-utskrift-titel"
+  >
+    Storlek, planskiss
+  </title>
+  <desc
+    id="storlek-utskrift-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="storlek-utskrift-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="storlek-utskrift-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="100"
+        stroke-width="1.5"
+        width="180"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#storlek-utskrift-mal-nat)"
+        points="180,35 190,35 190,65 180,65"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M180 35 L190 35 L190 65 L180 65"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="35"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="180"
+        cy="65"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.95 48.13 L7.79 45.99 L8.89 44.9 L10.4 45.3 L12.16 46.77 L13.91 48.26 L15.41 48.71 L16.52 47.69 L17.41 45.59 L18.28 43.45 L19.43 42.33 L20.89 42.73 L22.61 44.22 L24.34 45.76 L25.81 46.3 L26.98 45.35 L27.91 43.29 L28.83 41.15 L29.99 40.02 L31.44 40.4 L33.12 41.91 L34.82 43.51 L36.28 44.13 L37.48 43.25 L38.47 41.23 L39.43 39.1 L40.61 37.96 L42.04 38.33 L43.68 39.85 L45.33 41.51 L46.81 42.21 L48.04 41.4 L49.07 39.42 L50.09 37.3 L51.28 36.15 L52.69 36.5 L54.29 38.04 L55.9 39.75 L57.37 40.53 L58.63 39.8 L59.71 37.87 L60.78 35.76 L61.98 34.59 L63.38 34.94 L64.95 36.49 L66.52 38.26 L67.98 39.11 L69.25 38.45 L70.37 36.57 L71.5 34.48 L72.72 33.3 L74.11 33.63 L75.64 35.2 L77.17 37.01 L78.61 37.94 L79.91 37.36 L81.07 35.54 L82.24 33.47 L83.49 32.27 L84.89 32.58 L86.36 34.17 L87.85 36.03 L89.27 37.03 L90.56 36.53 L91.79 34.77 L93.01 32.72 L94.28 31.51 L95.67 31.81 L97.1 33.4 L98.55 35.31 L99.95 36.38 L101.25 35.97 L102.53 34.27 L103.79 32.23 L105.12 31.02 L106.47 31.31 L107.86 32.9 L109.26 34.85 L110.61 36 L111.95 35.67 L113.27 34.03 L114.58 32.02"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="120,33.33 113.98,30.68 114.02,36.08"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="14.32"
+          cy="37.62"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="14.32"
+          y="37.62"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M87.42 93.66 L105.43 60.31"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="108,55.56 102.77,59.55 107.52,62.12"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="84.59"
+          cy="81.23"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="84.59"
+          y="81.23"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M120.44 31.74 L175.24 46.96"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M119.56 34.92 L174.36 50.14"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="180,50 174.94,45.79 173.5,51"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="131.5"
+          cy="27.81"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="131.5"
+          y="27.81"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#storlek-utskrift-malvakt-b)"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="165"
+        y="44.6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="170.4"
+        y="50"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="50"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="0"
+        y="50"
+      >
+        A
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="94.6"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="84"
+        y="100"
+      >
+        F
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="50"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="78.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="10.8"
+        cy="50"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="48.53"
+        y2="51.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="9.33"
+        x2="12.27"
+        y1="51.47"
+        y2="48.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-10"
+      y="36.8"
+    >
+      Anfallare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="97.2"
+      y="110"
+    >
+      Försvarare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`ett exempel per spelform > 3mot3 i storleken normal 1`] = `
+<svg
+  aria-labelledby="exempel-3mot3-titel exempel-3mot3-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 180"
+>
+  <title
+    id="exempel-3mot3-titel"
+  >
+    Exempel 3mot3, planskiss
+  </title>
+  <desc
+    id="exempel-3mot3-beskrivning"
+  >
+    Yta 15 gånger 12 meter. 3 spelare i lag A, 3 i lag B. 2 mål. 1 dribbling och 1 avslut.
+  </desc>
+  <defs>
+    <pattern
+      height="5"
+      id="exempel-3mot3-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="120"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="120"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-3mot3-mal-nat)"
+        points="0,67.5 -10,67.5 -10,52.5 0,52.5"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M0 67.5 L-10 67.5 L-10 52.5 L0 52.5"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="67.5"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="52.5"
+        r="1.35"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-3mot3-mal-nat)"
+        points="150,52.5 160,52.5 160,67.5 150,67.5"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M150 52.5 L160 52.5 L160 67.5 L150 67.5"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="52.5"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="67.5"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M76.74 62.53 L78.61 61.28 L80.12 60.98 L81.12 62.04 L81.73 64.14 L82.3 66.36 L83.18 67.73 L84.57 67.76 L86.38 66.67 L88.28 65.32 L89.9 64.72 L91.03 65.45 L91.71 67.36 L92.25 69.65 L93.03 71.3 L94.29 71.67 L96.02 70.79 L97.94 69.42 L99.66 68.55 L100.91 68.93 L101.69 70.6 L102.23 72.89 L102.91 74.79 L104.04 75.5"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="110,75 105.33,70.37 103.43,75.42"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="88.68"
+          cy="58.03"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="88.68"
+          y="58.03"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M109.42 73.46 L144.36 60.35"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M110.58 76.54 L145.52 63.44"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150,60 143.43,59.58 145.33,64.63"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="116.04"
+          cy="63.76"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="116.04"
+          y="63.76"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="40"
+        cy="30"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="40"
+        cy="90"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="70"
+        cy="60"
+        r="6"
+      />
+      <line
+        class="_riktning_a7e2bf"
+        stroke-width="1.5"
+        x1="76.9"
+        x2="84.1"
+        y1="60"
+        y2="60"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="94.6"
+        y="24.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="94.6"
+        y="84.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="114.6"
+        y="54.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="78"
+        cy="64"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="76.53"
+        x2="79.47"
+        y1="62.53"
+        y2="65.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="76.53"
+        x2="79.47"
+        y1="65.47"
+        y2="62.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="129"
+    >
+      15 × 12 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
+<svg
+  aria-labelledby="exempel-5mot5-titel exempel-5mot5-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 150"
+>
+  <title
+    id="exempel-5mot5-titel"
+  >
+    Exempel 5mot5, planskiss
+  </title>
+  <desc
+    id="exempel-5mot5-beskrivning"
+  >
+    Yta 15 x 9 meter med ett mål och en målvakt på högra kortsidan. Anfallaren startar med boll vid vänstra kortsidan och försvararen vid nedre sidlinjen.
+  </desc>
+  <defs>
+    <pattern
+      height="3"
+      id="exempel-5mot5-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="3"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="3"
+        width="3"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="1.5"
+        width="3"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="exempel-5mot5-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="90"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="90"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-5mot5-mal-nat)"
+        points="150,30 160,30 160,60 150,60"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M150 30 L160 30 L160 60 L150 60"
+        stroke-width="1.5"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="30"
+        r="1.35"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="150"
+        cy="60"
+        r="1.35"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M6.92 43 L7.71 40.84 L8.83 39.74 L10.33 40.12 L12.11 41.57 L13.88 43.04 L15.38 43.47 L16.5 42.41 L17.34 40.29 L18.21 38.15 L19.33 37.05 L20.83 37.45 L22.56 38.94 L24.29 40.47 L25.76 40.97 L26.92 39.98 L27.85 37.9 L28.76 35.77 L29.93 34.67 L31.39 35.09 L33.08 36.61 L34.76 38.21 L36.25 38.79 L37.44 37.86 L38.41 35.82 L39.4 33.71 L40.57 32.62 L42.04 33.05 L43.67 34.62 L45.31 36.27 L46.76 36.92 L47.99 36.06 L49.04 34.07 L50.1 31.97 L51.3 30.9 L52.73 31.35 L54.32 32.95 L55.9 34.67 L57.36 35.39 L58.58 34.59 L59.71 32.65 L60.82 30.58 L62.05 29.51 L63.49 29.98 L65.01 31.62 L66.56 33.38 L67.96 34.19 L69.25 33.46 L70.42 31.56 L71.6 29.53 L72.87 28.47 L74.26 28.95 L75.75 30.62 L77.23 32.45 L78.64 33.32 L79.91 32.67 L81.16 30.83 L82.4 28.82 L83.72 27.77 L85.09 28.27 L86.51 29.97 L87.92 31.86 L89.3 32.8 L90.63 32.22 L91.91 30.43 L93.22 28.46 L94.55 27.43"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="100,30 93.98,27.36 94.02,32.76"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="14.11"
+          cy="32.4"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="14.11"
+          y="32.4"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M73.22 83.56 L87.59 54.83"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="90,50 84.9,54.16 89.73,56.57"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="70"
+          cy="71.22"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="70"
+          y="71.22"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M100.47 28.42 L145.3 41.87"
+        stroke-width="1.5"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M99.53 31.58 L144.35 45.03"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150,45 145.03,40.69 143.48,45.86"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="111.61"
+          cy="24.71"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="111.61"
+          y="24.71"
+        >
+          2
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#exempel-5mot5-malvakt-b)"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="136.6"
+        y="39.6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="142"
+        y="45"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="0"
+        cy="45"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="0"
+        y="45"
+      >
+        A
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="84.6"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="70"
+        y="90"
+      >
+        F
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-10"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-20"
+        cy="45"
+        r="6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="94.6"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="10.8"
+        stroke-width="2.4"
+        width="10.8"
+        x="64.6"
+        y="104.6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="9"
+        cy="45"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="7.53"
+        x2="10.47"
+        y1="43.53"
+        y2="46.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="7.53"
+        x2="10.47"
+        y1="46.47"
+        y2="43.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="-10"
+      y="31.8"
+    >
+      Anfallare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="83.2"
+      y="100"
+    >
+      Försvarare
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="99"
+    >
+      15 × 9 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
+<svg
+  aria-labelledby="exempel-7mot7-titel exempel-7mot7-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 210 210"
+>
+  <title
+    id="exempel-7mot7-titel"
+  >
+    Exempel 7mot7, planskiss
+  </title>
+  <desc
+    id="exempel-7mot7-beskrivning"
+  >
+    Yta 15 gånger 15 meter. 9 spelare i lag A. 2 passningar och 1 löpning.
+  </desc>
+  <rect
+    class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="150"
+        stroke-dasharray="6 4.2"
+        stroke-width="1.5"
+        width="150"
+        x="0"
+        y="0"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.8 -8 L145.4 -8"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="150.8,-8 144.8,-10.7 144.8,-5.3"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="8.8"
+          cy="-16.4"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="8.8"
+          y="-16.4"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M-0.94 -9.4 L5.89 -10.65 L12.87 -11.84 L19.89 -12.94 L26.93 -13.95 L34 -14.87 L41.1 -15.7 L48.22 -16.44 L55.38 -17.09 L62.56 -17.65 L69.76 -18.12 L77 -18.5 L84.26 -18.79 L91.56 -18.99 L98.88 -19.09 L106.22 -19.11 L113.6 -19.04 L121 -18.87 L128.43 -18.62 L135.89 -18.28 L143.38 -17.84 L150.89 -17.32 L158.43 -16.7 L160.62 -16.5"
+        stroke-dasharray="5.4 5.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="166,-16 160.28,-19.24 159.78,-13.87"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="7.1"
+          cy="-19.38"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="7.1"
+          y="-19.38"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M158 -0.8 L158 145.4"
+        stroke-width="1.5"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="158,150.8 160.7,144.8 155.3,144.8"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="166.4"
+          cy="8.8"
+          r="4.32"
+          stroke-width="0.9"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="5.52"
+          text-anchor="middle"
+          x="166.4"
+          y="8.8"
+        >
+          3
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,-3.3 3,2.7 -3,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,-3.3 153,2.7 147,2.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="150,146.7 153,152.7 147,152.7"
+    />
+    <polygon
+      class="_kon_a7e2bf"
+      points="0,146.7 3,152.7 -3,152.7"
+    />
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="-8"
+      >
+        1
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-19"
+        cy="-19"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-19"
+        y="-19"
+      >
+        5
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="-8"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="-8"
+      >
+        2
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="158"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="158"
+        y="158"
+      >
+        3
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-8"
+        cy="158"
+        r="6"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="7.2"
+        text-anchor="middle"
+        x="-8"
+        y="158"
+      >
+        4
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="168.61"
+        cy="-18.61"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="168.61"
+        cy="168.61"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-18.61"
+        cy="168.61"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="-29.61"
+        cy="-29.61"
+        r="6"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="3"
+        cy="3"
+        r="2.1"
+        stroke-width="0.5"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="1.53"
+        y2="4.47"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.5"
+        x1="1.53"
+        x2="4.47"
+        y1="4.47"
+        y2="1.53"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="start"
+      x="0"
+      y="159"
+    >
+      15 × 15 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
+<svg
+  aria-labelledby="exempel-9mot9-titel exempel-9mot9-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 460 360"
+>
+  <title
+    id="exempel-9mot9-titel"
+  >
+    Exempel 9mot9, planskiss
+  </title>
+  <desc
+    id="exempel-9mot9-beskrivning"
+  >
+    Yta 40 gånger 30 meter. 5 spelare i lag A, 5 i lag B, 2 målvakter. 2 mål. 2 passningar, 1 löpning och 1 avslut.
+  </desc>
+  <defs>
+    <pattern
+      height="4.17"
+      id="exempel-9mot9-malvakt-a"
+      patternUnits="userSpaceOnUse"
+      width="4.17"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="4.17"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randA_a7e2bf"
+        height="2.09"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="4.17"
+      id="exempel-9mot9-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="4.17"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="4.17"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="2.09"
+        width="4.17"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="exempel-9mot9-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="300"
+    width="400"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="300"
+        stroke-width="2.08"
+        width="400"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-9mot9-mal-nat)"
+        points="0,180 -10,180 -10,120 0,120"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M0 180 L-10 180 L-10 120 L0 120"
+        stroke-width="2.08"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="180"
+        r="1.88"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="120"
+        r="1.88"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-9mot9-mal-nat)"
+        points="400,120 410,120 410,180 400,180"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M400 120 L410 120 L410 180 L400 180"
+        stroke-width="2.08"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="400"
+        cy="120"
+        r="1.88"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="400"
+        cy="180"
+        r="1.88"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M128.19 85.73 L205.66 139.96"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="211.81,144.27 207.13,136.41 202.83,142.56"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="145.81"
+          cy="83.82"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="145.81"
+          y="83.82"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M129.94 218.9 L292.55 200.83"
+        stroke-dasharray="7.5 7.5"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="300,200 291.3,197.19 292.13,204.65"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="141.9"
+          cy="205.83"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="141.9"
+          y="205.83"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M228.48 155.3 L293.64 196.03"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="300,200 294.92,192.4 290.95,198.76"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="245.97"
+          cy="152.47"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="245.97"
+          y="152.47"
+        >
+          3
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M298.98 197.95 L392.27 151.3"
+        stroke-width="2.08"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M301.02 202.05 L394.32 155.4"
+        stroke-width="2.08"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="400,150 390.87,150.37 394.22,157.08"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="306.71"
+          cy="183.6"
+          r="6"
+          stroke-width="1.25"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="7.67"
+          text-anchor="middle"
+          x="306.71"
+          y="183.6"
+        >
+          4
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _konturA_a7e2bf"
+        cx="10"
+        cy="150"
+        fill="url(#exempel-9mot9-malvakt-a)"
+        r="8.33"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="10"
+        text-anchor="middle"
+        x="10"
+        y="150"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#exempel-9mot9-malvakt-b)"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="382.5"
+        y="142.5"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="10"
+        text-anchor="middle"
+        x="390"
+        y="150"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="120"
+        cy="80"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="120"
+        cy="220"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="220"
+        cy="150"
+        r="8.33"
+      />
+      <line
+        class="_riktning_a7e2bf"
+        stroke-width="2.08"
+        x1="229.58"
+        x2="239.58"
+        y1="150"
+        y2="150"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="272.5"
+        y="72.5"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="272.5"
+        y="212.5"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="172.5"
+        y="112.5"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_ledare_a7e2bf"
+        points="200,310 209.17,326.67 190.83,326.67"
+        stroke-width="2.08"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="6.67"
+        text-anchor="middle"
+        x="200"
+        y="322"
+      >
+        L
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="200"
+        cy="40"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="192.5"
+        y="252.5"
+      />
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="80"
+        cy="150"
+        r="8.33"
+      />
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="15"
+        stroke-width="3.33"
+        width="15"
+        x="332.5"
+        y="82.5"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="130"
+        cy="90"
+        r="2.92"
+        stroke-width="0.69"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.69"
+        x1="127.96"
+        x2="132.04"
+        y1="87.96"
+        y2="92.04"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="0.69"
+        x1="127.96"
+        x2="132.04"
+        y1="92.04"
+        y2="87.96"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="10"
+      text-anchor="start"
+      x="0"
+      y="312.5"
+    >
+      40 × 30 m
+    </text>
+  </g>
+</svg>
+`;
+
+exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
+<svg
+  aria-labelledby="exempel-11mot11-titel exempel-11mot11-beskrivning"
+  class="_skiss_a7e2bf _normal_a7e2bf"
+  role="img"
+  viewBox="-30 -30 580 740"
+>
+  <title
+    id="exempel-11mot11-titel"
+  >
+    Exempel 11mot11, planskiss
+  </title>
+  <desc
+    id="exempel-11mot11-beskrivning"
+  >
+    Yta 52 gånger 68 meter. 2 spelare i lag A, 1 i lag B, 3 neutrala, 1 målvakt. 2 mål. 2 passningar, 1 löpning, 1 dribbling och 1 avslut.
+  </desc>
+  <defs>
+    <pattern
+      height="7.22"
+      id="exempel-11mot11-malvakt-b"
+      patternUnits="userSpaceOnUse"
+      width="7.22"
+    >
+      <rect
+        class="_randBakgrund_a7e2bf"
+        height="7.22"
+        width="7.22"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_randB_a7e2bf"
+        height="3.61"
+        width="7.22"
+        x="0"
+        y="0"
+      />
+    </pattern>
+    <pattern
+      height="14.44"
+      id="exempel-11mot11-zon-diagonal"
+      patternUnits="userSpaceOnUse"
+      width="14.44"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="1.81"
+        x1="0"
+        x2="14.44"
+        y1="14.44"
+        y2="0"
+      />
+    </pattern>
+    <pattern
+      height="14.44"
+      id="exempel-11mot11-zon-prickar"
+      patternUnits="userSpaceOnUse"
+      width="14.44"
+    >
+      <circle
+        class="_monsterPrick_a7e2bf"
+        cx="7.22"
+        cy="7.22"
+        r="1.81"
+      />
+    </pattern>
+    <pattern
+      height="5"
+      id="exempel-11mot11-mal-nat"
+      patternUnits="userSpaceOnUse"
+      width="5"
+    >
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="0"
+        x2="5"
+        y1="0"
+        y2="5"
+      />
+      <line
+        class="_monsterLinje_a7e2bf"
+        stroke-width="0.5"
+        x1="5"
+        x2="0"
+        y1="0"
+        y2="5"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_yta_a7e2bf"
+    height="680"
+    width="520"
+    x="0"
+    y="0"
+  />
+  <g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="680"
+        stroke-width="3.61"
+        width="520"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g>
+      <rect
+        class="_ruta_a7e2bf"
+        height="403"
+        stroke-width="3.61"
+        width="165"
+        x="355"
+        y="138"
+      />
+    </g>
+    <g>
+      <rect
+        class="_zon_a7e2bf"
+        fill="url(#exempel-11mot11-zon-diagonal)"
+        height="120"
+        stroke-width="1.81"
+        width="220"
+        x="300"
+        y="0"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="hanging"
+        font-size="17.33"
+        x="308.67"
+        y="8.67"
+      >
+        Inläggszon
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_zon_a7e2bf"
+        fill="url(#exempel-11mot11-zon-prickar)"
+        height="120"
+        stroke-width="1.81"
+        width="220"
+        x="300"
+        y="560"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="hanging"
+        font-size="17.33"
+        x="308.67"
+        y="568.67"
+      >
+        Inläggszon
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_zon_a7e2bf _zonTom_a7e2bf"
+        height="200"
+        stroke-width="1.81"
+        width="100"
+        x="0"
+        y="240"
+      />
+    </g>
+    <line
+      class="_markeringLinje_a7e2bf"
+      stroke-dasharray="17.33 8.67 2.89 8.67"
+      stroke-width="3.61"
+      x1="260"
+      x2="260"
+      y1="0"
+      y2="680"
+    />
+    <rect
+      class="_platta_a7e2bf"
+      height="14.44"
+      stroke-width="2.89"
+      width="14.44"
+      x="192.78"
+      y="332.78"
+    />
+    <circle
+      class="_prick_a7e2bf"
+      cx="410"
+      cy="340"
+      r="4.81"
+    />
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-11mot11-mal-nat)"
+        points="520,303.4 530,303.4 530,376.6 520,376.6"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M520 303.4 L530 303.4 L530 376.6 L520 376.6"
+        stroke-width="3.61"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="520"
+        cy="303.4"
+        r="3.25"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="520"
+        cy="376.6"
+        r="3.25"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_malNat_a7e2bf"
+        fill="url(#exempel-11mot11-mal-nat)"
+        points="0,110 -10,110 -10,90 0,90"
+      />
+      <path
+        class="_malRam_a7e2bf"
+        d="M0 110 L-10 110 L-10 90 L0 90"
+        stroke-width="3.61"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="110"
+        r="3.25"
+      />
+      <circle
+        class="_malStolpe_a7e2bf"
+        cx="0"
+        cy="90"
+        r="3.25"
+      />
+    </g>
+  </g>
+  <g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M225.77 383.65 L329.9 88.6"
+        stroke-width="3.61"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="334.23,76.35 323.29,87.8 335.55,92.13"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="214.39"
+          cy="355.13"
+          r="10.4"
+          stroke-width="2.17"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="13.29"
+          text-anchor="middle"
+          x="214.39"
+          y="355.13"
+        >
+          1
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M357.1 62.85 L360.92 59.04 L364.35 57.62 L367.21 59.66 L369.62 64.31 L371.99 69.3 L374.7 72.16 L377.99 71.6 L381.74 68.21 L385.61 64.15 L389.17 61.94 L392.17 63.09 L394.67 67.25 L397.01 72.41 L399.6 76 L402.74 76.34 L406.4 73.52 L410.28 69.38 L413.95 66.49 L417.11 66.74 L419.71 70.26 L422.05 75.41 L424.54 79.63 L427.52 80.87 L431.07 78.74 L434.93 74.7 L438.7 71.26 L442 70.61 L444.73 73.39 L447.1 78.35"
+        stroke-width="3.61"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="460,80 446.82,71.21 444.68,84.04"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="383.22"
+          cy="46.7"
+          r="10.4"
+          stroke-width="2.17"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="13.29"
+          text-anchor="middle"
+          x="383.22"
+          y="46.7"
+        >
+          2
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M460 80 L463.18 90 L466.04 100 L468.59 110 L470.83 120 L472.76 130 L474.38 140 L475.68 150 L476.67 160 L477.34 170 L477.71 180 L477.76 190 L477.5 200 L476.93 210 L476.04 220 L474.84 230 L473.33 240 L471.51 250 L469.38 260 L466.93 270 L464.17 280 L461.09 290 L457.71 300 L454.78 307.91"
+        stroke-width="3.61"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="450,320 461.32,308.98 449.25,304.14"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="486.18"
+          cy="97.15"
+          r="10.4"
+          stroke-width="2.17"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="13.29"
+          text-anchor="middle"
+          x="486.18"
+          y="97.15"
+        >
+          3
+        </text>
+      </g>
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="454.37"
+        y="199.58"
+      >
+        Inlägg
+      </text>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M313.39 289.04 L314.6 288.17 L321.62 284.45 L328.47 282.04 L335.17 280.8 L341.72 280.63 L348.14 281.39 L354.44 282.96 L360.64 285.23 L366.75 288.08 L372.78 291.37 L378.75 295 L384.66 298.83 L390.54 302.75 L396.39 306.64 L402.22 310.37 L408.06 313.82 L413.91 316.88 L419.78 319.41 L425.69 321.3 L431.66 322.42 L437.33 322.65"
+        stroke-dasharray="13 13"
+        stroke-width="3.61"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="450,320 433.99,316.37 437.79,328.81"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="331.11"
+          cy="260.99"
+          r="10.4"
+          stroke-width="2.17"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="13.29"
+          text-anchor="middle"
+          x="331.11"
+          y="260.99"
+        >
+          3
+        </text>
+      </g>
+    </g>
+    <g>
+      <path
+        class="_rorelse_a7e2bf"
+        d="M451.09 316.18 L508.59 332.61"
+        stroke-width="3.61"
+      />
+      <path
+        class="_rorelse_a7e2bf"
+        d="M448.91 323.82 L506.41 340.25"
+        stroke-width="3.61"
+      />
+      <polygon
+        class="_pilspets_a7e2bf"
+        points="520,340 507.9,329.78 504.33,342.28"
+      />
+      <g>
+        <circle
+          class="_ordningRing_a7e2bf"
+          cx="477.78"
+          cy="306.9"
+          r="10.4"
+          stroke-width="2.17"
+        />
+        <text
+          class="_etikett_a7e2bf _ordningText_a7e2bf"
+          dominant-baseline="central"
+          font-size="13.29"
+          text-anchor="middle"
+          x="477.78"
+          y="306.9"
+        >
+          4
+        </text>
+      </g>
+    </g>
+  </g>
+  <g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _konturB_a7e2bf"
+        fill="url(#exempel-11mot11-malvakt-b)"
+        height="26"
+        stroke-width="5.78"
+        width="26"
+        x="497"
+        y="327"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="510"
+        y="340"
+      >
+        MV
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="340"
+        cy="60"
+        r="14.44"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="340"
+        y="60"
+      >
+        Y
+      </text>
+    </g>
+    <g>
+      <circle
+        class="_spelare_a7e2bf _lagA_a7e2bf"
+        cx="300"
+        cy="300"
+        r="14.44"
+      />
+      <text
+        class="_etikett_a7e2bf _etikettPaFylld_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="300"
+        y="300"
+      >
+        9
+      </text>
+    </g>
+    <g>
+      <rect
+        class="_spelare_a7e2bf _lagB_a7e2bf"
+        height="26"
+        stroke-width="5.78"
+        width="26"
+        x="427"
+        y="267"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="440"
+        y="280"
+      >
+        MB
+      </text>
+    </g>
+    <g>
+      <polygon
+        class="_spelare_a7e2bf _lagNeutral_a7e2bf"
+        points="220,383.39 236.61,400 220,416.61 203.39,400"
+        stroke-width="3.61"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="17.33"
+        text-anchor="middle"
+        x="220"
+        y="400"
+      >
+        J
+      </text>
+    </g>
+    <g>
+      <polygon
+        class="_ledare_a7e2bf"
+        points="200,-37.33 215.89,-8.44 184.11,-8.44"
+        stroke-width="3.61"
+      />
+      <text
+        class="_etikett_a7e2bf"
+        dominant-baseline="central"
+        font-size="11.56"
+        text-anchor="middle"
+        x="200"
+        y="-16.53"
+      >
+        L1
+      </text>
+    </g>
+    <polygon
+      class="_kon_a7e2bf"
+      points="260,52.06 267.22,66.5 252.78,66.5"
+    />
+    <g>
+      <polygon
+        class="_spelare_a7e2bf _lagNeutral_a7e2bf"
+        points="200,383.39 216.61,400 200,416.61 183.39,400"
+        stroke-width="3.61"
+      />
+    </g>
+    <g>
+      <polygon
+        class="_spelare_a7e2bf _lagNeutral_a7e2bf"
+        points="180,383.39 196.61,400 180,416.61 163.39,400"
+        stroke-width="3.61"
+      />
+    </g>
+    <g>
+      <circle
+        class="_boll_a7e2bf"
+        cx="350"
+        cy="70"
+        r="5.06"
+        stroke-width="1.2"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="1.2"
+        x1="346.46"
+        x2="353.54"
+        y1="66.46"
+        y2="73.54"
+      />
+      <line
+        class="_bollKryss_a7e2bf"
+        stroke-width="1.2"
+        x1="346.46"
+        x2="353.54"
+        y1="73.54"
+        y2="66.46"
+      />
+    </g>
+  </g>
+  <g>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="17.33"
+      text-anchor="middle"
+      x="200"
+      y="368.22"
+    >
+      Nästa inlägg
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="17.33"
+      text-anchor="start"
+      x="0"
+      y="696.5"
+    >
+      52 × 68 m
+    </text>
+  </g>
+</svg>
+`;
