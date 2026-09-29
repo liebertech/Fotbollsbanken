@@ -56,6 +56,46 @@ anpassning:
   fler_spelare: Bygg en andra ruta bredvid med samma mått och koner.
   udda_antal: Alla har egen boll och rör sig fritt i samma ruta, så udda antal spelar ingen roll.
   ledare: En ledare räcker för att ropa hörn. Med fler ledare kan de ropa växelvis från olika sidor.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 18
+  beskrivning: >-
+    Kvadrat 18 x 18 meter med en kon i varje hörn. Alla spelare har varsin boll och dribblar
+    fritt i rutan. Ledaren ropar ett hörn, och alla dribblar dit utan att tappa bollen eller
+    krocka med någon.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 18, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 18, y: 0 }
+    - { typ: kon, x: 18, y: 18 }
+    - { typ: kon, x: 0, y: 18 }
+    - { id: p1, typ: spelare, x: 4, y: 4, lag: a, etikett: "1" }
+    - { id: p2, typ: spelare, x: 9, y: 3, lag: a, etikett: "2" }
+    - { id: p3, typ: spelare, x: 14, y: 4, lag: a, etikett: "3" }
+    - { id: p4, typ: spelare, x: 4, y: 14, lag: a, etikett: "4" }
+    - { id: p5, typ: spelare, x: 9, y: 15, lag: a, etikett: "5" }
+    - { id: p6, typ: spelare, x: 14, y: 14, lag: a, etikett: "6" }
+    - { typ: boll, x: 4.3, y: 4 }
+    - { typ: boll, x: 9.3, y: 3 }
+    - { typ: boll, x: 14.3, y: 4 }
+    - { typ: boll, x: 4.3, y: 14 }
+    - { typ: boll, x: 9.3, y: 15 }
+    - { typ: boll, x: 14.3, y: 14 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: p1 }, till: { x: 16, y: 16 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: p4 }, till: { x: 16, y: 16 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: p6 }, till: { x: 16, y: 16 }, ordning: 1 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 2, y: 9, lag: a }
+      - { x: 7, y: 7, lag: a }
+      - { x: 11, y: 11, lag: a }
+      - { x: 16, y: 9, lag: a }
+      - { x: 7, y: 11, lag: a }
+      - { x: 11, y: 7, lag: a }
 kalla: Egen övning, inspirerad av allmänt känd lek med fyra hörn.
 status: godkand
 granskning:
