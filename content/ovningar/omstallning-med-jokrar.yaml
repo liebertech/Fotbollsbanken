@@ -57,6 +57,37 @@ anpassning:
   fler_spelare: Gör ytan större och lägg till en spelare i varje lag.
   udda_antal: Den udda spelaren blir en tredje joker som alltid spelar med bollförande lag.
   ledare: Övningen är självgående när lagen och reglerna är satta.
+planskiss:
+  version: 1
+  omrade:
+    langd: 35
+    bredd: 25
+  beskrivning: >-
+    Yta 35 x 25 meter med ett minimål i var ände. Två mot två med två jokrar som
+    alltid spelar med laget som har bollen. Vid udda antal blir en tredje spelare
+    joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 35, bredd: 25, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 12.5, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 35, y: 12.5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 10, y: 8, lag: a }
+    - { id: a2, typ: spelare, x: 10, y: 17, lag: a }
+    - { id: b1, typ: spelare, x: 25, y: 8, lag: b }
+    - { id: b2, typ: spelare, x: 25, y: 17, lag: b }
+    - { id: j1, typ: spelare, x: 17.5, y: 8, lag: neutral }
+    - { id: j2, typ: spelare, x: 17.5, y: 17, lag: neutral }
+    - { typ: boll, x: 10.8, y: 8 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: j1 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 18, y: 9 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: j1 }, till: { objekt: a2 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 17.5, y: 12.5, lag: neutral }
+      - { x: 6, y: 12.5, lag: a }
+      - { x: 29, y: 12.5, lag: b }
+      - { x: 13, y: 4, lag: a }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar.
 status: godkand
 granskning:
