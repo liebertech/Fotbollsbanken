@@ -64,6 +64,47 @@ anpassning:
   udda_antal: Ett lag får en spelare mer, eller en joker spelar med laget som har färre.
   ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare dömer lagen
     själva, vilket också tränar fair play.
+planskiss:
+  version: 1
+  omrade:
+    langd: 50
+    bredd: 30
+  beskrivning: >-
+    Yta 50 x 30 meter med ett mål och en målvakt på varje kortsida. Tre mot tre ute
+    plus målvakter. Skissen visar en hörna som slås längs marken till en medspelare.
+    Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 50, bredd: 30, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 7mot7, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 50, y: 15, storlek: 7mot7, riktning: vanster }
+    - { typ: markering, form: platta, x: 0, y: 0 }
+    - { typ: markering, form: platta, x: 50, y: 0 }
+    - { typ: markering, form: platta, x: 50, y: 30 }
+    - { typ: markering, form: platta, x: 0, y: 30 }
+    - { typ: spelare, x: 2, y: 15, lag: a, malvakt: true, etikett: MV }
+    - { typ: spelare, x: 48, y: 15, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 15, y: 8, lag: a }
+    - { id: a2, typ: spelare, x: 15, y: 22, lag: a }
+    - { id: a3, typ: spelare, x: 22, y: 15, lag: a }
+    - { id: b1, typ: spelare, x: 35, y: 8, lag: b }
+    - { id: b2, typ: spelare, x: 35, y: 22, lag: b }
+    - { id: b3, typ: spelare, x: 28, y: 15, lag: b }
+    - { typ: boll, x: 50, y: 0 }
+  rorelser:
+    - typ: passning
+      fran: { x: 50, y: 0 }
+      till: { objekt: a3 }
+      ordning: 1
+      etikett: Hörna
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 19, y: 5, lag: a }
+      - { x: 31, y: 5, lag: b }
+      - { x: 19, y: 25, lag: a }
+      - { x: 31, y: 25, lag: b }
+      - { x: 12, y: 15, lag: a }
+      - { x: 38, y: 15, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fasta situationer inbyggda.
 status: godkand
 granskning:
