@@ -64,6 +64,34 @@ anpassning:
     spelare två, enligt organisationen ovan.
   ledare: Övningen är självgående. Med en ledare i närheten kan hen bekräfta bonuspoängen för
     dribblingar och peppa laget.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 12
+  beskrivning: >-
+    Yta 18 x 12 meter med ett litet mål i varje ände. Två lag om två möts, med en joker i
+    mitten som alltid spelar med laget som har bollen. Extra poäng ges för mål efter en
+    lyckad dribbling förbi en direkt motståndare. Vid udda antal blir en spelare joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 18, y: 6, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 4, y: 4, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 4, y: 8, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 14, y: 4, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 14, y: 8, lag: b, etikett: "B2" }
+    - { id: jok, typ: spelare, x: 9, y: 6, lag: neutral, etikett: "J" }
+    - { typ: boll, x: 4.3, y: 4 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: jok }, ordning: 1 }
+    - { typ: passning, fran: { objekt: jok }, till: { objekt: a2 }, ordning: 2 }
+    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 10, lag: a }
+      - { x: 12, y: 2, lag: b }
 kalla: Egen övning, inspirerad av vanliga smålagsspel med joker och bonuspoäng för 1 mot 1.
 status: godkand
 granskning:
