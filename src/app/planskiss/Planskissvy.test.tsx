@@ -94,6 +94,11 @@ describe('ADR 0012 avsnitt 3: teckenförklaringen', () => {
     expect(container.querySelector('button')).toBeNull();
   });
 
+  it.each(['planlage', 'utskrift'] as const)('visas också i storleken %s', (storlek) => {
+    render(view(SJU_MOT_SJU, { storlek }));
+    expect(screen.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
+  });
+
   it('visas inte i miniatyr', () => {
     render(view(SJU_MOT_SJU, { storlek: 'miniatyr' }));
     expect(screen.queryByRole('list')).toBeNull();
