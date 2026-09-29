@@ -77,7 +77,7 @@ planskiss:
     - typ: dribbling
       fran: { objekt: anf }
       till: { x: 5.5, y: 3 }
-      via: [{ x: 3, y: 3.5 }]
+      via: [{ x: 3, y: 6.5 }]
       ordning: 1
     - { typ: lopning, fran: { objekt: fors }, till: { x: 3, y: 3 }, ordning: 1 }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-rutor med portar.
