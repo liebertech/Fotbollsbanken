@@ -66,15 +66,64 @@ export const PLANSKISS_LIMITS = {
 } as const;
 
 /**
- * Teckenuppsättningen i etiketterna (ADR 0012 avsnitt 6): bokstäver, siffror, mellanslag och
- * `. : - / + ( )`.
+ * Teckenuppsättningen i de långa etiketterna (ADR 0012 avsnitt 6): bokstäver, siffror,
+ * mellanslag och `. , : - / + ( )`.
  *
- * **Kommatecknet är ett tillägg till ADR:ns mönster.** ADR 0012 avsnitt 4 föreskriver
- * etiketten "Vilande, byter in" för den extra spelaren vid udda antal, och den går inte att
- * skriva utan komma. Kommat är inget tecken med betydelse i markup, så tillägget försvagar
- * inte skyddet. Se rapporten till K4.
+ * **Kommatecknet är ett tillägg till ADR 0012:s mönster**, beslutat av användaren 2026-09-29
+ * (ADR 0018, beslut 1). Kommat har ingen betydelse i text eller attributvärden i markup, så
+ * tillägget försvagar inte skyddet (säkerhetsgranskningen, F3). Någon fast etikett för den
+ * extra spelaren vid udda antal finns inte längre (beslut 4); etiketten är fri inom mönstret.
+ *
+ * Texten normaliseras till NFC innan mönstret prövas, så att ett "é" skrivet som "e" plus
+ * kombinerande accent godkänns (F6).
  */
 export const LABEL_PATTERN = /^[\p{L}\p{N} .,:\-/+()]*$/u;
+
+/**
+ * Korta etiketter på spelare och ledare: bara versaler och siffror, högst 3 tecken
+ * (ADR 0018, beslut 2). Mönstret gör det svårare att skriva ett namn i symbolen (F2 d):
+ * `A`, `F`, `MV`, `L` och `1` går, men inte `Ali`.
+ */
+export const SHORT_LABEL_PATTERN = /^[\p{Lu}\p{N}]{0,3}$/u;
+
+/**
+ * Tecken som underkänns i `beskrivning` (F6): styrtecken (`\p{Cc}`, bland annat radbrytning
+ * och tabb) och tecknen som styr skrivriktningen, U+202A–202E och U+2066–2069. Skärmläsare
+ * läser upp dem, och bidi-tecknen kan vända på texten runt omkring.
+ */
+export const FORBIDDEN_TEXT_CHARACTERS = /[\p{Cc}\u202A-\u202E\u2066-\u2069]/u;
+
+/** Längsta upprepade värde i ett felmeddelande (F4). */
+const MAX_ECHO = 40;
+/** Flest okända fältnamn som räknas upp i ett felmeddelande (F4). */
+const MAX_LISTED_KEYS = 5;
+
+/** En text ur indata, kortad till 40 tecken (F4). */
+function shorten(text: string): string {
+  return text.length > MAX_ECHO ? `${text.slice(0, MAX_ECHO)}…` : text;
+}
+
+/**
+ * Ett värde ur indata, kortat så att det kan stå i ett felmeddelande (F1, F4).
+ *
+ * Bara strängar, tal och sanningsvärden upprepas. Allt annat beskrivs med sin typ, eftersom
+ * `String()` på ett konstruerat objekt kan kasta eller köra kod. Kastar aldrig.
+ */
+function echo(value: unknown): string {
+  switch (typeof value) {
+    case 'string':
+      return `"${shorten(value)}"`;
+    case 'number':
+    case 'boolean':
+      return String(value);
+    case 'object':
+      // `typeof` läser aldrig något ur objektet, men `Array.isArray` kastar på en återkallad
+      // Proxy. Därför skiljs listor inte från andra objekt här.
+      return value === null ? 'null' : 'ett objekt eller en lista';
+    default:
+      return `ett värde av typen ${typeof value}`;
+  }
+}
 
 const MAX_X = PLANSKISS_LIMITS.omrade.langd.max + PLANSKISS_LIMITS.marginal;
 const MAX_Y = PLANSKISS_LIMITS.omrade.bredd.max + PLANSKISS_LIMITS.marginal;
@@ -124,15 +173,33 @@ function oneOf<const T extends readonly [string, ...string[]]>(values: T, label:
   return z.enum(values, { error: typeError(label, orList(values)) });
 }
 
-function label(max: number) {
+/** En etikett, normaliserad till NFC innan längden och mönstret prövas (F6). */
+function labelString() {
   return z
     .string({
       error: typeError('etiketten', 'text. Skriv siffror inom citattecken, till exempel "1"'),
     })
+    .overwrite((value) => value.normalize('NFC'));
+}
+
+/** Etiketten på en zon, en ruta, en rörelse eller en kö: 0–24 tecken. */
+function label(max: number) {
+  return labelString()
     .max(max, `etiketten får vara högst ${max} tecken`)
     .regex(
       LABEL_PATTERN,
       'etiketten får bara innehålla bokstäver, siffror, mellanslag och tecknen . , : - / + ( )',
+    );
+}
+
+/** Etiketten på en spelare eller en ledare: versaler och siffror, 0–3 tecken (beslut 2). */
+function shortLabel() {
+  const max = PLANSKISS_LIMITS.kortEtikett;
+  return labelString()
+    .max(max, `etiketten får vara högst ${max} tecken`)
+    .regex(
+      SHORT_LABEL_PATTERN,
+      'etiketten på en spelare eller ledare får bara innehålla versaler och siffror, till exempel A, MV eller 1',
     );
 }
 
@@ -152,7 +219,10 @@ function strict<const T extends z.ZodRawShape>(shape: T, what: string) {
   return z.strictObject(shape, {
     error: (issue) => {
       if (issue.code === 'unrecognized_keys') {
-        return `okänt fält i ${what}: ${issue.keys.join(', ')}. Tillåtna fält är ${allowed}`;
+        const listed = issue.keys.slice(0, MAX_LISTED_KEYS).map(shorten).join(', ');
+        const rest = issue.keys.length - MAX_LISTED_KEYS;
+        const more = rest > 0 ? ` och ${rest} till` : '';
+        return `okänt fält i ${what}: ${listed}${more}. Tillåtna fält är ${allowed}`;
       }
       if (issue.code === 'invalid_type') {
         return issue.input === undefined ? `${what} saknas` : `${what} ska vara ett objekt`;
@@ -197,7 +267,7 @@ const playerSchema = strict(
     ...common,
     lag: oneOf(TEAMS, 'lag'),
     malvakt: z.boolean({ error: typeError('malvakt', 'true eller false') }).optional(),
-    etikett: label(PLANSKISS_LIMITS.kortEtikett).optional(),
+    etikett: shortLabel().optional(),
     riktning: integer(
       'riktning',
       PLANSKISS_LIMITS.riktning.min,
@@ -208,7 +278,7 @@ const playerSchema = strict(
 );
 
 const leaderSchema = strict(
-  { typ: z.literal('ledare'), ...common, etikett: label(PLANSKISS_LIMITS.kortEtikett).optional() },
+  { typ: z.literal('ledare'), ...common, etikett: shortLabel().optional() },
   'ledaren',
 );
 
@@ -300,10 +370,19 @@ function unionError(field: string, values: readonly string[], what: string) {
     if (issue.code === 'invalid_type' || typeof issue.input !== 'object' || issue.input === null) {
       return `${what} ska vara ett objekt med fältet ${field}`;
     }
-    const given = (issue.input as Record<string, unknown>)[field];
-    return given === undefined
-      ? `${field} saknas. Välj ${orList(values)}`
-      : `${field} "${String(given)}" finns inte. Välj ${orList(values)}`;
+    let given: unknown;
+    try {
+      given = (issue.input as Record<string, unknown>)[field];
+    } catch {
+      // En getter eller en Proxy som kastar. Felet ska ändå bli ett meddelande (F1).
+      return `${what} ska vara ett objekt med fältet ${field}`;
+    }
+    if (given === undefined) {
+      return `${field} saknas. Välj ${orList(values)}`;
+    }
+    return typeof given === 'object' || typeof given === 'function'
+      ? `${field} ska vara text. Välj ${orList(values)}`
+      : `${field} ${echo(given)} finns inte. Välj ${orList(values)}`;
   };
 }
 
@@ -593,6 +672,10 @@ const sketchObject = strict(
         PLANSKISS_LIMITS.beskrivning,
         `beskrivning får vara högst ${PLANSKISS_LIMITS.beskrivning} tecken`,
       )
+      .refine(
+        (value) => !FORBIDDEN_TEXT_CHARACTERS.test(value),
+        'beskrivning får inte innehålla radbrytningar, tabbar, styrtecken eller tecken som vänder skrivriktningen. Skriv texten på en rad, i YAML med >-',
+      )
       .optional(),
     objekt: z
       .array(objectSchema, { error: typeError('objekt', 'en lista med objekt') })
@@ -611,9 +694,14 @@ const sketchObject = strict(
 );
 
 /** Schemat för fältet `planskiss`. Används vid sparande och vid läsning (ADR 0012 avsnitt 6). */
-export const planskissSchema = sketchObject.superRefine(checkSketch);
+export const planskissSchema = sketchObject.superRefine(checkSketch).brand<'Planskissdata'>();
 
-/** Skissdata som den ser ut efter validering. Ritmotorn tar bara emot den här typen. */
+/**
+ * Skissdata som den ser ut efter validering. Ritmotorn tar bara emot den här typen.
+ *
+ * Typen är märkt (F8, RK-1): ett värde får den bara genom `planskissSchema`, i praktiken
+ * genom `readPlanskiss` eller övningsschemat. `as Planskissdata` förbjuds av en ESLint-regel.
+ */
 export type Planskissdata = z.output<typeof planskissSchema>;
 
 /** Skissdata som den skrivs i en övningsfil, före avrundningen. */
@@ -680,15 +768,90 @@ export function readPlanskiss(value: unknown): PlanskissReadResult {
   if (value === undefined || value === null) {
     return { status: 'saknas' };
   }
-  const result = planskissSchema.safeParse(value);
-  if (result.success) {
-    return { status: 'giltig', skiss: result.data };
+  try {
+    const tooLarge = precheck(value);
+    if (tooLarge !== undefined) {
+      return { status: 'ogiltig', issues: [tooLarge] };
+    }
+    const result = planskissSchema.safeParse(value);
+    if (result.success) {
+      return { status: 'giltig', skiss: result.data };
+    }
+    return {
+      status: 'ogiltig',
+      issues: result.error.issues.map((issue) => ({
+        path: issue.path.map((part) => (typeof part === 'symbol' ? '?' : String(part))).join('.'),
+        message: issue.message,
+      })),
+    };
+  } catch {
+    // Konstruerad indata, till exempel en getter eller en Proxy som kastar, eller ett värde
+    // som inte går att serialisera. Utfallet är detsamma som för annan ogiltig data (F1).
+    return {
+      status: 'ogiltig',
+      issues: [{ path: '', message: 'skissdata går inte att läsa' }],
+    };
   }
-  return {
-    status: 'ogiltig',
-    issues: result.error.issues.map((issue) => ({
-      path: issue.path.map((part) => String(part)).join('.'),
-      message: issue.message,
-    })),
-  };
+}
+
+/** Storleksgränsen i ADR 0012 avsnitt 6, samma som i övningsschemat och databasen (S-08). */
+const MAX_SKETCH_LENGTH = 8192;
+
+/**
+ * Billig förkontroll innan hela skissen parsas (F5): Zod prövar en listas längd först när
+ * alla element har parsats, så en skiss med hundratusentals objekt tar lång tid att underkänna.
+ *
+ * Listornas längd läses först, sedan prövas längden på skissen som JSON. JSON-strängens längd
+ * i tecken är aldrig större än dess storlek i byte, så en skiss som klarar gränsen vid
+ * sparandet klarar den också här. Får kasta: anroparen fångar felet.
+ */
+function precheck(value: unknown): PlanskissIssue | undefined {
+  if (typeof value !== 'object' || value === null) {
+    return undefined;
+  }
+  const sketch = value as Record<string, unknown>;
+  const scaling =
+    typeof sketch.skalning === 'object' && sketch.skalning !== null
+      ? (sketch.skalning as Record<string, unknown>)
+      : {};
+  // Samma meddelanden som i schemat, så att felet ser likadant ut oavsett vem som hittar det.
+  const lists: [string, unknown, number, string][] = [
+    [
+      'objekt',
+      sketch.objekt,
+      PLANSKISS_LIMITS.objekt.max,
+      `objekt får ha högst ${PLANSKISS_LIMITS.objekt.max} objekt`,
+    ],
+    [
+      'rorelser',
+      sketch.rorelser,
+      PLANSKISS_LIMITS.rorelser,
+      `rorelser får ha högst ${PLANSKISS_LIMITS.rorelser} rörelser`,
+    ],
+    [
+      'skalning.koer',
+      scaling.koer,
+      PLANSKISS_LIMITS.koer.max,
+      `koer får ha högst ${PLANSKISS_LIMITS.koer.max} köer`,
+    ],
+    [
+      'skalning.platser',
+      scaling.platser,
+      PLANSKISS_LIMITS.platser.max,
+      `platser får ha högst ${PLANSKISS_LIMITS.platser.max} platser`,
+    ],
+  ];
+  for (const [path, list, max, message] of lists) {
+    if (Array.isArray(list) && list.length > max) {
+      return { path, message };
+    }
+  }
+  const length = JSON.stringify(value)?.length ?? 0;
+  if (length >= MAX_SKETCH_LENGTH) {
+    return {
+      path: '',
+      message: `skissdata är minst ${length} byte. Gränsen är ${MAX_SKETCH_LENGTH} byte (S-08, ADR 0012)`,
+    };
+  }
+  return undefined;
 }

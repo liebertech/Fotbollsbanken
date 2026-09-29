@@ -7,11 +7,14 @@
  */
 import { describe, expect, it } from 'vitest';
 import {
+  FORBIDDEN_TEXT_CHARACTERS,
   LABEL_PATTERN,
   PLANSKISS_LIMITS,
   planskissSchema,
   planskissTexts,
   readPlanskiss,
+  SHORT_LABEL_PATTERN,
+  type Planskissdata,
 } from './planskiss.ts';
 
 type Sketch = Record<string, unknown>;
@@ -898,34 +901,233 @@ describe('readPlanskiss: saknad, ogiltig och giltig skiss (berättelse 06, krite
     expect(result.status).toBe('ogiltig'); // fler än 60 objekt (avsnitt 2)
   });
 
-  it.fails(
-    'BUGG: en fientlig getter som kastar när den läses får läsPlanskiss att kasta (bryter "kastar aldrig")',
-    () => {
-      const evil = {
-        version: 1,
-        get omrade() {
-          throw new Error('fientlig getter');
-        },
-        objekt: [{ typ: 'kon', x: 1, y: 1 }],
-      };
-      expect(() => readPlanskiss(evil)).not.toThrow();
-    },
-  );
+  it('kastar aldrig för en fientlig getter som kastar när den läses (F1)', () => {
+    const evil = {
+      version: 1,
+      get omrade() {
+        throw new Error('fientlig getter');
+      },
+      objekt: [{ typ: 'kon', x: 1, y: 1 }],
+    };
+    expect(() => readPlanskiss(evil)).not.toThrow();
+    expect(readPlanskiss(evil).status).toBe('ogiltig');
+  });
 
-  it.fails(
-    'BUGG: en Proxy vars has-fälla kastar får läsPlanskiss att kasta (bryter "kastar aldrig")',
-    () => {
-      const evil = new Proxy(
-        { version: 1, omrade: { langd: 10, bredd: 10 }, objekt: [{ typ: 'kon', x: 1, y: 1 }] },
-        {
-          has() {
-            throw new Error('fientlig proxy');
-          },
+  it('kastar aldrig för en Proxy vars has-fälla kastar (F1)', () => {
+    const evil = new Proxy(
+      { version: 1, omrade: { langd: 10, bredd: 10 }, objekt: [{ typ: 'kon', x: 1, y: 1 }] },
+      {
+        has() {
+          throw new Error('fientlig proxy');
         },
-      );
-      expect(() => readPlanskiss(evil)).not.toThrow();
-    },
-  );
+      },
+    );
+    expect(() => readPlanskiss(evil)).not.toThrow();
+    expect(readPlanskiss(evil).status).toBe('ogiltig');
+  });
+  it('kastar aldrig för typ eller strategi vars toString inte är en funktion (F1)', () => {
+    const badType = JSON.parse('{"typ":{"toString":1},"x":1,"y":1}');
+    const inObjects = withObjects(badType);
+    expect(() => readPlanskiss(inObjects)).not.toThrow();
+    expect(failsOn(inObjects, 'objekt.0.typ', 'typ ska vara text')).toBe(true);
+
+    const badStrategy = sketch({ skalning: JSON.parse('{"strategi":{"toString":1}}') });
+    expect(() => readPlanskiss(badStrategy)).not.toThrow();
+    expect(failsOn(badStrategy, 'skalning.strategi', 'strategi ska vara text')).toBe(true);
+  });
+
+  it('kastar aldrig för en återkallad Proxy, var den än ligger (F1)', () => {
+    const { proxy, revoke } = Proxy.revocable({}, {});
+    revoke();
+    for (const input of [
+      proxy,
+      sketch({ omrade: proxy }),
+      withObjects(proxy),
+      withObjects({ typ: proxy, x: 1, y: 1 }),
+      sketch({ skalning: { strategi: proxy } }),
+    ]) {
+      expect(() => readPlanskiss(input)).not.toThrow();
+      expect(readPlanskiss(input).status).toBe('ogiltig');
+    }
+  });
+
+  it('upprepar ett långt värde kortat till 40 tecken (F4)', () => {
+    // Förkontrollen av storleken (F5) slår till först för så stor indata. Prova schemat direkt.
+    const result = planskissSchema.safeParse(
+      withObjects({ typ: 'x'.repeat(1_000_000), x: 1, y: 1 }),
+    );
+    const messages = result.error?.issues.map((issue) => issue.message) ?? [];
+    expect(messages).toHaveLength(1);
+    expect(messages[0]).toContain(`"${'x'.repeat(40)}…"`);
+    expect(messages[0]?.length).toBeLessThan(200);
+  });
+
+  it('räknar upp högst 5 okända fält och skriver hur många till (F4)', () => {
+    const extra = Object.fromEntries(
+      Array.from({ length: 20_000 }, (_, index) => [`falt${index}`, 1]),
+    );
+    // Förkontrollen av storleken (F5) slår till först för så stor indata. Prova schemat direkt.
+    const result = planskissSchema.safeParse(sketch(extra));
+    const unknown = result.error?.issues.find((issue) => issue.message.includes('okänt fält'));
+    expect(unknown?.message).toContain('falt0, falt1, falt2, falt3, falt4 och 19995 till');
+    expect(unknown?.message.length).toBeLessThan(300);
+  });
+
+  it('underkänner för många objekt utan att parsa dem, med samma meddelande som schemat (F5)', () => {
+    const huge = sketch({
+      objekt: Array.from({ length: 300_000 }, () => ({ typ: 'kon', x: 1, y: 1 })),
+    });
+    expect(readPlanskiss(huge)).toEqual({
+      status: 'ogiltig',
+      issues: [{ path: 'objekt', message: 'objekt får ha högst 60 objekt' }],
+    });
+    const manyPlaces = sketch({
+      skalning: {
+        strategi: 'platser',
+        platser: Array.from({ length: 21 }, () => ({ x: 1, y: 1, lag: 'a' })),
+      },
+    });
+    expect(failsOn(manyPlaces, 'skalning.platser', 'högst 20 platser')).toBe(true);
+  });
+
+  it('underkänner skissdata på 8 192 tecken eller mer före parsningen (F5)', () => {
+    const result = readPlanskiss(sketch({ okant: 'x'.repeat(8192) }));
+    expect(result.status).toBe('ogiltig');
+    expect(result.status === 'ogiltig' && result.issues).toEqual([
+      { path: '', message: expect.stringContaining('Gränsen är 8192 byte') },
+    ]);
+  });
+
+  it('kastar aldrig för slumpad och fientlig indata (fuzz, RK-10)', () => {
+    // Deterministisk slump (LCG), eftersom Math.random är förbjuden i src/regelmotor/ (ADR 0011).
+    let state = 20260929;
+    const next = (n: number): number => {
+      state = (state * 1103515245 + 12345) % 2147483648;
+      return state % n;
+    };
+    const revoked = Proxy.revocable({}, {});
+    revoked.revoke();
+    const leaves: (() => unknown)[] = [
+      () => undefined,
+      () => null,
+      () => true,
+      () => 0,
+      () => -0,
+      () => Number.NaN,
+      () => Number.POSITIVE_INFINITY,
+      () => 1e308,
+      () => 3.14159,
+      () => -4,
+      () => 10n,
+      () => Symbol('s'),
+      () => () => 1,
+      () => '',
+      () => 'spelare',
+      () => 'kon',
+      () => 'koer',
+      () => 'a\u202Eb',
+      () => 'x'.repeat(next(3) === 0 ? 10_000 : 30),
+      () => ({ toString: 1 }),
+      () => ({ valueOf: 1, toString: 1 }),
+      () => Object.create(null),
+      () => revoked.proxy,
+      () =>
+        new Proxy(
+          {},
+          {
+            get() {
+              throw new Error('get');
+            },
+            has() {
+              throw new Error('has');
+            },
+            ownKeys() {
+              throw new Error('ownKeys');
+            },
+          },
+        ),
+      () => ({
+        get x() {
+          throw new Error('getter');
+        },
+      }),
+    ];
+    const keys = [
+      'version',
+      'omrade',
+      'objekt',
+      'rorelser',
+      'skalning',
+      'beskrivning',
+      'typ',
+      'x',
+      'y',
+      'id',
+      'lag',
+      'etikett',
+      'strategi',
+      'koer',
+      'platser',
+      'vid',
+      'fran',
+      'till',
+      '__proto__',
+      'constructor',
+    ];
+    const randomValue = (depth: number): unknown => {
+      const kind = next(depth > 3 ? 1 : 4);
+      if (kind === 1) {
+        return Array.from({ length: next(4) }, () => randomValue(depth + 1));
+      }
+      if (kind === 2) {
+        const value: Record<string, unknown> = {};
+        for (let i = next(4); i > 0; i -= 1) {
+          value[keys[next(keys.length)] ?? 'x'] = randomValue(depth + 1);
+        }
+        return value;
+      }
+      return leaves[next(leaves.length)]?.();
+    };
+    /** Byter ut ett slumpat fält på slumpat djup i en giltig skiss. */
+    const mutate = (): unknown => {
+      const base = structuredClone(ADR_EXAMPLE) as Record<string, unknown>;
+      let target: Record<string, unknown> = base;
+      for (let depth = next(4); depth > 0; depth -= 1) {
+        const children = Object.values(target).filter(
+          (child): child is Record<string, unknown> => typeof child === 'object' && child !== null,
+        );
+        const child = children[next(Math.max(children.length, 1))];
+        if (child === undefined) {
+          break;
+        }
+        target = child;
+      }
+      const fields = Object.keys(target);
+      const field =
+        next(3) === 0 ? (keys[next(keys.length)] ?? 'x') : (fields[next(fields.length)] ?? 'x');
+      target[field] = randomValue(0);
+      return base;
+    };
+
+    const statuses = new Set<string>();
+    for (let round = 0; round < 3000; round += 1) {
+      const input = round % 3 === 0 ? randomValue(0) : mutate();
+      let result: ReturnType<typeof readPlanskiss> | undefined;
+      expect(() => {
+        result = readPlanskiss(input);
+      }).not.toThrow();
+      expect(['saknas', 'ogiltig', 'giltig']).toContain(result?.status);
+      statuses.add(result?.status ?? '');
+      if (result?.status === 'ogiltig') {
+        for (const issue of result.issues) {
+          expect(typeof issue.path).toBe('string');
+          expect(issue.message.length).toBeLessThan(1000);
+        }
+      }
+    }
+    // Slingan ska ha nått alla tre utfallen, annars prövar den för lite.
+    expect([...statuses].sort()).toEqual(['giltig', 'ogiltig', 'saknas']);
+  });
 });
 
 describe('planskissTexts', () => {
@@ -954,5 +1156,71 @@ describe('planskissTexts', () => {
       { path: ['rorelser', 0, 'etikett'], text: 'Djupled' },
       { path: ['skalning', 'koer', 0, 'etikett'], text: 'Vilande, byter in' },
     ]);
+  });
+});
+
+describe('ändringarna efter säkerhetsgranskningen och ADR 0018', () => {
+  const player = (etikett: string) =>
+    withObjects({ typ: 'spelare', x: 1, y: 1, lag: 'a', etikett });
+  const leader = (etikett: string) => withObjects({ typ: 'ledare', x: 1, y: 1, etikett });
+  const zone = (etikett: string) =>
+    withObjects({ typ: 'zon', x: 0, y: 0, langd: 5, bredd: 5, monster: 'tom', etikett });
+
+  it('godkänner versaler och siffror som kort etikett (ADR 0018, beslut 2)', () => {
+    for (const good of ['', 'A', 'F', 'MV', 'L', '1', '12', 'Ö', 'ALI']) {
+      expect(isValid(player(good))).toBe(true);
+      expect(isValid(leader(good))).toBe(true);
+    }
+  });
+
+  it('underkänner gemener, mellanslag och skiljetecken i en kort etikett (ADR 0018, beslut 2)', () => {
+    for (const bad of ['Ali', 'a', 'mv', 'A 1', 'A.', 'A-1', 'A,B']) {
+      expect(failsOn(player(bad), 'objekt.0.etikett', 'versaler och siffror')).toBe(true);
+      expect(failsOn(leader(bad), 'objekt.0.etikett', 'versaler och siffror')).toBe(true);
+    }
+    expect(SHORT_LABEL_PATTERN.test('Ali')).toBe(false);
+  });
+
+  it('godkänner komma i en lång etikett och ingen fast etikett för udda antal (beslut 1 och 4)', () => {
+    expect(isValid(zone('Rullar in bollar, byter'))).toBe(true);
+    const koer = [{ vid: 'sp-1', riktning: 90, etikett: 'Nästa målvakt' }];
+    expect(isValid(sketch({ skalning: { strategi: 'koer', koer } }))).toBe(true);
+  });
+
+  it('normaliserar etiketter till NFC innan mönstret prövas (F6)', () => {
+    const decomposed = 'Pa\u0301se'; // "Páse" med kombinerande accent
+    const result = readPlanskiss(zone(decomposed));
+    expect(result.status).toBe('giltig');
+    const item = result.status === 'giltig' ? result.skiss.objekt[0] : undefined;
+    expect(item !== undefined && 'etikett' in item && item.etikett).toBe('Páse');
+    expect(isValid(player('E\u0301'))).toBe(true);
+  });
+
+  it('underkänner styrtecken och bidi-tecken i beskrivning (F6)', () => {
+    for (const bad of [
+      'rad ett\nrad två',
+      'a\tb',
+      'a\u0000b',
+      'a\u007fb',
+      'a\u202Ab',
+      'a\u202Eb',
+      'a\u2066b',
+      'a\u2069b',
+    ]) {
+      expect(failsOn(sketch({ beskrivning: bad }), 'beskrivning', 'styrtecken')).toBe(true);
+    }
+    expect(isValid(sketch({ beskrivning: 'En kvadrat 15 x 15 m, två lag – A och B.' }))).toBe(true);
+    expect(FORBIDDEN_TEXT_CHARACTERS.test('vanlig text')).toBe(false);
+  });
+
+  it('godkänner lag neutral på en plats, för jokrar', () => {
+    const skalning = { strategi: 'platser', platser: [{ x: 5, y: 5, lag: 'neutral' }] };
+    expect(isValid(sketch({ skalning }))).toBe(true);
+  });
+
+  it('Planskissdata går inte att skapa utan schemat (F8)', () => {
+    // @ts-expect-error: ett vanligt objekt saknar märket och är ingen Planskissdata.
+    const fake: Planskissdata = { version: 1, omrade: { langd: 20, bredd: 10 }, objekt: [] };
+    expect(readPlanskiss(fake).status).toBe('ogiltig');
   });
 });

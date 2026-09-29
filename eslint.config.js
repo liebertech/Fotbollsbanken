@@ -67,8 +67,46 @@ const FORBIDDEN_RANDOMNESS = [
   },
 ];
 
-/** SVG-element som ritmotorn aldrig får skapa (ADR 0012, avsnitt 6, S-07). */
-const FORBIDDEN_SVG_ELEMENTS = ['foreignObject', 'image', 'use', 'script', 'style', 'a', 'animate'];
+/**
+ * De enda element som ritmotorn får skapa: den slutna listan i ADR 0012 avsnitt 6 (S-07).
+ * Regeln är en vitlista, så ett element som inte står här underkänns även om ingen har tänkt
+ * på det (säkerhetsgranskningen av schemat, F9).
+ */
+const ALLOWED_SVG_ELEMENTS = [
+  'svg',
+  'title',
+  'desc',
+  'defs',
+  'pattern',
+  'g',
+  'rect',
+  'circle',
+  'polygon',
+  'line',
+  'path',
+  'text',
+  'tspan',
+];
+
+/** Attribut som kan ladda en resurs, köra kod eller bära data som CSS (F9, RK-2, RK-5). */
+const FORBIDDEN_SVG_ATTRIBUTES = ['href', 'xlinkHref', 'style', 'dangerouslySetInnerHTML'];
+
+/**
+ * `as Planskissdata` gör ett ovaliderat värde till validerad skissdata och går förbi
+ * `readPlanskiss` (F8, RK-1). Typen får man bara ur schemat.
+ */
+const FORBIDDEN_PLANSKISSDATA_CAST = [
+  {
+    selector: "TSAsExpression > TSTypeReference[typeName.name='Planskissdata']",
+    message:
+      'Skissdata blir Planskissdata bara genom readPlanskiss eller planskissSchema, aldrig med as (F8, ADR 0012 avsnitt 6).',
+  },
+  {
+    selector: "TSTypeAssertion > TSTypeReference[typeName.name='Planskissdata']",
+    message:
+      'Skissdata blir Planskissdata bara genom readPlanskiss eller planskissSchema, aldrig med en typomvandling (F8, ADR 0012 avsnitt 6).',
+  },
+];
 
 export default tseslint.config(
   { ignores: ['dist/**', 'node_modules/**', 'coverage/**'] },
@@ -98,6 +136,7 @@ export default tseslint.config(
           selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
           message: 'dangerouslySetInnerHTML är förbjudet i hela projektet (S-07, ADR 0001).',
         },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -135,6 +174,7 @@ export default tseslint.config(
           selector: "MemberExpression[property.name='localeCompare']",
           message: 'localeCompare sorterar olika i olika miljöer. Jämför med < på id (ADR 0011).',
         },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
     },
   },
@@ -155,13 +195,46 @@ export default tseslint.config(
       'no-restricted-syntax': [
         'error',
         {
-          selector: `JSXOpeningElement[name.name=/^(${FORBIDDEN_SVG_ELEMENTS.join('|')})$/]`,
-          message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07). Förbjudna: ${FORBIDDEN_SVG_ELEMENTS.join(', ')}.`,
+          // Små bokstäver är element i DOM:en. Komponenter (stor bokstav) prövas där de skrivs.
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=/^(${ALLOWED_SVG_ELEMENTS.join('|')})$/])`,
+          message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07, F9): ${ALLOWED_SVG_ELEMENTS.join(', ')}.`,
         },
         {
-          selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
-          message: 'dangerouslySetInnerHTML är förbjudet (S-07, ADR 0012).',
+          selector: 'JSXOpeningElement[name.type=/^JSX(NamespacedName|MemberExpression)$/]',
+          message:
+            'Ritmotorn får bara skapa elementen i ADR 0012 avsnitt 6, inte element med namnrymd eller via ett objekt (S-07, F9).',
         },
+        {
+          selector: `JSXAttribute[name.name=/^(${FORBIDDEN_SVG_ATTRIBUTES.join('|')})$/]`,
+          message: `Attributen ${FORBIDDEN_SVG_ATTRIBUTES.join(', ')} är förbjudna i ritmotorn (S-07, S-17, F9, RK-5).`,
+        },
+        {
+          selector: 'JSXAttribute[name.name=/^on/]',
+          message:
+            'Händelseattribut (on…) är förbjudna i ritmotorn. Skissen är en ren bild (S-07, F9).',
+        },
+        {
+          selector: 'JSXAttribute[name.type="JSXNamespacedName"]',
+          message:
+            'Attribut med namnrymd, till exempel xlink:href, är förbjudna i ritmotorn (S-07, F9).',
+        },
+        {
+          selector: 'JSXSpreadAttribute',
+          message:
+            'Spridda attribut ({...props}) går förbi attributkontrollen. Skriv ut varje attribut (S-07, F9).',
+        },
+        {
+          selector:
+            'CallExpression[callee.property.name=/^(createElement|createElementNS|cloneElement)$/]',
+          message:
+            'createElement och cloneElement kan skapa godtyckliga element och går förbi vitlistan. Skriv JSX (S-07, F9).',
+        },
+        {
+          selector: 'CallExpression[callee.name=/^(createElement|createElementNS|cloneElement)$/]',
+          message:
+            'createElement och cloneElement kan skapa godtyckliga element och går förbi vitlistan. Skriv JSX (S-07, F9).',
+        },
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
     },
   },
