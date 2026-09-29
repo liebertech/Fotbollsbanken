@@ -64,6 +64,34 @@ anpassning:
   udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare efter varje omgång.
   ledare: Utan extra ledare håller gruppen själv koll på tiden och byter roller i tur och ordning. Med
     en ledare kan hen hålla tiden och servar nya bollar.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 15
+  beskrivning: >-
+    Yta 20 x 15 meter med ett litet mål utan målvakt på högra kortsidan. Två
+    anfallare möter en försvarare i överläge. Vinner försvararen bollen ska
+    anfallarna pressa tillbaka direkt. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 15, stil: streckad }
+    - { id: mal-1, typ: mal, x: 20, y: 7.5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 4, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 3, y: 11, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 11, y: 7.5, lag: b, etikett: F }
+    - { typ: boll, x: 3.8, y: 4 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 15, y: 5 }
+      via: [{ x: 9, y: 3 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 15, y: 10 }, ordning: 2 }
+    - { typ: skott, fran: { x: 15, y: 5 }, till: { objekt: mal-1 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: f1, riktning: 270, avstand: 1.5, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanlig omställningsträning i överläge.
 status: godkand
 granskning:
