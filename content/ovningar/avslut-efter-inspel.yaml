@@ -60,6 +60,37 @@ anpassning:
   udda_antal: Ingen åtgärd behövs. Gruppen fungerar med fem, sex eller sju spelare, rotationen blir
     bara en position längre.
   ledare: Med en ledare vid varje mål kan hon eller han ge snabb feedback på varje avslut.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 12
+  beskrivning: >-
+    Yta 18 x 12 meter med ett mål och en målvakt på högra kortsidan. Avslutaren
+    (AV) startar centralt och möter bollen, passaren (P) spelar in den från
+    sidlinjen. Kön (K) står vid sidan, bortanför skottlinjen. Rollerna roterar
+    en position efter varje försök.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { id: mal-1, typ: mal, x: 18, y: 6, storlek: 7mot7, riktning: vanster }
+    - { typ: spelare, x: 16.5, y: 6, lag: neutral, malvakt: true, etikett: MV }
+    - { id: sp-av, typ: spelare, x: 8, y: 6, lag: a, etikett: AV }
+    - { id: sp-p, typ: spelare, x: 8, y: 1, lag: a, etikett: P }
+    - { id: sp-k1, typ: spelare, x: 3, y: 10, lag: a, etikett: K }
+    - { id: sp-k2, typ: spelare, x: 1.5, y: 10, lag: a, etikett: K }
+    - { typ: boll, x: 8.3, y: 1 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-p }, till: { objekt: sp-av }, ordning: 1 }
+    - { typ: skott, fran: { objekt: sp-av }, till: { objekt: mal-1 }, ordning: 2 }
+    - typ: lopning
+      fran: { objekt: sp-av }
+      till: { objekt: sp-p }
+      ordning: 3
+      etikett: Roterar en position
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-k2, riktning: 180, avstand: 1.5, etikett: Kö }
 kalla: Egen övning, inspirerad av vanliga avslutsstationer med rotation.
 status: godkand
 granskning:
