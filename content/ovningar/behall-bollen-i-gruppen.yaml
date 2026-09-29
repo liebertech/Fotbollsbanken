@@ -53,6 +53,32 @@ anpassning:
   fler_spelare: Bygg en till yta bredvid med samma mått och en egen joker.
   udda_antal: Jokern spelar alltid med laget som har bollen, så udda antal löser sig automatiskt.
   ledare: Övningen är självgående när lagen och poängregeln är satta.
+planskiss:
+  version: 1
+  omrade:
+    langd: 14
+    bredd: 12
+  beskrivning: >-
+    Ruta 14 x 12 meter. Två lag om två spelare står i varsitt hörn, växelvis. Laget med boll
+    passar för att hålla den, det andra laget pressar. Fler spelare fyller på: först en joker
+    i mitten, sedan en spelare i vardera laget.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 14, bredd: 12, stil: streckad }
+    - { id: a1, typ: spelare, x: 2, y: 2, lag: a, etikett: "A1" }
+    - { id: b1, typ: spelare, x: 12, y: 2, lag: b, etikett: "B1" }
+    - { id: a2, typ: spelare, x: 12, y: 10, lag: a, etikett: "A2" }
+    - { id: b2, typ: spelare, x: 2, y: 10, lag: b, etikett: "B2" }
+    - { typ: boll, x: 2.3, y: 2 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 7, y: 6 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 6, y: 4 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 7, y: 6, lag: neutral }
+      - { x: 7, y: 2, lag: a }
+      - { x: 7, y: 10, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända rondoövningar med joker.
 status: godkand
 granskning:
