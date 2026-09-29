@@ -367,7 +367,7 @@ beskrivning: |
   följer efter sin egen passning, så att det alltid står någon kvar i
   hörnet som passar.
 organisation: |
-  En kvadrat per grupp om fyra. En boll per grupp. Byt riktning efter halva tiden.
+  En kvadrat per grupp om fem till nio spelare. En boll per grupp. Byt riktning efter halva tiden.
 fokusomraden:
   - passning-mottagning
   - spelbarhet
