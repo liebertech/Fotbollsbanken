@@ -67,6 +67,43 @@ anpassning:
   fler_spelare: Gör planen större, upp mot 55 x 35 meter, och spela med fler spelare i varje lag.
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående. Ledaren dömer, påminner om retreatlinjen och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 50
+    bredd: 30
+  beskrivning: >-
+    Yta 50 x 30 meter med ett mål och en målvakt på varje kortsida. Fyra mot fyra
+    ute vid tio spelare, spridda över hela planen. Retreatlinjen är markerad sju
+    meter från mittlinjen på båda planhalvor. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 50, bredd: 30, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 7mot7, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 50, y: 15, storlek: 7mot7, riktning: vanster }
+    - { typ: markering, form: linje, x: 18, y: 0, till: { x: 18, y: 30 } }
+    - { typ: markering, form: linje, x: 32, y: 0, till: { x: 32, y: 30 } }
+    - { typ: spelare, x: 2, y: 15, lag: a, malvakt: true, etikett: MV }
+    - { typ: spelare, x: 48, y: 15, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 10, y: 6, lag: a }
+    - { id: a2, typ: spelare, x: 10, y: 24, lag: a }
+    - { id: a3, typ: spelare, x: 18, y: 10, lag: a }
+    - { id: a4, typ: spelare, x: 18, y: 20, lag: a }
+    - { id: b1, typ: spelare, x: 40, y: 6, lag: b }
+    - { id: b2, typ: spelare, x: 40, y: 24, lag: b }
+    - { id: b3, typ: spelare, x: 32, y: 10, lag: b }
+    - { id: b4, typ: spelare, x: 32, y: 20, lag: b }
+    - { typ: boll, x: 10.8, y: 6 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a4 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 14, y: 12 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 14, y: 15, lag: a }
+      - { x: 36, y: 15, lag: b }
+      - { x: 6, y: 15, lag: a }
+      - { x: 44, y: 15, lag: b }
 kalla: Egen övning, inspirerad av vanligt matchspel i 7 mot 7-format.
 status: godkand
 granskning:
