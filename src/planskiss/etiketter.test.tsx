@@ -304,7 +304,12 @@ const bankSketches: BankSketch[] = Object.values(bankFiles).flatMap((raw) => {
 });
 
 describe('bankens skisser', () => {
-  it.runIf(bankSketches.length > 0).each(bankSketches.map((item) => [item.id, item] as const))(
+  // Utan skisser i banken finns inget att pröva. Testet står då som överhoppat.
+  it.skipIf(bankSketches.length > 0)('banken har inga skisser på den här grenen', () => {
+    expect(bankSketches).toEqual([]);
+  });
+
+  it.each(bankSketches.map((item) => [item.id, item] as const))(
     '%s: ingen etikett krockar i någon spelform eller gruppstorlek',
     (_id, item) => {
       const found: string[] = [];
