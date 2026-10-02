@@ -64,6 +64,34 @@ anpassning:
   fler_spelare: Bygg en andra yta med samma uppställning bredvid.
   udda_antal: En spelare vilar och byter in med den som var mest aktiv i pressen.
   ledare: Utan extra ledare får den ordinarie ledaren också hålla koll på tiden för rollbyte.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 20
+  beskrivning: >-
+    Yta 30 x 20 meter med ett mål och en målvakt på vänstra kortsidan. Uppspelslaget,
+    målvakt plus tre utespelare, spelar ut mot tre pressande spelare och ska ta sig
+    till motsatt kortlinje. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 20, stil: streckad }
+    - { id: mal-1, typ: mal, x: 0, y: 10, storlek: 7mot7, riktning: hoger }
+    - { id: mv, typ: spelare, x: 2, y: 10, lag: a, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 8, y: 4, lag: a }
+    - { id: a2, typ: spelare, x: 8, y: 16, lag: a }
+    - { id: a3, typ: spelare, x: 14, y: 10, lag: a }
+    - { id: b1, typ: spelare, x: 18, y: 6, lag: b }
+    - { id: b2, typ: spelare, x: 18, y: 14, lag: b }
+    - { id: b3, typ: spelare, x: 22, y: 10, lag: b }
+    - { typ: boll, x: 2.8, y: 10 }
+  rorelser:
+    - { typ: passning, fran: { objekt: mv }, till: { objekt: a3 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a1 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 13, y: 8 }, ordning: 1 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: b3, riktning: 90, avstand: 1.5, etikett: "Vilande, byter in" }
 kalla: Egen övning, inspirerad av speluppbyggnad som utnyttjar retreatlinjen i 7 mot 7.
 status: godkand
 granskning:

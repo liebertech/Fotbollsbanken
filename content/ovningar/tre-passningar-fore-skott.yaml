@@ -65,6 +65,37 @@ anpassning:
   udda_antal: Ett lag får en spelare mer, eller en joker spelar alltid med laget som har bollen.
   ledare: Övningen sköter sig själv när lagen har förstått regeln. En ledare kan gå mellan planerna
     och påminna om att räkna passningarna högt.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 20
+  beskrivning: >-
+    Yta 30 x 20 meter med ett minimål i var ände. Tre mot tre. Laget med boll måste
+    göra minst tre passningar innan det får skjuta mot mål. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 20, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 30, y: 10, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 8, y: 5, lag: a }
+    - { id: a2, typ: spelare, x: 8, y: 15, lag: a }
+    - { id: a3, typ: spelare, x: 14, y: 10, lag: a }
+    - { id: b1, typ: spelare, x: 22, y: 5, lag: b }
+    - { id: b2, typ: spelare, x: 22, y: 15, lag: b }
+    - { id: b3, typ: spelare, x: 16, y: 10, lag: b }
+    - { typ: boll, x: 8.8, y: 5 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a2 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a2 }, till: { objekt: a1 }, ordning: 3 }
+    - { typ: skott, fran: { objekt: a1 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 11, y: 2, lag: a }
+      - { x: 19, y: 2, lag: b }
+      - { x: 11, y: 18, lag: a }
+      - { x: 19, y: 18, lag: b }
 kalla: Egen övning, inspirerad av vanliga possessionsövningar med krav på antal passningar före avslut.
 status: godkand
 granskning:

@@ -64,6 +64,34 @@ anpassning:
   udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare nästa omgång.
   ledare: Övningen sköter sig själv när gruppen har förstått rollerna. En ledare kan gå mellan ytorna
     och ge tips.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med ett litet mål utan målvakt på högra kortsidan. Två
+    anfallare möter en försvarare och samarbetar med passningar eller dribbling för
+    att skapa ett fritt avslutsläge. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { id: mal-1, typ: mal, x: 15, y: 5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 3, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 3, y: 7, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 9, y: 5, lag: b, etikett: F }
+    - { typ: boll, x: 3.8, y: 3 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - typ: dribbling
+      fran: { objekt: a2 }
+      till: { x: 12, y: 3 }
+      via: [{ x: 8, y: 2 }]
+      ordning: 2
+    - { typ: skott, fran: { x: 12, y: 3 }, till: { objekt: mal-1 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: f1, riktning: 90, avstand: 1.5, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanliga överlägesövningar mot mål.
 status: godkand
 granskning:
