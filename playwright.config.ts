@@ -27,6 +27,9 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['list']],
+  // Rapporten kan laddas upp som artefakt i ett publikt repo. Ta inte med git-metadata, och
+  // slå inte på trace eller video utan en ny säkerhetsgranskning (N4).
+  captureGitInfo: { commit: false, diff: false },
 
   webServer: [
     {

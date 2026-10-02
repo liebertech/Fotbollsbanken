@@ -102,3 +102,26 @@ Ett övnings-id på 64 tecken som står på två stationer kortas till samma `in
 - RK-8 och RK-9 prövas i inkrement 6 och 4.
 - Ritmotorn är inte prövad i en riktig webbläsare.
 - Namn på spelare går fortfarande inte att upptäcka tekniskt.
+
+## Uppföljning 2026-10-02
+
+Säkerhetsagenten prövade fynden igen på `feature/ritmotor` (10f76c0).
+
+| Fynd | Utfall |
+|---|---|
+| R1 | Åtgärdat. Taken gäller vid ritning, och en dribbling på 1e7 m ger högst 400 punkter. |
+| R2 | Åtgärdat. Alla dribblingar i en skiss delar på 2 400 vågpunkter, och värsta fallet ger under 50 000 tecken. |
+| R3 | Åtgärdat för de ursprungliga nyttolasterna. Kvarvarande luckor står i N3. |
+| R4 | Delvis. Mönstret med versal och vitlistan för attribut fungerar. `id={label}` och `fill={…label…}` går fortfarande igenom lintningen och fångas bara av körtestet. |
+| R5 | Åtgärdat. Fuzz-testet har en tidsgräns på 30 s. |
+| R6 | Åtgärdat. `instanceId` får en FNV-1a-hash. |
+
+Etikettlagret (`src/planskiss/etiketter.ts`) uppfyller RK-2. Text står bara som barn till `<text>`.
+
+**Nya fynd:**
+- **N1 · Medel:** CI föll på `npm audit` (brace-expansion). Åtgärdat i main (#23) och inmergat.
+- **N2 · Låg:** vitlistan för element kan kringgås med en importerad sträng (`import { tagName as Tag }`), och `id` och `fill` prövas inte på värde. **Kvarstår.**
+- **N3 · Låg:** i `src/app/` går `document.write`, `Reflect.set(el, 'innerHTML', …)`, `innerHTML` i en objektlitteral, `srcDoc`, `href` med ett uttryck och en dynamisk import av ritmotorn igenom lintningen. **Kvarstår.** Ska prövas särskilt mot RK-8 när utskriften byggs i inkrement 6.
+- **N4 · Låg:** e2e-rapporten i ett publikt repo innehöll git-metadata. Åtgärdat: `captureGitInfo` är avstängt, och e2e-jobbet har fått `timeout-minutes` och egna uttryckliga behörigheter.
+
+Övrigt: `retries: 1` i e2e i CI kan dölja ostabila tester. `e2e` är ännu inte en obligatorisk kontroll i grenskyddet.

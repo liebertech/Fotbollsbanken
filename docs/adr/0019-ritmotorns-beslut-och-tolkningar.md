@@ -63,7 +63,7 @@ Dessutom får **bara `src/app/planskiss/Planskissvy.tsx` importera `Planskiss`**
 
 När gruppen i passet är större än övningens `spelare.max`, vilket generatorn tillåter för övningar med en lösning för udda antal (R-050), ritar ritmotorn fler spelare än `spelare.max`. Den extra spelaren visas i en kö med en etikett som återger övningens lösning, så som ADR 0018 punkt 4 beskriver, och ritas inte bort.
 
-Planskissutvecklaren bygger det just nu på grenen `fix/ritmotor-ux`. Detaljerna, till exempel var kön och etiketten placeras och hur gruppstorleken förs fram till skissen, beskrivs där. Om skissformatet ändras av det arbetet dokumenteras ändringen på den grenen, och en ändring av formatet kräver då en egen ADR.
+Det är byggt: ritmotorn ritar för gruppens verkliga storlek (`max(layout.sizes)`), också när den är större än `spelare.max`. Skissformatet behövde inte ändras. Konventionen för par vid udda antal står i `content/ovningar/README.md`. Att generatorn faktiskt skapar en trio kräver regel R-058, som användaren beslutade samma dag.
 
 **Skäl.** Ledaren ska se var varje spelare i gruppen hör hemma. En skiss som ritar fyra spelare för en grupp på fem lämnar ledaren utan svar på var den femte ska stå, och det är just det fallet som lösningen för udda antal finns till för. Etiketten gör att kön inte läses som ytterligare en vanlig spelare i formen.
 
@@ -103,5 +103,5 @@ Planskissutvecklaren bygger det just nu på grenen `fix/ritmotor-ux`. Detaljerna
 - **ADR 0012 och koden skiljer sig åt om var förklaringen och platshållarna ligger.** Den som läser bara ADR 0012 hittar dem inte i `src/planskiss/`. ADR 0012 får därför statusen `delvis ersatt av 0018, 0019`.
 - **Lintskyddet i `src/app/**` gör vissa vanliga mönster förbjudna,** till exempel `ref` och `style` med ett uttryck. Behöver appen något av dem senare, till exempel `ref` för fokus i planläget, måste det tas upp med säkerhetsagenten och undantaget avgränsas till en fil.
 - **Målen följer spelformen även när författaren menat ett fast mått.** Övningsförfattaren måste välja `smamal` eller `eget` för ett mål som inte ska ändras. `content/ovningar/README.md` bör säga det (övningsförfattaren).
-- **Punkt 3 är inte färdigbyggd.** Den beror på arbetet på `fix/ritmotor-ux`, och den grenen kan behöva en egen ADR om den ändrar skissformatet.
+- **Punkt 3 syns först i ett pass när R-058 är byggd i generatorn.** Ritmotorn och formatet klarar trion redan.
 - **Den största gruppen avgör bilden för alla grupper.** I ett pass med grupper på fyra och fem visar skissen fem, och ledaren får själv se att en grupp saknar den extra spelaren.
