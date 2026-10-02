@@ -12,7 +12,7 @@ import { partCanBeFilled } from './output/explain.ts';
 import { planTime } from './time/plan.ts';
 import { PART_TOLERANCE, SESSION_SHORTFALL } from './keys.ts';
 import { bankExercise, gameExercise } from './__testdata__/bank-fixtur.ts';
-import type { Exercise, Input, Session } from './types.ts';
+import type { Exercise, Input, Layout, Row, Session } from './types.ts';
 import type { BankExercise } from './origin.ts';
 
 const underlag: Input = {
@@ -529,6 +529,62 @@ describe('R-058 Grupper med fast grundstorlek i det färdiga passet', () => {
     expect(checkSession(tampered)).toContain(
       'R-058: grupperna i ova-tre följer inte grundstorleken 3',
     );
+  });
+
+  it('R-058 gäller inte för en stationsgrupp, som i stället följer R-063', () => {
+    // QA-tillägg: utan skyddet `row.kind !== 'station'` i check/session.ts hade kontrollen
+    // fällt en giltig stationsindelning, eftersom en station delar spelarna enligt R-063
+    // (en grupp per station) i stället för R-058:s formel (k = ⌊N / s⌋ grupper av s eller
+    // s + 1). Den riktiga bankens fuzztest (scripts/regelmotor-mot-banken.test.ts) råkar
+    // aldrig pröva en stationsgrupp där formlerna skiljer sig åt, så bygger den här raden
+    // för hand efter samma mönster som build.ts gör för ett stationsmoment.
+    const value = session({ ...underlag, spelare: 6, passlangd: 90 }, bankWith(pair));
+    const row = ovningRow(value)!;
+    // 6 spelare i 2 stationer ger 3 och 3 (R-063: skiljer sig med högst en spelare, och
+    // båda är inom övningens största grupp s + 1 = 3). R-058:s formel för ett
+    // helgruppsmoment hade i stället gett 3 grupper om 2 (k = ⌊6 / 2⌋ = 3, r = 0), så
+    // `layout.groups` (2) skiljer sig medvetet från formelns k (3).
+    const stationMinutes = 8; // övningens kortaste tid (tid.kortast)
+    const stationCount = 2;
+    const stationLayout: Layout = {
+      groups: stationCount,
+      sizes: [3, 3],
+      coachesPerGroup: row.layout!.coachesPerGroup,
+      coachesNeeded: row.layout!.coachesNeeded,
+      oddSolution: 'trio',
+      oddText: row.layout!.oddText,
+    };
+    const stationsParent: Row = {
+      kind: 'stations',
+      part: row.part,
+      block: row.block,
+      station: null,
+      stationMinutes,
+      // R-065: S × stationstiden + (S − 1) minuter för byten.
+      minutes: stationCount * stationMinutes + (stationCount - 1),
+      exercise: null,
+      layout: stationLayout,
+    };
+    // R-061: ett stationsmoment har minst två stationer, en rad per station.
+    const stationChildren: Row[] = [1, 2].map((station) => ({
+      kind: 'station',
+      part: row.part,
+      block: row.block,
+      station,
+      stationMinutes,
+      minutes: 0,
+      exercise: row.exercise,
+      layout: stationLayout,
+    }));
+    const tampered: Session = {
+      ...value,
+      // R-036: passets totaltid följer med ändringen av det här momentets tid.
+      totalMinutes: value.totalMinutes - row.minutes + stationsParent.minutes,
+      rows: value.rows.flatMap((item) =>
+        item === row ? [stationsParent, ...stationChildren] : [item],
+      ),
+    };
+    expect(checkSession(tampered)).toEqual([]);
   });
 });
 
