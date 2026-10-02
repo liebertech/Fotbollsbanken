@@ -22,9 +22,10 @@
   height: auto;
 }
 
+/* Golvet för text är 14 px (designsystem.md avsnitt 3, fynd D). */
 .caption {
   color: var(--color-text-muted);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 /* Platshållaren: tydligt inramad, i skissens storlek, aldrig en tom lucka (avsnitt 7). */
@@ -43,7 +44,7 @@
 .placeholder.miniatyr {
   width: 96px;
   min-height: 72px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .placeholder.normal,
