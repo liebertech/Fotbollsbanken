@@ -91,7 +91,7 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: f1, riktning: 90, avstand: 1.5, etikett: "Rullar in, byter in" }
+      - { vid: a2, riktning: 90, avstand: 4, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanliga överlägesövningar mot mål.
 status: godkand
 granskning:
