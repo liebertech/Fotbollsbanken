@@ -83,14 +83,14 @@ planskiss:
   rorelser:
     - typ: dribbling
       fran: { objekt: sp-a1 }
-      till: { x: 14, y: 5 }
-      via: [{ x: 10, y: 5 }]
+      till: { x: 15, y: 2.5 }
+      via: [{ x: 10, y: 1.5 }]
       ordning: 1
-    - { typ: skott, fran: { x: 14, y: 5 }, till: { objekt: mal-b }, ordning: 2 }
+    - { typ: skott, fran: { x: 15, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
     - typ: lopning
       fran: { objekt: sp-b1 }
       till: { x: 10, y: 6 }
-      ordning: 3
+      ordning: 1
       etikett: Pressar i zonen
   skalning:
     strategi: platser
