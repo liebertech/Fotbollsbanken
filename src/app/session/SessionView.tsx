@@ -129,6 +129,7 @@ function Part({
                   item.period === null ? undefined : fill(texts.period, { number: item.period })
                 }
                 showAreaHelp={item.key === areaHelpKey}
+                placeKey={item.key}
               />
             );
 
@@ -150,6 +151,7 @@ function Part({
                     format={format}
                     label={stationLabel(station.station)}
                     showAreaHelp={station.key === areaHelpKey}
+                    placeKey={station.key}
                   />
                 ))}
               </div>

@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
+import { ALLOWED_SVG_ATTRIBUTES, ALLOWED_SVG_ELEMENTS } from './src/planskiss/vitlista.ts';
 
 /**
  * Den virtuella bankmodulen får bara importeras av src/data/bank.ts (S-29, ADR 0015).
@@ -68,25 +69,18 @@ const FORBIDDEN_RANDOMNESS = [
 ];
 
 /**
- * De enda element som ritmotorn får skapa: den slutna listan i ADR 0012 avsnitt 6 (S-07).
- * Regeln är en vitlista, så ett element som inte står här underkänns även om ingen har tänkt
- * på det (säkerhetsgranskningen av schemat, F9).
+ * ALLOWED_SVG_ELEMENTS: de enda element som ritmotorn får skapa, den slutna listan i ADR 0012
+ * avsnitt 6 (S-07). ALLOWED_SVG_ATTRIBUTES: de enda attribut som ritmotorn får sätta på ett
+ * element (R4). Båda är vitlistor, så det som inte står där underkänns även om ingen har tänkt
+ * på det (säkerhetsgranskningen av schemat, F9). Listorna står i src/planskiss/vitlista.ts,
+ * där körtestet i sakerhet.test.tsx prövar att de stämmer med det som får finnas i SVG:n.
  */
-const ALLOWED_SVG_ELEMENTS = [
-  'svg',
-  'title',
-  'desc',
-  'defs',
-  'pattern',
-  'g',
-  'rect',
-  'circle',
-  'polygon',
-  'line',
-  'path',
-  'text',
-  'tspan',
-];
+const ALLOWED_ATTRIBUTE_NAMES = Object.keys(ALLOWED_SVG_ATTRIBUTES);
+
+/** Ett reguljärt uttryck i esquery som bara matchar namnen i listan. Namnen är a–z, 0–9 och -. */
+function exactly(names) {
+  return `/^(${names.join('|')})$/`;
+}
 
 /** Attribut som kan ladda en resurs, köra kod eller bära data som CSS (F9, RK-2, RK-5). */
 const FORBIDDEN_SVG_ATTRIBUTES = ['href', 'xlinkHref', 'style', 'dangerouslySetInnerHTML'];
@@ -158,8 +152,91 @@ const FORBIDDEN_IMPORTS_IN_RENDERER = {
   ],
 };
 
-/** Namn i PascalCase, som React tolkar som en komponent när det står först i en JSX-tagg. */
-const PASCAL_CASE = '/^[A-Z][a-z]/';
+/**
+ * Ritmotorns `Planskiss` får bara användas av `Planskissvy.tsx`, som bara låter utfallet
+ * `giltig` av `readPlanskiss` nå den och lägger varje skiss i en felgräns (RK-1, R3).
+ */
+const PLANSKISS_ONLY_IN_VIEW = {
+  group: ['**/planskiss', '**/planskiss/index.ts', '**/planskiss/Planskiss.tsx'],
+  importNames: ['Planskiss'],
+  message:
+    'Planskiss används bara i src/app/planskiss/Planskissvy.tsx, som visar platshållarna och lägger skissen i en felgräns (RK-1, R3). Använd Planskissvy.',
+};
+
+/** Importer som skapar element eller DOM utan JSX och går förbi Reacts skydd (R3, RK-8). */
+const FORBIDDEN_DOM_IMPORTS_IN_APP = [
+  FORBIDDEN_BANK_MODULE,
+  {
+    name: 'react',
+    importNames: ['createElement', 'cloneElement', 'createFactory'],
+    message: 'Appen skapar element bara med JSX (S-07, R3).',
+  },
+  {
+    name: 'react/jsx-runtime',
+    message: 'jsx och jsxs skapar element utan JSX (S-07, R3).',
+  },
+  {
+    name: 'react/jsx-dev-runtime',
+    message: 'jsxDEV skapar element utan JSX (S-07, R3).',
+  },
+  {
+    name: 'react-dom',
+    importNames: ['createPortal'],
+    message: 'createPortal flyttar innehåll ut ur sin felgräns och sin plats i DOM:en (R3).',
+  },
+];
+
+/**
+ * Det som ger direkt åtkomst till DOM:en i appen (säkerhetsgranskningen av ritmotorn, R3).
+ * Samma förbud som i ritmotorn, så att skissens text inte kan nå innerHTML eller ett attribut
+ * via appen, till exempel i utskriften (RK-8).
+ */
+const FORBIDDEN_DOM_SYNTAX_IN_APP = [
+  {
+    selector: "JSXAttribute[name.name='ref']",
+    message:
+      'ref ger åtkomst till DOM-noden och därmed till innerHTML och setAttribute. Behövs det, ta upp det med säkerhetsagenten (R3).',
+  },
+  {
+    selector:
+      'MemberExpression[property.name=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
+    message:
+      'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i appen (S-07, R3).',
+  },
+  {
+    selector:
+      'MemberExpression[computed=true][property.value=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
+    message:
+      'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i appen (S-07, R3).',
+  },
+  {
+    selector:
+      'CallExpression[callee.property.name=/^(createElement|createElementNS|cloneElement|createPortal)$/]',
+    message:
+      'createElement, cloneElement och createPortal går förbi JSX och felgränsen. Skriv JSX (S-07, R3).',
+  },
+  {
+    selector:
+      'CallExpression[callee.name=/^(createElement|createElementNS|cloneElement|createPortal)$/]',
+    message:
+      'createElement, cloneElement och createPortal går förbi JSX och felgränsen. Skriv JSX (S-07, R3).',
+  },
+  {
+    selector: "NewExpression[callee.name='XMLSerializer']",
+    message: 'XMLSerializer gör DOM till markup utanför Reacts kontroll (R3, RK-8).',
+  },
+  {
+    selector: "JSXAttribute[name.name='style'][value.type='JSXExpressionContainer']",
+    message:
+      'style med ett uttryck kan bära data som CSS. Använd en klass i en CSS-modul (RK-5, R3).',
+  },
+];
+
+/**
+ * Namn som börjar med versal, som React tolkar som en komponent när det står först i en
+ * JSX-tagg. Också namn med bara versaler, som TAG (R4).
+ */
+const PASCAL_CASE = '/^[A-Z]/';
 const PASCAL_BINDING_MESSAGE =
   'Ett namn med versal kan användas som JSX-tagg och välja element under körning, förbi vitlistan. Ge variabeln ett namn med gemen, eller skriv en komponent som funktion (S-07, F9).';
 
@@ -251,8 +328,13 @@ export default tseslint.config(
         'error',
         {
           // Små bokstäver är element i DOM:en. Komponenter (stor bokstav) prövas där de skrivs.
-          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=/^(${ALLOWED_SVG_ELEMENTS.join('|')})$/])`,
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=${exactly(ALLOWED_SVG_ELEMENTS)}])`,
           message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07, F9): ${ALLOWED_SVG_ELEMENTS.join(', ')}.`,
+        },
+        {
+          // Vitlista för attributen på element (R4). Komponenter prövas där de skrivs.
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/] > JSXAttribute[name.type='JSXIdentifier']:not([name.name=${exactly(ALLOWED_ATTRIBUTE_NAMES)}])`,
+          message: `Ritmotorn får bara sätta attributen i vitlistan i src/planskiss/vitlista.ts (S-07, F9, R4): ${ALLOWED_ATTRIBUTE_NAMES.join(', ')}. Ett nytt attribut läggs till där och i ALLOWED_ATTRIBUTES i sakerhet.test.tsx.`,
         },
         {
           selector: 'JSXOpeningElement[name.type=/^JSX(NamespacedName|MemberExpression)$/]',
@@ -307,8 +389,11 @@ export default tseslint.config(
             'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i ritmotorn (S-07, F9).',
         },
         {
-          // const Tag = 'script' eller let Tag. En komponent skrivs som funktion.
-          selector: `VariableDeclarator[id.name=${PASCAL_CASE}]:not([init.type=/^(ArrowFunctionExpression|FunctionExpression)$/])`,
+          // const Tag = 'script', const TAG = 'script' eller let Tag (R4). En komponent skrivs
+          // som funktion. Undantagna är konstanter som inte kan vara en sträng: funktioner,
+          // objekt och listor, också med as const, new Set, Map, RegExp och Proxy, tal och reguljära uttryck i klartext, och konstanter som är
+          // typade som tal eller sanningsvärde.
+          selector: `VariableDeclarator[id.name=${PASCAL_CASE}]:not([init.type=/^(ArrowFunctionExpression|FunctionExpression|ObjectExpression|ArrayExpression)$/], [init.type=/^TS(As|Satisfies)Expression$/][init.expression.type=/^(ObjectExpression|ArrayExpression)$/], [init.type='NewExpression'][init.callee.name=/^(Set|Map|WeakMap|WeakSet|RegExp|Proxy)$/], [init.value=type(number)], [init.value=type(boolean)], [init.regex], [id.typeAnnotation.typeAnnotation.type=/^(TSNumberKeyword|TSBooleanKeyword)$/])`,
           message: PASCAL_BINDING_MESSAGE,
         },
         {
@@ -332,10 +417,46 @@ export default tseslint.config(
   },
 
   {
-    // Typad lint där skissdata tas emot och ritas (F8). no-unsafe-* hindrar att ett värde av
-    // typen any, till exempel ur JSON.parse eller en databasrad, blir Planskissdata utan
-    // readPlanskiss. Bara de här mapparna, så att resten av lintningen förblir snabb.
-    files: ['src/planskiss/**/*.{ts,tsx}', 'src/data/**/*.{ts,tsx}'],
+    // Appen visar skissen. Samma DOM-förbud som i ritmotorn, och Planskiss bara i
+    // Planskissvy.tsx (säkerhetsgranskningen av ritmotorn, R3).
+    files: ['src/app/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
+          message: 'dangerouslySetInnerHTML är förbjudet i hela projektet (S-07, ADR 0001).',
+        },
+        ...FORBIDDEN_DOM_SYNTAX_IN_APP,
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
+      ],
+      'no-restricted-globals': [
+        'error',
+        {
+          name: 'XMLSerializer',
+          message: 'XMLSerializer gör DOM till markup utanför Reacts kontroll (R3, RK-8).',
+        },
+      ],
+      'no-restricted-imports': [
+        'error',
+        { paths: FORBIDDEN_DOM_IMPORTS_IN_APP, patterns: [PLANSKISS_ONLY_IN_VIEW] },
+      ],
+    },
+  },
+
+  {
+    // Den enda filen i appen som får rita med Planskiss (RK-1, R3).
+    files: ['src/app/planskiss/Planskissvy.tsx'],
+    rules: {
+      'no-restricted-imports': ['error', { paths: FORBIDDEN_DOM_IMPORTS_IN_APP }],
+    },
+  },
+
+  {
+    // Typad lint där skissdata tas emot, visas och ritas (F8, R3). no-unsafe-* hindrar att ett
+    // värde av typen any, till exempel ur JSON.parse eller en databasrad, blir Planskissdata
+    // utan readPlanskiss. Bara de här mapparna, så att resten av lintningen förblir snabb.
+    files: ['src/planskiss/**/*.{ts,tsx}', 'src/data/**/*.{ts,tsx}', 'src/app/**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
     },
@@ -343,6 +464,8 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'error',
       '@typescript-eslint/no-unsafe-argument': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
     },
   },
 
