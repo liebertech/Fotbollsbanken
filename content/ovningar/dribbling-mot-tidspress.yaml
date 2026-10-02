@@ -83,12 +83,12 @@ planskiss:
     - typ: dribbling
       fran: { objekt: sp-anf }
       till: { x: 13, y: 5 }
-      via: [{ x: 7, y: 7 }, { x: 10, y: 3 }]
+      via: [{ x: 6, y: 1.5 }, { x: 10, y: 2.5 }]
       ordning: 1
     - typ: lopning
       fran: { objekt: sp-forsv }
-      till: { x: 9, y: 6 }
-      ordning: 2
+      till: { x: 4.5, y: 5.5 }
+      ordning: 1
       etikett: Försvarar aktivt
 kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
 status: godkand
