@@ -79,7 +79,10 @@ planskiss:
     - { typ: kon, x: 25, y: 0 }
     - { typ: kon, x: 25, y: 20 }
     - { typ: kon, x: 0, y: 20 }
-    - { typ: zon, x: 0, y: 0, langd: 3, bredd: 3, monster: prickar, etikett: Hörn }
+    - { typ: zon, x: 0, y: 0, langd: 4, bredd: 4, monster: prickar, etikett: Hörn }
+    - { typ: zon, x: 21, y: 0, langd: 4, bredd: 4, monster: prickar }
+    - { typ: zon, x: 21, y: 16, langd: 4, bredd: 4, monster: prickar }
+    - { typ: zon, x: 0, y: 16, langd: 4, bredd: 4, monster: prickar }
     - { id: p1, typ: spelare, x: 5, y: 5, lag: a }
     - { id: p2, typ: spelare, x: 20, y: 5, lag: a }
     - { id: p3, typ: spelare, x: 20, y: 15, lag: a }
