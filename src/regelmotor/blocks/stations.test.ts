@@ -111,6 +111,50 @@ describe('R-063 Grupper vid stationer', () => {
   });
 });
 
+describe('R-058 Grupper med fast grundstorlek vid stationer (R-063)', () => {
+  const pairs = () =>
+    ['par-a', 'par-b'].map((id) =>
+      bankExercise({ id, grupptyp: 'par', spelare: { min: 2, max: 2 } }),
+    );
+  const fixed = (solution: boolean) =>
+    ['tre-a', 'tre-b'].map((id) =>
+      bankExercise({
+        id,
+        grupptyp: 'fast-storlek',
+        spelare: { min: 3, max: 3 },
+        udda_antal_losning: solution,
+      }),
+    );
+  const block = (exercises: ReturnType<typeof bankExercise>[], players: number) =>
+    buildStationBlock(exercises, 'fas-10-12', 'del-ovning', players, 2);
+
+  it('R-058 testfall 19: parstationer med 5 spelare ger en trio och ett par', () => {
+    const result = block(pairs(), 5);
+    expect(result?.layout.sizes).toEqual([3, 2]);
+    expect(result?.stationLayouts.map((layout) => layout.oddSolution)).toEqual(['trio', 'trio']);
+  });
+
+  it('R-058 testfall 20: parstationer med 6 spelare ger två trior', () => {
+    expect(block(pairs(), 6)?.layout.sizes).toEqual([3, 3]);
+  });
+
+  it('R-058 testfall 21: parstationer med 7 spelare kan inte användas, 4 > 3', () => {
+    expect(block(pairs(), 7)).toBeNull();
+  });
+
+  it('R-058 testfall 22: fast-storlek s = 3 med lösning och 7 spelare kan användas', () => {
+    expect(block(fixed(true), 7)?.layout.sizes).toEqual([4, 3]);
+  });
+
+  it('R-058 testfall 23: fast-storlek s = 3 med lösning och 9 spelare kan inte användas, 5 > 4', () => {
+    expect(block(fixed(true), 9)).toBeNull();
+  });
+
+  it('R-058 testfall 24: fast-storlek s = 3 utan lösning och 7 spelare kan inte användas, 4 > 3', () => {
+    expect(block(fixed(false), 7)).toBeNull();
+  });
+});
+
 describe('R-064 Ledare vid stationer', () => {
   it('R-064 kräver minst en ledare per station', () => {
     const ledarstyrd = bankExercise({ id: 'ovning-c', ledarbehov: 2, spelare: { min: 2, max: 8 } });
