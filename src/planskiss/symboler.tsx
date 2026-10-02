@@ -426,17 +426,24 @@ export function goal(
   );
 }
 
-/** Kortar en etikett så att den ryms på `room` meter (RK-7). */
+/**
+ * Kortar en etikett så att den ryms på `room` meter (RK-7). Tecknen räknas som kodpunkter,
+ * så att ett surrogatpar, till exempel ett emoji, aldrig delas mitt itu.
+ */
 export function fitLabel(text: string, fontSize: number, room: number): string {
   // Ett tecken är i medeltal drygt halva teckenstorleken brett.
   const fits = Math.floor(room / (fontSize * 0.58));
-  if (text.length <= fits) {
+  const chars = Array.from(text);
+  if (chars.length <= fits) {
     return text;
   }
-  if (fits <= 1) {
+  if (!(fits > 1)) {
     return '';
   }
-  return `${text.slice(0, fits - 1).trimEnd()}…`;
+  return `${chars
+    .slice(0, fits - 1)
+    .join('')
+    .trimEnd()}…`;
 }
 
 /** Zon med mönster, eller ruta med bara kontur, med etikett i övre vänstra hörnet. */
@@ -506,10 +513,25 @@ export interface MovementShape {
   label?: string;
 }
 
-/** Mått för en fri text i skissen. */
+/** Bildens kanter i x-led, i den ritade ytans meter, för att korta långa etiketter (RK-7). */
 export interface TextRoom {
-  /** Ytans bredd plus marginalen, i meter, för att korta långa etiketter (RK-7). */
-  width: number;
+  /** Bildens vänsterkant, alltså `-MARGIN`. */
+  left: number;
+  /** Bildens högerkant, alltså ytans längd plus `MARGIN`. */
+  right: number;
+}
+
+/**
+ * Bredden som en text med ankaret `anchor` i `x` har innan den når bildens kant (RK-7, F3).
+ * En centrerad text växer åt båda hållen och får därför dubbla avståndet till den närmaste
+ * kanten.
+ */
+export function roomAt(room: TextRoom, x: number, anchor: 'start' | 'middle' | 'end'): number {
+  const toLeft = x - room.left;
+  const toRight = room.right - x;
+  const width =
+    anchor === 'start' ? toRight : anchor === 'end' ? toLeft : 2 * Math.min(toLeft, toRight);
+  return Math.max(0, width);
 }
 
 /**
@@ -632,7 +654,7 @@ export function movement(
       y: middle.point.y + away.y * flip * ctx.d * 0.8,
     };
     const fontSize = ctx.d * 0.6;
-    const text = fitLabel(shape.label, fontSize, room.width);
+    const text = fitLabel(shape.label, fontSize, roomAt(room, at.x, 'middle'));
     if (text.length > 0) {
       label = (
         <text

@@ -9,20 +9,107 @@
  * återstående bredden från etikettens vänsterkant till ytans högerkant
  * (`labelRoom = drawn.langd + MARGIN - corner.x` i Planskiss.tsx), så klippningen är
  * positionsmedveten. För en rörelseetikett (`movement()` i symboler.tsx) och för de fria
- * texterna i köer och måttexten (`freeText`-anropen i Planskiss.tsx) är `room` i stället
- * `room.width`, alltså hela bildens bredd – oavsett var etiketten faktiskt är ankrad. En
- * etikett som är centrerad långt till höger i bilden kan då "rymmas" enligt budgeten men ändå
- * sticka ut genom bildens högerkant, eftersom budgeten räknas från bildens vänsterkant och
- * inte från etikettens egen position.
+ * texterna i köer och måttexten (`freeText`-anropen i Planskiss.tsx) var `room` tidigare hela
+ * bildens bredd, oavsett var etiketten var ankrad (F3). Nu räknas `room` med `roomAt()` från
+ * ankarpunkten till bildens kant.
  *
- * Testet nedan är skrivet med `it.fails`: det uttrycker vad RK-7 kräver (etiketten ligger inom
- * `viewBox`) och misslyckas så länge gapet finns kvar.
+ * Testet skrevs med `it.fails` medan gapet fanns kvar och är nu ett vanligt `it`.
  */
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
 import type { PlanskissInput } from '../regelmotor/schema/planskiss.ts';
 import { Planskiss } from './Planskiss.tsx';
+import { fitLabel, roomAt } from './symboler.tsx';
 import { sketch } from './__testdata__/skisser.ts';
+
+function svgOf(input: PlanskissInput, antalSpelare?: number): SVGSVGElement {
+  const { container } = render(
+    <Planskiss
+      skiss={sketch(input)}
+      storlek="normal"
+      titel="RK-7"
+      instansId="rk7"
+      antalSpelare={antalSpelare}
+    />,
+  );
+  const svg = container.querySelector('svg');
+  if (svg === null) {
+    throw new Error('Ingen svg ritades');
+  }
+  return svg;
+}
+
+/** Varje `<text>` i skissen ligger inom viewBox i x-led, med samma breddmodell som fitLabel. */
+function expectTextsInside(svg: SVGSVGElement): void {
+  const [minX = 0, , widthUnits = 0] = (svg.getAttribute('viewBox') ?? '').split(' ').map(Number);
+  const maxX = minX + widthUnits;
+  for (const node of svg.querySelectorAll('text')) {
+    const x = Number(node.getAttribute('x'));
+    const width =
+      Array.from(node.textContent ?? '').length * Number(node.getAttribute('font-size')) * 0.58;
+    const anchor = node.getAttribute('text-anchor');
+    const left = anchor === 'middle' ? x - width / 2 : anchor === 'end' ? x - width : x;
+    const right = anchor === 'middle' ? x + width / 2 : anchor === 'end' ? x : x + width;
+    expect(left, `"${node.textContent ?? ''}" börjar utanför viewBox`).toBeGreaterThanOrEqual(minX);
+    expect(right, `"${node.textContent ?? ''}" slutar utanför viewBox`).toBeLessThanOrEqual(maxX);
+  }
+}
+
+describe('RK-7: roomAt och fitLabel', () => {
+  const room = { left: -3, right: 23 };
+
+  it('roomAt räknar från ankaret till bildens kant', () => {
+    expect(roomAt(room, 0, 'start')).toBe(23);
+    expect(roomAt(room, 20, 'end')).toBe(23);
+    expect(roomAt(room, 20, 'middle')).toBe(6);
+    expect(roomAt(room, 0, 'middle')).toBe(6);
+    expect(roomAt(room, 30, 'start')).toBe(0);
+  });
+
+  it('fitLabel delar aldrig ett surrogatpar', () => {
+    const loneSurrogate = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/;
+    const text = 'A😀😀😀😀😀😀😀😀😀';
+    for (let step = 0; step < 100; step += 1) {
+      const fitted = fitLabel(text, 1, step / 10);
+      expect(loneSurrogate.test(fitted), `room ${step / 10}: ${fitted}`).toBe(false);
+    }
+    // 3 m räcker till 5 tecken med teckenstorleken 1: fyra kodpunkter och "…".
+    expect(fitLabel('Ab😀😀😀😀😀😀😀😀', 1, 3)).toBe('Ab😀😀…');
+  });
+});
+
+describe('RK-7: köns etikett och rörelseetiketter nära vänsterkanten', () => {
+  it('en köetikett och en rörelseetikett vid vänsterkanten ryms i bilden', () => {
+    const svg = svgOf(
+      {
+        version: 1,
+        omrade: { langd: 20, bredd: 10 },
+        objekt: [
+          { id: 'a', typ: 'spelare', x: 1.5, y: 5, lag: 'a' },
+          { id: 'b', typ: 'spelare', x: 1.5, y: 9, lag: 'a' },
+        ],
+        rorelser: [
+          {
+            typ: 'lopning',
+            fran: { objekt: 'a' },
+            till: { objekt: 'b' },
+            etikett: 'En lång rörelseetikett',
+          },
+        ],
+        skalning: {
+          strategi: 'koer',
+          koer: [{ vid: 'a', riktning: 180, etikett: 'En lång köetikett här' }],
+        },
+      },
+      4,
+    );
+    const texts = [...svg.querySelectorAll('text')].map((node) => node.textContent ?? '');
+    // Båda etiketterna ritas, hela eller kortade.
+    expect(texts.some((text) => text.startsWith('En lång k'))).toBe(true);
+    expect(texts.some((text) => text.startsWith('En lång r'))).toBe(true);
+    expectTextsInside(svg);
+  });
+});
 
 /**
  * En grov uppskattning av en texts bredd i bildenheter, med samma tumregel som `fitLabel`
@@ -35,7 +122,7 @@ function estimatedWidthUnits(text: string, fontSizeUnits: number): number {
 }
 
 describe('RK-7: en rörelseetikett klipps eller kortas vid ytans kant, inte bara vid bildens totala bredd', () => {
-  it.fails('en rörelseetikett centrerad nära högerkanten sticker inte ut genom viewBox', () => {
+  it('en rörelseetikett centrerad nära högerkanten sticker inte ut genom viewBox', () => {
     const input: PlanskissInput = {
       version: 1,
       omrade: { langd: 20, bredd: 10 },
@@ -69,9 +156,15 @@ describe('RK-7: en rörelseetikett klipps eller kortas vid ytans kant, inte bara
     const [minX, , widthUnits] = viewBox;
     const maxX = minX + widthUnits;
 
-    const label = [...svg.querySelectorAll('text')].find(
-      (node) => node.textContent === 'En lång rörelseetikett',
-    );
+    // Etiketten får vara hel eller kortad med "…" (RK-7), men ska finnas.
+    const full = 'En lång rörelseetikett';
+    const label = [...svg.querySelectorAll('text')].find((node) => {
+      const shown = node.textContent ?? '';
+      return (
+        shown === full ||
+        (shown.endsWith('…') && shown.length > 1 && full.startsWith(shown.slice(0, -1)))
+      );
+    });
     if (label === null || label === undefined) {
       throw new Error('Rörelseetiketten ritades inte alls');
     }

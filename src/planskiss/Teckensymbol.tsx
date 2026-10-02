@@ -51,7 +51,7 @@ function symbol(ctx: DrawContext, kind: LegendKind, team: Team): ReactElement | 
           { x: BOX.langd - 0.2, y: CENTER.y },
         ],
       },
-      { width: BOX.langd },
+      { left: 0, right: BOX.langd },
       kind,
     );
   switch (kind) {

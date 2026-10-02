@@ -40,8 +40,9 @@ import {
   patternIds,
   player,
   rectangle,
+  roomAt,
 } from './symboler.tsx';
-import type { DrawContext } from './symboler.tsx';
+import type { DrawContext, TextRoom } from './symboler.tsx';
 import styles from './planskiss.module.css';
 
 export type PlanskissStorlek = 'miniatyr' | 'normal' | 'planlage' | 'utskrift';
@@ -218,7 +219,8 @@ export function Planskiss({
   };
   const titleId = `${instansId}-titel`;
   const descId = `${instansId}-beskrivning`;
-  const room = { width: drawn.langd + 2 * MARGIN };
+  // Bildens kanter. En etikett kortas mot avståndet från sitt ankare till kanten (RK-7, F3).
+  const room: TextRoom = { left: -MARGIN, right: drawn.langd + MARGIN };
 
   const at = (point: Point) => toDrawn(frame, point);
   const layers: {
@@ -325,7 +327,7 @@ export function Planskiss({
           x: queue.first.x + side.x * flip * d * 1.1,
           y: queue.first.y + side.y * flip * d * 1.1,
         };
-        const text = fitLabel(label, d * 0.6, room.width);
+        const text = fitLabel(label, d * 0.6, roomAt(room, place.x, 'middle'));
         if (text.length > 0) {
           texts.push(freeText(ctx, place, text, 'middle', `k${queue.index}`));
         }
@@ -337,16 +339,11 @@ export function Planskiss({
     });
     // Måttexten i ytans nedre vänstra hörn, strax under ytan (avsnitt 5).
     const size = `${decimal(frame.shown.langd)} × ${decimal(frame.shown.bredd)} m`;
-    texts.push(
-      freeText(
-        ctx,
-        { x: 0, y: drawn.bredd + Math.min(MARGIN * 0.55, d * 0.75) },
-        size,
-        'start',
-        'matt',
-        styles.matt,
-      ),
-    );
+    const sizeAt = { x: 0, y: drawn.bredd + Math.min(MARGIN * 0.55, d * 0.75) };
+    const sizeText = fitLabel(size, d * 0.6, roomAt(room, sizeAt.x, 'start'));
+    if (sizeText.length > 0) {
+      texts.push(freeText(ctx, sizeAt, sizeText, 'start', 'matt', styles.matt));
+    }
   }
 
   const viewBox = [
