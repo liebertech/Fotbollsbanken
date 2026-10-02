@@ -14,10 +14,11 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" \"*.{json,ts,js}\" \".github/workflows/*.yml\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" \"*.{json,ts,js}\" \".github/workflows/*.yml\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" \"e2e/**/*.{ts,tsx}\" \"*.{json,ts,js}\" \".github/workflows/*.yml\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"scripts/**/*.ts\" \"e2e/**/*.{ts,tsx}\" \"*.{json,ts,js}\" \".github/workflows/*.yml\"",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "validera:ovningar": "node scripts/validera-ovningar.ts",
     "godkannande": "node scripts/godkannande.ts"
   },

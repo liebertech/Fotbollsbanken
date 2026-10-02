@@ -14,3 +14,9 @@ node_modules/
 dist/
 .wrangler/
 supabase/.temp/
+
+# Playwright (e2e-tester). Skärmbilderna i docs/design/skarmbilder/ är undantagna: de
+# committas för mänsklig granskning (kvalitetssäkring av feature/ritmotor).
+/test-results/
+/playwright-report/
+/playwright/.cache/
