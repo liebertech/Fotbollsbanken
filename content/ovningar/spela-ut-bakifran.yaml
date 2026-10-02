@@ -81,17 +81,17 @@ planskiss:
     - { id: a2, typ: spelare, x: 8, y: 16, lag: a }
     - { id: a3, typ: spelare, x: 14, y: 10, lag: a }
     - { id: b1, typ: spelare, x: 18, y: 6, lag: b }
-    - { id: b2, typ: spelare, x: 18, y: 14, lag: b }
+    - { id: b2, typ: spelare, x: 18, y: 16, lag: b }
     - { id: b3, typ: spelare, x: 22, y: 10, lag: b }
     - { typ: boll, x: 2.8, y: 10 }
   rorelser:
     - { typ: passning, fran: { objekt: mv }, till: { objekt: a3 }, ordning: 1 }
     - { typ: passning, fran: { objekt: a3 }, till: { objekt: a1 }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: b1 }, till: { x: 13, y: 8 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 15.5, y: 8.5 }, ordning: 1 }
   skalning:
     strategi: koer
     koer:
-      - { vid: b3, riktning: 90, avstand: 1.5, etikett: "Vilande, byter in" }
+      - { vid: b2, riktning: 90, avstand: 5, etikett: "Vilande, byter in" }
 kalla: Egen övning, inspirerad av speluppbyggnad som utnyttjar retreatlinjen i 7 mot 7.
 status: godkand
 granskning:
