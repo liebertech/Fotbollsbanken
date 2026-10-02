@@ -64,8 +64,9 @@ planskiss:
     bredd: 25
   beskrivning: >-
     Yta 35 x 25 meter med ett minimål i var ände. Två mot två med två jokrar som
-    alltid spelar med laget som har bollen. Vid udda antal blir en tredje spelare
-    joker.
+    alltid spelar med laget som har bollen. Fler spelare går in i lagen, upp till
+    fyra mot fyra. Vid udda antal blir den udda spelaren en tredje joker, men
+    bilden visar då ett lag med en spelare mer.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 35, bredd: 25, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 12.5, storlek: smamal, riktning: hoger }
@@ -84,10 +85,10 @@ planskiss:
   skalning:
     strategi: platser
     platser:
-      - { x: 17.5, y: 12.5, lag: neutral }
       - { x: 6, y: 12.5, lag: a }
       - { x: 29, y: 12.5, lag: b }
       - { x: 13, y: 4, lag: a }
+      - { x: 22, y: 21, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar.
 status: godkand
 granskning:
