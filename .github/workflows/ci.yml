@@ -86,6 +86,53 @@ jobs:
       - name: Kända sårbarheter
         run: npm audit --audit-level=high
 
+  # Playwright-testerna i Chromium, parallellt med kontroll. Konfigurationen bygger appen och
+  # startar sina egna servrar (playwright.config.ts).
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hämta koden
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Sätt upp Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installera beroenden
+        run: npm ci
+
+      - name: Läs Playwrights version
+        id: playwright
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/playwright-core'].version")" >> "$GITHUB_OUTPUT"
+
+      # Webbläsaren cachas per Playwright-version. Systempaketen installeras ändå i nästa steg,
+      # eftersom de inte ligger i cachen.
+      - name: Cacha Chromium
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}-chromium
+
+      - name: Installera Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: E2e-tester
+        run: npm run test:e2e
+
+      - name: Spara testrapporten
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playwright-rapport
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
   # Jobb-id:t är checkens namn i grenskyddet när jobbet saknar `name`, och ADR 0013 kräver att
   # den obligatoriska kontrollen heter godkannande. Ändra inte id:t.
   godkannande:
