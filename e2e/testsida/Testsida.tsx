@@ -28,6 +28,19 @@ const GROUP: Record<GameFormat, number> = {
   '11mot11': 7,
 };
 
+/**
+ * Åldersspannet för varje spelform (CLAUDE.md, "Domänfakta i korthet"). Övningsschemat kräver
+ * att `spelformer` är tillåten för någon ålder i `alder` (R-004, R-014), så testsidans
+ * fixturer måste ange en ålder som faktiskt hör till spelformen.
+ */
+const AGE_FOR_FORMAT: Record<GameFormat, { min: number; max: number }> = {
+  '3mot3': { min: 6, max: 7 },
+  '5mot5': { min: 8, max: 9 },
+  '7mot7': { min: 10, max: 12 },
+  '9mot9': { min: 13, max: 14 },
+  '11mot11': { min: 15, max: 19 },
+};
+
 function layoutOf(size: number): Layout {
   return {
     groups: 1,
@@ -56,6 +69,7 @@ export function Testsida() {
             namn: `Exempel, ${format}`,
             planskiss: PER_SPELFORM[format],
             spelformer: [format],
+            alder: AGE_FOR_FORMAT[format],
           });
           return (
             <li key={format} data-testid={`kort-${format}`}>
