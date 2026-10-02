@@ -70,14 +70,14 @@ planskiss:
     - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 15, stil: streckad }
     - { typ: kon, x: 4, y: 6 }
     - { typ: kon, x: 4, y: 9 }
-    - { typ: kon, x: 7, y: 10 }
-    - { typ: ruta, x: 8, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
-    - { typ: kon, x: 10, y: 10 }
-    - { typ: ruta, x: 11, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
-    - { typ: kon, x: 13, y: 10 }
-    - { typ: ruta, x: 14, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
-    - { typ: kon, x: 16, y: 10 }
-    - { typ: ruta, x: 17, y: 5.5, langd: 1, bredd: 1, stil: heldragen, etikett: Hinder }
+    - { typ: kon, x: 6, y: 7.5 }
+    - { typ: kon, x: 8, y: 7.5 }
+    - { typ: kon, x: 10, y: 7.5 }
+    - { typ: kon, x: 12, y: 7.5 }
+    - { typ: ruta, x: 13.25, y: 6.75, langd: 0.5, bredd: 1.5, stil: heldragen, etikett: Hinder }
+    - { typ: ruta, x: 14.75, y: 6.75, langd: 0.5, bredd: 1.5, stil: heldragen }
+    - { typ: ruta, x: 16.25, y: 6.75, langd: 0.5, bredd: 1.5, stil: heldragen }
+    - { typ: ruta, x: 17.75, y: 6.75, langd: 0.5, bredd: 1.5, stil: heldragen }
     - { typ: kon, x: 19, y: 6 }
     - { typ: kon, x: 19, y: 9 }
     - { id: sp-1, typ: spelare, x: 4, y: 7.5, lag: a, etikett: "1" }
@@ -88,12 +88,20 @@ planskiss:
   rorelser:
     - typ: dribbling
       fran: { objekt: sp-1 }
-      till: { x: 19, y: 7.5 }
-      via: [{ x: 9, y: 9 }, { x: 15, y: 7 }]
+      till: { x: 9, y: 7.5 }
+      via: [{ x: 6, y: 1 }, { x: 8, y: 14 }]
       ordning: 1
+    - typ: dribbling
+      fran: { x: 9, y: 7.5 }
+      till: { x: 13, y: 7.5 }
+      via: [{ x: 10, y: 1 }, { x: 12, y: 14 }]
+    - typ: dribbling
+      fran: { x: 13, y: 7.5 }
+      till: { x: 19, y: 7.5 }
     - typ: lopning
       fran: { x: 19, y: 7.5 }
       till: { objekt: sp-4 }
+      via: [{ x: 17, y: 14 }, { x: 5, y: 14 }]
       ordning: 2
       etikett: Joggar tillbaka till kön
   skalning:
