@@ -14,10 +14,10 @@ type SketchObject = Planskissdata['objekt'][number];
 export type Team = 'a' | 'b' | 'neutral';
 
 /** Högst så här många spelarsymboler ritas (S-5, RK-6). Gäller också basskissens spelare. */
-export const MAX_PLAYER_SYMBOLS = PLANSKISS_LIMITS.spelare;
+export const MAX_PLAYER_SYMBOLS: number = PLANSKISS_LIMITS.spelare;
 /** Högst så här många objekt och rörelser ritas, samma tak som i schemat (RK-6, R1). */
-export const MAX_OBJECTS = PLANSKISS_LIMITS.objekt.max;
-export const MAX_MOVEMENTS = PLANSKISS_LIMITS.rorelser;
+export const MAX_OBJECTS: number = PLANSKISS_LIMITS.objekt.max;
+export const MAX_MOVEMENTS: number = PLANSKISS_LIMITS.rorelser;
 /** Antalet klamras till högst basantalet plus 30 (avsnitt 4, *Två gränser*). */
 export const MAX_EXTRA = 30;
 /** En kö ritas med högst 8 spelare (avsnitt 4, RK-6). */

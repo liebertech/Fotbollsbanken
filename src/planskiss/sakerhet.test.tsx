@@ -18,6 +18,7 @@ import { Planskiss } from './Planskiss.tsx';
 import type { PlanskissStorlek } from './Planskiss.tsx';
 import { Teckensymbol } from './Teckensymbol.tsx';
 import { LEGEND_KINDS } from './teckenforklaring.ts';
+import { ALLOWED_SVG_ATTRIBUTES, ALLOWED_SVG_ELEMENTS } from './vitlista.ts';
 import { ELVA_MOT_ELVA, PER_SPELFORM, sketch } from './__testdata__/skisser.ts';
 
 afterEach(cleanup);
@@ -69,26 +70,26 @@ const ALLOWED_ATTRIBUTES = new Set([
   'patternUnits',
 ]);
 
-const NUMBER = String.raw`-?\d+(?:\.\d+)?`;
+const numberPattern = String.raw`-?\d+(?:\.\d+)?`;
 /** Formen på varje attributvärde. Inget värde får vara fri text (RK-2, RK-3). */
 const VALUE_PATTERNS: Record<string, RegExp> = {
-  x: new RegExp(`^${NUMBER}$`),
-  y: new RegExp(`^${NUMBER}$`),
-  width: new RegExp(`^${NUMBER}$`),
-  height: new RegExp(`^${NUMBER}$`),
-  cx: new RegExp(`^${NUMBER}$`),
-  cy: new RegExp(`^${NUMBER}$`),
-  r: new RegExp(`^${NUMBER}$`),
-  x1: new RegExp(`^${NUMBER}$`),
-  y1: new RegExp(`^${NUMBER}$`),
-  x2: new RegExp(`^${NUMBER}$`),
-  y2: new RegExp(`^${NUMBER}$`),
-  'stroke-width': new RegExp(`^${NUMBER}$`),
-  'font-size': new RegExp(`^${NUMBER}$`),
-  'stroke-dasharray': new RegExp(`^${NUMBER}( ${NUMBER})*$`),
-  viewBox: new RegExp(`^${NUMBER} ${NUMBER} ${NUMBER} ${NUMBER}$`),
-  points: new RegExp(`^${NUMBER},${NUMBER}( ${NUMBER},${NUMBER})*$`),
-  d: new RegExp(`^M${NUMBER} ${NUMBER}( L${NUMBER} ${NUMBER})*$`),
+  x: new RegExp(`^${numberPattern}$`),
+  y: new RegExp(`^${numberPattern}$`),
+  width: new RegExp(`^${numberPattern}$`),
+  height: new RegExp(`^${numberPattern}$`),
+  cx: new RegExp(`^${numberPattern}$`),
+  cy: new RegExp(`^${numberPattern}$`),
+  r: new RegExp(`^${numberPattern}$`),
+  x1: new RegExp(`^${numberPattern}$`),
+  y1: new RegExp(`^${numberPattern}$`),
+  x2: new RegExp(`^${numberPattern}$`),
+  y2: new RegExp(`^${numberPattern}$`),
+  'stroke-width': new RegExp(`^${numberPattern}$`),
+  'font-size': new RegExp(`^${numberPattern}$`),
+  'stroke-dasharray': new RegExp(`^${numberPattern}( ${numberPattern})*$`),
+  viewBox: new RegExp(`^${numberPattern} ${numberPattern} ${numberPattern} ${numberPattern}$`),
+  points: new RegExp(`^${numberPattern},${numberPattern}( ${numberPattern},${numberPattern})*$`),
+  d: new RegExp(`^M${numberPattern} ${numberPattern}( L${numberPattern} ${numberPattern})*$`),
   role: /^img$/,
   'aria-hidden': /^true$/,
   'text-anchor': /^(start|middle|end)$/,
@@ -419,5 +420,24 @@ describe('RK-10: fuzz-slinga', () => {
     ]) {
       expect(readPlanskiss(value).status).toBe('ogiltig');
     }
+  });
+});
+
+describe('Lintningens vitlistor stämmer med körtestets (R4)', () => {
+  it('elementen i src/planskiss/vitlista.ts är ALLOWED_TAGS', () => {
+    expect(new Set(ALLOWED_SVG_ELEMENTS)).toEqual(ALLOWED_TAGS);
+  });
+
+  it('attributen i src/planskiss/vitlista.ts är ALLOWED_ATTRIBUTES, med namnen i DOM:en', () => {
+    const domNames = Object.values(ALLOWED_SVG_ATTRIBUTES).filter(
+      (name): name is string => name !== null,
+    );
+    expect(new Set(domNames)).toEqual(ALLOWED_ATTRIBUTES);
+    // Bara key, som React tar hand om, saknar ett namn i DOM:en.
+    expect(
+      Object.entries(ALLOWED_SVG_ATTRIBUTES)
+        .filter(([, name]) => name === null)
+        .map(([jsx]) => jsx),
+    ).toEqual(['key']);
   });
 });

@@ -17,7 +17,7 @@ import { MAX_MOVEMENTS, MAX_PLAYER_SYMBOLS, scalePlayers, withinLimits } from '.
 import { MAX_PATH_POINTS, wavePointBudget, waveLine } from './rorelser.ts';
 import { sketch } from './__testdata__/skisser.ts';
 
-const VALID = sketch({
+const valid = sketch({
   version: 1,
   omrade: { langd: 60, bredd: 40 },
   objekt: [{ id: 'a1', typ: 'spelare', x: 5, y: 5, lag: 'a' }],
@@ -58,7 +58,7 @@ function playerSymbols(svg: SVGSVGElement): number {
 }
 
 describe('R1: taket på 40 spelarsymboler gäller också basskissen', () => {
-  const forged: Planskissdata = { ...VALID, objekt: manyPlayers(60) };
+  const forged: Planskissdata = { ...valid, objekt: manyPlayers(60) };
 
   it('60 förfalskade basspelare ritas som högst 40', () => {
     expect(playerSymbols(drawn(forged))).toBe(MAX_PLAYER_SYMBOLS);
@@ -96,7 +96,7 @@ describe('R1: taket på 40 spelarsymboler gäller också basskissen', () => {
   });
 
   it('giltig skissdata kommer tillbaka oförändrad', () => {
-    expect(withinLimits(VALID)).toBe(VALID);
+    expect(withinLimits(valid)).toBe(valid);
   });
 
   it('sketchLayout ger den klamrade skissen, så att teckenförklaringen följer bilden', () => {
@@ -110,7 +110,7 @@ describe('R1: per_yta prövas på nytt', () => {
     'per_yta %s ger ett ändligt antal ytor',
     (perArea) => {
       const forged: Planskissdata = {
-        ...VALID,
+        ...valid,
         skalning: { strategi: 'parallella-ytor', per_yta: perArea },
       };
       const players = scalePlayers(forged, areaFrame(forged, undefined), 12);
@@ -122,7 +122,7 @@ describe('R1: per_yta prövas på nytt', () => {
 
   it('per_yta 0 behandlas som 1', () => {
     const forged: Planskissdata = {
-      ...VALID,
+      ...valid,
       skalning: { strategi: 'parallella-ytor', per_yta: 0 },
     };
     expect(scalePlayers(forged, areaFrame(forged, undefined), 12).areas).toBe(12);
@@ -138,7 +138,7 @@ describe('R1 och R2: taket för antalet punkter i en bana', () => {
 
   it('en förfalskad dribbling på 1e7 m ritas med högst 400 punkter', () => {
     const forged: Planskissdata = {
-      ...VALID,
+      ...valid,
       rorelser: [{ typ: 'dribbling', fran: { x: 0, y: 0 }, till: { x: 1e7, y: 5 } }],
     };
     const counts = pathPoints(drawn(forged));
@@ -177,7 +177,7 @@ describe('R1: taken för objekt och rörelser', () => {
       fran: { x: 1, y: 1 + index * 0.5 },
       till: { x: 50, y: 1 + index * 0.5 },
     }));
-    const forged: Planskissdata = { ...VALID, rorelser };
+    const forged: Planskissdata = { ...valid, rorelser };
     expect(drawn(forged).querySelectorAll('polygon')).toHaveLength(MAX_MOVEMENTS);
   });
 
@@ -187,7 +187,7 @@ describe('R1: taken för objekt och rörelser', () => {
       x: 1 + (index % 10) * 5,
       y: 1 + Math.floor(index / 10) * 3,
     }));
-    const forged: Planskissdata = { ...VALID, objekt };
+    const forged: Planskissdata = { ...valid, objekt };
     expect(drawn(forged).querySelectorAll('polygon')).toHaveLength(60);
   });
 });

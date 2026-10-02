@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
+import { ALLOWED_SVG_ATTRIBUTES, ALLOWED_SVG_ELEMENTS } from './src/planskiss/vitlista.ts';
 
 /**
  * Den virtuella bankmodulen får bara importeras av src/data/bank.ts (S-29, ADR 0015).
@@ -68,25 +69,18 @@ const FORBIDDEN_RANDOMNESS = [
 ];
 
 /**
- * De enda element som ritmotorn får skapa: den slutna listan i ADR 0012 avsnitt 6 (S-07).
- * Regeln är en vitlista, så ett element som inte står här underkänns även om ingen har tänkt
- * på det (säkerhetsgranskningen av schemat, F9).
+ * ALLOWED_SVG_ELEMENTS: de enda element som ritmotorn får skapa, den slutna listan i ADR 0012
+ * avsnitt 6 (S-07). ALLOWED_SVG_ATTRIBUTES: de enda attribut som ritmotorn får sätta på ett
+ * element (R4). Båda är vitlistor, så det som inte står där underkänns även om ingen har tänkt
+ * på det (säkerhetsgranskningen av schemat, F9). Listorna står i src/planskiss/vitlista.ts,
+ * där körtestet i sakerhet.test.tsx prövar att de stämmer med det som får finnas i SVG:n.
  */
-const ALLOWED_SVG_ELEMENTS = [
-  'svg',
-  'title',
-  'desc',
-  'defs',
-  'pattern',
-  'g',
-  'rect',
-  'circle',
-  'polygon',
-  'line',
-  'path',
-  'text',
-  'tspan',
-];
+const ALLOWED_ATTRIBUTE_NAMES = Object.keys(ALLOWED_SVG_ATTRIBUTES);
+
+/** Ett reguljärt uttryck i esquery som bara matchar namnen i listan. Namnen är a–z, 0–9 och -. */
+function exactly(names) {
+  return `/^(${names.join('|')})$/`;
+}
 
 /** Attribut som kan ladda en resurs, köra kod eller bära data som CSS (F9, RK-2, RK-5). */
 const FORBIDDEN_SVG_ATTRIBUTES = ['href', 'xlinkHref', 'style', 'dangerouslySetInnerHTML'];
@@ -238,8 +232,11 @@ const FORBIDDEN_DOM_SYNTAX_IN_APP = [
   },
 ];
 
-/** Namn i PascalCase, som React tolkar som en komponent när det står först i en JSX-tagg. */
-const PASCAL_CASE = '/^[A-Z][a-z]/';
+/**
+ * Namn som börjar med versal, som React tolkar som en komponent när det står först i en
+ * JSX-tagg. Också namn med bara versaler, som TAG (R4).
+ */
+const PASCAL_CASE = '/^[A-Z]/';
 const PASCAL_BINDING_MESSAGE =
   'Ett namn med versal kan användas som JSX-tagg och välja element under körning, förbi vitlistan. Ge variabeln ett namn med gemen, eller skriv en komponent som funktion (S-07, F9).';
 
@@ -331,8 +328,13 @@ export default tseslint.config(
         'error',
         {
           // Små bokstäver är element i DOM:en. Komponenter (stor bokstav) prövas där de skrivs.
-          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=/^(${ALLOWED_SVG_ELEMENTS.join('|')})$/])`,
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]:not([name.name=${exactly(ALLOWED_SVG_ELEMENTS)}])`,
           message: `Ritmotorn får bara skapa den slutna listan av SVG-element i ADR 0012 avsnitt 6 (S-07, F9): ${ALLOWED_SVG_ELEMENTS.join(', ')}.`,
+        },
+        {
+          // Vitlista för attributen på element (R4). Komponenter prövas där de skrivs.
+          selector: `JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/] > JSXAttribute[name.type='JSXIdentifier']:not([name.name=${exactly(ALLOWED_ATTRIBUTE_NAMES)}])`,
+          message: `Ritmotorn får bara sätta attributen i vitlistan i src/planskiss/vitlista.ts (S-07, F9, R4): ${ALLOWED_ATTRIBUTE_NAMES.join(', ')}. Ett nytt attribut läggs till där och i ALLOWED_ATTRIBUTES i sakerhet.test.tsx.`,
         },
         {
           selector: 'JSXOpeningElement[name.type=/^JSX(NamespacedName|MemberExpression)$/]',
@@ -387,8 +389,11 @@ export default tseslint.config(
             'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i ritmotorn (S-07, F9).',
         },
         {
-          // const Tag = 'script' eller let Tag. En komponent skrivs som funktion.
-          selector: `VariableDeclarator[id.name=${PASCAL_CASE}]:not([init.type=/^(ArrowFunctionExpression|FunctionExpression)$/])`,
+          // const Tag = 'script', const TAG = 'script' eller let Tag (R4). En komponent skrivs
+          // som funktion. Undantagna är konstanter som inte kan vara en sträng: funktioner,
+          // objekt och listor, också med as const, new Set, Map, RegExp och Proxy, tal och reguljära uttryck i klartext, och konstanter som är
+          // typade som tal eller sanningsvärde.
+          selector: `VariableDeclarator[id.name=${PASCAL_CASE}]:not([init.type=/^(ArrowFunctionExpression|FunctionExpression|ObjectExpression|ArrayExpression)$/], [init.type=/^TS(As|Satisfies)Expression$/][init.expression.type=/^(ObjectExpression|ArrayExpression)$/], [init.type='NewExpression'][init.callee.name=/^(Set|Map|WeakMap|WeakSet|RegExp|Proxy)$/], [init.value=type(number)], [init.value=type(boolean)], [init.regex], [id.typeAnnotation.typeAnnotation.type=/^(TSNumberKeyword|TSBooleanKeyword)$/])`,
           message: PASCAL_BINDING_MESSAGE,
         },
         {
