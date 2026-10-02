@@ -8,7 +8,8 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { ExerciseCard } from './ExerciseCard.tsx';
-import { contentExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
+import { bankExercise, contentExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
+import { planWholeGroups } from '../../regelmotor/blocks/groups.ts';
 import type { Exercise, GameFormat } from '../../regelmotor/index.ts';
 
 function cardHtml(overrides: Record<string, unknown>, format: GameFormat): string {
@@ -149,5 +150,36 @@ describe('Ytförklaringen på kortet', () => {
 
   it('visas inte när kortet saknar en referens att förklara', () => {
     expect(withHelp({}, true)).not.toContain('Vad betyder måttet i parentes?');
+  });
+});
+
+describe('R-054 och R-058 udda antal på kortet', () => {
+  function layoutHtml(overrides: Record<string, unknown>, players: number): string {
+    const exercise = bankExercise(overrides);
+    const layout = planWholeGroups(exercise, 'fas-10-12', 'del-ovning', players, 1);
+    return renderToStaticMarkup(
+      <ExerciseCard exercise={exercise} minutes={10} layout={layout} format="7mot7" />,
+    );
+  }
+  const pair = { grupptyp: 'par', spelare: { min: 2, max: 2 } };
+  const ownText = bankExercise().anpassning?.udda_antal ?? '';
+
+  it('R-058 en parövning med 13 spelare visar trion och övningens lösning, som fast-storlek', () => {
+    expect(ownText).not.toBe('');
+    const markup = layoutHtml(pair, 13);
+    expect(markup).toContain('6 grupper: 3 + 2 + 2 + 2 + 2 + 2 spelare');
+    expect(markup).toContain(`Udda antal: ${ownText}`);
+    const fixed = layoutHtml(
+      { grupptyp: 'fast-storlek', spelare: { min: 3, max: 3 }, udda_antal_losning: true },
+      10,
+    );
+    expect(fixed).toContain('3 grupper: 4 + 3 + 3 spelare');
+    expect(fixed).toContain(`Udda antal: ${ownText}`);
+  });
+
+  it('R-058 en parövning med 12 spelare visar ingen text om udda antal', () => {
+    const markup = layoutHtml(pair, 12);
+    expect(markup).toContain('6 grupper à 2 spelare');
+    expect(markup).not.toContain('Udda antal:');
   });
 });
