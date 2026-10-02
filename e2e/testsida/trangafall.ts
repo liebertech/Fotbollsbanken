@@ -1,7 +1,14 @@
 /**
  * Två skisser som ritmotorn själv pekar ut som potentiellt trånga (ADR 0012 avsnitt 4 och
- * `src/planskiss/skalning.ts`): kösymboler som överlappar när avståndet är mindre än
- * symbolens diameter, och en kö som klipps vid bildens kant när den fylls utöver ytans mått.
+ * `src/planskiss/skalning.ts`): en kö där det angivna avståndet är mindre än symbolens
+ * diameter, och en kö som fylls utöver ytans mått och når bildens kant.
+ *
+ * Sedan rättelsen av fynd A (`minQueueSpacing`, `insideImage` i `src/planskiss/skalning.ts`)
+ * krockar kösymbolerna aldrig: ett för kort angivet avstånd höjs till det minsta som inte
+ * överlappar, och en köspelare som inte ryms innanför bildytan ritas inte alls utan räknas i
+ * stället in i köns "+N". De två skisserna är ändå kvar här, dels som regressionsskydd för de
+ * gränserna, dels för att de fortfarande ger den tätast möjliga och den mest kantnära kön som
+ * går att rita, och är därför bra underlag för mänsklig granskning av hur det ser ut.
  *
  * Det här är egen testdata för kvalitetssäkringens skärmbilder, skild från
  * src/planskiss/__testdata__/skisser.ts som ritmotorutvecklaren äger.
@@ -9,9 +16,10 @@
 import type { PlanskissInput } from '../../src/regelmotor/schema/planskiss.ts';
 
 /**
- * Överlappande kösymboler: avståndet 0,5 m (minsta tillåtna, ADR 0012 avsnitt 4) är mindre än
- * symboldiametern D, som klamras till minst 1,2 m (avsnitt 5). Med åtta köade spelare (taket,
- * avsnitt 4) ritas de tätt inpå varandra.
+ * Den tätast tillåtna kön: det angivna avståndet 0,5 m är mindre än symboldiametern D, som
+ * klamras till minst 1,2 m (avsnitt 5), så ritmotorn höjer avståndet till det minsta som inte
+ * överlappar (`minQueueSpacing`, fynd A) – cirka 1,44 m för lag a. Med sju köade spelare (inom
+ * taket på åtta, avsnitt 4) ritas de tätt inpå varandra, men krockar inte.
  */
 export const OVERLAPPANDE_KO: PlanskissInput = {
   version: 1,
@@ -29,10 +37,11 @@ export const OVERLAPPANDE_KO: PlanskissInput = {
 export const OVERLAPPANDE_KO_ANTAL = 8;
 
 /**
- * En kö som klipps vid bildens kant: startspelaren står nära högerkanten, och kön fortsätter
- * åt höger ut mot och förbi ytan plus marginalen (3 m, avsnitt 1). `viewBox` är `omrade` plus
- * marginalen (avsnitt 5), så de sista köspelarna hamnar delvis eller helt utanför den synliga
- * bilden.
+ * En kö som når bildens kant: startspelaren står nära högerkanten, och kön fortsätter åt höger
+ * mot ytan plus marginalen (3 m, avsnitt 1). Ritmotorn ritar bara de köspelare som ryms helt
+ * innanför bildytan (`insideImage`, fynd A); den tredje och senare köspelaren ritas inte alls
+ * och räknas i stället in i texten "+3" vid den sista ritade köspelaren, i stället för att
+ * klippas av bildens kant.
  */
 export const KO_VID_KANTEN: PlanskissInput = {
   version: 1,
@@ -46,5 +55,5 @@ export const KO_VID_KANTEN: PlanskissInput = {
     koer: [{ vid: 'start', riktning: 0, avstand: 1.5, etikett: 'Väntar' }],
   },
 };
-/** Basantal 1 plus fem köade: tredje och senare hamnar vid eller bortom ytans kant plus marginal. */
+/** Basantal 1 plus fem köade: bara de två första ryms, resten redovisas som "+3". */
 export const KO_VID_KANTEN_ANTAL = 6;

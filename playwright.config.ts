@@ -11,9 +11,9 @@
  * - "testsida": en liten testsida (e2e/testsida/) som renderar ritmotorns egna produktions-
  *   komponenter (KortSkiss, Planskissvy, Teckenforklaring) med ögonblicksbildernas testdata
  *   (src/planskiss/__testdata__/skisser.ts), ett exempel per spelform. Den används för att
- *   kunna fälla ut en miniatyr, läsa teckenförklaringen och visa de trånga fallen (överlappande
- *   kösymboler, en kö som klipps vid kanten) som bankens tomma skissfält annars gör omöjligt
- *   att se i den riktiga appen just nu.
+ *   kunna fälla ut en miniatyr, läsa teckenförklaringen och visa de trånga fallen (en tätt
+ *   packad kö och en kö som stannar vid kanten och visar "+N", se e2e/testsida/trangafall.ts)
+ *   som bankens tomma skissfält annars gör omöjligt att se i den riktiga appen just nu.
  *
  * Mobilbredd 375 px är förvalet för båda projekten (designsystem.md avsnitt 1).
  */

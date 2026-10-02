@@ -7,8 +7,8 @@
  * - att fälla ut en miniatyr till normal storlek och läsa teckenförklaringen
  *   (berättelse 06, kriterium 6; berättelse 07, kriterium 4),
  * - ett exempel per spelform (ADR 0012 avsnitt 8),
- * - de två trånga fallen: överlappande kösymboler och en kö som klipps vid kanten
- *   (ADR 0012 avsnitt 4).
+ * - de två trånga fallen: en tätt packad kö och en kö som stannar vid bildens kant och visar
+ *   "+N" (ADR 0012 avsnitt 4, fynd A i src/planskiss/skalning.ts).
  *
  * Skärmbilderna sparas i docs/design/skarmbilder/ritmotor/ för mänsklig granskning, inte som
  * Playwright-ögonblicksbilder (se motiveringen i generera-pass.spec.ts). De sparas bara med
@@ -59,7 +59,9 @@ test.describe('Ett exempel per spelform (ADR 0012 avsnitt 8)', () => {
 });
 
 test.describe('Trånga fall (ADR 0012 avsnitt 4, src/planskiss/skalning.ts)', () => {
-  test('överlappande kösymboler: avståndet är mindre än symbolens diameter', async ({ page }) => {
+  test('tätt packad kö: det angivna avståndet är mindre än symbolens diameter, men symbolerna krockar inte (fynd A)', async ({
+    page,
+  }) => {
     const card = page.getByTestId('kort-overlappande-ko');
     await card.getByRole('button', { name: /planskiss/i }).click();
     await expect(card.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
@@ -70,7 +72,9 @@ test.describe('Trånga fall (ADR 0012 avsnitt 4, src/planskiss/skalning.ts)', ()
     await card.screenshot({ path: screenshotPath('trangt-overlappande-ko-morkt.png') });
   });
 
-  test('en kö som klipps vid bildens kant', async ({ page }) => {
+  test('en kö som stannar vid bildens kant och visar "+N" i stället för att klippas (fynd A)', async ({
+    page,
+  }) => {
     const card = page.getByTestId('kort-ko-vid-kanten');
     await card.getByRole('button', { name: /planskiss/i }).click();
     await expect(card.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();

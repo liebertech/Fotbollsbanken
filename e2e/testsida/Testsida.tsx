@@ -88,16 +88,19 @@ export function Testsida() {
       <h2>Trånga fall</h2>
       <p>
         Två fall som ritmotorn själv pekar ut som trånga (ADR 0012 avsnitt 4,
-        `src/planskiss/skalning.ts`): kösymboler som överlappar när avståndet är mindre än symbolens
-        diameter, och en kö som klipps vid bildens kant.
+        `src/planskiss/skalning.ts`): en kö där det angivna avståndet är mindre än symbolens
+        diameter, och en kö som fylls utöver ytans mått och når bildens kant. Sedan rättelsen av
+        fynd A krockar kösymbolerna aldrig: den första kön ritas tätt packad vid det minsta tillåtna
+        avståndet, och den andra stannar innanför bildytan och redovisar resten som &quot;+N&quot; i
+        stället för att klippas.
       </p>
       <ul>
         <li data-testid="kort-overlappande-ko">
-          <h3>Överlappande kösymboler</h3>
+          <h3>Tätt packad kö</h3>
           <ExerciseCard
             exercise={contentExercise({
               id: 'testsida-overlappande-ko',
-              namn: 'Överlappande kösymboler',
+              namn: 'Tätt packad kö',
               planskiss: OVERLAPPANDE_KO,
             })}
             minutes={10}
@@ -107,11 +110,11 @@ export function Testsida() {
           />
         </li>
         <li data-testid="kort-ko-vid-kanten">
-          <h3>Kö som klipps vid kanten</h3>
+          <h3>Kö som stannar vid kanten och visar &quot;+N&quot;</h3>
           <ExerciseCard
             exercise={contentExercise({
               id: 'testsida-ko-vid-kanten',
-              namn: 'Kö som klipps vid kanten',
+              namn: 'Kö som stannar vid kanten och visar "+N"',
               planskiss: KO_VID_KANTEN,
             })}
             minutes={10}
