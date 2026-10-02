@@ -58,6 +58,35 @@ anpassning:
   fler_spelare: Bygg en till yta bredvid med samma mått.
   udda_antal: Ett lag spelar med en spelare mer än det andra.
   ledare: Övningen är självgående när lagen och reglerna är satta.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 14
+  beskrivning: >-
+    Yta 20 x 14 meter med ett minimål i varje ände. Två lag om två möts. Laget utan boll
+    försvarar tillsammans: en spelare pressar bollhållaren medan den andra täcker bakom. Vid
+    bollvinst anfaller laget snabbt.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 14, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 7, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 20, y: 7, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 5, y: 5, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 5, y: 9, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 15, y: 5, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 15, y: 9, lag: b, etikett: "B2" }
+    - { typ: boll, x: 15.3, y: 5 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 13, y: 5 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 10, y: 7 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: b1 }, till: { objekt: b2 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 8, y: 2, lag: a }
+      - { x: 12, y: 2, lag: b }
+      - { x: 8, y: 12, lag: a }
+      - { x: 12, y: 12, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända försvars- och omställningsspel.
 status: godkand
 granskning:

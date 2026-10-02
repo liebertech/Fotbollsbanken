@@ -78,6 +78,39 @@ anpassning:
   ledare: Utan ledare håller gruppen själv koll på antal försök och byter försvarare i tur och
     ordning. Med en ledare kan hen styra byten och peka på var pressen eller täckningen brast. Fler
     zoner klaras då av en ledare som rör sig mellan dem.
+planskiss:
+  version: 1
+  omrade:
+    langd: 25
+    bredd: 18
+  beskrivning: >-
+    Yta 25 x 18 meter med en zon 15 x 12 meter i mitten. Tre försvarare håller
+    till i zonen. Par väntar bakom zonens två kortsidor och startar växelvis,
+    ett par i taget, för att ta sig igenom zonen den långa vägen. Vid udda
+    antal går en trio igenom i stället för ett par.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 25, bredd: 18, stil: streckad }
+    - { typ: zon, x: 5, y: 3, langd: 15, bredd: 12, monster: prickar, etikett: Zon 15 x 12 m }
+    - { id: sp-f1, typ: spelare, x: 10, y: 6, lag: b, etikett: F }
+    - { id: sp-f2, typ: spelare, x: 13, y: 9, lag: b, etikett: F }
+    - { id: sp-f3, typ: spelare, x: 10, y: 12, lag: b, etikett: F }
+    - { id: sp-p1, typ: spelare, x: 2, y: 7, lag: a, etikett: "1" }
+    - { id: sp-p2, typ: spelare, x: 2, y: 11, lag: a, etikett: "2" }
+    - { typ: boll, x: 2.3, y: 7 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: sp-p1 }, till: { x: 7.5, y: 7.5 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-p2 }, till: { x: 9, y: 13 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-f1 }, till: { x: 9, y: 7.5 }, ordning: 2, etikett: Pressar bollhållaren }
+    - { typ: lopning, fran: { objekt: sp-f2 }, till: { x: 11.5, y: 8.5 }, ordning: 2, etikett: Täcker bakom }
+    - { typ: lopning, fran: { objekt: sp-f3 }, till: { x: 9.5, y: 11 }, ordning: 2, etikett: Stänger passningen }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 23, y: 7, lag: a }
+      - { x: 23, y: 11, lag: a }
+      - { x: 2, y: 6, lag: a }
+      - { x: 2, y: 12, lag: a }
+      - { x: 23, y: 9, lag: a }
 kalla: Egen övning, inspirerad av vanliga övningar för att öva press och täckning tillsammans i
   lagförsvar.
 status: godkand

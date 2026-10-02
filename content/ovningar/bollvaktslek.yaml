@@ -65,6 +65,46 @@ anpassning:
   fler_spelare: Bygg en yta till bredvid med samma lek, och dela gruppen i två.
   udda_antal: Spelar ingen roll, alla har varsin boll oavsett hur många de är.
   ledare: En ledare räcker för att hålla koll på säkerheten, också när gruppen är delad i två ytor.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 18
+  beskrivning: >-
+    Yta 18 x 18 meter markerad med koner i hörnen. Alla spelare rör sig fritt
+    i ytan samtidigt och har varsin boll som de skyddar med kroppen. Ingen
+    tillhör ett lag. Fler spelare fyller på i samma mönster.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 18, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 18, y: 0 }
+    - { typ: kon, x: 18, y: 18 }
+    - { typ: kon, x: 0, y: 18 }
+    - { typ: spelare, x: 3, y: 3, lag: neutral }
+    - { typ: boll, x: 3.3, y: 3 }
+    - { typ: spelare, x: 9, y: 3, lag: neutral }
+    - { typ: boll, x: 9.3, y: 3 }
+    - { typ: spelare, x: 15, y: 3, lag: neutral }
+    - { typ: boll, x: 15.3, y: 3 }
+    - { typ: spelare, x: 3, y: 15, lag: neutral }
+    - { typ: boll, x: 3.3, y: 15 }
+    - { typ: spelare, x: 9, y: 15, lag: neutral }
+    - { typ: boll, x: 9.3, y: 15 }
+    - { typ: spelare, x: 15, y: 15, lag: neutral }
+    - { typ: boll, x: 15.3, y: 15 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 3, lag: neutral }
+      - { x: 12, y: 3, lag: neutral }
+      - { x: 3, y: 6, lag: neutral }
+      - { x: 9, y: 6, lag: neutral }
+      - { x: 15, y: 6, lag: neutral }
+      - { x: 6, y: 9, lag: neutral }
+      - { x: 12, y: 9, lag: neutral }
+      - { x: 3, y: 12, lag: neutral }
+      - { x: 9, y: 12, lag: neutral }
+      - { x: 15, y: 12, lag: neutral }
 kalla: Egen övning, inspirerad av en allmänt känd lekövning där spelarna skyddar sin egen boll och
   stör andras.
 status: godkand

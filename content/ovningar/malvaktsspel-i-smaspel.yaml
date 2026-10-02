@@ -62,6 +62,51 @@ anpassning:
   fler_spelare: Gör planen större och spela med fullstora mål och fler spelare i laget.
   udda_antal: Ett lag får en utespelare mer i stället för att sakna målvakt.
   ledare: Med bara en ledare coachas målvakterna växelvis, en period i taget.
+planskiss:
+  version: 1
+  omrade:
+    langd: 50
+    bredd: 30
+  beskrivning: >-
+    Yta 50 x 30 meter med ett mål och en målvakt på varje kortsida. Fyra mot
+    fyra ute. Retreatlinjerna är markerade sju meter från mittlinjen på varje
+    planhalva. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 50, bredd: 30, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 7mot7, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 50, y: 15, storlek: 7mot7, riktning: vanster }
+    - { typ: kon, x: 18, y: -1 }
+    - { typ: kon, x: 18, y: 31 }
+    - { typ: kon, x: 32, y: -1 }
+    - { typ: kon, x: 32, y: 31 }
+    - { id: mv-a, typ: spelare, x: 1, y: 15, lag: a, malvakt: true, etikett: MV }
+    - { id: mv-b, typ: spelare, x: 49, y: 15, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 12, y: 8, lag: a }
+    - { id: a2, typ: spelare, x: 12, y: 22, lag: a }
+    - { id: a3, typ: spelare, x: 20, y: 15, lag: a }
+    - { typ: spelare, x: 28, y: 15, lag: a }
+    - { id: b1, typ: spelare, x: 38, y: 8, lag: b }
+    - { id: b2, typ: spelare, x: 38, y: 22, lag: b }
+    - { typ: spelare, x: 34, y: 15, lag: b }
+    - { typ: spelare, x: 42, y: 15, lag: b }
+    - { typ: boll, x: 1.3, y: 15 }
+    - { typ: ledare, x: 1, y: 32 }
+    - { typ: ledare, x: 49, y: 32 }
+  rorelser:
+    - { typ: passning, fran: { objekt: mv-a }, till: { objekt: a3 }, ordning: 1 }
+    - typ: lopning
+      fran: { objekt: a1 }
+      till: { x: 30, y: 8 }
+      ordning: 2
+    - { typ: passning, fran: { objekt: a3 }, till: { x: 30, y: 8 }, ordning: 3 }
+    - { typ: skott, fran: { x: 30, y: 8 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 10, lag: a }
+      - { x: 44, y: 10, lag: b }
+      - { x: 6, y: 20, lag: a }
+      - { x: 44, y: 20, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fokus på målvaktens spel med fötterna.
 status: godkand
 granskning:

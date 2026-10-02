@@ -54,6 +54,37 @@ anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: En trea roterar, två dribblar och byter mot den tredje efter varje försök.
   ledare: Med en ledare i närheten kan hen ropa ut för alla par samtidigt när intensiteten ska höjas.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med ett konmål i var ände. Anfallaren dribblar mot försvararen,
+    som till en början rör sig passivt, och paret byter roll efter varje försök.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 15, y: 0 }
+    - { typ: kon, x: 15, y: 10 }
+    - { typ: kon, x: 0, y: 10 }
+    - { typ: kon, x: 0, y: 3 }
+    - { typ: kon, x: 0, y: 7 }
+    - { typ: kon, x: 15, y: 3 }
+    - { typ: kon, x: 15, y: 7 }
+    - { id: a1, typ: spelare, x: 2, y: 5, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 8, y: 5, lag: b, etikett: F }
+    - { typ: boll, x: 2.8, y: 5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 13, y: 5 }
+      via: [{ x: 8, y: 1 }]
+      ordning: 1
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: a1, riktning: 135, avstand: 5, etikett: Roterar in }
 kalla: Egen övning, inspirerad av allmänt känd 1 mot 1-träning med stigande motstånd.
 status: godkand
 granskning:
