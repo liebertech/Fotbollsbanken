@@ -105,7 +105,7 @@ function DrawnSketch({
   antalSpelare,
 }: ValidProps) {
   const { skiss } = result;
-  const { players } = sketchLayout(skiss, yta, antalSpelare);
+  const { sketch, players } = sketchLayout(skiss, yta, antalSpelare);
   const caption = [parallelAreasText(players.areas), notDrawnText(players.notDrawn)]
     .filter((text): text is string => text !== null)
     .join(' ');
@@ -130,7 +130,7 @@ function DrawnSketch({
       </span>
       {storlek !== 'miniatyr' && (
         <Teckenforklaring
-          entries={legendEntries(skiss, players)}
+          entries={legendEntries(sketch, players)}
           instansId={instansId}
           storlek={storlek}
         />

@@ -5,6 +5,7 @@
  * utplacering. Den lägger aldrig till rörelser (S-6) och gör aldrig en tillagd spelare till
  * målvakt (S-7).
  */
+import { PLANSKISS_LIMITS } from '../regelmotor/schema/planskiss.ts';
 import type { Planskissdata } from '../regelmotor/schema/planskiss.ts';
 import { direction, toDrawn } from './matt.ts';
 import type { AreaFrame, Point } from './matt.ts';
@@ -12,8 +13,11 @@ import type { AreaFrame, Point } from './matt.ts';
 type SketchObject = Planskissdata['objekt'][number];
 export type Team = 'a' | 'b' | 'neutral';
 
-/** Högst så här många spelarsymboler ritas (S-5, RK-6). */
-export const MAX_PLAYER_SYMBOLS = 40;
+/** Högst så här många spelarsymboler ritas (S-5, RK-6). Gäller också basskissens spelare. */
+export const MAX_PLAYER_SYMBOLS = PLANSKISS_LIMITS.spelare;
+/** Högst så här många objekt och rörelser ritas, samma tak som i schemat (RK-6, R1). */
+export const MAX_OBJECTS = PLANSKISS_LIMITS.objekt.max;
+export const MAX_MOVEMENTS = PLANSKISS_LIMITS.rorelser;
 /** Antalet klamras till högst basantalet plus 30 (avsnitt 4, *Två gränser*). */
 export const MAX_EXTRA = 30;
 /** En kö ritas med högst 8 spelare (avsnitt 4, RK-6). */
@@ -62,6 +66,37 @@ function basePlayers(sketch: Planskissdata) {
 }
 
 /**
+ * Skissen inom schemats tak, prövade på nytt vid ritning (RK-6, säkerhetsgranskningen R1):
+ * högst 40 spelare, 60 objekt och 30 rörelser. Validerad data ligger alltid inom taken och
+ * kommer tillbaka oförändrad. Data som har tagit sig förbi `readPlanskiss`, genom en
+ * regression eller en förfalskning, ritas bara till taket i stället för att bli en mycket
+ * stor bild. De första objekten och rörelserna i listorna behålls.
+ */
+export function withinLimits(sketch: Planskissdata): Planskissdata {
+  const movements = sketch.rorelser;
+  if (
+    sketch.objekt.length <= MAX_OBJECTS &&
+    basePlayers(sketch).length <= MAX_PLAYER_SYMBOLS &&
+    (movements === undefined || movements.length <= MAX_MOVEMENTS)
+  ) {
+    return sketch;
+  }
+  let keptPlayers = 0;
+  const objekt = sketch.objekt.filter((item) => {
+    if (item.typ !== 'spelare') {
+      return true;
+    }
+    keptPlayers += 1;
+    return keptPlayers <= MAX_PLAYER_SYMBOLS;
+  });
+  return {
+    ...sketch,
+    objekt: objekt.slice(0, MAX_OBJECTS),
+    ...(movements === undefined ? {} : { rorelser: movements.slice(0, MAX_MOVEMENTS) }),
+  };
+}
+
+/**
  * Antalet som skissen ska ritas för (S-2, avsnitt 4). Ett okänt antal ger basskissen
  * (berättelse 06, kriterium 5), och ett orimligt antal klamras till [basantal, basantal + 30].
  */
@@ -81,15 +116,16 @@ export function scalePlayers(
   frame: AreaFrame,
   count: number | undefined,
 ): ScaledPlayers {
-  const base = basePlayers(sketch);
-  const baseCount = base.length;
+  const baseCount = basePlayers(sketch).length;
+  // Bara basskissens spelare inom taken ritas. Resten står inte med i skissen (R1).
+  const base = basePlayers(withinLimits(sketch));
   const total = clampCount(baseCount, count);
   const result: ScaledPlayers = {
     baseCount,
     count: total,
     added: [],
     queues: [],
-    notDrawn: 0,
+    notDrawn: baseCount - base.length,
     areas: 1,
   };
   const scaling = sketch.skalning ?? { strategi: 'fast' as const };
@@ -99,13 +135,16 @@ export function scalePlayers(
   }
   if (scaling.strategi === 'parallella-ytor') {
     // Ingen spelare läggs till. Skissen visar en yta och antalet ytor skrivs i text.
-    result.areas = Math.max(1, Math.ceil(total / scaling.per_yta));
+    // Schemat kräver minst 1 per yta. Det prövas ändå på nytt, så att 0 eller ett tal som
+    // inte är ändligt aldrig ger "en av Infinity ytor" (R1).
+    const perArea = Number.isFinite(scaling.per_yta) ? Math.max(1, scaling.per_yta) : 1;
+    result.areas = Math.max(1, Math.ceil(total / perArea));
     return result;
   }
 
   let extra = total - baseCount;
   // Taket gäller alla ritade spelarsymboler, basskissens medräknade (S-5).
-  let room = Math.max(0, MAX_PLAYER_SYMBOLS - baseCount);
+  let room = Math.max(0, MAX_PLAYER_SYMBOLS - base.length);
 
   for (const place of scaling.platser ?? []) {
     if (extra === 0) {

@@ -25,7 +25,7 @@ import {
 } from './matt.ts';
 import type { AreaFrame, Point, Size } from './matt.ts';
 import { samplePath, polylineLength, slice } from './rorelser.ts';
-import { scalePlayers } from './skalning.ts';
+import { scalePlayers, withinLimits } from './skalning.ts';
 import type { ScaledPlayers, Team } from './skalning.ts';
 import {
   ball,
@@ -170,6 +170,8 @@ function usedPatterns(sketch: Planskissdata) {
 
 /** Allt ritmotorn räknar fram innan något ritas. Används också av teckenförklaringen. */
 export interface SketchLayout {
+  /** Skissen inom taken för spelare, objekt och rörelser, som den ritas (RK-6, R1). */
+  sketch: Planskissdata;
   frame: AreaFrame;
   players: ScaledPlayers;
 }
@@ -180,11 +182,15 @@ export function sketchLayout(
   antalSpelare: number | undefined,
 ): SketchLayout {
   const frame = areaFrame(skiss, yta);
-  return { frame, players: scalePlayers(skiss, frame, antalSpelare) };
+  return {
+    sketch: withinLimits(skiss),
+    frame,
+    players: scalePlayers(skiss, frame, antalSpelare),
+  };
 }
 
 export function Planskiss({
-  skiss,
+  skiss: given,
   spelform,
   yta,
   antalSpelare,
@@ -195,7 +201,8 @@ export function Planskiss({
   if (!INSTANCE_ID_PATTERN.test(instansId)) {
     throw new InvalidInstanceIdError();
   }
-  const { frame, players } = sketchLayout(skiss, yta, antalSpelare);
+  // Allt nedan ritar den klamrade skissen, aldrig den givna (R1).
+  const { sketch: skiss, frame, players } = sketchLayout(given, yta, antalSpelare);
   const drawn = frame.drawn;
   const d = symbolDiameter(drawn);
   const ctx: DrawContext = {
