@@ -76,11 +76,11 @@ planskiss:
   rorelser:
     - { typ: passning, fran: { objekt: p1 }, till: { objekt: p3 }, ordning: 1 }
     - { typ: lopning, fran: { objekt: p1 }, till: { x: 5, y: 7 }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: p2 }, till: { x: 5, y: 3 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: p2 }, till: { x: 5, y: 3 }, ordning: 2 }
   skalning:
     strategi: koer
     koer:
-      - { vid: p1, riktning: 270, avstand: 1.5, etikett: "Vilande, byter in" }
+      - { vid: p1, riktning: 270, avstand: 3.5, etikett: "Vilande, byter in" }
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörlig ruta.
 status: godkand
 granskning:
