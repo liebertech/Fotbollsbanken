@@ -143,4 +143,29 @@ describe('instanceId', () => {
     expect(instanceId('Å Ä', '')).toBe('skiss');
     expect(instanceId('x'.repeat(100))).toHaveLength(70);
   });
+
+  it('ger olika id:n för samma långa övning på olika platser (R6)', () => {
+    const exerciseId = 'x'.repeat(64);
+    const keys = ['g1-10', 'g1-100', 'g1-1000', 'rad-3-2', 'rad-3-20'];
+    const ids = keys.map((key) => instanceId(exerciseId, key));
+    expect(new Set(ids).size).toBe(keys.length);
+    for (const id of ids) {
+      expect(id).toMatch(/^[a-z0-9-]{1,70}$/);
+      expect(`${id}-mini`).toMatch(/^[a-z0-9-]{1,80}$/);
+    }
+  });
+
+  it('skiljer två långa övnings-id:n med samma början åt (R6)', () => {
+    const first = instanceId(`${'a'.repeat(64)}-forsta`, 'g1');
+    const second = instanceId(`${'a'.repeat(64)}-andra`, 'g1');
+    expect(first).not.toBe(second);
+    expect(first).toMatch(/^[a-z0-9-]{1,70}$/);
+  });
+
+  it('håller sig inom 70 tecken även när platsen i passet är lång', () => {
+    const first = instanceId('ovning', 'p'.repeat(80));
+    const second = instanceId('ovning', `${'p'.repeat(79)}q`);
+    expect(first).toMatch(/^[a-z0-9-]{1,70}$/);
+    expect(first).not.toBe(second);
+  });
 });

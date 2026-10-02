@@ -36,20 +36,59 @@ export interface PlanskissvyProps {
   antalSpelare?: number;
 }
 
-/**
- * Ett `instansId` ur övningens id och platsen i passet (ADR 0012 avsnitt 5, RK-4). Allt utom
- * gemena a–z, siffror och bindestreck blir bindestreck, och id:t kortas till 70 tecken så att
- * ritmotorns suffix ryms inom 80.
- */
-export function instanceId(...parts: string[]): string {
-  const slug = parts
-    .join('-')
+/** Längsta `instansId`, så att `-mini` och ritmotorns suffix ryms inom RK-4:s 80 tecken. */
+const MAX_INSTANCE_ID = 70;
+
+/** Gemena a–z, siffror och enkla bindestreck, utan bindestreck först eller sist. */
+function slugify(text: string): string {
+  return text
     .toLowerCase()
     .replace(/[^a-z0-9-]+/g, '-')
     .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 70);
-  return slug.length > 0 ? slug : 'skiss';
+    .replace(/^-|-$/g, '');
+}
+
+/** FNV-1a på 32 bitar, som sju tecken i bas 36. Deterministisk och utan beroenden. */
+function shortHash(text: string): string {
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < text.length; i += 1) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash.toString(36).padStart(7, '0');
+}
+
+/**
+ * Ett `instansId` ur övningens id och platsen i passet (ADR 0012 avsnitt 5, RK-4). Allt utom
+ * gemena a–z, siffror och bindestreck blir bindestreck, och id:t blir högst 70 tecken så att
+ * ritmotorns suffix ryms inom 80.
+ *
+ * Ett för långt id kortas i den första delen, övningens id, innan delarna fogas ihop. Resten,
+ * platsen i passet, behålls hel, så att två kort med samma övning alltid får olika id:n (R6).
+ * Efter den kortade delen står en hash av hela övnings-id:t, så att två långa övnings-id:n med
+ * samma början också skiljs åt. Ryms inte ens resten kortas hela id:t och slutar med en hash
+ * av alla delar.
+ */
+export function instanceId(...parts: string[]): string {
+  const slugs = parts.map(slugify).filter((slug) => slug.length > 0);
+  const joined = slugs.join('-');
+  if (joined.length === 0) {
+    return 'skiss';
+  }
+  if (joined.length <= MAX_INSTANCE_ID) {
+    return joined;
+  }
+  const [head = '', ...rest] = slugs;
+  const tail = rest.join('-');
+  const headHash = shortHash(head);
+  const headRoom = MAX_INSTANCE_ID - headHash.length - 1 - (tail.length > 0 ? tail.length + 1 : 0);
+  if (headRoom >= 1) {
+    const shortHead = head.slice(0, headRoom).replace(/-+$/, '');
+    return [shortHead, headHash, tail].filter((part) => part.length > 0).join('-');
+  }
+  const allHash = shortHash(slugs.join('/'));
+  const prefix = joined.slice(0, MAX_INSTANCE_ID - allHash.length - 1).replace(/-+$/, '');
+  return `${prefix}-${allHash}`;
 }
 
 type ValidProps = Omit<PlanskissvyProps, 'result'> & {

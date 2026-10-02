@@ -84,13 +84,10 @@ describe('instanceId kan kollidera för två kort med samma långa övnings-id (
    * samma pass eller samma utskriftsdokument kan då dela mönster-id:n (<pattern> i <defs>), så
    * att den andra skissens målvaktsrandmönster eller zonmönster visas i den första.
    */
-  it.fails(
-    'två olika placeKey-värden ger olika instansId, även när övningens id är 64 tecken',
-    () => {
-      const exerciseId = 'x'.repeat(64);
-      const first = instanceId(exerciseId, 'g1-10');
-      const second = instanceId(exerciseId, 'g1-100');
-      expect(first).not.toBe(second);
-    },
-  );
+  it('två olika placeKey-värden ger olika instansId, även när övningens id är 64 tecken', () => {
+    const exerciseId = 'x'.repeat(64);
+    const first = instanceId(exerciseId, 'g1-10');
+    const second = instanceId(exerciseId, 'g1-100');
+    expect(first).not.toBe(second);
+  });
 });
