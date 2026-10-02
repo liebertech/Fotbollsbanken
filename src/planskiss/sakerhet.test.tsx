@@ -364,7 +364,11 @@ const THROWING = new Proxy(
 );
 
 describe('RK-10: fuzz-slinga', () => {
-  it('readPlanskiss kastar aldrig, och det som godkänns ritas utan fel inom vitlistan', () => {
+  it(// Kvalitetssäkring 2026-10-02: slingan tog 12,3 s och föll en gång på vitest-förvalet
+  // 15 s (vite.config.ts testTimeout) när sviten kördes parallellt med resten. 800 ritade
+  // skisser är tidskrävande men inte ett fel i sig, så fixet är en egen, generös tidsgräns
+  // för just det här testet i stället för färre varv (det skulle försvaga täckningen).
+  'readPlanskiss kastar aldrig, och det som godkänns ritas utan fel inom vitlistan', () => {
     const next = random(20260929);
     const sources = Object.values(PER_SPELFORM);
     let valid = 0;
@@ -399,7 +403,7 @@ describe('RK-10: fuzz-slinga', () => {
     // Slingan ska pröva båda vägarna.
     expect(valid).toBeGreaterThan(40);
     expect(invalid).toBeGreaterThan(50);
-  });
+  }, 30_000);
 
   it('fientlig indata ger ogiltig, aldrig ett undantag', () => {
     const cyclic: Record<string, unknown> = { version: 1 };
