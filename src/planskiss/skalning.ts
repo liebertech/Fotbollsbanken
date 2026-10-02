@@ -7,7 +7,7 @@
  */
 import { PLANSKISS_LIMITS } from '../regelmotor/schema/planskiss.ts';
 import type { Planskissdata } from '../regelmotor/schema/planskiss.ts';
-import { direction, toDrawn } from './matt.ts';
+import { MARGIN, direction, symbolDiameter, toDrawn } from './matt.ts';
 import type { AreaFrame, Point } from './matt.ts';
 
 type SketchObject = Planskissdata['objekt'][number];
@@ -24,6 +24,44 @@ export const MAX_EXTRA = 30;
 export const MAX_QUEUE_DRAWN = 8;
 /** Förvalt avstånd mellan spelarna i en kö, i meter (avsnitt 4). */
 export const DEFAULT_QUEUE_SPACING = 1.5;
+/** Glappet mellan två köspelare, som andel av `D`, så att varje symbol syns för sig (fynd A). */
+export const QUEUE_GAP = 0.2;
+
+/**
+ * Minsta avståndet mellan två köspelare i köns riktning, så att symbolerna aldrig överlappar
+ * och kön alltid går att räkna (ux-granskningen, fynd A). Avståndet är symbolens utsträckning
+ * längs riktningen plus ett glapp på `0,2 × D`: cirkeln är `D` bred, kvadraten `0,9 × D` och
+ * romben har halvdiagonalen `0,575 × D`, mått som i `symboler.tsx`. Ett kortare `avstand` i
+ * skissen ritas med det här avståndet i stället.
+ */
+export function minQueueSpacing(lag: Team, degrees: number, d: number): number {
+  const step = direction(degrees);
+  const ax = Math.abs(step.x);
+  const ay = Math.abs(step.y);
+  let extent: number;
+  if (lag === 'a') {
+    extent = d;
+  } else if (lag === 'b') {
+    extent = (d * 0.9) / Math.max(ax, ay);
+  } else {
+    extent = (2 * d * 0.575) / (ax + ay);
+  }
+  return extent + QUEUE_GAP * d;
+}
+
+/**
+ * Ryms en köspelare med mitten i `at` inom bildytan, alltså ytan plus marginalen? En
+ * köspelare som inte ryms ritas inte, utan räknas med i köns "+N" (fynd A och kön vid kanten).
+ */
+function insideImage(frame: AreaFrame, at: Point, d: number): boolean {
+  const half = d / 2;
+  return (
+    at.x >= -MARGIN + half &&
+    at.x <= frame.drawn.langd + MARGIN - half &&
+    at.y >= -MARGIN + half &&
+    at.y <= frame.drawn.bredd + MARGIN - half
+  );
+}
 
 /** En spelare som skalningen har lagt till. Alltid utespelare och alltid utan etikett (S-7). */
 export interface AddedPlayer {
@@ -166,6 +204,7 @@ export function scalePlayers(
     return result;
   }
 
+  const d = symbolDiameter(frame.drawn);
   // Cykliskt: spelare 1 till kö 1, spelare 2 till kö 2 och så vidare (avsnitt 4).
   const perQueue = queues.map(
     (_, index) => Math.floor(extra / queues.length) + (index < extra % queues.length ? 1 : 0),
@@ -184,17 +223,25 @@ export function scalePlayers(
     }
     const origin = toDrawn(frame, start);
     const step = direction(queue.riktning);
-    const spacing = queue.avstand ?? DEFAULT_QUEUE_SPACING;
-    const drawable = Math.min(size, MAX_QUEUE_DRAWN, room);
-    room -= drawable;
+    // Avståndet är i meter på marken och skalas inte med ytan, men blir aldrig så kort att
+    // symbolerna överlappar (fynd A).
+    const spacing = Math.max(
+      queue.avstand ?? DEFAULT_QUEUE_SPACING,
+      minQueueSpacing(start.lag, queue.riktning, d),
+    );
     const positions: Point[] = [];
-    for (let k = 1; k <= drawable; k += 1) {
-      // Avståndet är i meter på marken och skalas inte med ytan.
+    for (let k = 1; k <= Math.min(size, MAX_QUEUE_DRAWN, room); k += 1) {
       const at = { x: origin.x + step.x * k * spacing, y: origin.y + step.y * k * spacing };
+      // Kön stannar vid bildens kant. Resten skrivs som "+N" i stället för att klippas.
+      if (!insideImage(frame, at, d)) {
+        break;
+      }
       positions.push(at);
       // Köspelaren ärver bara laget, aldrig målvaktsmarkeringen (S-7).
       result.added.push({ at, lag: start.lag });
     }
+    const drawable = positions.length;
+    room -= drawable;
     const first = positions[0];
     const last = positions[positions.length - 1];
     if (first !== undefined && last !== undefined) {

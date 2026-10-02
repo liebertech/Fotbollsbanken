@@ -545,64 +545,32 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="45"
+        cx="0"
+        cy="30"
         r="6"
       />
     </g>
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-20"
-        cy="45"
+        cx="0"
+        cy="15"
         r="6"
       />
     </g>
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-30"
-        cy="45"
+        cx="0"
+        cy="0"
         r="6"
       />
     </g>
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-40"
-        cy="45"
-        r="6"
-      />
-    </g>
-    <g>
-      <circle
-        class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-50"
-        cy="45"
-        r="6"
-      />
-    </g>
-    <g>
-      <circle
-        class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-60"
-        cy="45"
-        r="6"
-      />
-    </g>
-    <g>
-      <circle
-        class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-70"
-        cy="45"
-        r="6"
-      />
-    </g>
-    <g>
-      <circle
-        class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-80"
-        cy="45"
+        cx="0"
+        cy="-15"
         r="6"
       />
     </g>
@@ -612,8 +580,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="94.6"
+        x="49.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -622,8 +590,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="104.6"
+        x="34.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -632,8 +600,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="114.6"
+        x="19.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -642,8 +610,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="124.6"
+        x="4.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -652,8 +620,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="134.6"
+        x="-10.4"
+        y="84.6"
       />
     </g>
     <g>
@@ -662,28 +630,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="144.6"
-      />
-    </g>
-    <g>
-      <rect
-        class="_spelare_a7e2bf _lagB_a7e2bf"
-        height="10.8"
-        stroke-width="2.4"
-        width="10.8"
-        x="64.6"
-        y="154.6"
-      />
-    </g>
-    <g>
-      <rect
-        class="_spelare_a7e2bf _lagB_a7e2bf"
-        height="10.8"
-        stroke-width="2.4"
-        width="10.8"
-        x="64.6"
-        y="164.6"
+        x="-25.4"
+        y="84.6"
       />
     </g>
     <g>
@@ -718,8 +666,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-10"
-      y="31.8"
+      x="13.2"
+      y="30"
     >
       Anfallare
     </text>
@@ -728,18 +676,18 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-94.4"
-      y="45"
+      x="0"
+      y="-29.4"
     >
-      +2
+      +6
     </text>
     <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="83.2"
-      y="100"
+      x="55"
+      y="76.8"
     >
       Försvarare
     </text>
@@ -748,10 +696,10 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="70"
-      y="184.4"
+      x="-34.4"
+      y="90"
     >
-      +2
+      +4
     </text>
     <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
@@ -1701,8 +1649,8 @@ exports[`en skiss per storlek > miniatyr 1`] = `
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="50"
+        cx="0"
+        cy="35"
         r="6"
       />
     </g>
@@ -1712,8 +1660,8 @@ exports[`en skiss per storlek > miniatyr 1`] = `
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="78.6"
-        y="104.6"
+        x="63.6"
+        y="94.6"
       />
     </g>
     <g>
@@ -2012,8 +1960,8 @@ exports[`en skiss per storlek > normal 1`] = `
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="50"
+        cx="0"
+        cy="35"
         r="6"
       />
     </g>
@@ -2023,8 +1971,8 @@ exports[`en skiss per storlek > normal 1`] = `
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="78.6"
-        y="104.6"
+        x="63.6"
+        y="94.6"
       />
     </g>
     <g>
@@ -2059,8 +2007,8 @@ exports[`en skiss per storlek > normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-10"
-      y="36.8"
+      x="13.2"
+      y="35"
     >
       Anfallare
     </text>
@@ -2069,8 +2017,8 @@ exports[`en skiss per storlek > normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="97.2"
-      y="110"
+      x="69"
+      y="86.8"
     >
       Försvarare
     </text>
@@ -2355,8 +2303,8 @@ exports[`en skiss per storlek > planlage 1`] = `
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="50"
+        cx="0"
+        cy="35"
         r="6"
       />
     </g>
@@ -2366,8 +2314,8 @@ exports[`en skiss per storlek > planlage 1`] = `
         height="10.8"
         stroke-width="3.2"
         width="10.8"
-        x="78.6"
-        y="104.6"
+        x="63.6"
+        y="94.6"
       />
     </g>
     <g>
@@ -2402,8 +2350,8 @@ exports[`en skiss per storlek > planlage 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-10"
-      y="36.8"
+      x="13.2"
+      y="35"
     >
       Anfallare
     </text>
@@ -2412,8 +2360,8 @@ exports[`en skiss per storlek > planlage 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="97.2"
-      y="110"
+      x="69"
+      y="86.8"
     >
       Försvarare
     </text>
@@ -2698,8 +2646,8 @@ exports[`en skiss per storlek > utskrift 1`] = `
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="50"
+        cx="0"
+        cy="35"
         r="6"
       />
     </g>
@@ -2709,8 +2657,8 @@ exports[`en skiss per storlek > utskrift 1`] = `
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="78.6"
-        y="104.6"
+        x="63.6"
+        y="94.6"
       />
     </g>
     <g>
@@ -2745,8 +2693,8 @@ exports[`en skiss per storlek > utskrift 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-10"
-      y="36.8"
+      x="13.2"
+      y="35"
     >
       Anfallare
     </text>
@@ -2755,8 +2703,8 @@ exports[`en skiss per storlek > utskrift 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="97.2"
-      y="110"
+      x="69"
+      y="86.8"
     >
       Försvarare
     </text>
@@ -3321,16 +3269,16 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-10"
-        cy="45"
+        cx="0"
+        cy="30"
         r="6"
       />
     </g>
     <g>
       <circle
         class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-20"
-        cy="45"
+        cx="0"
+        cy="15"
         r="6"
       />
     </g>
@@ -3340,8 +3288,8 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="94.6"
+        x="49.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -3350,8 +3298,8 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
         height="10.8"
         stroke-width="2.4"
         width="10.8"
-        x="64.6"
-        y="104.6"
+        x="34.6"
+        y="84.6"
       />
     </g>
     <g>
@@ -3386,8 +3334,8 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-10"
-      y="31.8"
+      x="13.2"
+      y="30"
     >
       Anfallare
     </text>
@@ -3396,8 +3344,8 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="83.2"
-      y="100"
+      x="55"
+      y="76.8"
     >
       Försvarare
     </text>
@@ -3430,7 +3378,7 @@ exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
   <desc
     id="exempel-7mot7-beskrivning"
   >
-    Yta 15 gånger 15 meter. 9 spelare i lag A. 2 passningar och 1 löpning.
+    Yta 15 gånger 15 meter. 8 spelare i lag A. 2 passningar och 1 löpning. 1 spelare till står inte med i skissen.
   </desc>
   <rect
     class="_yta_a7e2bf"
@@ -3673,14 +3621,6 @@ exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
         class="_spelare_a7e2bf _lagA_a7e2bf"
         cx="-18.61"
         cy="168.61"
-        r="6"
-      />
-    </g>
-    <g>
-      <circle
-        class="_spelare_a7e2bf _lagA_a7e2bf"
-        cx="-29.61"
-        cy="-29.61"
         r="6"
       />
     </g>
@@ -4729,14 +4669,14 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
     <g>
       <polygon
         class="_spelare_a7e2bf _lagNeutral_a7e2bf"
-        points="200,383.39 216.61,400 200,416.61 183.39,400"
+        points="181,383.39 197.61,400 181,416.61 164.39,400"
         stroke-width="3.61"
       />
     </g>
     <g>
       <polygon
         class="_spelare_a7e2bf _lagNeutral_a7e2bf"
-        points="180,383.39 196.61,400 180,416.61 163.39,400"
+        points="142,383.39 158.61,400 142,416.61 125.39,400"
         stroke-width="3.61"
       />
     </g>
@@ -4772,7 +4712,7 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
       dominant-baseline="central"
       font-size="17.33"
       text-anchor="middle"
-      x="200"
+      x="181"
       y="368.22"
     >
       Nästa inlägg

@@ -66,8 +66,8 @@ export const FEM_MOT_FEM: PlanskissInput = {
   skalning: {
     strategi: 'koer',
     koer: [
-      { vid: 'anf', riktning: 180, avstand: 1, etikett: 'Anfallare' },
-      { vid: 'forsv', riktning: 90, avstand: 1, etikett: 'Försvarare' },
+      { vid: 'anf', riktning: 270, avstand: 1.5, etikett: 'Anfallare' },
+      { vid: 'forsv', riktning: 180, avstand: 1.5, etikett: 'Försvarare' },
     ],
   },
 };

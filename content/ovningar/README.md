@@ -184,7 +184,12 @@ Skissen ritas för ett bestämt antal spelare, som appen känner till när passe
 
 `koer` och `platser` kan kombineras: skriv båda listorna under samma `skalning`. Platserna fylls först, därefter köerna.
 
-**En kö utgår alltid från en spelare** ([ADR 0018](../../docs/adr/0018-kompletteringar-av-planskissformatet.md), punkt 5). `vid` pekar på ett `spelare`-objekt, aldrig på en kon eller en ledare, eftersom köspelarna ärver spelarens lag. Ska kön stå bakom en kon eller vid ledaren ritar du den **första i kön** som en spelare vid konen eller ledaren, och låter kön utgå från den spelaren. Står redan två spelare i kön i basskissen låter du kön utgå från den bakersta, så att nästa spelare hamnar bakom dem. Välj `riktning` och `avstand` så att hela kön ryms inom marginalen på 3 m, för det antal spelare övningen kan få. Ryms den inte, kortar du `avstand` eller låter kön gå längs linjen i stället för rakt ut.
+**En kö utgår alltid från en spelare** ([ADR 0018](../../docs/adr/0018-kompletteringar-av-planskissformatet.md), punkt 5). `vid` pekar på ett `spelare`-objekt, aldrig på en kon eller en ledare, eftersom köspelarna ärver spelarens lag. Ska kön stå bakom en kon eller vid ledaren ritar du den **första i kön** som en spelare vid konen eller ledaren, och låter kön utgå från den spelaren. Står redan två spelare i kön i basskissen låter du kön utgå från den bakersta, så att nästa spelare hamnar bakom dem. Välj `riktning` och `avstand` så att hela kön ryms inom ytan plus marginalen på 3 m, för det antal spelare övningen kan få. Ryms den inte, låter du kön gå längs linjen i stället för rakt ut.
+
+Två regler i ritmotorn gör att kön alltid går att räkna:
+
+- **Spelarna i en kö överlappar aldrig.** Är `avstand` kortare än symbolen ritas kön med symbolens bredd plus ett litet glapp i stället, det vill säga ungefär 1,2 gånger symbolens diameter `D`. På en liten yta är `D` 1,2 m, så ett `avstand` under ungefär 1,5 m gör ingen skillnad. På en stor yta är symbolen större och kön blir längre.
+- **Kön stannar vid bildens kant.** En köspelare som inte ryms helt inom ytan plus marginalen ritas inte. Kön visar då så många som ryms och skriver resten som ”+N” vid köns slut. Ryms ingen, står antalet i texten under skissen.
 
 **Fast storlek och udda antal** (ADR 0018, punkt 4). En övning med `grupptyp: fast-storlek` ritar med `fast` om `udda_antal_losning` är `false`. Är den `true` ska skissen visa den extra spelaren så som övningen löser udda antal i `anpassning.udda_antal`:
 
@@ -259,7 +264,7 @@ planskiss:
 
 Kön vid hörn 1 utgår från spelare 5, den bakersta i starthörnet, så att nästa spelare ställer sig bakom hen. Med 1,5 m avstånd ryms en spelare till i varje kö inom marginalen, alltså upp till nio spelare.
 
-**5 mot 5: ett mot ett till mål med målvakt, 15 × 9 meter.** Tre spelare i basskissen: målvakten, en anfallare och en försvarare. Två köer, en för anfallarna och en för försvararna. Köerna har 1 m mellan spelarna så att tre spelare i varje kö ryms inom marginalen.
+**5 mot 5: ett mot ett till mål med målvakt, 15 × 9 meter.** Tre spelare i basskissen: målvakten, en anfallare och en försvarare. Två köer, en för anfallarna och en för försvararna. Köerna går längs linjerna, anfallarnas uppåt längs kortsidan och försvararnas åt vänster längs sidlinjen, så att flera spelare ryms i varje kö med förvalt avstånd.
 
 ```yaml
 # Spelform: 5mot5
@@ -289,8 +294,8 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: anf, riktning: 180, avstand: 1, etikett: Anfallare }
-      - { vid: forsv, riktning: 90, avstand: 1, etikett: Försvarare }
+      - { vid: anf, riktning: 270, etikett: Anfallare }
+      - { vid: forsv, riktning: 180, etikett: Försvarare }
 ```
 
 **9 mot 9: smålagsspel med målvakter, 40 × 30 meter.** Tre mot tre ute. Fler spelare fyller på lagen i tur och ordning. Ytan har ingen mittlinje, eftersom 9 mot 9 inte har någon retreatlinje. Behöver en övning en linje, till exempel för en zon, ritar du den som en `markering` med `form: linje` och skriver i `beskrivning` vad den betyder.

@@ -61,7 +61,7 @@ const QUEUE_AT_KEEPER: PlanskissInput = {
     { id: 'mv', typ: 'spelare', x: 19, y: 7.5, lag: 'a', malvakt: true },
     { typ: 'spelare', x: 5, y: 7.5, lag: 'b' },
   ],
-  skalning: { strategi: 'koer', koer: [{ vid: 'mv', riktning: 90, avstand: 1.5 }] },
+  skalning: { strategi: 'koer', koer: [{ vid: 'mv', riktning: 180, avstand: 1.5 }] },
 };
 
 describe('S-7: en tillagd spelare är aldrig målvakt', () => {
@@ -100,17 +100,17 @@ describe('S-7: en tillagd spelare är aldrig målvakt', () => {
 /** Fast storlek med udda antal: den extra spelaren står i en kö med övningens lösning. */
 const ODD: PlanskissInput = {
   version: 1,
-  omrade: { langd: 12, bredd: 12 },
+  omrade: { langd: 20, bredd: 20 },
   objekt: [
     { id: 'a1', typ: 'spelare', x: 0, y: 0, lag: 'a' },
-    { typ: 'spelare', x: 12, y: 0, lag: 'a' },
-    { typ: 'spelare', x: 12, y: 12, lag: 'a' },
-    { typ: 'spelare', x: 0, y: 12, lag: 'a' },
+    { typ: 'spelare', x: 20, y: 0, lag: 'a' },
+    { typ: 'spelare', x: 20, y: 20, lag: 'a' },
+    { typ: 'spelare', x: 0, y: 20, lag: 'a' },
     { typ: 'boll', x: 1, y: 1 },
   ],
   skalning: {
     strategi: 'koer',
-    koer: [{ vid: 'a1', riktning: 270, avstand: 1.5, etikett: 'Rullar in bollar' }],
+    koer: [{ vid: 'a1', riktning: 90, avstand: 1.5, etikett: 'Rullar in bollar' }],
   },
 };
 
