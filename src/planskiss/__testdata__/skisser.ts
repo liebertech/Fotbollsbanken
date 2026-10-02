@@ -292,6 +292,40 @@ export const STATIONER_I_CIRKEL: PlanskissInput = {
 };
 
 /**
+ * En övning för par, ett mot ett till småmål, med övningens lösning för udda antal: en tredje
+ * spelare väntar vid sidan med en ny boll (användarens beslut 2026-10-02). Basskissen visar
+ * paret. Gör generatorn en trio ritas skissen för tre, och den tredje står i kön med
+ * etiketten. Samma skiss som exemplet i content/ovningar/README.md.
+ */
+export const PAR_MED_TRIO: PlanskissInput = {
+  version: 1,
+  omrade: { langd: 12, bredd: 8 },
+  objekt: [
+    { typ: 'ruta', x: 0, y: 0, langd: 12, bredd: 8, stil: 'heldragen' },
+    { id: 'mal-a', typ: 'mal', x: 0, y: 4, storlek: 'smamal', riktning: 'hoger' },
+    { id: 'mal-b', typ: 'mal', x: 12, y: 4, storlek: 'smamal', riktning: 'vanster' },
+    { id: 'anf', typ: 'spelare', x: 2, y: 8, lag: 'a', etikett: 'A' },
+    { id: 'forsv', typ: 'spelare', x: 8, y: 4, lag: 'b', etikett: 'F' },
+    { typ: 'boll', x: 2.9, y: 7.6 },
+  ],
+  rorelser: [
+    {
+      typ: 'dribbling',
+      fran: { objekt: 'anf' },
+      till: { x: 9, y: 2.5 },
+      via: [{ x: 5, y: 4 }],
+      ordning: 1,
+    },
+    { typ: 'lopning', fran: { objekt: 'forsv' }, till: { x: 7, y: 3 }, ordning: 1 },
+    { typ: 'skott', fran: { x: 9, y: 2.5 }, till: { objekt: 'mal-b' }, ordning: 2 },
+  ],
+  skalning: {
+    strategi: 'koer',
+    koer: [{ vid: 'anf', riktning: 90, etikett: 'Väntar med ny boll' }],
+  },
+};
+
+/**
  * Måttexten och en spelare med etikett i nedre vänstra hörnet (ux-granskningen, fynd B/F5).
  * Spelaren står där måttexten annars skulle stå, strax under ytans nedre vänstra hörn.
  */

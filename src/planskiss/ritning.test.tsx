@@ -12,7 +12,7 @@ import type { PlanskissInput } from '../regelmotor/schema/planskiss.ts';
 import { Planskiss } from './Planskiss.tsx';
 import type { PlanskissStorlek } from './Planskiss.tsx';
 import { GOAL_WIDTHS } from './matt.ts';
-import { sketch } from './__testdata__/skisser.ts';
+import { PAR_MED_TRIO, sketch } from './__testdata__/skisser.ts';
 
 afterEach(cleanup);
 
@@ -113,6 +113,34 @@ const ODD: PlanskissInput = {
     koer: [{ vid: 'a1', riktning: 90, avstand: 1.5, etikett: 'Rullar in bollar' }],
   },
 };
+
+describe('par vid udda antal (användarens beslut 2026-10-02)', () => {
+  // Övningen gäller två spelare (spelare.min = spelare.max = 2). Ritmotorn känner inte till
+  // spelare.max: den ritar för gruppens storlek i passet, alltså tre när generatorn gör en trio.
+  it('en trio ritar paret och den tredje i kön, med övningens lösning som etikett', () => {
+    const svg = draw(PAR_MED_TRIO, 3);
+    expect(players(svg)).toHaveLength(3);
+    expect(texts(svg).filter((text) => text === 'Väntar med ny boll')).toHaveLength(1);
+  });
+
+  it('ett par ritar bara paret, utan kö och utan köns etikett', () => {
+    for (const antal of [undefined, 2]) {
+      const svg = draw(PAR_MED_TRIO, antal);
+      expect(players(svg)).toHaveLength(2);
+      expect(texts(svg)).not.toContain('Väntar med ny boll');
+      cleanup();
+    }
+  });
+
+  it('den tredje är en utespelare i samma lag som den kön utgår från, och utan pilar', () => {
+    const svg = draw(PAR_MED_TRIO, 3);
+    expect(svg.querySelectorAll('circle[class*="lagA"]')).toHaveLength(2);
+    expect(keepers(svg)).toBe(0);
+    expect(svg.querySelectorAll('path[class*="rorelse"]').length).toBe(
+      draw(PAR_MED_TRIO, 2).querySelectorAll('path[class*="rorelse"]').length,
+    );
+  });
+});
 
 describe('udda antal (ADR 0018 punkt 4)', () => {
   it('den extra spelaren ritas, och köns etikett står en gång', () => {

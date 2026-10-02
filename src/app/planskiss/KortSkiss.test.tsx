@@ -10,7 +10,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
 import { contentExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
 import type { BankExercise, Exercise, Layout } from '../../regelmotor/index.ts';
-import { FEM_MOT_FEM, SJU_MOT_SJU } from '../../planskiss/__testdata__/skisser.ts';
+import { FEM_MOT_FEM, PAR_MED_TRIO, SJU_MOT_SJU } from '../../planskiss/__testdata__/skisser.ts';
 import { ExerciseCard } from '../session/ExerciseCard.tsx';
 import { SessionView } from '../session/SessionView.tsx';
 import { FULL_BANK, sessionOf } from '../__testdata__/session-fixture.ts';
@@ -125,6 +125,28 @@ describe('berättelse 06 kriterium 5: skalning efter antalet i gruppen', () => {
   it('med en känd grupp ritas skissen för den största gruppen', () => {
     const { container } = card(WITH_SKETCH, [7, 6]);
     expect(container.querySelectorAll('svg circle[class*="lagA"]')).toHaveLength(7);
+  });
+
+  it('en övning för par ritas för trion när generatorn har gjort en (R-054)', async () => {
+    const pair = contentExercise({
+      id: 'en-mot-en-par',
+      namn: 'Ett mot ett i par',
+      grupptyp: 'par',
+      spelare: { min: 2, max: 2 },
+      yta: { alla: { langd: 12, bredd: 8 } },
+      planskiss: PAR_MED_TRIO,
+    });
+    const trio: Layout = { ...layout([3, 2, 2]), oddSolution: 'trio', oddText: 'x' };
+    const user = userEvent.setup();
+    const { container } = render(
+      <ExerciseCard exercise={pair} minutes={10} layout={trio} format="7mot7" placeKey="rad-1" />,
+    );
+    // Gruppen är större än spelare.max, och skissen visar alla tre.
+    expect(container.querySelectorAll('svg [class*="spelare"]')).toHaveLength(3);
+    await user.click(screen.getByRole('button', { name: 'Förstora planskiss, Ett mot ett i par' }));
+    const big = screen.getByRole('img', { name: /Ett mot ett i par, planskiss/ });
+    expect(big.querySelectorAll('[class*="spelare"]')).toHaveLength(3);
+    expect(within(big).getByText('Väntar med ny boll')).toBeInTheDocument();
   });
 
   it('sketchPlayerCount tar den största gruppen, och inget antal utan grupper', () => {

@@ -198,6 +198,47 @@ Två regler i ritmotorn gör att kön alltid går att räkna:
 
 Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kontrollerar den.
 
+**Par vid udda antal** (användarens beslut 2026-10-02). En övning med `grupptyp: par` kan få en trio i passet när antalet spelare är udda (R-054). Skissen ritas alltid för gruppens storlek i passet, också när den är större än `spelare.max`. Rita därför basskissen för paret och visa den tredje spelaren på samma sätt som för fast storlek ovan:
+
+- **Har den tredje en roll utanför paret**, till exempel väntar med en ny boll eller vilar och byter in, använd `koer` med **en** kö. Etiketten återger övningens lösning i `anpassning.udda_antal` med egna ord, högst 24 tecken.
+- **Får den tredje en plats i övningen**, till exempel som kastare eller målvakt, använd `platser` med den platsen.
+
+Kön eller platsen syns bara när gruppen är en trio. I ett par ritas basskissen som den är. Exemplet visar ett mot ett till småmål, där övningens lösning för udda antal är att tre spelare turas om och den som väntar har en ny boll redo:
+
+```yaml
+# Spelform: 5mot5
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 8
+  beskrivning: >-
+    Yta 12 x 8 meter med ett småmål på varje kortsida. Anfallaren startar med
+    boll vid nedre sidlinjen och försvararen i mitten. Vid udda antal väntar en
+    tredje spelare utanför sidlinjen med en ny boll.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 4, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
+    - { id: anf, typ: spelare, x: 2, y: 8, lag: a, etikett: A }
+    - { id: forsv, typ: spelare, x: 8, y: 4, lag: b, etikett: F }
+    - { typ: boll, x: 2.9, y: 7.6 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: anf }
+      till: { x: 9, y: 2.5 }
+      via: [{ x: 5, y: 4 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: forsv }, till: { x: 7, y: 3 }, ordning: 1 }
+    - { typ: skott, fran: { x: 9, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: anf, riktning: 90, etikett: Väntar med ny boll }
+```
+
+Med två spelare visar skissen paret. Med tre står den tredje utanför sidlinjen, under anfallaren, med etiketten ”Väntar med ny boll”. Kön utgår från anfallaren, så den tredje ritas i lag A. Formatet är oförändrat: det är samma `koer` som för fast storlek.
+
 **Behov som saknar en egen form** (ADR 0018, punkt 6). Formatet har ännu ingen egen form för följande. Rita dem tills vidare så här:
 
 | Behov | Så ritar du det |
