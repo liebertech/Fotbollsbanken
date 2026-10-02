@@ -81,6 +81,7 @@ planskiss:
     - { typ: boll, x: 8.8, y: 6 }
   rorelser:
     - { typ: passning, fran: { objekt: a3 }, till: { objekt: a1 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: f1 }, till: { x: 9.5, y: 6 }, ordning: 1, etikett: Pressar }
     - typ: dribbling
       fran: { objekt: a1 }
       till: { x: 15, y: 4 }
@@ -90,7 +91,7 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: f1, riktning: 90, avstand: 1.5, etikett: "Rullar in, byter in" }
+      - { vid: a2, riktning: 90, avstand: 4, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanliga överlägesövningar mot mål.
 status: godkand
 granskning:
