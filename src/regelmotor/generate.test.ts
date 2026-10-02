@@ -478,6 +478,60 @@ describe('R-072 Gränsen mellan fotbollsregler och algoritmval', () => {
   });
 });
 
+describe('R-058 Grupper med fast grundstorlek i det färdiga passet', () => {
+  function bankWith(exercise: BankExercise): BankExercise[] {
+    return testbank.map((item) => (item.id === 'ova-passa' ? exercise : item));
+  }
+  const pair = bankExercise({
+    id: 'ova-par',
+    fokusomraden: ['passning-mottagning'],
+    passdelar: ['del-ovning'],
+    grupptyp: 'par',
+    spelare: { min: 2, max: 2 },
+    tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+  });
+  const trio = bankExercise({
+    id: 'ova-tre',
+    fokusomraden: ['passning-mottagning'],
+    passdelar: ['del-ovning'],
+    grupptyp: 'fast-storlek',
+    spelare: { min: 3, max: 3 },
+    udda_antal_losning: true,
+    tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+  });
+  const ovningRow = (value: Session) =>
+    value.rows.find((row) => row.part === 'del-ovning' && row.exercise !== null);
+
+  it('R-058 väljer en parövning vid 13 spelare och gör 5 par och en trio med övningens text', () => {
+    const value = session({ ...underlag, spelare: 13 }, bankWith(pair));
+    const row = ovningRow(value);
+    expect(row?.exercise?.id).toBe('ova-par');
+    expect(row?.layout?.sizes).toEqual([3, 2, 2, 2, 2, 2]);
+    expect(row?.layout?.oddSolution).toBe('trio');
+    expect(row?.layout?.oddText).toBe(pair.anpassning?.udda_antal);
+    expect(checkSession(value)).toEqual([]);
+  });
+
+  it('R-058 ger 4 grupper om 3 med 12 spelare i en övning för tre', () => {
+    const value = session({ ...underlag, spelare: 12 }, bankWith(trio));
+    expect(ovningRow(value)?.layout?.sizes).toEqual([3, 3, 3, 3]);
+    expect(checkSession(value)).toEqual([]);
+  });
+
+  it('R-058 slutkontrollen underkänner 3 grupper om 4 i en övning för tre', () => {
+    const value = session({ ...underlag, spelare: 12 }, bankWith(trio));
+    const row = ovningRow(value)!;
+    const wrong = { ...row.layout!, groups: 3, sizes: [4, 4, 4] };
+    const tampered: Session = {
+      ...value,
+      rows: value.rows.map((item) => (item === row ? { ...item, layout: wrong } : item)),
+    };
+    expect(checkSession(tampered)).toContain(
+      'R-058: grupperna i ova-tre följer inte grundstorleken 3',
+    );
+  });
+});
+
 describe('generateSession är en ren funktion', () => {
   /** Fryser ett objekt och dess direkta listfält, så att en mutation kastar i strict mode. */
   function freeze<T extends object>(value: T): T {
