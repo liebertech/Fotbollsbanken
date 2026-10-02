@@ -12,15 +12,11 @@
  * Playwright-ögonblicksbilder: bildjämförelse mellan körningar är känsligt för typsnitt och
  * GPU-rendering och skulle själv kunna bli ett instabilt test (se CLAUDE.md, "ett test som
  * ibland går igenom och ibland inte är ett fynd"). Bilderna är till för mänsklig granskning.
+ * De sparas bara med `SKARMBILDER=1`, se e2e/skarmbilder.ts.
  */
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-
-const SCREENSHOT_DIR = fileURLToPath(
-  new URL('../../docs/design/skarmbilder/ritmotor/', import.meta.url),
-);
+import { screenshotPath } from '../skarmbilder.ts';
 
 async function generatePass(page: import('@playwright/test').Page) {
   await page.goto('/');
@@ -68,7 +64,7 @@ test.describe('Berättelse 02, 06 och 07: generera ett pass och se planskisserna
     await page.emulateMedia({ colorScheme: 'light' });
     await generatePass(page);
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, 'pass-planskiss-saknas-ljust.png'),
+      path: screenshotPath('pass-planskiss-saknas-ljust.png'),
       fullPage: true,
     });
   });
@@ -77,7 +73,7 @@ test.describe('Berättelse 02, 06 och 07: generera ett pass och se planskisserna
     await page.emulateMedia({ colorScheme: 'dark' });
     await generatePass(page);
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, 'pass-planskiss-saknas-morkt.png'),
+      path: screenshotPath('pass-planskiss-saknas-morkt.png'),
       fullPage: true,
     });
   });

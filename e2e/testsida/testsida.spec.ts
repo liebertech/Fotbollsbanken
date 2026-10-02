@@ -11,16 +11,12 @@
  *   (ADR 0012 avsnitt 4).
  *
  * Skärmbilderna sparas i docs/design/skarmbilder/ritmotor/ för mänsklig granskning, inte som
- * Playwright-ögonblicksbilder (se motiveringen i generera-pass.spec.ts).
+ * Playwright-ögonblicksbilder (se motiveringen i generera-pass.spec.ts). De sparas bara med
+ * `SKARMBILDER=1`, se e2e/skarmbilder.ts.
  */
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-
-const SCREENSHOT_DIR = fileURLToPath(
-  new URL('../../docs/design/skarmbilder/ritmotor/', import.meta.url),
-);
+import { screenshotPath } from '../skarmbilder.ts';
 
 const GAME_FORMATS = ['3mot3', '5mot5', '7mot7', '9mot9', '11mot11'] as const;
 
@@ -49,7 +45,7 @@ test.describe('Ett exempel per spelform (ADR 0012 avsnitt 8)', () => {
       await expect(legend.getByRole('listitem').first()).toBeVisible();
 
       await page.emulateMedia({ colorScheme: 'light' });
-      await card.screenshot({ path: path.join(SCREENSHOT_DIR, `normal-${format}-ljust.png`) });
+      await card.screenshot({ path: screenshotPath(`normal-${format}-ljust.png`) });
     });
   }
 
@@ -58,7 +54,7 @@ test.describe('Ett exempel per spelform (ADR 0012 avsnitt 8)', () => {
     const card = page.getByTestId('kort-7mot7');
     await card.getByRole('button', { name: /planskiss/i }).click();
     await expect(card.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
-    await card.screenshot({ path: path.join(SCREENSHOT_DIR, 'normal-7mot7-morkt.png') });
+    await card.screenshot({ path: screenshotPath('normal-7mot7-morkt.png') });
   });
 });
 
@@ -69,9 +65,9 @@ test.describe('Trånga fall (ADR 0012 avsnitt 4, src/planskiss/skalning.ts)', ()
     await expect(card.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
 
     await page.emulateMedia({ colorScheme: 'light' });
-    await card.screenshot({ path: path.join(SCREENSHOT_DIR, 'trangt-overlappande-ko-ljust.png') });
+    await card.screenshot({ path: screenshotPath('trangt-overlappande-ko-ljust.png') });
     await page.emulateMedia({ colorScheme: 'dark' });
-    await card.screenshot({ path: path.join(SCREENSHOT_DIR, 'trangt-overlappande-ko-morkt.png') });
+    await card.screenshot({ path: screenshotPath('trangt-overlappande-ko-morkt.png') });
   });
 
   test('en kö som klipps vid bildens kant', async ({ page }) => {
@@ -80,9 +76,9 @@ test.describe('Trånga fall (ADR 0012 avsnitt 4, src/planskiss/skalning.ts)', ()
     await expect(card.getByRole('list', { name: 'Teckenförklaring' })).toBeVisible();
 
     await page.emulateMedia({ colorScheme: 'light' });
-    await card.screenshot({ path: path.join(SCREENSHOT_DIR, 'trangt-ko-vid-kanten-ljust.png') });
+    await card.screenshot({ path: screenshotPath('trangt-ko-vid-kanten-ljust.png') });
     await page.emulateMedia({ colorScheme: 'dark' });
-    await card.screenshot({ path: path.join(SCREENSHOT_DIR, 'trangt-ko-vid-kanten-morkt.png') });
+    await card.screenshot({ path: screenshotPath('trangt-ko-vid-kanten-morkt.png') });
   });
 });
 
@@ -90,12 +86,12 @@ test.describe('Hela testsidan', () => {
   test('översikt, ljust och mörkt läge', async ({ page }) => {
     await page.emulateMedia({ colorScheme: 'light' });
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, 'testsida-oversikt-ljust.png'),
+      path: screenshotPath('testsida-oversikt-ljust.png'),
       fullPage: true,
     });
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.screenshot({
-      path: path.join(SCREENSHOT_DIR, 'testsida-oversikt-morkt.png'),
+      path: screenshotPath('testsida-oversikt-morkt.png'),
       fullPage: true,
     });
   });
