@@ -88,7 +88,8 @@ planskiss:
     - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 1 }
     - { typ: passning, fran: { objekt: a3 }, till: { objekt: a2 }, ordning: 2 }
     - { typ: passning, fran: { objekt: a2 }, till: { objekt: a1 }, ordning: 3 }
-    - { typ: skott, fran: { objekt: a1 }, till: { objekt: mal-b }, ordning: 4 }
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 20, y: 8 }, ordning: 4 }
+    - { typ: skott, fran: { x: 20, y: 8 }, till: { objekt: mal-b }, ordning: 5 }
   skalning:
     strategi: platser
     platser:
