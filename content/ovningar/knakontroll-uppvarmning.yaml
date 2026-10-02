@@ -60,9 +60,9 @@ planskiss:
     langd: 12
     bredd: 10
   beskrivning: >-
-    Yta 12 x 10 meter med sex stationer i en cirkel. En spelare joggar mellan
-    stationerna och gör en övning vid varje, sedan roterar gruppen medurs på
-    ledarens signal.
+    Yta 12 x 10 meter med sex stationer i en cirkel, en eller två spelare vid
+    varje. Alla gör övningen vid sin station samtidigt och joggar medurs till
+    nästa på ledarens signal. Ledaren står i mitten och rättar knäläget.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 10, stil: streckad }
     - { typ: kon, x: 0, y: 0 }
@@ -81,17 +81,17 @@ planskiss:
     - { id: sp-4, typ: spelare, x: 6.7, y: 9, lag: neutral }
     - { id: sp-5, typ: spelare, x: 3.2, y: 7, lag: neutral }
     - { id: sp-6, typ: spelare, x: 3.2, y: 3, lag: neutral }
+    - { typ: ledare, x: 6, y: 5 }
   rorelser:
     - typ: lopning
       fran: { objekt: sp-1 }
       till: { objekt: sp-2 }
-      ordning: 1
-      etikett: Roterar medurs
-    - { typ: lopning, fran: { objekt: sp-2 }, till: { objekt: sp-3 }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: sp-3 }, till: { objekt: sp-4 }, ordning: 3 }
-    - { typ: lopning, fran: { objekt: sp-4 }, till: { objekt: sp-5 }, ordning: 4 }
-    - { typ: lopning, fran: { objekt: sp-5 }, till: { objekt: sp-6 }, ordning: 5 }
-    - { typ: lopning, fran: { objekt: sp-6 }, till: { objekt: sp-1 }, ordning: 6 }
+      etikett: Alla roterar medurs
+    - { typ: lopning, fran: { objekt: sp-2 }, till: { objekt: sp-3 } }
+    - { typ: lopning, fran: { objekt: sp-3 }, till: { objekt: sp-4 } }
+    - { typ: lopning, fran: { objekt: sp-4 }, till: { objekt: sp-5 } }
+    - { typ: lopning, fran: { objekt: sp-5 }, till: { objekt: sp-6 } }
+    - { typ: lopning, fran: { objekt: sp-6 }, till: { objekt: sp-1 } }
   skalning:
     strategi: platser
     platser:
