@@ -84,15 +84,11 @@ planskiss:
   rorelser:
     - typ: dribbling
       fran: { objekt: sp-a1 }
-      till: { x: 16, y: 6 }
-      via: [{ x: 11, y: 5 }]
+      till: { x: 17, y: 3 }
+      via: [{ x: 11, y: 1.5 }]
       ordning: 1
-    - { typ: skott, fran: { x: 16, y: 6 }, till: { objekt: mal-2 }, ordning: 2 }
-    - typ: lopning
-      fran: { objekt: sp-b1 }
-      till: { x: 11, y: 6 }
-      ordning: 3
-      etikett: Möter i vinkel
+    - { typ: skott, fran: { x: 17, y: 3 }, till: { objekt: mal-2 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sp-b1 }, till: { x: 12, y: 6.5 }, ordning: 1 }
   skalning:
     strategi: platser
     platser:
