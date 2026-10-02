@@ -1,12 +1,15 @@
 /**
- * Ingen text i planskissvyerna är mindre än 14 px (designsystem.md avsnitt 3, fynd D i
+ * Ingen text i planskissvyerna (src/app/planskiss/Planskissvy.module.css) är mindre än 14 px (designsystem.md avsnitt 3, fynd D i
  * ux-granskningen av ritmotorn). Gäller platshållaren "Planskiss saknas" i miniatyren och
  * bildtexten under skissen.
  */
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-const CSS = readFileSync(new URL('./Planskissvy.module.css', import.meta.url), 'utf8');
+const CSS = readFileSync(
+  new URL('../src/app/planskiss/Planskissvy.module.css', import.meta.url),
+  'utf8',
+);
 
 describe('textstorlek i Planskissvy.module.css', () => {
   it('varje font-size är minst 0.875rem (14 px)', () => {
