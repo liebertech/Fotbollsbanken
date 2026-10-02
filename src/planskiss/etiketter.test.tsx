@@ -17,7 +17,7 @@ import type { GameFormat } from '../regelmotor/keys.ts';
 import { readPlanskiss } from '../regelmotor/schema/planskiss.ts';
 import type { Planskissdata, PlanskissInput } from '../regelmotor/schema/planskiss.ts';
 import { Planskiss } from './Planskiss.tsx';
-import { layoutLabels } from './etiketter.ts';
+import { layoutLabels, overlaps } from './etiketter.ts';
 import type { Box, LabelRequest } from './etiketter.ts';
 import {
   PER_SPELFORM,
@@ -406,5 +406,91 @@ describe('layoutLabels', () => {
     expect(layoutLabels([request(), request()], options)).toEqual(
       layoutLabels([request(), request()], options),
     );
+  });
+
+  /**
+   * Egna trånga fall (kvalitetssäkringens andra granskning): en liten yta, flera hinder och
+   * flera etiketter som alla vill stå på samma ställe. Kontrollen är ett invariant-test, inte
+   * hårdkodade positioner: oavsett var `place` landar ska ingen ritad etikett krocka med ett
+   * hinder, med en annan etikett, eller hamna utanför bildytan.
+   */
+  it('trångt fall: fem hinder nära hörnen och sex etiketter som alla vill stå i mitten', () => {
+    const tightBounds: Box = { x0: 0, y0: 0, x1: 6, y1: 6 };
+    const obstacles: Box[] = [
+      { x0: 2.3, y0: 2.3, x1: 3.7, y1: 3.7 },
+      { x0: 0.3, y0: 0.3, x1: 1.5, y1: 1.5 },
+      { x0: 4.5, y0: 0.3, x1: 5.7, y1: 1.5 },
+      { x0: 0.3, y0: 4.5, x1: 1.5, y1: 5.7 },
+      { x0: 4.5, y0: 4.5, x1: 5.7, y1: 5.7 },
+    ];
+    const requests: LabelRequest[] = Array.from({ length: 6 }, (_, index) => ({
+      text: `Etikett ${index + 1} som är ganska lång`,
+      fontSize: 0.6,
+      at: { x: 3, y: 3 },
+      origin: 'center',
+      outward: {
+        x: Math.cos((index / 6) * 2 * Math.PI),
+        y: Math.sin((index / 6) * 2 * Math.PI),
+      },
+      mode: 'free',
+    }));
+    const placed = layoutLabels(requests, { bounds: tightBounds, obstacles, step: 0.1, reach: 4 });
+    const boxes = placed
+      .filter((label): label is NonNullable<(typeof placed)[number]> => label !== null)
+      .map((label) => label.box);
+    // Minst någon etikett ska hitta en plats, annars prövar testet ingenting.
+    expect(boxes.length).toBeGreaterThan(0);
+    for (const box of boxes) {
+      expect(box.x0).toBeGreaterThanOrEqual(tightBounds.x0 - 1e-9);
+      expect(box.y0).toBeGreaterThanOrEqual(tightBounds.y0 - 1e-9);
+      expect(box.x1).toBeLessThanOrEqual(tightBounds.x1 + 1e-9);
+      expect(box.y1).toBeLessThanOrEqual(tightBounds.y1 + 1e-9);
+      for (const obstacle of obstacles) {
+        expect(overlaps(box, obstacle)).toBe(false);
+      }
+    }
+    for (let i = 0; i < boxes.length; i += 1) {
+      for (let j = i + 1; j < boxes.length; j += 1) {
+        expect(overlaps(boxes[i]!, boxes[j]!)).toBe(false);
+      }
+    }
+  });
+
+  it('down-läget utelämnar måttexten hellre än att den krockar, när hela marginalen är blockerad', () => {
+    const [placed] = layoutLabels(
+      [
+        request({
+          text: '20 × 12 m',
+          origin: 'topLeft',
+          at: { x: 0, y: 8 },
+          outward: { x: 0, y: 1 },
+          mode: 'down',
+        }),
+      ],
+      {
+        bounds,
+        // Ett hinder som täcker hela marginalen under startpunkten, ner till bildens kant.
+        obstacles: [{ x0: -1, y0: 7, x1: 21, y1: 11 }],
+        step: 0.25,
+        reach: 6,
+      },
+    );
+    expect(placed).toBeNull();
+  });
+
+  it('origin topLeft: en etikett flyttas undan ett hinder utan att krocka eller lämna ytan', () => {
+    const smallBounds: Box = { x0: 0, y0: 0, x1: 10, y1: 10 };
+    const obstacle: Box = { x0: 0.5, y0: 0.5, x1: 4, y1: 3 };
+    const [placed] = layoutLabels(
+      [request({ text: 'Zon', origin: 'topLeft', at: { x: 1, y: 1 }, outward: { x: 1, y: 1 } })],
+      { bounds: smallBounds, obstacles: [obstacle], step: 0.1, reach: 6 },
+    );
+    expect(placed).not.toBeNull();
+    const box = placed!.box;
+    expect(overlaps(box, obstacle)).toBe(false);
+    expect(box.x0).toBeGreaterThanOrEqual(smallBounds.x0 - 1e-9);
+    expect(box.y0).toBeGreaterThanOrEqual(smallBounds.y0 - 1e-9);
+    expect(box.x1).toBeLessThanOrEqual(smallBounds.x1 + 1e-9);
+    expect(box.y1).toBeLessThanOrEqual(smallBounds.y1 + 1e-9);
   });
 });
