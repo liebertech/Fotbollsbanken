@@ -84,7 +84,7 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: f1, riktning: 90, avstand: 1.5, etikett: Roterar in }
+      - { vid: a1, riktning: 135, avstand: 5, etikett: Roterar in }
 kalla: Egen övning, inspirerad av allmänt känd 1 mot 1-träning med stigande motstånd.
 status: godkand
 granskning:
