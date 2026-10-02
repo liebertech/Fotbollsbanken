@@ -1,4 +1,4 @@
-Status: ändrad vid K2 (2026-09-12)
+Status: ändrad vid K2 (2026-09-12); flyttad till inkrement 3 (2026-10-02)
 
 # 05. Spara ett pass
 
@@ -16,7 +16,9 @@ Status: ändrad vid K2 (2026-09-12)
 
 ## Beroenden
 
-Inga direkta krav på andra berättelser i inkrement 1. Att koppla ett sparat pass till ett lag och dela det med andra ledare byggs i inkrement 3 (se berättelse 12) – fram till dess kan ett sparat pass vara knutet enbart till den ledare som skapade det.
+**Hör till inkrement 3, konton med klubbar och lag.** Berättelsen stod tidigare som Must i inkrement 1, men byggdes aldrig där trots att K4 för inkrement 1 godkändes 2026-09-23 (kvalitetssäkrarens fynd). Användaren beslutade 2026-10-02 att flytta den till inkrement 3, eftersom att spara ett pass kräver ett konto att spara det på och en databas att spara det i (se `docs/adr/`), som båda byggs i inkrement 3. Se backlog.
+
+Beroende på kontona (berättelse 08, registrera konto och logga in) för att det ska finnas en ledare att knyta det sparade passet till. Att koppla ett sparat pass till ett lag och dela det med andra ledare byggs i samma inkrement (se berättelse 12) – fram till det är klart kan ett sparat pass vara knutet enbart till den ledare som skapade det.
 
 ## Utanför denna berättelse
 

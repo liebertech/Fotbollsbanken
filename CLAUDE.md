@@ -54,6 +54,7 @@ Inkrementen i fas 4, i tur och ordning:
 
 1. Generatorn
 2. Planskisser
+   - 2b. Byta övning (berättelse 04). Den stod i inkrement 1 men byggdes aldrig, och läggs som ett eget inkrement efter användarens beslut 2026-10-02. Berättelse 05, spara pass, flyttades samtidigt till inkrement 3.
 3. Konton med klubbar och lag
 4. Egna och inskickade övningar med redaktörskö
 5. Planläge med timer
