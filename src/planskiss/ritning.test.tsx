@@ -181,7 +181,7 @@ describe('detaljnivån per storlek (ADR 0012 avsnitt 5)', () => {
     expect(width('planlage')).toBeCloseTo((normal * 8) / 6, 1);
   });
 
-  it('en lång etikett kortas vid ytans kant (RK-7)', () => {
+  it('en lång etikett vid ytans kant flyttas in i bilden och klipps inte (RK-7, fynd C)', () => {
     const edge: PlanskissInput = {
       version: 1,
       omrade: { langd: 10, bredd: 10 },
@@ -197,9 +197,16 @@ describe('detaljnivån per storlek (ADR 0012 avsnitt 5)', () => {
         },
       ],
     };
-    const shown = texts(draw(edge)).filter((text) => text.startsWith('En'));
-    expect(shown).toHaveLength(1);
-    expect(shown[0]?.endsWith('…')).toBe(true);
+    const svg = draw(edge);
+    const label = [...svg.querySelectorAll('text')].find((node) =>
+      (node.textContent ?? '').startsWith('En'),
+    );
+    expect(label?.textContent).toBe('En mycket lång etikett');
+    // Bildens högerkant är 13 m, alltså 130 enheter. Texten är centrerad.
+    const x = Number(label?.getAttribute('x'));
+    const width = 'En mycket lång etikett'.length * 0.6 * Number(label?.getAttribute('font-size'));
+    expect(x + width / 2).toBeLessThanOrEqual(130);
+    expect(x - width / 2).toBeGreaterThanOrEqual(-30);
   });
 });
 

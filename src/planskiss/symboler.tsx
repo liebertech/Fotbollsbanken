@@ -446,7 +446,10 @@ export function fitLabel(text: string, fontSize: number, room: number): string {
     .trimEnd()}…`;
 }
 
-/** Zon med mönster, eller ruta med bara kontur, med etikett i övre vänstra hörnet. */
+/**
+ * Zon med mönster, eller ruta med bara kontur. Etiketten placeras av `layoutLabels` i
+ * etiketter.ts, så att den aldrig hamnar på en symbol eller en annan etikett (fynd C).
+ */
 export function rectangle(
   ctx: DrawContext,
   kind: 'zon' | 'ruta',
@@ -457,9 +460,7 @@ export function rectangle(
     bredd: number;
     pattern?: 'diagonal' | 'prickar' | 'tom';
     dashed?: boolean;
-    label?: string;
   },
-  labelRoom: number,
   key: string,
 ): ReactElement {
   const fill =
@@ -468,38 +469,20 @@ export function rectangle(
       : item.pattern === 'prickar'
         ? `url(#${ctx.ids.dots})`
         : undefined;
-  const fontSize = ctx.d * 0.6;
-  const inset = ctx.d * 0.3;
-  const label =
-    ctx.detail && item.label !== undefined && item.label.length > 0
-      ? fitLabel(item.label, fontSize, labelRoom - inset)
-      : '';
   return (
-    <g key={key}>
-      <rect
-        className={
-          kind === 'zon' ? classes(styles.zon, fill === undefined && styles.zonTom) : styles.ruta
-        }
-        x={u(item.x)}
-        y={u(item.y)}
-        width={u(item.langd)}
-        height={u(item.bredd)}
-        fill={fill}
-        strokeWidth={u(kind === 'zon' ? ctx.line / 2 : ctx.line)}
-        strokeDasharray={item.dashed === true ? `${u(ctx.d * 0.5)} ${u(ctx.d * 0.35)}` : undefined}
-      />
-      {label.length > 0 && (
-        <text
-          className={classes(styles.etikett, styles.etikettHalo)}
-          x={u(item.x + inset)}
-          y={u(item.y + inset)}
-          fontSize={u(fontSize)}
-          dominantBaseline="hanging"
-        >
-          {label}
-        </text>
-      )}
-    </g>
+    <rect
+      key={key}
+      className={
+        kind === 'zon' ? classes(styles.zon, fill === undefined && styles.zonTom) : styles.ruta
+      }
+      x={u(item.x)}
+      y={u(item.y)}
+      width={u(item.langd)}
+      height={u(item.bredd)}
+      fill={fill}
+      strokeWidth={u(kind === 'zon' ? ctx.line / 2 : ctx.line)}
+      strokeDasharray={item.dashed === true ? `${u(ctx.d * 0.5)} ${u(ctx.d * 0.35)}` : undefined}
+    />
   );
 }
 
@@ -534,16 +517,54 @@ export function roomAt(room: TextRoom, x: number, anchor: 'start' | 'middle' | '
   return Math.max(0, width);
 }
 
+/** Radien på rörelsens ordningsring, som andel av `D`. */
+export const ORDER_RING = 0.36;
+
+/** Mitten av rörelsens ordningsring, eller `null` när rörelsen inte har någon. */
+export function orderRingAt(ctx: DrawContext, shape: MovementShape): Point | null {
+  const total = polylineLength(shape.path);
+  if (!ctx.detail || shape.order === undefined || !(total > 0.05)) {
+    return null;
+  }
+  const start = pointAt(shape.path, Math.min(ctx.d * 0.8, total / 3));
+  const away = normal(start.tangent);
+  return {
+    x: start.point.x + away.x * ctx.d * 0.7,
+    y: start.point.y + away.y * ctx.d * 0.7,
+  };
+}
+
 /**
- * En rörelse: linjeformen efter typ (avsnitt 3) och en fylld pilspets. Linjen slutar vid
- * pilspetsens bas, så att dubbellinjen och strecken inte sticker ut genom spetsen.
+ * Var rörelsens etikett helst står: vid linjens mitt, på den sida som vetter uppåt så att
+ * den inte hamnar i pilen. `outward` är samma sida, dit etiketten flyttas vid platsbrist.
  */
-export function movement(
+export function movementLabelAnchor(
   ctx: DrawContext,
   shape: MovementShape,
-  room: TextRoom,
-  key: string,
-): ReactElement | null {
+): { at: Point; outward: Point } | null {
+  const total = polylineLength(shape.path);
+  if (!(total > 0.05)) {
+    return null;
+  }
+  const middle = pointAt(shape.path, total / 2);
+  const away = normal(middle.tangent);
+  const flip = away.y > 0 ? -1 : 1;
+  const outward = { x: away.x * flip, y: away.y * flip };
+  return {
+    at: {
+      x: middle.point.x + outward.x * ctx.d * 0.8,
+      y: middle.point.y + outward.y * ctx.d * 0.8,
+    },
+    outward,
+  };
+}
+
+/**
+ * En rörelse: linjeformen efter typ (avsnitt 3) och en fylld pilspets. Linjen slutar vid
+ * pilspetsens bas, så att dubbellinjen och strecken inte sticker ut genom spetsen. Etiketten
+ * placeras av `layoutLabels` (etiketter.ts), se `movementLabelAnchor`.
+ */
+export function movement(ctx: DrawContext, shape: MovementShape, key: string): ReactElement | null {
   const total = polylineLength(shape.path);
   if (!(total > 0.05)) {
     return null;
@@ -613,13 +634,8 @@ export function movement(
   }
 
   let order: ReactElement | null = null;
-  if (ctx.detail && shape.order !== undefined) {
-    const start = pointAt(shape.path, Math.min(ctx.d * 0.8, total / 3));
-    const away = normal(start.tangent);
-    const at = {
-      x: start.point.x + away.x * ctx.d * 0.7,
-      y: start.point.y + away.y * ctx.d * 0.7,
-    };
+  const at = orderRingAt(ctx, shape);
+  if (at !== null) {
     order = (
       <g>
         <circle
@@ -643,40 +659,11 @@ export function movement(
     );
   }
 
-  let label: ReactElement | null = null;
-  if (ctx.detail && shape.label !== undefined && shape.label.length > 0) {
-    const middle = pointAt(shape.path, total / 2);
-    const away = normal(middle.tangent);
-    // Etiketten läggs på den sida om linjen som vetter uppåt, så att den inte hamnar i pilen.
-    const flip = away.y > 0 ? -1 : 1;
-    const at = {
-      x: middle.point.x + away.x * flip * ctx.d * 0.8,
-      y: middle.point.y + away.y * flip * ctx.d * 0.8,
-    };
-    const fontSize = ctx.d * 0.6;
-    const text = fitLabel(shape.label, fontSize, roomAt(room, at.x, 'middle'));
-    if (text.length > 0) {
-      label = (
-        <text
-          className={classes(styles.etikett, styles.etikettHalo)}
-          x={u(at.x)}
-          y={u(at.y)}
-          fontSize={u(fontSize)}
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          {text}
-        </text>
-      );
-    }
-  }
-
   return (
     <g key={key}>
       {lines}
       {arrow}
       {order}
-      {label}
     </g>
   );
 }

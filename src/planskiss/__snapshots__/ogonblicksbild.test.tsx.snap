@@ -25,17 +25,15 @@ exports[`en skiss per skalningsstrategi > fast 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="150"
-        stroke-dasharray="6 4.2"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="150"
+      stroke-dasharray="6 4.2"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
   </g>
   <g>
     <g>
@@ -268,8 +266,8 @@ exports[`en skiss per skalningsstrategi > fast 1`] = `
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="20.34"
       y="159"
     >
       15 × 15 m
@@ -349,16 +347,14 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="90"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="90"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -662,12 +658,22 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="18.18"
+      y="102.6"
+    >
+      15 × 9 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="13.2"
-      y="30"
+      x="32.6"
+      y="21.96"
     >
       Anfallare
     </text>
@@ -676,8 +682,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="0"
-      y="-29.4"
+      x="13.86"
+      y="-23.66"
     >
       +6
     </text>
@@ -686,8 +692,8 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="55"
-      y="76.8"
+      x="41.14"
+      y="71.06"
     >
       Försvarare
     </text>
@@ -696,20 +702,10 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="-34.4"
-      y="90"
+      x="-21.67"
+      y="77.27"
     >
       +4
-    </text>
-    <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
-      dominant-baseline="central"
-      font-size="7.2"
-      text-anchor="start"
-      x="0"
-      y="99"
-    >
-      15 × 9 m
     </text>
   </g>
 </svg>
@@ -740,17 +736,15 @@ exports[`en skiss per skalningsstrategi > parallella ytor 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="150"
-        stroke-dasharray="6 4.2"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="150"
+      stroke-dasharray="6 4.2"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
   </g>
   <g>
     <g>
@@ -983,8 +977,8 @@ exports[`en skiss per skalningsstrategi > parallella ytor 1`] = `
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="20.34"
       y="159"
     >
       15 × 15 m
@@ -1085,16 +1079,14 @@ exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] 
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="300"
-        stroke-width="2.08"
-        width="400"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="300"
+      stroke-width="2.08"
+      width="400"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -1459,8 +1451,8 @@ exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] 
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="10"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="28.25"
       y="312.5"
     >
       40 × 30 m
@@ -1540,16 +1532,14 @@ exports[`en skiss per storlek > miniatyr 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="100"
-        stroke-width="1.5"
-        width="180"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="100"
+      stroke-width="1.5"
+      width="180"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -1764,16 +1754,14 @@ exports[`en skiss per storlek > normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="100"
-        stroke-width="1.5"
-        width="180"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="100"
+      stroke-width="1.5"
+      width="180"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -2003,12 +1991,22 @@ exports[`en skiss per storlek > normal 1`] = `
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="20.34"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
       x="13.2"
-      y="35"
+      y="23"
     >
       Anfallare
     </text>
@@ -2017,20 +2015,10 @@ exports[`en skiss per storlek > normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="69"
+      x="57"
       y="86.8"
     >
       Försvarare
-    </text>
-    <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
-      dominant-baseline="central"
-      font-size="7.2"
-      text-anchor="start"
-      x="0"
-      y="109"
-    >
-      18 × 10 m
     </text>
   </g>
 </svg>
@@ -2107,16 +2095,14 @@ exports[`en skiss per storlek > planlage 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="100"
-        stroke-width="2"
-        width="180"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="100"
+      stroke-width="2"
+      width="180"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -2346,12 +2332,22 @@ exports[`en skiss per storlek > planlage 1`] = `
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="20.34"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
       x="13.2"
-      y="35"
+      y="23"
     >
       Anfallare
     </text>
@@ -2360,20 +2356,10 @@ exports[`en skiss per storlek > planlage 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="69"
+      x="57"
       y="86.8"
     >
       Försvarare
-    </text>
-    <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
-      dominant-baseline="central"
-      font-size="7.2"
-      text-anchor="start"
-      x="0"
-      y="109"
-    >
-      18 × 10 m
     </text>
   </g>
 </svg>
@@ -2450,16 +2436,14 @@ exports[`en skiss per storlek > utskrift 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="100"
-        stroke-width="1.5"
-        width="180"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="100"
+      stroke-width="1.5"
+      width="180"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -2689,12 +2673,22 @@ exports[`en skiss per storlek > utskrift 1`] = `
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="20.34"
+      y="109"
+    >
+      18 × 10 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
       x="13.2"
-      y="35"
+      y="23"
     >
       Anfallare
     </text>
@@ -2703,20 +2697,10 @@ exports[`en skiss per storlek > utskrift 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="69"
+      x="57"
       y="86.8"
     >
       Försvarare
-    </text>
-    <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
-      dominant-baseline="central"
-      font-size="7.2"
-      text-anchor="start"
-      x="0"
-      y="109"
-    >
-      18 × 10 m
     </text>
   </g>
 </svg>
@@ -2772,16 +2756,14 @@ exports[`ett exempel per spelform > 3mot3 i storleken normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="120"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="120"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -2992,8 +2974,8 @@ exports[`ett exempel per spelform > 3mot3 i storleken normal 1`] = `
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="20.34"
       y="129"
     >
       15 × 12 m
@@ -3073,16 +3055,14 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="90"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="90"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -3330,12 +3310,22 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="7.2"
+      text-anchor="middle"
+      x="18.18"
+      y="102.6"
+    >
+      15 × 9 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="13.2"
-      y="30"
+      x="32.6"
+      y="21.96"
     >
       Anfallare
     </text>
@@ -3344,20 +3334,10 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
       dominant-baseline="central"
       font-size="7.2"
       text-anchor="middle"
-      x="55"
-      y="76.8"
+      x="41.14"
+      y="71.06"
     >
       Försvarare
-    </text>
-    <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
-      dominant-baseline="central"
-      font-size="7.2"
-      text-anchor="start"
-      x="0"
-      y="99"
-    >
-      15 × 9 m
     </text>
   </g>
 </svg>
@@ -3388,17 +3368,15 @@ exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="150"
-        stroke-dasharray="6 4.2"
-        stroke-width="1.5"
-        width="150"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="150"
+      stroke-dasharray="6 4.2"
+      stroke-width="1.5"
+      width="150"
+      x="0"
+      y="0"
+    />
   </g>
   <g>
     <g>
@@ -3655,8 +3633,8 @@ exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="7.2"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="20.34"
       y="159"
     >
       15 × 15 m
@@ -3757,16 +3735,14 @@ exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="300"
-        stroke-width="2.08"
-        width="400"
-        x="0"
-        y="0"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="300"
+      stroke-width="2.08"
+      width="400"
+      x="0"
+      y="0"
+    />
     <g>
       <polygon
         class="_malNat_a7e2bf"
@@ -4131,8 +4107,8 @@ exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
       class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
       dominant-baseline="central"
       font-size="10"
-      text-anchor="start"
-      x="0"
+      text-anchor="middle"
+      x="28.25"
       y="312.5"
     >
       40 × 30 m
@@ -4240,76 +4216,48 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
     y="0"
   />
   <g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="680"
-        stroke-width="3.61"
-        width="520"
-        x="0"
-        y="0"
-      />
-    </g>
-    <g>
-      <rect
-        class="_ruta_a7e2bf"
-        height="403"
-        stroke-width="3.61"
-        width="165"
-        x="355"
-        y="138"
-      />
-    </g>
-    <g>
-      <rect
-        class="_zon_a7e2bf"
-        fill="url(#exempel-11mot11-zon-diagonal)"
-        height="120"
-        stroke-width="1.81"
-        width="220"
-        x="300"
-        y="0"
-      />
-      <text
-        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
-        dominant-baseline="hanging"
-        font-size="17.33"
-        x="308.67"
-        y="8.67"
-      >
-        Inläggszon
-      </text>
-    </g>
-    <g>
-      <rect
-        class="_zon_a7e2bf"
-        fill="url(#exempel-11mot11-zon-prickar)"
-        height="120"
-        stroke-width="1.81"
-        width="220"
-        x="300"
-        y="560"
-      />
-      <text
-        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
-        dominant-baseline="hanging"
-        font-size="17.33"
-        x="308.67"
-        y="568.67"
-      >
-        Inläggszon
-      </text>
-    </g>
-    <g>
-      <rect
-        class="_zon_a7e2bf _zonTom_a7e2bf"
-        height="200"
-        stroke-width="1.81"
-        width="100"
-        x="0"
-        y="240"
-      />
-    </g>
+    <rect
+      class="_ruta_a7e2bf"
+      height="680"
+      stroke-width="3.61"
+      width="520"
+      x="0"
+      y="0"
+    />
+    <rect
+      class="_ruta_a7e2bf"
+      height="403"
+      stroke-width="3.61"
+      width="165"
+      x="355"
+      y="138"
+    />
+    <rect
+      class="_zon_a7e2bf"
+      fill="url(#exempel-11mot11-zon-diagonal)"
+      height="120"
+      stroke-width="1.81"
+      width="220"
+      x="300"
+      y="0"
+    />
+    <rect
+      class="_zon_a7e2bf"
+      fill="url(#exempel-11mot11-zon-prickar)"
+      height="120"
+      stroke-width="1.81"
+      width="220"
+      x="300"
+      y="560"
+    />
+    <rect
+      class="_zon_a7e2bf _zonTom_a7e2bf"
+      height="200"
+      stroke-width="1.81"
+      width="100"
+      x="0"
+      y="240"
+    />
     <line
       class="_markeringLinje_a7e2bf"
       stroke-dasharray="17.33 8.67 2.89 8.67"
@@ -4472,16 +4420,6 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
           3
         </text>
       </g>
-      <text
-        class="_etikett_a7e2bf _etikettHalo_a7e2bf"
-        dominant-baseline="central"
-        font-size="17.33"
-        text-anchor="middle"
-        x="454.37"
-        y="199.58"
-      >
-        Inlägg
-      </text>
     </g>
     <g>
       <path
@@ -4708,24 +4646,54 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
   </g>
   <g>
     <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      dominant-baseline="central"
+      font-size="17.33"
+      text-anchor="middle"
+      x="48.97"
+      y="696.5"
+    >
+      52 × 68 m
+    </text>
+    <text
       class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="17.33"
       text-anchor="middle"
-      x="181"
+      x="362.83"
+      y="19.93"
+    >
+      Inläggszon
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="17.33"
+      text-anchor="middle"
+      x="362.83"
+      y="579.93"
+    >
+      Inläggszon
+    </text>
+    <text
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
+      dominant-baseline="central"
+      font-size="17.33"
+      text-anchor="middle"
+      x="137.67"
       y="368.22"
     >
       Nästa inlägg
     </text>
     <text
-      class="_etikett_a7e2bf _etikettHalo_a7e2bf _matt_a7e2bf"
+      class="_etikett_a7e2bf _etikettHalo_a7e2bf"
       dominant-baseline="central"
       font-size="17.33"
-      text-anchor="start"
-      x="0"
-      y="696.5"
+      text-anchor="middle"
+      x="454.37"
+      y="199.58"
     >
-      52 × 68 m
+      Inlägg
     </text>
   </g>
 </svg>

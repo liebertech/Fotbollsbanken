@@ -51,7 +51,6 @@ function symbol(ctx: DrawContext, kind: LegendKind, team: Team): ReactElement | 
           { x: BOX.langd - 0.2, y: CENTER.y },
         ],
       },
-      { left: 0, right: BOX.langd },
       kind,
     );
   switch (kind) {
@@ -87,11 +86,10 @@ function symbol(ctx: DrawContext, kind: LegendKind, team: Team): ReactElement | 
         ctx,
         'zon',
         { x: 0.4, y: 0.2, langd: 3.2, bredd: 1.6, pattern: 'diagonal' },
-        0,
         kind,
       );
     case 'ruta':
-      return rectangle(ctx, 'ruta', { x: 0.4, y: 0.2, langd: 3.2, bredd: 1.6 }, 0, kind);
+      return rectangle(ctx, 'ruta', { x: 0.4, y: 0.2, langd: 3.2, bredd: 1.6 }, kind);
     case 'passning':
     case 'lopning':
     case 'dribbling':

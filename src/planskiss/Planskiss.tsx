@@ -14,6 +14,7 @@ import type { GameFormat } from '../regelmotor/keys.ts';
 import type { Planskissdata } from '../regelmotor/schema/planskiss.ts';
 import { sketchDescription, sketchTitle } from './beskrivning.ts';
 import {
+  GOAL_DEPTH,
   GOAL_WIDTHS,
   MARGIN,
   areaFrame,
@@ -24,25 +25,28 @@ import {
   u,
 } from './matt.ts';
 import type { AreaFrame, Point, Size } from './matt.ts';
+import { around, labelSize, layoutLabels } from './etiketter.ts';
+import type { Box, LabelRequest } from './etiketter.ts';
 import { samplePath, polylineLength, slice, wavePointBudget } from './rorelser.ts';
 import { scalePlayers, withinLimits } from './skalning.ts';
 import type { ScaledPlayers, Team } from './skalning.ts';
 import {
+  ORDER_RING,
   ball,
   cone,
-  fitLabel,
   freeText,
   goal,
   leader,
   marking,
   movement,
+  movementLabelAnchor,
+  orderRingAt,
   patternDefs,
   patternIds,
   player,
   rectangle,
-  roomAt,
 } from './symboler.tsx';
-import type { DrawContext, TextRoom } from './symboler.tsx';
+import type { DrawContext } from './symboler.tsx';
 import styles from './planskiss.module.css';
 
 export type PlanskissStorlek = 'miniatyr' | 'normal' | 'planlage' | 'utskrift';
@@ -81,6 +85,33 @@ const SIZE_CLASS: Record<PlanskissStorlek, string | undefined> = {
 };
 
 type SketchObject = Planskissdata['objekt'][number];
+
+/** Etiketternas teckenstorlek, som andel av `D` (avsnitt 5). */
+const LABEL_SIZE = 0.6;
+/** En ruta eller zon vars båda sidor är högst så här många `D` räknas som en symbol. */
+const SMALL_RECT = 2;
+
+/** Rutan runt ett mål: stolparna och nätet bakom mållinjen. */
+function goalBox(
+  at: Point,
+  width: number,
+  opening: 'hoger' | 'vanster' | 'upp' | 'ner',
+  d: number,
+): Box {
+  const post = d / 10;
+  const half = width / 2 + post;
+  const depth = GOAL_DEPTH + post;
+  switch (opening) {
+    case 'hoger':
+      return { x0: at.x - depth, y0: at.y - half, x1: at.x + post, y1: at.y + half };
+    case 'vanster':
+      return { x0: at.x - post, y0: at.y - half, x1: at.x + depth, y1: at.y + half };
+    case 'upp':
+      return { x0: at.x - half, y0: at.y - post, x1: at.x + half, y1: at.y + depth };
+    case 'ner':
+      return { x0: at.x - half, y0: at.y - depth, x1: at.x + half, y1: at.y + post };
+  }
+}
 
 /** Hur långt från mitten en rörelse börjar eller slutar när den pekar på ett objekt. */
 function edgeOf(item: SketchObject, d: number): number {
@@ -219,8 +250,6 @@ export function Planskiss({
   };
   const titleId = `${instansId}-titel`;
   const descId = `${instansId}-beskrivning`;
-  // Bildens kanter. En etikett kortas mot avståndet från sitt ankare till kanten (RK-7, F3).
-  const room: TextRoom = { left: -MARGIN, right: drawn.langd + MARGIN };
 
   const at = (point: Point) => toDrawn(frame, point);
   const layers: {
@@ -228,6 +257,20 @@ export function Planskiss({
     lines: ReactElement[];
     front: ReactElement[];
   } = { back: [], lines: [], front: [] };
+  // Symbolernas rutor och etiketterna som ska placeras runt dem (fynd C, etiketter.ts).
+  const obstacles: Box[] = [];
+  const requests: { request: LabelRequest; key: string; className?: string }[] = [];
+  const fontSize = d * LABEL_SIZE;
+  const middle = { x: drawn.langd / 2, y: drawn.bredd / 2 };
+  const playerBox = (point: Point, facing?: number) => {
+    obstacles.push(around(point, d * 0.6));
+    if (facing !== undefined) {
+      const dir = direction(facing);
+      obstacles.push(
+        around({ x: point.x + dir.x * d * 0.9, y: point.y + dir.y * d * 0.9 }, d * 0.3),
+      );
+    }
+  };
 
   skiss.objekt.forEach((item, index) => {
     const key = `o${index}`;
@@ -235,22 +278,56 @@ export function Planskiss({
       case 'zon':
       case 'ruta': {
         const corner = at(item);
+        const size = { langd: item.langd * frame.sx, bredd: item.bredd * frame.sy };
         layers.back.push(
           rectangle(
             ctx,
             item.typ,
             {
               ...corner,
-              langd: item.langd * frame.sx,
-              bredd: item.bredd * frame.sy,
+              ...size,
               pattern: item.typ === 'zon' ? item.monster : undefined,
               dashed: item.typ === 'ruta' && item.stil === 'streckad',
-              label: item.etikett,
             },
-            drawn.langd + MARGIN - corner.x,
             key,
           ),
         );
+        // En liten ruta, till exempel en station, är en symbol som etiketter inte får täcka.
+        // Etiketten står då bredvid rutan, helst utåt från ytans mitt.
+        const small = size.langd <= SMALL_RECT * d && size.bredd <= SMALL_RECT * d;
+        const box = {
+          x0: corner.x,
+          y0: corner.y,
+          x1: corner.x + size.langd,
+          y1: corner.y + size.bredd,
+        };
+        if (small) {
+          obstacles.push(box);
+        }
+        if (ctx.detail && item.etikett !== undefined && item.etikett.length > 0) {
+          const centre = { x: (box.x0 + box.x1) / 2, y: (box.y0 + box.y1) / 2 };
+          requests.push({
+            key: `e${index}`,
+            request: small
+              ? {
+                  text: item.etikett,
+                  fontSize,
+                  at: centre,
+                  origin: 'center',
+                  outward: { x: centre.x - middle.x, y: centre.y - middle.y },
+                  mode: 'free',
+                }
+              : {
+                  // I en stor zon eller ruta står etiketten i det övre vänstra hörnet.
+                  text: item.etikett,
+                  fontSize,
+                  at: { x: corner.x + d * 0.3, y: corner.y + d * 0.3 },
+                  origin: 'topLeft',
+                  outward: { x: 1, y: 1 },
+                  mode: 'free',
+                },
+          });
+        }
         break;
       }
       case 'markering':
@@ -263,12 +340,19 @@ export function Planskiss({
             key,
           ),
         );
+        if (item.form !== 'linje') {
+          obstacles.push(around(at(item), d * 0.3));
+        }
         break;
-      case 'mal':
-        layers.back.push(goal(ctx, at(item), goalWidth(item, spelform), item.riktning, key));
+      case 'mal': {
+        const width = goalWidth(item, spelform);
+        layers.back.push(goal(ctx, at(item), width, item.riktning, key));
+        obstacles.push(goalBox(at(item), width, item.riktning, d));
         break;
+      }
       case 'kon':
         layers.front.push(cone(ctx, at(item), key));
+        obstacles.push(around(at(item), d * 0.3));
         break;
       case 'spelare':
         layers.front.push(
@@ -284,12 +368,15 @@ export function Planskiss({
             key,
           ),
         );
+        playerBox(at(item), item.riktning);
         break;
       case 'ledare':
         layers.front.push(leader(ctx, at(item), item.etikett, key));
+        obstacles.push(around(at(item), d * 0.6));
         break;
       case 'boll':
         // Bollarna ritas sist, ovanpå spelarna, se nedan.
+        obstacles.push(around(at(item), d * 0.2));
         break;
     }
   });
@@ -297,6 +384,7 @@ export function Planskiss({
   // Tillagda spelare: alltid utespelare utan etikett och utan pilar (S-6, S-7).
   players.added.forEach((added, index) => {
     layers.front.push(player(ctx, { at: added.at, lag: added.lag, keeper: false }, `t${index}`));
+    playerBox(added.at);
   });
 
   skiss.objekt.forEach((item, index) => {
@@ -305,17 +393,56 @@ export function Planskiss({
     }
   });
 
+  const movementLabels: { request: LabelRequest; key: string }[] = [];
   movementPaths(skiss, frame, d).forEach((shape, index) => {
-    const element = movement(ctx, shape, room, `r${index}`);
-    if (element !== null) {
-      layers.lines.push(element);
+    const element = movement(ctx, shape, `r${index}`);
+    if (element === null) {
+      return;
+    }
+    layers.lines.push(element);
+    const ring = orderRingAt(ctx, shape);
+    if (ring !== null) {
+      obstacles.push(around(ring, d * (ORDER_RING + 0.05)));
+    }
+    const anchor = ctx.detail && shape.label ? movementLabelAnchor(ctx, shape) : null;
+    if (anchor !== null && shape.label !== undefined) {
+      movementLabels.push({
+        key: `re${index}`,
+        request: {
+          text: shape.label,
+          fontSize,
+          at: anchor.at,
+          origin: 'center',
+          outward: anchor.outward,
+          mode: 'free',
+        },
+      });
     }
   });
 
   const texts: ReactElement[] = [];
   if (ctx.detail) {
+    // Måttexten i ytans nedre vänstra hörn, strax under ytan (avsnitt 5). Den placeras
+    // först, och flyttas bara nedåt i marginalen om en symbol står i vägen (fynd B/F5).
+    const size = `${decimal(frame.shown.langd)} × ${decimal(frame.shown.bredd)} m`;
+    const sizeHeight = labelSize(size, fontSize).h;
+    const sizeY = drawn.bredd + Math.min(MARGIN * 0.55, d * 0.75);
+    const sizeRequest = {
+      key: 'matt',
+      className: styles.matt,
+      request: {
+        text: size,
+        fontSize,
+        at: { x: 0, y: sizeY - sizeHeight / 2 },
+        origin: 'topLeft' as const,
+        outward: { x: 0, y: 1 },
+        mode: 'down' as const,
+      },
+    };
+
     const queues =
       skiss.skalning !== undefined && 'koer' in skiss.skalning ? skiss.skalning.koer : undefined;
+    const queueLabels: { request: LabelRequest; key: string }[] = [];
     players.queues.forEach((queue) => {
       const step = direction(queue.riktning);
       // Köns etikett ritas en gång, vid den första köspelaren och vid sidan av kön.
@@ -323,27 +450,57 @@ export function Planskiss({
       if (label !== undefined && label.length > 0) {
         const side = { x: -step.y, y: step.x };
         const flip = side.y > 0 || (side.y === 0 && side.x < 0) ? -1 : 1;
-        const place = {
-          x: queue.first.x + side.x * flip * d * 1.1,
-          y: queue.first.y + side.y * flip * d * 1.1,
-        };
-        const text = fitLabel(label, d * 0.6, roomAt(room, place.x, 'middle'));
-        if (text.length > 0) {
-          texts.push(freeText(ctx, place, text, 'middle', `k${queue.index}`));
-        }
+        const outward = { x: side.x * flip, y: side.y * flip };
+        queueLabels.push({
+          key: `k${queue.index}`,
+          request: {
+            text: label,
+            fontSize,
+            at: {
+              x: queue.first.x + outward.x * d * 1.1,
+              y: queue.first.y + outward.y * d * 1.1,
+            },
+            origin: 'center',
+            outward,
+            mode: 'free',
+          },
+        });
       }
       if (queue.hidden > 0) {
-        const place = { x: queue.last.x + step.x * d * 1.2, y: queue.last.y + step.y * d * 1.2 };
-        texts.push(freeText(ctx, place, `+${queue.hidden}`, 'middle', `kn${queue.index}`));
+        queueLabels.push({
+          key: `kn${queue.index}`,
+          request: {
+            text: `+${queue.hidden}`,
+            fontSize,
+            at: { x: queue.last.x + step.x * d * 1.2, y: queue.last.y + step.y * d * 1.2 },
+            origin: 'center',
+            outward: step,
+            mode: 'free',
+          },
+        });
       }
     });
-    // Måttexten i ytans nedre vänstra hörn, strax under ytan (avsnitt 5).
-    const size = `${decimal(frame.shown.langd)} × ${decimal(frame.shown.bredd)} m`;
-    const sizeAt = { x: 0, y: drawn.bredd + Math.min(MARGIN * 0.55, d * 0.75) };
-    const sizeText = fitLabel(size, d * 0.6, roomAt(room, sizeAt.x, 'start'));
-    if (sizeText.length > 0) {
-      texts.push(freeText(ctx, sizeAt, sizeText, 'start', 'matt', styles.matt));
-    }
+
+    const ordered = [sizeRequest, ...requests, ...queueLabels, ...movementLabels] as {
+      request: LabelRequest;
+      key: string;
+      className?: string;
+    }[];
+    const placed = layoutLabels(
+      ordered.map((item) => item.request),
+      {
+        bounds: { x0: -MARGIN, y0: -MARGIN, x1: drawn.langd + MARGIN, y1: drawn.bredd + MARGIN },
+        obstacles,
+        step: d / 4,
+        reach: d * 6,
+      },
+    );
+    placed.forEach((label, index) => {
+      const item = ordered[index];
+      if (label !== null && item !== undefined) {
+        texts.push(freeText(ctx, label.at, label.text, 'middle', item.key, item.className));
+      }
+    });
   }
 
   const viewBox = [

@@ -211,6 +211,7 @@ Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kont
 
 - **Etiketten på en spelare eller en ledare** är högst 3 tecken och får bara innehålla **versaler och siffror**, till exempel `A`, `F`, `MV`, `L`, `1` eller `12`. Gemener, mellanslag och skiljetecken underkänns (ADR 0018, punkt 2).
 - **Övriga etiketter**, på zoner, rutor, rörelser och köer, är högst 24 tecken och får innehålla bokstäver, siffror, mellanslag och tecknen `. , : - / + ( )`.
+- **Appen flyttar en etikett som inte får plats.** En etikett ritas aldrig ovanpå en symbol eller en annan etikett och klipps aldrig av bildens kant. Står något i vägen flyttas etiketten till närmaste lediga plats, helst utåt. Ryms den inte hel kortas den med ”…”. Etiketten på en liten ruta, till exempel en station, står bredvid rutan. Måttexten står alltid i nedre vänstra hörnet och flyttas bara nedåt i marginalen. Korta etiketter ger alltså en lugnare bild: skriv `Station 1` hellre än `Station 1, hopp på ett ben`, och lägg resten i övningens text.
 - **Skriv siffror inom citattecken:** `etikett: "1"`. Utan citattecken läser YAML det som ett tal, och det underkänns.
 - **`beskrivning` skrivs på en rad.** Radbrytningar, tabbar och andra styrtecken underkänns. Skriv längre texter med `>-` i YAML, som i exemplen, så blir radbrytningarna i filen mellanslag.
 - **Skriv inga namn, e-postadresser eller andra personuppgifter**, varken i etiketterna eller i `beskrivning`. En e-postadress underkänns av valideringen. Använd roller: `A`, `F`, `MV`, `Anfallare`.

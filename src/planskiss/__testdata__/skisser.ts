@@ -223,3 +223,84 @@ export const PER_SPELFORM: Record<GameFormat, PlanskissInput> = {
   '9mot9': NIO_MOT_NIO,
   '11mot11': ELVA_MOT_ELVA,
 };
+
+/**
+ * Sex stationer i en cirkel på en liten yta, med en etikett på varje station och en lång
+ * rörelseetikett. Uppställningen är samma typ som i `knakontroll-uppvarmning`, där
+ * etiketterna krockade med symbolerna och med varandra (ux-granskningen, fynd C). Basskissen
+ * har sex spelare, och platserna fyller på till tolv.
+ */
+export const STATIONER_I_CIRKEL: PlanskissInput = {
+  version: 1,
+  omrade: { langd: 12, bredd: 10 },
+  objekt: [
+    { typ: 'ruta', x: 0, y: 0, langd: 12, bredd: 10, stil: 'streckad' },
+    { typ: 'kon', x: 0, y: 0 },
+    { typ: 'kon', x: 12, y: 0 },
+    { typ: 'kon', x: 12, y: 10 },
+    { typ: 'kon', x: 0, y: 10 },
+    ...(
+      [
+        [5.75, 0.75],
+        [9.25, 2.75],
+        [9.25, 6.75],
+        [5.75, 8.75],
+        [2.25, 6.75],
+        [2.25, 2.75],
+      ] as const
+    ).map(([x, y], index) => ({
+      typ: 'ruta' as const,
+      x,
+      y,
+      langd: 0.5,
+      bredd: 0.5,
+      stil: 'heldragen' as const,
+      etikett: `Station ${index + 1}`,
+    })),
+    { id: 'sp-1', typ: 'spelare', x: 6.7, y: 1, lag: 'neutral' },
+    { id: 'sp-2', typ: 'spelare', x: 10.2, y: 3, lag: 'neutral' },
+    { id: 'sp-3', typ: 'spelare', x: 10.2, y: 7, lag: 'neutral' },
+    { id: 'sp-4', typ: 'spelare', x: 6.7, y: 9, lag: 'neutral' },
+    { id: 'sp-5', typ: 'spelare', x: 3.2, y: 7, lag: 'neutral' },
+    { id: 'sp-6', typ: 'spelare', x: 3.2, y: 3, lag: 'neutral' },
+    { typ: 'ledare', x: 6, y: 5 },
+  ],
+  rorelser: [
+    {
+      typ: 'lopning',
+      fran: { objekt: 'sp-1' },
+      till: { objekt: 'sp-2' },
+      etikett: 'Alla roterar medurs',
+    },
+    { typ: 'lopning', fran: { objekt: 'sp-2' }, till: { objekt: 'sp-3' } },
+    { typ: 'lopning', fran: { objekt: 'sp-3' }, till: { objekt: 'sp-4' } },
+    { typ: 'lopning', fran: { objekt: 'sp-4' }, till: { objekt: 'sp-5' } },
+    { typ: 'lopning', fran: { objekt: 'sp-5' }, till: { objekt: 'sp-6' } },
+    { typ: 'lopning', fran: { objekt: 'sp-6' }, till: { objekt: 'sp-1' } },
+  ],
+  skalning: {
+    strategi: 'platser',
+    platser: [
+      { x: 5.3, y: 1, lag: 'neutral' },
+      { x: 8.8, y: 3, lag: 'neutral' },
+      { x: 8.8, y: 7, lag: 'neutral' },
+      { x: 5.3, y: 9, lag: 'neutral' },
+      { x: 1.8, y: 7, lag: 'neutral' },
+      { x: 1.8, y: 3, lag: 'neutral' },
+    ],
+  },
+};
+
+/**
+ * Måttexten och en spelare med etikett i nedre vänstra hörnet (ux-granskningen, fynd B/F5).
+ * Spelaren står där måttexten annars skulle stå, strax under ytans nedre vänstra hörn.
+ */
+export const SPELARE_VID_MATTEXTEN: PlanskissInput = {
+  version: 1,
+  omrade: { langd: 20, bredd: 12 },
+  objekt: [
+    { typ: 'ruta', x: 0, y: 0, langd: 20, bredd: 12, stil: 'heldragen' },
+    { id: 'a', typ: 'spelare', x: 1.5, y: 12.8, lag: 'a', etikett: 'A' },
+    { typ: 'spelare', x: 10, y: 6, lag: 'b', etikett: 'F' },
+  ],
+};
