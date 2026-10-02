@@ -34,6 +34,11 @@ export interface PlanskissvyProps {
   spelform?: GameFormat;
   yta?: { langd: number; bredd: number };
   antalSpelare?: number;
+  /**
+   * Döljer den ritade skissen för skärmläsare. Används för miniatyren inuti knappen, som har
+   * ett eget tillgängligt namn (texter.md avsnitt 8). `<title>` och `<desc>` finns kvar.
+   */
+  dold?: boolean;
 }
 
 /** Längsta `instansId`, så att `-mini` och ritmotorns suffix ryms inom RK-4:s 80 tecken. */
@@ -103,6 +108,7 @@ function DrawnSketch({
   spelform,
   yta,
   antalSpelare,
+  dold,
 }: ValidProps) {
   const { skiss } = result;
   const { sketch, players } = sketchLayout(skiss, yta, antalSpelare);
@@ -111,7 +117,10 @@ function DrawnSketch({
     .join(' ');
   return (
     <>
-      <span className={`${styles.sketch} ${styles[storlek] ?? ''}`}>
+      <span
+        className={`${styles.sketch} ${styles[storlek] ?? ''}`}
+        aria-hidden={dold === true ? true : undefined}
+      >
         <Planskiss
           skiss={skiss}
           spelform={spelform}

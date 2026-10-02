@@ -15,6 +15,7 @@ import { exerciseArea } from '../../regelmotor/index.ts';
 import type { Exercise, GameFormat, Layout } from '../../regelmotor/index.ts';
 import { readPlanskiss } from '../../regelmotor/schema/planskiss.ts';
 import { Planskissvy, instanceId } from './Planskissvy.tsx';
+import { TEXTS, fill } from '../text/texts.ts';
 import styles from './Planskissvy.module.css';
 
 interface KortSkissProps {
@@ -60,11 +61,15 @@ export function KortSkiss({ exercise, format, layout, placeKey }: KortSkissProps
       <button
         className={styles.thumbnail}
         type="button"
+        aria-label={fill(open ? TEXTS.sketch.hide : TEXTS.sketch.enlarge, {
+          name: exercise.namn,
+        })}
         aria-expanded={open}
         aria-controls={regionId}
         onClick={() => setOpen(!open)}
       >
-        <Planskissvy {...shared} storlek="miniatyr" instansId={`${base}-mini`} />
+        {/* Knappen har ett eget namn, så miniatyren läses inte upp en gång till. */}
+        <Planskissvy {...shared} storlek="miniatyr" instansId={`${base}-mini`} dold />
       </button>
       {open && (
         <div className={styles.enlarged} id={regionId}>

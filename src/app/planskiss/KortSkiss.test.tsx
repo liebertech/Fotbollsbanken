@@ -53,12 +53,29 @@ function card(exercise: Exercise, sizes: number[] | null = null) {
 }
 
 describe('miniatyren på övningskortet', () => {
-  it('visar skissen som en bild med övningens namn, i en knapp som är hopfälld', () => {
-    card(WITH_SKETCH);
-    const button = screen.getByRole('button', { name: /Passa och följ, planskiss/ });
+  it('visar skissen i en hopfälld knapp som heter "Förstora planskiss, {övningsnamn}"', () => {
+    const { container } = card(WITH_SKETCH);
+    const button = screen.getByRole('button', { name: 'Förstora planskiss, Passa och följ' });
     expect(button).toHaveAttribute('aria-expanded', 'false');
-    expect(within(button).getByRole('img')).toBeInTheDocument();
+    // Miniatyren finns kvar med title och desc, men är dold för skärmläsare (texter.md avsnitt 8).
+    const svg = button.querySelector('svg[role="img"]');
+    expect(svg).not.toBeNull();
+    expect(svg?.querySelector('title')?.textContent).toBe('Passa och följ, planskiss');
+    expect(svg?.querySelector('desc')?.textContent).not.toBe('');
+    expect(svg?.closest('[aria-hidden="true"]')).not.toBeNull();
+    expect(within(button).queryByRole('img')).toBeNull();
+    expect(container.querySelectorAll('[aria-hidden="true"] svg')).toHaveLength(1);
     expect(screen.queryByText('Teckenförklaring')).toBeNull();
+  });
+
+  it('knappens namn blir "Dölj planskiss, {övningsnamn}" när skissen är utfälld', async () => {
+    const user = userEvent.setup();
+    card(WITH_SKETCH);
+    await user.click(screen.getByRole('button', { name: 'Förstora planskiss, Passa och följ' }));
+    const button = screen.getByRole('button', { name: 'Dölj planskiss, Passa och följ' });
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+    // Den förstorade skissen ligger utanför knappen och är inte dold.
+    expect(screen.getByRole('img', { name: /Passa och följ, planskiss/ })).toBeInTheDocument();
   });
 
   it('miniatyren saknar etiketter och måttext (ADR 0012 avsnitt 5)', () => {
@@ -69,7 +86,7 @@ describe('miniatyren på övningskortet', () => {
   it('ett klick fäller ut skissen i normal storlek med teckenförklaringen, ett till fäller ihop', async () => {
     const user = userEvent.setup();
     const { container } = card(WITH_SKETCH);
-    const button = screen.getByRole('button', { name: /Passa och följ, planskiss/ });
+    const button = screen.getByRole('button', { name: /Förstora planskiss, Passa och följ/ });
     await user.click(button);
     expect(button).toHaveAttribute('aria-expanded', 'true');
     const region = container.querySelector(`[id="${button.getAttribute('aria-controls') ?? ''}"]`);
@@ -137,7 +154,10 @@ describe('berättelse 07: skisserna i passvyn', () => {
     const cards = container.querySelectorAll('article');
     expect(cards.length).toBeGreaterThan(2);
     for (const article of cards) {
-      expect(within(article as HTMLElement).getAllByRole('img')).toHaveLength(1);
+      expect(article.querySelectorAll('svg[role="img"]')).toHaveLength(1);
+      expect(
+        within(article as HTMLElement).getAllByRole('button', { name: /^Förstora planskiss, / }),
+      ).toHaveLength(1);
     }
     const ids = [...container.querySelectorAll('[id]')].map((element) => element.id);
     expect(new Set(ids).size).toBe(ids.length);
@@ -162,6 +182,8 @@ describe('berättelse 07: skisserna i passvyn', () => {
     );
     expect(screen.getByText('Planskiss saknas')).toBeVisible();
     expect(screen.getByText('Planskissen kunde inte visas')).toBeVisible();
-    expect(screen.getAllByRole('img').length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('button', { name: /^Förstora planskiss, / }).length).toBeGreaterThan(
+      0,
+    );
   });
 });

@@ -123,6 +123,9 @@ export const TEXTS = {
      * är ett förslag till UX-designern, liksom benämningarna i src/planskiss/teckenforklaring.ts.
      */
     legendHeading: 'Teckenförklaring',
+    /** Miniatyrknappens tillgängliga namn, stängd och öppen (texter.md avsnitt 8). */
+    enlarge: 'Förstora planskiss, {name}',
+    hide: 'Dölj planskiss, {name}',
   },
 
   /** Avsnitt 5: inget matchande resultat. */
