@@ -49,6 +49,8 @@ export interface DrawContext {
   /** Etiketter, ordningssiffror och måttext ritas bara när `detail` är sant. */
   detail: boolean;
   ids: PatternIds;
+  /** Högst så här många punkter i varje vågig linje, se `wavePointBudget` (R2). */
+  wavePoints: number;
 }
 
 const TEAM_CLASS: Record<Team, string | undefined> = {
@@ -563,7 +565,7 @@ export function movement(
       lines = (
         <path
           className={styles.rorelse}
-          d={pathData(waveLine(body, ctx.d * 0.22, ctx.d * 0.9))}
+          d={pathData(waveLine(body, ctx.d * 0.22, ctx.d * 0.9, ctx.wavePoints))}
           strokeWidth={width}
         />
       );

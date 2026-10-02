@@ -116,17 +116,52 @@ export function offsetLine(points: readonly Point[], offset: number): Point[] {
   });
 }
 
-/** Vågig linje längs banan, för dribbling: en sinus med amplitud och våglängd i meter. */
-export function waveLine(points: readonly Point[], amplitude: number, wavelength: number): Point[] {
+/**
+ * Högst så här många punkter samplas för en bana (säkerhetsgranskningen R1 och R2). Utan tak
+ * ger en lång dribbling på en smal yta, där symbolen och därmed våglängden är liten, tusentals
+ * punkter, och en förfalskad bana på 1e7 m tar slut på minnet.
+ */
+export const MAX_PATH_POINTS = 400;
+
+/**
+ * Så många punkter får alla vågiga linjer i en skiss dela på (R2). En skiss med många långa
+ * dribblingar blir då högst cirka 40 kB, i stället för flera hundra. Vanliga skisser når aldrig
+ * taket och ritas som förut.
+ */
+export const MAX_SKETCH_WAVE_POINTS = 2400;
+
+/** Antalet punkter som varje vågig linje får när `count` vågiga linjer delar på budgeten. */
+export function wavePointBudget(count: number): number {
+  if (!(count > 0)) {
+    return MAX_PATH_POINTS;
+  }
+  return Math.max(16, Math.min(MAX_PATH_POINTS, Math.floor(MAX_SKETCH_WAVE_POINTS / count)));
+}
+
+/**
+ * Vågig linje längs banan, för dribbling: en sinus med amplitud och våglängd i meter.
+ *
+ * Banan samplas med åtta punkter per våglängd och högst `maxPoints` punkter. Behövs fler blir
+ * våglängden längre i stället, så att vågen förblir jämn och aldrig vikningsförvrängs.
+ */
+export function waveLine(
+  points: readonly Point[],
+  amplitude: number,
+  wavelength: number,
+  maxPoints: number = MAX_PATH_POINTS,
+): Point[] {
   const total = polylineLength(points);
-  const step = wavelength / 8;
-  const count = Math.max(2, Math.ceil(total / step));
+  const limit = Number.isFinite(maxPoints)
+    ? Math.max(3, Math.min(MAX_PATH_POINTS, Math.floor(maxPoints)))
+    : MAX_PATH_POINTS;
+  const count = Math.min(limit - 1, Math.max(2, Math.ceil(total / (wavelength / 8))));
+  const wave = Math.max(wavelength, (total / count) * 8);
   const result: Point[] = [];
   for (let index = 0; index <= count; index += 1) {
     const at = (total * index) / count;
     const { point, tangent } = pointAt(points, at);
     const side = normal(tangent);
-    const swing = amplitude * Math.sin((2 * Math.PI * at) / wavelength);
+    const swing = amplitude * Math.sin((2 * Math.PI * at) / wave);
     result.push({ x: point.x + side.x * swing, y: point.y + side.y * swing });
   }
   return result;

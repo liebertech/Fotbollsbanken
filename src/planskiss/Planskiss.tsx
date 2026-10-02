@@ -24,7 +24,7 @@ import {
   u,
 } from './matt.ts';
 import type { AreaFrame, Point, Size } from './matt.ts';
-import { samplePath, polylineLength, slice } from './rorelser.ts';
+import { samplePath, polylineLength, slice, wavePointBudget } from './rorelser.ts';
 import { scalePlayers, withinLimits } from './skalning.ts';
 import type { ScaledPlayers, Team } from './skalning.ts';
 import {
@@ -211,6 +211,10 @@ export function Planskiss({
     // Etiketter, måttext och ordningssiffror går inte att läsa i miniatyren (avsnitt 5).
     detail: storlek !== 'miniatyr',
     ids: patternIds(instansId),
+    // Alla dribblingar delar på samma tak för antalet punkter (R2).
+    wavePoints: wavePointBudget(
+      (skiss.rorelser ?? []).filter((item) => item.typ === 'dribbling').length,
+    ),
   };
   const titleId = `${instansId}-titel`;
   const descId = `${instansId}-beskrivning`;

@@ -14,6 +14,7 @@ import type { Planskissdata } from '../regelmotor/schema/planskiss.ts';
 import { Planskiss, sketchLayout } from './Planskiss.tsx';
 import { areaFrame } from './matt.ts';
 import { MAX_MOVEMENTS, MAX_PLAYER_SYMBOLS, scalePlayers, withinLimits } from './skalning.ts';
+import { MAX_PATH_POINTS, wavePointBudget, waveLine } from './rorelser.ts';
 import { sketch } from './__testdata__/skisser.ts';
 
 const VALID = sketch({
@@ -125,6 +126,47 @@ describe('R1: per_yta prövas på nytt', () => {
       skalning: { strategi: 'parallella-ytor', per_yta: 0 },
     };
     expect(scalePlayers(forged, areaFrame(forged, undefined), 12).areas).toBe(12);
+  });
+});
+
+describe('R1 och R2: taket för antalet punkter i en bana', () => {
+  function pathPoints(svg: SVGSVGElement): number[] {
+    return [...svg.querySelectorAll('path')].map(
+      (node) => (node.getAttribute('d') ?? '').split(/[ML]/).length - 1,
+    );
+  }
+
+  it('en förfalskad dribbling på 1e7 m ritas med högst 400 punkter', () => {
+    const forged: Planskissdata = {
+      ...VALID,
+      rorelser: [{ typ: 'dribbling', fran: { x: 0, y: 0 }, till: { x: 1e7, y: 5 } }],
+    };
+    const counts = pathPoints(drawn(forged));
+    expect(counts).toHaveLength(1);
+    expect(counts[0]).toBeLessThanOrEqual(MAX_PATH_POINTS);
+  });
+
+  it('en vanlig dribbling ritas som förut, med åtta punkter per våglängd', () => {
+    const points = [
+      { x: 0, y: 0 },
+      { x: 10, y: 0 },
+    ];
+    const wave = waveLine(points, 0.2, 1);
+    expect(wave).toHaveLength(81);
+  });
+
+  it('många långa dribblingar delar på budgeten och får en längre våglängd i stället', () => {
+    expect(wavePointBudget(1)).toBe(MAX_PATH_POINTS);
+    expect(wavePointBudget(30)).toBe(80);
+    const points = [
+      { x: 0, y: 0 },
+      { x: 120, y: 0 },
+    ];
+    const wave = waveLine(points, 0.2, 1, wavePointBudget(30));
+    expect(wave.length).toBeLessThanOrEqual(80);
+    // Vågen är fortfarande en våg: punkterna växlar sida om linjen.
+    expect(wave.some((point) => point.y > 0.1)).toBe(true);
+    expect(wave.some((point) => point.y < -0.1)).toBe(true);
   });
 });
 

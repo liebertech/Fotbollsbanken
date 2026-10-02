@@ -6,10 +6,9 @@
  * reproducerbara: en mycket stor SVG vid vågiga dribblingar över en lång, smal yta, och en
  * namnkollision i `instanceId` (src/app/planskiss/Planskissvy.tsx) när övningens id är långt.
  *
- * Testerna nedan är skrivna med `it.fails`: de uttrycker vad som BORDE gälla och misslyckas
- * så länge felen inte är rättade, i stället för att dölja dem bakom en passerande men svag
- * kontroll. Den dagen en rättning gör testet grönt ska `it.fails` bytas mot `it` – det är
- * meningen att testet då ska börja klaga, som en påminnelse om att städa bort markeringen.
+ * Testerna skrevs med `it.fails`: de uttryckte vad som BORDE gälla och misslyckades så länge
+ * felen inte var rättade. Båda felen är nu rättade (R2 med taket för vågpunkter i
+ * rorelser.ts, R6 i `instanceId`), och testerna är vanliga `it`.
  */
 import { describe, expect, it } from 'vitest';
 import { render } from '@testing-library/react';
@@ -44,25 +43,22 @@ describe('Stor SVG vid många vågiga dribblingar (säkerhetsagentens uppföljni
    * hämta på en ledares mobil och tung att lägga i ett utskriftsdokument med flera skisser
    * (ADR 0012 avsnitt 8: "Ett helt pass i utskriftsvyn med flera skisser").
    */
-  it.fails(
-    'en giltig skiss med 30 vågiga dribblingar håller sig inom en rimlig SVG-storlek',
-    () => {
-      const narrow: PlanskissInput = {
-        version: 1,
-        omrade: { langd: 120, bredd: 5 },
-        objekt: [{ typ: 'kon', x: 1, y: 1 }],
-        rorelser: Array.from({ length: 30 }, () => ({
-          typ: 'dribbling' as const,
-          fran: { x: 0, y: 0 },
-          till: { x: 120, y: 5 },
-        })),
-      };
-      // 50 000 tecken (cirka 50 kB) är en rimlig övre gräns för en enskild skiss: långt över de
-      // 8 342 tecken en fullsatt 11 mot 11-skiss (ELVA_MOT_ELVA) mäter, men långt under det som
-      // faktiskt ritas här.
-      expect(renderedSize(narrow)).toBeLessThan(50_000);
-    },
-  );
+  it('en giltig skiss med 30 vågiga dribblingar håller sig inom en rimlig SVG-storlek', () => {
+    const narrow: PlanskissInput = {
+      version: 1,
+      omrade: { langd: 120, bredd: 5 },
+      objekt: [{ typ: 'kon', x: 1, y: 1 }],
+      rorelser: Array.from({ length: 30 }, () => ({
+        typ: 'dribbling' as const,
+        fran: { x: 0, y: 0 },
+        till: { x: 120, y: 5 },
+      })),
+    };
+    // 50 000 tecken (cirka 50 kB) är en rimlig övre gräns för en enskild skiss: långt över de
+    // 8 342 tecken en fullsatt 11 mot 11-skiss (ELVA_MOT_ELVA) mäter, men långt under det som
+    // faktiskt ritas här.
+    expect(renderedSize(narrow)).toBeLessThan(50_000);
+  });
 
   it('en normal skiss (11 mot 11, alla objekttyper) är liten: referensvärde för gränsen ovan', () => {
     // Inte it.fails: det här ska alltid vara sant, och visar att gränsen på 50 000 tecken

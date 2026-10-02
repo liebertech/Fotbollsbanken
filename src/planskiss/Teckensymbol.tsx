@@ -8,6 +8,7 @@ import { INSTANCE_ID_PATTERN, InvalidInstanceIdError } from './Planskiss.tsx';
 import type { PlanskissStorlek } from './Planskiss.tsx';
 import { u } from './matt.ts';
 import type { Point } from './matt.ts';
+import { MAX_PATH_POINTS } from './rorelser.ts';
 import type { Team } from './skalning.ts';
 import {
   ball,
@@ -114,6 +115,7 @@ export function Teckensymbol({
     // Symbolen visar formen, aldrig en etikett.
     detail: false,
     ids: patternIds(`${instansId}-tf-${kind}`),
+    wavePoints: MAX_PATH_POINTS,
   };
   const needed = {
     keeper: new Set<Team>(kind === 'malvakt' ? [team] : []),
