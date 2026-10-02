@@ -54,6 +54,7 @@ export function stationCoaches(exercises: readonly Exercise[]): number {
  * @regel R-064
  * @regel R-065
  * @regel R-066
+ * @regel R-058
  */
 export function buildStationBlock(
   exercises: Exercise[],
@@ -76,7 +77,8 @@ export function buildStationBlock(
     return null;
   }
 
-  // R-063: spelarna delas i S grupper som skiljer sig med högst en spelare.
+  // R-063: spelarna delas i S grupper som skiljer sig med högst en spelare. En stationsgrupp
+  // delas inte vidare, så för par och fast-storlek är största grupp s + 1 (R-058).
   const sizes = splitPlayers(players, count);
   const cap = coachCap(phase);
   for (const exercise of exercises) {

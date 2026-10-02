@@ -1,8 +1,10 @@
-Status: ändrad vid K3 (2026-09-14), två tillägg 2026-09-23, preciserade 2026-09-24
+Status: ändrad vid K3 (2026-09-14), två tillägg 2026-09-23, preciserade 2026-09-24, ändrad 2026-10-02 (R-058)
 
 # Passuppbyggnad
 
 **Ägare:** fotbollsexpert
+
+*Ändring 2026-10-02. Avsnittet "Hur spelarna delas i grupper" speglar den nya regeln R-058 i `generatorregler.md`, som användaren beslutade 2026-10-02: övningar med grupptypen `par`, och `fast-storlek` med en lösning för udda antal, delas i så många grupper av övningens storlek som möjligt, och de som blir över läggs en och en i grupperna. Punkt 1 och 4 i "Så gör generatorn" och raderna för `par` och `fast-storlek` i tabellen över grupptyper är ändrade. Den felaktiga meningen att bara `fast-storlek` kan väljas bort på grund av udda antal är rättad. En not om spelarspannet i `tva-lag`-övningar är tillagd; den är en rekommendation vid granskning, inte en regel och inte ett beslutat kriterium. Inga siffror i resten av filen är ändrade.*
 
 *Ändring 2026-09-24. Två preciseringar av kriterierna i avsnittet "Yta per spelare". Inga siffror är ändrade, inget kriterium är tillagt och inget är borttaget:*
 
@@ -203,19 +205,31 @@ För att generatorn ska kunna dela gruppen och hantera udda antal behöver varje
 | Nyckel | Betyder | Exempel | Udda antal |
 |---|---|---|---|
 | `fri` | Alla i samma yta, antalet behöver inte gå jämnt ut | Bollkänsla med egen boll, kull med boll | Inga problem |
-| `par` | Spelarna jobbar två och två | Passningar i par | En grupp blir tre och passar i triangel |
+| `par` | Spelarna jobbar två och två | Passningar i par | En grupp blir tre. Passet visar övningens egen lösning för udda antal, till exempel att de tre passar i triangel eller roterar så att en vilar (R-054, R-058). En parövning väljs aldrig bort för att antalet är udda |
 | `tva-lag` | Två lag mot varandra | 3 mot 3, 4 mot 4 med jokrar | Passet visar att en spelare blir joker och alltid är med laget som har bollen, om inte övningens `anpassning` beskriver en annan lösning (R-054). *Min bedömning:* för 6–9 år kan ledaren på plats lika gärna låta ena laget ha en spelare mer |
-| `fast-storlek` | Grupper med ett bestämt antal | Tre spelare där en anfaller mot två försvarare som roterar | Bara om övningen själv beskriver en lösning, till exempel att en spelare vilar och byter in |
+| `fast-storlek` | Grupper med ett bestämt antal | Tre spelare där en anfaller mot två försvarare som roterar | Bara om övningen själv beskriver en lösning, till exempel att en spelare vilar och byter in. Då får högst en spelare extra läggas i varje grupp (R-058) |
 
-Så gör generatorn (R-050 till R-057):
+Så gör generatorn (R-050 till R-058):
 
-1. **Så få grupper som möjligt.** Generatorn väljer det minsta antal grupper där ingen grupp blir större än övningens största grupp. Det är oftast övningens högsta antal, men i en ledarstyrd övning får en grupp inte heller vara större än taket per ledare (se nedan), och en övning med fast storlek och en lösning för udda antal får ha grupper som är en spelare större (R-050). I delen Spel gäller inte taket per ledare: där spelas hela gruppen i ett spel så länge övningen rymmer den (R-057).
+1. **Så få grupper som möjligt, utom när övningen har en fast storlek.** Generatorn väljer det minsta antal grupper där ingen grupp blir större än övningens största grupp. Det är oftast övningens högsta antal, men i en ledarstyrd övning får en grupp inte heller vara större än taket per ledare (se nedan). I delen Spel gäller inte taket per ledare: där spelas hela gruppen i ett spel så länge övningen rymmer den (R-057).
+
+   Parövningar och övningar med fast storlek och en lösning för udda antal delas i stället i så många grupper av övningens storlek som möjligt, och de som blir över läggs en och en i grupperna (R-058). 13 spelare i en parövning blir 5 par och en trio. 11 spelare i en övning för tre blir grupper om 4, 4 och 3. Om det blir över fler spelare än det finns grupper, till exempel 5 spelare i en övning för tre, kan övningen inte användas. Taket per ledare gäller för varje grupp. Vid stationer delas en stationsgrupp inte i flera grupper, så en parstation fungerar bara för stationsgrupper om 2 eller 3 spelare (R-063).
 2. **Jämnt fördelat.** Grupperna skiljer sig med högst en spelare.
 3. **Ingen grupp för liten.** Om någon grupp blir mindre än övningens minsta antal kan övningen inte användas med det antalet spelare.
-4. **Udda antal** hanteras enligt tabellen ovan. Bara övningar med grupptypen `fast-storlek` kan väljas bort på grund av udda antal (berättelse 02, kriterium 7).
+4. **Udda antal** hanteras enligt tabellen ovan. En parövning väljs aldrig bort för att antalet är udda. En övning med fast storlek kan väljas bort när spelarna inte går att dela enligt punkt 1. En övning med typen `fri` eller `tva-lag` kan väljas bort enligt punkt 3 när spannet mellan övningens minsta och högsta antal är smalt, och det kan hända både vid udda och jämna antal (R-054). *Här stod tidigare att bara övningar med grupptypen `fast-storlek` kan väljas bort på grund av udda antal. Det var fel och är rättat 2026-10-02.*
 5. **För få spelare:** om det totala antalet spelare är mindre än övningens minsta antal väljs övningen inte (berättelse 02, kriterium 5).
 
 *Min bedömning:* ledaren kan ofta vara med och spela för att få jämnt, men generatorn räknar aldrig med det. Ledaren ska kunna leda och se alla.
+
+### Not vid granskning: spelarspannet i `tva-lag`-övningar
+
+*Tillagd 2026-10-02. Det här är en rekommendation till övningsförfattaren och till mig när jag granskar, **inte en generatorregel och inte ett kriterium som användaren har beslutat**. Generatorn räknar som vanligt med R-051 och R-052.*
+
+En `tva-lag`-övning med ett smalt spann i `spelare` väljs bort vid vissa antal, också udda, eftersom grupperna enligt punkt 1 och 2 ovan då blir mindre än övningens minsta antal (R-052). Jokern i R-054 hjälper bara om övningens högsta antal rymmer den.
+
+*Exempel:* ett 4 mot 4 med `spelare` 8–8 kan bara användas med 8, 16, 24, 32 eller 40 spelare. Med 9 spelare blir det två grupper om 5 och 4, och övningen väljs bort, fast en ledare på plan bara hade gjort den nionde till joker.
+
+**Rekommendation:** sätt högsta antal till minst 2 × lagstorleken + 1, alltså 9 för ett 4 mot 4, när övningen fungerar med en joker. Då kan 4 mot 4 användas med 8–9, 16–18, 24–27, 32–36 och 40 spelare. Spannet blir fortfarande smalt, och 10–15 spelare ger fortfarande grupper som är för små. Om övningen ska fungera för fler antal behöver också minsta antal sänkas. Med `spelare` 6–9, alltså 3 mot 3 till 4 mot 4 med joker, fungerar alla antal från 6 till 40 utom 10 och 11. Det är en fotbollsfråga för varje övning, eftersom ytan och syftet ska hålla i båda ändar av spannet (se *Yta per spelare*).
 
 ## Hur antalet ledare påverkar passet
 
