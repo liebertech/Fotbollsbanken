@@ -68,26 +68,27 @@ planskiss:
     langd: 10
     bredd: 10
   beskrivning: >-
-    Yta 10 x 10 meter med en kon i vart och ett av triangelns tre hörn, åtta meter
-    mellan konerna. Tre spelare passar med högst två touchar medan en fjärde jagar i
-    mitten och pressar eller erövrar en lös boll.
+    Yta 10 x 10 meter med en kon i vart och ett av triangelns tre hörn. Två av sidorna
+    är åtta meter. Tre spelare passar med högst två touchar medan en fjärde jagar i
+    mitten och pressar. Vid fem spelare tar den femte det fjärde hörnet, så att formen
+    blir en kvadrat.
   objekt:
     - { typ: kon, x: 1, y: 1 }
     - { typ: kon, x: 9, y: 1 }
     - { typ: kon, x: 9, y: 9 }
-    - { id: p1, typ: spelare, x: 1, y: 1, lag: a }
-    - { id: p2, typ: spelare, x: 9, y: 1, lag: a }
-    - { id: p3, typ: spelare, x: 9, y: 9, lag: a }
+    - { id: p1, typ: spelare, x: 1.7, y: 1.7, lag: a }
+    - { id: p2, typ: spelare, x: 8.3, y: 1.7, lag: a }
+    - { id: p3, typ: spelare, x: 8.3, y: 8.3, lag: a }
     - { id: jag, typ: spelare, x: 5, y: 5, lag: b }
-    - { typ: boll, x: 1.8, y: 1 }
+    - { typ: boll, x: 2.5, y: 1.7 }
   rorelser:
     - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: jag }, till: { x: 6, y: 2 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: jag }, till: { x: 5.5, y: 3.2 }, ordning: 1 }
     - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 2 }
   skalning:
     strategi: platser
     platser:
-      - { x: 1, y: 9, lag: a }
+      - { x: 1.7, y: 8.3, lag: a }
 kalla: Egen övning, inspirerad av vanliga rondoövningar med touchbegränsning.
 status: godkand
 granskning:
