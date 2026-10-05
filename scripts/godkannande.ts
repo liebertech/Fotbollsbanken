@@ -607,6 +607,10 @@ export interface ResolvedPull {
 /**
  * Den mergade pull request som lade commiten på main, och kontot som mergade den. Kontot kommer
  * alltid ur API:t. Pull requesten godtas bara om dess `merge_commit_sha` är precis commiten.
+ *
+ * Numret i merge-meddelandet prövas först. Saknas det, eller hör pull requesten till en annan
+ * commit, frågas `commits/{sha}/pulls` innan uppslaget ger fel: meddelandet går att skriva om
+ * vid mergen och är bara en kandidat (F6).
  */
 export function resolvePullRequest(
   api: ApiGet,
@@ -614,46 +618,63 @@ export function resolvePullRequest(
   message: string,
   retry: RetryOptions = DEFAULT_RETRY,
 ): ResolvedPull | { error: string } {
-  const fromMessage = pullNumberFromMessage(message);
-  let candidates: number[];
-  if (fromMessage !== undefined) {
-    candidates = [fromMessage];
-  } else {
-    try {
-      candidates = withRetry(() => {
-        const numbers = parseCommitPulls(api(`commits/${commit}/pulls`));
-        if (numbers.length === 0) {
-          throw new Error(`ingen mergad pull request för ${commit}`);
-        }
-        return numbers;
-      }, retry);
-    } catch (cause) {
-      return { error: (cause as Error).message };
-    }
-  }
-
   const reasons: string[] = [];
-  for (const number of candidates) {
+  const tried = new Set<number>();
+  const failed = (): { error: string } => ({
+    error: `ingen mergad pull request för ${commit} (${reasons.join('; ')})`,
+  });
+
+  const check = (number: number): ResolvedPull | undefined => {
+    tried.add(number);
     let info: PullRequestInfo;
     try {
       info = withRetry(() => parsePullRequest(api(`pulls/${number}`)), retry);
     } catch (cause) {
       reasons.push(`#${number}: ${(cause as Error).message}`);
-      continue;
+      return undefined;
     }
     if (info.mergedAt === null || info.mergedBy === null) {
       reasons.push(`#${number} är inte mergad`);
-      continue;
+      return undefined;
     }
     if (info.mergeCommitSha !== commit) {
       reasons.push(
         `#${number} kom in med ${info.mergeCommitSha ?? 'ingen commit'}, inte ${commit}`,
       );
-      continue;
+      return undefined;
     }
     return { pr: number, av: info.mergedBy };
+  };
+
+  const fromMessage = pullNumberFromMessage(message);
+  if (fromMessage !== undefined) {
+    const found = check(fromMessage);
+    if (found !== undefined) {
+      return found;
+    }
   }
-  return { error: `ingen mergad pull request för ${commit} (${reasons.join('; ')})` };
+
+  let candidates: number[];
+  try {
+    candidates = withRetry(() => {
+      const numbers = parseCommitPulls(api(`commits/${commit}/pulls`));
+      if (numbers.length === 0) {
+        throw new Error('commits/{sha}/pulls gav ingen mergad pull request');
+      }
+      return numbers;
+    }, retry);
+  } catch (cause) {
+    reasons.push((cause as Error).message);
+    return failed();
+  }
+
+  for (const number of candidates.filter((candidate) => !tried.has(candidate))) {
+    const found = check(number);
+    if (found !== undefined) {
+      return found;
+    }
+  }
+  return failed();
 }
 
 /** En fil som ska lyftas: vilken text (blob), vilken merge och vem som mergade. */

@@ -236,6 +236,30 @@ describe('uppslaget av pull requesten', () => {
     expect((result as { error: string }).error).toContain('#15 är inte mergad');
   });
 
+  it('F6: frågar commits/{sha}/pulls när numret i meddelandet hör till en annan commit', () => {
+    // Meddelandet skrevs om vid mergen och pekar på #15, men mergen är #17:s.
+    const api = fakeApi({
+      'pulls/15': pullJson(15, MERGE_15),
+      [`commits/${MERGE_17}/pulls`]: JSON.stringify([{ number: 17, merged_at: 'x' }]),
+      'pulls/17': pullJson(17, MERGE_17),
+    });
+    expect(resolvePullRequest(api, MERGE_17, message15, NO_WAIT)).toEqual({
+      pr: 17,
+      av: 'benbom',
+    });
+    expect(api.calls).toEqual(['pulls/15', `commits/${MERGE_17}/pulls`, 'pulls/17']);
+  });
+
+  it('F6: frågar inte samma pull request två gånger när commits/{sha}/pulls ger samma nummer', () => {
+    const api = fakeApi({
+      'pulls/15': pullJson(15, MERGE_17),
+      [`commits/${MERGE_15}/pulls`]: JSON.stringify([{ number: 15, merged_at: 'x' }]),
+    });
+    const result = resolvePullRequest(api, MERGE_15, message15, NO_WAIT);
+    expect((result as { error: string }).error).toContain(`#15 kom in med ${MERGE_17}`);
+    expect(api.calls).toEqual(['pulls/15', `commits/${MERGE_15}/pulls`]);
+  });
+
   it('frågar commits/{sha}/pulls när meddelandet saknar nummer, och väntar ut en tom lista', () => {
     const api = fakeApi({
       [`commits/${MERGE_15}/pulls`]: ['[]', JSON.stringify([{ number: 15, merged_at: 'x' }])],
@@ -869,14 +893,16 @@ describe('kommandoraden', () => {
       { [A]: MERGE_15, [B]: MERGE_17 },
       {
         [MERGE_15]: 'Merge pull request #15 from x/y',
-        // Numret i meddelandet hör till en annan commit: felet kommer direkt, utan att
-        // withRetry behöver vänta ut de riktiga fördröjningarna i DEFAULT_RETRY.
+        // Numret i meddelandet hör till en annan commit, och commits/{sha}/pulls ger samma
+        // nummer: felet kommer direkt, utan att withRetry behöver vänta ut de riktiga
+        // fördröjningarna i DEFAULT_RETRY.
         [MERGE_17]: 'Merge pull request #99 from x/z',
       },
     );
     const api = fakeApi({
       'pulls/15': pullJson(15, MERGE_15),
       'pulls/99': pullJson(99, MERGE_15),
+      [`commits/${MERGE_17}/pulls`]: JSON.stringify([{ number: 99, merged_at: 'x' }]),
     });
     const lines: string[] = [];
 
