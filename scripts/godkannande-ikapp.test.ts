@@ -8,7 +8,7 @@
  */
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -331,6 +331,39 @@ describe('planen', () => {
     const { findings } = planera(git, fakeApi({}), 'HEAD', NO_WAIT);
     expect(findings).toEqual([{ file: A, message: 'granskning är ingen lista' }]);
   });
+
+  it('gränsfall: meddelandet nämner ett annat nummer än det verkliga ger ett fel i planen, inte en felaktig post', () => {
+    const a = exercise('granskad');
+    // Meddelandet pekar på #15, men den pull requesten kom in med en annan commit (MERGE_17).
+    const git = fakeHistory(
+      { HEAD: { [A]: a }, [MERGE_15]: { [A]: a } },
+      { [A]: MERGE_15 },
+      { [MERGE_15]: 'Merge pull request #15 from liebertech/fel-gren' },
+    );
+    const api = fakeApi({ 'pulls/15': pullJson(15, MERGE_17) });
+
+    const { plan, findings } = planera(git, api, 'HEAD', NO_WAIT);
+    expect(plan.poster).toEqual([]);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]?.file).toBe(A);
+    expect(findings[0]?.message).toContain(`#15 kom in med ${MERGE_17}`);
+  });
+
+  it('gränsfall: en fil som tagits bort sedan den stod i granskad finns inte med i planen och ger inget fel', () => {
+    const a = exercise('granskad');
+    // B fanns i granskad vid ett tidigare tillfälle men är borttagen vid bas: listFiles(bas, …)
+    // visar bara A, så B kan aldrig bli ett fynd eller en post.
+    const git = fakeHistory(
+      { HEAD: { [A]: a }, [MERGE_15]: { [A]: a } },
+      { [A]: MERGE_15 },
+      { [MERGE_15]: 'Merge pull request #15 from liebertech/omgang' },
+    );
+    const api = fakeApi({ 'pulls/15': pullJson(15, MERGE_15) });
+
+    const { plan, findings } = planera(git, api, 'HEAD', NO_WAIT);
+    expect(findings).toEqual([]);
+    expect(plan.poster.map((entry) => entry.fil)).toEqual([A]);
+  });
 });
 
 describe('tolkningen av planen', () => {
@@ -394,6 +427,28 @@ describe('skrivningen av planen', () => {
       av: 'benbom',
       roll: 'redaktör',
       kommentar: 'Godkänd genom merge av pull request #17.',
+    });
+  });
+
+  it('ändrar bara status och granskning, inget annat fält i övningen', () => {
+    const git = fakeHistory(
+      { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
+      {},
+      {},
+    );
+    const written = new Map<string, string>();
+
+    tillampa(git, plan, { datum: '2026-10-05', write: true }, (path, text) =>
+      written.set(path, text),
+    );
+
+    const before = parse(b) as Record<string, unknown>;
+    const after = parse(written.get(B) as string) as Record<string, unknown>;
+    expect(after.granskning).toEqual([...(before.granskning as unknown[]), expect.anything()]);
+    expect({ ...after, status: undefined, granskning: undefined }).toEqual({
+      ...before,
+      status: undefined,
+      granskning: undefined,
     });
   });
 
@@ -526,6 +581,108 @@ describe('ikappskrivningen mot ett riktigt repo', () => {
     expect(result.ok).toBe(true);
     expect(written.get(A)).toContain(`status: ${APPROVED_STATUS}`);
   });
+
+  /** Ett nytt, tomt repo med main och git-identitet, utan att skriva något innehåll. */
+  function freshRepo(): { dir: string; git: (...args: string[]) => string } {
+    const dir = mkdtempSync(join(tmpdir(), 'godkannande-ikapp-'));
+    temporary.push(dir);
+    const git = (...args: string[]): string =>
+      execFileSync('git', args, { cwd: dir, encoding: 'utf8' });
+    git('init', '--quiet', '--initial-branch=main');
+    git('config', 'user.email', 'test@example.invalid');
+    git('config', 'user.name', 'Test');
+    git('config', 'commit.gpgsign', 'false');
+    mkdirSync(join(dir, CONTENT_DIR), { recursive: true });
+    writeFileSync(join(dir, 'README.md'), 'start\n', 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Start');
+    return { dir, git };
+  }
+
+  it('gränsfall: en squash-merge löses upp via commits/{sha}/pulls, eftersom meddelandet saknar GitHubs mergeform', () => {
+    const { dir, git } = freshRepo();
+    git('checkout', '--quiet', '-b', 'omgang');
+    writeFileSync(join(dir, A), exercise('granskad'), 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Lägg till övning');
+    git('checkout', '--quiet', 'main');
+    // GitHubs squash-merge lägger en enda ny commit på main med meddelandet
+    // "<titel> (#<nummer>)", som inte matchar "Merge pull request #N from …".
+    git('merge', '--quiet', '--squash', 'omgang');
+    git('commit', '--quiet', '--message', 'Lägg till övning (#21)');
+    const squash = git('rev-parse', 'HEAD').trim();
+
+    const reader = createHistoryReader(dir);
+    const api = fakeApi({
+      [`commits/${squash}/pulls`]: JSON.stringify([{ number: 21, merged_at: 'x' }]),
+      'pulls/21': pullJson(21, squash),
+    });
+    const { plan, findings } = planera(reader, api, 'HEAD', NO_WAIT);
+
+    expect(findings).toEqual([]);
+    expect(plan.poster).toEqual([
+      { fil: A, blob: reader.blob('HEAD', A), commit: squash, pr: 21, av: 'benbom' },
+    ]);
+  });
+
+  it('gränsfall: en rebase-merge faller rött när filen inte är den sista rebasade commiten (ADR 0020, känd begränsning)', () => {
+    const { dir, git } = freshRepo();
+    // En rebase-merge lägger grenens commits direkt på main, var och en med sitt ursprungliga
+    // meddelande och utan någon gemensam merge-commit. Filen ändras i den FÖRSTA av två
+    // commits, medan GitHub skulle rapportera merge_commit_sha som den SISTA — precis den
+    // diskrepans ADR 0020 avsnitt *Nackdelar* beskriver som en känd begränsning.
+    writeFileSync(join(dir, A), exercise('granskad'), 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Lägg till övning');
+    const first = git('rev-parse', 'HEAD').trim();
+    writeFileSync(join(dir, 'README.md'), 'annat\n', 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Städa dokumentation');
+    const last = git('rev-parse', 'HEAD').trim();
+
+    const reader = createHistoryReader(dir);
+    const api = fakeApi({
+      [`commits/${first}/pulls`]: JSON.stringify([{ number: 22, merged_at: 'x' }]),
+      'pulls/22': pullJson(22, last),
+    });
+    const { plan, findings } = planera(reader, api, 'HEAD', NO_WAIT);
+
+    expect(plan.poster).toEqual([]);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]?.message).toContain(`#22 kom in med ${last}, inte ${first}`);
+  });
+
+  it('gränsfall: en övning som bytt namn sedan den granskades knyts till rätt merge under sitt nya namn', () => {
+    const { dir, git } = freshRepo();
+    const mergeBranch = (branch: string, number: number, change: () => void): string => {
+      git('checkout', '--quiet', '-b', branch);
+      change();
+      git('add', '--all');
+      git('commit', '--quiet', '--message', `Ändra på ${branch}`);
+      git('checkout', '--quiet', 'main');
+      git(
+        'merge',
+        '--quiet',
+        '--no-ff',
+        '--message',
+        `Merge pull request #${number} from x/${branch}`,
+        branch,
+      );
+      return git('rev-parse', 'HEAD').trim();
+    };
+
+    mergeBranch('omgang', 23, () => writeFileSync(join(dir, A), exercise('granskad'), 'utf8'));
+    const renameMerge = mergeBranch('byt-namn', 24, () => git('mv', A, B));
+
+    const reader = createHistoryReader(dir);
+    const api = fakeApi({ 'pulls/24': pullJson(24, renameMerge) });
+    const { plan, findings } = planera(reader, api, 'HEAD', NO_WAIT);
+
+    expect(findings).toEqual([]);
+    expect(plan.poster).toEqual([
+      { fil: B, blob: reader.blob('HEAD', B), commit: renameMerge, pr: 24, av: 'benbom' },
+    ]);
+  });
 });
 
 describe('kommandoraden', () => {
@@ -549,6 +706,42 @@ describe('kommandoraden', () => {
     expect(main(['tillampa', '--plan', planPath], (line) => lines.push(line), git)).toBe(0);
     expect(lines[0]).toContain('Lyfter a-ovning.yaml');
     expect(lines.at(-1)).toContain('Lägg till --skriv');
+  });
+
+  /**
+   * Regression #15, andra halvan: "ett tomt svar i form av en lista hade dessutom gett grönt
+   * utan att något skrevs" (ADR 0020). Den här täcker vägen genom `main`/`runPlanera`, inte
+   * bara `planera` själv: även när en av flera filer går bra ska hela körningen falla rött och
+   * planfilen bli tom, så att ett skrivjobb som ändå startade inte har något att skriva.
+   */
+  it('planera avslutar rött och skriver en tom plan när minst en fil inte går att slå upp, trots att andra filer gick bra', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'godkannande-plan-'));
+    temporary.push(dir);
+    const planPath = join(dir, 'plan.json');
+    const a = exercise('granskad');
+    const b = exercise('granskad', { ledarbehov: 2 });
+    const git = fakeHistory(
+      { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
+      { [A]: MERGE_15, [B]: MERGE_17 },
+      {
+        [MERGE_15]: 'Merge pull request #15 from x/y',
+        // Numret i meddelandet hör till en annan commit: felet kommer direkt, utan att
+        // withRetry behöver vänta ut de riktiga fördröjningarna i DEFAULT_RETRY.
+        [MERGE_17]: 'Merge pull request #99 from x/z',
+      },
+    );
+    const api = fakeApi({
+      'pulls/15': pullJson(15, MERGE_15),
+      'pulls/99': pullJson(99, MERGE_15),
+    });
+    const lines: string[] = [];
+
+    const code = main(['planera', '--ut', planPath], (line) => lines.push(line), git, api);
+
+    expect(code).toBe(1);
+    expect(lines.some((line) => line.includes('Torrkörningen hittade'))).toBe(true);
+    const written = JSON.parse(readFileSync(planPath, 'utf8')) as { poster: unknown[] };
+    expect(written.poster).toEqual([]);
   });
 
   it('tillampa faller med ett tydligt meddelande på en tom plan', () => {
