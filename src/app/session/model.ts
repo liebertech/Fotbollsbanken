@@ -7,6 +7,7 @@ import { exerciseArea } from '../../regelmotor/index.ts';
 import type {
   Exercise,
   GameFormat,
+  ItemRef,
   Layout,
   PartResult,
   Session,
@@ -19,12 +20,16 @@ export interface StationView {
   station: number;
   exercise: Exercise;
   layout: Layout | null;
+  /** Stationens plats i passet, för byte av övning (R-104). */
+  ref: ItemRef;
 }
 
 export type TimelineItem =
   | {
       kind: 'exercise';
       key: string;
+      /** Momentets plats i passet, för byte av övning (R-104). Perioderna delar plats. */
+      ref: ItemRef;
       minutes: number;
       exercise: Exercise;
       layout: Layout | null;
@@ -58,8 +63,12 @@ export interface SessionView {
   parts: PartView[];
   totalMinutes: number;
   requestedMinutes: number;
-  /** Sant när passet blev kortare än den begärda längden (R-036, R-039). */
-  shorterThanRequested: boolean;
+  /**
+   * Sant när passets tid skiljer sig från den begärda längden. Ett genererat pass kan bara
+   * bli kortare (R-036, R-039), men efter ett byte kan det också bli längre (R-105,
+   * berättelse 04 kriterium 5).
+   */
+  differsFromRequested: boolean;
   /**
    * Nyckeln till det första kortet i passet, i visningsordning och med stationerna inräknade,
    * vars yta har en ytreferens för passets spelform. Bara det kortet visar ytförklaringen
@@ -146,10 +155,11 @@ export function buildSessionView(session: Session): SessionView {
 
     switch (row.kind) {
       case 'exercise':
-        if (row.exercise !== null) {
+        if (row.exercise !== null && row.block !== null) {
           current.items.push({
             kind: 'exercise',
             key,
+            ref: { block: row.block, station: null },
             minutes: row.minutes,
             exercise: row.exercise,
             layout: row.layout,
@@ -159,12 +169,13 @@ export function buildSessionView(session: Session): SessionView {
         break;
 
       case 'period':
-        if (row.exercise !== null) {
+        if (row.exercise !== null && row.block !== null) {
           periodNumber = row.block === previousBlock ? periodNumber + 1 : 1;
           previousBlock = row.block;
           current.items.push({
             kind: 'exercise',
             key,
+            ref: { block: row.block, station: null },
             minutes: row.minutes,
             exercise: row.exercise,
             layout: row.layout,
@@ -186,12 +197,18 @@ export function buildSessionView(session: Session): SessionView {
 
       case 'station': {
         const last = current.items.at(-1);
-        if (last?.kind === 'stations' && row.exercise !== null && row.station !== null) {
+        if (
+          last?.kind === 'stations' &&
+          row.exercise !== null &&
+          row.station !== null &&
+          row.block !== null
+        ) {
           last.stations.push({
             key: `${last.key}-${row.station}`,
             station: row.station,
             exercise: row.exercise,
             layout: row.layout,
+            ref: { block: row.block, station: row.station },
           });
         }
         break;
@@ -216,7 +233,7 @@ export function buildSessionView(session: Session): SessionView {
     parts,
     totalMinutes: session.totalMinutes,
     requestedMinutes: session.requestedMinutes,
-    shorterThanRequested: session.totalMinutes < session.requestedMinutes,
+    differsFromRequested: session.totalMinutes !== session.requestedMinutes,
     firstAreaReferenceKey: firstWithReference?.key ?? null,
   };
 }

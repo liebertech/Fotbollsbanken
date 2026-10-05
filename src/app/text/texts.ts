@@ -112,6 +112,37 @@ export const TEXTS = {
     newSession: 'Nytt pass',
     changeInput: 'Ändra uppgifter',
     generateAgain: 'Generera igen',
+    swapButton: 'Byt övning',
+  },
+
+  /**
+   * Avsnitt 6: byta övning (berättelse 04, skisser/04-byt-ovning.md). Texterna för klubbens
+   * egna övningar kommer med inkrement 4, när de finns att visa.
+   */
+  swap: {
+    heading: 'Byt övning: {part}',
+    replacing: 'Byter ut: "{name}" ({minutes} min)',
+    replacingStation: 'Byter ut: "{name}" ({station}, {minutes} min)',
+    bankSection: 'Från den gemensamma banken',
+    choose: 'Välj denna',
+    confirmation: 'Bytt till: {name}.',
+    /**
+     * Förslag, saknas i texter.md. Texten där nämner också klubbens egna övningar, som inte
+     * finns förrän i inkrement 4 (berättelse 04, Beroenden).
+     */
+    noOptions:
+      'Vi hittade ingen övning i banken som passar precis här. Övningen ligger kvar som den är.',
+    /** Från wireframen i skisser/04-byt-ovning.md. Saknas i texter.md. */
+    back: 'Tillbaka till passet',
+    /** Sökfältets synliga etikett, från wireframen. Saknas i texter.md. */
+    search: 'Sök bland alternativen',
+    /** Förslag, saknas i texter.md. */
+    noSearchMatch: 'Ingen av övningarna matchar sökningen.',
+    /**
+     * Alternativkortets nyckeltal, som i wireframen: "5–15 min · 4–12 spelare". Ett spann där
+     * båda ändarna är lika skrivs som ett tal. Saknas i texter.md.
+     */
+    figures: '{time} min · {players} spelare',
   },
 
   /** Avsnitt 8: planskisser (berättelse 06 och 07). */

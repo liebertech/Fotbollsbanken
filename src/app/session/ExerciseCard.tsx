@@ -32,6 +32,12 @@ interface ExerciseCardProps {
    * kort med samma övning inte delar mönster (ADR 0012 avsnitt 5, RK-4).
    */
   placeKey?: string;
+  /** Öppnar bytesvyn för kortets övning (berättelse 04). Utan den visas ingen bytesknapp. */
+  onSwap?: () => void;
+  /** Sätter fokus på bytesknappen, när ledaren kommer tillbaka från bytesvyn. */
+  focusSwap?: boolean;
+  /** Bekräftelsen efter ett byte, på kortet med den nya övningen (skisser/04-byt-ovning.md). */
+  confirmation?: string | null;
 }
 
 /**
@@ -109,21 +115,25 @@ export function ExerciseCard({
   label,
   showAreaHelp = false,
   placeKey = 'kort',
+  onSwap,
+  focusSwap = false,
+  confirmation = null,
 }: ExerciseCardProps) {
   const [open, setOpen] = useState(false);
   const detailsId = useId();
   const texts = TEXTS.session;
   const area = areaLine(exercise, format);
   const areaHelp = showAreaHelp && areaReference(exercise, format) !== null;
+  const heading = label === undefined ? exercise.namn : `${label}: ${exercise.namn}`;
 
   return (
     <article className={styles.card}>
       <div className={styles.head}>
-        <h3 className={styles.name}>
-          {label === undefined ? exercise.namn : `${label}: ${exercise.namn}`}
-        </h3>
+        <h3 className={styles.name}>{heading}</h3>
         <span className={styles.minutes}>{minutes} min</span>
       </div>
+
+      {confirmation !== null && <p className={styles.confirmation}>{confirmation}</p>}
 
       {/* Miniatyr som fälls ut till normal storlek (designsystem.md avsnitt 7, berättelse 07). */}
       <KortSkiss exercise={exercise} format={format} layout={layout} placeKey={placeKey} />
@@ -141,15 +151,35 @@ export function ExerciseCard({
 
       {areaHelp && <AreaHelp />}
 
-      <button
-        className={styles.toggle}
-        type="button"
-        aria-expanded={open}
-        aria-controls={detailsId}
-        onClick={() => setOpen(!open)}
-      >
-        {open ? texts.showLess : texts.showMore}
-      </button>
+      <div className={styles.actions}>
+        {onSwap !== undefined && (
+          <button
+            className={styles.toggle}
+            type="button"
+            onClick={onSwap}
+            /*
+             * Fokus tillbaka till kortet efter bytesvyn, med eller utan byte. Fokus flyttas bara
+             * när ledaren själv har tryckt på knappen, aldrig när sidan laddas. autoFocus och
+             * inte en ref, eftersom ref är spärrad i appen (R3).
+             */
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={focusSwap}
+          >
+            {texts.swapButton}
+            {/* Ett unikt namn per kort, så att knapplistan i en skärmläsare går att använda. */}
+            <span className="visually-hidden">, {heading}</span>
+          </button>
+        )}
+        <button
+          className={styles.toggle}
+          type="button"
+          aria-expanded={open}
+          aria-controls={detailsId}
+          onClick={() => setOpen(!open)}
+        >
+          {open ? texts.showLess : texts.showMore}
+        </button>
+      </div>
 
       {open && (
         <div className={styles.details} id={detailsId}>

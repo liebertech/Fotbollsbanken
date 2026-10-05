@@ -4,7 +4,7 @@
  * Vyn räknar ingenting själv: tider, delar, ersättningsfokus och förklaringar kommer som de
  * är ur motorns svar (ADR 0011 avsnitt 1).
  */
-import type { GameFormat, PartResult, Session } from '../../regelmotor/index.ts';
+import type { GameFormat, ItemRef, PartResult, Session } from '../../regelmotor/index.ts';
 import { buildSessionView } from './model.ts';
 import type { PartView } from './model.ts';
 import { ExerciseCard } from './ExerciseCard.tsx';
@@ -24,6 +24,19 @@ interface SessionViewProps {
   session: Session;
   onChangeInput: () => void;
   onGenerateAgain: () => void;
+  /** Öppnar bytesvyn för övningen på platsen `ref`, från kortet med nyckeln `key`. */
+  onSwap?: (ref: ItemRef, key: string) => void;
+  /** Kortet vars bytesknapp får fokus, när ledaren kommer tillbaka från bytesvyn. */
+  focusKey?: string | null;
+  /** Bekräftelsen efter ett byte. Visas på kortet `focusKey`, som har den nya övningen. */
+  confirmation?: string | null;
+}
+
+/** Vad ett kort behöver för byte av övning. */
+interface SwapProps {
+  onSwap: ((ref: ItemRef, key: string) => void) | undefined;
+  focusKey: string | null;
+  confirmation: string | null;
 }
 
 /** Fältnamnen i en läsbar rad: "Nivå, Antal spelare". */
@@ -99,11 +112,18 @@ function Part({
   part,
   format,
   areaHelpKey,
+  swap,
 }: {
   part: PartView;
   format: GameFormat;
   areaHelpKey: string | null;
+  swap: SwapProps;
 }) {
+  const swapProps = (ref: ItemRef, key: string) => ({
+    onSwap: swap.onSwap === undefined ? undefined : () => swap.onSwap?.(ref, key),
+    focusSwap: swap.focusKey === key,
+    confirmation: swap.focusKey === key ? swap.confirmation : null,
+  });
   const texts = TEXTS.session;
   const empty = part.result?.status === 'saknar-ovning';
   return (
@@ -130,6 +150,7 @@ function Part({
                 }
                 showAreaHelp={item.key === areaHelpKey}
                 placeKey={item.key}
+                {...swapProps(item.ref, item.key)}
               />
             );
 
@@ -152,6 +173,7 @@ function Part({
                     label={stationLabel(station.station)}
                     showAreaHelp={station.key === areaHelpKey}
                     placeKey={station.key}
+                    {...swapProps(station.ref, station.key)}
                   />
                 ))}
               </div>
@@ -180,7 +202,14 @@ function Part({
   );
 }
 
-export function SessionView({ session, onChangeInput, onGenerateAgain }: SessionViewProps) {
+export function SessionView({
+  session,
+  onChangeInput,
+  onGenerateAgain,
+  onSwap,
+  focusKey = null,
+  confirmation = null,
+}: SessionViewProps) {
   const view = buildSessionView(session);
   const texts = TEXTS.session;
   const { input } = session;
@@ -195,7 +224,7 @@ export function SessionView({ session, onChangeInput, onGenerateAgain }: Session
           {input.spelare} spelare · {input.ledare} ledare · {input.passlangd} min
         </p>
         <p className={styles.summaryLine}>
-          {view.shorterThanRequested
+          {view.differsFromRequested
             ? fill(texts.actualTime, {
                 actual: view.totalMinutes,
                 requested: view.requestedMinutes,
@@ -225,6 +254,7 @@ export function SessionView({ session, onChangeInput, onGenerateAgain }: Session
           part={part}
           format={input.spelform}
           areaHelpKey={view.firstAreaReferenceKey}
+          swap={{ onSwap, focusKey, confirmation }}
         />
       ))}
 

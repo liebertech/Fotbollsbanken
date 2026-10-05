@@ -1,0 +1,117 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 0 var(--space-4) var(--space-8);
+}
+
+.replacing {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* Sökfältet har en synlig etikett (skisser/04-byt-ovning.md, designsystem.md avsnitt 6.2). */
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.searchInput {
+  min-height: var(--tap-target);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sectionHeading {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Kort (designsystem.md avsnitt 6.3): namn, nyckeltal, sedan åtgärden. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.focus,
+.figures {
+  margin: 0;
+}
+
+.figures {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.none {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.noneText {
+  margin: 0;
+}
+
+.back,
+.choose,
+.primary {
+  min-height: var(--tap-target);
+  min-width: var(--tap-target);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back {
+  align-self: flex-start;
+  margin-top: var(--space-4);
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+}
+
+/* Sekundär: listan har många "Välj denna", och högst en primärknapp ska synas samtidigt
+   (designsystem.md avsnitt 6.1). */
+.choose {
+  align-self: flex-end;
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.primary {
+  border: 0;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
