@@ -192,6 +192,11 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Tillgängligt namn, SVG:ns `<title>` (kriterium 8, ADR 0012 avsnitt 5) | {övningsnamn}, planskiss |
 | Tillgänglig beskrivning, SVG:ns `<desc>`, när `skiss.beskrivning` finns | {skiss.beskrivning}, ordagrant och utan tillägg |
 | Tillgänglig beskrivning, SVG:ns `<desc>`, när `skiss.beskrivning` saknas (genererad) | Se mallen nedan |
+| Rubrik, teckenförklaring (ADR 0012 avsnitt 3) | Teckenförklaring |
+| Spelare utanför taket på 40 ritade symboler, eller platser som tog slut (ADR 0012 avsnitt 4, S-5), en spelare | 1 spelare till står inte med i skissen. |
+| Samma, flera spelare | {count} spelare till står inte med i skissen. |
+| Miniatyrknappens tillgängliga namn, stängd (kriterium 4, se motivering nedan) | Förstora planskiss, {övningsnamn} |
+| Miniatyrknappens tillgängliga namn, öppen | Dölj planskiss, {övningsnamn} |
 
 **Löser motsägelsen mellan detta avsnitt och ADR 0012 (tillagd 2026-09-28, förarbete till inkrement 2, se berättelse 06 kriterium 8):** den tidigare enda raden här ("Planskiss: {övningsnamn}, yta {mått} meter") utgick från en `<img>`s `alt`-text. ADR 0012 (beslutad vid K2, ändras inte i efterhand) valde ett annat mönster: SVG med `role="img"` och `aria-labelledby` som pekar på ett `<title>` och ett `<desc>` (ADR 0012 avsnitt 5). Raderna ovan ersätter den gamla raden helt och följer ADR:ns struktur i stället för att gå runt den.
 
@@ -209,6 +214,45 @@ Regler för mallen:
 - **"Så här ser en av {antal ytor} ytor ut."** läggs till sist i `<desc>` bara när skissens `skalning.strategi` är `parallella-ytor` och det totala antalet spelare kräver fler än en yta (ADR 0012 avsnitt 4). Meningen läggs till **även när `skiss.beskrivning` finns** och används i stället för den genererade sammanfattningen – den beskriver hur just den här renderingen ska tolkas (en av flera identiska ytor), inte övningen i sig, och hör därför inte till valet mellan författarens text och den genererade sammanfattningen.
 
 **Varför "gånger" ersätter tecknet "×" i title/desc, i stället för samma dolda tillägg som avsnitt 4** (samma öppna fråga som redan fanns för ytraden, löst här med samma grundidé): avsnitt 4 föreslår, om kvalitetssäkrarens skärmläsartest visar att tecknet "×" läses oklart, att lösa det med ett dolt `.visually-hidden`-tillägg *vid sidan av* den synliga texten – "till exempel som 'gånger'" – utan att ändra den synliga texten. Den lösningen förutsätter en synlig text och en separat dold text, och det går inte att bygga i `<title>`/`<desc>`: de är rena textnoder utan nästlad markup (ADR 0012 avsnitt 5, samma slutna elementlista som avsnitt 6 hänvisar till), och de visas aldrig för ögat – hela innehållet är redan bara till för skärmläsaren, så det finns ingen synlig variant att bevara vid sidan av ett tillägg. Den här texten använder därför **samma ord som avsnitt 4 redan föreslår** ("gånger") men skriver ut det direkt i stället för att lägga till det: "30 gånger 20 meter", inte "30 × 20 meter". Det görs oavsett vad testet i avsnitt 4 landar i, eftersom det – till skillnad från den synliga ytraden på kortet – inte kostar något att välja ordet här i förväg: ingen tappar något visuellt, eftersom `<desc>` aldrig visas.
+
+**Teckenförklaringens benämningar (tillagd 2026-10-02, fastställer `src/planskiss/teckenforklaring.ts`):** planskissutvecklarens förslag i `LEGEND_NAMES` är granskat och godkänns ordagrant. En rad visas bara för de objekt- och rörelsetyper som faktiskt förekommer i den visade skissen (ADR 0012 avsnitt 3).
+
+| `kind` | Benämning |
+|---|---|
+| `lag-a` | Spelare, lag A |
+| `lag-b` | Spelare, lag B |
+| `neutral` | Neutral spelare |
+| `malvakt` | Målvakt |
+| `ledare` | Ledare |
+| `kon` | Kon |
+| `boll` | Boll |
+| `mal` | Mål |
+| `platta` | Platta |
+| `prick` | Prick |
+| `linje` | Linje på marken |
+| `zon` | Zon |
+| `ruta` | Ruta |
+| `passning` | Passning |
+| `lopning` | Löpning utan boll |
+| `dribbling` | Dribbling med boll |
+| `skott` | Avslut |
+
+`linje` skrivs "Linje på marken", inte bara "Linje", så att den inte läses ihop med rörelsepilarna (`passning`, `lopning`, `dribbling`, `skott`), som också är linjer i skissen men betyder något annat (en rörelse, inte en markering på marken). `skott` skrivs "Avslut", samma ord som i `<desc>` (se ovan) och i ADR 0012 avsnitt 3 ("Avslut mot mål"), aldrig "Skott".
+
+**"N spelare till står inte med i skissen." (tillagd 2026-10-02, fastställer `src/planskiss/beskrivning.ts`):** texten används både som bildtext under skissen (tillsammans med `parallelAreasText`, dold för skärmläsare eftersom samma information redan finns i `<desc>`) och inuti `<desc>` när `skiss.beskrivning` saknas. Den visas när ritmotorn inte kan rita alla spelare: taket på 40 ritade spelarsymboler nåddes (ADR 0012 avsnitt 4, S-5), eller strategin `platser` tog slut på platser. Formuleringen namnger inte orsaken – ledaren behöver bara veta att några spelare inte syns i bilden, inte varför.
+
+**Miniatyrknappens tillgängliga namn (tillagd 2026-10-02, svar på planskissutvecklarens fråga, kriterium 4):** i dag blir knappens tillgängliga namn den SVG-miniatyr den omsluter, alltså `<title>` **och** `<desc>` sammanslaget ("{övningsnamn}, planskiss. Yta … meter. … spelare …"), eftersom namnberäkningen för en knapp utan eget `aria-label` går igenom hela innehållet, inklusive `role="img"`-elementets egen `aria-labelledby`. Det blir långt och upprepar sig varje gång en skärmläsare möter ett övningskort i listan, vilket bryter mot principen att en knapp ska säga exakt vad som händer – inte läsa upp hela skissens innehåll innan den ens är öppnad.
+
+Lösningen är ett eget `aria-label` på knappen, som ersätter hela den härledda texten:
+
+- Stängd (`aria-expanded="false"`): "Förstora planskiss, {övningsnamn}"
+- Öppen (`aria-expanded="true"`): "Dölj planskiss, {övningsnamn}"
+
+`{övningsnamn}` tas med eftersom ett pass kan ha flera övningskort i listan efter varandra – utan namnet skulle flera knappar heta exakt likadant ("Förstora planskiss"), vilket gör det svårt att veta vilken man aktiverar när man navigerar med skärmläsarens knapplista. Mönstret följer samma princip som "Visa mer"/"Visa mindre" (`designsystem.md` avsnitt 6.7): verbet byter med tillståndet, texten säger vad som händer.
+
+**Hur den fullständiga beskrivningen nås:** `<title>` och `<desc>` tas inte bort – de ska fortfarande alltid finnas, enligt ADR 0012 avsnitt 5 och testkravet i avsnitt 8 ("title och desc finns alltid"). De når bara inte fram genom den stängda miniatyrknappen längre, eftersom `aria-label` på knappen går före knappens innehåll i namnberäkningen. Den fullständiga beskrivningen når ledaren i stället genom den **förstorade** skissen: `KortSkiss` ritar då en andra, större `Planskissvy` direkt i kortet, utanför knappen, med sin egen `role="img"` och `aria-labelledby` till `<title>`/`<desc>` precis som i dag. En skärmläsare möter alltså en kort knapp ("Förstora planskiss, {övningsnamn}"), och efter att ha aktiverat den, bilden med den fulla beskrivningen direkt efter i läsordningen.
+
+En sak till behöver kontrolleras när knappen byggs: miniatyrens egen `<svg role="img" aria-labelledby="…">` ligger kvar inuti knappen även efter ändringen, och vissa skärmläsare kan ändå annonsera den som ett eget nästlat objekt (utöver knappens `aria-label`), vilket skulle läsas upp två gånger i rad. `<title>`/`<desc>`-elementen ska finnas kvar i markupen (strukturtestet i ADR 0012 avsnitt 8 gäller oförändrat), men själva miniatyr-`<svg>`:n bör få `aria-hidden="true"` på den omslutande `<span>` (`styles.sketch`) när den visas som miniatyr inuti en knapp, så att bara knappens eget namn når skärmläsaren där. Kvalitetssäkraren kontrollerar det här med en riktig skärmläsare (NVDA/VoiceOver), på samma sätt som för "×" ovan.
 
 ---
 
@@ -393,3 +437,4 @@ Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillä
 | 2026-09-28 | **Avsnitt 4:** två nya rader för ytan på övningskortet och en förklaring av placering, radbrytning och skärmläsarläsning av "×" (ADR 0017, `feature/ytreferens`). Fältet fanns inte vid K2, och måttet visades inte alls på kortet innan den här ändringen. |
 | 2026-09-28 (uppföljning samma dag) | **Avsnitt 4:** tre nya rader och en ny förklaring för ytförklaringen – en utfällbar text som säger att ytreferensen bara jämför storlek, inte pekar ut en plats. Tillagd efter att fotbollsexperten vid granskningen såg att en ledare kan läsa referensen som var målen ska stå. Grenen `design/ytreferens-hjalptext`. |
 | 2026-09-28 (förarbete till inkrement 2) | **Avsnitt 8 skrivet om i sin helhet.** Löser motsägelsen mellan den gamla enda raden (en `alt`-text för en `<img>`) och ADR 0012 avsnitt 5 (beslutad, `<title>` + `<desc>` + `aria-labelledby`). Nytt: exakt text för `<title>` ("{övningsnamn}, planskiss"), en fullständig mall för `<desc>` med uteslutningsregler när fält saknas, ett beslut att ytreferensen (ADR 0017) inte tas med i `<desc>` eftersom den redan är synlig text på kortet och inte står i ADR 0012:s uppräkning, en rad för "Planskissen kunde inte visas" som saknades helt trots att ADR 0012 avsnitt 7 och berättelse 06 kriterium 3 redan förutsatte den, och en lösning på "×"-frågan (skrivs ut som "gånger" i title/desc, eftersom avsnitt 4:s dolda tillägg inte går att bygga i en textnod utan synlig motsvarighet). Grenen `feature/planskisser-forarbete`. Svarar på berättelse 06 kriterium 8. |
+| 2026-10-02 (granskning av `feature/ritmotor`) | **Avsnitt 8:** fastställer de texter som saknades och som planskissutvecklaren hade som förslag i `src/app/text/texts.ts` och `src/planskiss/`: teckenförklaringens 17 benämningar (`LEGEND_NAMES`, godkända ordagrant), rubriken "Teckenförklaring", och "N spelare till står inte med i skissen." (`notDrawnText`). Nytt: miniatyrknappens tillgängliga namn, som saknades helt – i dag blir den den sammanslagna `<title>` + `<desc>`, vilket är långt och upprepas i varje kort. Fastställt till "Förstora planskiss, {övningsnamn}" / "Dölj planskiss, {övningsnamn}" via ett eget `aria-label`, med en förklaring av hur den fulla beskrivningen ändå nås (den förstorade skissen, utanför knappen) och en anmärkning om att miniatyr-`<svg>`:n bör få `aria-hidden` inuti knappen för att undvika dubbelupläsning – kvalitetssäkraren kontrollerar med en riktig skärmläsare. Grenen `design/ritmotor-texter`. Ingen kod ändrad av ux-designern. |
