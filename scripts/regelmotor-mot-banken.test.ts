@@ -7,9 +7,11 @@
 import { describe, expect, it } from 'vitest';
 import { loadBank } from './bank.ts';
 import {
+  applySwap,
   checkSession,
   generateSession,
   selectableFocusAreas,
+  swapOptions,
   toBankExercise,
 } from '../src/regelmotor/index.ts';
 import {
@@ -234,4 +236,53 @@ describe('R-101 När inget pass skapas', () => {
       expect(result.reason.internalProblems).toEqual([]);
     }
   });
+});
+
+describe('R-104 och R-105 Byte av övning mot den riktiga banken', () => {
+  /*
+   * Varje alternativ som swapOptions visar ska gå att byta in, och passet efter bytet ska
+   * klara slutkontrollen (ADR 0011 avsnitt 1, steg 5). Egen tidsgräns av samma skäl som
+   * R-049-testet ovan: varje plats i varje pass prövas mot hela banken.
+   */
+  it(
+    'R-104 ger bara alternativ som R-105 kan byta in och som klarar slutkontrollen',
+    { timeout: 120_000 },
+    () => {
+      let byten = 0;
+      for (const alder of [9, 11]) {
+        const phase = phaseForAge(alder);
+        if (phase === undefined) {
+          continue;
+        }
+        for (const spelform of allowedGameFormats(alder)) {
+          for (const spelare of [8, 13, 14]) {
+            for (const ledare of [1, 2, 4]) {
+              for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
+                const input: Input = { ...underlag, alder, spelform, spelare, ledare, fokus };
+                const result = generateSession(input, banken, 'fro');
+                if (result.kind === 'none') {
+                  continue;
+                }
+                const pass = result.session;
+                for (const row of pass.rows) {
+                  if (row.exercise === null || row.block === null) {
+                    continue;
+                  }
+                  const ref = {
+                    block: row.block,
+                    station: row.kind === 'station' ? row.station : null,
+                  };
+                  for (const option of swapOptions(pass, ref, banken)) {
+                    expect(checkSession(applySwap(pass, ref, option))).toEqual([]);
+                    byten += 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      expect(byten).toBeGreaterThan(100);
+    },
+  );
 });

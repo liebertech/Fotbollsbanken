@@ -29,7 +29,7 @@ export interface BreakPlacement {
 }
 
 /** Delar ett spelmoment i så jämna perioder som möjligt. De längsta perioderna först. */
-function splitEvenly(minutes: number, periods: number): number[] {
+export function splitEvenly(minutes: number, periods: number): number[] {
   const base = Math.floor(minutes / periods);
   const rest = minutes % periods;
   return Array.from({ length: periods }, (_, index) => base + (index < rest ? 1 : 0));

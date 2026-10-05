@@ -214,6 +214,21 @@ export interface Session {
   notices: Notice[];
   /** Längsta sammanhängande aktiva tid utan paus (post 11 i R-048). */
   longestStretch: number;
+  /**
+   * Sant när ledaren har bytt minst en övning (R-104). Då kontrolleras inte längre R-035
+   * och R-036 (R-105), och R-049 gäller inte för passet.
+   */
+  swapped: boolean;
+}
+
+/**
+ * Var i passet en övning ligger: momentets nummer (`Row.block`) och, i ett stationsmoment,
+ * stationens nummer. I ett helgruppsmoment är `station` `null`, också när en paus delar
+ * spelet i perioder (R-037): perioderna är samma moment och samma övning.
+ */
+export interface ItemRef {
+  block: number;
+  station: number | null;
 }
 
 /**

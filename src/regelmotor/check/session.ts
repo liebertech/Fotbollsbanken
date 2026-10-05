@@ -126,6 +126,7 @@ function fitsInside(
  * @regel R-092
  * @regel R-093
  * @regel R-102
+ * @regel R-105
  */
 export function checkSession(session: Session): string[] {
   const problems: string[] = [];
@@ -159,11 +160,12 @@ export function checkSession(session: Session): string[] {
     problems.push('R-031: en vattenpaus är inte 2 minuter');
   }
 
-  // R-035: varje del som har moment ligger inom måltiden +/- 3 minuter.
+  // R-035: varje del som har moment ligger inom måltiden +/- 3 minuter. Efter ett byte
+  // kontrolleras varken R-035 eller tidsgränserna i R-036 (R-105).
   const emptyParts = rows
     .filter((row) => row.kind === 'empty')
     .map((row) => row.part as SessionPartFromBank);
-  for (const [part, target] of plan.targets) {
+  for (const [part, target] of session.swapped ? [] : plan.targets) {
     const minutes = rows
       .filter((row) => row.part === part && row.kind !== 'station' && row.kind !== 'empty')
       .reduce((sum, row) => sum + row.minutes, 0);
@@ -188,7 +190,7 @@ export function checkSession(session: Session): string[] {
   if (total !== session.totalMinutes) {
     problems.push('R-036: passets totaltid stämmer inte med raderna');
   }
-  if (emptyParts.length === 0) {
+  if (emptyParts.length === 0 && !session.swapped) {
     if (total > input.passlangd || total < input.passlangd - SESSION_SHORTFALL) {
       problems.push(`R-036: passet är ${total} minuter, begärt ${input.passlangd}`);
     }
