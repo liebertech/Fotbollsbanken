@@ -12,7 +12,7 @@ import { partCanBeFilled } from './output/explain.ts';
 import { planTime } from './time/plan.ts';
 import { PART_TOLERANCE, SESSION_SHORTFALL } from './keys.ts';
 import { bankExercise, gameExercise } from './__testdata__/bank-fixtur.ts';
-import type { Exercise, Input, Session } from './types.ts';
+import type { Exercise, Input, Layout, Row, Session } from './types.ts';
 import type { BankExercise } from './origin.ts';
 
 const underlag: Input = {
@@ -475,6 +475,116 @@ describe('R-072 Gränsen mellan fotbollsregler och algoritmval', () => {
     for (const seed of ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']) {
       expect(checkSession(session(underlag, tiedBank, seed))).toEqual([]);
     }
+  });
+});
+
+describe('R-058 Grupper med fast grundstorlek i det färdiga passet', () => {
+  function bankWith(exercise: BankExercise): BankExercise[] {
+    return testbank.map((item) => (item.id === 'ova-passa' ? exercise : item));
+  }
+  const pair = bankExercise({
+    id: 'ova-par',
+    fokusomraden: ['passning-mottagning'],
+    passdelar: ['del-ovning'],
+    grupptyp: 'par',
+    spelare: { min: 2, max: 2 },
+    tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+  });
+  const trio = bankExercise({
+    id: 'ova-tre',
+    fokusomraden: ['passning-mottagning'],
+    passdelar: ['del-ovning'],
+    grupptyp: 'fast-storlek',
+    spelare: { min: 3, max: 3 },
+    udda_antal_losning: true,
+    tid: { kortast: 8, rekommenderad: 10, langst: 12 },
+  });
+  const ovningRow = (value: Session) =>
+    value.rows.find((row) => row.part === 'del-ovning' && row.exercise !== null);
+
+  it('R-058 väljer en parövning vid 13 spelare och gör 5 par och en trio med övningens text', () => {
+    const value = session({ ...underlag, spelare: 13 }, bankWith(pair));
+    const row = ovningRow(value);
+    expect(row?.exercise?.id).toBe('ova-par');
+    expect(row?.layout?.sizes).toEqual([3, 2, 2, 2, 2, 2]);
+    expect(row?.layout?.oddSolution).toBe('trio');
+    expect(row?.layout?.oddText).toBe(pair.anpassning?.udda_antal);
+    expect(checkSession(value)).toEqual([]);
+  });
+
+  it('R-058 ger 4 grupper om 3 med 12 spelare i en övning för tre', () => {
+    const value = session({ ...underlag, spelare: 12 }, bankWith(trio));
+    expect(ovningRow(value)?.layout?.sizes).toEqual([3, 3, 3, 3]);
+    expect(checkSession(value)).toEqual([]);
+  });
+
+  it('R-058 slutkontrollen underkänner 3 grupper om 4 i en övning för tre', () => {
+    const value = session({ ...underlag, spelare: 12 }, bankWith(trio));
+    const row = ovningRow(value)!;
+    const wrong = { ...row.layout!, groups: 3, sizes: [4, 4, 4] };
+    const tampered: Session = {
+      ...value,
+      rows: value.rows.map((item) => (item === row ? { ...item, layout: wrong } : item)),
+    };
+    expect(checkSession(tampered)).toContain(
+      'R-058: grupperna i ova-tre följer inte grundstorleken 3',
+    );
+  });
+
+  it('R-058 gäller inte för en stationsgrupp, som i stället följer R-063', () => {
+    // QA-tillägg: utan skyddet `row.kind !== 'station'` i check/session.ts hade kontrollen
+    // fällt en giltig stationsindelning, eftersom en station delar spelarna enligt R-063
+    // (en grupp per station) i stället för R-058:s formel (k = ⌊N / s⌋ grupper av s eller
+    // s + 1). Den riktiga bankens fuzztest (scripts/regelmotor-mot-banken.test.ts) råkar
+    // aldrig pröva en stationsgrupp där formlerna skiljer sig åt, så bygger den här raden
+    // för hand efter samma mönster som build.ts gör för ett stationsmoment.
+    const value = session({ ...underlag, spelare: 6, passlangd: 90 }, bankWith(pair));
+    const row = ovningRow(value)!;
+    // 6 spelare i 2 stationer ger 3 och 3 (R-063: skiljer sig med högst en spelare, och
+    // båda är inom övningens största grupp s + 1 = 3). R-058:s formel för ett
+    // helgruppsmoment hade i stället gett 3 grupper om 2 (k = ⌊6 / 2⌋ = 3, r = 0), så
+    // `layout.groups` (2) skiljer sig medvetet från formelns k (3).
+    const stationMinutes = 8; // övningens kortaste tid (tid.kortast)
+    const stationCount = 2;
+    const stationLayout: Layout = {
+      groups: stationCount,
+      sizes: [3, 3],
+      coachesPerGroup: row.layout!.coachesPerGroup,
+      coachesNeeded: row.layout!.coachesNeeded,
+      oddSolution: 'trio',
+      oddText: row.layout!.oddText,
+    };
+    const stationsParent: Row = {
+      kind: 'stations',
+      part: row.part,
+      block: row.block,
+      station: null,
+      stationMinutes,
+      // R-065: S × stationstiden + (S − 1) minuter för byten.
+      minutes: stationCount * stationMinutes + (stationCount - 1),
+      exercise: null,
+      layout: stationLayout,
+    };
+    // R-061: ett stationsmoment har minst två stationer, en rad per station.
+    const stationChildren: Row[] = [1, 2].map((station) => ({
+      kind: 'station',
+      part: row.part,
+      block: row.block,
+      station,
+      stationMinutes,
+      minutes: 0,
+      exercise: row.exercise,
+      layout: stationLayout,
+    }));
+    const tampered: Session = {
+      ...value,
+      // R-036: passets totaltid följer med ändringen av det här momentets tid.
+      totalMinutes: value.totalMinutes - row.minutes + stationsParent.minutes,
+      rows: value.rows.flatMap((item) =>
+        item === row ? [stationsParent, ...stationChildren] : [item],
+      ),
+    };
+    expect(checkSession(tampered)).toEqual([]);
   });
 });
 

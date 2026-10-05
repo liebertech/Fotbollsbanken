@@ -76,6 +76,11 @@ describe('R-049 Det här klarar ett genererat pass alltid', () => {
    * 26-28 s när maskinen klockade ned till 1,7 av 3,0 GHz. 60 s gav bara dubbla marginalen
    * mot det sämsta mätvärdet, vilket räckte för att testet skulle störas när sviten var
    * flakig. 120 s tål samma nedklockning med marginal och fäller fortfarande en oändlig loop.
+   *
+   * QA-granskning av R-058 (2026-10-02): lade till 13 (udda antal) i `spelare`, så att
+   * trion i parövningar prövas mot den riktiga banken. Uppmätt ensamt på full klockfrekvens:
+   * 8,1 s före, 9,9 s efter, alltså en ökning på ungefär en fjärdedel. Tidsgränsen ovan har
+   * ändå gott om marginal kvar och lämnas oförändrad.
    */
   it(
     'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till',
@@ -89,7 +94,7 @@ describe('R-049 Det här klarar ett genererat pass alltid', () => {
         }
         for (const spelform of allowedGameFormats(alder)) {
           for (const niva of ['niva-1', 'niva-2', 'niva-3'] as const) {
-            for (const spelare of [8, 12, 14, 20]) {
+            for (const spelare of [8, 12, 13, 14, 20]) {
               for (const ledare of [1, 2, 4]) {
                 for (const passlangd of [30, 60, Math.min(75, SESSION_LENGTH_MAX[phase])]) {
                   for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
