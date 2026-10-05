@@ -58,8 +58,10 @@ anpassning:
   fler_spelare: Bygg fler banor bredvid varandra med samma avstånd och mått.
   udda_antal: >-
     Vid udda antal blir en grupp en trio på samma bana. Två tävlar och den
-    tredje väntar bakom startlinjen. I nästa omgång byter hen in för den som
-    sprungit två omgångar i rad.
+    tredje väntar bakom startlinjen, bakom vänstra banan. Efter varje omgång
+    går den som väntade in i vänstra banan, den som sprang där flyttar till
+    högra banan och den som sprang i högra banan lämnar över sin boll och
+    väntar. Då springer alla två omgångar och vilar en.
   ledare: En ledare räcker för att starta omgångarna. Fler ledare kan starta flera banor samtidigt.
 planskiss:
   version: 1
