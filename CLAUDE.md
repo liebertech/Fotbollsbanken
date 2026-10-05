@@ -85,6 +85,7 @@ Om övningen inte håller sätter fotbollsexperten eller redaktören status `atg
 - Varje ändring görs på en gren och läggs fram som en pull request. Statusraden i ett dokument ändras till `godkänd (K<n>, ÅÅÅÅ-MM-DD)` när du godkänt kontrollpunkten.
 - Commit-meddelanden skrivs på svenska i imperativ, till exempel ”Lägg till regler för passuppbyggnad”.
 - Använd aldrig force-push eller `reset --hard`, och skriv aldrig om publicerad historik.
+- Bara användaren mergar till `main` och godkänner körningar i miljön `godkannande`, och gör det i webbläsaren. Varken huvudsessionen eller någon agent mergar en pull request eller godkänner en miljö, varken med `gh` eller med API:t, fast `gh` är inloggat med skrivrätt för att kunna pusha och öppna pull requests. Användarens beslut 2026-10-05 (säkerhetsgranskningen av ADR 0020, F4).
 
 ## Gemensamma regler för alla agenter
 
