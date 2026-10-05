@@ -114,6 +114,7 @@ function fakeHistory(
       return text === undefined ? undefined : sha(text);
     },
     resolve: (rev) => (rev === 'HEAD' ? HEAD : rev),
+    isAncestor: (ancestor) => ancestor === HEAD || revisions[ancestor] !== undefined,
   };
 }
 
@@ -533,6 +534,37 @@ describe('skrivningen av planen', () => {
     [MERGE_17]: { [B]: b },
   };
 
+  it('F8: skriver ingenting och frågar inte API:t när planens bas inte ligger på main', () => {
+    const git = fakeHistory(sameTexts, last, messages);
+    const api = fakeApi({});
+    const written: string[] = [];
+
+    const result = tillampa(
+      git,
+      api,
+      { ...plan, bas: sha('en annan gren') },
+      { write: true, retry: NO_WAIT },
+      (path) => written.push(path),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.files).toEqual([
+      {
+        file: '',
+        outcome: 'fel',
+        message: `planen lästes ur ${sha('en annan gren')}, som inte ligger på main`,
+      },
+    ]);
+    expect(api.calls).toEqual([]);
+    expect(written).toEqual([]);
+  });
+
+  it('F8: en bas som inte har formen av en sha når aldrig git', () => {
+    const git = { ...fakeHistory(sameTexts, last, messages), isAncestor: () => true };
+    const result = tillampa(git, okApi(), { ...plan, bas: '--output=/tmp/x' }, { write: true });
+    expect(result.ok).toBe(false);
+  });
+
   it('F5: skriver ingenting när filen senast ändrades i en annan merge än planens', () => {
     // Samma blob, men en senare merge (MERGE_17) förde in den på nytt.
     const git = fakeHistory(
@@ -689,6 +721,9 @@ describe('ikappskrivningen mot ett riktigt repo', () => {
     );
     expect(result.ok).toBe(true);
     expect(written.get(A)).toContain(`status: ${APPROVED_STATUS}`);
+
+    expect(reader.isAncestor(plan.bas, 'HEAD')).toBe(true);
+    expect(reader.isAncestor(sha('finns inte'), 'HEAD')).toBe(false);
   });
 
   /** Ett nytt, tomt repo med main och git-identitet, utan att skriva något innehåll. */

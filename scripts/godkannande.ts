@@ -438,6 +438,8 @@ export interface HistoryReader extends GitReader {
   blob(rev: string, path: string): string | undefined;
   /** Den fullständiga sha:n för en revision. */
   resolve(rev: string): string;
+  /** Sant när `ancestor` finns i historiken bakom `rev`. Falskt också när commiten saknas. */
+  isAncestor(ancestor: string, rev: string): boolean;
 }
 
 export function createHistoryReader(cwd: string = process.cwd()): HistoryReader {
@@ -478,6 +480,9 @@ export function createHistoryReader(cwd: string = process.cwd()): HistoryReader 
     message: (sha) => required(['log', '-1', '--format=%B', sha]),
     blob: (rev, path) => git(['rev-parse', '--verify', '--quiet', `${rev}:${path}`])?.trim(),
     resolve: (rev) => required(['rev-parse', '--verify', `${rev}^{commit}`]).trim(),
+    // Slutkod 1 betyder "inte förfader" och 128 att commiten saknas. Båda ger falskt.
+    isAncestor: (ancestor, rev) =>
+      git(['merge-base', '--is-ancestor', ancestor, rev]) !== undefined,
   };
 }
 
@@ -807,6 +812,21 @@ export function tillampa(
   writeFile: WriteFile = writeToDisk,
 ): ApprovalResult {
   const rev = options.rev ?? 'HEAD';
+  // `bas` har redan formen av en sha (parsePlan) och går bara till git som ett argument, aldrig
+  // genom ett skal (F8).
+  if (!SHA.test(plan.bas) || !git.isAncestor(plan.bas, rev)) {
+    return {
+      ok: false,
+      files: [
+        {
+          file: '',
+          outcome: 'fel',
+          message: `planen lästes ur ${plan.bas}, som inte ligger på main`,
+        },
+      ],
+      written: false,
+    };
+  }
   const files: ApprovalFile[] = [];
   const pulls = new Map<string, ResolvedPull | { error: string }>();
 
@@ -1104,6 +1124,10 @@ function runTillampa(
 
   const result = tillampa(git, github, plan, { write: args.write });
   for (const file of result.files) {
+    if (file.file === '') {
+      log(`Fel: ${file.message}`);
+      continue;
+    }
     log(
       `${file.outcome === 'lyft' ? 'Lyfter' : file.outcome === 'orord' ? 'Rör inte' : 'Fel i'} ${fileName(file.file)}: ${file.message}`,
     );

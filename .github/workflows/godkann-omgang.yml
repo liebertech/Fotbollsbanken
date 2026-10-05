@@ -147,11 +147,8 @@ jobs:
         run: |
           set -euo pipefail
           printf '%s' "$PLAN" > "$RUNNER_TEMP/plan.json"
-          bas=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")).bas)' "$RUNNER_TEMP/plan.json")
-          if ! git merge-base --is-ancestor "$bas" HEAD; then
-            echo "Planen lästes ur $bas, som inte ligger på main. Ingenting skrivs." >&2
-            exit 1
-          fi
+          # Att planens bas ligger på main kontrolleras i tillampa, efter att formen på bas
+          # stämts av. Värdet passerar aldrig skalet (F8).
           npm run --silent godkannande -- tillampa --plan "$RUNNER_TEMP/plan.json" --repo "$REPO" --skriv
 
       - name: Validera banken efter skrivningen
