@@ -127,8 +127,10 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # --ignore-scripts: inget paket får köra egna installationsskript i det jobb som senare
+      # får deploy-nyckeln. Skripten här behöver bara yaml och zod, som inte har några.
       - name: Installera beroenden
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       # Planen ska ha lästs ur main. Varje fil i den måste ha exakt den text torrkörningen visade,
       # och den texten måste vara den som kom in med planens merge. Annars skrivs ingenting alls.
@@ -149,33 +151,10 @@ jobs:
       - name: Validera banken efter skrivningen
         run: npm run validera:ovningar
 
-      # Nyckeln skrivs till en fil som bara körningen kan läsa, och pekas ut med core.sshCommand
-      # så att den gäller pushen nedan. Värdnyckeln förankras med ssh-keyscan i stället för att
-      # stängas av med StrictHostKeyChecking=no. Ingenting av detta echas.
-      - name: Sätt upp deploy-nyckeln
-        env:
-          DEPLOY_KEY: ${{ secrets.GODKANN_OMGANG_DEPLOY_KEY }}
-        run: |
-          set -euo pipefail
-          if [ -z "${DEPLOY_KEY:-}" ]; then
-            echo "Hemligheten GODKANN_OMGANG_DEPLOY_KEY saknas. Pushen kan inte ske." >&2
-            exit 1
-          fi
-          umask 077
-          mkdir -p "$HOME/.ssh"
-          chmod 700 "$HOME/.ssh"
-          printf '%s\n' "$DEPLOY_KEY" > "$HOME/.ssh/godkann-omgang"
-          chmod 600 "$HOME/.ssh/godkann-omgang"
-          ssh-keyscan github.com > "$HOME/.ssh/known_hosts"
-          chmod 600 "$HOME/.ssh/known_hosts"
-          if [ ! -s "$HOME/.ssh/known_hosts" ]; then
-            echo "ssh-keyscan gav ingen värdnyckel för github.com. Pushen kan inte ske." >&2
-            exit 1
-          fi
-          git config core.sshCommand \
-            "ssh -i $HOME/.ssh/godkann-omgang -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
-
-      - name: Committa och pusha till main
+      # Commiten görs före nyckeln, så att ingenting ur repot körs medan nyckeln finns på disk.
+      # core.hooksPath=/dev/null: inga git-krokar körs, varken vid commit eller push (F3).
+      - name: Committa
+        id: commit
         env:
           PR: ${{ needs.forbered.outputs.pr }}
         run: |
@@ -185,17 +164,43 @@ jobs:
           git add -- content/ovningar
           if git diff --cached --quiet; then
             echo "Inget att committa."
+            echo "pusha=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git commit --message "Sätt godkand på omgången från pull request $PR"
+          git -c core.hooksPath=/dev/null commit --message "Sätt godkand på omgången från pull request $PR"
+          echo "pusha=true" >> "$GITHUB_OUTPUT"
+
+      # Nyckeln skrivs, används och tas bort i ett och samma steg. Efter att den skrivits körs
+      # bara ssh och git push, inga skript ur repot och inga paket. Den pekas ut med
+      # GIT_SSH_COMMAND för just pushen och hamnar aldrig i git-konfigurationen. Värdnyckeln
+      # förankras i stället för att stängas av med StrictHostKeyChecking=no. Ingenting echas.
+      - name: Pusha till main med deploy-nyckeln
+        if: steps.commit.outputs.pusha == 'true'
+        env:
+          DEPLOY_KEY: ${{ secrets.GODKANN_OMGANG_DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DEPLOY_KEY:-}" ]; then
+            echo "Hemligheten GODKANN_OMGANG_DEPLOY_KEY saknas. Pushen kan inte ske." >&2
+            exit 1
+          fi
+          umask 077
+          ssh_dir="$RUNNER_TEMP/godkann-omgang-ssh"
+          mkdir -p "$ssh_dir"
+          ssh-keyscan github.com > "$ssh_dir/known_hosts"
+          if [ ! -s "$ssh_dir/known_hosts" ]; then
+            echo "ssh-keyscan gav ingen värdnyckel för github.com. Pushen kan inte ske." >&2
+            exit 1
+          fi
+          trap 'rm -f "$ssh_dir/nyckel"' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$ssh_dir/nyckel"
           # Deploy-nyckeln är registrerad på liebertech/Fotbollsbanken och är den enda aktör
           # som regeluppsättningen Skydd av main gör undantag för (ADR 0014). Pushen sker utan
           # --force: går den inte som snabbspolning ska den falla, inte skriva om historiken.
           # Faller den för att main hunnit gå vidare räcker det att köra arbetsflödet igen.
-          git push git@github.com:liebertech/Fotbollsbanken.git "HEAD:main"
+          GIT_SSH_COMMAND="ssh -i $ssh_dir/nyckel -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$ssh_dir/known_hosts" \
+            git -c core.hooksPath=/dev/null push git@github.com:liebertech/Fotbollsbanken.git "HEAD:main"
 
       - name: Ta bort nyckelfilen
         if: always()
-        run: |
-          rm -f "$HOME/.ssh/godkann-omgang"
-          git config --unset core.sshCommand || true
+        run: rm -rf "$RUNNER_TEMP/godkann-omgang-ssh"
