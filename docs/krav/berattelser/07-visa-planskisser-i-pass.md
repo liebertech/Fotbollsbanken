@@ -1,4 +1,4 @@
-Status: utkast (skärpt inför K4, 2026-09-28)
+Status: godkänd (K4, 2026-10-05)
 
 # 07. Visa planskisser för alla övningar i ett pass
 
