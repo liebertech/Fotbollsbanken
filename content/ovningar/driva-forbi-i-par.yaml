@@ -88,7 +88,7 @@ planskiss:
     koer:
       - { vid: anf, riktning: 180, avstand: 2, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-rutor med portar.
-status: utkast
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert

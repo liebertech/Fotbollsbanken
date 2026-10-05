@@ -99,7 +99,7 @@ planskiss:
     koer:
       - { vid: sp-anf, riktning: 180, avstand: 3, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
-status: utkast
+status: godkand
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert

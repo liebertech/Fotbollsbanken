@@ -96,7 +96,7 @@ planskiss:
     koer:
       - { vid: sp1, riktning: 180, avstand: 2, etikett: Byter in nästa omgång }
 kalla: Egen övning, inspirerad av vanliga kapplöpningslekar med boll.
-status: utkast
+status: godkand
 granskning:
   - datum: 2026-09-14
     av: fotbollsexpert

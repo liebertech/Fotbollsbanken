@@ -89,7 +89,7 @@ planskiss:
     koer:
       - { vid: a1, riktning: 135, avstand: 5, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av allmänt känd 1 mot 1-träning med stigande motstånd.
-status: utkast
+status: godkand
 granskning:
   - datum: 2026-09-12
     av: fotbollsexpert

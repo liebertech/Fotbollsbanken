@@ -95,7 +95,7 @@ planskiss:
     koer:
       - { vid: sp-1, riktning: 90, avstand: 4.9, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
-status: utkast
+status: godkand
 granskning:
   - datum: 2026-09-12
     av: fotbollsexpert
