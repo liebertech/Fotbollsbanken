@@ -358,13 +358,25 @@ export function checkSession(session: Session): string[] {
     }
   }
 
-  // R-082: nicktaket för fasen.
+  // R-082: nicktaket för fasen. Ett moment räknas en gång med sin hela tid, även när en
+  // paus delar det i perioder. Varje station räknas för sig med stationstiden.
   let headingMinutes = 0;
+  const countedBlocks = new Set<number>();
   for (const { row, exercise } of exerciseRows(rows)) {
     if (!exercise.fokusomraden.includes(FOCUS_AREA_HEADING)) {
       continue;
     }
-    headingMinutes += row.kind === 'station' ? (row.stationMinutes ?? 0) : blockMinutes(rows, row);
+    if (row.kind === 'station') {
+      headingMinutes += row.stationMinutes ?? 0;
+      continue;
+    }
+    if (row.block !== null) {
+      if (countedBlocks.has(row.block)) {
+        continue;
+      }
+      countedBlocks.add(row.block);
+    }
+    headingMinutes += blockMinutes(rows, row);
   }
   if (headingMinutes > HEADING_MINUTES_CAP[phase]) {
     problems.push(

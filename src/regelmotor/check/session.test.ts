@@ -63,11 +63,9 @@ describe('R-082 Begränsad mängd nickning, över flera rader i samma moment', (
     layout: null,
   });
 
-  // Känt fel (utvecklarens fynd, se delegeringen 2026-10-05): checkSession räknar nicktaket
-  // per rad i stället för per moment, så ett spel delat i perioder (R-037) räknas två gånger.
-  // it.fails dokumenterar felet utan att dölja det. Ta bort it.fails när R-082 är rättad så
-  // att momentet räknas en gång, och behåll då bara `expect(headingProblems).toEqual([])`.
-  it.fails(
+  // Regressionstest för utvecklarens fynd: checkSession räknade nicktaket per rad i stället
+  // för per moment, så ett spel delat i perioder (R-037) räknades två gånger.
+  it(
     'R-082 räknar ett moment som delas i perioder en gång, inte en gång per period ' +
       '(utvecklarens fynd, 2026-10-02)',
     () => {
@@ -77,6 +75,13 @@ describe('R-082 Begränsad mängd nickning, över flera rader i samma moment', (
       expect(headingProblems).toEqual([]);
     },
   );
+
+  it('R-082 fäller fortfarande ett moment i perioder vars hela tid är över taket', () => {
+    // 6 + 6 = 12 minuter, över taket på 10 för fas-13-14.
+    const pass = sessionFromRows([periodRow(6), periodRow(6)]);
+    const headingProblems = checkSession(pass).filter((problem) => problem.startsWith('R-082'));
+    expect(headingProblems).toEqual(['R-082: 12 minuter nickning, taket är 10']);
+  });
 
   it('samma moment, odelat i en enda rad, ger inget R-082-problem (kontrollfall utan buggen)', () => {
     const pass = sessionFromRows([periodRow(8)]);
