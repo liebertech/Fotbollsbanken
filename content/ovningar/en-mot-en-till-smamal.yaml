@@ -52,7 +52,10 @@ varianter:
   svarare: Sänk tidsgränsen för varje duell så att tempot ökar.
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
-  udda_antal: Tre spelare turas om, två spelar och en väntar med en ny boll redo.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan
+    med reservbollen. Efter varje duell byter hen plats med den som spelat två
+    dueller i rad.
   ledare: Övningen sköter sig själv när paren väl har kommit igång.
 planskiss:
   version: 1
@@ -87,8 +90,12 @@ planskiss:
       via: [{ x: 7, y: 1.5 }]
       ordning: 2
     - { typ: skott, fran: { x: 9.5, y: 2.5 }, till: { objekt: mal-2 }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-1, riktning: 90, avstand: 4.9, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
-status: godkand
+status: utkast
 granskning:
   - datum: 2026-09-12
     av: fotbollsexpert
@@ -106,3 +113,10 @@ granskning:
       jämförelse i ordlistan som har rätt form. Facit i ytreferenser.md, avsnitt 6.2, anger kategorin
       duell med startavstånd, men övningen har inga bestämda startavstånd, båda spelarna rör sig fritt
       mellan två mål. Jag föreslår att facit rättas. Utfallet, ingen referens, är detsamma.
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      lade till en kö i planskissen som visar den tredje spelaren vid sidan av
+      ytan med reservbollen, enligt beslutet 2026-10-02.
