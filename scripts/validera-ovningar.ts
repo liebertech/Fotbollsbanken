@@ -49,10 +49,22 @@ function pathToField(path: readonly PropertyKey[]): string {
   return path.map((part) => String(part)).join('.');
 }
 
-/** Validerar en fil. `seenIds` bär id:n från tidigare filer, så att dubbletter upptäcks. */
+/**
+ * Namnet som det jämförs mellan övningar: utan skillnad på versaler och gemener och med
+ * mellanrum hopslagna, eftersom en ledare inte hör eller ser någon skillnad där.
+ */
+export function nameKey(name: string): string {
+  return name.trim().replace(/\s+/g, ' ').toLocaleLowerCase('sv');
+}
+
+/**
+ * Validerar en fil. `seenIds` bär id:n från tidigare filer, så att dubbletter upptäcks.
+ * `seenNames` bär namnen på tidigare godkända övningar, nycklade med `nameKey`.
+ */
 export function validateFile(
   file: string,
   seenIds: Map<string, string> = new Map(),
+  seenNames: Map<string, string> = new Map(),
 ): ValidationError[] {
   const errors: ValidationError[] = [];
   const add = (field: string, message: string) => errors.push({ file, field, message });
@@ -100,6 +112,22 @@ export function validateFile(
     }
   }
 
+  // Två godkända övningar får inte heta lika. Namnet blir en del av knappens namn i
+  // bytesvyn, "Välj denna: {namn}", som ska vara unikt för en skärmläsare.
+  const { namn, status } = document as { namn?: unknown; status?: unknown };
+  if (status === 'godkand' && typeof namn === 'string') {
+    const key = nameKey(namn);
+    const previous = seenNames.get(key);
+    if (previous !== undefined) {
+      add(
+        'namn',
+        `namnet "${namn}" används också av den godkända övningen i ${previous}. Två godkända övningar får inte heta lika`,
+      );
+    } else {
+      seenNames.set(key, file);
+    }
+  }
+
   // S-08: innehållet ska rymmas i databasens `content`.
   const bytes = new TextEncoder().encode(JSON.stringify(document) ?? '').length;
   if (bytes >= LIMITS.contentBytes) {
@@ -124,7 +152,8 @@ export function validateFiles(targets: string[]): ValidationResult {
   }
 
   const seenIds = new Map<string, string>();
-  const errors = files.flatMap((file) => validateFile(file, seenIds));
+  const seenNames = new Map<string, string>();
+  const errors = files.flatMap((file) => validateFile(file, seenIds, seenNames));
   return { files, errors };
 }
 

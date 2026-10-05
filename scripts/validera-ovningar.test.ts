@@ -148,4 +148,46 @@ describe('valideringsskriptet', () => {
 
     expect(validateFiles([dir]).errors).toEqual([]);
   });
+
+  describe('namnet på en godkänd övning är unikt (kvalitetssäkrarens fynd 5)', () => {
+    const godkand = (id: string, namn: string, status = 'godkand') =>
+      validExercise({ id, namn, status, granskning: [reviewEntry()] });
+
+    it('underkänner två godkända övningar med samma namn, och slutar med kod 1', () => {
+      const dir = tempBank();
+      writeExercise(dir, 'forsta.yaml', godkand('forsta', 'Passa och följ'));
+      writeExercise(dir, 'andra.yaml', godkand('andra', 'Passa och följ'));
+
+      const errors = validateFiles([dir]).errors;
+      expect(errors).toHaveLength(1);
+      expect(errors[0]?.field).toBe('namn');
+      // Filerna läses i bokstavsordning, så felet hamnar på den andra som läses.
+      expect(errors[0]?.file).toContain('forsta.yaml');
+      expect(errors[0]?.message).toContain('andra.yaml');
+      const { code, output } = run([dir]);
+      expect(code).toBe(1);
+      expect(output).toContain('Två godkända övningar får inte heta lika');
+    });
+
+    it('räknar namn som skiljer sig bara i versaler eller mellanrum som samma namn', () => {
+      const dir = tempBank();
+      writeExercise(dir, 'forsta.yaml', godkand('forsta', 'Passa och följ'));
+      writeExercise(dir, 'andra.yaml', godkand('andra', '  passa  och FÖLJ '));
+      expect(validateFiles([dir]).errors.map((error) => error.field)).toEqual(['namn']);
+    });
+
+    it('godkänner samma namn när bara en av övningarna är godkänd', () => {
+      const dir = tempBank();
+      writeExercise(dir, 'forsta.yaml', godkand('forsta', 'Passa och följ'));
+      writeExercise(dir, 'andra.yaml', validExercise({ id: 'andra', namn: 'Passa och följ' }));
+      expect(validateFiles([dir]).errors).toEqual([]);
+    });
+
+    it('godkänner godkända övningar med olika namn', () => {
+      const dir = tempBank();
+      writeExercise(dir, 'forsta.yaml', godkand('forsta', 'Passa och följ'));
+      writeExercise(dir, 'andra.yaml', godkand('andra', 'Passa och vänd'));
+      expect(validateFiles([dir]).errors).toEqual([]);
+    });
+  });
 });
