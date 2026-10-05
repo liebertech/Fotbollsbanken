@@ -150,9 +150,10 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
                       className={styles.choose}
                       type="button"
                       onClick={() => onChoose(exercise)}
+                      // Unikt namn per kort, som börjar med den synliga texten (WCAG 2.5.3).
+                      aria-label={fill(texts.chooseName, { name: exercise.namn })}
                     >
                       {texts.choose}
-                      <span className="visually-hidden">: {exercise.namn}</span>
                     </button>
                   </li>
                 ))}

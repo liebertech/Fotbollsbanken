@@ -113,6 +113,11 @@ export const TEXTS = {
     changeInput: 'Ändra uppgifter',
     generateAgain: 'Generera igen',
     swapButton: 'Byt övning',
+    /**
+     * Bytesknappens tillgängliga namn, med kortets rubrik, i samma mönster som miniatyrknappen
+     * ("Förstora planskiss, {name}", texter.md avsnitt 8). Saknas i texter.md.
+     */
+    swapButtonName: 'Byt övning, {name}',
   },
 
   /**
@@ -125,6 +130,11 @@ export const TEXTS = {
     replacingStation: 'Byter ut: "{name}" ({station}, {minutes} min)',
     bankSection: 'Från den gemensamma banken',
     choose: 'Välj denna',
+    /**
+     * Knappens tillgängliga namn. Skissen ber om ett unikt namn per kort ("Välj Passning i
+     * par"); förslaget behåller den synliga texten först (WCAG 2.5.3). Saknas i texter.md.
+     */
+    chooseName: 'Välj denna: {name}',
     confirmation: 'Bytt till: {name}.',
     /**
      * Förslag, saknas i texter.md. Texten där nämner också klubbens egna övningar, som inte

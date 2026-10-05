@@ -157,6 +157,9 @@ export function ExerciseCard({
             className={styles.toggle}
             type="button"
             onClick={onSwap}
+            // Ett unikt namn per kort, så att knapplistan i en skärmläsare går att använda. Det
+            // börjar med den synliga texten (WCAG 2.5.3), som miniatyrknappens namn.
+            aria-label={fill(texts.swapButtonName, { name: heading })}
             /*
              * Fokus tillbaka till kortet efter bytesvyn, med eller utan byte. Fokus flyttas bara
              * när ledaren själv har tryckt på knappen, aldrig när sidan laddas. autoFocus och
@@ -166,8 +169,6 @@ export function ExerciseCard({
             autoFocus={focusSwap}
           >
             {texts.swapButton}
-            {/* Ett unikt namn per kort, så att knapplistan i en skärmläsare går att använda. */}
-            <span className="visually-hidden">, {heading}</span>
           </button>
         )}
         <button

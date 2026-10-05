@@ -104,7 +104,7 @@ describe('Berättelse 04: knappen Byt övning', () => {
     const buttons = screen.getAllByRole('button', { name: /^Byt övning, / });
     const cards = screen.getAllByRole('article');
     expect(buttons).toHaveLength(cards.length);
-    const names = buttons.map((button) => button.textContent);
+    const names = buttons.map((button) => button.getAttribute('aria-label'));
     expect(new Set(names).size).toBe(names.length);
     // Den synliga texten är "Byt övning" och ingår ordagrant i namnet (WCAG 2.5.3).
     expect(screen.getByRole('button', { name: `Byt övning, ${PRACTICE}` })).toHaveTextContent(
