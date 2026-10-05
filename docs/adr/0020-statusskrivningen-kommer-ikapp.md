@@ -1,6 +1,7 @@
 # 0020: Statusskrivningen kommer ikapp i stället för att följa en push
 
-Status: föreslagen. Delvis ersätter 0013 avsnitt 4 och 0014 avsnitt 8
+Status: föreslagen. Delvis ersätter 0013 avsnitt 4, 0014 avsnitt 8 och, i 0014 avsnitt 2, hur
+nyckeln pekas ut och hur värdnyckeln förankras (avsnitt 5 nedan)
 
 ## Kontext
 
@@ -45,8 +46,9 @@ main, och vem som förde in det.
 - Pull requesten för den mergen hämtas ur API:t med `pulls/{nummer}`, där numret läses ur GitHubs
   merge-meddelande. Numret är bara en kandidat: det godtas bara om pull requestens
   `merge_commit_sha` är precis mergen och `merged_at` och `merged_by` är satta. Saknar
-  meddelandet nummer frågas `commits/{sha}/pulls`. Varje anrop görs upp till fem gånger, och ett
-  tomt svar räknas som ett fel som ska försökas igen.
+  meddelandet nummer, eller godtas inte numret, frågas `commits/{sha}/pulls` innan uppslaget ger
+  fel (avsnitt 5, F6). Varje anrop görs upp till fem gånger, och ett tomt svar räknas som ett fel
+  som ska försökas igen.
 - Planen skrivs som JSON: `bas` (main när planen lästes) och en post per fil med `fil`, `blob`,
   `commit`, `pr` och `av`. Den visas i loggen som torrkörning.
 - **Hittas ingen pull request för en granskad fil faller jobbet rött**, och ingenting skrivs. Det
@@ -59,9 +61,12 @@ En körning som faller eller avbryts tappar därför ingenting: nästa körning 
 
 - Jobbet checkar ut **main:s topp**, inte den utlösande commiten, så att pushen blir en
   snabbspolning även när main gått vidare.
-- Planens `bas` måste ligga på main.
-- Varje fil måste ha **exakt den blob** torrkörningen visade, och den bloben måste vara filens
-  blob i planens merge. Annars skrivs ingenting alls. Den bankövergripande kontrollen
+- Planens `bas` måste ha formen av en sha och ligga på main. Det kontrolleras i skriptet, inte i
+  skalet (avsnitt 5, F8).
+- Varje fil måste ha **exakt den blob** torrkörningen visade, den bloben måste vara filens
+  blob i planens merge, och planens merge måste vara den som senast ändrade filen på main. Pull
+  request och konto slås upp på nytt i API:t och måste stämma med planen (avsnitt 5, F5). Annars
+  skrivs ingenting alls. Den bankövergripande kontrollen
   *Kontrollera att banken står orörd* ersätts av den här kontrollen per fil, som är både
   strängare (den gäller exakt de filer som skrivs) och smalare (andra filer får ha ändrats).
 - En fil som redan står i `godkand` hoppas över. Två körningar med överlappande planer krockar
@@ -81,6 +86,31 @@ Allt annat i ADR 0013 och 0014 gäller: utlösaren är push till main, aldrig en
 `granskad` lyfts; bara `status` och en rad i `granskning` skrivs; kontot kommer ur API:t; miljön
 `godkannande` krävs; pushen sker med deploy-nyckeln utan `--force`; banken valideras före och
 efter. Kommandot `godkann --fore --efter` finns kvar i skriptet för torrkörning för hand.
+
+### 5 Härdning efter säkerhetsgranskningen
+
+Säkerhetsgranskningen av den här konstruktionen gav fynd som rättas så här. Numren är
+granskningens.
+
+| Fynd | Risk | Åtgärd |
+|---|---|---|
+| **F3** Kod körs i jobbet som har nyckeln | Installationsskript i ett beroende eller en git-krok kunde köras i samma jobb som deploy-nyckeln och läsa den | `skriv` installerar med `npm ci --ignore-scripts`. Commit och push körs med `git -c core.hooksPath=/dev/null`. Commiten görs **före** nyckeln, och nyckeln skrivs, används och tas bort i ett och samma steg, så att bara `ssh` och `git push` körs medan den finns på disk. Den pekas ut med `GIT_SSH_COMMAND` för just pushen i stället för `core.sshCommand`, och hamnar inte i git-konfigurationen. Steget med `if: always()` tar bort katalogen även om pushsteget faller |
+| **F5** Skrivjobbet litade på planen | `pr` och `av` i planen gick rakt in i granskningsraden, och en plan vars merge inte längre var filens senaste ändring godtogs så länge bloben stämde | `tillampa` kräver att `git log --first-parent -1 -- <fil>` på main är planens `commit`. Pull request och konto slås upp på nytt i API:t med samma uppslag som i torrkörningen, och skiljer de sig från planen skrivs ingenting. Granskningsraden skrivs med API:ts värden. `skriv` får därför `pull-requests: read` |
+| **F6** Numret i merge-meddelandet är en kandidat, inte ett faktum | Meddelandet går att skriva om vid mergen. Ett nummer som pekade på fel pull request gav fel direkt, utan att den riktiga söktes | Godtas inte numret ur meddelandet frågas `commits/{sha}/pulls` innan uppslaget ger fel. En pull request som redan prövats frågas inte igen, och `merge_commit_sha` måste fortfarande vara precis mergen. Inställningarna för squash och rebase ändras inte, se nedan |
+| **F8** `bas` gick oprövad till skalet | Värdet lästes ur planen och lades i `git merge-base` i ett `run`-steg utan kontroll av formen | Kontrollen att `bas` ligger på main görs i `tillampa`, efter att formen stämts av mot `^[0-9a-f]{40}$` (också i `parsePlan`). Värdet når git som ett argument och passerar aldrig skalet |
+| **F9** Värdnyckeln hämtades med `ssh-keyscan` | Förtroende vid första kontakten: körningen litade på det första svar nätet gav, för en anslutning som bär en nyckel med skrivrätt till main | GitHubs publicerade SSH-värdnycklar står ordagrant i arbetsflödet, hämtade 2026-10-05 ur `https://api.github.com/meta`, fältet `ssh_keys`, med källa, datum och fingeravtryck i en kommentar. Det ersätter valet av `ssh-keyscan` i ADR 0014 avsnitt 2 och *Konsekvenser*. Byter GitHub nycklar faller pushen på värdnyckeln, och raderna byts då för hand |
+
+**Inte genomfört, efter användarens val 2026-10-05.** Användaren valde att inte genomföra tre av
+granskningens förslag:
+
+- **F2:** regeluppsättningen *Skydd av main* delas inte upp.
+- **F6, inställningsdelen:** squash- och rebase-merge slås inte av i repot. Rättelsen i skriptet
+  ovan gäller ändå.
+- **F10:** SHA-låsning krävs inte i repots inställningar.
+
+Efter användarens beslut samma dag ställdes miljön `godkannande` om: den släpper sedan
+2026-10-05 bara fram `main` (anpassad grenregel `main`), och kravet på användarens granskning står
+kvar.
 
 ## Alternativ
 
@@ -105,21 +135,34 @@ efter. Kommandot `godkann --fore --efter` finns kvar i skriptet för torrkörnin
 
 - **Granskningsraden nämner den merge som förde in texten, inte nödvändigtvis den omgång som
   först lade fram övningen.** De 16 övningarna från #15 ändrades i #17 och knyts därför till #17.
-  Det är sant om texten, men det kan förvåna. Se *Beslut som behövs*.
+  Det är sant om texten, men det kan förvåna. Användaren har beslutat att det är så det ska vara,
+  se *Användarens beslut*.
 - **En merge som ändrar en granskad fils text utan att den granskas på nytt** gör att den nya
   texten stämplas. Det gällde redan med push-semantiken (körningen för #17 visade samma 16 filer)
   och skyddas av samma sak: ägaren läser diffen och klickar i miljön.
-- **Squash- och rebase-merge stöds bara delvis.** Squash fungerar om meddelandet saknar nummer i
-  GitHubs merge-form, via `commits/{sha}/pulls`. Vid rebase-merge kan filens senaste ändring vara
-  en annan commit än `merge_commit_sha`, och då faller planen rött. Repot använder merge-commits.
+- **Squash- och rebase-merge stöds bara delvis.** Squash fungerar via `commits/{sha}/pulls`,
+  både när meddelandet saknar nummer i GitHubs merge-form och när numret pekar fel. Vid
+  rebase-merge kan filens senaste ändring vara en annan commit än `merge_commit_sha`, och då
+  faller planen rött. Repot använder merge-commits, och squash och rebase är inte avslagna
+  (användarens val, avsnitt 5).
 - **Dispatch från en annan gren** stoppas av ett första steg, men det steget ligger i en fil som
   grenen själv kan ändra. Det verkliga skyddet är att miljön `godkannande` bara släpper fram
-  `main` (inställningen *Deployment branches*). Den bör kontrolleras.
+  `main`. Det gör den sedan 2026-10-05 (anpassad grenregel `main`, kontrollerat med
+  `gh api repos/liebertech/Fotbollsbanken/environments/godkannande`). Före det datumet begränsade
+  miljön inte grenar.
+- **Skrivjobbet frågar API:t igen.** Det behöver `pull-requests: read` och kan falla på samma
+  fördröjning som torrkörningen. Det faller då rött utan att skriva, och körningen kan göras om.
+- **GitHubs värdnycklar står i arbetsflödet.** De måste bytas för hand om GitHub byter nycklar,
+  och pushen faller tills dess.
 - **Oprövat skarpt.** Logiken är enhetstestad och torrkörd lokalt mot main, men arbetsflödet har
   inte körts.
 
-## Beslut som behövs
+## Användarens beslut
 
-| Fråga | Rekommendation |
+| Fråga | Beslut |
 |---|---|
-| Ska de 16 övningarna från #15 stämplas med pull request #17, som är den merge som förde in deras nuvarande text? | Ja. Det är den text som ligger på main, och raden ska säga vilken merge som förde in den. Vill användaren att fotbollsexperten bekräftar #17:s ändringar först är det ett innehållsbeslut, inte ett tekniskt |
+| Ska de 16 övningarna från #15 stämplas med pull request #17, som är den merge som förde in deras nuvarande text? | Ja. Granskningsraden för de 16 övningarna hänvisar till #17, eftersom det är den merge som förde in texten som ligger på main |
+| Ska F2, F6:s inställningsdel och F10 genomföras? | Nej, 2026-10-05. Se avsnitt 5 |
+| Ska miljön `godkannande` begränsas till `main`? | Ja. Genomfört 2026-10-05 |
+
+ADR:n står som föreslagen tills användaren beslutar om den vid granskningen av pull requesten.
