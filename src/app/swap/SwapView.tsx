@@ -115,6 +115,7 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
               id={searchId}
               className={styles.searchInput}
               type="search"
+              maxLength={100}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />

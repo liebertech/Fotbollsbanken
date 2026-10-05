@@ -143,6 +143,16 @@ describe('Berättelse 04: bytesvyn', () => {
     expect(screen.getByRole('button', { name: 'Välj denna: Passning i trekant' })).toBeVisible();
   });
 
+  it('sökfältet tar högst 100 tecken (säkerhetsgranskningen av inkrement 2b, F4)', async () => {
+    const user = userEvent.setup();
+    await generatePass(user);
+    await openSwap(user);
+    const search = screen.getByRole('searchbox', { name: 'Sök bland alternativen' });
+    expect(search).toHaveAttribute('maxlength', '100');
+    await user.type(search, 'a'.repeat(120));
+    expect(search).toHaveValue('a'.repeat(100));
+  });
+
   it('kriterium 1 och R-104: visar bara alternativ som motorn har godkänt, under bankens rubrik', async () => {
     const user = userEvent.setup();
     await generatePass(user);
