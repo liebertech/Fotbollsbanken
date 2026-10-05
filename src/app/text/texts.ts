@@ -86,7 +86,6 @@ export const TEXTS = {
     period: 'Period {number}',
     breakRow: 'Vattenpaus',
     closingRow: 'Samling: vad tränade vi på, vad gick bra?',
-    sketchMissing: 'Planskiss saknas',
     emptyPart: 'Övning saknas',
     emptyTarget: 'Måltid: {minutes} min.',
     emptyChangeable:
@@ -113,6 +112,20 @@ export const TEXTS = {
     newSession: 'Nytt pass',
     changeInput: 'Ändra uppgifter',
     generateAgain: 'Generera igen',
+  },
+
+  /** Avsnitt 8: planskisser (berättelse 06 och 07). */
+  sketch: {
+    missing: 'Planskiss saknas',
+    invalid: 'Planskissen kunde inte visas',
+    /**
+     * Rubriken över teckenförklaringen (ADR 0012 avsnitt 3). Texten saknas i texter.md och
+     * är ett förslag till UX-designern, liksom benämningarna i src/planskiss/teckenforklaring.ts.
+     */
+    legendHeading: 'Teckenförklaring',
+    /** Miniatyrknappens tillgängliga namn, stängd och öppen (texter.md avsnitt 8). */
+    enlarge: 'Förstora planskiss, {name}',
+    hide: 'Dölj planskiss, {name}',
   },
 
   /** Avsnitt 5: inget matchande resultat. */

@@ -64,6 +64,52 @@ anpassning:
   fler_spelare: Dela in i två rutor bredvid varandra med samma lek. Samma rop gäller båda rutorna.
   udda_antal: Spelar ingen roll, alla rör sig fritt oavsett hur många de är.
   ledare: En ledare räcker, också när gruppen är delad i två rutor, eftersom ropet hörs till båda.
+planskiss:
+  version: 1
+  omrade:
+    langd: 25
+    bredd: 20
+  beskrivning: >-
+    Ruta 25 x 20 meter med en kon i varje hörn och en boll per spelare. Alla rör sig
+    fritt tills ledaren ropar ut ett hörn, då alla spurtar dit i högsta fart och
+    stannar bollen inne i hörnzonen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 25, bredd: 20, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 25, y: 0 }
+    - { typ: kon, x: 25, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { typ: zon, x: 0, y: 0, langd: 4, bredd: 4, monster: prickar, etikett: Hörn }
+    - { typ: zon, x: 21, y: 0, langd: 4, bredd: 4, monster: prickar }
+    - { typ: zon, x: 21, y: 16, langd: 4, bredd: 4, monster: prickar }
+    - { typ: zon, x: 0, y: 16, langd: 4, bredd: 4, monster: prickar }
+    - { id: p1, typ: spelare, x: 5, y: 5, lag: a }
+    - { id: p2, typ: spelare, x: 20, y: 5, lag: a }
+    - { id: p3, typ: spelare, x: 20, y: 15, lag: a }
+    - { id: p4, typ: spelare, x: 5, y: 15, lag: a }
+    - { id: p5, typ: spelare, x: 12, y: 3, lag: a }
+    - { id: p6, typ: spelare, x: 12, y: 17, lag: a }
+    - { typ: boll, x: 5.8, y: 5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: p1 }
+      till: { x: 1.5, y: 1.5 }
+      ordning: 1
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 3, y: 10, lag: a }
+      - { x: 8, y: 1, lag: a }
+      - { x: 8, y: 19, lag: a }
+      - { x: 17, y: 1, lag: a }
+      - { x: 17, y: 19, lag: a }
+      - { x: 22, y: 10, lag: a }
+      - { x: 6, y: 8, lag: a }
+      - { x: 6, y: 12, lag: a }
+      - { x: 19, y: 8, lag: a }
+      - { x: 19, y: 12, lag: a }
+      - { x: 12, y: 8, lag: a }
+      - { x: 12, y: 12, lag: a }
 kalla: Egen övning, inspirerad av vanliga reaktionslekar med boll.
 status: godkand
 granskning:

@@ -184,7 +184,12 @@ Skissen ritas för ett bestämt antal spelare, som appen känner till när passe
 
 `koer` och `platser` kan kombineras: skriv båda listorna under samma `skalning`. Platserna fylls först, därefter köerna.
 
-**En kö utgår alltid från en spelare** ([ADR 0018](../../docs/adr/0018-kompletteringar-av-planskissformatet.md), punkt 5). `vid` pekar på ett `spelare`-objekt, aldrig på en kon eller en ledare, eftersom köspelarna ärver spelarens lag. Ska kön stå bakom en kon eller vid ledaren ritar du den **första i kön** som en spelare vid konen eller ledaren, och låter kön utgå från den spelaren. Står redan två spelare i kön i basskissen låter du kön utgå från den bakersta, så att nästa spelare hamnar bakom dem. Välj `riktning` och `avstand` så att hela kön ryms inom marginalen på 3 m, för det antal spelare övningen kan få. Ryms den inte, kortar du `avstand` eller låter kön gå längs linjen i stället för rakt ut.
+**En kö utgår alltid från en spelare** ([ADR 0018](../../docs/adr/0018-kompletteringar-av-planskissformatet.md), punkt 5). `vid` pekar på ett `spelare`-objekt, aldrig på en kon eller en ledare, eftersom köspelarna ärver spelarens lag. Ska kön stå bakom en kon eller vid ledaren ritar du den **första i kön** som en spelare vid konen eller ledaren, och låter kön utgå från den spelaren. Står redan två spelare i kön i basskissen låter du kön utgå från den bakersta, så att nästa spelare hamnar bakom dem. Välj `riktning` och `avstand` så att hela kön ryms inom ytan plus marginalen på 3 m, för det antal spelare övningen kan få. Ryms den inte, låter du kön gå längs linjen i stället för rakt ut.
+
+Två regler i ritmotorn gör att kön alltid går att räkna:
+
+- **Spelarna i en kö överlappar aldrig.** Är `avstand` kortare än symbolen ritas kön med symbolens bredd plus ett litet glapp i stället, det vill säga ungefär 1,2 gånger symbolens diameter `D`. På en liten yta är `D` 1,2 m, så ett `avstand` under ungefär 1,5 m gör ingen skillnad. På en stor yta är symbolen större och kön blir längre.
+- **Kön stannar vid bildens kant.** En köspelare som inte ryms helt inom ytan plus marginalen ritas inte. Kön visar då så många som ryms och skriver resten som ”+N” vid köns slut. Ryms ingen, står antalet i texten under skissen.
 
 **Fast storlek och udda antal** (ADR 0018, punkt 4). En övning med `grupptyp: fast-storlek` ritar med `fast` om `udda_antal_losning` är `false`. Är den `true` ska skissen visa den extra spelaren så som övningen löser udda antal i `anpassning.udda_antal`:
 
@@ -192,6 +197,47 @@ Skissen ritas för ett bestämt antal spelare, som appen känner till när passe
 - **Ger den extra spelaren en ny form**, till exempel en fjärde punkt så att en triangel blir en kvadrat, använd `platser` med platsen i den nya formen.
 
 Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kontrollerar den.
+
+**Par vid udda antal** (användarens beslut 2026-10-02). En övning med `grupptyp: par` kan få en trio i passet när antalet spelare är udda (R-054). Skissen ritas alltid för gruppens storlek i passet, också när den är större än `spelare.max`. Rita därför basskissen för paret och visa den tredje spelaren på samma sätt som för fast storlek ovan:
+
+- **Har den tredje en roll utanför paret**, till exempel väntar med en ny boll eller vilar och byter in, använd `koer` med **en** kö. Etiketten återger övningens lösning i `anpassning.udda_antal` med egna ord, högst 24 tecken.
+- **Får den tredje en plats i övningen**, till exempel som kastare eller målvakt, använd `platser` med den platsen.
+
+Kön eller platsen syns bara när gruppen är en trio. I ett par ritas basskissen som den är. Exemplet visar ett mot ett till småmål, där övningens lösning för udda antal är att tre spelare turas om och den som väntar har en ny boll redo:
+
+```yaml
+# Spelform: 5mot5
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 8
+  beskrivning: >-
+    Yta 12 x 8 meter med ett småmål på varje kortsida. Anfallaren startar med
+    boll vid nedre sidlinjen och försvararen i mitten. Vid udda antal väntar en
+    tredje spelare utanför sidlinjen med en ny boll.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 4, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
+    - { id: anf, typ: spelare, x: 2, y: 8, lag: a, etikett: A }
+    - { id: forsv, typ: spelare, x: 8, y: 4, lag: b, etikett: F }
+    - { typ: boll, x: 2.9, y: 7.6 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: anf }
+      till: { x: 9, y: 2.5 }
+      via: [{ x: 5, y: 4 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: forsv }, till: { x: 7, y: 3 }, ordning: 1 }
+    - { typ: skott, fran: { x: 9, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: anf, riktning: 90, etikett: Väntar med ny boll }
+```
+
+Med två spelare visar skissen paret. Med tre står den tredje utanför sidlinjen, under anfallaren, med etiketten ”Väntar med ny boll”. Kön utgår från anfallaren, så den tredje ritas i lag A. Formatet är oförändrat: det är samma `koer` som för fast storlek.
 
 **Behov som saknar en egen form** (ADR 0018, punkt 6). Formatet har ännu ingen egen form för följande. Rita dem tills vidare så här:
 
@@ -206,6 +252,7 @@ Valideringen kan inte se kopplingen till övningens fält; fotbollsexperten kont
 
 - **Etiketten på en spelare eller en ledare** är högst 3 tecken och får bara innehålla **versaler och siffror**, till exempel `A`, `F`, `MV`, `L`, `1` eller `12`. Gemener, mellanslag och skiljetecken underkänns (ADR 0018, punkt 2).
 - **Övriga etiketter**, på zoner, rutor, rörelser och köer, är högst 24 tecken och får innehålla bokstäver, siffror, mellanslag och tecknen `. , : - / + ( )`.
+- **Appen flyttar en etikett som inte får plats.** En etikett ritas aldrig ovanpå en symbol eller en annan etikett och klipps aldrig av bildens kant. Står något i vägen flyttas etiketten till närmaste lediga plats, helst utåt. Ryms den inte hel kortas den med ”…”. Etiketten på en liten ruta, till exempel en station, står bredvid rutan. Måttexten står alltid i nedre vänstra hörnet och flyttas bara nedåt i marginalen. Korta etiketter ger alltså en lugnare bild: skriv `Station 1` hellre än `Station 1, hopp på ett ben`, och lägg resten i övningens text.
 - **Skriv siffror inom citattecken:** `etikett: "1"`. Utan citattecken läser YAML det som ett tal, och det underkänns.
 - **`beskrivning` skrivs på en rad.** Radbrytningar, tabbar och andra styrtecken underkänns. Skriv längre texter med `>-` i YAML, som i exemplen, så blir radbrytningarna i filen mellanslag.
 - **Skriv inga namn, e-postadresser eller andra personuppgifter**, varken i etiketterna eller i `beskrivning`. En e-postadress underkänns av valideringen. Använd roller: `A`, `F`, `MV`, `Anfallare`.
@@ -259,7 +306,7 @@ planskiss:
 
 Kön vid hörn 1 utgår från spelare 5, den bakersta i starthörnet, så att nästa spelare ställer sig bakom hen. Med 1,5 m avstånd ryms en spelare till i varje kö inom marginalen, alltså upp till nio spelare.
 
-**5 mot 5: ett mot ett till mål med målvakt, 15 × 9 meter.** Tre spelare i basskissen: målvakten, en anfallare och en försvarare. Två köer, en för anfallarna och en för försvararna. Köerna har 1 m mellan spelarna så att tre spelare i varje kö ryms inom marginalen.
+**5 mot 5: ett mot ett till mål med målvakt, 15 × 9 meter.** Tre spelare i basskissen: målvakten, en anfallare och en försvarare. Två köer, en för anfallarna och en för försvararna. Köerna går längs linjerna, anfallarnas uppåt längs kortsidan och försvararnas åt vänster längs sidlinjen, så att flera spelare ryms i varje kö med förvalt avstånd.
 
 ```yaml
 # Spelform: 5mot5
@@ -289,8 +336,8 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: anf, riktning: 180, avstand: 1, etikett: Anfallare }
-      - { vid: forsv, riktning: 90, avstand: 1, etikett: Försvarare }
+      - { vid: anf, riktning: 270, etikett: Anfallare }
+      - { vid: forsv, riktning: 180, etikett: Försvarare }
 ```
 
 **9 mot 9: smålagsspel med målvakter, 40 × 30 meter.** Tre mot tre ute. Fler spelare fyller på lagen i tur och ordning. Ytan har ingen mittlinje, eftersom 9 mot 9 inte har någon retreatlinje. Behöver en övning en linje, till exempel för en zon, ritar du den som en `markering` med `form: linje` och skriver i `beskrivning` vad den betyder.

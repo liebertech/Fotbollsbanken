@@ -55,6 +55,25 @@ anpassning:
   fler_spelare: Bygg fler portar bredvid varandra med samma mått.
   udda_antal: Tre spelare delar en port och roterar som målvakt, kastare och vilande.
   ledare: Övningen är självgående efter att ledaren visat grundställning och fångteknik en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 6
+    bredd: 5
+  beskrivning: >-
+    Yta 6 x 5 meter med en liten målvaktsport av två koner. Målvakten står i grundställning
+    vid porten. Kompisen kastar eller rullar bollen mjukt från fem meters håll. Målvakten
+    fångar och rullar bollen tillbaka längs marken. Efter fem bollar byter paret roller.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 6, bredd: 5, stil: streckad }
+    - { typ: kon, x: 0, y: 1.5 }
+    - { typ: kon, x: 0, y: 3.5 }
+    - { id: mv, typ: spelare, x: 0.5, y: 2.5, lag: neutral, malvakt: true, etikett: MV }
+    - { id: kastare, typ: spelare, x: 5.5, y: 2.5, lag: neutral, etikett: K }
+    - { typ: boll, x: 5.2, y: 2.5 }
+  rorelser:
+    - { typ: passning, fran: { objekt: kastare }, till: { objekt: mv }, etikett: Kast, ordning: 1 }
+    - { typ: passning, fran: { objekt: mv }, till: { objekt: kastare }, etikett: Rullar ut, ordning: 2 }
 kalla: Egen övning, inspirerad av vanlig grundträning för unga målvakter.
 status: godkand
 granskning:

@@ -115,6 +115,7 @@ function fitsInside(
  * @regel R-055
  * @regel R-056
  * @regel R-057
+ * @regel R-058
  * @regel R-060
  * @regel R-061
  * @regel R-064
@@ -277,12 +278,29 @@ export function checkSession(session: Session): string[] {
         exercise.ledarbehov >= 1 && row.part !== 'del-spel'
           ? COACH_CAP[phase] * exercise.ledarbehov
           : Number.POSITIVE_INFINITY;
+      const isPair =
+        exercise.grupptyp === 'par' && exercise.spelare.min === 2 && exercise.spelare.max === 2;
+      const isFixed = exercise.grupptyp === 'fast-storlek';
       const largest =
-        exercise.grupptyp === 'fast-storlek' && exercise.udda_antal_losning === true
-          ? exercise.spelare.max + 1
+        isPair || (isFixed && exercise.udda_antal_losning === true)
+          ? exercise.spelare.min + 1
           : exercise.spelare.max;
       if (layout.sizes.some((size) => size > Math.min(largest, cap))) {
         problems.push(`R-050: en grupp i ${exercise.id} är större än övningens största grupp`);
+      }
+      // R-058: i ett helgruppsmoment blir det k = ⌊N / s⌋ grupper, och de r som blir över
+      // läggs en per grupp. Vid stationer delas stationsgruppen inte (R-063).
+      if ((isPair || isFixed) && row.kind !== 'station') {
+        const base = exercise.spelare.min;
+        const groups = Math.floor(input.spelare / base);
+        const rest = input.spelare - groups * base;
+        if (
+          layout.groups !== groups ||
+          layout.sizes.length !== groups ||
+          layout.sizes.filter((size) => size === base + 1).length !== rest
+        ) {
+          problems.push(`R-058: grupperna i ${exercise.id} följer inte grundstorleken ${base}`);
+        }
       }
     }
 

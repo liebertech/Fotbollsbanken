@@ -69,6 +69,35 @@ anpassning:
   udda_antal: Vid udda antal blir en av de två köerna en spelare kortare, det spelar ingen roll.
   ledare: Övningen går utan ledare när den har visats en gång. Med en ledare kan hen i stället själv
     passa in bollarna för att hålla jämn takt, och ge korta tips om första touchen och avslutet.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med ett tomt mål på högra kortsidan. En kon markerar var varje kö
+    börjar, 10 meter framför målet, en kö på var sida. Den första spelaren i ena kön rullar
+    bollen snett framåt till den första i andra kön, som tar emot i rörelse och avslutar mot
+    målet.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { id: mal-1, typ: mal, x: 15, y: 5, storlek: 5mot5, riktning: vanster }
+    - { id: kon-a, typ: kon, x: 5, y: 2 }
+    - { id: kon-b, typ: kon, x: 5, y: 8 }
+    - { id: sp-a1, typ: spelare, x: 5, y: 1.6, lag: a, etikett: "1" }
+    - { id: sp-a2, typ: spelare, x: 3.5, y: 1.6, lag: a, etikett: "2" }
+    - { id: sp-b1, typ: spelare, x: 5, y: 8.4, lag: a, etikett: "3" }
+    - { id: sp-b2, typ: spelare, x: 3.5, y: 8.4, lag: a, etikett: "4" }
+    - { typ: boll, x: 5.3, y: 1.6 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-a1 }, till: { x: 7, y: 6 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-b1 }, till: { x: 7, y: 6 }, ordning: 1 }
+    - { typ: skott, fran: { x: 7, y: 6 }, till: { objekt: mal-1 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-a2, riktning: 180, avstand: 1.5 }
+      - { vid: sp-b2, riktning: 180, avstand: 1.5 }
 kalla: Egen övning, inspirerad av vanlig avslutsträning med inspel.
 status: godkand
 granskning:

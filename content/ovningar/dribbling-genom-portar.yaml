@@ -61,6 +61,43 @@ anpassning:
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
   ledare: Övningen är självgående. Med en ledare vid sidan kan hen bekräfta porträffar och byta vilken
     port som är öppen i den svårare varianten.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 12
+  beskrivning: >-
+    Yta 18 x 12 meter med ett litet mål i varje ände och tre portar av koner i mittzonen. Två
+    lag om två möts, lag A anfaller mot höger mål och lag B mot vänster. En spelare som driver
+    bollen genom en port ger laget en extra poäng. Vid udda antal blir en spelare joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 18, y: 6, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 7, y: 1.5 }
+    - { typ: kon, x: 7, y: 3.5 }
+    - { typ: kon, x: 11, y: 5 }
+    - { typ: kon, x: 11, y: 7 }
+    - { typ: kon, x: 7, y: 8.5 }
+    - { typ: kon, x: 7, y: 10.5 }
+    - { id: a1, typ: spelare, x: 4, y: 4, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 4, y: 8, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 14, y: 4, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 14, y: 8, lag: b, etikett: "B2" }
+    - { typ: boll, x: 4.3, y: 4 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 10, y: 2.5 }
+      via: [{ x: 7, y: 2.5 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 11.5, y: 5.5 }, ordning: 1 }
+    - { typ: skott, fran: { x: 10, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 10, lag: a }
+      - { x: 12, y: 2, lag: b }
 kalla: Egen övning, inspirerad av vanliga smålagsspel med dribblingsportar.
 status: godkand
 granskning:

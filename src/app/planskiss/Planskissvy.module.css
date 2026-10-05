@@ -1,0 +1,126 @@
+/* Planskissen i vyerna (designsystem.md avsnitt 7). */
+
+.sketch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* Miniatyren i passet: cirka 96 × 72 px. Skissen behåller sina proportioner inom rutan. */
+.sketch.miniatyr {
+  width: 96px;
+}
+
+.sketch.miniatyr svg {
+  width: 96px;
+  height: 72px;
+}
+
+/* Öppnad skiss: full bredd, höjden följer ytans proportioner (berättelse 06, kriterium 4). */
+.sketch.normal svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Golvet för text är 14 px (designsystem.md avsnitt 3, fynd D). */
+.caption {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Platshållaren: tydligt inramad, i skissens storlek, aldrig en tom lucka (avsnitt 7). */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.placeholder.miniatyr {
+  width: 96px;
+  min-height: 72px;
+  font-size: 0.875rem;
+}
+
+.placeholder.normal,
+.placeholder.planlage,
+.placeholder.utskrift {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  font-size: 0.875rem;
+}
+
+.placeholderText {
+  display: block;
+}
+
+/* Skissen på övningskortet: miniatyren är en knapp som fäller ut skissen i kortet. */
+.cardSketch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Miniatyren är 96 × 72 px, men knappen har minst 48 px träffyta (designsystem.md avsnitt 5)
+   och en synlig ram, så att den går att se som klickbar. */
+.thumbnail {
+  align-self: flex-start;
+  min-width: var(--tap-target);
+  min-height: var(--tap-target);
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.thumbnail[aria-expanded='true'] {
+  border-color: var(--color-primary);
+  cursor: zoom-out;
+}
+
+.thumbnail:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.enlarged {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Teckenförklaringen: symbol och benämning, radbryts fritt och tål 200 % text (avsnitt 8). */
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.legendHeading {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.legendList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}

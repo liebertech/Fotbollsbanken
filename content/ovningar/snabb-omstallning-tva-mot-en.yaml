@@ -64,6 +64,33 @@ anpassning:
   udda_antal: En fjärde spelare rullar in nya bollar och byts in som ny försvarare efter varje omgång.
   ledare: Utan extra ledare håller gruppen själv koll på tiden och byter roller i tur och ordning. Med
     en ledare kan hen hålla tiden och servar nya bollar.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 15
+  beskrivning: >-
+    Yta 20 x 15 meter med ett litet mål utan målvakt på högra kortsidan. Två
+    anfallare möter en försvarare. Försvararen vinner bollen och båda anfallarna
+    pressar tillbaka direkt. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 15, stil: streckad }
+    - { id: mal-1, typ: mal, x: 20, y: 7.5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 4, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 3, y: 11, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 11, y: 7.5, lag: b, etikett: F }
+    - { typ: boll, x: 3.8, y: 4 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 9, y: 4 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 10, y: 11 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: f1 }, till: { x: 10, y: 5 }, ordning: 1, etikett: Vinner bollen }
+    - { typ: dribbling, fran: { x: 10, y: 5 }, till: { x: 14, y: 2.5 }, ordning: 2 }
+    - { typ: lopning, fran: { x: 9, y: 4 }, till: { x: 13, y: 2 }, ordning: 2, etikett: Pressar direkt }
+    - { typ: lopning, fran: { x: 10, y: 11 }, till: { x: 14.5, y: 5 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: a2, riktning: 90, avstand: 5, etikett: "Rullar in, byter in" }
 kalla: Egen övning, inspirerad av vanlig omställningsträning i överläge.
 status: godkand
 granskning:

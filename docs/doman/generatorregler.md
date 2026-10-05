@@ -1,4 +1,4 @@
-Status: ändrad 2026-09-23 (läsanvisning tillagd, inga regler ändrade)
+Status: ändrad 2026-10-02 (R-058 tillagd efter användarens beslut samma dag; hänvisningar i R-050, R-051, R-054 och R-063)
 
 # Generatorregler
 
@@ -33,6 +33,8 @@ Domänmodellen godkändes vid K1 den 2026-09-11. Sedan dess har den här filen �
 | 2026-09-21 | **R-121 tillagd.** Ledaren får välja vilket fokusområde som helst som är K eller R för fasen, men om `del-ovning` eller `del-spelovning` annars skulle bli tom fyller generatorn delen med ett närliggande fokusområde och talar om för ledaren att den gjorde det. Regeln anger vilket fokusområde som är närliggande vilket, per passdel och med avvikelser per åldersfas, och vad som gäller när inget närliggande fokus heller har någon övning. Frågan kom fram när `lek` eller `koordination` valdes som enda fokus i en bank med 31 godkända övningar: båda delarna i kärnan blev då tomma. Alternativen att skriva nya övningar eller att begränsa valet i gränssnittet valdes bort. Godkänd av användaren 2026-09-21. |
 | 2026-09-21 | **R-041, R-100, R-101, R-102, R-103 och R-104 hänvisar till R-121.** Hänvisningarna visar var ersättningsfokuset kommer in, så att reglerna inte blir missvisande lästa för sig. Vad reglerna kräver är oförändrat. |
 | 2026-09-23 | **Läsanvisning i grupp 10, ingen regel.** Inledningen till grupp 10 pekar nu ut att avsnittet *Yta per spelare* i `passuppbyggnad.md` innehåller granskningskriterier för övningsbanken, inte något generatorn använder. Det gäller båda kriterierna där: golvet för yta per spelare och det minsta längdmåttet för djupledsövningar i `fas-13-14` och `fas-15-19`. Anledningen är att kvadratmetertalen och längdmåtten annars kan hittas i domänfilen och implementeras som filter, alltså regler som ingen har beslutat. Inget nytt regel-ID, ingen ändrad regel och inget nytt krav på koden. Användaren godkände båda granskningskriterierna 2026-09-23. |
+| 2026-10-02 | **R-058 tillagd.** Övningar med grupptypen `par`, och `fast-storlek` med en lösning för udda antal, delas i grupper av övningens grundstorlek s, och de spelare som blir över läggs en och en i grupperna. Tidigare räknades de som alla andra övningar med R-051 och R-052. Det gav två fel. En parövning valdes bort vid varje udda antal, eftersom 13 spelare i grupper om högst 2 ger en grupp med en spelare, trots att R-054 säger att det ska bli en trio. En övning med fast storlek och lösning för udda antal fick för stora grupper vid jämna antal, till exempel tre grupper om 4 i stället för fyra grupper om 3 för en treman med 12 spelare. Frågan kom fram när de sju parövningarna i banken gicks igenom. Användaren beslutade 2026-10-02 att regeln läggs till med båda delarna, att stationer inte delas i flera grupper sida vid sida (R-063 står kvar, frågan tas i ett senare inkrement) och att texterna för udda antal i parövningarna skrivs om av övningsförfattaren. |
+| 2026-10-02 | **R-050, R-051, R-054 och R-063 hänvisar till R-058.** R-050:s första strecksats gäller nu både `par` och `fast-storlek` med lösning för udda antal, så att största grupp blir s + 1, vilket är det R-063 behöver vid stationer. R-051 pekar ut att R-058 gäller i stället för R-051 och R-052 för de här grupptyperna i ett helgruppsmoment. R-063 pekar ut att största grupp vid stationer är s + 1 och att en stationsgrupp inte delas. R-054 visar övningens egen text för udda antal också för `par`. Slutsatsen i R-054 att bara `fast-storlek` kan väljas bort på grund av udda antal var fel och är rättad: en parövning väljs aldrig bort på grund av udda antal, medan `fri` och `tva-lag` kan väljas bort genom R-052 när spannet i `spelare` är smalt. |
 
 ## Så läser du reglerna
 
@@ -485,13 +487,13 @@ Krav. Om inget fokusområde i den rensade kandidatlistan gör att delen kan fyll
 
 ---
 
-## Grupp 6: Spelare, grupper och udda antal (R-050–R-057)
+## Grupp 6: Spelare, grupper och udda antal (R-050–R-058)
 
 **Varför:** alla spelare ska vara med i allt, och ingen ska stå i kö. När det är fler spelare än en övning rymmer delas de i flera grupper som gör samma sak sida vid sida. Udda antal ska nästan aldrig vara ett skäl att välja bort en övning, eftersom det finns enkla lösningar som alla ledare känner till: en trio i stället för ett par, eller en joker i ett spel. Principerna beskrivs för ledaren i `passuppbyggnad.md`.
 
 ### R-050 Största grupp
 Definition. Övningens största grupp är dess högsta antal spelare (R-007), med två undantag:
-- En övning med grupptypen `fast-storlek` och en lösning för udda antal (R-008) får ha grupper som är en spelare större än övningens storlek.
+- En övning med grupptypen `par`, eller med grupptypen `fast-storlek` och en lösning för udda antal (R-008), får ha grupper som är en spelare större än övningens grundstorlek s. Största grupp är då s + 1. Grundstorleken och hur grupperna bildas står i R-058.
 - Om övningens ledarbehov är 1 eller 2 får en grupp inte ha fler spelare än taket per ledare gånger ledarbehovet. Den här strecksatsen gäller inte i `del-spel`, se R-057.
 
 Den största gruppen är det minsta av de värden som gäller.
@@ -500,6 +502,8 @@ Den största gruppen är det minsta av de värden som gäller.
 Krav. För ett helgruppsmoment med N spelare är antalet grupper k det minsta heltal där ⌈N / k⌉ ≤ största grupp (R-050). Spelarna fördelas så att grupperna skiljer sig med högst en spelare.
 
 *Testfall:* N = 14 och största grupp 8 ger k = 2, alltså grupper om 7 och 7. N = 13 ger 7 och 6.
+
+*Hänvisning:* för en övning som R-058 gäller för räknas grupperna i ett helgruppsmoment enligt R-058, inte enligt den här regeln och inte enligt R-052.
 
 ### R-052 Ingen grupp för liten
 Krav. Om någon grupp enligt R-051 blir mindre än övningens minsta antal spelare kan övningen inte användas i momentet.
@@ -515,11 +519,17 @@ Krav. Så hanteras en grupp med udda antal, beroende på grupptyp:
 | Grupptyp | Udda antal i en grupp |
 |---|---|
 | `fri` | Ingen åtgärd. |
-| `par` | En trio i stället för ett par. Passet visar det. |
+| `par` | En trio i stället för ett par. Grupperna bildas enligt R-058. Passet visar att en grupp blir tre och visar övningens egen lösning i `anpassning.udda_antal`. |
 | `tva-lag` | En spelare blir joker. Passet visar det. Om övningens `anpassning` beskriver en annan lösning visas den i stället. |
-| `fast-storlek` | Grupper som är en spelare större är tillåtna bara om övningen har en lösning för udda antal (R-050). Annars kan övningen inte användas om spelarna inte går jämnt upp i grupper av övningens storlek. |
+| `fast-storlek` | Med en lösning för udda antal bildas grupperna enligt R-058, och grupper som är en spelare större är tillåtna. Passet visar hur många grupper som blir en spelare större och övningens egen lösning i `anpassning.udda_antal`. Utan en lösning kan övningen bara användas om spelarna går jämnt upp i grupper av övningens storlek (R-058). |
 
-Bara en övning med grupptypen `fast-storlek` kan alltså väljas bort på grund av udda antal (berättelse 02, kriterium 7).
+Vilka övningar som kan väljas bort på grund av antalet spelare:
+
+- En övning med grupptypen `par` väljs aldrig bort på grund av udda antal. Med minst 2 spelare går det alltid att bilda par och högst en trio (R-058).
+- En övning med grupptypen `fast-storlek` kan väljas bort när spelarna inte går att dela enligt R-058: utan lösning för udda antal när N inte är jämnt delbart med storleken, och med lösning när det blir över fler spelare än det finns grupper.
+- En övning med grupptypen `fri` eller `tva-lag` kan väljas bort genom R-052, när grupperna enligt R-051 blir mindre än övningens minsta antal. Det beror på hur smalt spannet i övningens `spelare` är och kan hända vid både udda och jämna antal.
+
+*Rättelse 2026-10-02:* här stod tidigare att bara en övning med grupptypen `fast-storlek` kan väljas bort på grund av udda antal. Det var fel på två sätt. Utan R-058 valdes en parövning bort vid varje udda antal, och en `tva-lag`-övning med smalt spann kan väljas bort vid vissa antal, också udda. Berättelse 02, kriterium 7, bygger på den gamla meningen.
 
 ### R-055 Ledare för ett helgruppsmoment
 Krav. Ett helgruppsmoment med k grupper behöver k × ledarbehov ledare. Det får inte vara fler än L. En övning med ledarbehov 0 kan köras i hur många grupper som helst med en ledare.
@@ -540,6 +550,78 @@ Krav. Den andra strecksatsen i R-050, om taket per ledare, gäller inte för ett
 
 *Regeln är ny vid K3 (2026-09-14).* Den kom fram när jag granskade omgång 1 av övningsbanken. Användaren godkände den 2026-09-14.
 
+### R-058 Grupper med fast grundstorlek
+Krav. Regeln gäller övningar med grupptypen `par` och övningar med grupptypen `fast-storlek` (R-008). Den säger hur spelarna delas i grupper i ett helgruppsmoment, och den gäller där i stället för R-051 och R-052. Vid stationer gäller R-063, se sist i regeln.
+
+**Grundstorleken s:**
+
+- `par`: s = 2. Regeln förutsätter att övningens `spelare` är 2–2, som för alla parövningar i banken. En parövning med ett annat spann i `spelare` delas enligt R-051 och R-052 som tidigare, och udda antal inom en grupp hanteras med en trio enligt R-054.
+- `fast-storlek`: s = övningens antal spelare, alltså minsta och högsta antal, som är lika (R-008).
+
+**Så bildas grupperna.** N är antalet spelare i momentet.
+
+1. Antal grupper: k = ⌊N / s⌋, alltså N delat med s, avrundat nedåt.
+2. Spelare över: r = N − k × s, alltså resten. r är alltid mindre än s.
+3. Alla k grupper får s spelare. De r spelare som blir över läggs en och en i olika grupper, så att r grupper får s + 1 spelare och k − r grupper får s spelare.
+
+**När övningen inte kan användas i momentet:**
+
+- om k = 0, alltså om N < s (samma sak som R-053),
+- om r > k, alltså om det blir över fler spelare än det finns grupper, eftersom någon grupp då skulle bli större än s + 1,
+- om r > 0 och övningen har grupptypen `fast-storlek` utan en lösning för udda antal, eftersom ingen grupp då får vara större än s (R-054).
+
+För `par` gäller alltid r ≤ 1 ≤ k när N ≥ 2, så en parövning väljs aldrig bort på grund av udda antal.
+
+**Ledare.** Övriga krav i grupp 6 och 7 gäller oförändrat, med grupperna enligt den här regeln:
+
+- Taket per ledare (R-050, andra strecksatsen) gäller per grupp: om ledarbehovet är 1 eller 2 får ingen grupp ha fler spelare än taket per ledare gånger ledarbehovet. Annars kan övningen inte användas i momentet.
+- Momentet behöver k × ledarbehov ledare, och det får inte vara fler än L (R-055).
+- R-057 berör aldrig regeln, eftersom en övning i `del-spel` alltid har grupptypen `tva-lag` (R-008).
+
+**Det här visar passet** när r > 0: hur många grupper som blir en spelare större (för `par`: att en grupp blir tre) och övningens egen lösning ur `anpassning.udda_antal` (R-054).
+
+**Vid stationer.** Stationer delas inte i flera grupper sida vid sida (beslut 2026-10-02). En stationsgrupp är alltså en enda grupp i stationsövningen, och R-063 gäller oförändrat. För en stationsövning som den här regeln gäller för är minsta antal s och största grupp s + 1 (R-050), och för `fast-storlek` utan lösning för udda antal är både minsta och största s. En stationsgrupp som är större än s + 1 kan inte göra övningen.
+
+**Testfall för helgruppsmoment.** Om inget annat står är ledarbehovet 0 och L = 1.
+
+| Nr | Övning | N | Övrigt | Resultat |
+|---|---|---|---|---|
+| 1 | `par` (s = 2) | 12 | | k = 6, r = 0: 6 par. Ingen text om udda antal. |
+| 2 | `par` (s = 2) | 13 | | k = 6, r = 1: 5 par och 1 trio. Passet visar att en grupp blir tre och visar `anpassning.udda_antal`. |
+| 3 | `par` (s = 2) | 3 | | k = 1, r = 1: 1 trio. |
+| 4 | `par` (s = 2) | 2 | | k = 1, r = 0: 1 par. |
+| 5 | `par` (s = 2) | 1 | | k = 0: kan inte användas. |
+| 6 | `fast-storlek` s = 3, med lösning | 12 | | k = 4, r = 0: 4 grupper om 3. (Med R-051 blev det tidigare 3 grupper om 4, vilket är fel.) |
+| 7 | `fast-storlek` s = 3, med lösning | 10 | | k = 3, r = 1: grupper om 4, 3 och 3. |
+| 8 | `fast-storlek` s = 3, med lösning | 11 | | k = 3, r = 2: grupper om 4, 4 och 3. |
+| 9 | `fast-storlek` s = 3, med lösning | 5 | | k = 1, r = 2 > 1: kan inte användas. |
+| 10 | `fast-storlek` s = 4, med lösning | 5 | | k = 1, r = 1: en grupp om 5. |
+| 11 | `fast-storlek` s = 4, med lösning | 7 | | k = 1, r = 3 > 1: kan inte användas. |
+| 12 | `fast-storlek` s = 4, med lösning | 3 | | k = 0: kan inte användas. |
+| 13 | `fast-storlek` s = 4, utan lösning | 12 | | k = 3, r = 0: 3 grupper om 4. |
+| 14 | `fast-storlek` s = 4, utan lösning | 13 | | r = 1 och ingen lösning: kan inte användas. |
+| 15 | `fast-storlek` s = 4, med lösning, ledarbehov 1 | 14 | L = 2 | k = 3, r = 2: grupper om 5, 5 och 4 kräver 3 ledare > 2: kan inte användas (R-055). |
+| 16 | `fast-storlek` s = 4, med lösning, ledarbehov 1 | 14 | L = 3 | k = 3: grupper om 5, 5 och 4 med en ledare var. |
+| 17 | `fast-storlek` s = 8, med lösning, ledarbehov 1, `fas-6-7` (taket 8) | 9 | L = 2 | k = 1, r = 1: en grupp om 9 > 8 × 1: kan inte användas. |
+| 18 | `fast-storlek` s = 8, med lösning, ledarbehov 1, `fas-6-7` (taket 8) | 16 | L = 2 | k = 2, r = 0: 2 grupper om 8 med en ledare var. |
+
+**Testfall vid stationer** (R-063, S = 2, L = 2):
+
+| Nr | Stationsövning | N | Stationsgrupper | Resultat |
+|---|---|---|---|---|
+| 19 | `par` (s = 2) | 5 | 3 och 2 | Kan användas: en trio och ett par. |
+| 20 | `par` (s = 2) | 6 | 3 och 3 | Kan användas: två trior. |
+| 21 | `par` (s = 2) | 7 | 4 och 3 | 4 > 3: kan inte användas. |
+| 22 | `fast-storlek` s = 3, med lösning | 7 | 4 och 3 | Kan användas. |
+| 23 | `fast-storlek` s = 3, med lösning | 9 | 5 och 4 | 5 > 4: kan inte användas. |
+| 24 | `fast-storlek` s = 3, utan lösning | 7 | 4 och 3 | 4 > 3: kan inte användas. |
+
+*Motivering:* en övning med fast storlek är byggd för just det antalet. Ett par är två, en treman är tre. Grupperna ska därför vara så många som möjligt av den storleken, och de som blir över ska läggas en och en i grupperna, så som en ledare gör på plan. Det är just det övningens lösning för udda antal beskriver: en tredje i paret, en fjärde som rullar in bollar eller byts in. Att i stället jämna ut grupperna uppåt, som R-051 gör för en övning med ett spann, ger grupper där alla får vänta, till exempel tre fyrmannagrupper i en övning för tre. Att välja bort en parövning för att antalet är udda strider mot det grupp 6 bygger på: udda antal löses med en trio. Gränsen r ≤ k betyder att ingen grupp får mer än en extra spelare. Med två extra spelare i samma grupp blir kön för lång för att övningen ska fungera som den är tänkt.
+
+*Samspelar med:* R-008 (grupptyp och lösning för udda antal), R-050 (största grupp s + 1), R-051 och R-052 (gäller inte för de här övningarna i ett helgruppsmoment), R-053 (samma sak som k = 0), R-054 (vad passet visar), R-055 (ledare), R-056 (alla är med, följer av att alla N spelare fördelas), R-063 (stationsgrupperna) och R-092 (ytan räknas per grupp, med k grupper).
+
+*Regeln är ny 2026-10-02.* Den kom fram när jag gick igenom bankens sju parövningar: med R-051 och R-052 valdes alla bort vid udda antal. Användaren beslutade 2026-10-02 att regeln läggs till med både `par` och `fast-storlek` med lösning för udda antal, och att stationer inte delas i flera grupper sida vid sida. Talen och formeln är min bedömning som tränarutbildare. SvFF anger så vitt jag vet ingen sådan regel.
+
 ---
 
 ## Grupp 7: Ledare och stationer (R-060–R-067)
@@ -557,6 +639,8 @@ Krav. Varje station har en egen övning. Alla S övningar är olika, uppfyller g
 
 ### R-063 Grupper vid stationer
 Krav. Spelarna delas i S grupper som skiljer sig med högst en spelare. Varje grupp ska för varje stationsövning vara minst övningens minsta antal och högst övningens största grupp (R-050). Ingen grupp får vara större än taket per ledare. Udda antal hanteras enligt R-054.
+
+*Hänvisning:* för en stationsövning med grupptypen `par`, eller `fast-storlek` med en lösning för udda antal, är största grupp s + 1 (R-050, R-058). En stationsgrupp delas inte i flera grupper sida vid sida (beslut 2026-10-02), så en parstation fungerar bara för stationsgrupper om 2 eller 3 spelare. Vad kravet innebär är oförändrat.
 
 ### R-064 Ledare vid stationer
 Krav. Varje station har minst en egen ledare. Stationen behöver det största av 1 och övningens ledarbehov. Summan för alla stationer får inte vara större än L.
@@ -818,13 +902,13 @@ Krav. Åldern i säsongsplanen räknas som i R-010: den ålder spelarna fyller u
 | 3 Vilka övningar, nivå | R-022–R-029 | 8 | 0 | 0 |
 | 4 Delar och tid | R-030–R-039 | 10 | 0 | 0 |
 | 5 Fokusområden | R-040–R-049, R-121 | 11 | 0 | 0 |
-| 6 Grupper och udda antal | R-050–R-057 | 8 | 0 | 0 |
+| 6 Grupper och udda antal | R-050–R-058 | 9 | 0 | 0 |
 | 7 Ledare och stationer | R-060–R-067 | 8 | 0 | 0 |
 | 8 Variation | R-070–R-072 | 3 | 0 | 0 |
 | 9 Säkerhet | R-080–R-085 | 6 | 0 | 0 |
 | 10 Yta | R-090–R-094 | 5 | 0 | 0 |
 | 11 Inget matchande, byte | R-100–R-106 | 7 | 0 | 0 |
 | 12 Säsongsplan | R-110–R-113 | 4 | 1 (R-112) | 0 |
-| **Summa** | | **92** | **1** | **0** |
+| **Summa** | | **93** | **1** | **0** |
 
-Lediga nummer, reserverade för nya regler i respektive grupp: R-058–R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-086–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1 och R-121 av grupp 5, så nästa sådan regel får R-122.
+Lediga nummer, reserverade för nya regler i respektive grupp: R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-086–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1 och R-121 av grupp 5, så nästa sådan regel får R-122.

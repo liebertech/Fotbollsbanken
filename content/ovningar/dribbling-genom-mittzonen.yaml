@@ -61,6 +61,42 @@ anpassning:
   fler_spelare: Bygg en till yta med samma uppställning bredvid, tre meters mellanrum.
   udda_antal: Den udda spelaren blir en joker som alltid spelar med laget som har bollen.
   ledare: Övningen är självgående. Ledaren dömer när en dribbling genom zonen räknas och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 14
+  beskrivning: >-
+    Yta 20 x 14 meter med ett litet mål i var ände och en 6 meter bred zon
+    tvärs över mitten. Lag A driver bollen genom zonen mot lag B:s mål. Vid
+    udda antal blir en spelare joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 14, stil: heldragen }
+    - { typ: zon, x: 7, y: 0, langd: 6, bredd: 14, monster: diagonal, etikett: Zon 6 m }
+    - { id: mal-a, typ: mal, x: 0, y: 7, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 20, y: 7, storlek: smamal, riktning: vanster }
+    - { id: sp-a1, typ: spelare, x: 4, y: 5, lag: a, etikett: "A1" }
+    - { id: sp-a2, typ: spelare, x: 4, y: 9, lag: a, etikett: "A2" }
+    - { id: sp-b1, typ: spelare, x: 16, y: 5, lag: b, etikett: "B1" }
+    - { id: sp-b2, typ: spelare, x: 16, y: 9, lag: b, etikett: "B2" }
+    - { typ: boll, x: 4.3, y: 5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-a1 }
+      till: { x: 15, y: 2.5 }
+      via: [{ x: 10, y: 1.5 }]
+      ordning: 1
+    - { typ: skott, fran: { x: 15, y: 2.5 }, till: { objekt: mal-b }, ordning: 2 }
+    - typ: lopning
+      fran: { objekt: sp-b1 }
+      till: { x: 10, y: 6 }
+      ordning: 1
+      etikett: Pressar i zonen
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 4, y: 7, lag: a }
+      - { x: 16, y: 7, lag: b }
 kalla: Egen övning, inspirerad av vanliga zonspel med krav på dribbling genom mitten.
 status: godkand
 granskning:

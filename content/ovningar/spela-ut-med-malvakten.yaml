@@ -62,6 +62,41 @@ anpassning:
   ledare: Övningen går att spela utan ledare, men reglerna om mittlinjen behöver påminnas om till en
     början. Med en ledare kan hen coacha målvakterna i utkast, mottagning och spel med fötterna, och
     påminna om mittlinjen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 26
+    bredd: 18
+  beskrivning: >-
+    Yta 26 x 18 meter med mål och målvakt i varje lag, och koner som markerar mittlinjen. Två
+    lag om två utespelare möts. När målvakten har bollen backar motståndarna över mittlinjen.
+    Extra poäng ges för mål efter att målvakten spelat ut bollen med fötterna.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 26, bredd: 18, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 9, storlek: 5mot5, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 26, y: 9, storlek: 5mot5, riktning: vanster }
+    - { typ: kon, x: 13, y: 1 }
+    - { typ: kon, x: 13, y: 7 }
+    - { typ: kon, x: 13, y: 11 }
+    - { typ: kon, x: 13, y: 17 }
+    - { id: mv-a, typ: spelare, x: 2, y: 9, lag: a, malvakt: true, etikett: MV }
+    - { id: mv-b, typ: spelare, x: 24, y: 9, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 6, y: 5, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 6, y: 13, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 20, y: 5, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 20, y: 13, lag: b, etikett: "B2" }
+    - { typ: boll, x: 2.3, y: 9 }
+  rorelser:
+    - { typ: passning, fran: { objekt: mv-a }, till: { objekt: a1 }, etikett: Spelar ut, ordning: 1 }
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 9, y: 2, lag: a }
+      - { x: 17, y: 2, lag: b }
+      - { x: 9, y: 16, lag: a }
+      - { x: 17, y: 16, lag: b }
+      - { x: 6, y: 9, lag: a }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fokus på uppspel från målvakten.
 status: godkand
 granskning:
