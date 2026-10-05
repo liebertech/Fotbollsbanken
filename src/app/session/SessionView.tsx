@@ -24,8 +24,8 @@ interface SessionViewProps {
   session: Session;
   onChangeInput: () => void;
   onGenerateAgain: () => void;
-  /** Öppnar bytesvyn för övningen på platsen `ref`, från kortet med nyckeln `key`. */
-  onSwap?: (ref: ItemRef, key: string) => void;
+  /** Öppnar bytesvyn för övningen på platsen `place`, från kortet med nyckeln `key`. */
+  onSwap?: (place: ItemRef, key: string) => void;
   /** Kortet vars bytesknapp får fokus, när ledaren kommer tillbaka från bytesvyn. */
   focusKey?: string | null;
   /** Bekräftelsen efter ett byte. Visas på kortet `focusKey`, som har den nya övningen. */
@@ -34,7 +34,7 @@ interface SessionViewProps {
 
 /** Vad ett kort behöver för byte av övning. */
 interface SwapProps {
-  onSwap: ((ref: ItemRef, key: string) => void) | undefined;
+  onSwap: ((place: ItemRef, key: string) => void) | undefined;
   focusKey: string | null;
   confirmation: string | null;
 }
@@ -119,8 +119,8 @@ function Part({
   areaHelpKey: string | null;
   swap: SwapProps;
 }) {
-  const swapProps = (ref: ItemRef, key: string) => ({
-    onSwap: swap.onSwap === undefined ? undefined : () => swap.onSwap?.(ref, key),
+  const swapProps = (place: ItemRef, key: string) => ({
+    onSwap: swap.onSwap === undefined ? undefined : () => swap.onSwap?.(place, key),
     focusSwap: swap.focusKey === key,
     confirmation: swap.focusKey === key ? swap.confirmation : null,
   });
@@ -150,7 +150,7 @@ function Part({
                 }
                 showAreaHelp={item.key === areaHelpKey}
                 placeKey={item.key}
-                {...swapProps(item.ref, item.key)}
+                {...swapProps(item.place, item.key)}
               />
             );
 
@@ -173,7 +173,7 @@ function Part({
                     label={stationLabel(station.station)}
                     showAreaHelp={station.key === areaHelpKey}
                     placeKey={station.key}
-                    {...swapProps(station.ref, station.key)}
+                    {...swapProps(station.place, station.key)}
                   />
                 ))}
               </div>

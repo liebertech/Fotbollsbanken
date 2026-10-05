@@ -147,7 +147,7 @@ export function Generator({ bank, createSeed = randomSeed }: GeneratorProps) {
           setResult(null);
         }}
         onGenerateAgain={generate}
-        onSwap={(ref, cardKey) => setSwap({ ...NO_SWAP, target: ref, key: cardKey })}
+        onSwap={(place, cardKey) => setSwap({ ...NO_SWAP, target: place, key: cardKey })}
         focusKey={swap.returnKey}
         confirmation={confirmation}
       />

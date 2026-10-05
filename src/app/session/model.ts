@@ -21,7 +21,7 @@ export interface StationView {
   exercise: Exercise;
   layout: Layout | null;
   /** Stationens plats i passet, för byte av övning (R-104). */
-  ref: ItemRef;
+  place: ItemRef;
 }
 
 export type TimelineItem =
@@ -29,7 +29,7 @@ export type TimelineItem =
       kind: 'exercise';
       key: string;
       /** Momentets plats i passet, för byte av övning (R-104). Perioderna delar plats. */
-      ref: ItemRef;
+      place: ItemRef;
       minutes: number;
       exercise: Exercise;
       layout: Layout | null;
@@ -159,7 +159,7 @@ export function buildSessionView(session: Session): SessionView {
           current.items.push({
             kind: 'exercise',
             key,
-            ref: { block: row.block, station: null },
+            place: { block: row.block, station: null },
             minutes: row.minutes,
             exercise: row.exercise,
             layout: row.layout,
@@ -175,7 +175,7 @@ export function buildSessionView(session: Session): SessionView {
           current.items.push({
             kind: 'exercise',
             key,
-            ref: { block: row.block, station: null },
+            place: { block: row.block, station: null },
             minutes: row.minutes,
             exercise: row.exercise,
             layout: row.layout,
@@ -208,7 +208,7 @@ export function buildSessionView(session: Session): SessionView {
             station: row.station,
             exercise: row.exercise,
             layout: row.layout,
-            ref: { block: row.block, station: row.station },
+            place: { block: row.block, station: row.station },
           });
         }
         break;
