@@ -687,7 +687,8 @@ afterEach(() => {
   }
 });
 
-describe('ikappskrivningen mot ett riktigt repo', () => {
+// Varje test kör ett tjugotal git-processer, som på Windows kan ta längre än standardgränsen.
+describe('ikappskrivningen mot ett riktigt repo', { timeout: 30_000 }, () => {
   /**
    * main får omgång 1 genom en merge, sedan en merge som ändrar en annan fil, sedan en
    * merge som ändrar den granskade filens text. Den sista mergen är den som ska stå i planen.
