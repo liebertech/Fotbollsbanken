@@ -55,7 +55,8 @@ anpassning:
   fler_spelare: Bygg fler portar bredvid varandra med samma mått.
   udda_antal: >-
     Vid udda antal blir en grupp en trio. En är målvakt och två kastar
-    varannan gång. Byt målvakt efter fem bollar. Ingen behöver vila.
+    varannan gång från samma plats. Den som inte kastar står vid sidan. Byt
+    målvakt efter fem bollar så att alla tre står i mål. Ingen behöver vila.
   ledare: Övningen är självgående efter att ledaren visat grundställning och fångteknik en gång.
 planskiss:
   version: 1
@@ -79,7 +80,7 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: kastare, riktning: 90, avstand: 3, etikett: Två kastare turas om }
+      - { vid: kastare, riktning: 90, avstand: 3.5, etikett: Två kastare turas om }
 kalla: Egen övning, inspirerad av vanlig grundträning för unga målvakter.
 status: godkand
 granskning:
