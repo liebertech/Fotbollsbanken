@@ -1,4 +1,4 @@
-Status: utkast (skärpt inför bygget i eget inkrement 2b, 2026-10-02)
+Status: godkänd (K4 inkrement 2b, 2026-10-05)
 
 # 04. Byta ut en övning i passet
 
