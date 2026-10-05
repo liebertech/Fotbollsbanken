@@ -53,9 +53,10 @@ varianter:
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: >-
-    Vid udda antal blir en grupp en trio. Den tredje väntar vid anfallarens
-    konmål. Efter varje försök blir anfallaren försvarare, försvararen går
-    till andra konmålet och den som väntade får bollen och anfaller.
+    Vid udda antal blir en grupp en trio. Anfallet går alltid åt samma håll.
+    Den tredje väntar vid anfallarens konmål. Efter varje försök blir
+    anfallaren försvarare, försvararen går till anfallarens konmål och
+    väntar, och den som väntade får bollen och anfaller.
   ledare: Med en ledare i närheten kan hen ropa ut för alla par samtidigt när intensiteten ska höjas.
 planskiss:
   version: 1
