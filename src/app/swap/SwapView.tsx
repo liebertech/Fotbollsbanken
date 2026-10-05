@@ -6,6 +6,7 @@
  * Klubbens egna övningar (R-106) kommer med inkrement 4, så här finns bara bankens sektion.
  */
 import { useId, useMemo, useState } from 'react';
+import { useFocusOnMount } from '../fokus/useFocusOnMount.ts';
 import { swapOptions } from '../../regelmotor/index.ts';
 import type { BankExercise, ItemRef, Session } from '../../regelmotor/index.ts';
 import { KortSkiss } from '../planskiss/KortSkiss.tsx';
@@ -69,6 +70,7 @@ function matches(exercise: BankExercise, query: string): boolean {
 
 export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewProps) {
   const texts = TEXTS.swap;
+  const focusOnMount = useFocusOnMount();
   const options = useMemo(() => swapOptions(session, target, bank), [session, target, bank]);
   const [query, setQuery] = useState('');
   const searchId = useId();
@@ -80,23 +82,19 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
 
   return (
     <div className={styles.view}>
-      <button
-        className={styles.back}
-        type="button"
-        onClick={onBack}
-        /*
-         * Vyn byts när ledaren trycker "Byt övning", och fokus får inte bli kvar på en knapp
-         * som inte längre finns. Första elementet i vyn får fokus; rubriken kommer direkt
-         * efter. autoFocus och inte en ref, eftersom ref är spärrad i appen (R3).
-         */
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-      >
+      <button className={styles.back} type="button" onClick={onBack}>
         <span aria-hidden="true">← </span>
         {texts.back}
       </button>
 
-      <h1>{fill(texts.heading, { part: replaced.part })}</h1>
+      {/*
+       * Vyn byts när ledaren trycker "Byt övning", och fokus får inte bli kvar på en knapp som
+       * inte längre finns. Fokus flyttas till vyns rubrik, så att en skärmläsare hör titeln
+       * först (skisser/04-byt-ovning.md, säkerhetsgranskningen av inkrement 2b).
+       */}
+      <h1 tabIndex={-1} ref={focusOnMount}>
+        {fill(texts.heading, { part: replaced.part })}
+      </h1>
       <p className={styles.replacing}>{replaced.text}</p>
 
       {options.length === 0 ? (

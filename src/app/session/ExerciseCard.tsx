@@ -8,6 +8,7 @@
 import { useId, useState } from 'react';
 import { exerciseArea } from '../../regelmotor/index.ts';
 import type { Exercise, GameFormat, Layout } from '../../regelmotor/index.ts';
+import { useFocusOnMount } from '../fokus/useFocusOnMount.ts';
 import { KortSkiss } from '../planskiss/KortSkiss.tsx';
 import { materialText } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
@@ -107,6 +108,47 @@ function AreaHelp() {
   );
 }
 
+interface SwapButtonProps {
+  heading: string;
+  onSwap: () => void;
+}
+
+function SwapButton({ heading, onSwap }: SwapButtonProps) {
+  return (
+    <button
+      className={styles.toggle}
+      type="button"
+      onClick={onSwap}
+      // Ett unikt namn per kort, så att knapplistan i en skärmläsare går att använda. Det
+      // börjar med den synliga texten (WCAG 2.5.3), som miniatyrknappens namn.
+      aria-label={fill(TEXTS.session.swapButtonName, { name: heading })}
+    >
+      {TEXTS.session.swapButton}
+    </button>
+  );
+}
+
+/**
+ * Samma knapp, som tar fokus när den monteras: tillbaka från bytesvyn, med eller utan byte.
+ * Efter ett byte stannar fokus här och inte på bekräftelsen, som läses upp via
+ * statusregionen (skisser/04-byt-ovning.md, texter.md avsnitt 4). Fokus flyttas bara när
+ * ledaren själv har öppnat bytesvyn, aldrig när sidan laddas.
+ */
+function FocusedSwapButton({ heading, onSwap }: SwapButtonProps) {
+  const focusOnMount = useFocusOnMount();
+  return (
+    <button
+      className={styles.toggle}
+      type="button"
+      onClick={onSwap}
+      aria-label={fill(TEXTS.session.swapButtonName, { name: heading })}
+      ref={focusOnMount}
+    >
+      {TEXTS.session.swapButton}
+    </button>
+  );
+}
+
 export function ExerciseCard({
   exercise,
   minutes,
@@ -152,25 +194,12 @@ export function ExerciseCard({
       {areaHelp && <AreaHelp />}
 
       <div className={styles.actions}>
-        {onSwap !== undefined && (
-          <button
-            className={styles.toggle}
-            type="button"
-            onClick={onSwap}
-            // Ett unikt namn per kort, så att knapplistan i en skärmläsare går att använda. Det
-            // börjar med den synliga texten (WCAG 2.5.3), som miniatyrknappens namn.
-            aria-label={fill(texts.swapButtonName, { name: heading })}
-            /*
-             * Fokus tillbaka till kortet efter bytesvyn, med eller utan byte. Fokus flyttas bara
-             * när ledaren själv har tryckt på knappen, aldrig när sidan laddas. autoFocus och
-             * inte en ref, eftersom ref är spärrad i appen (R3).
-             */
-            // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={focusSwap}
-          >
-            {texts.swapButton}
-          </button>
-        )}
+        {onSwap !== undefined &&
+          (focusSwap ? (
+            <FocusedSwapButton heading={heading} onSwap={onSwap} />
+          ) : (
+            <SwapButton heading={heading} onSwap={onSwap} />
+          ))}
         <button
           className={styles.toggle}
           type="button"

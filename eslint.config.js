@@ -193,7 +193,8 @@ const FORBIDDEN_DOM_IMPORTS_IN_APP = [
  */
 const FORBIDDEN_DOM_SYNTAX_IN_APP = [
   {
-    selector: "JSXAttribute[name.name='ref']",
+    selector:
+      "JSXAttribute[name.name='ref']:not([value.expression.type='Identifier'][value.expression.name='focusOnMount'])",
     message:
       'ref ger åtkomst till DOM-noden och därmed till innerHTML och setAttribute. Behövs det, ta upp det med säkerhetsagenten (R3).',
   },

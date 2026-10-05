@@ -114,20 +114,32 @@ describe('Berättelse 04: knappen Byt övning', () => {
 });
 
 describe('Berättelse 04: bytesvyn', () => {
-  it('öppnas från tangentbordet och visar rubrik, ingress och fokus på första knappen', async () => {
+  it('öppnas från tangentbordet och visar rubrik, ingress och fokus på vyns rubrik', async () => {
     const user = userEvent.setup();
     await generatePass(user);
     await openSwap(user);
 
-    expect(screen.getByRole('heading', { level: 1, name: 'Byt övning: Öva' })).toBeVisible();
+    const heading = screen.getByRole('heading', { level: 1, name: 'Byt övning: Öva' });
+    expect(heading).toBeVisible();
     const minutes = sessionOf(BANK, INPUT, SEED).rows.find(
       (row) => row.exercise?.namn === PRACTICE,
     )?.minutes;
     expect(screen.getByText(`Byter ut: "${PRACTICE}" (${minutes} min)`)).toBeVisible();
-    // Fokus ligger inte kvar på en knapp som inte längre finns.
-    expect(document.activeElement).toBe(
-      screen.getAllByRole('button', { name: 'Tillbaka till passet' })[0],
-    );
+    // Fokus ligger inte kvar på en knapp som inte längre finns, utan på vyns rubrik, så att
+    // en skärmläsare hör titeln först (skisser/04-byt-ovning.md). Rubriken nås inte med Tabb.
+    expect(document.activeElement).toBe(heading);
+    expect(heading).toHaveAttribute('tabindex', '-1');
+  });
+
+  it('fokus stannar i sökfältet medan ledaren skriver', async () => {
+    const user = userEvent.setup();
+    await generatePass(user);
+    await openSwap(user);
+    const search = screen.getByRole('searchbox', { name: 'Sök bland alternativen' });
+    await user.click(search);
+    await user.type(search, 'tre');
+    expect(search).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Välj denna: Passning i trekant' })).toBeVisible();
   });
 
   it('kriterium 1 och R-104: visar bara alternativ som motorn har godkänt, under bankens rubrik', async () => {
