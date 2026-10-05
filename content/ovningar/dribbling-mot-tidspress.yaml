@@ -56,7 +56,11 @@ varianter:
   svarare: Sänk tidsgränsen till sex sekunder och gör porten smalare.
 anpassning:
   fler_spelare: Bygg fler ytor bredvid varandra med samma mått.
-  udda_antal: Tre spelare delar en yta och roterar, två dribblar och byter mot den tredje efter varje försök.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid starten. Efter
+    varje försök blir anfallaren försvarare, försvararen går till starten och
+    den som väntade anfaller. Halvminutsvilan kan strykas, eftersom trion
+    vilar i rotationen.
   ledare: Med en ledare i närheten kan hen hålla tiden och ropa ut när tiden är slut för alla par
     samtidigt.
 planskiss:
@@ -90,8 +94,12 @@ planskiss:
       till: { x: 4.5, y: 5.5 }
       ordning: 1
       etikett: Försvarar aktivt
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-anf, riktning: 180, avstand: 3, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanlig 1 mot 1-träning med tidspress.
-status: godkand
+status: utkast
 granskning:
   - datum: 2026-09-21
     av: fotbollsexpert
@@ -137,3 +145,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #11."
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      lade till en kö i planskissen som visar den tredje spelaren vid starten,
+      enligt beslutet 2026-10-02.
