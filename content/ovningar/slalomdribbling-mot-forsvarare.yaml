@@ -52,7 +52,10 @@ varianter:
   svarare: Försvararen får försöka vinna bollen aktivt från start.
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
-  udda_antal: En trea roterar, två dribblar och byter mot den tredje efter varje försök.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid anfallarens
+    konmål. Efter varje försök blir anfallaren försvarare, försvararen går
+    till andra konmålet och den som väntade får bollen och anfaller.
   ledare: Med en ledare i närheten kan hen ropa ut för alla par samtidigt när intensiteten ska höjas.
 planskiss:
   version: 1
@@ -84,9 +87,9 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: a1, riktning: 135, avstand: 5, etikett: Roterar in }
+      - { vid: a1, riktning: 135, avstand: 5, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av allmänt känd 1 mot 1-träning med stigande motstånd.
-status: godkand
+status: utkast
 granskning:
   - datum: 2026-09-12
     av: fotbollsexpert
@@ -96,3 +99,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      bytte köns etikett i planskissen till övningens lösning, enligt beslutet
+      2026-10-02.
