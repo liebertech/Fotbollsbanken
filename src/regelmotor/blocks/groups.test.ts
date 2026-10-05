@@ -3,6 +3,7 @@ import {
   baseGroupSize,
   largestGroup,
   planWholeGroups,
+  planWholeGroupsWithReason,
   splitFixedSize,
   splitPlayers,
 } from './groups.ts';
@@ -275,5 +276,54 @@ describe('R-058 Grupper med fast grundstorlek', () => {
       baseGroupSize(bankExercise({ grupptyp: 'par', spelare: { min: 2, max: 3 } })),
     ).toBeNull();
     expect(baseGroupSize(bankExercise({ grupptyp: 'fri' }))).toBeNull();
+  });
+});
+
+describe('Regeln bakom ett nej från planWholeGroupsWithReason (kvalitetssäkrarens fynd 3)', () => {
+  const reason = (
+    exercise: Exercise,
+    players: number,
+    coaches: number,
+    phase: Phase = 'fas-10-12',
+  ) => {
+    const result = planWholeGroupsWithReason(exercise, phase, 'del-ovning', players, coaches);
+    return result.ok ? null : result.regel;
+  };
+
+  it('R-053 när spelarna är färre än övningens minsta antal', () => {
+    expect(reason(bankExercise({ spelare: { min: 6, max: 8 } }), 5, 2)).toBe('R-053');
+  });
+
+  it('R-050 när taket per ledare gör största gruppen mindre än övningens minsta antal', () => {
+    const exercise = bankExercise({ spelare: { min: 10, max: 20 }, ledarbehov: 1 });
+    // Taket för fas-6-7 är 8 per ledare (se R-050-testerna ovan), under minsta antalet 10.
+    expect(reason(exercise, 14, 2, 'fas-6-7')).toBe('R-050');
+  });
+
+  it('R-052 när en grupp enligt R-051 blir för liten (regelns testfall)', () => {
+    expect(reason(bankExercise({ spelare: { min: 6, max: 8 } }), 9, 2)).toBe('R-052');
+  });
+
+  it('R-058 när spelarna inte går jämnt upp i fast storlek utan lösning för udda antal', () => {
+    const exercise = bankExercise({
+      grupptyp: 'fast-storlek',
+      spelare: { min: 4, max: 4 },
+      udda_antal_losning: false,
+    });
+    expect(reason(exercise, 14, 2)).toBe('R-058');
+  });
+
+  it('R-055 när momentet kräver fler ledare än underlaget har (regelns testfall)', () => {
+    const exercise = bankExercise({ spelare: { min: 2, max: 8 }, ledarbehov: 1 });
+    expect(reason(exercise, 14, 1)).toBe('R-055');
+  });
+
+  it('ger samma indelning som planWholeGroups när övningen kan användas', () => {
+    const exercise = bankExercise({ spelare: { min: 2, max: 8 } });
+    const result = planWholeGroupsWithReason(exercise, 'fas-10-12', 'del-ovning', 13, 2);
+    expect(result).toEqual({
+      ok: true,
+      layout: planWholeGroups(exercise, 'fas-10-12', 'del-ovning', 13, 2),
+    });
   });
 });

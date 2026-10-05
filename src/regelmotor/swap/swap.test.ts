@@ -226,7 +226,7 @@ describe('R-104 Vilka övningar som kan ersätta en övning', () => {
     const target = locateSwapTarget(pass, ova);
     expect(trySwap(pass, target, fyraUtanLosning)).toEqual({
       ok: false,
-      rejection: { villkor: 4, regel: 'R-051' },
+      rejection: { villkor: 4, regel: 'R-058' },
     });
   });
 
@@ -238,7 +238,10 @@ describe('R-104 Vilka övningar som kan ersätta en övning', () => {
       ledarbehov: 1,
     });
     const target = locateSwapTarget(pass, ova);
-    expect(trySwap(pass, target, treGrupper).ok).toBe(false);
+    expect(trySwap(pass, target, treGrupper)).toEqual({
+      ok: false,
+      rejection: { villkor: 4, regel: 'R-055' },
+    });
     const enGrupp = ovaAlternativ({ id: 'en-grupp', ledarbehov: 1, spelare: { min: 2, max: 14 } });
     // Taket per ledare är 8 för fas-10-12, så 14 spelare blir 2 grupper och 2 ledare.
     expect(trySwap(pass, target, enGrupp).ok).toBe(true);

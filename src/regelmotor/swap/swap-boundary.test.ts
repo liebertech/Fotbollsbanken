@@ -274,11 +274,11 @@ describe('Byte med en ensam ledare jämfört med flera (R-055, R-064)', () => {
       ledarbehov: 1,
       tid: { kortast: 8, rekommenderad: 10, langst: 12 },
     });
-    // `placeReplacement` rapporterar alltid R-051 när `planWholeGroups` returnerar null, även
-    // när orsaken är R-055 (för få ledare). Testet kontrollerar därför bara att bytet
-    // nekas, på samma sätt som "R-104 villkor 4 kräver att momentets ledare räcker (R-055)"
-    // i swap.test.ts gör – se fyndet i kvalitetssäkrarens rapport om `SwapRejection.regel`.
-    expect(trySwap(pass, locateSwapTarget(pass, ova), tvaGrupper).ok).toBe(false);
+    // Kvalitetssäkrarens fynd 3: avslaget anger R-055, inte alltid R-051.
+    expect(trySwap(pass, locateSwapTarget(pass, ova), tvaGrupper)).toEqual({
+      ok: false,
+      rejection: { villkor: 4, regel: 'R-055' },
+    });
   });
 
   it('flera ledare (L = 3, mer än minikravet 2) räcker till stationer, tills ledarbehovet blir för stort (R-064)', () => {

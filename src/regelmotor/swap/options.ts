@@ -15,7 +15,7 @@ import { baseRejection, fitsPart } from '../filter/base.ts';
 import { headingMinutesWithinCap, safetyRejection } from '../filter/safety.ts';
 import { exerciseArea, momentFitsArea } from '../filter/area.ts';
 import { meetsPartFocus } from '../blocks/candidates.ts';
-import { planWholeGroups } from '../blocks/groups.ts';
+import { planWholeGroupsWithReason } from '../blocks/groups.ts';
 import { buildStationBlock, stationCoaches } from '../blocks/stations.ts';
 import type { BankExercise } from '../origin.ts';
 import type { Exercise, ItemRef, Layout, Session } from '../types.ts';
@@ -168,10 +168,11 @@ export function placeReplacement(
   const { part } = target;
 
   if (target.ref.station === null) {
-    const layout = planWholeGroups(candidate, phase, part, input.spelare, input.ledare);
-    if (layout === null) {
-      return { ok: false, rejection: { villkor: 4, regel: 'R-051' } };
+    const groups = planWholeGroupsWithReason(candidate, phase, part, input.spelare, input.ledare);
+    if (!groups.ok) {
+      return { ok: false, rejection: { villkor: 4, regel: groups.regel } };
     }
+    const { layout } = groups;
     const areas = Array.from({ length: layout.groups }, () =>
       exerciseArea(candidate, input.spelform),
     );
