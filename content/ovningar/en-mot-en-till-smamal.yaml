@@ -54,8 +54,9 @@ anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: >-
     Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan
-    med reservbollen. Efter varje duell byter hen plats med den som spelat två
-    dueller i rad.
+    med reservbollen. Efter varje duell går hen in med bollen och byter plats
+    med den som har spelat längst. Efter första duellen går den som startade
+    med bollen ut. Då spelar alla två dueller och vilar en.
   ledare: Övningen sköter sig själv när paren väl har kommit igång.
 planskiss:
   version: 1
