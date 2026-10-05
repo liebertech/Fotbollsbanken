@@ -405,17 +405,28 @@ describe('skrivningen av planen', () => {
       { fil: B, blob: sha(b), commit: MERGE_17, pr: 17, av: 'benbom' },
     ],
   };
+  const last = { [A]: MERGE_15, [B]: MERGE_17 };
+  const messages = {
+    [MERGE_15]: 'Merge pull request #15 from liebertech/omgang',
+    [MERGE_17]: 'Merge pull request #17 from liebertech/ytreferenser',
+  };
+  const okApi = (): ApiGet =>
+    fakeApi({ 'pulls/15': pullJson(15, MERGE_15), 'pulls/17': pullJson(17, MERGE_17) });
 
   it('lyfter varje fil med granskningsraden för sin egen pull request', () => {
     const git = fakeHistory(
       { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
-      {},
-      {},
+      last,
+      messages,
     );
     const written = new Map<string, string>();
 
-    const result = tillampa(git, plan, { datum: '2026-10-05', write: true }, (path, text) =>
-      written.set(path, text),
+    const result = tillampa(
+      git,
+      okApi(),
+      plan,
+      { datum: '2026-10-05', write: true },
+      (path, text) => written.set(path, text),
     );
 
     expect(result.ok).toBe(true);
@@ -433,12 +444,12 @@ describe('skrivningen av planen', () => {
   it('ändrar bara status och granskning, inget annat fält i övningen', () => {
     const git = fakeHistory(
       { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
-      {},
-      {},
+      last,
+      messages,
     );
     const written = new Map<string, string>();
 
-    tillampa(git, plan, { datum: '2026-10-05', write: true }, (path, text) =>
+    tillampa(git, okApi(), plan, { datum: '2026-10-05', write: true }, (path, text) =>
       written.set(path, text),
     );
 
@@ -459,12 +470,12 @@ describe('skrivningen av planen', () => {
         [MERGE_15]: { [A]: a },
         [MERGE_17]: { [B]: b },
       },
-      {},
-      {},
+      last,
+      messages,
     );
     const written: string[] = [];
 
-    const result = tillampa(git, plan, { write: true }, (path) => written.push(path));
+    const result = tillampa(git, okApi(), plan, { write: true }, (path) => written.push(path));
 
     expect(result.ok).toBe(true);
     expect(result.files.map((file) => file.outcome)).toEqual(['orord', 'lyft']);
@@ -478,12 +489,12 @@ describe('skrivningen av planen', () => {
         [MERGE_15]: { [A]: a },
         [MERGE_17]: { [B]: b },
       },
-      {},
-      {},
+      last,
+      messages,
     );
     const written: string[] = [];
 
-    const result = tillampa(git, plan, { write: true }, (path) => written.push(path));
+    const result = tillampa(git, okApi(), plan, { write: true }, (path) => written.push(path));
 
     expect(result.ok).toBe(false);
     expect(result.written).toBe(false);
@@ -493,24 +504,122 @@ describe('skrivningen av planen', () => {
   it('skriver ingenting när texten inte är den som kom in med mergen i planen', () => {
     const git = fakeHistory(
       { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: exercise('utkast') }, [MERGE_17]: { [B]: b } },
-      {},
-      {},
+      last,
+      messages,
     );
     const written: string[] = [];
-    expect(tillampa(git, plan, { write: true }, (path) => written.push(path)).ok).toBe(false);
+    expect(tillampa(git, okApi(), plan, { write: true }, (path) => written.push(path)).ok).toBe(
+      false,
+    );
     expect(written).toEqual([]);
   });
 
   it('ändrar ingenting utan write', () => {
     const git = fakeHistory(
       { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
-      {},
-      {},
+      last,
+      messages,
     );
     const written: string[] = [];
-    const result = tillampa(git, plan, {}, (path) => written.push(path));
+    const result = tillampa(git, okApi(), plan, {}, (path) => written.push(path));
     expect(result.written).toBe(false);
     expect(written).toEqual([]);
+  });
+
+  /** HEAD och mergarna har samma text som i planen; bara uppslagen skiljer sig. */
+  const sameTexts: Record<string, Record<string, string>> = {
+    HEAD: { [A]: a, [B]: b },
+    [MERGE_15]: { [A]: a },
+    [MERGE_17]: { [B]: b },
+  };
+
+  it('F5: skriver ingenting när filen senast ändrades i en annan merge än planens', () => {
+    // Samma blob, men en senare merge (MERGE_17) förde in den på nytt.
+    const git = fakeHistory(
+      { ...sameTexts, [MERGE_17]: { [A]: a, [B]: b } },
+      { [A]: MERGE_17, [B]: MERGE_17 },
+      messages,
+    );
+    const written: string[] = [];
+
+    const result = tillampa(git, okApi(), plan, { write: true, retry: NO_WAIT }, (path) =>
+      written.push(path),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.files[0]).toMatchObject({
+      file: A,
+      outcome: 'fel',
+      message: `filen ändrades senast i ${MERGE_17}, inte i ${MERGE_15}`,
+    });
+    expect(written).toEqual([]);
+  });
+
+  it('F5: skriver ingenting när planens pull request inte är den API:t ger för mergen', () => {
+    const git = fakeHistory(sameTexts, last, messages);
+    const forged: Plan = {
+      ...plan,
+      poster: plan.poster.map((entry, index) => (index === 0 ? { ...entry, pr: 99 } : entry)),
+    };
+    const written: string[] = [];
+
+    const result = tillampa(git, okApi(), forged, { write: true, retry: NO_WAIT }, (path) =>
+      written.push(path),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.files[0]?.message).toContain('planen säger pull request #99');
+    expect(written).toEqual([]);
+  });
+
+  it('F5: skriver ingenting när planens konto inte är det som mergade enligt API:t', () => {
+    const git = fakeHistory(sameTexts, last, messages);
+    const forged: Plan = {
+      ...plan,
+      poster: plan.poster.map((entry, index) =>
+        index === 0 ? { ...entry, av: 'nagon-annan' } : entry,
+      ),
+    };
+    const written: string[] = [];
+
+    const result = tillampa(git, okApi(), forged, { write: true, retry: NO_WAIT }, (path) =>
+      written.push(path),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.files[0]?.message).toContain('API:t säger #15 mergad av benbom');
+    expect(written).toEqual([]);
+  });
+
+  it('F5: skriver ingenting när API:t inte kan bekräfta pull requesten', () => {
+    const git = fakeHistory(sameTexts, last, messages);
+    const api = fakeApi({ 'pulls/15': '', 'pulls/17': pullJson(17, MERGE_17) });
+    const written: string[] = [];
+
+    const result = tillampa(git, api, plan, { write: true, retry: NO_WAIT }, (path) =>
+      written.push(path),
+    );
+
+    expect(result.ok).toBe(false);
+    expect(result.files[0]?.message).toContain('tomt svar');
+    expect(written).toEqual([]);
+  });
+
+  it('F5: granskningsraden skrivs med API:ts värden och frågar API:t en gång per merge', () => {
+    const git = fakeHistory(sameTexts, last, messages);
+    const api = fakeApi({ 'pulls/15': pullJson(15, MERGE_15), 'pulls/17': pullJson(17, MERGE_17) });
+    const written = new Map<string, string>();
+
+    tillampa(git, api, plan, { datum: '2026-10-05', write: true, retry: NO_WAIT }, (path, text) =>
+      written.set(path, text),
+    );
+
+    expect(api.calls).toEqual(['pulls/15', 'pulls/17']);
+    const after = parse(written.get(A) as string) as Record<string, unknown>;
+    expect((after.granskning as unknown[]).at(-1)).toMatchObject({
+      av: 'benbom',
+      kommentar: 'Godkänd genom merge av pull request #15.',
+    });
   });
 });
 
@@ -575,7 +684,7 @@ describe('ikappskrivningen mot ett riktigt repo', () => {
     ]);
 
     const written = new Map<string, string>();
-    const result = tillampa(reader, plan, { datum: '2026-10-05', write: true }, (path, text) =>
+    const result = tillampa(reader, api, plan, { datum: '2026-10-05', write: true }, (path, text) =>
       written.set(path, text),
     );
     expect(result.ok).toBe(true);
@@ -703,7 +812,7 @@ describe('kommandoraden', () => {
     expect(lines.at(-1)).toBe('Torrkörning: 1 övning skulle sättas till godkand.');
 
     lines.length = 0;
-    expect(main(['tillampa', '--plan', planPath], (line) => lines.push(line), git)).toBe(0);
+    expect(main(['tillampa', '--plan', planPath], (line) => lines.push(line), git, api)).toBe(0);
     expect(lines[0]).toContain('Lyfter a-ovning.yaml');
     expect(lines.at(-1)).toContain('Lägg till --skriv');
   });

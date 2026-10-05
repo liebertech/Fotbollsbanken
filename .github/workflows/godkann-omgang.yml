@@ -106,8 +106,10 @@ jobs:
     # Miljön väntar på ägarens andra klick, vid dispatch precis som vid push.
     environment: godkannande
     # Jobbet pushar med deploy-nyckeln, inte med GITHUB_TOKEN, så token behöver ingen skrivrätt.
+    # Läsrätten till pull requests behövs för att slå upp pull request och konto på nytt (F5).
     permissions:
       contents: read
+      pull-requests: read
     steps:
       - name: Hämta koden
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -133,11 +135,15 @@ jobs:
         run: npm ci --ignore-scripts
 
       # Planen ska ha lästs ur main. Varje fil i den måste ha exakt den text torrkörningen visade,
-      # och den texten måste vara den som kom in med planens merge. Annars skrivs ingenting alls.
-      # En fil som redan blivit godkand hoppas över.
+      # den texten måste vara den som kom in med planens merge, och mergen måste vara den som
+      # senast ändrade filen. Pull request och konto slås upp på nytt i API:t och måste stämma
+      # med planen; det är API:ts värden som skrivs (F5). Annars skrivs ingenting alls. En fil
+      # som redan blivit godkand hoppas över.
       - name: Sätt godkand
         env:
           PLAN: ${{ needs.forbered.outputs.plan }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           printf '%s' "$PLAN" > "$RUNNER_TEMP/plan.json"
@@ -146,7 +152,7 @@ jobs:
             echo "Planen lästes ur $bas, som inte ligger på main. Ingenting skrivs." >&2
             exit 1
           fi
-          npm run --silent godkannande -- tillampa --plan "$RUNNER_TEMP/plan.json" --skriv
+          npm run --silent godkannande -- tillampa --plan "$RUNNER_TEMP/plan.json" --repo "$REPO" --skriv
 
       - name: Validera banken efter skrivningen
         run: npm run validera:ovningar

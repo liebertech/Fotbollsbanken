@@ -4,7 +4,7 @@
  *   npm run godkannande -- kontroll --bas <sha> --huvud <sha>
  *   npm run godkannande -- godkann --fore <sha> --efter <sha> [--av <konto>] [--pr <nr>] [--skriv]
  *   npm run godkannande -- planera [--repo <ägare/namn>] [--ut <plan.json>]
- *   npm run godkannande -- tillampa --plan <plan.json> [--skriv]
+ *   npm run godkannande -- tillampa --plan <plan.json> [--repo <ägare/namn>] [--skriv]
  *
  * `planera` och `tillampa` är arbetsflödets väg sedan ADR 0020: `planera` letar upp varje
  * övning i `granskad` på main och den merge som förde in den, och `tillampa` skriver just det.
@@ -793,18 +793,22 @@ export function parsePlan(text: string): Plan | { error: string } {
 }
 
 /**
- * Skriver planen. Varje fil måste ha precis den text torrkörningen visade; annars skrivs
- * ingenting alls. En fil som redan står i `godkand` hoppas över, så att två körningar med
+ * Skriver planen. Varje fil måste ha precis den text torrkörningen visade, ha ändrats senast i
+ * planens merge, och planens pull request och konto måste stämma med det API:t svarar nu;
+ * annars skrivs ingenting alls. Planen är bara det ägaren såg, inte en källa till det som
+ * skrivs (F5). En fil som redan står i `godkand` hoppas över, så att två körningar med
  * överlappande planer inte krockar. Utan `write` ändras ingenting.
  */
 export function tillampa(
   git: HistoryReader,
+  api: ApiGet,
   plan: Plan,
-  options: { rev?: string; datum?: string; write?: boolean } = {},
+  options: { rev?: string; datum?: string; write?: boolean; retry?: RetryOptions } = {},
   writeFile: WriteFile = writeToDisk,
 ): ApprovalResult {
   const rev = options.rev ?? 'HEAD';
   const files: ApprovalFile[] = [];
+  const pulls = new Map<string, ResolvedPull | { error: string }>();
 
   for (const entry of plan.poster) {
     const raw = git.read(rev, entry.fil);
@@ -834,10 +838,46 @@ export function tillampa(
       });
       continue;
     }
+    // Samma blob kan ha kommit in igen med en senare merge. Raden ska nämna den merge som
+    // senast förde in texten, precis som i torrkörningen.
+    const last = git.lastChange(rev, entry.fil);
+    if (last !== entry.commit) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message: `filen ändrades senast i ${last ?? 'ingen commit'}, inte i ${entry.commit}`,
+      });
+      continue;
+    }
+
+    let pull = pulls.get(entry.commit);
+    if (pull === undefined) {
+      pull = resolvePullRequest(
+        api,
+        entry.commit,
+        git.message(entry.commit),
+        options.retry ?? DEFAULT_RETRY,
+      );
+      pulls.set(entry.commit, pull);
+    }
+    if ('error' in pull) {
+      files.push({ file: entry.fil, outcome: 'fel', message: pull.error });
+      continue;
+    }
+    if (pull.pr !== entry.pr || pull.av !== entry.av) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message:
+          `planen säger pull request #${entry.pr} mergad av ${entry.av}, ` +
+          `API:t säger #${pull.pr} mergad av ${pull.av}`,
+      });
+      continue;
+    }
 
     const raised = raiseToApproved(
       raw,
-      reviewLine({ av: entry.av, pr: entry.pr, datum: options.datum }),
+      reviewLine({ av: pull.av, pr: pull.pr, datum: options.datum }),
     );
     if ('error' in raised) {
       files.push({ file: entry.fil, outcome: 'fel', message: raised.error });
@@ -846,7 +886,7 @@ export function tillampa(
     files.push({
       file: entry.fil,
       outcome: 'lyft',
-      message: `${REVIEWED_STATUS} → ${APPROVED_STATUS} (pull request #${entry.pr}, mergad av ${entry.av})`,
+      message: `${REVIEWED_STATUS} → ${APPROVED_STATUS} (pull request #${pull.pr}, mergad av ${pull.av})`,
       text: raised.text,
     });
   }
@@ -987,19 +1027,27 @@ function runGodkann(git: GitReader, args: ParsedArguments, log: (line: string) =
   return result.ok ? 0 : 1;
 }
 
+const MISSING_REPO = 'Ange --repo <ägare/namn>, eller kör med GITHUB_REPOSITORY satt.';
+
+/** API:t för repot i `--repo` eller GITHUB_REPOSITORY, eller `undefined` om inget giltigt anges. */
+function apiFromArguments(args: ParsedArguments): ApiGet | undefined {
+  const repo = args.values.get('--repo') ?? process.env.GITHUB_REPOSITORY;
+  return repo !== undefined && /^[\w.-]+\/[\w.-]+$/.test(repo) ? createGhApi(repo) : undefined;
+}
+
 function runPlanera(
   git: HistoryReader,
   args: ParsedArguments,
   log: (line: string) => void,
   api: ApiGet | undefined,
 ): number {
-  const repo = args.values.get('--repo') ?? process.env.GITHUB_REPOSITORY;
-  if (api === undefined && (repo === undefined || !/^[\w.-]+\/[\w.-]+$/.test(repo))) {
-    log('Ange --repo <ägare/namn>, eller kör med GITHUB_REPOSITORY satt.');
+  const github = api ?? apiFromArguments(args);
+  if (github === undefined) {
+    log(MISSING_REPO);
     return 1;
   }
 
-  const { plan, findings } = planera(git, api ?? createGhApi(repo as string));
+  const { plan, findings } = planera(git, github);
   for (const entry of plan.poster) {
     log(
       `Lyfter ${fileName(entry.fil)}: ${REVIEWED_STATUS} → ${APPROVED_STATUS} ` +
@@ -1029,6 +1077,7 @@ function runTillampa(
   git: HistoryReader,
   args: ParsedArguments,
   log: (line: string) => void,
+  api: ApiGet | undefined,
 ): number {
   const path = args.values.get('--plan');
   if (path === undefined) {
@@ -1047,8 +1096,13 @@ function runTillampa(
     log(`Planen går inte att använda: ${plan.error}. Ingenting skrivs.`);
     return 1;
   }
+  const github = api ?? apiFromArguments(args);
+  if (github === undefined) {
+    log(MISSING_REPO);
+    return 1;
+  }
 
-  const result = tillampa(git, plan, { write: args.write });
+  const result = tillampa(git, github, plan, { write: args.write });
   for (const file of result.files) {
     log(
       `${file.outcome === 'lyft' ? 'Lyfter' : file.outcome === 'orord' ? 'Rör inte' : 'Fel i'} ${fileName(file.file)}: ${file.message}`,
@@ -1088,7 +1142,7 @@ export function main(
     case 'planera':
       return runPlanera(git, args, log, api);
     case 'tillampa':
-      return runTillampa(git, args, log);
+      return runTillampa(git, args, log, api);
   }
 }
 
