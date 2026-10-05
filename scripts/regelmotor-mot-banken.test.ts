@@ -7,9 +7,11 @@
 import { describe, expect, it } from 'vitest';
 import { loadBank } from './bank.ts';
 import {
+  applySwap,
   checkSession,
   generateSession,
   selectableFocusAreas,
+  swapOptions,
   toBankExercise,
 } from '../src/regelmotor/index.ts';
 import {
@@ -234,4 +236,123 @@ describe('R-101 När inget pass skapas', () => {
       expect(result.reason.internalProblems).toEqual([]);
     }
   });
+});
+
+describe('R-104 och R-105 Byte av övning mot den riktiga banken', () => {
+  /*
+   * Varje alternativ som swapOptions visar ska gå att byta in, och passet efter bytet ska
+   * klara slutkontrollen (ADR 0011 avsnitt 1, steg 5). Egen tidsgräns av samma skäl som
+   * R-049-testet ovan: varje plats i varje pass prövas mot hela banken.
+   */
+  it(
+    'R-104 ger bara alternativ som R-105 kan byta in och som klarar slutkontrollen',
+    { timeout: 120_000 },
+    () => {
+      let byten = 0;
+      for (const alder of [9, 11]) {
+        const phase = phaseForAge(alder);
+        if (phase === undefined) {
+          continue;
+        }
+        for (const spelform of allowedGameFormats(alder)) {
+          for (const spelare of [8, 13, 14]) {
+            for (const ledare of [1, 2, 4]) {
+              for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
+                const input: Input = { ...underlag, alder, spelform, spelare, ledare, fokus };
+                const result = generateSession(input, banken, 'fro');
+                if (result.kind === 'none') {
+                  continue;
+                }
+                const pass = result.session;
+                for (const row of pass.rows) {
+                  if (row.exercise === null || row.block === null) {
+                    continue;
+                  }
+                  const ref = {
+                    block: row.block,
+                    station: row.kind === 'station' ? row.station : null,
+                  };
+                  for (const option of swapOptions(pass, ref, banken)) {
+                    expect(checkSession(applySwap(pass, ref, option))).toEqual([]);
+                    byten += 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      expect(byten).toBeGreaterThan(100);
+    },
+  );
+
+  /*
+   * Testet ovan når aldrig stationer: banken ger stationer först vid 75 och 90 minuter, och
+   * underlaget där har 60. En kartläggning mot banken 2026-10-05 (ålder 8–12, alla nivåer,
+   * 8–20 spelare, 1–4 ledare, 30–90 minuter, varje fokus) gav 798 pass med stationer, men
+   * byten vid en station bara för 7 mot 7 med 8 spelare, nivå 1 eller 2, 75 eller 90 minuter
+   * och fokus avslut, fasta situationer eller målvaktsspel. Parametrarna nedan är riktade dit,
+   * och testet fäller om de slutar ge byten vid stationer, så att det inte tyst blir tomt.
+   * Utfall 2026-10-05: 288 pass med stationer och 180 byten vid stationer, samma 180 som
+   * hela kartläggningen gav. Uppmätt ensamt: 1,4 s, mot ungefär 60 s för hela kartläggningen.
+   */
+  it(
+    'R-104 ger vid stationer bara alternativ som R-105 kan byta in och som klarar slutkontrollen',
+    { timeout: 120_000 },
+    () => {
+      let passMedStationer = 0;
+      let bytenVidStationer = 0;
+      for (const alder of [10, 11, 12]) {
+        const phase = phaseForAge(alder);
+        if (phase === undefined) {
+          continue;
+        }
+        for (const niva of ['niva-1', 'niva-2'] as const) {
+          for (const ledare of [2, 3, 4]) {
+            for (const passlangd of [75, 90]) {
+              for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
+                const input: Input = {
+                  ...underlag,
+                  alder,
+                  spelform: '7mot7',
+                  niva,
+                  spelare: 8,
+                  ledare,
+                  passlangd,
+                  fokus,
+                };
+                const result = generateSession(input, banken, 'fro');
+                if (result.kind === 'none') {
+                  continue;
+                }
+                const pass = result.session;
+                const stationer = pass.rows.filter((row) => row.kind === 'station');
+                if (stationer.length === 0) {
+                  continue;
+                }
+                passMedStationer += 1;
+                for (const row of stationer) {
+                  if (row.block === null) {
+                    continue;
+                  }
+                  const place = { block: row.block, station: row.station };
+                  for (const option of swapOptions(pass, place, banken)) {
+                    const efter = applySwap(pass, place, option);
+                    expect(checkSession(efter)).toEqual([]);
+                    // Bytet ändrar bara stationen, inte stationsmomentets tider (R-065).
+                    expect(efter.rows.filter((item) => item.kind === 'station').length).toBe(
+                      stationer.length,
+                    );
+                    bytenVidStationer += 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      expect(passMedStationer).toBeGreaterThan(50);
+      expect(bytenVidStationer).toBeGreaterThan(50);
+    },
+  );
 });

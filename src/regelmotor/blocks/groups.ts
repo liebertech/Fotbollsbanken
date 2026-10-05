@@ -116,27 +116,88 @@ export function splitFixedSize(
   return Array.from({ length: groups }, (_, index) => base + (index < rest ? 1 : 0));
 }
 
+/** Gruppernas storlekar, eller regeln som gör att ingen giltig indelning finns. */
+type SizesResult = { ok: true; sizes: number[] } | { ok: false; regel: string };
+
 /**
  * Gruppernas storlekar i ett helgruppsmoment: R-058 för en övning med grundstorlek, annars
- * R-051 och R-052. `null` när ingen giltig indelning finns.
+ * R-051 och R-052.
  */
-function wholeGroupSizes(exercise: Exercise, largest: number, players: number): number[] | null {
+function wholeGroupSizes(exercise: Exercise, largest: number, players: number): SizesResult {
   const base = baseGroupSize(exercise);
   if (base !== null) {
     const sizes = splitFixedSize(players, base, allowsExtraPlayer(exercise));
-    // R-058: taket per ledare (R-050) gäller för varje grupp.
-    if (sizes === null || sizes.some((size) => size > largest)) {
-      return null;
+    if (sizes === null) {
+      return { ok: false, regel: 'R-058' };
     }
-    return sizes;
+    // R-058: taket per ledare (R-050) gäller för varje grupp.
+    if (sizes.some((size) => size > largest)) {
+      return { ok: false, regel: 'R-050' };
+    }
+    return { ok: true, sizes };
   }
   // R-051: minsta antal grupper där ingen grupp blir större än största grupp.
   const sizes = splitPlayers(players, Math.ceil(players / largest));
   // R-052: ingen grupp mindre än övningens minsta antal.
   if (sizes.some((size) => size < exercise.spelare.min)) {
-    return null;
+    return { ok: false, regel: 'R-052' };
   }
-  return sizes;
+  return { ok: true, sizes };
+}
+
+/** Gruppindelningen för ett helgruppsmoment, eller regeln som gör att övningen inte kan användas. */
+export type WholeGroupsResult = { ok: true; layout: Layout } | { ok: false; regel: string };
+
+/**
+ * Gruppindelningen för ett helgruppsmoment, med regeln som fällde övningen när den inte kan
+ * användas: R-053 för få spelare, R-050 för liten största grupp, R-058 eller R-052 när
+ * grupperna inte går att bilda och R-055 för få ledare.
+ *
+ * @regel R-050
+ * @regel R-051
+ * @regel R-052
+ * @regel R-053
+ * @regel R-054
+ * @regel R-055
+ * @regel R-056
+ * @regel R-058
+ */
+export function planWholeGroupsWithReason(
+  exercise: Exercise,
+  phase: Phase,
+  part: SessionPartFromBank,
+  players: number,
+  coaches: number,
+): WholeGroupsResult {
+  // R-053: för få spelare.
+  if (players < exercise.spelare.min) {
+    return { ok: false, regel: 'R-053' };
+  }
+  // R-050: största gruppen, med taket per ledare, rymmer inte övningens minsta antal.
+  const largest = largestGroup(exercise, phase, part);
+  if (largest < exercise.spelare.min) {
+    return { ok: false, regel: 'R-050' };
+  }
+  const sizes = wholeGroupSizes(exercise, largest, players);
+  if (!sizes.ok) {
+    return sizes;
+  }
+  const groups = sizes.sizes.length;
+  // R-055: ett moment med k grupper behöver k gånger ledarbehovet ledare.
+  const coachesNeeded = groups * exercise.ledarbehov;
+  if (coachesNeeded > coaches) {
+    return { ok: false, regel: 'R-055' };
+  }
+  return {
+    ok: true,
+    layout: {
+      groups,
+      sizes: sizes.sizes,
+      coachesPerGroup: exercise.ledarbehov,
+      coachesNeeded,
+      ...oddHandling(exercise, sizes.sizes),
+    },
+  };
 }
 
 /**
@@ -157,31 +218,8 @@ export function planWholeGroups(
   players: number,
   coaches: number,
 ): Layout | null {
-  // R-053: för få spelare.
-  if (players < exercise.spelare.min) {
-    return null;
-  }
-  const largest = largestGroup(exercise, phase, part);
-  if (largest < exercise.spelare.min) {
-    return null;
-  }
-  const sizes = wholeGroupSizes(exercise, largest, players);
-  if (sizes === null) {
-    return null;
-  }
-  const groups = sizes.length;
-  // R-055: ett moment med k grupper behöver k gånger ledarbehovet ledare.
-  const coachesNeeded = groups * exercise.ledarbehov;
-  if (coachesNeeded > coaches) {
-    return null;
-  }
-  return {
-    groups,
-    sizes,
-    coachesPerGroup: exercise.ledarbehov,
-    coachesNeeded,
-    ...oddHandling(exercise, sizes),
-  };
+  const result = planWholeGroupsWithReason(exercise, phase, part, players, coaches);
+  return result.ok ? result.layout : null;
 }
 
 /**

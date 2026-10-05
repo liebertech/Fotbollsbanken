@@ -48,6 +48,9 @@ export { selectableFocusAreas } from './input/validate.ts';
 export { planTime } from './time/plan.ts';
 export { checkSession } from './check/session.ts';
 export { scoreSession } from './score/score.ts';
+export { swapOptions, swapOptionsWithLayout } from './swap/options.ts';
+export type { SwapOption } from './swap/options.ts';
+export { applySwap } from './swap/apply.ts';
 export * from './types.ts';
 export * from './origin.ts';
 
@@ -286,6 +289,7 @@ export function generateSession(
     removedParts: plan.removedParts,
     notices: buildNotices(rows, input, phase),
     longestStretch: draft.longestStretch,
+    swapped: false,
   };
 
   // Steg 5 i kedjan: ett pass som inte klarar kontrollen lämnas aldrig ut (ADR 0011).

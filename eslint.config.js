@@ -187,27 +187,167 @@ const FORBIDDEN_DOM_IMPORTS_IN_APP = [
 ];
 
 /**
- * Det som ger direkt åtkomst till DOM:en i appen (säkerhetsgranskningen av ritmotorn, R3).
- * Samma förbud som i ritmotorn, så att skissens text inte kan nå innerHTML eller ett attribut
- * via appen, till exempel i utskriften (RK-8).
+ * Namn som skriver markup eller attribut direkt i DOM:en (S-07, R3, N3). De spärras som
+ * egenskap, som nyckel i ett objekt (till exempel i Object.assign) och som sträng, eftersom
+ * en sträng är det som når dem via el['innerHTML'] eller Object.defineProperty.
+ */
+const MARKUP_NAMES = exactly([
+  'innerHTML',
+  'outerHTML',
+  'insertAdjacentHTML',
+  'setAttribute',
+  'setAttributeNS',
+  'srcdoc',
+]);
+const MARKUP_MESSAGE =
+  'innerHTML, outerHTML, insertAdjacentHTML, setAttribute, setAttributeNS och srcdoc är förbjudna i appen, också som nyckel eller sträng (S-07, R3, N3).';
+
+/** Namn som skriver till dokumentet eller når det via en nod (N3). */
+const DOCUMENT_WRITE_NAMES = exactly(['write', 'writeln', 'execCommand', 'ownerDocument']);
+const DOCUMENT_WRITE_MESSAGE =
+  'write, writeln, execCommand och ownerDocument skriver förbi React eller når dokumentet via en nod (N3).';
+
+/** Attribut som laddar en resurs eller skickar ett formulär och därför bara får vara text (N3). */
+const URL_ATTRIBUTES = exactly(['href', 'src', 'action', 'xlinkHref']);
+
+/** Element som laddar eller kör innehåll utanför Reacts kontroll (N3). */
+const FORBIDDEN_ELEMENTS = ['iframe', 'frame', 'object', 'embed', 'script', 'base'];
+
+/** Globaler som ger vägar förbi lintningen: hela dokumentet, reflektion och serialisering (N3). */
+const FORBIDDEN_GLOBALS_IN_APP = [
+  {
+    name: 'XMLSerializer',
+    message: 'XMLSerializer gör DOM till markup utanför Reacts kontroll (R3, RK-8).',
+  },
+  {
+    name: 'Reflect',
+    message: 'Reflect når egenskaper med namn som sträng, förbi förbuden mot innerHTML (N3).',
+  },
+  {
+    name: 'document',
+    message:
+      'document ger hela DOM:en. Bara src/app/main.tsx och testerna får använda det (N3, R3).',
+  },
+];
+
+/**
+ * `ref` i appen får bara vara `focusOnMount` ur `useFocusOnMount()` (säkerhetsgranskningen av
+ * inkrement 2b). Hooken ger en callback-ref som bara anropar focus(), så komponenten får aldrig
+ * tag i DOM-noden. Ett RefObject, en inline-funktion eller en ref från props släpps inte igenom.
+ */
+/**
+ * Hooken under ett annat namn, en egen definition av den eller ett värde ur den som inte är ett
+ * anrop. Gäller överallt utom i hookfilen.
+ */
+const HOOK_NAME_RULE = {
+  selector:
+    "Identifier[name='useFocusOnMount']:not(ImportSpecifier > Identifier, CallExpression > Identifier.callee)",
+  message:
+    'useFocusOnMount får bara importeras under sitt eget namn och anropas. Den definieras bara i src/app/fokus/useFocusOnMount.ts (säkerhetsgranskningen av inkrement 2b).',
+};
+
+const FOCUS_ON_MOUNT_RULES = [
+  {
+    selector:
+      "JSXAttribute[name.name='ref']:not([value.type='JSXExpressionContainer'][value.expression.type='Identifier'][value.expression.name='focusOnMount'])",
+    message:
+      'ref får bara vara ref={focusOnMount}, med focusOnMount ur useFocusOnMount() (R3, säkerhetsgranskningen av inkrement 2b).',
+  },
+  {
+    // Namnet focusOnMount får bara bindas med const focusOnMount = useFocusOnMount() och bara
+    // läsas som värdet i ref={focusOnMount}: inte ur props, inte i en tilldelning, inte som
+    // parameter eller nyckel och inte under ett annat namn.
+    selector:
+      "Identifier[name='focusOnMount']:not(VariableDeclaration[kind='const'] > VariableDeclarator[init.type='CallExpression'][init.callee.type='Identifier'][init.callee.name='useFocusOnMount'][init.arguments.length=0] > Identifier.id, JSXAttribute[name.name='ref'] > JSXExpressionContainer > Identifier.expression)",
+    message:
+      'focusOnMount får bara komma från const focusOnMount = useFocusOnMount() och bara användas som ref={focusOnMount} (säkerhetsgranskningen av inkrement 2b).',
+  },
+  HOOK_NAME_RULE,
+  {
+    selector:
+      "ImportSpecifier[imported.name='useFocusOnMount']:not([local.name='useFocusOnMount'])",
+    message:
+      'useFocusOnMount får inte byta namn vid import (säkerhetsgranskningen av inkrement 2b).',
+  },
+  {
+    selector:
+      "ImportDeclaration:not([source.value=/^(\\.\\/|(\\.\\.\\/)+(app\\/)?fokus\\/)useFocusOnMount(\\.ts)?$/]) > ImportSpecifier[imported.name='useFocusOnMount']",
+    message:
+      'useFocusOnMount importeras bara från src/app/fokus/useFocusOnMount.ts (säkerhetsgranskningen av inkrement 2b).',
+  },
+  {
+    // {...{ ref: x }} och { ref } i ett objekt går annars förbi förbudet mot JSX-attributet (F1).
+    selector: "Property:matches([key.name='ref'], [key.value='ref'])",
+    message:
+      'ref som egenskap i ett objekt går förbi förbudet mot ref i JSX (F1). Byt namn på fältet, till exempel till place.',
+  },
+];
+
+/**
+ * Det som ger direkt åtkomst till DOM:en i appen (säkerhetsgranskningen av ritmotorn, R3, och
+ * av inkrement 2b, F1 och N3). Samma förbud som i ritmotorn, så att skissens text inte kan nå
+ * innerHTML eller ett attribut via appen, till exempel i utskriften (RK-8). Gäller också
+ * testerna. Förbudet mot globalerna i FORBIDDEN_GLOBALS_IN_APP gäller allt utom main.tsx och
+ * testerna.
  */
 const FORBIDDEN_DOM_SYNTAX_IN_APP = [
+  ...FOCUS_ON_MOUNT_RULES,
   {
-    selector: "JSXAttribute[name.name='ref']",
-    message:
-      'ref ger åtkomst till DOM-noden och därmed till innerHTML och setAttribute. Behövs det, ta upp det med säkerhetsagenten (R3).',
+    selector: `MemberExpression[property.name=${MARKUP_NAMES}]`,
+    message: MARKUP_MESSAGE,
   },
   {
-    selector:
-      'MemberExpression[property.name=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
-    message:
-      'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i appen (S-07, R3).',
+    selector: `Property[key.name=${MARKUP_NAMES}]`,
+    message: MARKUP_MESSAGE,
   },
   {
-    selector:
-      'MemberExpression[computed=true][property.value=/^(innerHTML|outerHTML|insertAdjacentHTML|setAttribute|setAttributeNS)$/]',
+    // Strängen var den än står: el['innerHTML'], { 'innerHTML': x }, Reflect.set(el, 'innerHTML')
+    // eller Object.defineProperty(el, 'innerHTML').
+    selector: `Literal[value=${MARKUP_NAMES}]`,
+    message: MARKUP_MESSAGE,
+  },
+  {
+    selector: `TemplateLiteral[expressions.length=0] > TemplateElement[value.cooked=${MARKUP_NAMES}]`,
+    message: MARKUP_MESSAGE,
+  },
+  {
+    selector: `MemberExpression[property.name=${DOCUMENT_WRITE_NAMES}]`,
+    message: DOCUMENT_WRITE_MESSAGE,
+  },
+  {
+    selector: `MemberExpression[computed=true][property.value=${DOCUMENT_WRITE_NAMES}]`,
+    message: DOCUMENT_WRITE_MESSAGE,
+  },
+  {
+    selector: `MemberExpression[computed=true] > TemplateLiteral.property[expressions.length=0] > TemplateElement[value.cooked=${DOCUMENT_WRITE_NAMES}]`,
+    message: DOCUMENT_WRITE_MESSAGE,
+  },
+  {
+    selector: `Property[key.name=${DOCUMENT_WRITE_NAMES}], Property[key.value=${DOCUMENT_WRITE_NAMES}]`,
+    message: DOCUMENT_WRITE_MESSAGE,
+  },
+  {
+    selector: 'JSXAttribute[name.name=/^(srcDoc|srcdoc|formAction|formaction)$/]',
+    message: 'srcDoc och formAction är förbjudna i appen (N3).',
+  },
+  {
+    selector: `JSXAttribute[name.name=${URL_ATTRIBUTES}][value.type='JSXExpressionContainer']`,
     message:
-      'innerHTML, outerHTML, insertAdjacentHTML, setAttribute och setAttributeNS är förbjudna i appen (S-07, R3).',
+      'href, src, action och xlinkHref får bara vara text i appen, aldrig ett uttryck, så att javascript:-adresser inte kan nå dem (N3).',
+  },
+  {
+    selector: "JSXAttribute[name.type='JSXNamespacedName']",
+    message: 'Attribut med namnrymd, till exempel xlink:href, är förbjudna i appen (N3).',
+  },
+  {
+    selector: `JSXOpeningElement[name.name=${exactly(FORBIDDEN_ELEMENTS)}]`,
+    message: `Elementen ${FORBIDDEN_ELEMENTS.join(', ')} laddar eller kör innehåll utanför Reacts kontroll och är förbjudna i appen (N3).`,
+  },
+  {
+    // window.document, globalThis.Reflect och liknande går annars förbi no-restricted-globals.
+    selector: 'MemberExpression[property.name=/^(XMLSerializer|Reflect|document)$/]',
+    message:
+      'document, Reflect och XMLSerializer är förbjudna i appen, också via window eller globalThis (N3).',
   },
   {
     selector:
@@ -231,6 +371,27 @@ const FORBIDDEN_DOM_SYNTAX_IN_APP = [
       'style med ett uttryck kan bära data som CSS. Använd en klass i en CSS-modul (RK-5, R3).',
   },
 ];
+
+/**
+ * I hookfilen får noden bara få focus() anropat (säkerhetsgranskningen av inkrement 2b). Inga
+ * andra anrop än useCallback och focus, och ingen annan egenskap än focus.
+ */
+const FOCUS_HOOK_FILE_RULES = [
+  {
+    selector: "MemberExpression:not([property.name='focus'])",
+    message:
+      'I useFocusOnMount.ts får noden bara få focus() anropat (säkerhetsgranskningen av inkrement 2b).',
+  },
+  {
+    selector:
+      "CallExpression:not([callee.type='MemberExpression'][callee.property.name='focus']):not([callee.type='Identifier'][callee.name='useCallback'])",
+    message:
+      'I useFocusOnMount.ts får bara useCallback och focus() anropas (säkerhetsgranskningen av inkrement 2b).',
+  },
+];
+
+/** Testfilerna i appen, som får använda document (FORBIDDEN_GLOBALS_IN_APP). */
+const APP_TEST_FILES = ['src/app/**/*.test.{ts,tsx}', 'src/app/**/__testdata__/**'];
 
 /**
  * Namn som börjar med versal, som React tolkar som en komponent när det står först i en
@@ -430,16 +591,40 @@ export default tseslint.config(
         ...FORBIDDEN_DOM_SYNTAX_IN_APP,
         ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
-      'no-restricted-globals': [
-        'error',
-        {
-          name: 'XMLSerializer',
-          message: 'XMLSerializer gör DOM till markup utanför Reacts kontroll (R3, RK-8).',
-        },
-      ],
+      'no-restricted-globals': ['error', ...FORBIDDEN_GLOBALS_IN_APP],
       'no-restricted-imports': [
         'error',
         { paths: FORBIDDEN_DOM_IMPORTS_IN_APP, patterns: [PLANSKISS_ONLY_IN_VIEW] },
+      ],
+    },
+  },
+
+  {
+    // main.tsx monterar appen i #root, och testerna läser fokus och DOM:en. Bara document
+    // släpps; Reflect och XMLSerializer är förbjudna också här (N3).
+    files: ['src/app/main.tsx', ...APP_TEST_FILES],
+    rules: {
+      'no-restricted-globals': [
+        'error',
+        ...FORBIDDEN_GLOBALS_IN_APP.filter((item) => item.name !== 'document'),
+      ],
+    },
+  },
+
+  {
+    // Den enda filen som definierar useFocusOnMount, och där får noden bara få focus()
+    // anropat (säkerhetsgranskningen av inkrement 2b).
+    files: ['src/app/fokus/useFocusOnMount.ts'],
+    rules: {
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
+          message: 'dangerouslySetInnerHTML är förbjudet i hela projektet (S-07, ADR 0001).',
+        },
+        ...FORBIDDEN_DOM_SYNTAX_IN_APP.filter((rule) => rule !== HOOK_NAME_RULE),
+        ...FOCUS_HOOK_FILE_RULES,
+        ...FORBIDDEN_PLANSKISSDATA_CAST,
       ],
     },
   },

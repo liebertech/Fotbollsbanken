@@ -99,3 +99,20 @@
   margin: 0;
   padding-left: var(--space-6);
 }
+
+/* Bekräftelsen efter ett byte (skisser/04-byt-ovning.md): text och ram, inte bara färg. */
+.confirmation {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+/* Kortets åtgärdsknappar (designsystem.md avsnitt 6.3), som i skisser/02-genererat-pass.md:
+   "Byt övning" och "Visa mer" bredvid varandra, och under varandra när raden inte räcker. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}

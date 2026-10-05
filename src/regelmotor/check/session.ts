@@ -126,6 +126,7 @@ function fitsInside(
  * @regel R-092
  * @regel R-093
  * @regel R-102
+ * @regel R-105
  */
 export function checkSession(session: Session): string[] {
   const problems: string[] = [];
@@ -159,11 +160,12 @@ export function checkSession(session: Session): string[] {
     problems.push('R-031: en vattenpaus är inte 2 minuter');
   }
 
-  // R-035: varje del som har moment ligger inom måltiden +/- 3 minuter.
+  // R-035: varje del som har moment ligger inom måltiden +/- 3 minuter. Efter ett byte
+  // kontrolleras varken R-035 eller tidsgränserna i R-036 (R-105).
   const emptyParts = rows
     .filter((row) => row.kind === 'empty')
     .map((row) => row.part as SessionPartFromBank);
-  for (const [part, target] of plan.targets) {
+  for (const [part, target] of session.swapped ? [] : plan.targets) {
     const minutes = rows
       .filter((row) => row.part === part && row.kind !== 'station' && row.kind !== 'empty')
       .reduce((sum, row) => sum + row.minutes, 0);
@@ -188,7 +190,7 @@ export function checkSession(session: Session): string[] {
   if (total !== session.totalMinutes) {
     problems.push('R-036: passets totaltid stämmer inte med raderna');
   }
-  if (emptyParts.length === 0) {
+  if (emptyParts.length === 0 && !session.swapped) {
     if (total > input.passlangd || total < input.passlangd - SESSION_SHORTFALL) {
       problems.push(`R-036: passet är ${total} minuter, begärt ${input.passlangd}`);
     }
@@ -356,13 +358,25 @@ export function checkSession(session: Session): string[] {
     }
   }
 
-  // R-082: nicktaket för fasen.
+  // R-082: nicktaket för fasen. Ett moment räknas en gång med sin hela tid, även när en
+  // paus delar det i perioder. Varje station räknas för sig med stationstiden.
   let headingMinutes = 0;
+  const countedBlocks = new Set<number>();
   for (const { row, exercise } of exerciseRows(rows)) {
     if (!exercise.fokusomraden.includes(FOCUS_AREA_HEADING)) {
       continue;
     }
-    headingMinutes += row.kind === 'station' ? (row.stationMinutes ?? 0) : blockMinutes(rows, row);
+    if (row.kind === 'station') {
+      headingMinutes += row.stationMinutes ?? 0;
+      continue;
+    }
+    if (row.block !== null) {
+      if (countedBlocks.has(row.block)) {
+        continue;
+      }
+      countedBlocks.add(row.block);
+    }
+    headingMinutes += blockMinutes(rows, row);
   }
   if (headingMinutes > HEADING_MINUTES_CAP[phase]) {
     problems.push(
