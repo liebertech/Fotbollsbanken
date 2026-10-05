@@ -190,11 +190,18 @@ jobs:
           umask 077
           ssh_dir="$RUNNER_TEMP/godkann-omgang-ssh"
           mkdir -p "$ssh_dir"
-          ssh-keyscan github.com > "$ssh_dir/known_hosts"
-          if [ ! -s "$ssh_dir/known_hosts" ]; then
-            echo "ssh-keyscan gav ingen värdnyckel för github.com. Pushen kan inte ske." >&2
-            exit 1
-          fi
+          # GitHubs publicerade SSH-värdnycklar, ordagrant ur https://api.github.com/meta, fältet
+          # ssh_keys, hämtade 2026-10-05. Fingeravtryck (SHA256) enligt samma svar:
+          # ED25519 +DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU,
+          # ECDSA p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM,
+          # RSA uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s.
+          # De står här i stället för ssh-keyscan, som litar på det första svar nätet ger (F9).
+          # Byter GitHub nycklar faller pushen på värdnyckeln, och raderna ska då bytas för hand.
+          cat > "$ssh_dir/known_hosts" <<'NYCKLAR'
+          github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+          github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+          github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+          NYCKLAR
           trap 'rm -f "$ssh_dir/nyckel"' EXIT
           printf '%s\n' "$DEPLOY_KEY" > "$ssh_dir/nyckel"
           # Deploy-nyckeln är registrerad på liebertech/Fotbollsbanken och är den enda aktör
