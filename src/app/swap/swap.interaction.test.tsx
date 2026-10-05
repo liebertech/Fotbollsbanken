@@ -13,8 +13,9 @@ import '@testing-library/jest-dom/vitest';
 import { bankExercise } from '../../regelmotor/__testdata__/bank-fixtur.ts';
 import { applySwap } from '../../regelmotor/index.ts';
 import type { BankExercise } from '../../regelmotor/index.ts';
-import { SJU_MOT_SJU } from '../../planskiss/__testdata__/skisser.ts';
+import { PAR_MED_TRIO, SJU_MOT_SJU } from '../../planskiss/__testdata__/skisser.ts';
 import { Generator } from '../Generator.tsx';
+import { SwapView } from './SwapView.tsx';
 import { FULL_BANK, INPUT, sessionOf } from '../__testdata__/session-fixture.ts';
 
 afterEach(() => {
@@ -315,5 +316,35 @@ describe('Berättelse 04: att byta', () => {
       .find((element) => within(element).queryByRole('heading', { name: 'Passning utan skiss' }));
     expect(within(card as HTMLElement).getByText('Bytt till: Passning utan skiss.')).toBeVisible();
     expect(screen.getByRole('status')).toHaveTextContent('Bytt till: Passning utan skiss.');
+  });
+});
+
+describe('Berättelse 06 kriterium 5: miniatyren i bytesvyn', () => {
+  it('ritar en parövning som den trio bytet ger vid udda antal (kvalitetssäkrarens fynd 4)', () => {
+    const par = alternative({
+      id: 'ova-par',
+      namn: 'Passning i par',
+      grupptyp: 'par',
+      spelare: { min: 2, max: 2 },
+      yta: { alla: { langd: 12, bredd: 8 } },
+      planskiss: PAR_MED_TRIO,
+    });
+    const bank = [...BANK, par];
+    const session = sessionOf(bank, { ...INPUT, spelare: 13 }, SEED);
+    const row = session.rows.find((item) => item.exercise?.namn === PRACTICE);
+    const place = { block: row?.block ?? 0, station: null };
+    const sizes = applySwap(session, place, par).rows.find(
+      (item) => item.exercise?.id === 'ova-par',
+    )?.layout?.sizes;
+    expect(sizes).toContain(3);
+
+    render(
+      <SwapView session={session} target={place} bank={bank} onChoose={vi.fn()} onBack={vi.fn()} />,
+    );
+    const card = screen
+      .getByRole('button', { name: 'Välj denna: Passning i par' })
+      .closest('li') as HTMLElement;
+    // Basskissen har två spelare. Med gruppindelningen ritas trion.
+    expect(card.querySelectorAll('svg [class*="spelare"]')).toHaveLength(3);
   });
 });

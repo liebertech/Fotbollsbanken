@@ -3,7 +3,13 @@
  * (ADR 0011 avsnitt 7).
  */
 import { describe, expect, it } from 'vitest';
-import { applySwap, checkSession, generateSession, swapOptions } from '../index.ts';
+import {
+  applySwap,
+  checkSession,
+  generateSession,
+  swapOptions,
+  swapOptionsWithLayout,
+} from '../index.ts';
 import { bankExercise, gameExercise } from '../__testdata__/bank-fixtur.ts';
 import { locateSwapTarget, nearestMinutes, trySwap } from './options.ts';
 import type { BankExercise } from '../origin.ts';
@@ -342,6 +348,15 @@ describe('R-104 i ett stationsmoment', () => {
     expect(efter.totalMinutes).toBe(pass.totalMinutes);
     expect(checkSession(efter)).toEqual([]);
   });
+
+  it('swapOptionsWithLayout ger stationens gruppindelning, samma som bytet ger raden', () => {
+    const ryms = ovaAlternativ({ id: 'ryms', tid: { kortast: 5, rekommenderad: 8, langst: 10 } });
+    const option = swapOptionsWithLayout(pass, stationA, [...stationsbank, ryms]).find(
+      (item) => item.exercise.id === 'ryms',
+    );
+    const rad = applySwap(pass, stationA, ryms).rows.find((row) => row.exercise?.id === 'ryms');
+    expect(option?.layout).toEqual(rad?.layout);
+  });
 });
 
 describe('R-082 Nicktaket efter byte', () => {
@@ -509,6 +524,13 @@ describe('Byte och grupperna (R-058)', () => {
     expect(rad?.layout?.oddSolution).toBe('trio');
     expect(rad?.layout?.oddText).toBe('En tredje spelare tar emot och byter in.');
     expect(checkSession(efter)).toEqual([]);
+
+    // Kvalitetssäkrarens fynd 4: alternativet visas med den indelning bytet ger.
+    const options = swapOptionsWithLayout(udda, ova, [...grundbank, par]);
+    expect(options.map((option) => option.exercise.id)).toEqual(
+      swapOptions(udda, ova, [...grundbank, par]).map((exercise) => exercise.id),
+    );
+    expect(options.find((option) => option.exercise.id === 'par')?.layout).toEqual(rad?.layout);
   });
 });
 

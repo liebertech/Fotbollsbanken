@@ -7,7 +7,7 @@
  */
 import { useId, useMemo, useState } from 'react';
 import { useFocusOnMount } from '../fokus/useFocusOnMount.ts';
-import { swapOptions } from '../../regelmotor/index.ts';
+import { swapOptionsWithLayout } from '../../regelmotor/index.ts';
 import type { BankExercise, ItemRef, Session } from '../../regelmotor/index.ts';
 import { KortSkiss } from '../planskiss/KortSkiss.tsx';
 import { FOCUS_AREA_NAMES, PART_NAMES, stationLabel } from '../text/names.ts';
@@ -71,14 +71,17 @@ function matches(exercise: BankExercise, query: string): boolean {
 export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewProps) {
   const texts = TEXTS.swap;
   const focusOnMount = useFocusOnMount();
-  const options = useMemo(() => swapOptions(session, target, bank), [session, target, bank]);
+  const options = useMemo(
+    () => swapOptionsWithLayout(session, target, bank),
+    [session, target, bank],
+  );
   const [query, setQuery] = useState('');
   const searchId = useId();
   const sectionId = useId();
   const replaced = replacedText(session, target);
   const visible = options
-    .filter((exercise) => matches(exercise, query))
-    .sort((a, b) => a.namn.localeCompare(b.namn, 'sv'));
+    .filter((option) => matches(option.exercise, query))
+    .sort((a, b) => a.exercise.namn.localeCompare(b.exercise.namn, 'sv'));
 
   return (
     <div className={styles.view}>
@@ -125,7 +128,7 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
               <p role="status">{texts.noSearchMatch}</p>
             ) : (
               <ul className={styles.list}>
-                {visible.map((exercise) => (
+                {visible.map(({ exercise, layout }) => (
                   <li key={exercise.id} className={styles.card}>
                     <h3 className={styles.name}>{exercise.namn}</h3>
                     <p className={styles.focus}>
@@ -137,11 +140,14 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
                         players: span(exercise.spelare.min, exercise.spelare.max),
                       })}
                     </p>
-                    {/* Miniatyren, som på passets kort (designsystem.md avsnitt 7). */}
+                    {/*
+                     * Miniatyren, som på passets kort (designsystem.md avsnitt 7), ritad för
+                     * den gruppindelning bytet skulle ge (berättelse 06, kriterium 5).
+                     */}
                     <KortSkiss
                       exercise={exercise}
                       format={session.input.spelform}
-                      layout={null}
+                      layout={layout}
                       placeKey={`alternativ-${exercise.id}`}
                     />
                     <button

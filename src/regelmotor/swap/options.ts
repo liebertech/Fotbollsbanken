@@ -326,8 +326,35 @@ export function swapOptions(
   ref: ItemRef,
   bank: readonly BankExercise[],
 ): BankExercise[] {
+  return swapOptionsWithLayout(session, ref, bank).map((option) => option.exercise);
+}
+
+/** Ett alternativ, och den gruppindelning det skulle få i passet om det byts in. */
+export interface SwapOption {
+  exercise: BankExercise;
+  /** Gruppindelningen enligt grupp 6 och 7, samma som `applySwap` ger raden. */
+  layout: Layout;
+}
+
+/**
+ * Samma alternativ som `swapOptions`, i samma ordning, med gruppindelningen som bytet skulle
+ * ge. Bytesvyn ritar miniatyren efter den, så att en parövning vid udda antal visas som
+ * den trio den blir (berättelse 06, kriterium 5).
+ *
+ * @regel R-104
+ */
+export function swapOptionsWithLayout(
+  session: Session,
+  ref: ItemRef,
+  bank: readonly BankExercise[],
+): SwapOption[] {
   const target = locateSwapTarget(session, ref);
-  return bank
-    .filter((candidate) => trySwap(session, target, candidate).ok)
-    .sort((a, b) => compareIds(a.id, b.id));
+  const options: SwapOption[] = [];
+  for (const candidate of bank) {
+    const result = trySwap(session, target, candidate);
+    if (result.ok) {
+      options.push({ exercise: candidate, layout: result.placement.layout });
+    }
+  }
+  return options.sort((a, b) => compareIds(a.exercise.id, b.exercise.id));
 }
