@@ -58,6 +58,39 @@ anpassning:
   fler_spelare: Gör ytan större och spela med fem utespelare i varje lag.
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 28
+    bredd: 18
+  beskrivning: >-
+    Yta 28 x 18 meter med mål och målvakt i varje lag, tre mot tre ute. A2 vinner bollen från
+    B2 och lag A anfaller direkt: A1 söker djup och får bollen innan lag B hinner organisera
+    sig.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 28, bredd: 18, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 9, storlek: 5mot5, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 28, y: 9, storlek: 5mot5, riktning: vanster }
+    - { id: mv-a, typ: spelare, x: 2, y: 9, lag: a, malvakt: true, etikett: MV }
+    - { id: mv-b, typ: spelare, x: 26, y: 9, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 10, y: 4, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 10, y: 9, lag: a, etikett: "A2" }
+    - { id: a3, typ: spelare, x: 10, y: 14, lag: a, etikett: "A3" }
+    - { id: b1, typ: spelare, x: 18, y: 4, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 18, y: 9, lag: b, etikett: "B2" }
+    - { id: b3, typ: spelare, x: 18, y: 14, lag: b, etikett: "B3" }
+    - { typ: boll, x: 17.3, y: 9 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: b2 }, till: { x: 15, y: 9 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 14, y: 9 }, ordning: 1, etikett: Vinner bollen }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 23, y: 6 }, via: [{ x: 15, y: 7 }], ordning: 2, etikett: Söker djup }
+    - { typ: passning, fran: { x: 14, y: 9 }, till: { x: 23, y: 6 }, ordning: 3 }
+    - { typ: skott, fran: { x: 23, y: 6 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 14, y: 2, lag: a }
+      - { x: 14, y: 16, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel i matchform.
 status: godkand
 granskning:

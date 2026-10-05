@@ -53,6 +53,34 @@ anpassning:
   fler_spelare: Lägg till fler rutor med fyra spelare i varje bredvid varandra.
   udda_antal: Den femte spelaren går in i rutan, en vilar och byter in efter någon minut.
   ledare: Utan ledare klarar sig övningen själv när den väl är igång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 10
+    bredd: 10
+  beskrivning: >-
+    Ruta 10 x 10 meter med en kon i varje hörn. Fyra spelare rör sig fritt och håller
+    igång en boll med passningar. Efter varje passning rör sig spelaren till en ny
+    öppen del av rutan.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 10, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 10, y: 0 }
+    - { typ: kon, x: 10, y: 10 }
+    - { typ: kon, x: 0, y: 10 }
+    - { id: p1, typ: spelare, x: 2, y: 2, lag: a }
+    - { id: p2, typ: spelare, x: 8, y: 2, lag: a }
+    - { id: p3, typ: spelare, x: 8, y: 8, lag: a }
+    - { id: p4, typ: spelare, x: 2, y: 8, lag: a }
+    - { typ: boll, x: 2.8, y: 2 }
+  rorelser:
+    - { typ: passning, fran: { objekt: p1 }, till: { objekt: p3 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: p1 }, till: { x: 5, y: 7 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: p2 }, till: { x: 5, y: 3 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: p1, riktning: 270, avstand: 3.5, etikett: "Vilande, byter in" }
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörlig ruta.
 status: godkand
 granskning:

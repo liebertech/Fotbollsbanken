@@ -67,6 +67,34 @@ anpassning:
   udda_antal: En sjätte spelare rullar in nya bollar i stället för att spela.
   ledare: En ledare per yta hinner både serva bollar och coacha. Med två ledare kan en serva och en
     coacha försvararna.
+planskiss:
+  version: 1
+  omrade:
+    langd: 25
+    bredd: 18
+  beskrivning: >-
+    Yta 25 x 18 meter med två minimål på högra kortlinjen, tio meter mellan sig.
+    Tre anfallare möter två försvarare. Den ena försvararen pressar bollhållaren
+    och den andra täcker bakom, så att anfallaren måste spela bakåt. Lag A
+    anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 25, bredd: 18, stil: streckad }
+    - { id: mal-1, typ: mal, x: 25, y: 4, storlek: smamal, riktning: vanster }
+    - { id: mal-2, typ: mal, x: 25, y: 14, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 4, y: 5, lag: a }
+    - { id: a2, typ: spelare, x: 5, y: 13, lag: a }
+    - { id: a3, typ: spelare, x: 10, y: 9, lag: a }
+    - { id: b1, typ: spelare, x: 15, y: 6, lag: b }
+    - { id: b2, typ: spelare, x: 15, y: 12, lag: b }
+    - { typ: boll, x: 10.8, y: 9 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 12, y: 8 }, ordning: 1, etikett: Pressar }
+    - { typ: lopning, fran: { objekt: b2 }, till: { x: 15, y: 9.5 }, ordning: 1, etikett: Täcker bakom }
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a2 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: a1, riktning: 180, avstand: 5, etikett: Rullar in bollar }
 kalla: Egen övning, inspirerad av vanliga övertalsövningar i försvarsspel.
 status: godkand
 granskning:

@@ -54,6 +54,44 @@ anpassning:
   fler_spelare: Gör ytan större när fler spelare är med och mindre när de är färre, ungefär 25 kvadratmeter per spelare.
   udda_antal: Alla har egen boll, så udda antal spelar ingen roll.
   ledare: Det räcker med en ledare som ropar ut nya krav.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 20
+  beskrivning: >-
+    Ruta 20 x 20 meter markerad med koner. Alla spelare har varsin boll och
+    dribblar fritt i ytan samtidigt, utan lag. Fler spelare fyller på i
+    samma mönster.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 20, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 10, y: 0 }
+    - { typ: kon, x: 20, y: 0 }
+    - { typ: kon, x: 20, y: 20 }
+    - { typ: kon, x: 10, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { typ: spelare, x: 5, y: 5, lag: neutral }
+    - { typ: boll, x: 5.3, y: 5 }
+    - { typ: spelare, x: 15, y: 5, lag: neutral }
+    - { typ: boll, x: 15.3, y: 5 }
+    - { typ: spelare, x: 5, y: 15, lag: neutral }
+    - { typ: boll, x: 5.3, y: 15 }
+    - { typ: spelare, x: 15, y: 15, lag: neutral }
+    - { typ: boll, x: 15.3, y: 15 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 10, y: 5, lag: neutral }
+      - { x: 5, y: 10, lag: neutral }
+      - { x: 15, y: 10, lag: neutral }
+      - { x: 10, y: 15, lag: neutral }
+      - { x: 10, y: 10, lag: neutral }
+      - { x: 7.5, y: 7.5, lag: neutral }
+      - { x: 12.5, y: 7.5, lag: neutral }
+      - { x: 7.5, y: 12.5, lag: neutral }
+      - { x: 12.5, y: 12.5, lag: neutral }
+      - { x: 2.5, y: 10, lag: neutral }
 kalla: Egen övning, inspirerad av allmänt kända bollkänsloövningar i ruta.
 status: godkand
 granskning:
