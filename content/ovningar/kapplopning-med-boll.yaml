@@ -56,7 +56,12 @@ varianter:
   svarare: Kör två varv i följd utan paus emellan.
 anpassning:
   fler_spelare: Bygg fler banor bredvid varandra med samma avstånd och mått.
-  udda_antal: Tre spelare bildar ett lag och springer var sin sträcka som en stafett.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio på samma bana. Två tävlar och den
+    tredje väntar bakom startlinjen, bakom vänstra banan. Efter varje omgång
+    går den som väntade in i vänstra banan, den som sprang där flyttar till
+    högra banan och den som sprang i högra banan lämnar över sin boll och
+    väntar. Då springer alla två omgångar och vilar en.
   ledare: En ledare räcker för att starta omgångarna. Fler ledare kan starta flera banor samtidigt.
 planskiss:
   version: 1
@@ -88,6 +93,10 @@ planskiss:
       till: { x: 0.6, y: 4 }
       via: [{ x: 21, y: 2 }, { x: 21, y: 5 }]
       ordning: 1
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp1, riktning: 180, avstand: 2, etikett: Byter in nästa omgång }
 kalla: Egen övning, inspirerad av vanliga kapplöpningslekar med boll.
 status: godkand
 granskning:
@@ -114,3 +123,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #8."
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      lade till en kö i planskissen som visar den tredje spelaren bakom
+      startlinjen, enligt beslutet 2026-10-02.

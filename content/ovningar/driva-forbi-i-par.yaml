@@ -52,7 +52,10 @@ varianter:
   svarare: Anfallaren har bara tre toucher på sig innan porten ska passeras.
 anpassning:
   fler_spelare: Bygg fler rutor bredvid varandra med samma mått.
-  udda_antal: Tre spelare delar en ruta och roterar, två spelar medan en väntar på sin tur.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid anfallarens
+    port. Efter varje försök blir anfallaren försvarare, försvararen går ut
+    och den som väntade får bollen och anfaller.
   ledare: Övningen är självgående när paren har fått en ruta och sett ett exempel.
 planskiss:
   version: 1
@@ -80,6 +83,10 @@ planskiss:
       via: [{ x: 3, y: 6.5 }]
       ordning: 1
     - { typ: lopning, fran: { objekt: fors }, till: { x: 3, y: 3 }, ordning: 1 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: anf, riktning: 180, avstand: 2, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-rutor med portar.
 status: godkand
 granskning:
@@ -111,3 +118,10 @@ granskning:
       Ingen ytreferens: för liten eller ingen plandel med rätt form. Rutan 6 x 6 meter är mindre än
       allt som finns uppritat på en plan, och portarna i var ände är måttkritiska för duellen
       (ytreferenser.md, avsnitt 4).
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      lade till en kö i planskissen som visar den tredje spelaren vid
+      anfallarens port, enligt beslutet 2026-10-02.

@@ -311,3 +311,60 @@ Jag läste skissdatan i alla 24 filer som skulle åtgärdas och jämförde den m
 
 1. **Texten i `tva-touch-i-triangel`:** ska övningens beskrivning ändras till "två sidor är 8 meter", så att den stämmer med lösningen för udda antal och med skissen? Det ändrar en godkänd övning och går därför genom redaktören. Rekommendation: ja, vid nästa revidering.
 2. **Beslut 1 från första omgången, par vid udda antal,** gäller nu också `slalomdribbling-mot-forsvarare`.
+
+## Parövningar vid udda antal (2026-10-05)
+
+Granskningen gäller de sex parövningarna på grenen `omgang/par-udda-antal`: den omskrivna texten i `anpassning.udda_antal` och kön i `planskiss.skalning`. Jag har prövat fyra saker per övning: att texten stämmer med organisationen och med R-058 (en trio vid udda antal), att kön står där texten säger att den tredje står, att kön står utanför ytan, minst cirka 1,3 m från spelare, koner och pilar och inte i en skottlinje, och att etiketten återger lösningen.
+
+Köns läge är räknat som ritmotorn räknar det (`src/planskiss/skalning.ts`): den första köspelaren står `avstand` meter från startspelaren i `riktning`. Symbolens diameter är 1,2 m på alla sex ytorna, så en köspelare står helt utanför ytan först när mitten ligger minst 0,6 m utanför linjen. Pilarna med `via` är räknade som Bézierkurvor.
+
+### Genomgående
+
+- **Två av mina egna mallar hade en lucka i rotationen.** "Byter in för den som spelat två i rad" säger inte vem som går ut efter första duellen eller omgången, eftersom båda då har spelat en. Felet låg i min tabell, inte hos övningsförfattaren. Texterna nedan ger en rotation där alla spelar två gånger och vilar en, och där första bytet är bestämt.
+- **Riktningen ska vara fast i trion.** Kön kan bara stå på ett ställe. När den tredje väntar vid anfallarens start måste anfallet alltid gå åt samma håll, och den som går ut ska gå till samma ställe.
+- **Ingen kö står i en skottlinje.** I de övningar där anfallet har ett eget startmål eller en egen port står kön bakom eller bredvid det, och i trion anfalls det målet aldrig.
+
+### Dom per övning
+
+**`en-mot-en-till-smamal`: åtgärda (bara texten).**
+- Kön håller. Den tredje står på `(4, 8.9)`, 0,9 m utanför nedre sidlinjen och intill reservbollen på `(5, 8.5)`, som texten säger. Avståndet till närmaste pil, löpningens slut på `(6.5, 5)`, är 4,6 m. Dribblingen och skottet går i övre halvan av ytan, och inget skott går mot kön. Etiketten "Väntar med ny boll" återger lösningen.
+- Texten: efter första duellen har ingen spelat två dueller i rad, och efter andra har båda gjort det. Ersätt `anpassning.udda_antal` med:
+  `Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan med reservbollen. Efter varje duell går hen in med bollen och byter plats med den som har spelat längst. Efter första duellen går den som startade med bollen ut. Då spelar alla två dueller och vilar en.`
+
+**`dribbling-mot-tidspress`: håller.**
+- Rotationen är entydig: anfallare blir försvarare, försvararen går till starten, den som väntade anfaller. Alla har varje roll en gång per varv, och riktningen är fast mot porten. Att halvminutsvilan kan strykas stämmer med min bedömning 2026-09-21: i trion vilar var och en ett försök av tre.
+- Kön står på `(-1, 5)`, bakom anfallaren vid starten och 1 m utanför kortlinjen. Hörnkonerna är 5,1 m bort, och dribblingen och löpningen går åt andra hållet. Porten står i bortre änden, så kön står inte i någon skottlinje. Etiketten "Nästa anfallare väntar" återger lösningen.
+
+**`malvaktstraning-grunder`: åtgärda.**
+- Kön som form är rätt. README säger `platser` när den tredje får en plats i övningen, till exempel som kastare. Men här kastar de två varannan gång från samma plats, och den som inte kastar väntar. Det är en roll utanför paret, alltså en kö, och etiketten "Två kastare turas om" återger lösningen.
+- Kön står på `(5.5, 5.5)`, bara 0,5 m utanför den nedre linjen, så symbolen ligger på linjen. Ändra kön till `{ vid: kastare, riktning: 90, avstand: 3.5, etikett: Två kastare turas om }`. Då står den tredje på `(5.5, 6)`, helt utanför ytan och 3,5 m från kastlinjen. Platsen ryms inom marginalen.
+- Texten säger inte var den andra kastaren står, och inte vem som blir målvakt. Ersätt `anpassning.udda_antal` med:
+  `Vid udda antal blir en grupp en trio. En är målvakt och två kastar varannan gång från samma plats. Den som inte kastar står vid sidan. Byt målvakt efter fem bollar så att alla tre står i mål. Ingen behöver vila.`
+
+**`kapplopning-med-boll`: åtgärda (bara texten).**
+- Kön håller. Den tredje står på `(-1.7, 1.5)`, 1,7 m bakom startlinjen och bakom spelare 1. Spelare 2 är 2,8 m bort och slutet på spelare 1:s dribbling 2,3 m bort. Etiketten "Byter in nästa omgång" återger lösningen.
+- Texten har samma lucka som `en-mot-en-till-smamal`: efter första omgången har ingen sprungit två i rad. En fast banväxling är enklast för 8–9-åringar. Spelare 1 springer i den vänstra banan sett i löpriktningen, och kön står bakom den. Ersätt `anpassning.udda_antal` med:
+  `Vid udda antal blir en grupp en trio på samma bana. Två tävlar och den tredje väntar bakom startlinjen, bakom vänstra banan. Efter varje omgång går den som väntade in i vänstra banan, den som sprang där flyttar till högra banan och den som sprang i högra banan lämnar över sin boll och väntar. Då springer alla två omgångar och vilar en.`
+
+**`driva-forbi-i-par`: håller.**
+- Rotationen är entydig och riktningen fast: anfallet går alltid mot försvararens port. Den som går ut blir den som väntar vid anfallarens port.
+- Kön står på `(-1.5, 3)`, bakom anfallarens port och 0,9 m utanför ytan. Portens koner är 1,8 m bort, och dribblingen böjer av åt höger direkt från anfallaren. I trion anfalls anfallarens port aldrig, så kön står inte i en skottlinje. Etiketten "Nästa anfallare väntar" återger lösningen.
+- Förslag, som inte krävs: skriv "försvararen går ut och väntar vid anfallarens port" i stället för "försvararen går ut".
+
+**`slalomdribbling-mot-forsvarare`: åtgärda (bara texten).**
+- Kön håller. Den tredje står på `(-1.5, 8.5)`, utanför kortlinjen snett nedanför anfallarens konmål. Konerna på `(0, 7)` och `(0, 10)` är 2,1–2,2 m bort, och dribblingen går i övre halvan av ytan. I trion anfalls anfallarens konmål aldrig. Etiketten "Nästa anfallare väntar" återger lösningen.
+- Texten: "försvararen går till andra konmålet" kan läsas som konmålet i bortre änden. Då skulle anfallet byta håll varannan gång och den som väntar stå på olika ställen, och då stämmer inte kön. Ersätt `anpassning.udda_antal` med:
+  `Vid udda antal blir en grupp en trio. Anfallet går alltid åt samma håll. Den tredje väntar vid anfallarens konmål. Efter varje försök blir anfallaren försvarare, försvararen går till anfallarens konmål och väntar, och den som väntade får bollen och anfaller.`
+
+### Sammanfattning
+
+| Övning | Dom | Vad som ändras |
+|---|---|---|
+| `en-mot-en-till-smamal` | åtgärda | Texten |
+| `dribbling-mot-tidspress` | håller | – |
+| `malvaktstraning-grunder` | åtgärda | Texten och köns `avstand` till 3.5 |
+| `kapplopning-med-boll` | åtgärda | Texten |
+| `driva-forbi-i-par` | håller | – |
+| `slalomdribbling-mot-forsvarare` | åtgärda | Texten |
+
+Alla sex följer R-058: en trio vid udda antal och aldrig en grupp större än tre. Ingen etikett och ingen text innehåller namn. Alla etiketter är högst 24 tecken.

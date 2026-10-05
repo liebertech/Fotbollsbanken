@@ -53,7 +53,10 @@ varianter:
   svarare: Kompisen kastar bollen lite åt sidan så att målvakten måste förflytta sig och falla mjukt.
 anpassning:
   fler_spelare: Bygg fler portar bredvid varandra med samma mått.
-  udda_antal: Tre spelare delar en port och roterar som målvakt, kastare och vilande.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. En är målvakt och två kastar
+    varannan gång från samma plats. Den som inte kastar står vid sidan. Byt
+    målvakt efter fem bollar så att alla tre står i mål. Ingen behöver vila.
   ledare: Övningen är självgående efter att ledaren visat grundställning och fångteknik en gång.
 planskiss:
   version: 1
@@ -74,6 +77,10 @@ planskiss:
   rorelser:
     - { typ: passning, fran: { objekt: kastare }, till: { objekt: mv }, etikett: Kast, ordning: 1 }
     - { typ: passning, fran: { objekt: mv }, till: { objekt: kastare }, etikett: Rullar ut, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: kastare, riktning: 90, avstand: 3.5, etikett: Två kastare turas om }
 kalla: Egen övning, inspirerad av vanlig grundträning för unga målvakter.
 status: godkand
 granskning:
@@ -107,3 +114,10 @@ granskning:
       Ingen ytreferens: station med fasta positioner. Det som styr övningen är kastavståndet fem
       meter och den lilla porten, inte ytans storlek, och 6 x 5 meter är dessutom mindre än allt som
       finns uppritat på en plan (ytreferenser.md, avsnitt 4).
+  - datum: 2026-10-05
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
+      lade till en kö i planskissen som visar den tredje spelaren vid kastarens
+      plats, enligt beslutet 2026-10-02.
