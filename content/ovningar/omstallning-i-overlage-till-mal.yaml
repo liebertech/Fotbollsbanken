@@ -108,5 +108,20 @@ planskiss:
       - { x: 18, y: 17, lag: neutral }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar
   och tidspress.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Jokrar med en regel om åtta sekunder godtas. Regeln gör att bollen byter lag även när
+      överläget är stort. Ytan håller: 90,0 kvadratmeter per spelare vid tio, exakt golvet, och
+      180 vid fem mot taket 181. Övningen övar inte djupled, och ytreferensen godtas. Fem saker
+      ska ändras. 1. Aldrig tre jokrar. Udda antal ger en joker och jämnt antal två. Skriv ut
+      fördelningen för fem till tio spelare i organisationen och i lösningen för udda antal. 2.
+      Det finns ett mål i varje ände. Skriv "motståndarnas mål" och försvara kompakt framför ert
+      mål. Regeln gäller varje anfall, också efter en ny boll från kortlinjen. 3. Anpassningen
+      för fler spelare säger emot ytan och spelare.max. Bygg en andra yta över tio. 4. Den
+      svårare varianten är sex sekunder, utan "med sin joker". 5. Skissen visade ingen
+      omställning och slutade med ett skott från 26 meter. Nya lägen, rörelser, jokerns plats
+      och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B8.

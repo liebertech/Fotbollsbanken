@@ -96,5 +96,20 @@ planskiss:
     koer:
       - { vid: sp-k1, riktning: 180, avstand: 1.5, etikett: Kö }
 kalla: Egen övning, inspirerad av vanliga avslutsstationer med rotation.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Skottavståndet på minst tio meter, köns plats utanför ytan och bortom skottlinjen och
+      ytreferensen håller. Golvet utan motståndare gäller, eftersom en målvakt inte gör övningen
+      till en övning med motståndare. Fyra saker ska ändras. 1. Upp till sju i kö är för mycket
+      väntan. Sätt spelare.max till 7, och skriv att en grupp till byggs vid ett annat mål när ni
+      är fler. 2. Rotationen och målvakten säger emot varandra. Utespelarna roterar passare,
+      avslutare och sist i kön, och målvakten står en serie om sex till åtta skott, helst lagets
+      egen målvakt eller en som vill. Ingen tvingas stå i mål. 3. En 15-19-åring skjuter hårt
+      också från tio meter. Den som står i mål ska ha målvaktshandskar, och står en utespelare i
+      mål placerar avslutaren skottet. Lägg till handskarna som ovrigt i materialet och ändra
+      den fjärde coachningspunkten. 4. Skissen: rotationspilen ska gå från avslutaren till kön.
+      Exakt pil och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B5.

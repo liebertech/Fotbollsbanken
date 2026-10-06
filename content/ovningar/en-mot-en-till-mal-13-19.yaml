@@ -102,5 +102,20 @@ planskiss:
       - { vid: anf, riktning: 90, avstand: 1.5, etikett: Väntar med reservboll }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i
   ungdomsfotboll.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Duellen är rätt, med startavstånden 12 och 6 meter och en försvarare som väntar tills
+      anfallaren rört bollen. Paret har 96 kvadratmeter per spelare, över golvet 90. Räknad som
+      Bézierkurva håller dribblingen 1,4 meter till försvararen. Ingen ytreferens: duell med
+      startavstånd (ytreferenser.md, avsnitt 4). Tre saker ska ändras. 1. Trion säger inte vem
+      som går vart. Anfallet går alltid mot samma mål. Den tredje väntar med en boll bakom
+      anfallarens start. Anfallaren blir försvarare, försvararen hämtar bollen och väntar där,
+      och den som väntade anfaller. 2. Kön stod inne i ytan, 1,5 meter från anfallaren. Ändra
+      den till riktning 0, avstand 5 och etiketten "Nästa anfallare väntar", och skriv trion i
+      skissens beskrivning. 3. Snabbhet kräver vila. Kör serier om fyra till sex dueller per
+      spelare med en minuts vila emellan, och starta nästa duell när båda står på plats. Exakta
+      texter står i docs/doman/granskning-omgang-5.md, B6.

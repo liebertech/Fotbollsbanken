@@ -117,5 +117,21 @@ planskiss:
       - { x: 33, y: 45, lag: b }
 kalla: Egen övning, inspirerad av vanligt matchspel i stor skala med
   varierande lagstorlek.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Att räkna antalen med målvakt är rätt, och offside och inspark gör att övningen inte ska
+      märkas 7mot7. Fem saker ska ändras. 1. Med 9mot9 och 19-22 spelare blir spelet tio mot tio
+      eller elva mot elva, och det står emot passuppbyggnad.md ("i dagens spelform eller
+      mindre") och F1(c). Sätt spelare.max till 18 och namnet till "Större spel, sex mot sex
+      till nio mot nio". 2. Vid tolv spelare är ytan 270,8 kvadratmeter per spelare, 50 procent
+      över taket 181 för 13-14 år. Skriv att 12-15 spelare spelar på ungefär 50 x 40 meter och
+      att hela ytan används från 16. Lägg till koner i materialet. 3. Anpassningen för fler
+      spelare ska säga: välj ett mindre spel över arton, två matcher från tjugofyra. 4. Den
+      svårare varianten tvingar fram långa bollar och säger emot syftet. Byt mot hög press när
+      målvakten har bollen och kort utspel längs marken. 5. Skissen slutade med ett skott från
+      36 meter, 1,6 meter förbi en försvarare. Nya rörelser, bollens läge och de sex platser som
+      ska stå kvar står i docs/doman/granskning-omgang-5.md, B2.

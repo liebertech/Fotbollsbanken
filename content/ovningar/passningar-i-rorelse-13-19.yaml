@@ -104,5 +104,16 @@ planskiss:
       - { x: 13, y: 10, lag: a }
       - { x: 10, y: 7, lag: a }
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörelse.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ytan håller: 400 / 16 = 25,0 kvadratmeter per spelare, exakt golvet utan motståndare. Syftet
+      och coachningspunkterna är rätt, och ytreferensen stämmer. Två saker ska ändras. 1. Två
+      bollar för sexton spelare ger för få bollkontakter. Skriv två bollar vid fyra till åtta
+      spelare, tre vid nio till tolv och fyra vid tretton till sexton, och ändra materialet till
+      fyra bollar. 2. I skissen gick passningen P2 till P3 genom platsen (10, 10), som fylls vid
+      nio spelare eller fler. Nya rörelser står i docs/doman/granskning-omgang-5.md, B3. Förslag,
+      som inte krävs: längsta tid 20 minuter.

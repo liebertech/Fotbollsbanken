@@ -106,5 +106,19 @@ planskiss:
     - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans }, ordning: 6 }
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF
   rekommenderar för 13-19 år.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Ledarbehov 1 är rätt. Ytan godtas enligt undantag 3, stationer med minst två meter mellan
+      arbetsplatserna. Ingen ytreferens: stationer (ytreferenser.md, avsnitt 4). Tre saker ska
+      ändras. 1. Sätt spelare.min till 6. Balansstationen får två även vid sex spelare, och
+      organisationen säger redan att färre stationer körs i en liten grupp. 2. Sexton platser
+      för sexton spelare räcker inte när blocken roterar, eftersom ett block om tre kommer till
+      balansen och till utfallsstegen. Skriv att varje station tar upp till tre, och att
+      balansstationen har minst två där två turas om att knuffa när de är tre. 3. Skissen: ta
+      bort ordning från de sex löpningarna eftersom alla roterar samtidigt, ge den första
+      etiketten "Alla roterar medurs", ta bort spelaren på (13, 13) och lägg till en ledare på
+      (8, 7). Ny beskrivning till skissen står i docs/doman/granskning-omgang-5.md, B4.

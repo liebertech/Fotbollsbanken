@@ -119,5 +119,19 @@ planskiss:
       - { x: 35, y: 10, lag: a }
       - { x: 9, y: 19, lag: b }
 kalla: Egen övning, inspirerad av vanligt positionsspel med zoner och riktning.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen är bra och skissen håller: alla pilar håller minst två meter till motståndare och
+      platser. Ytan är 98 kvadratmeter per spelare vid tolv, över golvet 90. Vid sex är den 196,
+      8 procent över taket 181. Det godtas enligt F2, eftersom zonindelningen ska fungera från tre
+      mot tre till sex mot sex och 42 meter är det minsta djupledskriteriet tillåter (minst 40).
+      Ytreferensen stämmer. Zonregeln godtas, men den ska förtydligas. 1. Skriv att någon i
+      laget ska ha tagit emot en passning i mittzonen, och att ett lag som vinner bollen i
+      anfallszonen får göra mål utan krav. Annars straffar regeln den press som den fjärde
+      coachningspunkten ber om. 2. Efter mål, och när bollen går ut över en kortlinje, startar
+      laget med bollen i sin egen zon. 3. Svårare variant: två olika spelare ska ha tagit emot i
+      mittzonen. Exakta texter står i docs/doman/granskning-omgang-5.md, B7.

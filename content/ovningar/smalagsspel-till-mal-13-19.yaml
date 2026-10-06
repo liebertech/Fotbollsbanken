@@ -106,5 +106,19 @@ planskiss:
       - { x: 14, y: 17, lag: a }
       - { x: 22, y: 17, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål utan målvakt.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Fotbollen är rätt: litet spel till minimål med brett spann, självgående och bra för 13-19
+      år. Ytan håller: 720 / 8 = 90,0 kvadratmeter per spelare, exakt golvet 90, och 720 / 4 =
+      180 mot taket 181. Märkningen 7mot7 följer F1(c), eftersom spelet är mindre än alla tre
+      spelformerna. Ytreferensen stämmer. Tre saker ska ändras. 1. "Vanliga regler" betyder
+      offside för ett 9 mot 9- eller 11 mot 11-lag, och då gäller minsta längd 40 meter. Skriv
+      att det spelas utan offside och utan målvakt, och att bollen sätts i spel med inspel eller
+      indribbling. 2. Två mot två i upp till 40 minuter utan vila är ett uthållighetspass. Skriv
+      perioder om fyra till sex minuter med en till två minuters vila, två till tre minuter vid
+      två mot två. 3. Skissen slutade med ett skott från 26 meter på egen planhalva. Nya
+      rörelser och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B1.
