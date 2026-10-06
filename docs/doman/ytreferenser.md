@@ -195,7 +195,7 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 
 *Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
 
-### 6.2 Utan referens (12 övningar, och en från omgång 5)
+### 6.2 Utan referens (12 övningar, och två från omgång 5)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -212,8 +212,7 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | main |
 | `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | main |
 | `skadeforebyggande-uppvarmning-13-19` | 7, 9 och 11 mot 11 | 16 × 14 | Station. Avståndet mellan arbetsplatserna styr, och ytan följer undantag 3 | omgang/5-paket-b |
-
-`en-mot-en-till-mal-13-19` (16 × 12, duell med startavstånd, ingen referens) förs in här när den är granskad.
+| `en-mot-en-till-mal-13-19` | 7, 9 och 11 mot 11 | 16 × 12 | Duell med startavstånd. Anfallaren startar 12 och försvararen 6 meter från målet | omgang/5-paket-b |
 
 ### 6.3 Anmärkningar
 

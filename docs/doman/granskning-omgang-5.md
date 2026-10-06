@@ -219,3 +219,7 @@ Sex rader är införda i `ytreferenser.md`, avsnitt 6.1: B1, B2, B3, B5, B7 och 
 | B8 `omstallning-i-overlage-till-mal` | granskad |
 
 Ingen etikett och ingen text innehåller namn. Det som står under *Kvarstår* och *Beslut som behövs* ovan gäller fortfarande. Punkten om att ytreferenserna ska föras in är gjord för sju av de åtta.
+
+### B6, tredje kontrollen (2026-10-06)
+
+**B6 `en-mot-en-till-mal-13-19`: granskad.** Huvudsessionen förde in rättelsen (commit 729056b). Den sista meningen i `beskrivning` står nu exakt som i domen ovan: "…rullar in den till den nya anfallaren. Nästa duell startar när båda står på plats." Den stämmer med organisationen. Jag har läst hela filen, och inget annat är ändrat. B6 är införd i `ytreferenser.md`, avsnitt 6.2, som duell med startavstånd. Därmed är alla åtta övningar i paket B granskade och alla åtta införda i ytreferenserna.
