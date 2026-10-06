@@ -1,0 +1,110 @@
+schema: 1
+id: smalagsspel-till-mal-13-19
+namn: Smålagsspel 2 mot 2 till 4 mot 4, till mål
+syfte: Spelarna ska hålla bollen i laget, sprida ut sig i bredd och ställa om
+  snabbt efter bollförlust, i ett litet matchspel med täta avslutsförsök.
+beskrivning: |
+  Två lag om två till fyra spelare möts på en yta om 36 x 20 meter med ett
+  minimål, ungefär en meter brett, i var ände och utan målvakt. Lagen spelar
+  fri match med vanliga regler i litet format. Laget med boll ska sprida ut
+  sig i bredd och leta efter en öppning till mål, och så snart ett lag
+  tappar bollen ska det pressa tillbaka direkt för att vinna den igen.
+organisation: |
+  Ett lag om två till fyra spelare mot ett lag av samma storlek per yta.
+  Ytans fyra hörn markeras med koner. Lagen byter sida efter halva tiden.
+  Vid fler spelare läggs fler ytor av samma mått bredvid varandra, med tre
+  meters mellanrum.
+fokusomraden:
+  - spelbarhet
+  - avslut
+  - omstallning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 8
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 20
+  langst: 40
+yta:
+  alla:
+    langd: 36
+    bredd: 20
+ytreferens:
+  alla: ungefär stora planens straffområde
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans fyra hörn
+coachningspunkter:
+  - Sprid ut dig i bredd och djup så att du är spelbar för den som har bollen.
+  - Skjut tidigt när vägen till det lilla målet är öppen.
+  - Pressa bollhållaren direkt när ditt lag tappar bollen.
+  - Rör dig till en ny yta direkt efter din egen passning.
+varianter:
+  lattare: Alla mål räknas lika, utan krav på antal passningar innan skott.
+  svarare: Ett mål räknas bara om laget gjort minst tre passningar i följd
+    innan skottet.
+anpassning:
+  fler_spelare: Lägg fler ytor om 36 x 20 meter bredvid varandra, med tre
+    meters mellanrum, hellre än fler spelare på samma yta.
+  udda_antal: Ett lag spelar med en spelare mer än det andra under hela
+    perioden.
+  ledare: Övningen är självgående. Ledaren dömer tvistiga lägen, växlar lag
+    vid behov och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 36
+    bredd: 20
+  beskrivning: >-
+    Yta 36 x 20 meter med ett minimål i varje kortsida, utan målvakt. Två mot
+    två i grundläget, med fler spelare vid fler än fyra per lag. Lag A
+    anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 36, y: 10, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 36, y: 0 }
+    - { typ: kon, x: 36, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { id: a1, typ: spelare, x: 10, y: 6, lag: a }
+    - { id: a2, typ: spelare, x: 10, y: 14, lag: a }
+    - { id: b1, typ: spelare, x: 26, y: 6, lag: b }
+    - { id: b2, typ: spelare, x: 26, y: 14, lag: b }
+    - { typ: boll, x: 10.9, y: 6 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 14, y: 3, lag: a }
+      - { x: 22, y: 3, lag: b }
+      - { x: 14, y: 17, lag: a }
+      - { x: 22, y: 17, lag: b }
+kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål utan målvakt.
+status: utkast
+granskning: []
