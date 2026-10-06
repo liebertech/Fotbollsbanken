@@ -132,8 +132,8 @@ kvar.
 - Det ägaren godkänner i miljön är exakt den lista hen såg.
 
 **Nackdelar och risker**
-- **Mänskligt godkännande vilar på en regel, inte bara på teknik.** `gh` är inloggat som användaren med skrivrätt där agenterna kör, och miljön har `can_admins_bypass`. Användaren beslutade 2026-10-05 att behålla skrivrätten. CLAUDE.md säger i stället uttryckligen att bara användaren mergar och godkänner miljön, och gör det i webbläsaren (säkerhetsgranskningen, F4).
 
+- **Mänskligt godkännande vilar på en regel, inte bara på teknik.** `gh` är inloggat som användaren med skrivrätt där agenterna kör, och miljön har `can_admins_bypass`. Användaren beslutade 2026-10-05 att behålla skrivrätten. CLAUDE.md säger i stället uttryckligen att bara användaren mergar och godkänner miljön, och gör det i webbläsaren (säkerhetsgranskningen, F4).
 - **Granskningsraden nämner den merge som förde in texten, inte nödvändigtvis den omgång som
   först lade fram övningen.** De 16 övningarna från #15 ändrades i #17 och knyts därför till #17.
   Det är sant om texten, men det kan förvåna. Användaren har beslutat att det är så det ska vara,
