@@ -576,7 +576,10 @@ const sleepSync = (ms: number): void => {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 };
 
-/** Fem försök över knappt en halv minut. Kopplingen commit → pull request byggs med fördröjning. */
+/**
+ * Fem försök med sammanlagt 30 sekunders väntan däremellan (2 + 4 + 8 + 16 s). Kopplingen
+ * commit → pull request byggs med fördröjning.
+ */
 export const DEFAULT_RETRY: RetryOptions = {
   attempts: 5,
   delay: (attempt) => 2000 * 2 ** (attempt - 1),
