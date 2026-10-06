@@ -2,7 +2,12 @@
  * Mäter hur ofta regelmotorn svarar "inget pass", och för vilka val, mot den riktiga
  * övningsbanken i content/ovningar/. Skriver en rapport till docs/doman/.
  *
- *   npm run tackning
+ *   npm run tackning               hela svepet, skriver docs/doman/tackning-<datum>.md
+ *   npm run tackning -- --snabb    bara de föreslagna cellerna, skriver ...-snabb.md
+ *
+ * Rapporten redovisar också måtten per cell (ålder gånger spelform, föreslagen eller granne)
+ * och jämför dem med målen i docs/doman/plan-omgang-5.md. Indelningen och måtten ligger i
+ * `scripts/tackning-celler.ts`, som har egna tester.
  *
  * Syftet är att ge fotbollsexperten siffror att planera nästa omgång övningar efter, inte att
  * tolka dem fotbollsfackligt. Skriptet ändrar aldrig filer i content/ovningar/: den andra
@@ -40,6 +45,25 @@ import {
   phaseForAge,
 } from '../src/regelmotor/keys.ts';
 import { exerciseSchema } from '../src/regelmotor/schema/ovning.ts';
+import {
+  type CellKind,
+  type CellStats,
+  PLAN_GOALS,
+  addOutcome,
+  ageCellKey,
+  cellKind,
+  classifyOutcome,
+  emptyCellStats,
+  formatGameFormat,
+  localDate,
+  meetsGoal,
+  onlySuggested,
+  parseOptions,
+  planCellLabel,
+  reportPath,
+  rollUpToPlanCells,
+  sumByKind,
+} from './tackning-celler.ts';
 import { publishExercise } from '../src/regelmotor/schema/published.ts';
 import type {
   AreaKey,
@@ -277,6 +301,8 @@ interface Aggregate {
   substituteMapping: Map<string, number>;
   /** Körfall som fick orsaken "gar-inte-att-kombinera", för frökänslighetskontrollen. */
   combinationFailures: SweepCase[];
+  /** Per cell på åldersnivå (`ageCellKey`), från båda sveparna. */
+  cells: Map<string, CellStats>;
 }
 
 function newAggregate(): Aggregate {
@@ -295,6 +321,7 @@ function newAggregate(): Aggregate {
     coreBySpelform: new Map(),
     substituteMapping: new Map(),
     combinationFailures: [],
+    cells: new Map(),
   };
 }
 
@@ -321,6 +348,10 @@ function recordAttempt(
   const isNone = result.kind === 'none';
   bumpPair(agg.ageTotals, kase.input.alder, isNone);
   bumpPair(agg.spelformTotals, kase.input.spelform, isNone);
+  const cellKey = ageCellKey(kase.input.alder, kase.input.spelform);
+  const cell = agg.cells.get(cellKey) ?? emptyCellStats();
+  addOutcome(cell, classifyOutcome(result));
+  agg.cells.set(cellKey, cell);
 
   if (result.kind === 'none') {
     agg.noneCount += 1;
@@ -584,6 +615,155 @@ function renderSubstituteSection(agg: Aggregate): string {
   return lines.join('\n');
 }
 
+const KIND_LABEL: Record<CellKind, string> = { foreslagen: 'föreslagen', granne: 'granne' };
+
+function cellColumns(stats: CellStats): string {
+  const passCount = stats.total - stats.none;
+  return [
+    stats.total,
+    `${stats.none} (${pct(stats.none, stats.total)})`,
+    pct(stats.coreFilled, stats.total),
+    pct(stats.coreFilled, passCount),
+    pct(stats.coreOnFocus, stats.total),
+    pct(stats.coreRemoved, stats.total),
+  ].join(' | ');
+}
+
+const CELL_HEADER =
+  'Körfall | Inget pass | Fylld kärna, av alla körfall | Fylld kärna, av skapade pass | Kärna på valt fokus, av alla körfall | Kärndel borttagen (R-033)';
+
+function renderAgeCellTable(agg: Aggregate): string {
+  const lines = [
+    `| Ålder | Spelform | Typ | ${CELL_HEADER} |`,
+    '|---|---|---|---|---|---|---|---|---|',
+  ];
+  for (const alder of range(AGE_MIN, AGE_MAX)) {
+    for (const spelform of allowedGameFormats(alder)) {
+      const stats = agg.cells.get(ageCellKey(alder, spelform));
+      if (stats === undefined) {
+        continue;
+      }
+      const kind = cellKind(alder, spelform);
+      const kindLabel = kind === undefined ? '–' : KIND_LABEL[kind];
+      lines.push(
+        `| ${alder} | ${formatGameFormat(spelform)} | ${kindLabel} | ${cellColumns(stats)} |`,
+      );
+    }
+  }
+  return lines.join('\n');
+}
+
+function renderPlanCellTable(agg: Aggregate): string {
+  const planCells = rollUpToPlanCells(agg.cells);
+  const lines = [`| Cell | Typ | ${CELL_HEADER} |`, '|---|---|---|---|---|---|---|---|'];
+  for (const goal of PLAN_GOALS) {
+    const stats = planCells.get(`${goal.group}|${goal.spelform}`);
+    if (stats === undefined) {
+      continue;
+    }
+    const kind = goal.group === goal.spelform ? 'foreslagen' : 'granne';
+    lines.push(
+      `| ${planCellLabel(goal.group, goal.spelform)} | ${KIND_LABEL[kind]} | ${cellColumns(stats)} |`,
+    );
+  }
+  return lines.join('\n');
+}
+
+function goalText(max: number | null): string {
+  return max === null ? 'inget mål' : `≤ ${Math.round(max * 100)} %`;
+}
+
+function verdict(value: boolean | null): string {
+  if (value === null) {
+    return '–';
+  }
+  return value ? 'ja' : 'nej';
+}
+
+function renderSummary(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
+  const nuCells = rollUpToPlanCells(nu.agg.cells);
+  const efterCells = rollUpToPlanCells(efter.agg.cells);
+  const lines: string[] = [];
+  lines.push('## Sammanfattning: målen i plan-omgang-5.md, avsnitt 1.1 och 1.2');
+  lines.push('');
+  lines.push(
+    `"Nu" är banken med ${nu.bankSize} godkända övningar. "Efter CI" räknar också de ${efter.bankSize - nu.bankSize} granskade som godkända (bara i minnet). Målet gäller "inget pass" efter omgång 5; för fylld kärna sätter avsnitt 1.2 inget mål, så de kolumnerna redovisas utan bedömning (se *Metod*).`,
+  );
+  if (snabb) {
+    lines.push('');
+    lines.push(
+      'Körningen gjordes med `--snabb`: bara de föreslagna cellerna är med. Grannceller och "alla körfall" saknas därför.',
+    );
+  }
+  lines.push('');
+  lines.push(
+    '| Cell | Typ | Inget pass, nu | Inget pass, efter CI | Mål efter omgång 5 | Nått nu | Nått efter CI | Mål efter 5B | Fylld kärna, nu | Fylld kärna, efter CI | Kärna på valt fokus, nu | Kärna på valt fokus, efter CI |',
+  );
+  lines.push('|---|---|---|---|---|---|---|---|---|---|---|---|');
+  const row = (
+    label: string,
+    kind: string,
+    a: CellStats,
+    b: CellStats,
+    goal5: string,
+    met: [string, string],
+    goal5B: string,
+  ): string =>
+    `| ${label} | ${kind} | ${pct(a.none, a.total)} | ${pct(b.none, b.total)} | ${goal5} | ${met[0]} | ${met[1]} | ${goal5B} | ${pct(a.coreFilled, a.total)} | ${pct(b.coreFilled, b.total)} | ${pct(a.coreOnFocus, a.total)} | ${pct(b.coreOnFocus, b.total)} |`;
+  let suggestedMetNu = 0;
+  let suggestedMetEfter = 0;
+  let suggestedCount = 0;
+  for (const goal of PLAN_GOALS) {
+    const key = `${goal.group}|${goal.spelform}`;
+    const a = nuCells.get(key);
+    const b = efterCells.get(key);
+    if (a === undefined || b === undefined) {
+      continue;
+    }
+    const kind = goal.group === goal.spelform ? 'foreslagen' : 'granne';
+    const metNu = meetsGoal(a, goal.maxNoneOmgang5);
+    const metEfter = meetsGoal(b, goal.maxNoneOmgang5);
+    if (kind === 'foreslagen') {
+      suggestedCount += 1;
+      suggestedMetNu += metNu === true ? 1 : 0;
+      suggestedMetEfter += metEfter === true ? 1 : 0;
+    }
+    lines.push(
+      row(
+        planCellLabel(goal.group, goal.spelform),
+        KIND_LABEL[kind],
+        a,
+        b,
+        goalText(goal.maxNoneOmgang5),
+        [verdict(metNu), verdict(metEfter)],
+        goalText(goal.maxNone5B),
+      ),
+    );
+  }
+  const totals: { label: string; kind?: CellKind; goal: string }[] = [
+    {
+      label: '**Föreslagna celler sammantaget**',
+      kind: 'foreslagen',
+      goal: 'uträknat ≤ 4 % (1.3)',
+    },
+    { label: '**Grannceller sammantaget**', kind: 'granne', goal: '–' },
+    { label: '**Alla körfall**', goal: 'uträknat ≤ 32 % (1.3)' },
+  ];
+  for (const total of totals) {
+    const a = sumByKind(nu.agg.cells, total.kind);
+    const b = sumByKind(efter.agg.cells, total.kind);
+    if (a.total === 0) {
+      continue;
+    }
+    lines.push(row(total.label, '', a, b, total.goal, ['–', '–'], '–'));
+  }
+  lines.push('');
+  lines.push(
+    `Huvudmålet i avsnitt 1.1 (högst 5 % "inget pass" i varje föreslagen cell): uppfyllt i ${suggestedMetNu} av ${suggestedCount} föreslagna celler nu och i ${suggestedMetEfter} av ${suggestedCount} efter CI.`,
+  );
+  return lines.join('\n');
+}
+
 interface ScenarioResult {
   label: string;
   bankSize: number;
@@ -601,6 +781,14 @@ function renderScenario(scenario: ScenarioResult, withPartTables: boolean): stri
   lines.push(
     `Körfall totalt: ${agg.totalAttempts}. "Inget pass": ${agg.noneCount} (${pct(agg.noneCount, agg.totalAttempts)}). Pass skapat: ${agg.sessionCount} (${pct(agg.sessionCount, agg.totalAttempts)}).`,
   );
+  lines.push('');
+  lines.push('### Per cell i planen (åldersgrupp och spelform)');
+  lines.push('');
+  lines.push(renderPlanCellTable(agg));
+  lines.push('');
+  lines.push('### Per cell (ålder och spelform)');
+  lines.push('');
+  lines.push(renderAgeCellTable(agg));
   lines.push('');
   lines.push('### Andel "inget pass" per ålder');
   lines.push('');
@@ -663,19 +851,62 @@ function renderReport(
     sensitivitySeeds: string[];
     runtimeMs: number;
     date: string;
+    snabb: boolean;
   },
 ): string {
   const lines: string[] = [];
-  lines.push(`# Täckningsmätning av generatorn, ${method.date}`);
+  lines.push(
+    `# Täckningsmätning av generatorn, ${method.date}${method.snabb ? ' (snabbkörning)' : ''}`,
+  );
   lines.push('');
   lines.push(
-    'Siffror, inte tolkning. Skriptet är `scripts/tackning.ts` (`npm run tackning`) och körs mot den riktiga övningsbanken i `content/ovningar/` genom `src/regelmotor/index.ts`. Fotbollsfrågor avgörs inte här.',
+    `Siffror, inte tolkning. Skriptet är \`scripts/tackning.ts\` (\`npm run tackning${method.snabb ? ' -- --snabb' : ''}\`) och körs mot den riktiga övningsbanken i \`content/ovningar/\` genom \`src/regelmotor/index.ts\`. Fotbollsfrågor avgörs inte här; fotbollsexperten äger tolkningen av målen.`,
   );
+  lines.push('');
+  lines.push(renderSummary(nu, efter, method.snabb));
   lines.push('');
   lines.push('## Metod');
   lines.push('');
+  lines.push('### Celler och mått');
+  lines.push('');
   lines.push(
-    `Underlagsrymden är för stor för en fullständig korsprodukt av alla val (se huvudet av scripts/tackning.ts för uträkningen). Skriptet kör i stället två svep:`,
+    '- **Cell:** ålder gånger spelform. En cell är **föreslagen** när spelformen är den appen själv föreslår för åldern (R-013, funktionen `suggestedGameFormat` i `src/regelmotor/keys.ts`, som formuläret i `src/app/input/form.ts` använder) och **granne** annars (R-014). **Cell i planen** slår ihop åldrarna med samma föreslagna spelform, som i plan-omgang-5.md avsnitt 0, till exempel "6–7 år, 3 mot 3".',
+  );
+  lines.push(
+    '- **Inget pass:** generatorn svarade `none` (R-101). Andelen räknas av alla körfall i cellen.',
+  );
+  lines.push(
+    '- **Fylld kärna:** passet skapades och varje kärndel (`del-ovning`, `del-spelovning`) som finns kvar i passet har en övning. En kärndel som R-033 tar bort i ett kort pass räknas inte emot, eftersom reglerna kräver att den tas bort; kolumnen "Kärndel borttagen (R-033)" visar hur ofta det hände. Andelen redovisas både av alla körfall (det ledaren möter) och av de skapade passen.',
+  );
+  lines.push(
+    '- **Kärna på valt fokus:** kärnan är fylld och ingen kärndel fick ersättningsfokus (R-121). Då träffar varje kärndel minst ett av ledarens valda fokusområden (R-040, R-041). Andelen räknas av alla körfall.',
+  );
+  lines.push(
+    '- Måtten per cell bygger på **båda** sveparna nedan, så att cellernas körfall stämmer med planens tabell i avsnitt 0. Avsnittet om ersättningsfokus längre ned bygger, som förut, bara på enkelfokussvepet.',
+  );
+  lines.push('');
+  lines.push('### Hur målen i planens avsnitt 1.2 är översatta');
+  lines.push('');
+  lines.push(
+    '- Målen jämförs med andelen "inget pass" per cell i planen. Planen har status `utkast`; målen är avskrivna för hand i `PLAN_GOALS` i `scripts/tackning-celler.ts`.',
+  );
+  lines.push(
+    '- "oförändrat" för 8–9 år i 5 mot 5 och 10–12 år i 7 mot 7 är översatt till huvudmålet i avsnitt 1.1, högst 5 % i varje föreslagen cell, i stället för dagens exakta värde.',
+  );
+  lines.push(
+    '- "100 %" i kolumnen för omgång 5 är ett läge, inte ett mål. De cellerna står som "inget mål" för omgång 5.',
+  );
+  lines.push(
+    '- Avsnitt 1.2 sätter inget mål för fylld kärna. Det närmaste är avsnitt 1.5 (ersättningsfokus högst 40 % efter omgång 7). Fylld kärna och kärna på valt fokus redovisas därför utan bedömning, för att följas över omgångarna.',
+  );
+  lines.push(
+    '- Raderna "sammantaget" jämförs med de uträknade väntevärdena i avsnitt 1.3 (högst cirka 4 % i föreslagna celler och 32 % för alla körfall efter omgång 5). De är inte mål i planens mening.',
+  );
+  lines.push('');
+  lines.push('### Underlagsrymden');
+  lines.push('');
+  lines.push(
+    `Underlagsrymden är för stor för en fullständig korsprodukt av alla val (se huvudet av scripts/tackning.ts för uträkningen). Skriptet kör i stället två svep${method.snabb ? ', här begränsade till de föreslagna cellerna (`--snabb`)' : ''}:`,
   );
   lines.push('');
   lines.push(
@@ -690,7 +921,7 @@ function renderReport(
   );
   lines.push('');
   lines.push(
-    `Mätt körtid för hela skriptet (båda bankerna): ${(method.runtimeMs / 1000).toFixed(1)} s.`,
+    `Mätt körtid för hela skriptet (båda bankerna${method.snabb ? ', `--snabb`' : ''}): ${(method.runtimeMs / 1000).toFixed(1)} s.`,
   );
   lines.push('');
   lines.push(
@@ -720,9 +951,18 @@ function main(): void {
     process.stderr.write(`${line}\n`);
   };
 
-  log('Bygger underlagsrymden...');
-  const singleSweep = buildSingleFocusSweep();
-  const comboSweep = buildFocusComboSweep();
+  const options = parseOptions(process.argv.slice(2));
+  if ('error' in options) {
+    log(options.error);
+    process.exitCode = 1;
+    return;
+  }
+
+  log(`Bygger underlagsrymden${options.snabb ? ' (bara föreslagna celler)' : ''}...`);
+  const fullSingle = buildSingleFocusSweep();
+  const fullCombo = buildFocusComboSweep();
+  const singleSweep = options.snabb ? onlySuggested(fullSingle) : fullSingle;
+  const comboSweep = options.snabb ? onlySuggested(fullCombo) : fullCombo;
   log(
     `Enkelfokussvepet: ${singleSweep.length} körfall. Kombinationssvepet: ${comboSweep.length} körfall.`,
   );
@@ -749,20 +989,20 @@ function main(): void {
   const sensitivity = seedSensitivity(nuBank, nuAgg.combinationFailures, sensitivitySeeds);
 
   const nuScenario: ScenarioResult = {
-    label: 'Banken nu (42 godkända övningar)',
+    label: `Banken nu (${nuBank.length} godkända övningar)`,
     bankSize: nuBank.length,
     agg: nuAgg,
     bankCounts: staticBankCounts(nuBank),
   };
   const efterScenario: ScenarioResult = {
-    label: 'Efter CI-rättning (42 godkända + 16 granskade räknade som godkända)',
+    label: `Efter CI-rättning (${nuBank.length} godkända + ${granskadExtra.length} granskade räknade som godkända)`,
     bankSize: efterBank.length,
     agg: efterAgg,
     bankCounts: staticBankCounts(efterBank),
   };
 
   const runtimeMs = Date.now() - start;
-  const date = '2026-10-05';
+  const date = localDate(new Date());
   const report = renderReport(nuScenario, efterScenario, granskadProblems, sensitivity, {
     singleCount: singleSweep.length,
     comboCount: comboSweep.length,
@@ -770,9 +1010,10 @@ function main(): void {
     sensitivitySeeds,
     runtimeMs,
     date,
+    snabb: options.snabb,
   });
 
-  const outPath = `docs/doman/tackning-${date}.md`;
+  const outPath = reportPath(date, options.snabb);
   writeFileSync(outPath, report, 'utf8');
   log(`Skrev ${outPath}. Total körtid: ${(runtimeMs / 1000).toFixed(1)} s.`);
 }
