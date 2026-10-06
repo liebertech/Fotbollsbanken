@@ -1,0 +1,97 @@
+schema: 1
+id: duell-mot-tva-smamal
+namn: Duell mot två småmål
+syfte: Spelarna ska våga utmana i den egna duellen, både när de har bollen och när de ska
+  vinna den tillbaka.
+beskrivning: |
+  Två spelare möter varandra på en yta om 8 x 6 meter med ett litet mål i var ände, utan
+  målvakt. Båda kan göra mål i båda målen, och den som vinner bollen blir genast
+  anfallare. En extra boll ligger vid sidan av ytan så att spelet kommer igång snabbt
+  igen om bollen åker ut.
+organisation: |
+  En yta per par med ett minimål i var ände. Flera ytor läggs bredvid varandra så att
+  alla par spelar samtidigt.
+fokusomraden:
+  - ett-mot-ett
+  - dribbling
+  - avslut
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 8
+    bredd: 6
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv vid sidan av ytan
+  - typ: minimal
+    antal: 2
+    anteckning: ett mål i var ände, två koner fungerar om minimål saknas
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Våga driva mot målet när du har bollen.
+  - Jaga tillbaka bollen direkt om du tappar den.
+  - Skydda bollen med kroppen när kompisen kommer nära.
+varianter:
+  lattare: Bara en riktning att göra mål i, samma spelare anfaller alltid från samma håll.
+  svarare: Den som gör mål får göra om det en gång till innan turen går över.
+anpassning:
+  fler_spelare: Lägg till fler ytor med par bredvid varandra.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan med
+    reservbollen. Efter varje mål eller avbrott byter hen in mot den som har spelat
+    längst, så att alla får lika mycket tid i duellen.
+  ledare: Övningen sköter sig själv när paren väl är igång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 8
+    bredd: 6
+  beskrivning: >-
+    Yta 8 x 6 meter med ett litet mål i var ände, utan målvakt. Båda spelarna kan göra mål
+    i båda målen, och den som vinner bollen blir genast anfallare.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 8, bredd: 6, stil: streckad }
+    - { id: mal-1, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
+    - { id: mal-2, typ: mal, x: 8, y: 3, storlek: smamal, riktning: vanster }
+    - { id: sp-1, typ: spelare, x: 2, y: 3, lag: a, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 6, y: 3, lag: b, etikett: "2" }
+    - { typ: boll, x: 2.3, y: 3 }
+    - { typ: boll, x: 4, y: 6.5 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-1 }
+      till: { x: 6, y: 2 }
+      via: [{ x: 4, y: 1.5 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: sp-2 }, till: { x: 4.5, y: 3 }, ordning: 1 }
+    - { typ: skott, fran: { x: 6, y: 2 }, till: { objekt: mal-2 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-1, riktning: 90, etikett: Väntar med ny boll }
+kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
+status: utkast
+granskning: []
