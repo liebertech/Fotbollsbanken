@@ -1,0 +1,92 @@
+schema: 1
+id: svansleken-med-egen-boll
+namn: Svansleken med egen boll
+syfte: Spelarna ska röra sig snabbt och behålla kontrollen på bollen samtidigt som de håller
+  koll på omgivningen.
+beskrivning: |
+  Alla spelare har en väst instoppad som en svans i shortsen och en egen boll inne i en
+  yta om 18 x 18 meter. Några spelare är fångare, också de med egen boll, och försöker dra
+  loss svansar medan alla dribblar. Den som blir av med svansen tar en ny vid sidan och
+  fortsätter direkt, så att leken aldrig stannar upp.
+organisation: |
+  En eller två fångare per fyra spelare, bytta av ledaren med jämna mellanrum så att alla
+  får prova båda rollerna. Nya västar som svans ligger vid kortsidan.
+fokusomraden:
+  - lek
+  - koordination
+  - snabbhet
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 18
+    bredd: 18
+ytreferens:
+  alla: en ruta som rymmer stora planens mittcirkel
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: vast
+    antal: 16
+    anteckning: en per spelare, instoppad som svans
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Håll kontroll på bollen även när du rör dig snabbt och byter riktning.
+  - Titta upp ibland så att du ser var fångarna är.
+  - Dra svansen snällt, ingen ska ramla eller bli knuffad.
+varianter:
+  lattare: Färre fångare, eller fångarna får bara gå, inte springa.
+  svarare: Den som tappar svansen blir själv fångare en kort stund innan hen tar en ny.
+anpassning:
+  fler_spelare: Lägg till fler fångare, ungefär en fångare per fyra spelare.
+  udda_antal: Spelar ingen roll. Antalet fångare behöver inte vara jämnt.
+  ledare: En ledare räcker för att hålla koll på alla och byta fångare med jämna mellanrum.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 18
+  beskrivning: >-
+    Yta 18 x 18 meter där alla dribblar egen boll med en väst instoppad som svans. En
+    fångare försöker dra loss svansar medan alla rör sig fritt.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 18, stil: streckad }
+    - { id: f1, typ: spelare, x: 9, y: 9, lag: neutral, etikett: F }
+    - { id: sp-1, typ: spelare, x: 3, y: 3, lag: neutral, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 15, y: 4, lag: neutral, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 9, y: 15, lag: neutral, etikett: "3" }
+    - { typ: boll, x: 9.3, y: 9 }
+    - { typ: boll, x: 3.3, y: 3 }
+    - { typ: boll, x: 15.3, y: 4 }
+    - { typ: boll, x: 9.3, y: 15 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: f1 }, till: { x: 5, y: 5 }, ordning: 1 }
+    - typ: dribbling
+      fran: { objekt: sp-1 }
+      till: { x: 2, y: 8 }
+      ordning: 2
+      etikett: Flyr undan
+kalla: Egen övning, inspirerad av klassiska kullekar med boll.
+status: utkast
+granskning: []
