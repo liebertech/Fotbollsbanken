@@ -1,0 +1,112 @@
+schema: 1
+id: omstallning-i-overlage-till-mal
+namn: Omställning i överläge till mål
+syfte: Spelarna ska ställa om snabbt vid bollvinst, utnyttja överläget med
+  ett snabbt avslut och försvara kompakt när de är i underläge.
+beskrivning: |
+  Två lag om två till fyra spelare möts på en yta om 36 x 25 meter med två
+  jokrar som alltid spelar med laget som har bollen, och ett litet mål i
+  var ände. Så fort ett lag vinner bollen har det åtta sekunder på sig att
+  avsluta mot något av målen, annars får motståndarna sätta en ny boll i
+  spel och anfalla i sin tur. Laget med boll ska utnyttja överläget och
+  avsluta snabbt, och laget utan boll ska försvara kompakt och täcka båda
+  målen tills det vinner tillbaka bollen.
+organisation: |
+  Två lag om två till fyra spelare plus två jokrar, totalt fem till tio
+  spelare per yta. Minimål i var ände. Jokrarna byter lag direkt när
+  bollen byter ägare. Gruppen håller själv de åtta sekunderna, till
+  exempel genom att räkna högt.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+  - avslut
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 5
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 36
+    bredd: 25
+ytreferens:
+  alla: ungefär halva 7 mot 7-planen
+material:
+  - typ: vast
+    antal: 6
+    anteckning: fyra i en färg till det ena laget och två i en annan färg
+      till jokrarna
+  - typ: boll
+    antal: 3
+  - typ: minimal
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Reagera direkt när bollen byter lag, stå inte kvar.
+  - Avsluta snabbt medan överläget finns, inom de åtta sekunderna.
+  - Täck båda målen tillsammans när ni försvarar i underläge.
+  - Pressa bollhållaren direkt om ni förlorar bollen.
+varianter:
+  lattare: Tidsgränsen för avslutet höjs till tolv sekunder.
+  svarare: Tidsgränsen sänks till sex sekunder, och lyckas inte avslutet
+    får motståndarna sätta bollen i spel direkt med sin joker redan inne.
+anpassning:
+  fler_spelare: Gör ytan större och lägg till en spelare i varje lag.
+  udda_antal: Den udda spelaren blir en tredje joker som alltid spelar med
+    bollförande lag.
+  ledare: Övningen är självgående när lagen och tidsgränsen är satta. En
+    ledare kan hålla tiden högt och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 36
+    bredd: 25
+  beskrivning: >-
+    Yta 36 x 25 meter med ett minimål i var ände. Två mot två med en joker
+    som alltid spelar med laget som har bollen. Fler spelare och en andra
+    joker går in vid större grupper, upp till fyra mot fyra med två jokrar.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 25, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 12.5, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 36, y: 12.5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 10, y: 8, lag: a }
+    - { id: a2, typ: spelare, x: 10, y: 17, lag: a }
+    - { id: b1, typ: spelare, x: 26, y: 8, lag: b }
+    - { id: b2, typ: spelare, x: 26, y: 17, lag: b }
+    - { id: j1, typ: spelare, x: 18, y: 12.5, lag: neutral }
+    - { typ: boll, x: 10.9, y: 8 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: j1 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 19, y: 9 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: j1 }, till: { objekt: a2 }, ordning: 2 }
+    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 12.5, lag: a }
+      - { x: 30, y: 12.5, lag: b }
+      - { x: 13, y: 4, lag: a }
+      - { x: 23, y: 21, lag: b }
+      - { x: 18, y: 17, lag: neutral }
+kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar
+  och tidspress.
+status: utkast
+granskning: []
