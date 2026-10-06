@@ -9,11 +9,14 @@ beskrivning: |
   fri match med vanliga regler i litet format. Laget med boll ska sprida ut
   sig i bredd och leta efter en öppning till mål, och så snart ett lag
   tappar bollen ska det pressa tillbaka direkt för att vinna den igen.
+  Ingen offside och ingen målvakt. Går bollen ut sätts den i spel med
+  inspel eller indribbling.
 organisation: |
   Ett lag om två till fyra spelare mot ett lag av samma storlek per yta.
   Ytans fyra hörn markeras med koner. Lagen byter sida efter halva tiden.
   Vid fler spelare läggs fler ytor av samma mått bredvid varandra, med tre
-  meters mellanrum.
+  meters mellanrum. Spela i perioder om fyra till sex minuter med en till
+  två minuters vila. Vid två mot två är perioderna två till tre minuter.
 fokusomraden:
   - spelbarhet
   - avslut
@@ -80,8 +83,7 @@ planskiss:
     bredd: 20
   beskrivning: >-
     Yta 36 x 20 meter med ett minimål i varje kortsida, utan målvakt. Två mot
-    två i grundläget, med fler spelare vid fler än fyra per lag. Lag A
-    anfaller åt höger.
+    två i grundläget, upp till fyra mot fyra. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
@@ -97,7 +99,8 @@ planskiss:
     - { typ: boll, x: 10.9, y: 6 }
   rorelser:
     - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
-    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 2 }
+    - { typ: dribbling, fran: { objekt: a2 }, till: { x: 26, y: 11 }, ordning: 2 }
+    - { typ: skott, fran: { x: 26, y: 11 }, till: { objekt: mal-b }, ordning: 3 }
   skalning:
     strategi: platser
     platser:
@@ -106,7 +109,7 @@ planskiss:
       - { x: 14, y: 17, lag: a }
       - { x: 22, y: 17, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål utan målvakt.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -122,3 +125,14 @@ granskning:
       perioder om fyra till sex minuter med en till två minuters vila, två till tre minuter vid
       två mot två. 3. Skissen slutade med ett skott från 26 meter på egen planhalva. Nya
       rörelser och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B1.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla tre punkterna åtgärdade. Lade till i beskrivning att det spelas utan
+      offside och utan målvakt, och att bollen sätts i spel med inspel eller
+      indribbling vid utspel. Lade till perioder om fyra till sex minuter med
+      en till två minuters vila i organisation, två till tre minuter vid två
+      mot två. Bytte skissens rörelser till passning, dribbling till (26, 11)
+      och skott från (26, 11), enligt granskningens koordinater, och ändrade
+      skissens beskrivning till "upp till fyra mot fyra".
