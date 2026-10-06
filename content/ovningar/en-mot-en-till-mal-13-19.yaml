@@ -10,7 +10,7 @@ beskrivning: |
   förbi och göra mål, försvararen försöker vinna bollen eller få den
   utanför ytan. Efter varje försök byter de två roller: den som blir ny
   försvarare hämtar reservbollen vid målet och rullar in den till den nya
-  anfallaren, som startar nästa duell direkt.
+  anfallaren. Nästa duell startar när båda står på plats.
 organisation: |
   En yta per par med ett minimål i ena änden. Paret sköter rotationen
   själva: roll och startposition byts efter varje försök, och
@@ -108,7 +108,7 @@ planskiss:
       - { vid: anf, riktning: 0, avstand: 5, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i
   ungdomsfotboll.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
