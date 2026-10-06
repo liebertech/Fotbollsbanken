@@ -44,7 +44,7 @@ yta:
     bredd: 12
 material:
   - typ: boll
-    antal: 16
+    antal: 12
     anteckning: en per spelare
   - typ: vast
     antal: 12
@@ -57,7 +57,7 @@ coachningspunkter:
   - Dra svansen snällt, ingen ska ramla eller bli knuffad.
 varianter:
   lattare: Färre fångare, eller fångarna får bara gå, inte springa.
-  svarare: Den som tappar svansen blir själv fångare en kort stund innan hen tar en ny.
+  svarare: Den som blir av med svansen blir själv fångare en kort stund innan hen stoppar in den igen.
 anpassning:
   fler_spelare: Ungefär en fångare per fyra spelare. Med fler än tolv spelare läggs en
     andra yta bredvid, med tre meters mellanrum.
@@ -85,7 +85,7 @@ planskiss:
     - { typ: dribbling, fran: { objekt: f1 }, till: { x: 3.5, y: 3.5 }, ordning: 1, etikett: Jagar }
     - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 5.5, y: 1 }, ordning: 1, etikett: Flyr undan }
 kalla: Egen övning, inspirerad av klassiska kullekar med boll.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
