@@ -208,8 +208,12 @@ jobs:
           # som regeluppsättningen Skydd av main gör undantag för (ADR 0014). Pushen sker utan
           # --force: går den inte som snabbspolning ska den falla, inte skriva om historiken.
           # Faller den för att main hunnit gå vidare räcker det att köra arbetsflödet igen.
-          GIT_SSH_COMMAND="ssh -i $ssh_dir/nyckel -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$ssh_dir/known_hosts" \
-            git -c core.hooksPath=/dev/null push git@github.com:liebertech/Fotbollsbanken.git "HEAD:main"
+          # Absoluta sökvägar, ingen ssh-konfiguration (-F /dev/null) och inga globala eller
+          # systemvida git-inställningar, så att tidigare steg i jobbet inte kan peka om ssh eller
+          # git via PATH, ~/.ssh/config eller git-konfigurationen (säkerhetsuppföljningen, F3).
+          GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 \
+          GIT_SSH_COMMAND="/usr/bin/ssh -F /dev/null -i $ssh_dir/nyckel -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$ssh_dir/known_hosts" \
+            /usr/bin/git -c core.hooksPath=/dev/null push git@github.com:liebertech/Fotbollsbanken.git "HEAD:main"
 
       - name: Ta bort nyckelfilen
         if: always()
