@@ -6,17 +6,18 @@ syfte: Spelarna ska göra sig spelbara och bygga upp spelet framåt genom
 beskrivning: |
   Ytan delas i tre lika stora zoner på längden: egen zon, mittzon och
   anfallszon, markerade med koner vid sidlinjerna. Två lag om tre till sex
-  spelare möts med ett litet mål i var ände. Ett mål räknas bara om laget
-  har spelat minst en passning inne i mittzonen under anfallet, så att
-  ingen kan chippa bollen direkt från egen zon till anfallszonen. Laget
-  med boll ska sprida ut sig och hitta en spelbar medspelare som för
-  bollen vidare framåt, zon för zon.
+  spelare möts med ett litet mål i var ände. Ett mål räknas bara om någon
+  i laget har tagit emot en passning i mittzonen under anfallet. Vinner
+  laget bollen i anfallszonen räknas målet utan krav. Laget med boll ska
+  sprida ut sig och hitta en spelbar medspelare som för bollen vidare
+  framåt, zon för zon.
 organisation: |
   Två lag med lika stor numerär per yta, tre till sex spelare per lag.
   Zongränserna markeras med en kon vid varje sidlinje, fjorton och
-  tjugoåtta meter in från en kortlinje. Lagen håller själva reda på om en
-  passning gått i mittzonen innan de räknar ett mål. Lagen byter sida
-  efter halva tiden.
+  tjugoåtta meter in från en kortlinje. Lagen håller själva reda på om
+  någon har tagit emot i mittzonen innan de räknar ett mål. Lagen byter
+  sida efter halva tiden. Efter mål, och när bollen går ut över en
+  kortlinje, startar det anfallande laget med bollen i sin egen zon.
 fokusomraden:
   - spelbarhet
   - speluppbyggnad
@@ -69,8 +70,7 @@ coachningspunkter:
     spela sig igenom mittzonen.
 varianter:
   lattare: Kravet på en passning i mittzonen tas bort, alla mål räknas.
-  svarare: Laget måste spela minst två passningar i mittzonen, där minst
-    en spelare rör sig in i zonen för att ta emot, innan mål räknas.
+  svarare: Två olika spelare måste ha tagit emot i mittzonen innan mål räknas.
 anpassning:
   fler_spelare: Vid fler än tolv spelare, bygg en andra yta med samma mått
     och zonindelning bredvid.
@@ -119,7 +119,7 @@ planskiss:
       - { x: 35, y: 10, lag: a }
       - { x: 9, y: 19, lag: b }
 kalla: Egen övning, inspirerad av vanligt positionsspel med zoner och riktning.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -135,3 +135,14 @@ granskning:
       coachningspunkten ber om. 2. Efter mål, och när bollen går ut över en kortlinje, startar
       laget med bollen i sin egen zon. 3. Svårare variant: två olika spelare ska ha tagit emot i
       mittzonen. Exakta texter står i docs/doman/granskning-omgang-5.md, B7.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla tre punkterna åtgärdade. Skrev om zonregeln i beskrivning och
+      organisation: ett mål räknas bara om någon i laget har tagit emot en
+      passning i mittzonen, och ett lag som vinner bollen i anfallszonen får
+      göra mål utan krav. Lade till en mening i organisation om att det
+      anfallande laget startar i sin egen zon efter mål eller när bollen går
+      ut över en kortlinje. Skrev om den svårare varianten till att två
+      olika spelare måste ha tagit emot i mittzonen.
