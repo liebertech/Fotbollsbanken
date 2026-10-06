@@ -138,7 +138,9 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 
 *Tillägg 2026-10-06:* de sju övningarna för 6–7 år i omgång 5, paket A, står sist i 6.1 och 6.2 med *Var* `omgang/5-paket-a`. De är granskade men ännu inte godkända, och mått och spelform är kontrollerade mot filerna på grenen samma dag. Tabellerna har därmed 65 övningar. Paket A är märkt med två spelformer, `3mot3` och `5mot5`, men samma referens passar båda, så också de anges med `alla` (avsnitt 3.4).
 
-### 6.1 Med referens (49 övningar)
+*Tillägg 2026-10-06, paket B:* de åtta övningarna för 13–19 år i omgång 5, paket B, står sist i 6.1 och 6.2 med *Var* `omgang/5-paket-b`. Med båda paketen har tabellerna 73 övningar.
+
+### 6.1 Med referens (55 övningar)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -191,8 +193,16 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `tva-mot-tva-till-tre-mot-tre-med-smamal` | 3 mot 3, 5 mot 5 | 15 × 10 | hela 3 mot 3-planen | 19 | omgang/5-paket-a |
 | `bollkansla-och-driv-med-egen-boll` | 3 mot 3, 5 mot 5 | 15 × 10 | ungefär en fjärdedel av stora planens straffområde | 50 | omgang/5-paket-a |
 | `lek-med-egen-boll` | 3 mot 3, 5 mot 5 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | omgang/5-paket-a |
+| `avslut-efter-passning-mot-malvakt` | 7, 9 och 11 mot 11 | 18 × 14 | stora planens målområde, två och en halv gång så djupt | 54 | omgang/5-paket-b |
+| `passningar-i-rorelse-13-19` | 7, 9 och 11 mot 11 | 20 × 20 | en ruta något större än stora planens mittcirkel | 48 | omgang/5-paket-b |
+| `smalagsspel-till-mal-13-19` | 7, 9 och 11 mot 11 | 36 × 20 | ungefär stora planens straffområde | 34 | omgang/5-paket-b |
+| `omstallning-i-overlage-till-mal` | 7, 9 och 11 mot 11 | 36 × 25 | ungefär halva 7 mot 7-planen | 28 | omgang/5-paket-b |
+| `spela-framat-i-positionsspel` | 9 och 11 mot 11 | 42 × 28 | något längre än stora planens straffområde är brett | 51 | omgang/5-paket-b |
+| `storre-spel-6mot6-till-11mot11` | 9 och 11 mot 11 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | omgang/5-paket-b |
 
-### 6.2 Utan referens (16 övningar)
+*Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
+
+### 6.2 Utan referens (18 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -212,6 +222,8 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `driv-och-skjut-pa-smamal` | 3 mot 3, 5 mot 5 | 10 × 5 | För liten eller ingen plandel med rätt form. En smal bana, ungefär halva stora planens målområde | omgang/5-paket-a |
 | `hitta-den-fria-i-overlage` | 3 mot 3, 5 mot 5 | 12 × 8 | För liten eller ingen plandel med rätt form. Samma mått och skäl som `en-mot-en-till-smamal` | omgang/5-paket-a |
 | `svansjakt-med-egen-boll` | 3 mot 3, 5 mot 5 | 12 × 12 | För liten eller ingen plandel med rätt form. En fjärdedel av stora planens straffområde har ungefär samma yta men fel form | omgang/5-paket-a |
+| `skadeforebyggande-uppvarmning-13-19` | 7, 9 och 11 mot 11 | 16 × 14 | Station. Avståndet mellan arbetsplatserna styr, och ytan följer undantag 3 | omgang/5-paket-b |
+| `en-mot-en-till-mal-13-19` | 7, 9 och 11 mot 11 | 16 × 12 | Duell med startavstånd. Anfallaren startar 12 och försvararen 6 meter från målet | omgang/5-paket-b |
 
 ### 6.3 Anmärkningar
 

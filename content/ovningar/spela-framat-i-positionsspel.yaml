@@ -1,0 +1,159 @@
+schema: 1
+id: spela-framat-i-positionsspel
+namn: Spela framåt i positionsspel med riktning
+syfte: Spelarna ska göra sig spelbara och bygga upp spelet framåt genom
+  banans mittzon i stället för att chippa bollen direkt till anfallszonen.
+beskrivning: |
+  Ytan delas i tre lika stora zoner på längden: egen zon, mittzon och
+  anfallszon, markerade med koner vid sidlinjerna. Två lag om tre till sex
+  spelare möts med ett litet mål i var ände. Ett mål räknas bara om någon
+  i laget har tagit emot en passning i mittzonen under anfallet. Vinner
+  laget bollen i anfallszonen räknas målet utan krav. Laget med boll ska
+  sprida ut sig och hitta en spelbar medspelare som för bollen vidare
+  framåt, zon för zon.
+organisation: |
+  Två lag med lika stor numerär per yta, tre till sex spelare per lag.
+  Zongränserna markeras med en kon vid varje sidlinje, fjorton och
+  tjugoåtta meter in från en kortlinje. Lagen håller själva reda på om
+  någon har tagit emot i mittzonen innan de räknar ett mål. Lagen byter
+  sida efter halva tiden. Efter mål, och när bollen går ut över en
+  kortlinje, startar det anfallande laget med bollen i sin egen zon.
+fokusomraden:
+  - spelbarhet
+  - speluppbyggnad
+  - passning-mottagning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 12
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 16
+  langst: 20
+yta:
+  alla:
+    langd: 42
+    bredd: 28
+ytreferens:
+  alla: något längre än stora planens straffområde är brett
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 6
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 8
+    anteckning: fyra markerar ytans hörn, fyra markerar zongränserna vid
+      sidlinjerna
+coachningspunkter:
+  - Sök en öppen yta i mittzonen innan du begär bollen.
+  - Spela en säker passning genom mittzonen i stället för en lång boll
+    över den.
+  - Sprid ut er i bredd så att bollhållaren har flera passningsval framåt.
+  - Pressa tillsammans direkt vid bolltapp, innan motståndarna hinner
+    spela sig igenom mittzonen.
+varianter:
+  lattare: Kravet på en passning i mittzonen tas bort, alla mål räknas.
+  svarare: Två olika spelare måste ha tagit emot i mittzonen innan mål räknas.
+anpassning:
+  fler_spelare: Vid fler än tolv spelare, bygg en andra yta med samma mått
+    och zonindelning bredvid.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående, lagen håller själva reda på zonkravet.
+    Ledaren kan påminna om det och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 42
+    bredd: 28
+  beskrivning: >-
+    Yta 42 x 28 meter, delad i tre zoner om fjorton meter på längden, med
+    ett minimål i var ände. Tre mot tre i grundläget. Lag A anfaller åt
+    höger och spelar genom mittzonen innan avslut.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 42, bredd: 28, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 14, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 42, y: 14, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 42, y: 0 }
+    - { typ: kon, x: 42, y: 28 }
+    - { typ: kon, x: 0, y: 28 }
+    - { typ: kon, x: 14, y: 0 }
+    - { typ: kon, x: 14, y: 28 }
+    - { typ: kon, x: 28, y: 0 }
+    - { typ: kon, x: 28, y: 28 }
+    - { id: a1, typ: spelare, x: 7, y: 14, lag: a }
+    - { id: a2, typ: spelare, x: 21, y: 10, lag: a }
+    - { id: a3, typ: spelare, x: 35, y: 18, lag: a }
+    - { id: b1, typ: spelare, x: 35, y: 14, lag: b }
+    - { id: b2, typ: spelare, x: 21, y: 18, lag: b }
+    - { id: b3, typ: spelare, x: 7, y: 10, lag: b }
+    - { typ: boll, x: 7.9, y: 14 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a2 }, till: { objekt: a3 }, ordning: 2 }
+    - { typ: skott, fran: { objekt: a3 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 7, y: 20, lag: a }
+      - { x: 36, y: 21, lag: b }
+      - { x: 23, y: 19, lag: a }
+      - { x: 22, y: 13, lag: b }
+      - { x: 35, y: 10, lag: a }
+      - { x: 9, y: 19, lag: b }
+kalla: Egen övning, inspirerad av vanligt positionsspel med zoner och riktning.
+status: granskad
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Övningen är bra och skissen håller: alla pilar håller minst två meter till motståndare och
+      platser. Ytan är 98 kvadratmeter per spelare vid tolv, över golvet 90. Vid sex är den 196,
+      8 procent över taket 181. Det godtas enligt F2, eftersom zonindelningen ska fungera från tre
+      mot tre till sex mot sex och 42 meter är det minsta djupledskriteriet tillåter (minst 40).
+      Ytreferensen stämmer. Zonregeln godtas, men den ska förtydligas. 1. Skriv att någon i
+      laget ska ha tagit emot en passning i mittzonen, och att ett lag som vinner bollen i
+      anfallszonen får göra mål utan krav. Annars straffar regeln den press som den fjärde
+      coachningspunkten ber om. 2. Efter mål, och när bollen går ut över en kortlinje, startar
+      laget med bollen i sin egen zon. 3. Svårare variant: två olika spelare ska ha tagit emot i
+      mittzonen. Exakta texter står i docs/doman/granskning-omgang-5.md, B7.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla tre punkterna åtgärdade. Skrev om zonregeln i beskrivning och
+      organisation: ett mål räknas bara om någon i laget har tagit emot en
+      passning i mittzonen, och ett lag som vinner bollen i anfallszonen får
+      göra mål utan krav. Lade till en mening i organisation om att det
+      anfallande laget startar i sin egen zon efter mål eller när bollen går
+      ut över en kortlinje. Skrev om den svårare varianten till att två
+      olika spelare måste ha tagit emot i mittzonen.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Zonregeln är entydig: någon ska ha tagit emot i mittzonen, och ett lag som vinner
+      bollen i anfallszonen får göra mål utan krav. Det belönar pressen i den fjärde
+      coachningspunkten. Omstarten i egen zon gör att uppbyggnaden händer ofta, och den svårare
+      varianten följer regeln. Skissen är oförändrad och håller fortfarande. A2 tar emot i
+      mittzonen, och alla pilar håller minst 2 meter till motståndare och platser. Ytan godtas
+      enligt F2 med motiveringen i den förra raden. Förslag, som inte krävs: i den lättare
+      varianten kan "kravet på en passning i mittzonen" bli "kravet på mittzonen".
