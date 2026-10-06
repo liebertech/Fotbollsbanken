@@ -1,0 +1,121 @@
+schema: 1
+id: storre-spel-6mot6-till-11mot11
+namn: Större spel, sex mot sex till elva mot elva
+syfte: Spelarna ska hålla bollen i laget, bygga upp spelet bakifrån och
+  försvara tillsammans i ett stort matchlikt spel med lång speltid.
+beskrivning: |
+  Två lag med lika stor numerär möter varandra på en yta om 65 x 50 meter,
+  med fullstora mål och varsin målvakt. Lagstorleken, inklusive målvakten,
+  är sex till elva spelare per lag beroende på hur många som är med. Vanliga
+  regler gäller, inklusive offside. Laget med boll ska spela sig ut bakifrån
+  genom korta passningar och byta sida med en längre passning när ett läge
+  öppnar sig, i stället för att alltid chippa bollen framåt. Laget utan boll
+  försvarar tillsammans och pressar direkt vid bolltapp.
+organisation: |
+  Två lag per yta, alltid med varsin målvakt. Lagstorleken, inklusive
+  målvakten, är sex till elva spelare per lag. Vid ojämnt antal spelar det
+  ena laget med en utespelare mer än det andra. Målvakterna byts av under
+  passet så att fler får prova.
+fokusomraden:
+  - spelbarhet
+  - speluppbyggnad
+  - forsvarsspel
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 12
+  max: 22
+grupptyp: tva-lag
+tid:
+  kortast: 15
+  rekommenderad: 25
+  langst: 40
+yta:
+  alla:
+    langd: 65
+    bredd: 50
+ytreferens:
+  alla: hela 9 mot 9-planen, ungefär halva stora planen
+material:
+  - typ: mal
+    antal: 2
+  - typ: vast
+    antal: 10
+    anteckning: till det ena lagets utespelare
+  - typ: boll
+    antal: 3
+coachningspunkter:
+  - Sprid ut er i bredd och djup, särskilt när ni bygger upp bakifrån.
+  - Byt sida i spelet med en längre passning när ett läge öppnar sig.
+  - Håll ihop som lag i försvar och täck varandras ytor.
+  - Pressa tillsammans direkt efter en bolltapp.
+varianter:
+  lattare: Målvakten får alltid spela ut till en fri medspelare utan press de
+    första sekunderna efter att ha fått bollen.
+  svarare: Laget får spela högst två passningar i egen planhalva innan
+    bollen ska föras framåt över mittlinjen.
+anpassning:
+  fler_spelare: Vid fler än tjugotvå spelare, dela gruppen i två separata
+    matcher på varsin yta.
+  udda_antal: Ett lag spelar med en utespelare mer än det andra.
+  ledare: Övningen är självgående. Ledaren dömer offside och frilägen vid
+    mål, och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 65
+    bredd: 50
+  beskrivning: >-
+    Yta 65 x 50 meter med ett mål och en målvakt på varje kortsida. Sex mot
+    sex i grundläget, inklusive målvakterna, med fler spelare vid större
+    lag. Lag A anfaller åt höger och bygger upp spelet från målvakten.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 65, bredd: 50, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 25, storlek: 9mot9, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 65, y: 25, storlek: 9mot9, riktning: vanster }
+    - { id: gk-a, typ: spelare, x: 2, y: 25, lag: a, malvakt: true }
+    - { id: a1, typ: spelare, x: 14, y: 12, lag: a }
+    - { id: a2, typ: spelare, x: 14, y: 38, lag: a }
+    - { id: a3, typ: spelare, x: 24, y: 25, lag: a }
+    - { id: a4, typ: spelare, x: 30, y: 14, lag: a }
+    - { id: a5, typ: spelare, x: 30, y: 36, lag: a }
+    - { id: gk-b, typ: spelare, x: 63, y: 25, lag: b, malvakt: true }
+    - { typ: spelare, x: 51, y: 12, lag: b }
+    - { typ: spelare, x: 51, y: 38, lag: b }
+    - { typ: spelare, x: 41, y: 25, lag: b }
+    - { typ: spelare, x: 35, y: 14, lag: b }
+    - { typ: spelare, x: 35, y: 36, lag: b }
+    - { typ: boll, x: 24.9, y: 25 }
+  rorelser:
+    - { typ: passning, fran: { objekt: gk-a }, till: { objekt: a1 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a3 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a3 }, till: { objekt: a4 }, ordning: 3 }
+    - { typ: skott, fran: { objekt: a4 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 8, y: 5, lag: a }
+      - { x: 57, y: 5, lag: b }
+      - { x: 8, y: 45, lag: a }
+      - { x: 57, y: 45, lag: b }
+      - { x: 20, y: 5, lag: a }
+      - { x: 45, y: 5, lag: b }
+      - { x: 20, y: 45, lag: a }
+      - { x: 45, y: 45, lag: b }
+      - { x: 32, y: 5, lag: a }
+      - { x: 33, y: 45, lag: b }
+kalla: Egen övning, inspirerad av vanligt matchspel i stor skala med
+  varierande lagstorlek.
+status: utkast
+granskning: []
