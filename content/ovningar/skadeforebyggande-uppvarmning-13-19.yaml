@@ -1,0 +1,110 @@
+schema: 1
+id: skadeforebyggande-uppvarmning-13-19
+namn: Skadeförebyggande uppvärmning, 13-19 år
+syfte: Spelarna ska öva knä- och fotledskontroll, bålstabilitet och
+  landningsteknik som förberedelse inför träningens mer intensiva delar.
+beskrivning: |
+  Spelarna rör sig mellan sex stationer och gör en övning vid varje:
+  enbenshopp med mjuk landning, utfallssteg, sidohopp över en linje, planka,
+  balans på ett ben med lätt och kontrollerad knuff från en medspelare och
+  rak löpning med höga knän. Ledaren visar varje övning innan gruppen
+  sätter igång och går runt för att rätta till knäläget vid landning och
+  hopp.
+organisation: |
+  Sex stationer per grupp, med minst två meters avstånd mellan spelarna på
+  samma station. Balansstationen har alltid två spelare, eftersom övningen
+  kräver en medspelare som knuffar. Planka, sidohopp och höga knän tar upp
+  till tre spelare var. Enbenshopp och utfallssteg tar upp till tre
+  respektive två spelare. Är gruppen liten körs färre stationer den gången,
+  utom balansstationen som alltid ska vara med. Spelarna roterar medurs
+  mellan stationerna på ledarens signal. Fler grupper bygger en egen
+  uppsättning stationer bredvid.
+fokusomraden:
+  - skadeforebyggande
+  - koordination
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 1
+ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget
+  vid landning och hopp så att knäna inte viker inåt, och håller extra
+  uppsikt vid balansstationens knuff.
+spelare:
+  min: 7
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 20
+yta:
+  alla:
+    langd: 16
+    bredd: 14
+material:
+  - typ: markering
+    antal: 6
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Landa mjukt på hela foten med lätt böjda knän.
+  - Låt inte knäna vika inåt vid landning eller riktningsbyte.
+  - Håll bålen stilla och blicken framåt, inte ner mot fötterna.
+  - Knuffen på balansstationen ska vara lätt och kontrollerad, inte ett knuff-slag.
+varianter:
+  lattare: Ta bort hoppen och gör bara balans- och stabilitetsövningarna vid
+    varje station.
+  svarare: Håll balansen fem sekunder efter varje landning och lägg till en
+    snabb riktningsändring efter utfallssteget.
+anpassning:
+  fler_spelare: Bygg en andra uppsättning med samma sex stationer bredvid.
+  udda_antal: Udda antal spelar ingen roll utom vid balansstationen, som
+    alltid ska ha två. Låt vid behov en spelare göra en station två gånger
+    i rad så att balansstationen får ett par.
+  ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid
+    olika stationer.
+planskiss:
+  version: 1
+  omrade:
+    langd: 16
+    bredd: 14
+  beskrivning: >-
+    Yta 16 x 14 meter med sex stationer: balans, planka och sidohopp på en
+    rad, höga knän, enbenshopp och utfallssteg på den andra. Spelarna
+    roterar medurs mellan stationerna, och balansstationen har alltid två.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 16, bredd: 14, stil: streckad }
+    - { id: st-balans, typ: ruta, x: 2.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Balans }
+    - { id: st-planka, typ: ruta, x: 7.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Planka }
+    - { id: st-sidohopp, typ: ruta, x: 12.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Sidohopp }
+    - { id: st-utfallssteg, typ: ruta, x: 12.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Utfallssteg }
+    - { id: st-enbenshopp, typ: ruta, x: 7.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Enbenshopp }
+    - { id: st-hogaknan, typ: ruta, x: 2.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Höga knän }
+    - { typ: spelare, x: 3, y: 1, lag: a }
+    - { typ: spelare, x: 1, y: 3, lag: a }
+    - { typ: spelare, x: 8, y: 1, lag: a }
+    - { typ: spelare, x: 13, y: 1, lag: a }
+    - { typ: spelare, x: 13, y: 13, lag: a }
+    - { typ: spelare, x: 8, y: 13, lag: a }
+    - { typ: spelare, x: 3, y: 13, lag: a }
+  rorelser:
+    - { typ: lopning, fran: { objekt: st-balans }, till: { objekt: st-planka }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: st-planka }, till: { objekt: st-sidohopp }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: st-sidohopp }, till: { objekt: st-utfallssteg }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: st-utfallssteg }, till: { objekt: st-enbenshopp }, ordning: 4 }
+    - { typ: lopning, fran: { objekt: st-enbenshopp }, till: { objekt: st-hogaknan }, ordning: 5 }
+    - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans }, ordning: 6 }
+kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF
+  rekommenderar för 13-19 år.
+status: utkast
+granskning: []
