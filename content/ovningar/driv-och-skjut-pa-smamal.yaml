@@ -1,0 +1,92 @@
+schema: 1
+id: driv-och-skjut-pa-smamal
+namn: Driv och skjut på småmål
+syfte: Spelarna ska driva bollen i fart och avsluta mot ett mål utan motstånd.
+beskrivning: |
+  En bana om 10 x 5 meter har en startkon i ena änden och ett litet mål i den andra. En
+  spelare i taget driver bollen från konen mot målet och skjuter innan hen hämtar bollen
+  och ställer sig sist i kön. Extra bollar ligger vid målet så att nästa spelare snabbt
+  kan starta.
+organisation: |
+  En bana per grupp om två till fyra spelare, med en kort kö vid startkonen. Flera banor
+  läggs bredvid varandra med tre meters mellanrum om gruppen är större.
+fokusomraden:
+  - dribbling
+  - avslut
+  - bollkansla
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 4
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 10
+    bredd: 5
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv vid målet
+  - typ: minimal
+    antal: 1
+  - typ: kon
+    antal: 2
+    anteckning: markerar startpunkten
+coachningspunkter:
+  - Driv bollen med flera lätta touchar, inte med ett hårt spark framåt.
+  - Titta upp mot målet innan du skjuter.
+  - Skjut med insidan av foten för bättre träffsäkerhet.
+varianter:
+  lattare: Kortare bana, så att avslutet kommer snabbare.
+  svarare: Lägg en kon att runda på vägen innan avslutet.
+anpassning:
+  fler_spelare: Lägg till fler banor bredvid varandra med tre meters mellanrum.
+  udda_antal: Spelar ingen roll. En spelare till i kön gör ingen skillnad.
+  ledare: Övningen är självgående när banan är uppställd. Ledaren kan lägga in nya bollar
+    vid målet.
+planskiss:
+  version: 1
+  omrade:
+    langd: 10
+    bredd: 5
+  beskrivning: >-
+    Bana 10 x 5 meter med en startkon i ena änden och ett litet mål i den andra. En
+    spelare i taget driver bollen mot målet och skjuter, sedan ställer hen sig sist i kön.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 5, stil: streckad }
+    - { typ: kon, x: 1, y: 2.5 }
+    - { id: mal-1, typ: mal, x: 9, y: 2.5, storlek: smamal, riktning: vanster }
+    - { id: sp-1, typ: spelare, x: 0, y: 2.5, lag: neutral, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: -1.5, y: 2.5, lag: neutral, etikett: "2" }
+    - { typ: boll, x: 0.3, y: 2.5 }
+    - { typ: boll, x: 8.5, y: 4 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: sp-1 }
+      till: { x: 7, y: 2 }
+      via: [{ x: 4, y: 1.5 }]
+      ordning: 1
+    - { typ: skott, fran: { x: 7, y: 2 }, till: { objekt: mal-1 }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-2, riktning: 180, etikett: Väntar på sin tur }
+kalla: Egen övning, inspirerad av vanliga driv- och avslutsövningar mot småmål.
+status: utkast
+granskning: []
