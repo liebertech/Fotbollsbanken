@@ -3,13 +3,15 @@ id: lek-med-egen-boll
 namn: Lek med egen boll
 syfte: Spelarna ska bli trygga med egen boll genom lekfull rörelse och enkla bollkonster.
 beskrivning: |
-  Varje spelare har en egen boll inne i en yta om 18 x 12 meter och rör sig fritt. På
-  ledarens rop eller tecken byter alla till en ny uppgift, till exempel att stoppa bollen
-  under foten, vända med bollen, rulla den mellan fötterna eller driva till ett bestämt
-  hörn. Ingen tävlar mot någon annan, alla övar samtidigt i sin egen takt.
+  Varje spelare har en egen boll i en yta om 18 x 12 meter och driver runt fritt. Ledaren
+  ropar lekfulla signaler som alla gör direkt: "rött" betyder att bollen stoppas under
+  foten, "grönt" att alla driver igen, "staty" att man står på ett ben med andra foten på
+  bollen, "sitt" att man sätter sig på bollen och reser sig igen, och "hörn" att man
+  driver till närmaste hörnkon. Ingen åker ut och ingen tävlar mot någon annan.
 organisation: |
-  En boll per spelare i samma yta. Ledaren visar och ropar en ny uppgift ungefär varje
-  minut, så att gruppen hela tiden har något nytt att göra.
+  En boll per spelare i samma yta, med en kon i varje hörn. Ledaren visar varje signal en
+  gång och lägger till en ny ungefär varje minut. Är ni färre än åtta, gör ytan ungefär
+  hälften så stor, så att spelarna måste titta upp för att inte krocka.
 fokusomraden:
   - lek
   - bollkansla
@@ -50,11 +52,12 @@ material:
     antal: 4
 coachningspunkter:
   - Håll bollen nära fötterna när du rör dig.
-  - Lyssna och reagera snabbt på nästa uppgift.
+  - Lyssna och gör signalen direkt.
   - Prova att använda båda fötterna, inte bara den du gillar bäst.
 varianter:
   lattare: Gå i stället för att springa mellan uppgifterna.
-  svarare: Lägg till en extra regel, till exempel att bara röra bollen med vänster fot.
+  svarare: Ledaren visar signalen med handen i stället för att ropa den, så att spelarna
+    måste titta upp.
 anpassning:
   fler_spelare: Lägg till fler bollar i samma yta, eller gör ytan något större om det blir
     trångt för alla att röra sig fritt.
@@ -66,10 +69,15 @@ planskiss:
     langd: 18
     bredd: 12
   beskrivning: >-
-    Yta 18 x 12 meter där varje spelare har en egen boll och rör sig fritt. På ledarens
-    tecken byter alla till en ny uppgift, till exempel att stoppa bollen eller vända.
+    Yta 18 x 12 meter med en kon i varje hörn. Varje spelare har en egen boll och rör sig
+    fritt. På ledarens signal gör alla samma sak, till exempel stoppar bollen under foten
+    eller driver till närmaste hörn.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 18, y: 0 }
+    - { typ: kon, x: 0, y: 12 }
+    - { typ: kon, x: 18, y: 12 }
     - { id: sp-1, typ: spelare, x: 4, y: 3, lag: neutral, etikett: "1" }
     - { id: sp-2, typ: spelare, x: 14, y: 3, lag: neutral, etikett: "2" }
     - { id: sp-3, typ: spelare, x: 4, y: 9, lag: neutral, etikett: "3" }
@@ -82,13 +90,11 @@ planskiss:
     - typ: dribbling
       fran: { objekt: sp-1 }
       till: { x: 8, y: 5 }
-      ordning: 1
     - typ: dribbling
       fran: { objekt: sp-3 }
       till: { x: 10, y: 8 }
-      ordning: 1
 kalla: Egen övning, inspirerad av vanliga bollkänselekar för de yngsta.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -102,3 +108,13 @@ granskning:
       koordinationsuppgifter. Ändringar, exakta i docs/doman/granskning-omgang-5.md under A2:
       ny beskrivning med lekfulla signaler, ny organisation, andra coachningspunkten, svårare
       variant, hörnkoner i planskissen och ingen ordning på pilarna.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A2. Skrev om beskrivning till en
+      signallek (rött, grönt, staty, sitt, hörn) och organisation med en kon i varje hörn
+      och regeln om mindre yta vid färre än åtta spelare. Bytte andra coachningspunkten och
+      den svårare varianten. I planskissen lade jag till fyra hörnkoner, skrev om skissens
+      beskrivning och tog bort ordning från båda dribblingarna eftersom alla rör sig
+      samtidigt.
