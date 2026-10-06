@@ -1,0 +1,117 @@
+schema: 1
+id: svansjakt-med-egen-boll
+namn: Svansjakt med egen boll
+syfte: Spelarna ska röra sig snabbt och behålla kontrollen på bollen samtidigt som de håller
+  koll på omgivningen.
+beskrivning: |
+  Alla spelare har en egen boll och en väst instoppad som svans bak i shortsen, inne i en
+  yta om 12 x 12 meter. En eller två fångare, också de med egen boll, försöker dra loss
+  svansar medan alla dribblar. Fångaren ger genast tillbaka svansen, och den som blev av
+  med den stoppar in den igen och fortsätter. Leken stannar aldrig upp, och ingen åker ut.
+organisation: |
+  Ungefär en fångare per fyra spelare. Fångarna håller sin egen svans i handen, så att
+  alla ser vem som jagar. Ledaren byter fångare ungefär varje minut, så att alla får prova
+  båda rollerna. Svansen stoppas löst i linningen bak, så att den lossnar lätt, och knyts
+  aldrig fast.
+fokusomraden:
+  - lek
+  - koordination
+  - snabbhet
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 12
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 12
+    bredd: 12
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: vast
+    antal: 12
+    anteckning: en per spelare, instoppad som svans
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Håll kontroll på bollen även när du rör dig snabbt och byter riktning.
+  - Titta upp ibland så att du ser var fångarna är.
+  - Dra svansen snällt, ingen ska ramla eller bli knuffad.
+varianter:
+  lattare: Färre fångare, eller fångarna får bara gå, inte springa.
+  svarare: Den som tappar svansen blir själv fångare en kort stund innan hen tar en ny.
+anpassning:
+  fler_spelare: Ungefär en fångare per fyra spelare. Med fler än tolv spelare läggs en
+    andra yta bredvid, med tre meters mellanrum.
+  udda_antal: Spelar ingen roll. Antalet fångare behöver inte vara jämnt.
+  ledare: En ledare räcker för att hålla koll på alla och byta fångare med jämna mellanrum.
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 12
+  beskrivning: >-
+    Yta 12 x 12 meter där alla driver egen boll med en väst som svans. Fångaren, också med
+    egen boll, försöker dra loss svansar medan de andra driver undan.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 12, stil: streckad }
+    - { id: f1, typ: spelare, x: 6, y: 6, lag: b, etikett: F }
+    - { id: sp-1, typ: spelare, x: 2, y: 2, lag: neutral, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 10, y: 2.5, lag: neutral, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 6, y: 10, lag: neutral, etikett: "3" }
+    - { typ: boll, x: 6.3, y: 6 }
+    - { typ: boll, x: 2.3, y: 2 }
+    - { typ: boll, x: 10.3, y: 2.5 }
+    - { typ: boll, x: 6.3, y: 10 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: f1 }, till: { x: 3.5, y: 3.5 }, ordning: 1, etikett: Jagar }
+    - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 5.5, y: 1 }, ordning: 1, etikett: Flyr undan }
+kalla: Egen övning, inspirerad av klassiska kullekar med boll.
+status: utkast
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Fokus och form är rätt för åldern, och fångare med egen boll håller nere farten.
+      Ingen kan vinna någon annans boll, så golvet är 8. Men det är en jaktlek: 18 x 18 meter
+      ger 81 kvadratmeter per spelare vid fyra, och då når fångaren aldrig fram. Ändringar,
+      exakta i docs/doman/granskning-omgang-5.md under A3: yta 12 x 12 och spelare.max 12
+      (12 kvadratmeter per spelare vid tolv, 36 vid fyra), ingen ytreferens med kategorin för
+      liten eller ingen plandel med rätt form, ny beskrivning och organisation där fångaren
+      ger tillbaka svansen och svansen aldrig knyts fast, västar 12, ny planskiss för 12 x 12
+      där fångaren driver boll och båda rörelserna har ordning 1. Förslag utan krav: ett namn
+      som inte liknar SvFF-övningen med nästan samma namn.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A3. Bytte namn till "Svansjakt med
+      egen boll" på huvudsessionens beslut, eftersom experten fann ett nästan likadant namn
+      i SvFF:s övningsbank; filen döptes om och id:t blev svansjakt-med-egen-boll, och
+      namnet/id:t är kontrollerade mot övriga filer i banken så att de är unika. Ändrade
+      yta till 12 x 12 och spelare.max till 12, tog bort ytreferens, skrev om beskrivning
+      och organisation så att fångaren genast ger tillbaka svansen och den aldrig knyts
+      fast, satte västarna till 12 och skrev om anpassning.fler_spelare. I planskissen
+      ändrade jag omrade och rutan till 12 x 12, flyttade f1 (nu lag b) och de tre andra
+      spelarna, bollarna till sina nya platser och ersatte rörelserna så att fångarens
+      löpning blev en dribbling och båda rörelserna fick ordning 1 eftersom de sker
+      samtidigt.
