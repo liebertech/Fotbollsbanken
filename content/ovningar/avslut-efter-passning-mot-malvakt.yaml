@@ -1,0 +1,100 @@
+schema: 1
+id: avslut-efter-passning-mot-malvakt
+namn: Avslut efter passning mot målvakt
+syfte: Spelarna ska avsluta med precision efter en passning, mot en målvakt
+  som försöker rädda skottet.
+beskrivning: |
+  Fyra till tio spelare roterar mellan rollerna passare, avslutare, målvakt
+  och kö vid ett mål. Passaren spelar in bollen från sidan, avslutaren
+  möter bollen och skjuter på första eller andra touchen från minst tio
+  meter, och alla roterar en position efter varje försök. Målvakten byts
+  ofta och gör det frivilligt.
+organisation: |
+  En grupp om fyra till tio spelare per mål, med rollerna passare,
+  avslutare, målvakt och en till sju i kort kö. Extra bollar ligger vid
+  målet så att gruppen själv fyller på. Kön står vid sidan om målet, aldrig
+  bakom målet och aldrig i skottlinjen. Den som vill slippa stå i mål byter
+  bort rollen direkt, och avslut sker aldrig närmare målvakten än tio
+  meter, eftersom målvakten är en utespelare utan handskar.
+fokusomraden:
+  - avslut
+  - passning-mottagning
+  - malvaktsspel
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 10
+grupptyp: fri
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 20
+yta:
+  alla:
+    langd: 18
+    bredd: 14
+ytreferens:
+  alla: stora planens målområde, två och en halv gång så djupt
+material:
+  - typ: boll
+    antal: 6
+    anteckning: bollar att skjuta med, ligger i en hög vid målet
+  - typ: mal
+    antal: 1
+coachningspunkter:
+  - Möt bollen på väg mot mål, stå inte still.
+  - Sikta på en bestämd del av målet innan du skjuter.
+  - Använd båda fötterna över tid, inte bara den starka.
+  - Skjut aldrig hårt inifrån tio meter, målvakten saknar handskar.
+varianter:
+  lattare: Bollen läggs still av passaren i stället för att spelas in i rörelse.
+  svarare: Avslutaren får bara en touch innan skottet.
+anpassning:
+  fler_spelare: Bygg en till grupp med mål bredvid, till exempel det andra
+    planens mål.
+  udda_antal: Ingen åtgärd behövs. Gruppen fungerar med alla antal mellan
+    fyra och tio, kön blir bara en person längre eller kortare.
+  ledare: Med en ledare vid varje mål kan hon eller han ge snabb feedback
+    på varje avslut.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 14
+  beskrivning: >-
+    Yta 18 x 14 meter med ett mål och en målvakt på högra kortsidan.
+    Avslutaren möter bollen centralt, passaren spelar in den från
+    sidlinjen. Kön står utanför ytan vid sidan av målet, bortom
+    skottlinjen. Rollerna roterar en position efter varje försök.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 14, stil: streckad }
+    - { id: mal-1, typ: mal, x: 18, y: 7, storlek: 9mot9, riktning: vanster }
+    - { id: mv, typ: spelare, x: 16.5, y: 7, lag: neutral, malvakt: true, etikett: MV }
+    - { id: sp-av, typ: spelare, x: 6, y: 7, lag: a, etikett: AV }
+    - { id: sp-p, typ: spelare, x: 7, y: 13, lag: a, etikett: P }
+    - { id: sp-k1, typ: spelare, x: 16, y: 16, lag: a, etikett: K }
+    - { typ: boll, x: 7.3, y: 13 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-p }, till: { objekt: sp-av }, ordning: 1 }
+    - { typ: skott, fran: { objekt: sp-av }, till: { objekt: mal-1 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sp-av }, till: { objekt: mv }, ordning: 3, etikett: Roterar en position }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-k1, riktning: 180, avstand: 1.5, etikett: Kö }
+kalla: Egen övning, inspirerad av vanliga avslutsstationer med rotation.
+status: utkast
+granskning: []
