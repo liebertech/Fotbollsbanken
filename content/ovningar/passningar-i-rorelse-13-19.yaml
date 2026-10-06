@@ -5,10 +5,12 @@ syfte: Spelarna ska passa och ta emot bollen i rörelse och göra sig spelbara
   direkt igen efter sin egen passning.
 beskrivning: |
   Fyra till sexton spelare rör sig fritt inne i en kvadrat om 20 x 20 meter.
-  Två bollar är i gång samtidigt. Den som har boll passar till en spelare
-  som är ledig och rör sig direkt till en ny yta i rutan efter sin egen
-  passning, i stället för att stanna kvar där passningen gick ifrån.
-  Spelarna ska hela tiden leta ledigt utrymme och scanna innan de tar emot.
+  Flera bollar är i gång samtidigt: två bollar vid fyra till åtta spelare,
+  tre vid nio till tolv och fyra vid tretton till sexton. Den som har boll
+  passar till en spelare som är ledig och rör sig direkt till en ny yta i
+  rutan efter sin egen passning, i stället för att stanna kvar där
+  passningen gick ifrån. Spelarna ska hela tiden leta ledigt utrymme och
+  scanna innan de tar emot.
 organisation: |
   Alla spelare rör sig fritt i samma ruta. Är gruppen mycket stor läggs en
   andra ruta med samma mått bredvid, med tre meters mellanrum.
@@ -46,7 +48,8 @@ ytreferens:
   alla: en ruta något större än stora planens mittcirkel
 material:
   - typ: boll
-    antal: 2
+    antal: 4
+    anteckning: två till fyra beroende på antal spelare
   - typ: kon
     antal: 4
     anteckning: markerar de fyra hörnen
@@ -86,8 +89,8 @@ planskiss:
     - { typ: boll, x: 5.9, y: 5 }
   rorelser:
     - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: p1 }, till: { x: 10, y: 12 }, ordning: 2 }
-    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: p1 }, till: { x: 5, y: 12.5 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p4 }, ordning: 3 }
   skalning:
     strategi: platser
     platser:
@@ -104,7 +107,7 @@ planskiss:
       - { x: 13, y: 10, lag: a }
       - { x: 10, y: 7, lag: a }
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörelse.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -117,3 +120,13 @@ granskning:
       fyra bollar. 2. I skissen gick passningen P2 till P3 genom platsen (10, 10), som fylls vid
       nio spelare eller fler. Nya rörelser står i docs/doman/granskning-omgang-5.md, B3. Förslag,
       som inte krävs: längsta tid 20 minuter.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Båda punkterna åtgärdade. Lade till i beskrivning hur många bollar som
+      används vid olika antal spelare, och ändrade materialet till fyra
+      bollar med en anteckning om att det är två till fyra beroende på
+      antal. Ersatte skissens rörelser så att löpningen går till (5, 12.5)
+      och den andra passningen går till p4 i stället för p3, så att ingen
+      pil längre passerar genom platsen (10, 10).
