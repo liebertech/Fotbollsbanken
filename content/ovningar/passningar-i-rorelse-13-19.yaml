@@ -1,0 +1,108 @@
+schema: 1
+id: passningar-i-rorelse-13-19
+namn: Passningar i rörelse, 13-19 år
+syfte: Spelarna ska passa och ta emot bollen i rörelse och göra sig spelbara
+  direkt igen efter sin egen passning.
+beskrivning: |
+  Fyra till sexton spelare rör sig fritt inne i en kvadrat om 20 x 20 meter.
+  Två bollar är i gång samtidigt. Den som har boll passar till en spelare
+  som är ledig och rör sig direkt till en ny yta i rutan efter sin egen
+  passning, i stället för att stanna kvar där passningen gick ifrån.
+  Spelarna ska hela tiden leta ledigt utrymme och scanna innan de tar emot.
+organisation: |
+  Alla spelare rör sig fritt i samma ruta. Är gruppen mycket stor läggs en
+  andra ruta med samma mått bredvid, med tre meters mellanrum.
+fokusomraden:
+  - passning-mottagning
+  - spelbarhet
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 10
+  langst: 15
+yta:
+  alla:
+    langd: 20
+    bredd: 20
+ytreferens:
+  alla: en ruta något större än stora planens mittcirkel
+material:
+  - typ: boll
+    antal: 2
+  - typ: kon
+    antal: 4
+    anteckning: markerar de fyra hörnen
+coachningspunkter:
+  - Titta upp innan du tar emot, så att du redan vet var nästa passning ska gå.
+  - Rör dig till en ny, ledig yta direkt efter din egen passning.
+  - Möt bollen i rörelse i stället för att stå och vänta på den.
+varianter:
+  lattare: Ingen touchbegränsning, alla tar den tid de behöver innan passningen.
+  svarare: Högst två touchar per spelare innan bollen ska passas vidare.
+anpassning:
+  fler_spelare: Bygg en andra ruta om 20 x 20 meter bredvid, med tre meters
+    mellanrum mellan rutorna.
+  udda_antal: Alla rör sig fritt i samma ruta och passar till den som är
+    ledig, så udda antal spelar ingen roll.
+  ledare: En ledare räcker för att se hela ytan och ge återkoppling om
+    rörelsen. Med fler ledare kan grupperna delas i fler rutor.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 20
+  beskrivning: >-
+    Kvadrat 20 x 20 meter med en kon i varje hörn. Spelarna rör sig fritt i
+    rutan och passar till den som är ledig, och rör sig till en ny yta
+    direkt efter sin egen passning.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 20, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 20, y: 0 }
+    - { typ: kon, x: 20, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { id: p1, typ: spelare, x: 5, y: 5, lag: a }
+    - { id: p2, typ: spelare, x: 15, y: 5, lag: a }
+    - { id: p3, typ: spelare, x: 5, y: 15, lag: a }
+    - { id: p4, typ: spelare, x: 15, y: 15, lag: a }
+    - { typ: boll, x: 5.9, y: 5 }
+  rorelser:
+    - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: p1 }, till: { x: 10, y: 12 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: p2 }, till: { objekt: p3 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 10, y: 3, lag: a }
+      - { x: 3, y: 10, lag: a }
+      - { x: 17, y: 10, lag: a }
+      - { x: 10, y: 17, lag: a }
+      - { x: 10, y: 10, lag: a }
+      - { x: 2, y: 2, lag: a }
+      - { x: 18, y: 2, lag: a }
+      - { x: 2, y: 18, lag: a }
+      - { x: 18, y: 18, lag: a }
+      - { x: 7, y: 10, lag: a }
+      - { x: 13, y: 10, lag: a }
+      - { x: 10, y: 7, lag: a }
+kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörelse.
+status: utkast
+granskning: []
