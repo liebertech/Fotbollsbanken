@@ -99,7 +99,7 @@ planskiss:
     koer:
       - { vid: sp-1, riktning: 90, avstand: 4, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -124,3 +124,13 @@ granskning:
       det står vem som går ut, och bytte båda varianterna. I planskissen flyttade jag
       reservbollen till (3, 7), ersatte rörelserna med nya koordinater och gav kön
       avstand 4 så att den tredje spelaren står utanför ytan i stället för inne i den.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Duellen
+      har riktning, omgångarna ger vila, och texten för udda antal ger en rotation där alla
+      spelar två dueller och vilar en (R-058). Yta 24 kvadratmeter per spelare, mellan golvet
+      15 och taket 25. Ingen ytreferens: för liten eller ingen plandel med rätt form. Den
+      tredje står på (2, 7), en meter utanför ytan bredvid reservbollen och inte i någon
+      skottlinje. Dribblingen håller 1,8 m till försvararen. Inga namn.

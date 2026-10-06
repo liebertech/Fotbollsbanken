@@ -94,7 +94,7 @@ planskiss:
       fran: { objekt: sp-3 }
       till: { x: 10, y: 8 }
 kalla: Egen övning, inspirerad av vanliga bollkänselekar för de yngsta.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -118,3 +118,13 @@ granskning:
       den svårare varianten. I planskissen lade jag till fyra hörnkoner, skrev om skissens
       beskrivning och tog bort ordning från båda dribblingarna eftersom alla rör sig
       samtidigt.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Övningen
+      är nu en signallek med koordinationsuppgifter (staty, sitt och res dig) och skiljer sig
+      tydligt från bollkansla-och-driv-med-egen-boll. Yta 13,5 kvadratmeter per spelare vid
+      sexton, över golvet 8. Taket prövas inte som gräns för egen boll utan motståndare, och
+      texten säger att ytan görs mindre med färre än åtta. Ytreferensen är rätt. Hörnkonerna
+      finns i skissen och pilarna saknar ordning. Inga namn.

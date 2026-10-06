@@ -93,7 +93,7 @@ planskiss:
     koer:
       - { vid: sp-2, riktning: 270, etikett: Väntar på sin tur }
 kalla: Egen övning, inspirerad av vanliga driv- och avslutsövningar mot småmål.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -119,3 +119,13 @@ granskning:
       kortlinjen, lade till skottkonen, tog bort reservbollen vid målet och ersatte
       rörelserna med driv, skott och en väg tillbaka utanför banan, samt flyttade kön till
       riktning 270 så att den tredje spelaren står utanför sidlinjen.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Egen boll
+      till alla ger högst cirka en halv minuts väntan med fyra, skottet går från fem meter och
+      ingen står i skottlinjen, eftersom nästa startar först när den före gått ut åt sidan och
+      banorna har målen åt samma håll. Yta 25 kvadratmeter per spelare vid två, på taket. Ingen
+      ytreferens: för liten eller ingen plandel med rätt form. Kön står utanför kortlinjen,
+      1,5 m från startkonen, och ryms inom marginalen. Inga namn.

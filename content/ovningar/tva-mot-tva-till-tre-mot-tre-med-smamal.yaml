@@ -99,7 +99,7 @@ planskiss:
       - { x: 9, y: 6, lag: b }
       - { x: 5, y: 5, lag: a }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med joker i yngre åldrar.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -126,3 +126,13 @@ granskning:
       "Pressar" till (7, 3.5), skott från (11, 3)) och de tre platserna med (7, 8, a),
       (9, 6, b) och (5, 5, a), samt skrev om skissens beskrivning så att den säger hur
       jokern går in.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Alla fyra ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md.
+      Perioder om tre minuter och start efter utboll och mål följer 3 mot 3-reglerna. Skottet
+      går 1,8 m från B1 och platserna står minst 1,8 m från pilar och spelare. Yta 21,4
+      kvadratmeter per spelare vid sju och 37,5 vid fyra, 50 procent över taket, godtaget
+      eftersom ytan är 3 mot 3-matchens minsta plan. Ytreferensen hela 3 mot 3-planen är rätt.
+      Inga namn.

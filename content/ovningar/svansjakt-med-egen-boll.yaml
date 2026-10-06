@@ -85,7 +85,7 @@ planskiss:
     - { typ: dribbling, fran: { objekt: f1 }, till: { x: 3.5, y: 3.5 }, ordning: 1, etikett: Jagar }
     - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 5.5, y: 1 }, ordning: 1, etikett: Flyr undan }
 kalla: Egen övning, inspirerad av klassiska kullekar med boll.
-status: utkast
+status: atgarda
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -115,3 +115,14 @@ granskning:
       spelarna, bollarna till sina nya platser och ersatte rörelserna så att fångarens
       löpning blev en dribbling och båda rörelserna fick ordning 1 eftersom de sker
       samtidigt.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda, två rader. Allt jag begärde i första omgången är infört exakt, och yta,
+      säkerhet, skiss och namn håller. Två fel finns kvar, och båda borde ha stått i min
+      första lista: 1. material, bollarna: antal 12 i stället för 16, så att det stämmer
+      med en per spelare och spelare.max 12. 2. varianter.svarare säger "innan hen tar en
+      ny", men svansen ges nu tillbaka och ingen hämtar nya. Ersätt med: "Den som blir av med
+      svansen blir själv fångare en kort stund innan hen stoppar in den igen." Exakt i
+      docs/doman/granskning-omgang-5.md, avsnittet Paket A, andra omgången.

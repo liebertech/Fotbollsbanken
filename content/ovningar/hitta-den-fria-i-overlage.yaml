@@ -96,7 +96,7 @@ planskiss:
       - { x: 2, y: 0.8, lag: a }
       - { x: 10, y: 2, lag: b }
 kalla: Egen övning, inspirerad av vanliga övningar med överläge i litet format.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -121,3 +121,14 @@ granskning:
       satte västarna till 2. I planskissen flyttade jag a1, a2 och b1, skrev om rörelserna
       så att A2:s löpning till den fria ytan och passningen dit blir tydliga, och kortade
       platslistan till två poster för det nya spannet 3–5.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Formen
+      följer antalet (två mot en, tre mot en, tre mot två), alla försvarar i tur och ordning,
+      och coachningspunkterna ger sexåringen ett enkelt val: passa om försvararen kommer,
+      annars driv. Yta 32 kvadratmeter per spelare vid tre, 28 procent över taket, godtaget,
+      och 19,2 vid fem, över golvet 15. Ingen ytreferens: för liten eller ingen plandel med
+      rätt form. Passningen går 1,4 m från B1. Förslag utan krav: anpassning.ledare kan
+      säga att rollerna byts efter varje anfall, som i organisation. Inga namn.

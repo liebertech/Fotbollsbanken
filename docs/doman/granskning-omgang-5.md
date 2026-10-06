@@ -240,3 +240,57 @@ Ingen etikett, ingen beskrivning och ingen text i de sju filerna innehåller nam
 
 1. **Taket för övningar med egen boll och utan motståndare.** Jag prövar inte taket som gräns för A2 och A4, se *Genomgående*. Det gäller mitt eget riktvärde, men det är ett nytt sätt att använda det. *Rekommendation:* för in en mening om det i `passuppbyggnad.md`, avsnittet *Över taket*, vid nästa revidering. Dokumentet är godkänt, så det kräver användarens godkännande.
 2. **Spannet i plan-omgang-5.** Designregel 1 och spannet `fri`, 4–16, för A2, A3 och A4 går inte ihop med golvet och taket i `fas-6-7`. *Rekommendation:* rätta planen så att den säger det som står här: egen boll utan motståndare får 4–16, en jaktlek 4–12.
+
+## Paket A, andra omgången (2026-10-06)
+
+Jag har läst de sju filerna i worktreen på grenen `omgang/5-paket-a` och jämfört varje fält med listorna ovan. Avstånden i skisserna är räknade på samma sätt som i första omgången.
+
+**A3 har fått nytt namn och id.** Övningen heter nu *Svansjakt med egen boll*, med id `svansjakt-med-egen-boll`, efter huvudsessionens beslut. Där A3 nämns som `svansleken-med-egen-boll` ovan gäller det samma övning. Filen med det gamla id:t finns inte kvar. Övningen har aldrig legat i main, så id-bytet bryter inte regeln om stabila id.
+
+### Kontroll av rättelserna
+
+Alla punkter i första omgången är införda exakt, i alla sju filerna. Jag hittade ingen avvikelse från listorna.
+
+### Dom per övning
+
+**A1 `tva-mot-tva-till-tre-mot-tre-med-smamal`: granskad.** Perioderna, starten efter utboll och mål, B1:s nya läge, rörelserna, platserna och skissens beskrivning stämmer med listan.
+
+**A2 `lek-med-egen-boll`: granskad.** Signalleken, organisationen, coachningspunkten, den svårare varianten, hörnkonerna och pilarna utan `ordning` stämmer.
+
+**A3 `svansjakt-med-egen-boll`: åtgärda.** Allt från första omgången är infört och håller: yta 12 × 12, högst tolv, ingen ytreferens, regeln för svansen och säkerheten, och skissen. Två fel finns kvar. Båda fanns redan i första omgången och borde ha stått i min lista. Felet är mitt, inte övningsförfattarens.
+1. **`material`**, bollarna: `antal: 12`. Det stod 16, men `spelare.max` är 12 och anteckningen säger en per spelare.
+2. **`varianter.svarare`** ersätts med:
+   `Den som blir av med svansen blir själv fångare en kort stund innan hen stoppar in den igen.`
+   Den gamla texten, "innan hen tar en ny", bygger på den gamla regeln där nya västar hämtades vid kortsidan. Nu ger fångaren tillbaka svansen direkt, och det finns inga extra västar.
+
+Inget annat behöver ändras. När de två raderna är införda och övningen är tillbaka som `utkast` räcker det att jag kontrollerar just de två fälten.
+
+**A4 `bollkansla-och-driv-med-egen-boll`: granskad.** Konparen, materialet, "ungefär varje minut", den svårare varianten och skissen stämmer. Åttan håller 1,8 m till konerna.
+
+**A5 `driv-och-skjut-pa-smamal`: granskad.** Egen boll, skottkonen, vägen tillbaka, regeln för när nästa startar, målen åt samma håll, materialet, coachningspunkten, ledartexten och skissen stämmer. Övningsförfattarens kommentar säger att den tredje spelaren står utanför sidlinjen, men kön står utanför kortlinjen, bredvid startkonen. Det är där den ska stå, så det behövs ingen ändring.
+
+**A6 `duell-mot-tva-smamal`: granskad.** Riktningen, omgångarna, texten för udda antal, varianterna, reservbollen och kön stämmer.
+
+**A7 `hitta-den-fria-i-overlage`: granskad.** Spannet 3–5, formen per antal, rotationen, coachningspunkterna, varianterna, västarna och skissen stämmer. *Förslag, som inte krävs:* `anpassning.ledare` säger att ledaren kan byta roller mellan omgångarna, medan `organisation` säger att rollerna byts efter varje anfall. Det säger inte emot varandra, men det blir tydligare om ledartexten säger samma sak, till exempel `Övningen går själv när rotationen är förklarad. Ledaren ser till att alla byter roll i tur och ordning.`
+
+### Namn
+
+Ingen etikett, ingen beskrivning och ingen text i de sju filerna innehåller namn eller andra personuppgifter.
+
+### Ytreferenser
+
+När A3 är granskad förs följande in i `ytreferenser.md`, avsnitt 6.2, med kategorin *för liten eller ingen plandel med rätt form*: `svansjakt-med-egen-boll` (12 × 12), `driv-och-skjut-pa-smamal` (10 × 5), `duell-mot-tva-smamal` (8 × 6) och `hitta-den-fria-i-overlage` (12 × 8). I avsnitt 6.1 förs `tva-mot-tva-till-tre-mot-tre-med-smamal` (hela 3 mot 3-planen), `lek-med-egen-boll` (stora planens målområde, dubbelt så djupt) och `bollkansla-och-driv-med-egen-boll` (ungefär en fjärdedel av stora planens straffområde) in. Tabellerna har då också en spelform `3mot3`.
+
+### Sammanfattning, andra omgången
+
+| Nr | Övning | Dom | Vad som ändras |
+|---|---|---|---|
+| A1 | `tva-mot-tva-till-tre-mot-tre-med-smamal` | granskad | – |
+| A2 | `lek-med-egen-boll` | granskad | – |
+| A3 | `svansjakt-med-egen-boll` | åtgärda | Bollarna 12 och den svårare varianten |
+| A4 | `bollkansla-och-driv-med-egen-boll` | granskad | – |
+| A5 | `driv-och-skjut-pa-smamal` | granskad | – |
+| A6 | `duell-mot-tva-smamal` | granskad | – |
+| A7 | `hitta-den-fria-i-overlage` | granskad | Förslag utan krav: ledartexten |
+
+Besluten som behövs ovan, punkt 1 och 2, gäller fortfarande.
