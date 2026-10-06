@@ -4,18 +4,22 @@ namn: Omställning i överläge till mål
 syfte: Spelarna ska ställa om snabbt vid bollvinst, utnyttja överläget med
   ett snabbt avslut och försvara kompakt när de är i underläge.
 beskrivning: |
-  Två lag om två till fyra spelare möts på en yta om 36 x 25 meter med två
-  jokrar som alltid spelar med laget som har bollen, och ett litet mål i
-  var ände. Så fort ett lag vinner bollen har det åtta sekunder på sig att
-  avsluta mot något av målen, annars får motståndarna sätta en ny boll i
-  spel och anfalla i sin tur. Laget med boll ska utnyttja överläget och
-  avsluta snabbt, och laget utan boll ska försvara kompakt och täcka båda
-  målen tills det vinner tillbaka bollen.
+  Två lag om två till fyra spelare möts på en yta om 36 x 25 meter med en
+  eller två jokrar som alltid spelar med laget som har bollen, och ett
+  litet mål i var ände. Varje gång ett lag får bollen, genom bollvinst
+  eller en ny boll, har det åtta sekunder på sig att avsluta mot
+  motståndarnas mål. Lyckas det inte, eller går bollen ut, startar
+  motståndarna med en ny boll från sin kortlinje. Laget med boll ska
+  utnyttja överläget och avsluta snabbt, och laget utan boll ska försvara
+  kompakt framför sitt eget mål tills det vinner tillbaka bollen.
 organisation: |
-  Två lag om två till fyra spelare plus två jokrar, totalt fem till tio
-  spelare per yta. Minimål i var ände. Jokrarna byter lag direkt när
-  bollen byter ägare. Gruppen håller själv de åtta sekunderna, till
-  exempel genom att räkna högt.
+  Två lag om två till fyra spelare plus en eller två jokrar, totalt fem
+  till tio spelare per yta. Minimål i var ände. Jokrarna byter lag direkt
+  när bollen byter ägare. Fem spelare: två mot två och en joker. Sex: två
+  mot två och två jokrar. Sju: tre mot tre och en joker. Åtta: tre mot tre
+  och två jokrar. Nio: fyra mot fyra och en joker. Tio: fyra mot fyra och
+  två jokrar. Gruppen håller själv de åtta sekunderna, till exempel genom
+  att räkna högt.
 fokusomraden:
   - omstallning
   - forsvarsspel
@@ -62,16 +66,16 @@ material:
 coachningspunkter:
   - Reagera direkt när bollen byter lag, stå inte kvar.
   - Avsluta snabbt medan överläget finns, inom de åtta sekunderna.
-  - Täck båda målen tillsammans när ni försvarar i underläge.
+  - Försvara kompakt framför ert mål när ni är i underläge.
   - Pressa bollhållaren direkt om ni förlorar bollen.
 varianter:
   lattare: Tidsgränsen för avslutet höjs till tolv sekunder.
-  svarare: Tidsgränsen sänks till sex sekunder, och lyckas inte avslutet
-    får motståndarna sätta bollen i spel direkt med sin joker redan inne.
+  svarare: Tidsgränsen sänks till sex sekunder.
 anpassning:
-  fler_spelare: Gör ytan större och lägg till en spelare i varje lag.
-  udda_antal: Den udda spelaren blir en tredje joker som alltid spelar med
-    bollförande lag.
+  fler_spelare: Vid fler än tio spelare, bygg en andra yta med samma mått
+    bredvid.
+  udda_antal: Vid udda antal är det en joker, vid jämnt antal två. Aldrig
+    tre jokrar, eftersom laget utan boll då nästan aldrig vinner bollen.
   ledare: Övningen är självgående när lagen och tidsgränsen är satta. En
     ledare kan hålla tiden högt och peppar från sidan.
 planskiss:
@@ -80,24 +84,28 @@ planskiss:
     langd: 36
     bredd: 25
   beskrivning: >-
-    Yta 36 x 25 meter med ett minimål i var ände. Två mot två med en joker
-    som alltid spelar med laget som har bollen. Fler spelare och en andra
-    joker går in vid större grupper, upp till fyra mot fyra med två jokrar.
+    Yta 36 x 25 meter med ett minimål i var ände. Två mot två och en joker
+    som spelar med laget som har bollen. A1 vinner bollen och lag A
+    anfaller direkt med jokern. Vid sex och åtta spelare är den extra en
+    andra joker, men bilden visar då ett lag med en spelare mer. Lag A
+    anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 25, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 12.5, storlek: smamal, riktning: hoger }
     - { id: mal-b, typ: mal, x: 36, y: 12.5, storlek: smamal, riktning: vanster }
     - { id: a1, typ: spelare, x: 10, y: 8, lag: a }
     - { id: a2, typ: spelare, x: 10, y: 17, lag: a }
-    - { id: b1, typ: spelare, x: 26, y: 8, lag: b }
+    - { id: b1, typ: spelare, x: 16, y: 8, lag: b }
     - { id: b2, typ: spelare, x: 26, y: 17, lag: b }
-    - { id: j1, typ: spelare, x: 18, y: 12.5, lag: neutral }
-    - { typ: boll, x: 10.9, y: 8 }
+    - { id: j1, typ: spelare, x: 18, y: 14, lag: neutral }
+    - { typ: boll, x: 15.1, y: 8 }
   rorelser:
-    - { typ: passning, fran: { objekt: a1 }, till: { objekt: j1 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: b1 }, till: { x: 19, y: 9 }, ordning: 1 }
-    - { typ: passning, fran: { objekt: j1 }, till: { objekt: a2 }, ordning: 2 }
-    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-b }, ordning: 3 }
+    - { typ: dribbling, fran: { objekt: b1 }, till: { x: 13, y: 8 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 12, y: 8 }, ordning: 1, etikett: Vinner bollen }
+    - { typ: passning, fran: { x: 12, y: 8 }, till: { objekt: j1 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 28, y: 20 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: j1 }, till: { x: 28, y: 20 }, ordning: 3 }
+    - { typ: skott, fran: { x: 28, y: 20 }, till: { objekt: mal-b }, ordning: 4 }
   skalning:
     strategi: platser
     platser:
@@ -105,10 +113,10 @@ planskiss:
       - { x: 30, y: 12.5, lag: b }
       - { x: 13, y: 4, lag: a }
       - { x: 23, y: 21, lag: b }
-      - { x: 18, y: 17, lag: neutral }
+      - { x: 17, y: 22, lag: neutral }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar
   och tidspress.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -125,3 +133,19 @@ granskning:
       svårare varianten är sex sekunder, utan "med sin joker". 5. Skissen visade ingen
       omställning och slutade med ett skott från 26 meter. Nya lägen, rörelser, jokerns plats
       och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B8.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla fem punkterna åtgärdade. Skrev om jokerantalet till en eller två,
+      aldrig tre, och skrev ut fördelningen för fem till tio spelare i
+      organisation och i anpassning.udda_antal. Bytte "något av målen" och
+      "täcka båda målen" till "motståndarnas mål" och "försvara kompakt
+      framför ert mål", och skrev att regeln gäller varje anfall, också
+      efter en ny boll från kortlinjen. Skrev om anpassning.fler_spelare
+      till en andra yta över tio spelare. Tog bort "med sin joker redan
+      inne" ur den svårare varianten. I skissen: b1 till (16, 8), bollen
+      till (15.1, 8), j1 till (18, 14), nya rörelser som visar b1 dribbla in
+      i en närkamp som a1 vinner, passning till jokern och vidare till a2,
+      och skott från (28, 20). Den sista platsen, jokern, flyttad till
+      (17, 22), och skissens beskrivning omskriven.
