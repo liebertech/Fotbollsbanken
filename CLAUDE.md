@@ -77,7 +77,7 @@ Om övningen inte håller sätter fotbollsexperten eller redaktören status `atg
 4. Säkerhetsagenten granskar när inloggning, behörighet, data, inskickat innehåll eller externa tjänster berörs.
 5. UX-designern granskar när gränssnittet berörs.
 6. Kontrollpunkt K4 med användaren.
-7. Huvudsessionen mergar till main och pushar.
+7. Användaren mergar till main i webbläsaren. Huvudsessionen pushar grenarna och öppnar pull requesten.
 
 ## Git
 
