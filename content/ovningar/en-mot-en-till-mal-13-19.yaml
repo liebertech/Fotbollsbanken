@@ -1,0 +1,106 @@
+schema: 1
+id: en-mot-en-till-mal-13-19
+namn: 1 mot 1 till mål, 13-19 år
+syfte: Spelarna ska utmana en motståndare med hög fart och snabbt avgöra
+  dueller en mot en, både i anfall och försvar.
+beskrivning: |
+  Anfallaren startar med bollen tolv meter från ett litet mål. Försvararen
+  startar sex meter från målet och får inte gå fram och pressa förrän
+  anfallaren har rört bollen. Anfallaren försöker driva eller finta sig
+  förbi och göra mål, försvararen försöker vinna bollen eller få den
+  utanför ytan. Efter varje försök byter de två roller: den som blir ny
+  försvarare hämtar reservbollen vid målet och rullar in den till den nya
+  anfallaren, som startar nästa duell direkt.
+organisation: |
+  En yta per par med ett minimål i ena änden. Paret sköter rotationen
+  själva: roll och startposition byts efter varje försök, och
+  reservbollen vid målet gör att nästa duell kan starta utan att vänta på
+  någon utifrån. Flera ytor läggs bredvid varandra om gruppen är större.
+fokusomraden:
+  - ett-mot-ett
+  - dribbling
+  - snabbhet
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 20
+yta:
+  alla:
+    langd: 16
+    bredd: 12
+material:
+  - typ: minimal
+    antal: 1
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en i reserv vid målet
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Möt anfallaren i vinkel, spring inte rakt mot bollen.
+  - Skydda bollen med kroppen när försvararen kommer nära.
+  - Accelerera i det ögonblick ytan öppnar sig, vänta inte på nästa touch.
+  - Var snabb med avslutet så fort vägen till mål är öppen.
+varianter:
+  lattare: Försvararen väntar en extra sekund innan hen får gå fram och pressa.
+  svarare: Försvararen får gå fram samtidigt som anfallaren startar, utan
+    fördröjning.
+anpassning:
+  fler_spelare: Lägg fler ytor med samma uppställning bredvid, tre meters
+    mellanrum.
+  udda_antal: Tredje spelaren gör paret till en trio med tre roller i
+    rotation, anfallare, försvarare och vilande, där den vilande hämtar
+    och rullar in reservbollen till nästa duell.
+  ledare: Övningen sköter sig själv när paret har förstått rotationen. En
+    ledare kan gå mellan ytorna och ge tips om vinkel och timing.
+planskiss:
+  version: 1
+  omrade:
+    langd: 16
+    bredd: 12
+  beskrivning: >-
+    Yta 16 x 12 meter med ett minimål på vänstra kortsidan. Anfallaren
+    startar med boll tolv meter från målet, försvararen sex meter från
+    målet. Efter varje försök byter de roll och startposition.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 16, bredd: 12, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
+    - { id: anf, typ: spelare, x: 12, y: 6, lag: a, etikett: A }
+    - { id: forsv, typ: spelare, x: 6, y: 6, lag: b, etikett: F }
+    - { typ: boll, x: 12.9, y: 6 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: anf }
+      till: { x: 4, y: 3 }
+      via: [{ x: 8, y: 5 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: forsv }, till: { x: 5, y: 5 }, ordning: 1 }
+    - { typ: skott, fran: { x: 4, y: 3 }, till: { objekt: mal-a }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: anf, riktning: 90, avstand: 1.5, etikett: Väntar med reservboll }
+kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i
+  ungdomsfotboll.
+status: utkast
+granskning: []
