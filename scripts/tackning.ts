@@ -5,6 +5,9 @@
  *   npm run tackning               hela svepet, skriver docs/doman/tackning-<datum>.md
  *   npm run tackning -- --snabb    bara de föreslagna cellerna, skriver ...-snabb.md
  *
+ * Uppmätt 2026-10-06 med 42 + 16 övningar: --snabb 288 s (183 934 körfall per bank), hela
+ * svepet se rapportens metodavsnitt.
+ *
  * Rapporten redovisar också måtten per cell (ålder gånger spelform, föreslagen eller granne)
  * och jämför dem med målen i docs/doman/plan-omgang-5.md. Indelningen och måtten ligger i
  * `scripts/tackning-celler.ts`, som har egna tester.
@@ -752,7 +755,7 @@ function renderSummary(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean
   for (const total of totals) {
     const a = sumByKind(nu.agg.cells, total.kind);
     const b = sumByKind(efter.agg.cells, total.kind);
-    if (a.total === 0) {
+    if (a.total === 0 || (snabb && total.kind !== 'foreslagen')) {
       continue;
     }
     lines.push(row(total.label, '', a, b, total.goal, ['–', '–'], '–'));
