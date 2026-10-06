@@ -177,3 +177,45 @@ Ytreferensen *ungefär halva 7 mot 7-planen* godtas. Den är samma som för `oms
 ## Beslut som behövs
 
 1. **Två nästan likadana skadeförebyggande uppvärmningar för 13–14 år.** B4 och `skadeforebyggande-9mot9` (omgång 4, `granskad`) har nästan samma text och samma stationer. Generatorn kan välja båda i samma uppvärmning i ett långt pass, eftersom R-070 bara förbjuder samma ID. Rekommendation: B4 ersätter `skadeforebyggande-9mot9`, som då inte förs in i banken med omgång 4. Annars bör `skadeforebyggande-9mot9` göras om till en annan uppsättning stationer. Det är redaktörens och användarens beslut, eftersom det rör en övning i en annan omgång.
+
+## Paket B, andra omgången (2026-10-06)
+
+Övningsförfattaren har fört in rättelserna, och alla åtta stod på `utkast` igen. Jag har läst varje fil och jämfört den med punkterna ovan. Skissdatan har jag kontrollerat koordinat för koordinat mot domarna, eftersom den fördes över för hand. Ingen validering är körd, och skissavstånden är räknade för hand som förut.
+
+### Dom per övning
+
+**B1 `smalagsspel-till-mal-13-19`: granskad.** Ingen offside och ingen målvakt står i beskrivningen, och perioderna med vila står i organisationen. I skissen går dribblingen från A2 till `(26, 11)` och skottet från samma punkt, precis som domen säger. Skissens beskrivning säger "upp till fyra mot fyra". Meningen "fri match med vanliga regler i litet format" står kvar, men den följs nu direkt av undantagen och säger inte längre emot dem.
+
+**B2 `storre-spel-6mot6-till-11mot11`: granskad.** Spelare 12–18, det nya namnet, den mindre ytan för 12–15 spelare i både beskrivning och organisation, åtta koner, den nya anpassningen och den nya svårare varianten är införda. I skissen ligger bollen på `(3, 25)`, de tre passningarna går målvakten–A2–A3–A4 utan skott, och de sex första platserna står kvar. Förslag, som inte krävs: åtta västar räcker, eftersom ett lag har högst åtta utespelare.
+
+**B3 `passningar-i-rorelse-13-19`: granskad.** Antalet bollar per antal spelare står i beskrivningen, och materialet är fyra bollar. Rörelserna i skissen är exakt de tre i domen.
+
+**B4 `skadeforebyggande-uppvarmning-13-19`: granskad.** `spelare.min` är 6, och varje station tar upp till tre spelare, med minst två på balansstationen. Skissen har sex löpningar utan `ordning`, etiketten `Alla roterar medurs` på den första, sex spelare (den på `(13, 13)` är borttagen) och en ledare på `(8, 7)`. Skissens beskrivning är ordagrant den i domen. Beslutet om dubbletten med `skadeforebyggande-9mot9` står kvar.
+
+**B5 `avslut-efter-passning-mot-malvakt`: granskad.** Spelare 4–7, en kö på en till fyra, entydig rotation, målvakt i serier utan tvång, handskar som `ovrigt` och en ny fjärde coachningspunkt. Rotationspilen går från `sp-av` till `sp-k1`, har `ordning: 3` och etiketten `Sist i kön`. Skissens beskrivning är den i domen. Förslag, som inte krävs: den första meningen i beskrivningen räknar fortfarande målvakten som en roll i rotationen.
+
+**B6 `en-mot-en-till-mal-13-19`: åtgärda.** Trion, kön och serierna är införda. Kön är `{ vid: anf, riktning: 0, avstand: 5, etikett: Nästa anfallare väntar }` och skissens beskrivning nämner trion. En sak är kvar: `beskrivning` slutar fortfarande med "som startar nästa duell direkt". Det säger emot organisationen och tar bort vilan. Ersätt den sista meningen i `beskrivning` med exakt:
+`Efter varje försök byter de två roller: den som blir ny försvarare hämtar reservbollen vid målet och rullar in den till den nya anfallaren. Nästa duell startar när båda står på plats.`
+
+**B7 `spela-framat-i-positionsspel`: granskad.** Zonregeln, regeln om bollvinst i anfallszonen, omstarten i egen zon och den nya svårare varianten är införda med domens ordalydelse. Skissen var godkänd redan i första omgången och är oförändrad. Förslag, som inte krävs: i den lättare varianten kan "kravet på en passning i mittzonen" bli "kravet på mittzonen".
+
+**B8 `omstallning-i-overlage-till-mal`: granskad.** Jokrarna per antal, målen, regeln för varje anfall, anpassningen och båda varianterna är införda. I skissen ligger `b1` på `(16, 8)`, bollen på `(15.1, 8)` och `j1` på `(18, 14)`. De sex rörelserna, med `ordning` 1, 1, 2, 2, 3, 4 och etiketten `Vinner bollen`, är exakt de i domen. Platserna är A, B, A, B och sist jokern på `(17, 22)`. Skissens beskrivning är ordagrant den i domen.
+
+### Ytreferenser
+
+Sex rader är införda i `ytreferenser.md`, avsnitt 6.1: B1, B2, B3, B5, B7 och B8. B4 är införd i 6.2 med kategorin stationer. Kolumnen *Var* är `omgang/5-paket-b`. B6 hör till 6.2 som duell med startavstånd, och den förs in när den blir granskad. Där står en mening om det.
+
+### Sammanfattning
+
+| Övning | Dom |
+|---|---|
+| B1 `smalagsspel-till-mal-13-19` | granskad |
+| B2 `storre-spel-6mot6-till-11mot11` | granskad |
+| B3 `passningar-i-rorelse-13-19` | granskad |
+| B4 `skadeforebyggande-uppvarmning-13-19` | granskad |
+| B5 `avslut-efter-passning-mot-malvakt` | granskad |
+| B6 `en-mot-en-till-mal-13-19` | åtgärda, en mening i `beskrivning` |
+| B7 `spela-framat-i-positionsspel` | granskad |
+| B8 `omstallning-i-overlage-till-mal` | granskad |
+
+Ingen etikett och ingen text innehåller namn. Det som står under *Kvarstår* och *Beslut som behövs* ovan gäller fortfarande. Punkten om att ytreferenserna ska föras in är gjord för sju av de åtta.

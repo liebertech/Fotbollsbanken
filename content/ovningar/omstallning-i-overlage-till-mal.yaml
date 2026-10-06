@@ -116,7 +116,7 @@ planskiss:
       - { x: 17, y: 22, lag: neutral }
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel med jokrar
   och tidspress.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -149,3 +149,15 @@ granskning:
       i en närkamp som a1 vinner, passning till jokern och vidare till a2,
       och skott från (28, 20). Den sista platsen, jokern, flyttad till
       (17, 22), och skissens beskrivning omskriven.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Jokrarna är en eller två, aldrig tre, och fördelningen för fem till tio spelare
+      står i organisationen. Regeln om åtta sekunder gäller varje anfall, målen och coachningen
+      stämmer med ett mål i varje ände, och anpassningen och den svårare varianten är rättade.
+      Skissen är kontrollerad mot granskningen: B1 på (16, 8) med bollen på (15.1, 8), jokern på
+      (18, 14), sex rörelser i rätt ordning och den sista platsen på (17, 22). A1 och B1 möts med
+      flit i närkampen. I övrigt håller alla pilar minst 1,5 meter till motståndare och
+      platser, och skottet blir 11 meter. Skissens beskrivning är 294 tecken och förklarar sex
+      och åtta spelare. Ytan är 90,0 kvadratmeter per spelare vid tio och 180 vid fem.

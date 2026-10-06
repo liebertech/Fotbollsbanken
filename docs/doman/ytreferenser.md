@@ -136,7 +136,7 @@ Fältet är valfritt, och ingen validering kan se skillnad på en referens som g
 
 Den här tabellen är underlaget för att skriva in fältet i ett svep. Referensen skrivs exakt som i kolumnen, med nyckeln `alla`. Rader med *ingen* ska inte få fältet alls. Kolumnen *Var* anger var övningen finns 2026-09-28. Alla 58 övningar, också de 16 från omgång 4, finns nu i main, och mått och spelform är kontrollerade mot filerna samma dag (avsnitt 8).
 
-### 6.1 Med referens (46 övningar)
+### 6.1 Med referens (46 övningar, och sex från omgång 5)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -186,8 +186,16 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `smaspel-fasta-situationer` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `matchspel-7mot7-brett` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `matchspel-9mot9-brett` | 9 mot 9 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | main |
+| `avslut-efter-passning-mot-malvakt` | 7, 9 och 11 mot 11 | 18 × 14 | stora planens målområde, två och en halv gång så djupt | 54 | omgang/5-paket-b |
+| `passningar-i-rorelse-13-19` | 7, 9 och 11 mot 11 | 20 × 20 | en ruta något större än stora planens mittcirkel | 48 | omgang/5-paket-b |
+| `smalagsspel-till-mal-13-19` | 7, 9 och 11 mot 11 | 36 × 20 | ungefär stora planens straffområde | 34 | omgang/5-paket-b |
+| `omstallning-i-overlage-till-mal` | 7, 9 och 11 mot 11 | 36 × 25 | ungefär halva 7 mot 7-planen | 28 | omgang/5-paket-b |
+| `spela-framat-i-positionsspel` | 9 och 11 mot 11 | 42 × 28 | något längre än stora planens straffområde är brett | 51 | omgang/5-paket-b |
+| `storre-spel-6mot6-till-11mot11` | 9 och 11 mot 11 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | omgang/5-paket-b |
 
-### 6.2 Utan referens (12 övningar)
+*Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
+
+### 6.2 Utan referens (12 övningar, och en från omgång 5)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -203,6 +211,9 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `behall-bollen-i-gruppen` | 5 mot 5 | 14 × 12 | Positionsspel där måttet är golv och tak | main |
 | `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | main |
 | `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | main |
+| `skadeforebyggande-uppvarmning-13-19` | 7, 9 och 11 mot 11 | 16 × 14 | Station. Avståndet mellan arbetsplatserna styr, och ytan följer undantag 3 | omgang/5-paket-b |
+
+`en-mot-en-till-mal-13-19` (16 × 12, duell med startavstånd, ingen referens) förs in här när den är granskad.
 
 ### 6.3 Anmärkningar
 

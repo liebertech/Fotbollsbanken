@@ -109,7 +109,7 @@ planskiss:
       - { x: 14, y: 17, lag: a }
       - { x: 22, y: 17, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål utan målvakt.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -136,3 +136,13 @@ granskning:
       mot två. Bytte skissens rörelser till passning, dribbling till (26, 11)
       och skott från (26, 11), enligt granskningens koordinater, och ändrade
       skissens beskrivning till "upp till fyra mot fyra".
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Alla tre punkterna är införda. Spelet är utan offside och utan målvakt, så
+      djupledskriteriet gäller inte och 36 meter räcker. Perioderna med vila står i
+      organisationen. Skissen är kontrollerad mot granskningen: dribblingen går från A2 till
+      (26, 11), 3 meter från B1 och B2 och minst 3,7 meter från de fyra platserna, och skottet
+      blir 10 meter mot minimålet. Ytan 90,0 kvadratmeter per spelare vid åtta och 180 vid fyra
+      är oförändrad. Ytreferensen förs in i ytreferenser.md, avsnitt 6.1.

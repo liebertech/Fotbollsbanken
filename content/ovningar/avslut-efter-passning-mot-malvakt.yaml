@@ -103,7 +103,7 @@ planskiss:
     koer:
       - { vid: sp-k1, riktning: 180, avstand: 1.5, etikett: Kö }
 kalla: Egen övning, inspirerad av vanliga avslutsstationer med rotation.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -134,3 +134,14 @@ granskning:
       coachningspunkten till att placera skottet när en utespelare står i
       mål. I skissen: rotationspilen går nu från avslutaren till sp-k1 med
       etiketten "Sist i kön", och skissens beskrivning är omskriven.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Med högst sju spelare blir kön högst fyra. Rotationen är entydig, och målvakten står
+      en serie och byts utan tvång. Handskarna och de placerade skotten mot en utespelare står i
+      organisationen, i materialet och i coachningen. Skissen är kontrollerad: rotationspilen går
+      från avslutaren till kön, 3,8 meter från passaren och bort från skottlinjen. Kön står 2
+      meter utanför ytan och rymmer fyra med avståndet 1,5 meter. Skottavståndet är 12 meter.
+      Förslag, som inte krävs: den första meningen i beskrivningen räknar målvakten som en av
+      rollerna i rotationen. Det kan strykas, eftersom målvakten byts i serier.

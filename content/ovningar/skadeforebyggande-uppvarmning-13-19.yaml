@@ -105,7 +105,7 @@ planskiss:
     - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans } }
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF
   rekommenderar för 13-19 år.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -133,3 +133,15 @@ granskning:
       "Alla roterar medurs", tog bort spelaren på (13, 13) så att basskissen
       har sex spelare, lade till en ledare på (8, 7) och skrev om skissens
       beskrivning.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Spelare.min är 6, och sex stationer med upp till tre spelare ger arton platser för
+      högst sexton, så blocken får plats när de roterar. Balansstationen har minst två.
+      Gruppdelningen: taket per ledare är 14 för 13-14 år, så femton och sexton spelare blir två
+      grupper om minst sju med två ledare. För 15-19 år räcker en ledare upp till sexton. Skissen
+      är kontrollerad: inga ordning på de sex löpningarna, etiketten "Alla roterar medurs", sex
+      spelare och en ledare på (8, 7), som står minst 3,4 meter från alla pilar. Ingen ytreferens:
+      stationer (ytreferenser.md, avsnitt 4). Kvar för redaktören: övningen ligger mycket nära
+      skadeforebyggande-9mot9, se granskning-omgang-5.md, Beslut som behövs.

@@ -107,7 +107,7 @@ planskiss:
       - { x: 13, y: 10, lag: a }
       - { x: 10, y: 7, lag: a }
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i rörelse.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -130,3 +130,12 @@ granskning:
       antal. Ersatte skissens rörelser så att löpningen går till (5, 12.5)
       och den andra passningen går till p4 i stället för p3, så att ingen
       pil längre passerar genom platsen (10, 10).
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Bollarna följer antalet spelare, två till fyra, och materialet är ändrat. Skissen
+      är kontrollerad mot granskningen. Löpningen från P1 till (5, 12.5) går 2 meter från
+      platserna (3, 10) och (7, 10) och slutar 2,5 meter från P3. Passningen från P2 till P4
+      går 2 meter från platserna (13, 10) och (17, 10). Ingen pil passerar längre (10, 10).
+      Ytan 25,0 kvadratmeter per spelare vid sexton är exakt golvet utan motståndare.

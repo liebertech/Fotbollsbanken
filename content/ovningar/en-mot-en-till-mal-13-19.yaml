@@ -108,7 +108,7 @@ planskiss:
       - { vid: anf, riktning: 0, avstand: 5, etikett: Nästa anfallare väntar }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-dueller till mål i
   ungdomsfotboll.
-status: utkast
+status: atgarda
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -136,3 +136,15 @@ granskning:
       etiketten "Nästa anfallare väntar", och lade till en mening om trion i
       skissens beskrivning. Lade till en mening i organisation om serier om
       fyra till sex dueller per spelare med en minuts vila mellan serierna.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Nästan klar, men en sak är kvar. Trion, kön och serierna med vila är införda, och skissen
+      är kontrollerad: kön står på (17, 6), 1 meter utanför kortlinjen och bort från målet.
+      Dribblingen håller 1,4 meter till försvararen. Men beskrivningen slutar fortfarande med
+      "som startar nästa duell direkt". Det säger emot organisationen, där nästa duell startar
+      när båda står på plats, och det tar bort vilan som snabbheten kräver. Ersätt den sista
+      meningen i beskrivning med exakt: "Efter varje försök byter de två roller: den som blir ny
+      försvarare hämtar reservbollen vid målet och rullar in den till den nya anfallaren. Nästa
+      duell startar när båda står på plats." Inget annat behöver ändras.

@@ -119,7 +119,7 @@ planskiss:
       - { x: 35, y: 10, lag: a }
       - { x: 9, y: 19, lag: b }
 kalla: Egen övning, inspirerad av vanligt positionsspel med zoner och riktning.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -146,3 +146,14 @@ granskning:
       anfallande laget startar i sin egen zon efter mål eller när bollen går
       ut över en kortlinje. Skrev om den svårare varianten till att två
       olika spelare måste ha tagit emot i mittzonen.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Zonregeln är entydig: någon ska ha tagit emot i mittzonen, och ett lag som vinner
+      bollen i anfallszonen får göra mål utan krav. Det belönar pressen i den fjärde
+      coachningspunkten. Omstarten i egen zon gör att uppbyggnaden händer ofta, och den svårare
+      varianten följer regeln. Skissen är oförändrad och håller fortfarande. A2 tar emot i
+      mittzonen, och alla pilar håller minst 2 meter till motståndare och platser. Ytan godtas
+      enligt F2 med motiveringen i den förra raden. Förslag, som inte krävs: i den lättare
+      varianten kan "kravet på en passning i mittzonen" bli "kravet på mittzonen".
