@@ -1,0 +1,97 @@
+schema: 1
+id: tva-mot-tva-till-tre-mot-tre-med-smamal
+namn: 2 mot 2 till 3 mot 3 med småmål
+syfte: Spelarna ska utmana i duellsituationer och avsluta mot mål i ett litet matchspel utan målvakt.
+beskrivning: |
+  Två lag om två till tre spelare möts på en yta om 15 x 10 meter med ett litet mål i var
+  ände, utan målvakt. Lagen spelar vanligt spel, med mycket bolltid och många
+  avslutsförsök för alla. Den som vinner bollen tillbaka får genast chansen att anfalla,
+  precis som i matchen.
+organisation: |
+  Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
+  större, med tre meters avstånd mellan dem.
+fokusomraden:
+  - ett-mot-ett
+  - avslut
+  - dribbling
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 7
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 15
+  langst: 20
+yta:
+  alla:
+    langd: 15
+    bredd: 10
+ytreferens:
+  alla: hela 3 mot 3-planen
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 2
+coachningspunkter:
+  - Utmana försvararen i stället för att passa bort bollen direkt.
+  - Skjut så snart du ser en öppning mot målet.
+  - Jaga tillbaka bollen direkt om du tappar den.
+varianter:
+  lattare: Försvararna får bara gå, inte springa, när de pressar bollhållaren.
+  svarare: Gör mål bara efter minst en dribbling förbi en motståndare.
+anpassning:
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum,
+    hellre än att lägga in fler spelare på samma yta.
+  udda_antal: En spelare blir joker och spelar alltid med det lag som har bollen.
+  ledare: Övningen är självgående. Ledaren peppar och hjälper till med bollar som går ut.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med ett litet mål i varje ände, utan målvakt. Två lag om två möter
+    varandra i vanligt spel med mycket avslut mot mål.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 5, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 15, y: 5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 3, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 3, y: 7, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 12, y: 3, lag: b, etikett: "B1" }
+    - { id: b2, typ: spelare, x: 12, y: 7, lag: b, etikett: "B2" }
+    - { typ: boll, x: 3.3, y: 3 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 11, y: 2 }
+      via: [{ x: 7, y: 1 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 7, y: 4 }, ordning: 1 }
+    - { typ: skott, fran: { x: 11, y: 2 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 1, lag: a }
+      - { x: 9, y: 1, lag: b }
+      - { x: 6, y: 9, lag: a }
+kalla: Egen övning, inspirerad av vanligt smålagsspel med joker i yngre åldrar.
+status: utkast
+granskning: []
