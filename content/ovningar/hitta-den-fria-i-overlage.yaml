@@ -5,13 +5,14 @@ syfte: Spelarna ska lära sig spela ihop i överläge och hitta den fria medspel
   avslutet.
 beskrivning: |
   Två eller tre anfallare möter en eller två försvarare på en yta om 12 x 8 meter med ett
-  litet mål i den bortre änden, utan målvakt. Anfallarna passar och rör sig för att hitta
-  en fri spelare och avsluta mot målet. Vinner försvararna bollen dribblar de ut över en
-  linje på kortsidan, och då får anfallarna tillbaka bollen och börjar om.
+  litet mål i ena änden, utan målvakt. Anfallarna startar med bollen vid den andra
+  kortsidan och försöker göra mål. Med tre spelare blir det två mot en, med fyra tre mot
+  en och med fem tre mot två. Vinner försvararna bollen driver de ut den över anfallarnas
+  kortlinje, och då börjar ett nytt anfall.
 organisation: |
-  En yta per grupp. Lagen turas om att vara i överläge, så att alla får öva både att hitta
-  medspelare och att försvara tillsammans. Flera ytor läggs bredvid varandra med tre
-  meters mellanrum om gruppen är större.
+  En yta per grupp om tre till fem spelare. Efter varje anfall byter en anfallare plats
+  med en försvarare, i tur och ordning, så att alla får försvara lika ofta. Flera ytor
+  läggs bredvid varandra med tre meters mellanrum och med målen åt samma håll.
 fokusomraden:
   - spelbarhet
   - passning-mottagning
@@ -31,7 +32,7 @@ passdelar:
 ledarbehov: 0
 spelare:
   min: 3
-  max: 6
+  max: 5
 grupptyp: tva-lag
 tid:
   kortast: 5
@@ -47,21 +48,23 @@ material:
   - typ: boll
     antal: 2
   - typ: vast
-    antal: 3
+    antal: 2
     anteckning: till försvararna
   - typ: kon
     antal: 4
-    anteckning: markerar återstartlinjen
+    anteckning: en i varje hörn
 coachningspunkter:
-  - Sprid ut er så att det finns flera passningsalternativ.
+  - Ställ dig en bit ifrån kompisen med bollen, så att försvararen inte kan ta er båda.
   - Passa till den som är fri, inte bara till kompisen bredvid.
-  - Pressa tillsammans direkt när ni vinner bollen.
+  - Kommer försvararen mot dig, passa. Kommer hen inte, driv själv mot mål.
 varianter:
-  lattare: Försvararna får bara gå när bollen är i deras planhalva.
-  svarare: Högst två passningar innan avslutet.
+  lattare: Försvararen får bara gå, inte springa.
+  svarare: Mål efter en passning räknas dubbelt.
 anpassning:
   fler_spelare: Lägg till fler ytor bredvid varandra med samma uppställning.
-  udda_antal: En spelare blir joker och spelar alltid med laget som anfaller.
+  udda_antal: >-
+    Antalet avgör formen: tre spelare blir två mot en, fyra blir tre mot en och fem blir
+    tre mot två. Ingen behöver vara joker.
   ledare: Övningen går själv när rollerna är förklarade. Ledaren kan byta roller mellan
     omgångarna.
 planskiss:
@@ -70,30 +73,30 @@ planskiss:
     langd: 12
     bredd: 8
   beskrivning: >-
-    Yta 12 x 8 meter med ett litet mål i den bortre änden, utan målvakt. Anfallarna passar
-    och rör sig för att hitta en fri spelare och avsluta mot målet.
+    Yta 12 x 8 meter med ett litet mål utan målvakt på högra kortsidan. Två mot en. A1
+    driver mot B1, som pressar, och passar till A2, som är fri och avslutar. Med fyra
+    spelare blir det tre mot en och med fem tre mot två. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: streckad }
     - { id: mal-1, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
-    - { id: a1, typ: spelare, x: 2, y: 3, lag: a, etikett: "A1" }
-    - { id: a2, typ: spelare, x: 2, y: 5, lag: a, etikett: "A2" }
-    - { id: b1, typ: spelare, x: 7, y: 4, lag: b, etikett: "B1" }
-    - { typ: boll, x: 2.3, y: 3 }
+    - { id: a1, typ: spelare, x: 2, y: 2.5, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 2, y: 5.5, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 8, y: 4, lag: b, etikett: "B1" }
+    - { typ: boll, x: 2.3, y: 2.5 }
   rorelser:
-    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
-    - typ: lopning
-      fran: { objekt: a2 }
-      till: { x: 9, y: 3 }
-      ordning: 2
-    - { typ: skott, fran: { x: 9, y: 3 }, till: { objekt: mal-1 }, ordning: 3 }
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 5, y: 2.5 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 6.5, y: 2.5 }, ordning: 1, etikett: Pressar }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 6.5, y: 6.5 }, ordning: 1 }
+    - { typ: passning, fran: { x: 5, y: 2.5 }, till: { x: 6.5, y: 6.5 }, ordning: 2 }
+    - { typ: dribbling, fran: { x: 6.5, y: 6.5 }, till: { x: 9.5, y: 5.5 }, ordning: 3 }
+    - { typ: skott, fran: { x: 9.5, y: 5.5 }, till: { objekt: mal-1 }, ordning: 4 }
   skalning:
     strategi: platser
     platser:
-      - { x: 5, y: 1, lag: a }
-      - { x: 5, y: 7, lag: b }
-      - { x: 9, y: 6, lag: a }
+      - { x: 2, y: 0.8, lag: a }
+      - { x: 10, y: 2, lag: b }
 kalla: Egen övning, inspirerad av vanliga övningar med överläge i litet format.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -107,3 +110,14 @@ granskning:
       anfallare byter med en försvarare efter varje anfall, nya coachningspunkter (pressa när
       ni vinner bollen var fel), varianter utan planhalva, västar 2, och planskissen, där A2:s
       pil gick 0,4 m från B1 och var en löpning fast A2 hade bollen.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A7. Satte spelare.max till 5 och
+      skrev om beskrivning, organisation och anpassning.udda_antal så att formen (två mot
+      en, tre mot en, tre mot två) följer antalet och rollerna roterar i tur och ordning i
+      stället för med joker. Bytte alla tre coachningspunkter och båda varianterna, och
+      satte västarna till 2. I planskissen flyttade jag a1, a2 och b1, skrev om rörelserna
+      så att A2:s löpning till den fria ytan och passningen dit blir tydliga, och kortade
+      platslistan till två poster för det nya spannet 3–5.
