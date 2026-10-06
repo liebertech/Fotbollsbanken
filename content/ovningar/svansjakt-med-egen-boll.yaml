@@ -85,7 +85,7 @@ planskiss:
     - { typ: dribbling, fran: { objekt: f1 }, till: { x: 3.5, y: 3.5 }, ordning: 1, etikett: Jagar }
     - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 5.5, y: 1 }, ordning: 1, etikett: Flyr undan }
 kalla: Egen övning, inspirerad av klassiska kullekar med boll.
-status: utkast
+status: granskad
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -126,3 +126,13 @@ granskning:
       ny", men svansen ges nu tillbaka och ingen hämtar nya. Ersätt med: "Den som blir av med
       svansen blir själv fångare en kort stund innan hen stoppar in den igen." Exakt i
       docs/doman/granskning-omgang-5.md, avsnittet Paket A, andra omgången.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Båda raderna är införda exakt: 12 bollar, en per spelare, och den svårare
+      varianten stämmer med regeln att fångaren ger tillbaka svansen. Övrigt oförändrat sedan
+      förra granskningen: yta 12 x 12 ger 12 kvadratmeter per spelare vid tolv och 36 vid
+      fyra, golvet 8 utan motståndare håller och 44 procent över taket godtas för att fångaren
+      når fram. Ingen ytreferens: för liten eller ingen plandel med rätt form. Svansen knyts
+      aldrig fast. Inga namn.

@@ -2,7 +2,7 @@ Status: utkast
 
 # Ytreferenser
 
-Det här dokumentet är ordlistan för fältet `ytreferens` i övningsformatet (ADR 0017). Det säger vad en ytreferens får jämföra med, hur den skrivs, när den ska utelämnas och vilken referens var och en av bankens 58 övningar ska ha.
+Det här dokumentet är ordlistan för fältet `ytreferens` i övningsformatet (ADR 0017). Det säger vad en ytreferens får jämföra med, hur den skrivs, när den ska utelämnas och vilken referens var och en av bankens övningar ska ha: de 58 i main och de som granskats sedan dess.
 
 **Beslut som styr dokumentet (användaren, 2026-09-24):** metertalet står kvar som huvudmått, och referensen följer efter i parentes. Exempel: "18 × 12 meter (stora planens målområde, dubbelt så djupt)". Regelmotorn, planskissen och alla ytregler räknar vidare på metertalet. Referensen visas bara, och den ändrar aldrig en övning.
 
@@ -97,7 +97,7 @@ Skriv *ungefär* när storleken eller formen avviker märkbart, och utelämna de
 
 ### 3.4 En referens per spelform
 
-Samma mått kan förtjäna olika referens beroende på vilken plan laget står på. Då anges referensen per spelformsnyckel i stället för med `alla`. Exempel: 18 × 12 meter är *stora planens målområde, dubbelt så djupt* för ett 5 mot 5-lag men *ert eget straffområde* för ett 9 mot 9-lag. I dagens bank har varje övning en enda spelform, så alla referenser i avsnitt 6 anges med `alla`.
+Samma mått kan förtjäna olika referens beroende på vilken plan laget står på. Då anges referensen per spelformsnyckel i stället för med `alla`. Exempel: 18 × 12 meter är *stora planens målområde, dubbelt så djupt* för ett 5 mot 5-lag men *ert eget straffområde* för ett 9 mot 9-lag. I main har varje övning en enda spelform, så alla referenser i avsnitt 6 anges med `alla`. Övningarna för 6–7 år i omgång 5 har två spelformer, `3mot3` och `5mot5`, men anges ändå med `alla`: ledaren för ett lag med 6–7-åringar känner igen 3 mot 3-planen och stora planens linjer även när laget spelar 5 mot 5.
 
 ### 3.5 Stegmåttet
 
@@ -116,7 +116,7 @@ Ingen referens är ofta det rätta svaret. Det gäller i fyra fall:
 | **Positionsspel där måttet är både golv och tak** | En större yta förstör övningen, och en parentes som säger *ungefär* antyder att måttet går att förhandla om. | `behall-bollen-i-gruppen`, `forsvara-i-overtal` |
 | **Stationer och fasta positioner, där avståndet är det som övas eller det som skyddar** | Det som styr är avståndet mellan spelare eller arbetsplatser, inte ytans storlek. En storleksjämförelse lockar till att sprida ut övningen. | `malvaktstraning-grunder`, `tva-touch-i-triangel`, `knakontroll-uppvarmning`, `rorelsebana-skadeforebyggande`, `skadeforebyggande-9mot9` |
 | **Dueller med startavstånd** | Anfallarens och försvararens startavstånd är måttkritiska och får inte skuggas av en ungefärlig parentes. | `en-mot-en-till-mal` |
-| **För liten eller ingen plandel med rätt form** | Ingenting på en fotbollsplan är så litet, eller har den formen. En långsökt jämförelse är sämre än ingen. | `driva-forbi-i-par`, `triangelpass-med-rorelse`, `en-mot-en-till-smamal`, `passningsruta-i-rorelse` |
+| **För liten eller ingen plandel med rätt form** | Ingenting på en fotbollsplan är så litet, eller har den formen. En långsökt jämförelse är sämre än ingen. | `driva-forbi-i-par`, `triangelpass-med-rorelse`, `en-mot-en-till-smamal`, `passningsruta-i-rorelse`, och i omgång 5 `duell-mot-tva-smamal`, `driv-och-skjut-pa-smamal`, `hitta-den-fria-i-overlage`, `svansjakt-med-egen-boll` |
 
 De två första kategorierna motsvarar de ytundantag för positionsspel och stationer som infördes med omgång 4 (undantag 1 och undantag 3 i underlaget till den omgången). Där gäller redan ett eget, strängare mått i stället för kvadratmeter per spelare.
 
@@ -130,13 +130,15 @@ Fältet är valfritt, och ingen validering kan se skillnad på en referens som g
 
 - **Granskaren prövar varje övning utan `ytreferens`, och passerar den inte bara.** Frågan är: hör övningen till någon av kategorierna i avsnitt 4? Om ja, är utelämnandet rätt. Om nej, är referensen glömd, och övningen får status `atgarda` med en föreslagen referens.
 - **Skälet skrivs i `granskning`.** När en övning medvetet saknar referens skriver granskaren kategorin i sin kommentar, till exempel "Ingen ytreferens: duell med startavstånd." Då ser nästa granskare att frågan är prövad.
-- **Tabellen i avsnitt 6 är facit för bankens 58 övningar.** En ny övning läggs till i tabellen när den granskas, med referens eller med kategori.
+- **Tabellen i avsnitt 6 är facit för bankens övningar.** En ny övning läggs till i tabellen när den granskas, med referens eller med kategori.
 
 ## 6. Referens per övning
 
 Den här tabellen är underlaget för att skriva in fältet i ett svep. Referensen skrivs exakt som i kolumnen, med nyckeln `alla`. Rader med *ingen* ska inte få fältet alls. Kolumnen *Var* anger var övningen finns 2026-09-28. Alla 58 övningar, också de 16 från omgång 4, finns nu i main, och mått och spelform är kontrollerade mot filerna samma dag (avsnitt 8).
 
-### 6.1 Med referens (46 övningar)
+*Tillägg 2026-10-06:* de sju övningarna för 6–7 år i omgång 5, paket A, står sist i 6.1 och 6.2 med *Var* `omgang/5-paket-a`. De är granskade men ännu inte godkända, och mått och spelform är kontrollerade mot filerna på grenen samma dag. Tabellerna har därmed 65 övningar. Paket A är märkt med två spelformer, `3mot3` och `5mot5`, men samma referens passar båda, så också de anges med `alla` (avsnitt 3.4).
+
+### 6.1 Med referens (49 övningar)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -186,8 +188,11 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `smaspel-fasta-situationer` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `matchspel-7mot7-brett` | 7 mot 7 | 50 × 30 | hela 7 mot 7-planen, ungefär en fjärdedel av stora planen | 57 | main |
 | `matchspel-9mot9-brett` | 9 mot 9 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | main |
+| `tva-mot-tva-till-tre-mot-tre-med-smamal` | 3 mot 3, 5 mot 5 | 15 × 10 | hela 3 mot 3-planen | 19 | omgang/5-paket-a |
+| `bollkansla-och-driv-med-egen-boll` | 3 mot 3, 5 mot 5 | 15 × 10 | ungefär en fjärdedel av stora planens straffområde | 50 | omgang/5-paket-a |
+| `lek-med-egen-boll` | 3 mot 3, 5 mot 5 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | omgang/5-paket-a |
 
-### 6.2 Utan referens (12 övningar)
+### 6.2 Utan referens (16 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -203,6 +208,10 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `behall-bollen-i-gruppen` | 5 mot 5 | 14 × 12 | Positionsspel där måttet är golv och tak | main |
 | `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | main |
 | `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | main |
+| `duell-mot-tva-smamal` | 3 mot 3, 5 mot 5 | 8 × 6 | För liten eller ingen plandel med rätt form. Spelarna rör sig fritt mellan två mål, så det är inte en duell med startavstånd | omgang/5-paket-a |
+| `driv-och-skjut-pa-smamal` | 3 mot 3, 5 mot 5 | 10 × 5 | För liten eller ingen plandel med rätt form. En smal bana, ungefär halva stora planens målområde | omgang/5-paket-a |
+| `hitta-den-fria-i-overlage` | 3 mot 3, 5 mot 5 | 12 × 8 | För liten eller ingen plandel med rätt form. Samma mått och skäl som `en-mot-en-till-smamal` | omgang/5-paket-a |
+| `svansjakt-med-egen-boll` | 3 mot 3, 5 mot 5 | 12 × 12 | För liten eller ingen plandel med rätt form. En fjärdedel av stora planens straffområde har ungefär samma yta men fel form | omgang/5-paket-a |
 
 ### 6.3 Anmärkningar
 

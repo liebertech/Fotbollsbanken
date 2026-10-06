@@ -294,3 +294,13 @@ När A3 är granskad förs följande in i `ytreferenser.md`, avsnitt 6.2, med ka
 | A7 | `hitta-den-fria-i-overlage` | granskad | Förslag utan krav: ledartexten |
 
 Besluten som behövs ovan, punkt 1 och 2, gäller fortfarande.
+
+## Paket A, tredje omgången: svansjakten (2026-10-06)
+
+**A3 `svansjakt-med-egen-boll`: granskad.** Huvudsessionen förde in de två raderna i commit e4bf2ce. Jag kontrollerade de två fälten mot listan i andra omgången:
+- `material`, bollarna: `antal: 12`, `anteckning: en per spelare`. Stämmer med `spelare.max` 12.
+- `varianter.svarare`: "Den som blir av med svansen blir själv fångare en kort stund innan hen stoppar in den igen." Exakt som i listan, och den stämmer med regeln att fångaren ger tillbaka svansen.
+
+Inget annat i filen har ändrats sedan andra omgången. Därmed är alla sju övningar i paket A granskade.
+
+Raderna för paket A är införda i `ytreferenser.md`: tre i avsnitt 6.1 och fyra i 6.2, med *Var* `omgang/5-paket-a`. De fyra utan referens står också i tabellen i avsnitt 4. Avsnitt 3.4 säger nu varför övningarna har nyckeln `alla` fast de har två spelformer.
