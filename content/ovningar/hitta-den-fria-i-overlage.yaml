@@ -1,0 +1,97 @@
+schema: 1
+id: hitta-den-fria-i-overlage
+namn: Hitta den fria i överläge
+syfte: Spelarna ska lära sig spela ihop i överläge och hitta den fria medspelaren innan
+  avslutet.
+beskrivning: |
+  Två eller tre anfallare möter en eller två försvarare på en yta om 12 x 8 meter med ett
+  litet mål i den bortre änden, utan målvakt. Anfallarna passar och rör sig för att hitta
+  en fri spelare och avsluta mot målet. Vinner försvararna bollen dribblar de ut över en
+  linje på kortsidan, och då får anfallarna tillbaka bollen och börjar om.
+organisation: |
+  En yta per grupp. Lagen turas om att vara i överläge, så att alla får öva både att hitta
+  medspelare och att försvara tillsammans. Flera ytor läggs bredvid varandra med tre
+  meters mellanrum om gruppen är större.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+  - ett-mot-ett
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 3
+  max: 6
+grupptyp: tva-lag
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 12
+    bredd: 8
+material:
+  - typ: minimal
+    antal: 1
+  - typ: boll
+    antal: 2
+  - typ: vast
+    antal: 3
+    anteckning: till försvararna
+  - typ: kon
+    antal: 4
+    anteckning: markerar återstartlinjen
+coachningspunkter:
+  - Sprid ut er så att det finns flera passningsalternativ.
+  - Passa till den som är fri, inte bara till kompisen bredvid.
+  - Pressa tillsammans direkt när ni vinner bollen.
+varianter:
+  lattare: Försvararna får bara gå när bollen är i deras planhalva.
+  svarare: Högst två passningar innan avslutet.
+anpassning:
+  fler_spelare: Lägg till fler ytor bredvid varandra med samma uppställning.
+  udda_antal: En spelare blir joker och spelar alltid med laget som anfaller.
+  ledare: Övningen går själv när rollerna är förklarade. Ledaren kan byta roller mellan
+    omgångarna.
+planskiss:
+  version: 1
+  omrade:
+    langd: 12
+    bredd: 8
+  beskrivning: >-
+    Yta 12 x 8 meter med ett litet mål i den bortre änden, utan målvakt. Anfallarna passar
+    och rör sig för att hitta en fri spelare och avsluta mot målet.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: streckad }
+    - { id: mal-1, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 2, y: 3, lag: a, etikett: "A1" }
+    - { id: a2, typ: spelare, x: 2, y: 5, lag: a, etikett: "A2" }
+    - { id: b1, typ: spelare, x: 7, y: 4, lag: b, etikett: "B1" }
+    - { typ: boll, x: 2.3, y: 3 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - typ: lopning
+      fran: { objekt: a2 }
+      till: { x: 9, y: 3 }
+      ordning: 2
+    - { typ: skott, fran: { x: 9, y: 3 }, till: { objekt: mal-1 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 5, y: 1, lag: a }
+      - { x: 5, y: 7, lag: b }
+      - { x: 9, y: 6, lag: a }
+kalla: Egen övning, inspirerad av vanliga övningar med överläge i litet format.
+status: utkast
+granskning: []
