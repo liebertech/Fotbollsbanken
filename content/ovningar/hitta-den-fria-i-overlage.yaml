@@ -93,5 +93,17 @@ planskiss:
       - { x: 5, y: 7, lag: b }
       - { x: 9, y: 6, lag: a }
 kalla: Egen övning, inspirerad av vanliga övningar med överläge i litet format.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Två mot en är rätt form för spelbarhet i åldern. Yta: 32 kvadratmeter per
+      spelare vid tre, 28 procent över taket 25. Godtas, eftersom passningen behöver plats för
+      att vara ett alternativ och minsta antal måste vara tre. Ingen ytreferens: för liten
+      eller ingen plandel med rätt form. Ändringar, exakta i docs/doman/granskning-omgang-5.md
+      under A7: spelare.max 5 och formen per antal i stället för joker, rotation där en
+      anfallare byter med en försvarare efter varje anfall, nya coachningspunkter (pressa när
+      ni vinner bollen var fel), varianter utan planhalva, västar 2, och planskissen, där A2:s
+      pil gick 0,4 m från B1 och var en löpning fast A2 hade bollen.

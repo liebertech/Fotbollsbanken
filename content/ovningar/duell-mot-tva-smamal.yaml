@@ -93,5 +93,18 @@ planskiss:
     koer:
       - { vid: sp-1, riktning: 90, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Rätt form för åldern och rätt passdelar enligt F4. Yta: 24 kvadratmeter per
+      spelare, mellan golvet 15 och taket 25. Ingen ytreferens: för liten eller ingen plandel
+      med rätt form, inte duell med startavstånd, eftersom spelarna rör sig fritt. Att båda
+      får göra mål i båda målen tar bort riktningen och försvaret. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A6: var och en anfaller ett mål och försvarar det
+      andra, omgångar om ungefär en minut med vila, ny text för udda antal (den gamla sa inte
+      vem som går ut efter första duellen), nya varianter, och i planskissen kön med avstand 4
+      så att den tredje står utanför ytan, nya rörelser som håller 1,8 m till försvararen och
+      reservbollen bredvid kön.

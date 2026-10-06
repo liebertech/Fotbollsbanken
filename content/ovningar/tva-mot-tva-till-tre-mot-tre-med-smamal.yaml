@@ -93,5 +93,19 @@ planskiss:
       - { x: 9, y: 1, lag: b }
       - { x: 6, y: 9, lag: a }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med joker i yngre åldrar.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Innehållet är rätt för fas-6-7, fokusområdena är K och märkningen 3mot3 och
+      5mot5 följer F1 (c). Yta: 150 kvadratmeter är 21,4 per spelare vid sju, över golvet 15.
+      Vid fyra är det 37,5, alltså 50 procent över taket 25, inte 25 procent. Jag godtar det,
+      eftersom ytan är 3 mot 3-matchens egen minsta plan och spannet måste börja på fyra.
+      Ytreferensen hela 3 mot 3-planen är rätt. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A1: 1. Perioder om ungefär tre minuter med kort
+      paus i organisation. 2. Start efter utboll och mål enligt 3 mot 3-reglerna i
+      beskrivning. 3. Planskissen: skottet gick rakt genom B1 och två platser stod på
+      dribblingen. Nya koordinater för B1, rörelserna och platserna. 4. Skissens beskrivning
+      ska säga hur jokern går in.

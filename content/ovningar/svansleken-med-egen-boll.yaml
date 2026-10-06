@@ -88,5 +88,18 @@ planskiss:
       ordning: 2
       etikett: Flyr undan
 kalla: Egen övning, inspirerad av klassiska kullekar med boll.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Fokus och form är rätt för åldern, och fångare med egen boll håller nere farten.
+      Ingen kan vinna någon annans boll, så golvet är 8. Men det är en jaktlek: 18 x 18 meter
+      ger 81 kvadratmeter per spelare vid fyra, och då når fångaren aldrig fram. Ändringar,
+      exakta i docs/doman/granskning-omgang-5.md under A3: yta 12 x 12 och spelare.max 12
+      (12 kvadratmeter per spelare vid tolv, 36 vid fyra), ingen ytreferens med kategorin för
+      liten eller ingen plandel med rätt form, ny beskrivning och organisation där fångaren
+      ger tillbaka svansen och svansen aldrig knyts fast, västar 12, ny planskiss för 12 x 12
+      där fångaren driver boll och båda rörelserna har ordning 1. Förslag utan krav: ett namn
+      som inte liknar SvFF-övningen med nästan samma namn.

@@ -88,5 +88,17 @@ planskiss:
       till: { x: 10, y: 8 }
       ordning: 1
 kalla: Egen övning, inspirerad av vanliga bollkänselekar för de yngsta.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Yta: 13,5 kvadratmeter per spelare vid sexton, över golvet 8 utan motståndare.
+      Taket prövas inte som gräns när varje spelare har egen boll och ingen motståndare finns,
+      men texten ska säga att ytan görs mindre med få spelare. Ytreferensen är rätt. Övningen
+      är i dag nästan samma som bollkansla-och-driv-med-egen-boll. Med lek som huvudfokus och
+      koordination som tredje fokus ska den vara en lek med signaler och ha
+      koordinationsuppgifter. Ändringar, exakta i docs/doman/granskning-omgang-5.md under A2:
+      ny beskrivning med lekfulla signaler, ny organisation, andra coachningspunkten, svårare
+      variant, hörnkoner i planskissen och ingen ordning på pilarna.

@@ -93,5 +93,17 @@ planskiss:
       till: { x: 9, y: 5 }
       ordning: 1
 kalla: Egen övning, inspirerad av vanliga bollkänsleövningar med egen boll.
-status: utkast
-granskning: []
+status: atgarda
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Rätt övning och huvudfokus för fas-6-7. Yta: 9,4 kvadratmeter per spelare vid
+      sexton, över golvet 8. Taket prövas inte som gräns när varje spelare har egen boll, men
+      texten ska säga att ytan görs mindre med få spelare. Ytreferensen stämmer med facit för
+      15 x 10. Ett enda konpar till åttan ger kö med sexton spelare. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A4: konpar per fyra spelare i organisation och
+      material (12 koner), "ungefär varje minut" i beskrivning, ny svårare variant, och
+      planskissen, där dribblingen slutade en meter från båda konerna. Nya koner, pilar utan
+      ordning och en åtta som håller 1,8 m till konerna.
