@@ -12,13 +12,11 @@ beskrivning: |
   hopp.
 organisation: |
   Sex stationer per grupp, med minst två meters avstånd mellan spelarna på
-  samma station. Balansstationen har alltid två spelare, eftersom övningen
-  kräver en medspelare som knuffar. Planka, sidohopp och höga knän tar upp
-  till tre spelare var. Enbenshopp och utfallssteg tar upp till tre
-  respektive två spelare. Är gruppen liten körs färre stationer den gången,
-  utom balansstationen som alltid ska vara med. Spelarna roterar medurs
-  mellan stationerna på ledarens signal. Fler grupper bygger en egen
-  uppsättning stationer bredvid.
+  samma station. Varje station tar upp till tre spelare. Balansstationen
+  har alltid minst två: en står på ett ben och en knuffar, och vid tre
+  turas två om att knuffa. Vid sex spelare står en station tom. Spelarna
+  roterar medurs mellan stationerna på ledarens signal. Fler grupper
+  bygger en egen uppsättning stationer bredvid.
 fokusomraden:
   - skadeforebyggande
   - koordination
@@ -40,7 +38,7 @@ ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget
   vid landning och hopp så att knäna inte viker inåt, och håller extra
   uppsikt vid balansstationens knuff.
 spelare:
-  min: 7
+  min: 6
   max: 16
 grupptyp: fri
 tid:
@@ -79,9 +77,10 @@ planskiss:
     langd: 16
     bredd: 14
   beskrivning: >-
-    Yta 16 x 14 meter med sex stationer: balans, planka och sidohopp på en
-    rad, höga knän, enbenshopp och utfallssteg på den andra. Spelarna
-    roterar medurs mellan stationerna, och balansstationen har alltid två.
+    Yta 16 x 14 meter med sex stationer, tre på varje rad. Alla gör sin
+    station samtidigt och roterar medurs på ledarens signal.
+    Balansstationen har alltid minst två. Ledaren står i mitten och rättar
+    knäläget.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 16, bredd: 14, stil: streckad }
     - { id: st-balans, typ: ruta, x: 2.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Balans }
@@ -94,19 +93,19 @@ planskiss:
     - { typ: spelare, x: 1, y: 3, lag: a }
     - { typ: spelare, x: 8, y: 1, lag: a }
     - { typ: spelare, x: 13, y: 1, lag: a }
-    - { typ: spelare, x: 13, y: 13, lag: a }
     - { typ: spelare, x: 8, y: 13, lag: a }
     - { typ: spelare, x: 3, y: 13, lag: a }
+    - { typ: ledare, x: 8, y: 7 }
   rorelser:
-    - { typ: lopning, fran: { objekt: st-balans }, till: { objekt: st-planka }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: st-planka }, till: { objekt: st-sidohopp }, ordning: 2 }
-    - { typ: lopning, fran: { objekt: st-sidohopp }, till: { objekt: st-utfallssteg }, ordning: 3 }
-    - { typ: lopning, fran: { objekt: st-utfallssteg }, till: { objekt: st-enbenshopp }, ordning: 4 }
-    - { typ: lopning, fran: { objekt: st-enbenshopp }, till: { objekt: st-hogaknan }, ordning: 5 }
-    - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans }, ordning: 6 }
+    - { typ: lopning, fran: { objekt: st-balans }, till: { objekt: st-planka }, etikett: Alla roterar medurs }
+    - { typ: lopning, fran: { objekt: st-planka }, till: { objekt: st-sidohopp } }
+    - { typ: lopning, fran: { objekt: st-sidohopp }, till: { objekt: st-utfallssteg } }
+    - { typ: lopning, fran: { objekt: st-utfallssteg }, till: { objekt: st-enbenshopp } }
+    - { typ: lopning, fran: { objekt: st-enbenshopp }, till: { objekt: st-hogaknan } }
+    - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans } }
 kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF
   rekommenderar för 13-19 år.
-status: atgarda
+status: utkast
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -122,3 +121,15 @@ granskning:
       bort ordning från de sex löpningarna eftersom alla roterar samtidigt, ge den första
       etiketten "Alla roterar medurs", ta bort spelaren på (13, 13) och lägg till en ledare på
       (8, 7). Ny beskrivning till skissen står i docs/doman/granskning-omgang-5.md, B4.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla tre punkterna åtgärdade. Sänkte spelare.min till 6. Skrev om
+      organisation så att varje station tar upp till tre spelare, att
+      balansstationen alltid har minst två och att de turas om att knuffa
+      när de är tre, och att en station står tom vid sex spelare. I skissen:
+      tog bort ordning från alla sex löpningar, gav den första etiketten
+      "Alla roterar medurs", tog bort spelaren på (13, 13) så att basskissen
+      har sex spelare, lade till en ledare på (8, 7) och skrev om skissens
+      beskrivning.
