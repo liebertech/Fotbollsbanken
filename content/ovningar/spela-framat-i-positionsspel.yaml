@@ -1,0 +1,123 @@
+schema: 1
+id: spela-framat-i-positionsspel
+namn: Spela framåt i positionsspel med riktning
+syfte: Spelarna ska göra sig spelbara och bygga upp spelet framåt genom
+  banans mittzon i stället för att chippa bollen direkt till anfallszonen.
+beskrivning: |
+  Ytan delas i tre lika stora zoner på längden: egen zon, mittzon och
+  anfallszon, markerade med koner vid sidlinjerna. Två lag om tre till sex
+  spelare möts med ett litet mål i var ände. Ett mål räknas bara om laget
+  har spelat minst en passning inne i mittzonen under anfallet, så att
+  ingen kan chippa bollen direkt från egen zon till anfallszonen. Laget
+  med boll ska sprida ut sig och hitta en spelbar medspelare som för
+  bollen vidare framåt, zon för zon.
+organisation: |
+  Två lag med lika stor numerär per yta, tre till sex spelare per lag.
+  Zongränserna markeras med en kon vid varje sidlinje, fjorton och
+  tjugoåtta meter in från en kortlinje. Lagen håller själva reda på om en
+  passning gått i mittzonen innan de räknar ett mål. Lagen byter sida
+  efter halva tiden.
+fokusomraden:
+  - spelbarhet
+  - speluppbyggnad
+  - passning-mottagning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 12
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 16
+  langst: 20
+yta:
+  alla:
+    langd: 42
+    bredd: 28
+ytreferens:
+  alla: något längre än stora planens straffområde är brett
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 6
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 3
+  - typ: kon
+    antal: 8
+    anteckning: fyra markerar ytans hörn, fyra markerar zongränserna vid
+      sidlinjerna
+coachningspunkter:
+  - Sök en öppen yta i mittzonen innan du begär bollen.
+  - Spela en säker passning genom mittzonen i stället för en lång boll
+    över den.
+  - Sprid ut er i bredd så att bollhållaren har flera passningsval framåt.
+  - Pressa tillsammans direkt vid bolltapp, innan motståndarna hinner
+    spela sig igenom mittzonen.
+varianter:
+  lattare: Kravet på en passning i mittzonen tas bort, alla mål räknas.
+  svarare: Laget måste spela minst två passningar i mittzonen, där minst
+    en spelare rör sig in i zonen för att ta emot, innan mål räknas.
+anpassning:
+  fler_spelare: Vid fler än tolv spelare, bygg en andra yta med samma mått
+    och zonindelning bredvid.
+  udda_antal: Ett lag spelar med en spelare mer än det andra.
+  ledare: Övningen är självgående, lagen håller själva reda på zonkravet.
+    Ledaren kan påminna om det och peppar från sidan.
+planskiss:
+  version: 1
+  omrade:
+    langd: 42
+    bredd: 28
+  beskrivning: >-
+    Yta 42 x 28 meter, delad i tre zoner om fjorton meter på längden, med
+    ett minimål i var ände. Tre mot tre i grundläget. Lag A anfaller åt
+    höger och spelar genom mittzonen innan avslut.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 42, bredd: 28, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 14, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 42, y: 14, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 42, y: 0 }
+    - { typ: kon, x: 42, y: 28 }
+    - { typ: kon, x: 0, y: 28 }
+    - { typ: kon, x: 14, y: 0 }
+    - { typ: kon, x: 14, y: 28 }
+    - { typ: kon, x: 28, y: 0 }
+    - { typ: kon, x: 28, y: 28 }
+    - { id: a1, typ: spelare, x: 7, y: 14, lag: a }
+    - { id: a2, typ: spelare, x: 21, y: 10, lag: a }
+    - { id: a3, typ: spelare, x: 35, y: 18, lag: a }
+    - { id: b1, typ: spelare, x: 35, y: 14, lag: b }
+    - { id: b2, typ: spelare, x: 21, y: 18, lag: b }
+    - { id: b3, typ: spelare, x: 7, y: 10, lag: b }
+    - { typ: boll, x: 7.9, y: 14 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a2 }, till: { objekt: a3 }, ordning: 2 }
+    - { typ: skott, fran: { objekt: a3 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 7, y: 20, lag: a }
+      - { x: 36, y: 21, lag: b }
+      - { x: 23, y: 19, lag: a }
+      - { x: 22, y: 13, lag: b }
+      - { x: 35, y: 10, lag: a }
+      - { x: 9, y: 19, lag: b }
+kalla: Egen övning, inspirerad av vanligt positionsspel med zoner och riktning.
+status: utkast
+granskning: []
