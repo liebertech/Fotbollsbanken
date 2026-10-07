@@ -388,7 +388,83 @@ planskiss:
     per_yta: 4
 ```
 
-Banken har i dag inga övningar för 3 mot 3 och 11 mot 11. Formatet är detsamma där; välj `storlek: 3mot3` eller `storlek: 11mot11` på målen.
+De två sista exemplen är skisserna ur två övningar i omgång 5. Formatet är detsamma i alla spelformer. Målen i dem är småmål; en övning med fullstora mål väljer `storlek: 3mot3` eller `storlek: 11mot11`.
+
+**3 mot 3: två mot två till småmål, 15 × 10 meter.** Ur `tva-mot-tva-till-tre-mot-tre-med-smamal.yaml`. Två mot två i basskissen, utan målvakt. Fler spelare går in i lagen på de tre platserna, upp till tre mot tre och en spelare till.
+
+```yaml
+# Spelform: 3mot3
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med ett litet mål i varje ände, utan målvakt. Två mot två. A1 driver förbi B1,
+    som pressar, och skjuter. Fler spelare går in i lagen upp till tre mot tre. Vid udda antal blir
+    en spelare joker, men bilden visar då ett lag med en spelare mer. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 5, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 15, y: 5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 3, y: 3, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 3, y: 7, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 10, y: 4.5, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 12, y: 7, lag: b, etikett: B2 }
+    - { typ: boll, x: 3.3, y: 3 }
+  rorelser:
+    - typ: dribbling
+      fran: { objekt: a1 }
+      till: { x: 11, y: 3 }
+      via: [{ x: 7, y: 0.5 }]
+      ordning: 1
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 7, y: 3.5 }, ordning: 1, etikett: Pressar }
+    - { typ: skott, fran: { x: 11, y: 3 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 7, y: 8, lag: a }
+      - { x: 9, y: 6, lag: b }
+      - { x: 5, y: 5, lag: a }
+```
+
+**11 mot 11: smålagsspel till minimål, 36 × 20 meter.** Ur `smalagsspel-till-mal-13-19.yaml`, som också används i 7 mot 7 och 9 mot 9. Två mot två i basskissen, utan målvakt och utan mittlinje. Fler spelare fyller på lagen på de fyra platserna, upp till fyra mot fyra.
+
+```yaml
+# Spelform: 11mot11
+planskiss:
+  version: 1
+  omrade:
+    langd: 36
+    bredd: 20
+  beskrivning: >-
+    Yta 36 x 20 meter med ett minimål i varje kortsida, utan målvakt. Två mot två i grundläget, upp
+    till fyra mot fyra. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 36, y: 10, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 36, y: 0 }
+    - { typ: kon, x: 36, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { id: a1, typ: spelare, x: 10, y: 6, lag: a }
+    - { id: a2, typ: spelare, x: 10, y: 14, lag: a }
+    - { id: b1, typ: spelare, x: 26, y: 6, lag: b }
+    - { id: b2, typ: spelare, x: 26, y: 14, lag: b }
+    - { typ: boll, x: 10.9, y: 6 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: a2 }, till: { x: 26, y: 11 }, ordning: 2 }
+    - { typ: skott, fran: { x: 26, y: 11 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 14, y: 3, lag: a }
+      - { x: 22, y: 3, lag: b }
+      - { x: 14, y: 17, lag: a }
+      - { x: 22, y: 17, lag: b }
+```
 
 ## Validering
 
