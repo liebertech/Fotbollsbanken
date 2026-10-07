@@ -45,7 +45,7 @@ Huvudsessionen leder arbetet. Den delegerar till agenterna, samlar in deras rapp
 | 1 Krav och domän | Krav och backlog, domänmodell, generatorregler | K1: godkänd 2026-09-11 |
 | 2 Design och arkitektur | Flöden, teknikval, datamodell, skissformat, behörighetsmodell | K2: godkänd 2026-09-12 |
 | 3 Övningsbank | Övningar i omgångar per spelform. Pågår parallellt med fas 4 | K3 per omgång. Omgång 1, 7 mot 7, godkänd 2026-09-14. Omgång 2, 5 mot 5, och omgång 3, hålen i båda spelformerna, godkända 2026-09-21. Banken är 42 övningar |
-| 4 Bygge i inkrement | Se ordningen nedan | K4 per inkrement. Inkrement 1, generatorn, godkänt 2026-09-23. Inkrement 2, planskisser, godkänt 2026-10-05 |
+| 4 Bygge i inkrement | Se ordningen nedan | K4 per inkrement. Inkrement 1, generatorn, godkänt 2026-09-23. Inkrement 2, planskisser, godkänt 2026-10-05. Inkrement 2b, byta övning, godkänt 2026-10-05 |
 | 5 Lansering | Säkerhets- och GDPR-genomgång, integritetspolicy, kontroll av åldersfaserna mot SvFF:s spelarutbildningsplan, byte från deploy-nyckel till GitHub-app (ADR 0014), driftsättning | K5 |
 
 **Aktuell fas: 3 och 4, övningsbank och bygge.** Krav, domänmodell, design och arkitektur är godkända och styr arbetet. Generatorreglernas nummer är frysta: nya regler får lediga nummer och överflödiga markeras som *Utgår*. Arkitekturbesluten i `docs/adr/` ändras inte i efterhand; ett ändrat beslut skrivs som en ny ADR.
@@ -77,7 +77,7 @@ Om övningen inte håller sätter fotbollsexperten eller redaktören status `atg
 4. Säkerhetsagenten granskar när inloggning, behörighet, data, inskickat innehåll eller externa tjänster berörs.
 5. UX-designern granskar när gränssnittet berörs.
 6. Kontrollpunkt K4 med användaren.
-7. Huvudsessionen mergar till main och pushar.
+7. Användaren mergar till main i webbläsaren. Huvudsessionen pushar grenarna och öppnar pull requesten.
 
 ## Git
 
@@ -85,6 +85,7 @@ Om övningen inte håller sätter fotbollsexperten eller redaktören status `atg
 - Varje ändring görs på en gren och läggs fram som en pull request. Statusraden i ett dokument ändras till `godkänd (K<n>, ÅÅÅÅ-MM-DD)` när du godkänt kontrollpunkten.
 - Commit-meddelanden skrivs på svenska i imperativ, till exempel ”Lägg till regler för passuppbyggnad”.
 - Använd aldrig force-push eller `reset --hard`, och skriv aldrig om publicerad historik.
+- Bara användaren mergar till `main` och godkänner körningar i miljön `godkannande`, och gör det i webbläsaren. Varken huvudsessionen eller någon agent mergar en pull request eller godkänner en miljö, varken med `gh` eller med API:t, fast `gh` är inloggat med skrivrätt för att kunna pusha och öppna pull requests. Användarens beslut 2026-10-05 (säkerhetsgranskningen av ADR 0020, F4).
 
 ## Gemensamma regler för alla agenter
 
