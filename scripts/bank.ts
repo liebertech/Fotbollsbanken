@@ -35,11 +35,21 @@ export interface BankResult {
   skipped: { file: string; status: string }[];
 }
 
+export interface LoadBankOptions {
+  /**
+   * Räkna övningar med status `granskad` som godkända, bara i minnet. Läget används av
+   * testerna mot banken, så att en omgång som väntar på redaktörens godkännande prövas i sin
+   * egen pull request och inte först efter godkännandet. Bygget och appen använder det
+   * aldrig (R-022), och filerna i content/ovningar/ ändras inte.
+   */
+  granskadSomGodkand?: boolean;
+}
+
 /**
  * Läser banken. Bara övningar med status `godkand` kommer med: generatorn väljer bara
  * härifrån (R-022).
  */
-export function loadBank(dir: string = CONTENT_DIR): BankResult {
+export function loadBank(dir: string = CONTENT_DIR, options: LoadBankOptions = {}): BankResult {
   const exercises: Exercise[] = [];
   const problems: { file: string; message: string }[] = [];
   const skipped: { file: string; status: string }[] = [];
@@ -64,7 +74,9 @@ export function loadBank(dir: string = CONTENT_DIR): BankResult {
       continue;
     }
     const status = (document as { status?: unknown }).status;
-    if (status !== 'godkand') {
+    const counted =
+      status === 'godkand' || (options.granskadSomGodkand === true && status === 'granskad');
+    if (!counted) {
       skipped.push({ file, status: typeof status === 'string' ? status : 'utan status' });
       continue;
     }
@@ -76,8 +88,37 @@ export function loadBank(dir: string = CONTENT_DIR): BankResult {
       });
       continue;
     }
-    exercises.push(result.data);
+    exercises.push({ ...result.data, status: 'godkand' });
   }
 
   return { exercises, problems, skipped };
+}
+
+/** En variant av banken som testerna mot banken körs mot. */
+export interface BankVariant {
+  name: string;
+  exercises: Exercise[];
+  problems: BankResult['problems'];
+}
+
+/**
+ * Bankerna som testerna mot banken körs mot: de godkända övningarna och, när det finns
+ * granskade övningar, också banken med dem räknade som godkända. Den andra varianten fäller
+ * en omgång i sin egen pull request, innan redaktören har satt `godkand`.
+ */
+export function bankVariantsForTests(dir: string = CONTENT_DIR): BankVariant[] {
+  const approved = loadBank(dir);
+  const withReviewed = loadBank(dir, { granskadSomGodkand: true });
+  const variants: BankVariant[] = [
+    { name: 'godkända övningar', exercises: approved.exercises, problems: approved.problems },
+  ];
+  const reviewed = withReviewed.exercises.length - approved.exercises.length;
+  if (reviewed > 0 || withReviewed.problems.length > approved.problems.length) {
+    variants.push({
+      name: `godkända och ${reviewed} granskade räknade som godkända`,
+      exercises: withReviewed.exercises,
+      problems: withReviewed.problems,
+    });
+  }
+  return variants;
 }

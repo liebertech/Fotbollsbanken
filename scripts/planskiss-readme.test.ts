@@ -1,7 +1,8 @@
 /**
  * Exemplen på planskisser i content/ovningar/README.md ska vara giltiga, eftersom
  * övningsförfattaren kopierar dem som utgångspunkt (ADR 0012). Testet kräver också ett
- * exempel för varje spelform som bankens godkända övningar använder.
+ * exempel för varje spelform som bankens godkända övningar använder, med granskade övningar
+ * räknade som godkända, så att en omgång fälls i sin egen pull request.
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -48,7 +49,8 @@ describe('planskissexemplen i content/ovningar/README.md', () => {
   });
 
   it('det finns ett exempel för varje spelform som bankens övningar använder', () => {
-    const inBank = new Set(loadBank(CONTENT_DIR).exercises.flatMap((item) => item.spelformer));
+    const { exercises } = loadBank(CONTENT_DIR, { granskadSomGodkand: true });
+    const inBank = new Set(exercises.flatMap((item) => item.spelformer));
     const inReadme = new Set(examples().map((example) => example.spelform));
     for (const spelform of inBank) {
       expect(inReadme, `exempel saknas för ${spelform}`).toContain(spelform);
