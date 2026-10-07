@@ -85,9 +85,9 @@ planskiss:
     bredd: 60
   beskrivning: >-
     Yta 100 x 60 meter, elva mot elva-planens minsta mått, med fullstora mål och målvakter. Nio mot
-    åtta utespelare i grundläget, i två formationer. Målvakten spelar ut genom backlinjen och
-    mittfältet mot anfallet. Fler spelare fyller på lagen jämnt. Den tjugotredje spelaren är
-    avbytare vid sidlinjen. Lag A anfaller åt höger.
+    åtta utespelare i grundläget. Målvakten spelar ut genom backlinjen mot anfallet. Fler spelare
+    fyller på lagen jämnt. Den tjugotredje spelaren är avbytare vid sidlinjen. Lag A anfaller åt
+    höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 100, bredd: 60, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 30, storlek: 11mot11, riktning: hoger }
