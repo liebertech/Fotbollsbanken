@@ -1,0 +1,147 @@
+schema: 1
+id: avslut-efter-passning-mot-malvakt
+namn: Avslut efter passning mot målvakt
+syfte: Spelarna ska avsluta med precision efter en passning, mot en målvakt
+  som försöker rädda skottet.
+beskrivning: |
+  Fyra till sju spelare roterar mellan rollerna passare, avslutare, målvakt
+  och kö vid ett mål. Passaren spelar in bollen från sidan, avslutaren
+  möter bollen och skjuter på första eller andra touchen från minst tio
+  meter. Utespelarna roterar efter varje försök: passaren blir avslutare,
+  avslutaren hämtar sin boll och ställer sig sist i kön, och den första i
+  kön blir passare. Målvakten står en serie om sex till åtta skott och
+  byts sedan, helst mot lagets egen målvakt eller en spelare som vill.
+  Ingen tvingas stå i mål.
+organisation: |
+  En grupp om fyra till sju spelare per mål, med rollerna passare,
+  avslutare, målvakt och en till fyra i kort kö. Extra bollar ligger vid
+  målet så att gruppen själv fyller på. Kön står vid sidan om målet, aldrig
+  bakom målet och aldrig i skottlinjen. Den som står i mål har
+  målvaktshandskar. Står en utespelare i mål placerar avslutaren skottet i
+  stället för att skjuta med full kraft.
+fokusomraden:
+  - avslut
+  - passning-mottagning
+  - malvaktsspel
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 7
+grupptyp: fri
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 20
+yta:
+  alla:
+    langd: 18
+    bredd: 14
+ytreferens:
+  alla: stora planens målområde, två och en halv gång så djupt
+material:
+  - typ: boll
+    antal: 6
+    anteckning: bollar att skjuta med, ligger i en hög vid målet
+  - typ: mal
+    antal: 1
+  - typ: ovrigt
+    antal: 1
+    anteckning: målvaktshandskar till den som står i mål
+coachningspunkter:
+  - Möt bollen på väg mot mål, stå inte still.
+  - Sikta på en bestämd del av målet innan du skjuter.
+  - Använd båda fötterna över tid, inte bara den starka.
+  - Placera skottet när en utespelare står i mål, och skjut aldrig inifrån
+    tio meter.
+varianter:
+  lattare: Bollen läggs still av passaren i stället för att spelas in i rörelse.
+  svarare: Avslutaren får bara en touch innan skottet.
+anpassning:
+  fler_spelare: Är ni fler än sju, bygg en till grupp vid ett annat mål.
+  udda_antal: Ingen åtgärd behövs. Gruppen fungerar med alla antal mellan
+    fyra och sju, kön blir bara en person längre eller kortare.
+  ledare: Med en ledare vid varje mål kan hon eller han ge snabb feedback
+    på varje avslut.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 14
+  beskrivning: >-
+    Yta 18 x 14 meter med ett mål och en målvakt på högra kortsidan.
+    Passaren spelar in från sidlinjen och avslutaren möter bollen
+    centralt. Kön står utanför ytan vid sidan av målet, bortom
+    skottlinjen. Avslutaren ställer sig sist i kön och den första i kön
+    blir passare.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 14, stil: streckad }
+    - { id: mal-1, typ: mal, x: 18, y: 7, storlek: 9mot9, riktning: vanster }
+    - { id: mv, typ: spelare, x: 16.5, y: 7, lag: neutral, malvakt: true, etikett: MV }
+    - { id: sp-av, typ: spelare, x: 6, y: 7, lag: a, etikett: AV }
+    - { id: sp-p, typ: spelare, x: 7, y: 13, lag: a, etikett: P }
+    - { id: sp-k1, typ: spelare, x: 16, y: 16, lag: a, etikett: K }
+    - { typ: boll, x: 7.3, y: 13 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sp-p }, till: { objekt: sp-av }, ordning: 1 }
+    - { typ: skott, fran: { objekt: sp-av }, till: { objekt: mal-1 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sp-av }, till: { objekt: sp-k1 }, ordning: 3, etikett: Sist i kön }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-k1, riktning: 180, avstand: 1.5, etikett: Kö }
+kalla: Egen övning, inspirerad av vanliga avslutsstationer med rotation.
+status: granskad
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Skottavståndet på minst tio meter, köns plats utanför ytan och bortom skottlinjen och
+      ytreferensen håller. Golvet utan motståndare gäller, eftersom en målvakt inte gör övningen
+      till en övning med motståndare. Fyra saker ska ändras. 1. Upp till sju i kö är för mycket
+      väntan. Sätt spelare.max till 7, och skriv att en grupp till byggs vid ett annat mål när ni
+      är fler. 2. Rotationen och målvakten säger emot varandra. Utespelarna roterar passare,
+      avslutare och sist i kön, och målvakten står en serie om sex till åtta skott, helst lagets
+      egen målvakt eller en som vill. Ingen tvingas stå i mål. 3. En 15-19-åring skjuter hårt
+      också från tio meter. Den som står i mål ska ha målvaktshandskar, och står en utespelare i
+      mål placerar avslutaren skottet. Lägg till handskarna som ovrigt i materialet och ändra
+      den fjärde coachningspunkten. 4. Skissen: rotationspilen ska gå från avslutaren till kön.
+      Exakt pil och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B5.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Alla fyra punkterna åtgärdade. Satte spelare.max till 7 och skrev om
+      anpassning.fler_spelare och antalet i kön (en till fyra) i organisation.
+      Skrev om rotationen i beskrivning: passaren blir avslutare, avslutaren
+      hämtar sin boll och ställer sig sist i kön, den första i kön blir
+      passare, och målvakten står en serie om sex till åtta skott och byts
+      sedan, ingen tvingas stå i mål. Lade till målvaktshandskar i
+      organisation och i materialet som ovrigt, och ändrade den fjärde
+      coachningspunkten till att placera skottet när en utespelare står i
+      mål. I skissen: rotationspilen går nu från avslutaren till sp-k1 med
+      etiketten "Sist i kön", och skissens beskrivning är omskriven.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. Med högst sju spelare blir kön högst fyra. Rotationen är entydig, och målvakten står
+      en serie och byts utan tvång. Handskarna och de placerade skotten mot en utespelare står i
+      organisationen, i materialet och i coachningen. Skissen är kontrollerad: rotationspilen går
+      från avslutaren till kön, 3,8 meter från passaren och bort från skottlinjen. Kön står 2
+      meter utanför ytan och rymmer fyra med avståndet 1,5 meter. Skottavståndet är 12 meter.
+      Förslag, som inte krävs: den första meningen i beskrivningen räknar målvakten som en av
+      rollerna i rotationen. Det kan strykas, eftersom målvakten byts i serier.

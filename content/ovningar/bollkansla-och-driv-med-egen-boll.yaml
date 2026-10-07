@@ -1,0 +1,130 @@
+schema: 1
+id: bollkansla-och-driv-med-egen-boll
+namn: Bollkänsla och driv med egen boll
+syfte: Spelarna ska få många bollkontakter och lära sig driva bollen med kontroll i olika
+  riktningar.
+beskrivning: |
+  Varje spelare har en egen boll inne i en yta om 15 x 10 meter, utan motståndare. De
+  driver bollen fritt med olika delar av foten, och ungefär varje minut visar ledaren en
+  ny touch: stanna bollen snabbt, vända med insidan, föra bollen i en liten åtta runt två
+  koner eller byta riktning på en signal.
+organisation: |
+  En boll per spelare inne i den markerade ytan. Lägg ut ett konpar per fyra spelare till
+  åttorna. Ledaren visar och byter uppgift ungefär varje minut och går runt och peppar
+  under tiden. Är ni färre än åtta, gör ytan ungefär hälften så stor, så att spelarna
+  måste titta upp för att inte krocka.
+fokusomraden:
+  - bollkansla
+  - dribbling
+  - koordination
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 15
+    bredd: 10
+ytreferens:
+  alla: ungefär en fjärdedel av stora planens straffområde
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: kon
+    antal: 12
+    anteckning: fyra i hörnen och ett par per fyra spelare till åttorna
+coachningspunkter:
+  - Styr bollen med utsidan och insidan av foten, inte bara med tårna.
+  - Håll bollen nära fötterna när du vänder eller byter riktning.
+  - Titta upp ibland, inte bara ner på bollen hela tiden.
+varianter:
+  lattare: Gå i stället för att springa mellan toucherna.
+  svarare: Ledaren håller upp ett antal fingrar, och spelarna ropar antalet medan de
+    driver, så att de måste titta upp.
+anpassning:
+  fler_spelare: Lägg till fler bollar i samma yta, eller gör ytan något större om det blir
+    trångt.
+  udda_antal: Spelar ingen roll, varje spelare har sin egen boll.
+  ledare: En ledare räcker för att visa nya toucher och gå runt och peppa.
+planskiss:
+  version: 1
+  omrade:
+    langd: 15
+    bredd: 10
+  beskrivning: >-
+    Yta 15 x 10 meter med en kon i varje hörn och ett konpar i mitten. Varje spelare har
+    en egen boll och driver utan motståndare. En spelare driver i en åtta runt konparet.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
+    - { id: sp-1, typ: spelare, x: 4, y: 5, lag: neutral, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 11, y: 2, lag: neutral, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 3, y: 8, lag: neutral, etikett: "3" }
+    - { id: sp-4, typ: spelare, x: 12, y: 8.5, lag: neutral, etikett: "4" }
+    - { typ: boll, x: 4.3, y: 5 }
+    - { typ: boll, x: 11.3, y: 2 }
+    - { typ: boll, x: 3.3, y: 8 }
+    - { typ: boll, x: 12.3, y: 8.5 }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 15, y: 0 }
+    - { typ: kon, x: 0, y: 10 }
+    - { typ: kon, x: 15, y: 10 }
+    - { typ: kon, x: 6, y: 5 }
+    - { typ: kon, x: 10, y: 5 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 8, y: 5 }, via: [{ x: 5, y: 2.5 }, { x: 7, y: 2.5 }], etikett: Åtta runt konerna }
+    - { typ: dribbling, fran: { x: 8, y: 5 }, till: { x: 12, y: 5 }, via: [{ x: 8.5, y: 7.5 }, { x: 11.5, y: 7.5 }] }
+    - { typ: dribbling, fran: { objekt: sp-3 }, till: { x: 8, y: 8.5 }, via: [{ x: 5.5, y: 9.5 }] }
+kalla: Egen övning, inspirerad av vanliga bollkänsleövningar med egen boll.
+status: granskad
+granskning:
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Åtgärda. Rätt övning och huvudfokus för fas-6-7. Yta: 9,4 kvadratmeter per spelare vid
+      sexton, över golvet 8. Taket prövas inte som gräns när varje spelare har egen boll, men
+      texten ska säga att ytan görs mindre med få spelare. Ytreferensen stämmer med facit för
+      15 x 10. Ett enda konpar till åttan ger kö med sexton spelare. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A4: konpar per fyra spelare i organisation och
+      material (12 koner), "ungefär varje minut" i beskrivning, ny svårare variant, och
+      planskissen, där dribblingen slutade en meter från båda konerna. Nya koner, pilar utan
+      ordning och en åtta som håller 1,8 m till konerna.
+  - datum: 2026-10-06
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A4. Bytte organisation till ett
+      konpar per fyra spelare och regeln om mindre yta vid färre än åtta, ändrade
+      materialets konantal till 12, skrev "ungefär varje minut" i beskrivning och ny
+      svårare variant. I planskissen flyttade jag sp-1 och sp-4 med sina bollar, bytte ut
+      de gamla konerna på (6, 4) och (6, 6) mot fyra hörnkoner och ett konpar på (6, 5) och
+      (10, 5), och ersatte rörelserna med tre dribblingar utan ordning som håller avstånd
+      till konerna.
+  - datum: 2026-10-06
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Ett
+      konpar per fyra spelare tar bort kön vid åttorna, och materialet har 12 koner. Yta 9,4
+      kvadratmeter per spelare vid sexton, över golvet 8. Taket prövas inte som gräns för egen
+      boll utan motståndare, och texten säger att ytan görs mindre med färre än åtta.
+      Ytreferensen stämmer med facit för 15 x 10. Åttan håller 1,8 m till konerna och pilarna
+      saknar ordning. Inga namn.
