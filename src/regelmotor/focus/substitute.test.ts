@@ -220,32 +220,54 @@ describe('R-086 tillsammans med R-121 (testfall 6 och 7)', () => {
     id: 'snabb-nick',
     fokusomraden: ['snabbhet', 'nickspel'],
     passdelar: ['del-ovning'],
+    tid: { kortast: 8, rekommenderad: 8, langst: 8 },
+  });
+  const snabbOvning = bankExercise({
+    ...fjorton,
+    id: 'snabb-utan-nick',
+    fokusomraden: ['snabbhet'],
+    passdelar: ['del-ovning'],
     tid: { kortast: 5, rekommenderad: 10, langst: 15 },
   });
+  const bank = [snabbOvning, nickOvning];
   const basInput: Input = {
     alder: 14,
     spelform: '9mot9',
     niva: 'niva-2',
     spelare: 12,
     ledare: 1,
-    passlangd: 60,
+    passlangd: 120,
     fokus: ['koordination', 'nickspel'],
   };
+  const delOvning = (input: Input) =>
+    beslut(bank, input, 'fas-13-14').find((item) => item.part === 'del-ovning');
+  const kandidater = (input: Input) =>
+    candidatesForPart(bank, 'del-ovning', { input, phase: 'fas-13-14' }).map((item) => item.id);
 
-  it('R-086 testfall 6: nickövningen får ligga i delen när nickspel är valt (den träffar då valt fokus, så inget ersättningsfokus behövs)', () => {
-    const resultat = beslut([nickOvning], basInput, 'fas-13-14');
-    expect(resultat.find((item) => item.part === 'del-ovning')).toEqual({
+  it('R-086 testfall 6: delen får ersättningsfokus snabbhet och nickövningen får ingå när nickspel är valt', () => {
+    expect(delOvning(basInput)).toEqual({
       part: 'del-ovning',
-      substituteFocus: null,
+      substituteFocus: 'snabbhet',
       cannotFill: false,
     });
+    expect(kandidater(basInput)).toContain('snabb-nick');
   });
 
-  it('R-086 testfall 7: samma övning fyller inte delen när nickspel inte är valt', () => {
+  it('R-086 testfall 6: nickövningen ensam fyller inte delen, eftersom nicktaket hindrar det', () => {
+    const resultat = beslut([nickOvning], basInput, 'fas-13-14').find(
+      (item) => item.part === 'del-ovning',
+    );
+    expect(resultat?.substituteFocus).toBeNull();
+    expect(resultat?.cannotFill).toBe(true);
+  });
+
+  it('R-086 testfall 7: samma underlag utan nickspel ger snabbhet men utan nickövningen', () => {
     const input: Input = { ...basInput, fokus: ['koordination', 'bollkansla'] };
-    const resultat = beslut([nickOvning], input, 'fas-13-14');
-    const del = resultat.find((item) => item.part === 'del-ovning');
-    expect(del?.substituteFocus).toBeNull();
-    expect(del?.cannotFill).toBe(true);
+    expect(delOvning(input)).toEqual({
+      part: 'del-ovning',
+      substituteFocus: 'snabbhet',
+      cannotFill: false,
+    });
+    expect(kandidater(input)).toEqual(['snabb-utan-nick']);
   });
 });
