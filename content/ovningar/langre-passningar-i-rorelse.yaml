@@ -1,8 +1,7 @@
 schema: 1
 id: langre-passningar-i-rorelse
 namn: Längre passningar i rörelse
-syfte: Spelarna ska passa längre bollar med rätt kraft och röra sig direkt efter sin egen
-  passning.
+syfte: Spelarna ska passa längre bollar med rätt kraft och röra sig direkt efter sin egen passning.
 beskrivning: |
   Fyra spelare står i varsitt hörn av en stor kvadrat om 18 x 18 meter. Spelaren med boll
   passar diagonalt eller till nästa hörn och följer alltid efter sin egen passning in i
@@ -53,17 +52,17 @@ coachningspunkter:
   - Ta första touchen i den riktning du ska röra dig vidare.
   - Rör dig direkt efter din passning, stå inte kvar i hörnet.
 varianter:
-  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert. Ger
-    tolv meter längs sidan och ungefär sjutton meter diagonalt.
+  lattare: Kortare sida på kvadraten, tolv meter, tills passningarna sitter säkert. Ger tolv meter
+    längs sidan och ungefär sjutton meter diagonalt.
   svarare: Bara en touch tillåten innan bollen ska passas vidare.
 anpassning:
   fler_spelare: Bygg fler kvadrater bredvid varandra, tre meters mellanrum.
-  udda_antal: Den femte spelaren står i mitten och rör sig till det hörn som blir ledigt,
-    så att gruppen alltid är fem i rotation.
-  ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens
-    kraft och riktning.
+  udda_antal: Den femte spelaren står i mitten och rör sig till det hörn som blir ledigt, så att
+    gruppen alltid är fem i rotation.
+  ledare: Övningen är självgående. Med en ledare i närheten kan hen påminna om passningens kraft och
+    riktning.
 kalla: Egen övning, inspirerad av allmänt känd passningsövning i fyra hörn.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -80,9 +79,9 @@ granskning:
       taket, 9 mot 9-matchens trängsta värde, är 181, så övningen ligger i spannet
       (passuppbyggnad.md). Längdkriteriet på 35 meter gäller inte: det finns ingen försvarslinje att
       spela bakom, bara en passningsruta utan riktning. Passning och mottagning och spelbarhet är
-      båda kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus. Tiden ligger inom
-      fasens gräns, och fast storlek fyra med en femte spelare i mitten löser udda antal (R-050).
-      Ett tips utan krav: en andra boll i kvadraten när gruppen är van dubblar bollkontakterna.
+      båda kärnområden för fas-13-14 och syftet hänger ihop med huvudfokus. Tiden ligger inom fasens
+      gräns, och fast storlek fyra med en femte spelare i mitten löser udda antal (R-050). Ett tips
+      utan krav: en andra boll i kvadraten när gruppen är van dubblar bollkontakterna.
   - datum: 2026-09-24
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -94,3 +93,7 @@ granskning:
       invändningen, och syftet med längre passningar bär. Övrigt är oförändrat och håller: 324
       kvadratmeter är 81 per spelare vid fyra, över golvet 20 utan motståndare och under taket 181
       för fas-13-14.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

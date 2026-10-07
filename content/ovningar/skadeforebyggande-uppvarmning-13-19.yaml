@@ -1,8 +1,8 @@
 schema: 1
 id: skadeforebyggande-uppvarmning-13-19
 namn: Skadeförebyggande uppvärmning, 13-19 år
-syfte: Spelarna ska öva knä- och fotledskontroll, bålstabilitet och
-  landningsteknik som förberedelse inför träningens mer intensiva delar.
+syfte: Spelarna ska öva knä- och fotledskontroll, bålstabilitet och landningsteknik som förberedelse
+  inför träningens mer intensiva delar.
 beskrivning: |
   Spelarna rör sig mellan sex stationer och gör en övning vid varje:
   enbenshopp med mjuk landning, utfallssteg, sidohopp över en linje, planka,
@@ -34,9 +34,8 @@ niva:
 passdelar:
   - del-uppvarmning
 ledarbehov: 1
-ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget
-  vid landning och hopp så att knäna inte viker inåt, och håller extra
-  uppsikt vid balansstationens knuff.
+ledaruppgift: Ledaren visar varje övning, går runt och rättar till knäläget vid landning och hopp så
+  att knäna inte viker inåt, och håller extra uppsikt vid balansstationens knuff.
 spelare:
   min: 6
   max: 16
@@ -60,35 +59,85 @@ coachningspunkter:
   - Håll bålen stilla och blicken framåt, inte ner mot fötterna.
   - Knuffen på balansstationen ska vara lätt och kontrollerad, inte ett knuff-slag.
 varianter:
-  lattare: Ta bort hoppen och gör bara balans- och stabilitetsövningarna vid
-    varje station.
-  svarare: Håll balansen fem sekunder efter varje landning och lägg till en
-    snabb riktningsändring efter utfallssteget.
+  lattare: Ta bort hoppen och gör bara balans- och stabilitetsövningarna vid varje station.
+  svarare: Håll balansen fem sekunder efter varje landning och lägg till en snabb riktningsändring
+    efter utfallssteget.
 anpassning:
   fler_spelare: Bygg en andra uppsättning med samma sex stationer bredvid.
-  udda_antal: Udda antal spelar ingen roll utom vid balansstationen, som
-    alltid ska ha två. Låt vid behov en spelare göra en station två gånger
-    i rad så att balansstationen får ett par.
-  ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid
-    olika stationer.
+  udda_antal: Udda antal spelar ingen roll utom vid balansstationen, som alltid ska ha två. Låt vid
+    behov en spelare göra en station två gånger i rad så att balansstationen får ett par.
+  ledare: Med två ledare kan en visa och en rätta till teknik samtidigt vid olika stationer.
 planskiss:
   version: 1
   omrade:
     langd: 16
     bredd: 14
   beskrivning: >-
-    Yta 16 x 14 meter med sex stationer, tre på varje rad. Alla gör sin
-    station samtidigt och roterar medurs på ledarens signal.
-    Balansstationen har alltid minst två. Ledaren står i mitten och rättar
-    knäläget.
+    Yta 16 x 14 meter med sex stationer, tre på varje rad. Alla gör sin station samtidigt och
+    roterar medurs på ledarens signal. Balansstationen har alltid minst två. Ledaren står i mitten
+    och rättar knäläget.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 16, bredd: 14, stil: streckad }
-    - { id: st-balans, typ: ruta, x: 2.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Balans }
-    - { id: st-planka, typ: ruta, x: 7.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Planka }
-    - { id: st-sidohopp, typ: ruta, x: 12.4, y: 2.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Sidohopp }
-    - { id: st-utfallssteg, typ: ruta, x: 12.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Utfallssteg }
-    - { id: st-enbenshopp, typ: ruta, x: 7.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Enbenshopp }
-    - { id: st-hogaknan, typ: ruta, x: 2.4, y: 10.4, langd: 1.2, bredd: 1.2, stil: streckad, etikett: Höga knän }
+    - {
+        id: st-balans,
+        typ: ruta,
+        x: 2.4,
+        y: 2.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Balans
+      }
+    - {
+        id: st-planka,
+        typ: ruta,
+        x: 7.4,
+        y: 2.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Planka
+      }
+    - {
+        id: st-sidohopp,
+        typ: ruta,
+        x: 12.4,
+        y: 2.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Sidohopp
+      }
+    - {
+        id: st-utfallssteg,
+        typ: ruta,
+        x: 12.4,
+        y: 10.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Utfallssteg
+      }
+    - {
+        id: st-enbenshopp,
+        typ: ruta,
+        x: 7.4,
+        y: 10.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Enbenshopp
+      }
+    - {
+        id: st-hogaknan,
+        typ: ruta,
+        x: 2.4,
+        y: 10.4,
+        langd: 1.2,
+        bredd: 1.2,
+        stil: streckad,
+        etikett: Höga knän
+      }
     - { typ: spelare, x: 3, y: 1, lag: a }
     - { typ: spelare, x: 1, y: 3, lag: a }
     - { typ: spelare, x: 8, y: 1, lag: a }
@@ -97,15 +146,19 @@ planskiss:
     - { typ: spelare, x: 3, y: 13, lag: a }
     - { typ: ledare, x: 8, y: 7 }
   rorelser:
-    - { typ: lopning, fran: { objekt: st-balans }, till: { objekt: st-planka }, etikett: Alla roterar medurs }
+    - {
+        typ: lopning,
+        fran: { objekt: st-balans },
+        till: { objekt: st-planka },
+        etikett: Alla roterar medurs
+      }
     - { typ: lopning, fran: { objekt: st-planka }, till: { objekt: st-sidohopp } }
     - { typ: lopning, fran: { objekt: st-sidohopp }, till: { objekt: st-utfallssteg } }
     - { typ: lopning, fran: { objekt: st-utfallssteg }, till: { objekt: st-enbenshopp } }
     - { typ: lopning, fran: { objekt: st-enbenshopp }, till: { objekt: st-hogaknan } }
     - { typ: lopning, fran: { objekt: st-hogaknan }, till: { objekt: st-balans } }
-kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF
-  rekommenderar för 13-19 år.
-status: granskad
+kalla: Egen övning, inspirerad av skadeförebyggande program som SvFF rekommenderar för 13-19 år.
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -114,25 +167,23 @@ granskning:
       Ledarbehov 1 är rätt. Ytan godtas enligt undantag 3, stationer med minst två meter mellan
       arbetsplatserna. Ingen ytreferens: stationer (ytreferenser.md, avsnitt 4). Tre saker ska
       ändras. 1. Sätt spelare.min till 6. Balansstationen får två även vid sex spelare, och
-      organisationen säger redan att färre stationer körs i en liten grupp. 2. Sexton platser
-      för sexton spelare räcker inte när blocken roterar, eftersom ett block om tre kommer till
-      balansen och till utfallsstegen. Skriv att varje station tar upp till tre, och att
-      balansstationen har minst två där två turas om att knuffa när de är tre. 3. Skissen: ta
-      bort ordning från de sex löpningarna eftersom alla roterar samtidigt, ge den första
-      etiketten "Alla roterar medurs", ta bort spelaren på (13, 13) och lägg till en ledare på
-      (8, 7). Ny beskrivning till skissen står i docs/doman/granskning-omgang-5.md, B4.
+      organisationen säger redan att färre stationer körs i en liten grupp. 2. Sexton platser för
+      sexton spelare räcker inte när blocken roterar, eftersom ett block om tre kommer till balansen
+      och till utfallsstegen. Skriv att varje station tar upp till tre, och att balansstationen har
+      minst två där två turas om att knuffa när de är tre. 3. Skissen: ta bort ordning från de sex
+      löpningarna eftersom alla roterar samtidigt, ge den första etiketten "Alla roterar medurs", ta
+      bort spelaren på (13, 13) och lägg till en ledare på (8, 7). Ny beskrivning till skissen står
+      i docs/doman/granskning-omgang-5.md, B4.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Alla tre punkterna åtgärdade. Sänkte spelare.min till 6. Skrev om
-      organisation så att varje station tar upp till tre spelare, att
-      balansstationen alltid har minst två och att de turas om att knuffa
-      när de är tre, och att en station står tom vid sex spelare. I skissen:
-      tog bort ordning från alla sex löpningar, gav den första etiketten
-      "Alla roterar medurs", tog bort spelaren på (13, 13) så att basskissen
-      har sex spelare, lade till en ledare på (8, 7) och skrev om skissens
-      beskrivning.
+      Alla tre punkterna åtgärdade. Sänkte spelare.min till 6. Skrev om organisation så att varje
+      station tar upp till tre spelare, att balansstationen alltid har minst två och att de turas om
+      att knuffa när de är tre, och att en station står tom vid sex spelare. I skissen: tog bort
+      ordning från alla sex löpningar, gav den första etiketten "Alla roterar medurs", tog bort
+      spelaren på (13, 13) så att basskissen har sex spelare, lade till en ledare på (8, 7) och
+      skrev om skissens beskrivning.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -140,8 +191,12 @@ granskning:
       Håller. Spelare.min är 6, och sex stationer med upp till tre spelare ger arton platser för
       högst sexton, så blocken får plats när de roterar. Balansstationen har minst två.
       Gruppdelningen: taket per ledare är 14 för 13-14 år, så femton och sexton spelare blir två
-      grupper om minst sju med två ledare. För 15-19 år räcker en ledare upp till sexton. Skissen
-      är kontrollerad: inga ordning på de sex löpningarna, etiketten "Alla roterar medurs", sex
-      spelare och en ledare på (8, 7), som står minst 3,4 meter från alla pilar. Ingen ytreferens:
-      stationer (ytreferenser.md, avsnitt 4). Kvar för redaktören: övningen ligger mycket nära
+      grupper om minst sju med två ledare. För 15-19 år räcker en ledare upp till sexton. Skissen är
+      kontrollerad: inga ordning på de sex löpningarna, etiketten "Alla roterar medurs", sex spelare
+      och en ledare på (8, 7), som står minst 3,4 meter från alla pilar. Ingen ytreferens: stationer
+      (ytreferenser.md, avsnitt 4). Kvar för redaktören: övningen ligger mycket nära
       skadeforebyggande-9mot9, se granskning-omgang-5.md, Beslut som behövs.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

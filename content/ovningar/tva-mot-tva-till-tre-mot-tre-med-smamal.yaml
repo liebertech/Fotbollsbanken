@@ -61,8 +61,8 @@ varianter:
   lattare: Försvararna får bara gå, inte springa, när de pressar bollhållaren.
   svarare: Gör mål bara efter minst en dribbling förbi en motståndare.
 anpassning:
-  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum,
-    hellre än att lägga in fler spelare på samma yta.
+  fler_spelare: Lägg fler ytor bredvid varandra med samma mått och tre meters mellanrum, hellre än att
+    lägga in fler spelare på samma yta.
   udda_antal: En spelare blir joker och spelar alltid med det lag som har bollen.
   ledare: Övningen är självgående. Ledaren peppar och hjälper till med bollar som går ut.
 planskiss:
@@ -71,10 +71,9 @@ planskiss:
     langd: 15
     bredd: 10
   beskrivning: >-
-    Yta 15 x 10 meter med ett litet mål i varje ände, utan målvakt. Två mot två. A1 driver
-    förbi B1, som pressar, och skjuter. Fler spelare går in i lagen upp till tre mot tre.
-    Vid udda antal blir en spelare joker, men bilden visar då ett lag med en spelare mer.
-    Lag A anfaller åt höger.
+    Yta 15 x 10 meter med ett litet mål i varje ände, utan målvakt. Två mot två. A1 driver förbi B1,
+    som pressar, och skjuter. Fler spelare går in i lagen upp till tre mot tre. Vid udda antal blir
+    en spelare joker, men bilden visar då ett lag med en spelare mer. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 15, bredd: 10, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 5, storlek: smamal, riktning: hoger }
@@ -88,7 +87,7 @@ planskiss:
     - typ: dribbling
       fran: { objekt: a1 }
       till: { x: 11, y: 3 }
-      via: [{ x: 7, y: 0.5 }]
+      via: [ { x: 7, y: 0.5 } ]
       ordning: 1
     - { typ: lopning, fran: { objekt: b1 }, till: { x: 7, y: 3.5 }, ordning: 1, etikett: Pressar }
     - { typ: skott, fran: { x: 11, y: 3 }, till: { objekt: mal-b }, ordning: 2 }
@@ -99,40 +98,41 @@ planskiss:
       - { x: 9, y: 6, lag: b }
       - { x: 5, y: 5, lag: a }
 kalla: Egen övning, inspirerad av vanligt smålagsspel med joker i yngre åldrar.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda. Innehållet är rätt för fas-6-7, fokusområdena är K och märkningen 3mot3 och
-      5mot5 följer F1 (c). Yta: 150 kvadratmeter är 21,4 per spelare vid sju, över golvet 15.
-      Vid fyra är det 37,5, alltså 50 procent över taket 25, inte 25 procent. Jag godtar det,
-      eftersom ytan är 3 mot 3-matchens egen minsta plan och spannet måste börja på fyra.
-      Ytreferensen hela 3 mot 3-planen är rätt. Ändringar, exakta i
-      docs/doman/granskning-omgang-5.md under A1: 1. Perioder om ungefär tre minuter med kort
-      paus i organisation. 2. Start efter utboll och mål enligt 3 mot 3-reglerna i
-      beskrivning. 3. Planskissen: skottet gick rakt genom B1 och två platser stod på
-      dribblingen. Nya koordinater för B1, rörelserna och platserna. 4. Skissens beskrivning
-      ska säga hur jokern går in.
+      Åtgärda. Innehållet är rätt för fas-6-7, fokusområdena är K och märkningen 3mot3 och 5mot5
+      följer F1 (c). Yta: 150 kvadratmeter är 21,4 per spelare vid sju, över golvet 15. Vid fyra är
+      det 37,5, alltså 50 procent över taket 25, inte 25 procent. Jag godtar det, eftersom ytan är 3
+      mot 3-matchens egen minsta plan och spannet måste börja på fyra. Ytreferensen hela 3 mot
+      3-planen är rätt. Ändringar, exakta i docs/doman/granskning-omgang-5.md under A1: 1. Perioder
+      om ungefär tre minuter med kort paus i organisation. 2. Start efter utboll och mål enligt 3
+      mot 3-reglerna i beskrivning. 3. Planskissen: skottet gick rakt genom B1 och två platser stod
+      på dribblingen. Nya koordinater för B1, rörelserna och platserna. 4. Skissens beskrivning ska
+      säga hur jokern går in.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A1. Lade till start efter utboll
-      och mål i beskrivning och bytte organisation till perioder om tre minuter med paus
-      och byte av motståndare. I planskissen flyttade jag B1 till (10, 4.5), ersatte
-      rörelserna med nya koordinater (dribbling till (11, 3) via (7, 0.5), löpning
-      "Pressar" till (7, 3.5), skott från (11, 3)) och de tre platserna med (7, 8, a),
-      (9, 6, b) och (5, 5, a), samt skrev om skissens beskrivning så att den säger hur
-      jokern går in.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A1. Lade till start efter utboll och mål i
+      beskrivning och bytte organisation till perioder om tre minuter med paus och byte av
+      motståndare. I planskissen flyttade jag B1 till (10, 4.5), ersatte rörelserna med nya
+      koordinater (dribbling till (11, 3) via (7, 0.5), löpning "Pressar" till (7, 3.5), skott från
+      (11, 3)) och de tre platserna med (7, 8, a), (9, 6, b) och (5, 5, a), samt skrev om skissens
+      beskrivning så att den säger hur jokern går in.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Granskad. Alla fyra ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md.
-      Perioder om tre minuter och start efter utboll och mål följer 3 mot 3-reglerna. Skottet
-      går 1,8 m från B1 och platserna står minst 1,8 m från pilar och spelare. Yta 21,4
-      kvadratmeter per spelare vid sju och 37,5 vid fyra, 50 procent över taket, godtaget
-      eftersom ytan är 3 mot 3-matchens minsta plan. Ytreferensen hela 3 mot 3-planen är rätt.
-      Inga namn.
+      Perioder om tre minuter och start efter utboll och mål följer 3 mot 3-reglerna. Skottet går
+      1,8 m från B1 och platserna står minst 1,8 m från pilar och spelare. Yta 21,4 kvadratmeter per
+      spelare vid sju och 37,5 vid fyra, 50 procent över taket, godtaget eftersom ytan är 3 mot
+      3-matchens minsta plan. Ytreferensen hela 3 mot 3-planen är rätt. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

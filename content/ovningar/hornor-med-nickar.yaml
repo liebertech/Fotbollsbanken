@@ -1,8 +1,8 @@
 schema: 1
 id: hornor-med-nickar
 namn: Hörnor med nickar
-syfte: Spelarna ska öva löpmönster, inspel och avslut med huvudet vid hörnor, och att
-  försvara sitt mål vid samma situation.
+syfte: Spelarna ska öva löpmönster, inspel och avslut med huvudet vid hörnor, och att försvara sitt
+  mål vid samma situation.
 beskrivning: |
   Fyra anfallare och tre försvarare med målvakt övar hörnor på en yta om 30 x 45 meter,
   matchens planbredd, så att hörnflaggan ligger på rätt avstånd från båda stolparna.
@@ -28,8 +28,8 @@ niva:
 passdelar:
   - del-spelovning
 ledarbehov: 1
-ledaruppgift: Ledaren slår in hörnorna från hörnflaggan, håller koll på hur många nickar
-  som gjorts och styr rotationen mellan anfallare och försvarare.
+ledaruppgift: Ledaren slår in hörnorna från hörnflaggan, håller koll på hur många nickar som gjorts
+  och styr rotationen mellan anfallare och försvarare.
 spelare:
   min: 8
   max: 8
@@ -62,16 +62,15 @@ coachningspunkter:
   - Försvarare ska markera varsin anfallare redan innan hörnan slås.
 varianter:
   lattare: Bara inlägg längs marken till en spelare som avslutar med foten, inga nickar.
-  svarare: Två inlägg i följd från olika hörnor utan paus, så att försvararna måste
-    organisera om snabbt.
+  svarare: Två inlägg i följd från olika hörnor utan paus, så att försvararna måste organisera om snabbt.
 anpassning:
   fler_spelare: Bygg en andra yta med samma uppställning bredvid.
   udda_antal: En spelare vilar och byter in med en av försvararna efter varje omgång.
-  ledare: En ledare krävs för att slå in hörnorna och hålla koll på nicktaket. Utan extra
-    ledare håller den ordinarie ledaren i båda delarna.
-kalla: Egen övning, inspirerad av vanlig hörnträning, anpassad efter SvFF:s riktlinje om
-  begränsad nickmängd för 13-14 år.
-status: granskad
+  ledare: En ledare krävs för att slå in hörnorna och hålla koll på nicktaket. Utan extra ledare
+    håller den ordinarie ledaren i båda delarna.
+kalla: Egen övning, inspirerad av vanlig hörnträning, anpassad efter SvFF:s riktlinje om begränsad
+  nickmängd för 13-14 år.
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -109,3 +108,7 @@ granskning:
       är författarens och min bedömning. Utan krav, två saker: skriv gärna hur många inlägg en
       omgång är, så vet ledaren vad hen räknar, och notera att fältet yta här har större bredd än
       längd, eftersom målet står på den fyrtiofem meter långa linjen.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

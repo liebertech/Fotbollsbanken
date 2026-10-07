@@ -55,10 +55,10 @@ varianter:
 anpassning:
   fler_spelare: Bygg en andra yta med samma sex portar bredvid.
   udda_antal: Spelar ingen roll, alla har egen boll och arbetar fritt i ytan.
-  ledare: Övningen är självgående när tiden är satt. Med en andra ledare kan denne peppa
-    och påminna om att använda båda fötterna.
+  ledare: Övningen är självgående när tiden är satt. Med en andra ledare kan denne peppa och påminna
+    om att använda båda fötterna.
 kalla: Egen övning, inspirerad av vanlig dribbling genom portar mot klockan.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -80,3 +80,7 @@ granskning:
       själv när tiden är satt, och en ensam ledare kan ha flera ytor igång (R-055). 2. Åtta spelare
       i hög fart på 252 kvadratmeter är i underkant på utrymme även om golvet klaras. Har ledaren
       plats är 22 x 16 meter bekvämare.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

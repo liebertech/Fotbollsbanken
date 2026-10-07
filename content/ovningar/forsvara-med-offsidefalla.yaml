@@ -1,8 +1,8 @@
 schema: 1
 id: forsvara-med-offsidefalla
 namn: Försvara med offsidefälla
-syfte: Spelarna ska försvara tillsammans som lag och använda offsideregeln för att vinna
-  tillbaka initiativet.
+syfte: Spelarna ska försvara tillsammans som lag och använda offsideregeln för att vinna tillbaka
+  initiativet.
 beskrivning: |
   Två lag om fyra utespelare och varsin målvakt möts på en yta om 42 x 28 meter med mål i
   var ände, markerad i hörnen med koner. Offside gäller i hela ytan, utan egen planhalva:
@@ -28,8 +28,7 @@ niva:
 passdelar:
   - del-spelovning
 ledarbehov: 1
-ledaruppgift: Ledaren dömer offside från sidan och fryser spelet kort för att visa när
-  linjen inte höll ihop.
+ledaruppgift: Ledaren dömer offside från sidan och fryser spelet kort för att visa när linjen inte höll ihop.
 spelare:
   min: 8
   max: 10
@@ -60,17 +59,15 @@ coachningspunkter:
   - Kommunicera högt med varandra om när ni håller linjen.
   - Ställ om snabbt och sök djup så fort ni vinner bollen.
 varianter:
-  lattare: Försvararna får ett extra ord från ledaren, "stig", som signal för när linjen
-    ska stiga upp.
+  lattare: Försvararna får ett extra ord från ledaren, "stig", som signal för när linjen ska stiga upp.
   svarare: Poäng till försvararna för varje lyckad offsidefälla, utöver poängen för mål.
 anpassning:
-  fler_spelare: Gör ytan större, upp mot 48 x 32 meter, och spela med fler utespelare i
-    varje lag.
+  fler_spelare: Gör ytan större, upp mot 48 x 32 meter, och spela med fler utespelare i varje lag.
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
-  ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den
-    ordinarie ledaren i både domandet och coachningen.
+  ledare: En ledare krävs för att döma offside rättvist. Utan extra ledare håller den ordinarie
+    ledaren i både domandet och coachningen.
 kalla: Egen övning, inspirerad av lagförsvar med offsidefälla i 9 mot 9 och äldre.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -107,3 +104,7 @@ granskning:
       meter är 1176 kvadratmeter, alltså 117,6 per spelare vid tio och 147 vid åtta, mellan golvet
       70 och taket 181 för fas-13-14, och längden 42 meter passerar minsta längd 35 meter, som
       gäller just därför att övningen säger att offside gäller.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

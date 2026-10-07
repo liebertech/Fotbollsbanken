@@ -1,8 +1,7 @@
 schema: 1
 id: omstallningsspel-9mot9
 namn: Omställningsspel 9 mot 9
-syfte: Spelarna ska ställa om snabbt till anfall och försvar i ett matchlikt spel med
-  målvakt.
+syfte: Spelarna ska ställa om snabbt till anfall och försvar i ett matchlikt spel med målvakt.
 beskrivning: |
   Två lag om tre till fyra utespelare och varsin målvakt spelar på en yta om 36 x 22
   meter med mål i var ände. Så fort ett lag vinner bollen ska det anfalla snabbt innan
@@ -59,7 +58,7 @@ anpassning:
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel i matchform.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -80,3 +79,7 @@ granskning:
       tjugotvå meter bred yta är relativt sett dubbelt så brett som i match. 2. Med spannet 8-10 kan
       generatorn inte använda övningen vid elva till femton spelare, eftersom två grupper då blir
       mindre än åtta (R-051, R-052). Smålagsspel med fasta situationer täcker de storlekarna.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

@@ -1,8 +1,8 @@
 schema: 1
 id: forsvara-i-overtal
 namn: Försvara i underläge 3 mot 1
-syfte: Spelarna ska öva att jockeya, vinna tid och till slut vinna bollen som ensam
-  försvarare mot tre anfallare.
+syfte: Spelarna ska öva att jockeya, vinna tid och till slut vinna bollen som ensam försvarare mot
+  tre anfallare.
 beskrivning: |
   Tre anfallare håller bollen inom en yta mot en ensam försvarare. Försvararen ska inte
   rusa in, utan jockeya, tvinga anfallarna åt ett håll och leta efter ett läge att sticka
@@ -28,8 +28,7 @@ niva:
 passdelar:
   - del-ovning
 ledarbehov: 1
-ledaruppgift: Ledaren tar tiden, styr byte av försvarare och påminner om att jockeya i
-  stället för att rusa in.
+ledaruppgift: Ledaren tar tiden, styr byte av försvarare och påminner om att jockeya i stället för att rusa in.
 spelare:
   min: 4
   max: 4
@@ -58,12 +57,11 @@ varianter:
   svarare: Krymp ytan till 12 x 10 meter så att beslutstiden blir ännu kortare.
 anpassning:
   fler_spelare: Bygg fler ytor med samma uppställning bredvid.
-  udda_antal: Den femte spelaren väntar vid sidan och byter in som ny försvarare vid nästa
-    byte.
-  ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare
-    håller den ordinarie ledaren i både tid och byten.
+  udda_antal: Den femte spelaren väntar vid sidan och byter in som ny försvarare vid nästa byte.
+  ledare: En ledare krävs för att tiden och bytena ska bli rättvisa. Utan extra ledare håller den
+    ordinarie ledaren i både tid och byten.
 kalla: Egen övning, inspirerad av vanlig överlägesträning i försvarsspel.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -92,16 +90,16 @@ granskning:
     kommentar: >-
       Åtgärdat. Ytan 14 x 12 meter är 168 kvadratmeter, alltså 42,0 per spelare vid fyra. Den prövas
       mot undantag 1 i passuppbyggnad.md och inte mot golvet 70, och undantagets eget mått för 13-19
-      år är minst 12 x 12. 14 x 12 ligger sjutton procent över det, vilket inte är väsentligt större:
-      de två extra metrarna i längdled ger försvararen en vinkel att jockeya i utan att pressen
-      tappar de par sekunder som är poängen. Det var också det mått jag själv angav i runda ett.
-      Organisationen skriver ut undantaget och varför ytan är liten med flit, vilket krävs för att
-      undantaget ska gälla. Godtas. Den svårare varianten, 12 x 10 meter, ligger under undantagets
-      eget mått. Jag låter den stå: den är min egen formulering från runda ett, den gäller en
-      tillfällig skärpning och inte övningens fält yta, och i ett tre mot ett utan mål, utan riktning
-      och utan tacklingar är risken låg. Att kriteriet inte säger något om varianter är en lucka i
-      min egen text, inte ett fel av författaren. Frågan går vidare till användaren. Övrigt är
-      oförändrat sedan runda ett och håller.
+      år är minst 12 x 12. 14 x 12 ligger sjutton procent över det, vilket inte är väsentligt
+      större: de två extra metrarna i längdled ger försvararen en vinkel att jockeya i utan att
+      pressen tappar de par sekunder som är poängen. Det var också det mått jag själv angav i runda
+      ett. Organisationen skriver ut undantaget och varför ytan är liten med flit, vilket krävs för
+      att undantaget ska gälla. Godtas. Den svårare varianten, 12 x 10 meter, ligger under
+      undantagets eget mått. Jag låter den stå: den är min egen formulering från runda ett, den
+      gäller en tillfällig skärpning och inte övningens fält yta, och i ett tre mot ett utan mål,
+      utan riktning och utan tacklingar är risken låg. Att kriteriet inte säger något om varianter
+      är en lucka i min egen text, inte ett fel av författaren. Frågan går vidare till användaren.
+      Övrigt är oförändrat sedan runda ett och håller.
   - datum: 2026-09-28
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -109,3 +107,7 @@ granskning:
       Ingen ytreferens: positionsspel där måttet är både golv och tak. Ytan styrs av undantag 1 i
       passuppbyggnad.md, och övningen fälldes en gång just för att ytan hade blåsts upp så att
       pressen inte nådde fram (ytreferenser.md, avsnitt 4).
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

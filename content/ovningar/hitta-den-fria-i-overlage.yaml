@@ -1,8 +1,7 @@
 schema: 1
 id: hitta-den-fria-i-overlage
 namn: Hitta den fria i överläge
-syfte: Spelarna ska lära sig spela ihop i överläge och hitta den fria medspelaren innan
-  avslutet.
+syfte: Spelarna ska lära sig spela ihop i överläge och hitta den fria medspelaren innan avslutet.
 beskrivning: |
   Två eller tre anfallare möter en eller två försvarare på en yta om 12 x 8 meter med ett
   litet mål i ena änden, utan målvakt. Anfallarna startar med bollen vid den andra
@@ -63,19 +62,18 @@ varianter:
 anpassning:
   fler_spelare: Lägg till fler ytor bredvid varandra med samma uppställning.
   udda_antal: >-
-    Antalet avgör formen: tre spelare blir två mot en, fyra blir tre mot en och fem blir
-    tre mot två. Ingen behöver vara joker.
-  ledare: Övningen går själv när rollerna är förklarade. Ledaren kan byta roller mellan
-    omgångarna.
+    Antalet avgör formen: tre spelare blir två mot en, fyra blir tre mot en och fem blir tre mot
+    två. Ingen behöver vara joker.
+  ledare: Övningen går själv när rollerna är förklarade. Ledaren kan byta roller mellan omgångarna.
 planskiss:
   version: 1
   omrade:
     langd: 12
     bredd: 8
   beskrivning: >-
-    Yta 12 x 8 meter med ett litet mål utan målvakt på högra kortsidan. Två mot en. A1
-    driver mot B1, som pressar, och passar till A2, som är fri och avslutar. Med fyra
-    spelare blir det tre mot en och med fem tre mot två. Lag A anfaller åt höger.
+    Yta 12 x 8 meter med ett litet mål utan målvakt på högra kortsidan. Två mot en. A1 driver mot
+    B1, som pressar, och passar till A2, som är fri och avslutar. Med fyra spelare blir det tre mot
+    en och med fem tre mot två. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 8, stil: streckad }
     - { id: mal-1, typ: mal, x: 12, y: 4, storlek: smamal, riktning: vanster }
@@ -96,39 +94,42 @@ planskiss:
       - { x: 2, y: 0.8, lag: a }
       - { x: 10, y: 2, lag: b }
 kalla: Egen övning, inspirerad av vanliga övningar med överläge i litet format.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda. Två mot en är rätt form för spelbarhet i åldern. Yta: 32 kvadratmeter per
-      spelare vid tre, 28 procent över taket 25. Godtas, eftersom passningen behöver plats för
-      att vara ett alternativ och minsta antal måste vara tre. Ingen ytreferens: för liten
-      eller ingen plandel med rätt form. Ändringar, exakta i docs/doman/granskning-omgang-5.md
-      under A7: spelare.max 5 och formen per antal i stället för joker, rotation där en
-      anfallare byter med en försvarare efter varje anfall, nya coachningspunkter (pressa när
-      ni vinner bollen var fel), varianter utan planhalva, västar 2, och planskissen, där A2:s
-      pil gick 0,4 m från B1 och var en löpning fast A2 hade bollen.
+      Åtgärda. Två mot en är rätt form för spelbarhet i åldern. Yta: 32 kvadratmeter per spelare vid
+      tre, 28 procent över taket 25. Godtas, eftersom passningen behöver plats för att vara ett
+      alternativ och minsta antal måste vara tre. Ingen ytreferens: för liten eller ingen plandel
+      med rätt form. Ändringar, exakta i docs/doman/granskning-omgang-5.md under A7: spelare.max 5
+      och formen per antal i stället för joker, rotation där en anfallare byter med en försvarare
+      efter varje anfall, nya coachningspunkter (pressa när ni vinner bollen var fel), varianter
+      utan planhalva, västar 2, och planskissen, där A2:s pil gick 0,4 m från B1 och var en löpning
+      fast A2 hade bollen.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A7. Satte spelare.max till 5 och
-      skrev om beskrivning, organisation och anpassning.udda_antal så att formen (två mot
-      en, tre mot en, tre mot två) följer antalet och rollerna roterar i tur och ordning i
-      stället för med joker. Bytte alla tre coachningspunkter och båda varianterna, och
-      satte västarna till 2. I planskissen flyttade jag a1, a2 och b1, skrev om rörelserna
-      så att A2:s löpning till den fria ytan och passningen dit blir tydliga, och kortade
-      platslistan till två poster för det nya spannet 3–5.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A7. Satte spelare.max till 5 och skrev om
+      beskrivning, organisation och anpassning.udda_antal så att formen (två mot en, tre mot en, tre
+      mot två) följer antalet och rollerna roterar i tur och ordning i stället för med joker. Bytte
+      alla tre coachningspunkter och båda varianterna, och satte västarna till 2. I planskissen
+      flyttade jag a1, a2 och b1, skrev om rörelserna så att A2:s löpning till den fria ytan och
+      passningen dit blir tydliga, och kortade platslistan till två poster för det nya spannet 3–5.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Formen
-      följer antalet (två mot en, tre mot en, tre mot två), alla försvarar i tur och ordning,
-      och coachningspunkterna ger sexåringen ett enkelt val: passa om försvararen kommer,
-      annars driv. Yta 32 kvadratmeter per spelare vid tre, 28 procent över taket, godtaget,
-      och 19,2 vid fem, över golvet 15. Ingen ytreferens: för liten eller ingen plandel med
-      rätt form. Passningen går 1,4 m från B1. Förslag utan krav: anpassning.ledare kan
-      säga att rollerna byts efter varje anfall, som i organisation. Inga namn.
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Formen följer
+      antalet (två mot en, tre mot en, tre mot två), alla försvarar i tur och ordning, och
+      coachningspunkterna ger sexåringen ett enkelt val: passa om försvararen kommer, annars driv.
+      Yta 32 kvadratmeter per spelare vid tre, 28 procent över taket, godtaget, och 19,2 vid fem,
+      över golvet 15. Ingen ytreferens: för liten eller ingen plandel med rätt form. Passningen går
+      1,4 m från B1. Förslag utan krav: anpassning.ledare kan säga att rollerna byts efter varje
+      anfall, som i organisation. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

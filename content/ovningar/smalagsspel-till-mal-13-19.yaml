@@ -1,8 +1,8 @@
 schema: 1
 id: smalagsspel-till-mal-13-19
 namn: Smålagsspel 2 mot 2 till 4 mot 4, till mål
-syfte: Spelarna ska hålla bollen i laget, sprida ut sig i bredd och ställa om
-  snabbt efter bollförlust, i ett litet matchspel med täta avslutsförsök.
+syfte: Spelarna ska hålla bollen i laget, sprida ut sig i bredd och ställa om snabbt efter
+  bollförlust, i ett litet matchspel med täta avslutsförsök.
 beskrivning: |
   Två lag om två till fyra spelare möts på en yta om 36 x 20 meter med ett
   minimål, ungefär en meter brett, i var ände och utan målvakt. Lagen spelar
@@ -67,23 +67,21 @@ coachningspunkter:
   - Rör dig till en ny yta direkt efter din egen passning.
 varianter:
   lattare: Alla mål räknas lika, utan krav på antal passningar innan skott.
-  svarare: Ett mål räknas bara om laget gjort minst tre passningar i följd
-    innan skottet.
+  svarare: Ett mål räknas bara om laget gjort minst tre passningar i följd innan skottet.
 anpassning:
-  fler_spelare: Lägg fler ytor om 36 x 20 meter bredvid varandra, med tre
-    meters mellanrum, hellre än fler spelare på samma yta.
-  udda_antal: Ett lag spelar med en spelare mer än det andra under hela
-    perioden.
-  ledare: Övningen är självgående. Ledaren dömer tvistiga lägen, växlar lag
-    vid behov och peppar från sidan.
+  fler_spelare: Lägg fler ytor om 36 x 20 meter bredvid varandra, med tre meters mellanrum, hellre än
+    fler spelare på samma yta.
+  udda_antal: Ett lag spelar med en spelare mer än det andra under hela perioden.
+  ledare: Övningen är självgående. Ledaren dömer tvistiga lägen, växlar lag vid behov och peppar från
+    sidan.
 planskiss:
   version: 1
   omrade:
     langd: 36
     bredd: 20
   beskrivning: >-
-    Yta 36 x 20 meter med ett minimål i varje kortsida, utan målvakt. Två mot
-    två i grundläget, upp till fyra mot fyra. Lag A anfaller åt höger.
+    Yta 36 x 20 meter med ett minimål i varje kortsida, utan målvakt. Två mot två i grundläget, upp
+    till fyra mot fyra. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
@@ -109,40 +107,43 @@ planskiss:
       - { x: 14, y: 17, lag: a }
       - { x: 22, y: 17, lag: b }
 kalla: Egen övning, inspirerad av vanligt smålagsspel till småmål utan målvakt.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Fotbollen är rätt: litet spel till minimål med brett spann, självgående och bra för 13-19
-      år. Ytan håller: 720 / 8 = 90,0 kvadratmeter per spelare, exakt golvet 90, och 720 / 4 =
-      180 mot taket 181. Märkningen 7mot7 följer F1(c), eftersom spelet är mindre än alla tre
-      spelformerna. Ytreferensen stämmer. Tre saker ska ändras. 1. "Vanliga regler" betyder
-      offside för ett 9 mot 9- eller 11 mot 11-lag, och då gäller minsta längd 40 meter. Skriv
-      att det spelas utan offside och utan målvakt, och att bollen sätts i spel med inspel eller
-      indribbling. 2. Två mot två i upp till 40 minuter utan vila är ett uthållighetspass. Skriv
-      perioder om fyra till sex minuter med en till två minuters vila, två till tre minuter vid
-      två mot två. 3. Skissen slutade med ett skott från 26 meter på egen planhalva. Nya
-      rörelser och skissens beskrivning står i docs/doman/granskning-omgang-5.md, B1.
+      Fotbollen är rätt: litet spel till minimål med brett spann, självgående och bra för 13-19 år.
+      Ytan håller: 720 / 8 = 90,0 kvadratmeter per spelare, exakt golvet 90, och 720 / 4 = 180 mot
+      taket 181. Märkningen 7mot7 följer F1(c), eftersom spelet är mindre än alla tre spelformerna.
+      Ytreferensen stämmer. Tre saker ska ändras. 1. "Vanliga regler" betyder offside för ett 9 mot
+      9- eller 11 mot 11-lag, och då gäller minsta längd 40 meter. Skriv att det spelas utan offside
+      och utan målvakt, och att bollen sätts i spel med inspel eller indribbling. 2. Två mot två i
+      upp till 40 minuter utan vila är ett uthållighetspass. Skriv perioder om fyra till sex minuter
+      med en till två minuters vila, två till tre minuter vid två mot två. 3. Skissen slutade med
+      ett skott från 26 meter på egen planhalva. Nya rörelser och skissens beskrivning står i
+      docs/doman/granskning-omgang-5.md, B1.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Alla tre punkterna åtgärdade. Lade till i beskrivning att det spelas utan
-      offside och utan målvakt, och att bollen sätts i spel med inspel eller
-      indribbling vid utspel. Lade till perioder om fyra till sex minuter med
-      en till två minuters vila i organisation, två till tre minuter vid två
-      mot två. Bytte skissens rörelser till passning, dribbling till (26, 11)
-      och skott från (26, 11), enligt granskningens koordinater, och ändrade
-      skissens beskrivning till "upp till fyra mot fyra".
+      Alla tre punkterna åtgärdade. Lade till i beskrivning att det spelas utan offside och utan
+      målvakt, och att bollen sätts i spel med inspel eller indribbling vid utspel. Lade till
+      perioder om fyra till sex minuter med en till två minuters vila i organisation, två till tre
+      minuter vid två mot två. Bytte skissens rörelser till passning, dribbling till (26, 11) och
+      skott från (26, 11), enligt granskningens koordinater, och ändrade skissens beskrivning till
+      "upp till fyra mot fyra".
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Håller. Alla tre punkterna är införda. Spelet är utan offside och utan målvakt, så
-      djupledskriteriet gäller inte och 36 meter räcker. Perioderna med vila står i
-      organisationen. Skissen är kontrollerad mot granskningen: dribblingen går från A2 till
-      (26, 11), 3 meter från B1 och B2 och minst 3,7 meter från de fyra platserna, och skottet
-      blir 10 meter mot minimålet. Ytan 90,0 kvadratmeter per spelare vid åtta och 180 vid fyra
-      är oförändrad. Ytreferensen förs in i ytreferenser.md, avsnitt 6.1.
+      djupledskriteriet gäller inte och 36 meter räcker. Perioderna med vila står i organisationen.
+      Skissen är kontrollerad mot granskningen: dribblingen går från A2 till (26, 11), 3 meter från
+      B1 och B2 och minst 3,7 meter från de fyra platserna, och skottet blir 10 meter mot minimålet.
+      Ytan 90,0 kvadratmeter per spelare vid åtta och 180 vid fyra är oförändrad. Ytreferensen förs
+      in i ytreferenser.md, avsnitt 6.1.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

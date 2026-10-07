@@ -60,17 +60,17 @@ varianter:
 anpassning:
   fler_spelare: Lägg till fler banor bredvid varandra med tre meters mellanrum.
   udda_antal: Spelar ingen roll. En spelare till i kön gör ingen skillnad.
-  ledare: Övningen är självgående när banan är uppställd. Ledaren står vid målet och ser
-    till att nästa inte startar förrän den före har gått ut åt sidan.
+  ledare: Övningen är självgående när banan är uppställd. Ledaren står vid målet och ser till att
+    nästa inte startar förrän den före har gått ut åt sidan.
 planskiss:
   version: 1
   omrade:
     langd: 10
     bredd: 5
   beskrivning: >-
-    Bana 10 x 5 meter med en startkon och ett litet mål på högra kortsidan. En kon vid
-    sidan visar var man senast skjuter. En spelare i taget driver och skjuter, hämtar
-    bollen och driver tillbaka utanför banan.
+    Bana 10 x 5 meter med en startkon och ett litet mål på högra kortsidan. En kon vid sidan visar
+    var man senast skjuter. En spelare i taget driver och skjuter, hämtar bollen och driver tillbaka
+    utanför banan.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 5, stil: streckad }
     - { typ: kon, x: 0, y: 1.2 }
@@ -85,7 +85,7 @@ planskiss:
     - typ: dribbling
       fran: { x: 9.5, y: 3.5 }
       till: { x: -0.5, y: 5.8 }
-      via: [{ x: 5, y: 6.8 }]
+      via: [ { x: 5, y: 6.8 } ]
       ordning: 3
       etikett: Tillbaka utanför
   skalning:
@@ -93,39 +93,42 @@ planskiss:
     koer:
       - { vid: sp-2, riktning: 270, etikett: Väntar på sin tur }
 kalla: Egen övning, inspirerad av vanliga driv- och avslutsövningar mot småmål.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda. Fokus och form är rätt. Yta: 25 kvadratmeter per spelare vid två, på taket, och
-      kön står utanför banan. Ingen ytreferens: för liten eller ingen plandel med rätt form.
-      Tre saker håller inte: en boll för fyra spelare ger ungefär en minuts väntan, den som
-      hämtar bollen står i skottlinjen för nästa, och skottet gick från två meter. Ändringar,
-      exakta i docs/doman/granskning-omgang-5.md under A5: egen boll till alla, en skottkon
-      ungefär fyra meter från målet, vägen tillbaka utanför banan och nästa startar först när
-      den före gått ut åt sidan, banorna med målen åt samma håll, material, "en hård spark"
-      i första coachningspunkten, ledartexten och en ny planskiss med målet på kortlinjen.
+      Åtgärda. Fokus och form är rätt. Yta: 25 kvadratmeter per spelare vid två, på taket, och kön
+      står utanför banan. Ingen ytreferens: för liten eller ingen plandel med rätt form. Tre saker
+      håller inte: en boll för fyra spelare ger ungefär en minuts väntan, den som hämtar bollen står
+      i skottlinjen för nästa, och skottet gick från två meter. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A5: egen boll till alla, en skottkon ungefär fyra
+      meter från målet, vägen tillbaka utanför banan och nästa startar först när den före gått ut åt
+      sidan, banorna med målen åt samma håll, material, "en hård spark" i första coachningspunkten,
+      ledartexten och en ny planskiss med målet på kortlinjen.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A5. Skrev om beskrivning och
-      organisation så att varje spelare har egen boll, en skottkon visar var man senast
-      skjuter och vägen tillbaka går utanför banan med en regel om att nästa inte startar
-      förrän den före har gått ut. Bytte bollantalet till fyra, rättade stavfelet i första
-      coachningspunkten och skrev om ledartexten. I planskissen flyttade jag målet till
-      kortlinjen, lade till skottkonen, tog bort reservbollen vid målet och ersatte
-      rörelserna med driv, skott och en väg tillbaka utanför banan, samt flyttade kön till
-      riktning 270 så att den tredje spelaren står utanför sidlinjen.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A5. Skrev om beskrivning och organisation
+      så att varje spelare har egen boll, en skottkon visar var man senast skjuter och vägen
+      tillbaka går utanför banan med en regel om att nästa inte startar förrän den före har gått ut.
+      Bytte bollantalet till fyra, rättade stavfelet i första coachningspunkten och skrev om
+      ledartexten. I planskissen flyttade jag målet till kortlinjen, lade till skottkonen, tog bort
+      reservbollen vid målet och ersatte rörelserna med driv, skott och en väg tillbaka utanför
+      banan, samt flyttade kön till riktning 270 så att den tredje spelaren står utanför sidlinjen.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Egen boll
-      till alla ger högst cirka en halv minuts väntan med fyra, skottet går från fem meter och
-      ingen står i skottlinjen, eftersom nästa startar först när den före gått ut åt sidan och
-      banorna har målen åt samma håll. Yta 25 kvadratmeter per spelare vid två, på taket. Ingen
-      ytreferens: för liten eller ingen plandel med rätt form. Kön står utanför kortlinjen,
-      1,5 m från startkonen, och ryms inom marginalen. Inga namn.
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Egen boll till
+      alla ger högst cirka en halv minuts väntan med fyra, skottet går från fem meter och ingen står
+      i skottlinjen, eftersom nästa startar först när den före gått ut åt sidan och banorna har
+      målen åt samma håll. Yta 25 kvadratmeter per spelare vid två, på taket. Ingen ytreferens: för
+      liten eller ingen plandel med rätt form. Kön står utanför kortlinjen, 1,5 m från startkonen,
+      och ryms inom marginalen. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

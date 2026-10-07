@@ -1,8 +1,8 @@
 schema: 1
 id: svansjakt-med-egen-boll
 namn: Svansjakt med egen boll
-syfte: Spelarna ska röra sig snabbt och behålla kontrollen på bollen samtidigt som de håller
-  koll på omgivningen.
+syfte: Spelarna ska röra sig snabbt och behålla kontrollen på bollen samtidigt som de håller koll på
+  omgivningen.
 beskrivning: |
   Alla spelare har en egen boll och en väst instoppad som svans bak i shortsen, inne i en
   yta om 12 x 12 meter. En eller två fångare, också de med egen boll, försöker dra loss
@@ -59,8 +59,8 @@ varianter:
   lattare: Färre fångare, eller fångarna får bara gå, inte springa.
   svarare: Den som blir av med svansen blir själv fångare en kort stund innan hen stoppar in den igen.
 anpassning:
-  fler_spelare: Ungefär en fångare per fyra spelare. Med fler än tolv spelare läggs en
-    andra yta bredvid, med tre meters mellanrum.
+  fler_spelare: Ungefär en fångare per fyra spelare. Med fler än tolv spelare läggs en andra yta
+    bredvid, med tre meters mellanrum.
   udda_antal: Spelar ingen roll. Antalet fångare behöver inte vara jämnt.
   ledare: En ledare räcker för att hålla koll på alla och byta fångare med jämna mellanrum.
 planskiss:
@@ -69,8 +69,8 @@ planskiss:
     langd: 12
     bredd: 12
   beskrivning: >-
-    Yta 12 x 12 meter där alla driver egen boll med en väst som svans. Fångaren, också med
-    egen boll, försöker dra loss svansar medan de andra driver undan.
+    Yta 12 x 12 meter där alla driver egen boll med en väst som svans. Fångaren, också med egen
+    boll, försöker dra loss svansar medan de andra driver undan.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 12, bredd: 12, stil: streckad }
     - { id: f1, typ: spelare, x: 6, y: 6, lag: b, etikett: F }
@@ -83,56 +83,64 @@ planskiss:
     - { typ: boll, x: 6.3, y: 10 }
   rorelser:
     - { typ: dribbling, fran: { objekt: f1 }, till: { x: 3.5, y: 3.5 }, ordning: 1, etikett: Jagar }
-    - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 5.5, y: 1 }, ordning: 1, etikett: Flyr undan }
+    - {
+        typ: dribbling,
+        fran: { objekt: sp-1 },
+        till: { x: 5.5, y: 1 },
+        ordning: 1,
+        etikett: Flyr undan
+      }
 kalla: Egen övning, inspirerad av klassiska kullekar med boll.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Åtgärda. Fokus och form är rätt för åldern, och fångare med egen boll håller nere farten.
-      Ingen kan vinna någon annans boll, så golvet är 8. Men det är en jaktlek: 18 x 18 meter
-      ger 81 kvadratmeter per spelare vid fyra, och då når fångaren aldrig fram. Ändringar,
-      exakta i docs/doman/granskning-omgang-5.md under A3: yta 12 x 12 och spelare.max 12
-      (12 kvadratmeter per spelare vid tolv, 36 vid fyra), ingen ytreferens med kategorin för
-      liten eller ingen plandel med rätt form, ny beskrivning och organisation där fångaren
-      ger tillbaka svansen och svansen aldrig knyts fast, västar 12, ny planskiss för 12 x 12
-      där fångaren driver boll och båda rörelserna har ordning 1. Förslag utan krav: ett namn
-      som inte liknar SvFF-övningen med nästan samma namn.
+      Ingen kan vinna någon annans boll, så golvet är 8. Men det är en jaktlek: 18 x 18 meter ger 81
+      kvadratmeter per spelare vid fyra, och då når fångaren aldrig fram. Ändringar, exakta i
+      docs/doman/granskning-omgang-5.md under A3: yta 12 x 12 och spelare.max 12 (12 kvadratmeter
+      per spelare vid tolv, 36 vid fyra), ingen ytreferens med kategorin för liten eller ingen
+      plandel med rätt form, ny beskrivning och organisation där fångaren ger tillbaka svansen och
+      svansen aldrig knyts fast, västar 12, ny planskiss för 12 x 12 där fångaren driver boll och
+      båda rörelserna har ordning 1. Förslag utan krav: ett namn som inte liknar SvFF-övningen med
+      nästan samma namn.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A3. Bytte namn till "Svansjakt med
-      egen boll" på huvudsessionens beslut, eftersom experten fann ett nästan likadant namn
-      i SvFF:s övningsbank; filen döptes om och id:t blev svansjakt-med-egen-boll, och
-      namnet/id:t är kontrollerade mot övriga filer i banken så att de är unika. Ändrade
-      yta till 12 x 12 och spelare.max till 12, tog bort ytreferens, skrev om beskrivning
-      och organisation så att fångaren genast ger tillbaka svansen och den aldrig knyts
-      fast, satte västarna till 12 och skrev om anpassning.fler_spelare. I planskissen
-      ändrade jag omrade och rutan till 12 x 12, flyttade f1 (nu lag b) och de tre andra
-      spelarna, bollarna till sina nya platser och ersatte rörelserna så att fångarens
-      löpning blev en dribbling och båda rörelserna fick ordning 1 eftersom de sker
-      samtidigt.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A3. Bytte namn till "Svansjakt med egen
+      boll" på huvudsessionens beslut, eftersom experten fann ett nästan likadant namn i SvFF:s
+      övningsbank; filen döptes om och id:t blev svansjakt-med-egen-boll, och namnet/id:t är
+      kontrollerade mot övriga filer i banken så att de är unika. Ändrade yta till 12 x 12 och
+      spelare.max till 12, tog bort ytreferens, skrev om beskrivning och organisation så att
+      fångaren genast ger tillbaka svansen och den aldrig knyts fast, satte västarna till 12 och
+      skrev om anpassning.fler_spelare. I planskissen ändrade jag omrade och rutan till 12 x 12,
+      flyttade f1 (nu lag b) och de tre andra spelarna, bollarna till sina nya platser och ersatte
+      rörelserna så att fångarens löpning blev en dribbling och båda rörelserna fick ordning 1
+      eftersom de sker samtidigt.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda, två rader. Allt jag begärde i första omgången är infört exakt, och yta,
-      säkerhet, skiss och namn håller. Två fel finns kvar, och båda borde ha stått i min
-      första lista: 1. material, bollarna: antal 12 i stället för 16, så att det stämmer
-      med en per spelare och spelare.max 12. 2. varianter.svarare säger "innan hen tar en
-      ny", men svansen ges nu tillbaka och ingen hämtar nya. Ersätt med: "Den som blir av med
-      svansen blir själv fångare en kort stund innan hen stoppar in den igen." Exakt i
-      docs/doman/granskning-omgang-5.md, avsnittet Paket A, andra omgången.
+      Åtgärda, två rader. Allt jag begärde i första omgången är infört exakt, och yta, säkerhet,
+      skiss och namn håller. Två fel finns kvar, och båda borde ha stått i min första lista: 1.
+      material, bollarna: antal 12 i stället för 16, så att det stämmer med en per spelare och
+      spelare.max 12. 2. varianter.svarare säger "innan hen tar en ny", men svansen ges nu tillbaka
+      och ingen hämtar nya. Ersätt med: "Den som blir av med svansen blir själv fångare en kort
+      stund innan hen stoppar in den igen." Exakt i docs/doman/granskning-omgang-5.md, avsnittet
+      Paket A, andra omgången.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad. Båda raderna är införda exakt: 12 bollar, en per spelare, och den svårare
-      varianten stämmer med regeln att fångaren ger tillbaka svansen. Övrigt oförändrat sedan
-      förra granskningen: yta 12 x 12 ger 12 kvadratmeter per spelare vid tolv och 36 vid
-      fyra, golvet 8 utan motståndare håller och 44 procent över taket godtas för att fångaren
-      når fram. Ingen ytreferens: för liten eller ingen plandel med rätt form. Svansen knyts
-      aldrig fast. Inga namn.
+      Granskad. Båda raderna är införda exakt: 12 bollar, en per spelare, och den svårare varianten
+      stämmer med regeln att fångaren ger tillbaka svansen. Övrigt oförändrat sedan förra
+      granskningen: yta 12 x 12 ger 12 kvadratmeter per spelare vid tolv och 36 vid fyra, golvet 8
+      utan motståndare håller och 44 procent över taket godtas för att fångaren når fram. Ingen
+      ytreferens: för liten eller ingen plandel med rätt form. Svansen knyts aldrig fast. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

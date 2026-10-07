@@ -1,8 +1,7 @@
 schema: 1
 id: uppspel-bakom-forsvarslinjen
 namn: Uppspel bakom försvarslinjen
-syfte: Spelarna ska bygga upp bollen genom lagdelarna och tajma ett inspel bakom
-  motståndarnas backlinje.
+syfte: Spelarna ska bygga upp bollen genom lagdelarna och tajma ett inspel bakom motståndarnas backlinje.
 beskrivning: |
   Fyra anfallare med målvakt bygger upp bollen från egen backlinje mot tre försvarare som
   håller en gemensam linje ungefär i mitten av ytan och försöker spela anfallarna
@@ -33,8 +32,8 @@ niva:
 passdelar:
   - del-spelovning
 ledarbehov: 1
-ledaruppgift: Ledaren styr när rollerna byts, dömer offside från sidan och påminner
-  försvararna om att stiga upp tillsammans.
+ledaruppgift: Ledaren styr när rollerna byts, dömer offside från sidan och påminner försvararna om
+  att stiga upp tillsammans.
 spelare:
   min: 8
   max: 8
@@ -60,8 +59,8 @@ material:
     antal: 3
   - typ: kon
     antal: 6
-    anteckning: fyra markerar ytans hörn, två markerar målzonens främre gräns vid
-      respektive sidlinje, tre meter in från bortre kortlinjen
+    anteckning: fyra markerar ytans hörn, två markerar målzonens främre gräns vid respektive sidlinje,
+      tre meter in från bortre kortlinjen
 coachningspunkter:
   - Titta upp innan du tar emot bollen så att du ser om en löpare är på väg.
   - Tajma löpningen så att du startar när passningen slås, inte före.
@@ -69,16 +68,14 @@ coachningspunkter:
   - Vid bollvinst, vänd snabbt och anfall målet direkt, innan anfallarna hinner organisera om.
 varianter:
   lattare: Försvararna håller en fast linje och pressar inte bollhållaren.
-  svarare: Sätt en tidsgräns för hur länge anfallarna får hålla bollen innan inspelet
-    måste komma.
+  svarare: Sätt en tidsgräns för hur länge anfallarna får hålla bollen innan inspelet måste komma.
 anpassning:
   fler_spelare: Bygg en andra yta med samma uppställning bredvid.
-  udda_antal: En spelare vilar och byter in med den som var mest aktiv i föregående
-    omgång.
-  ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra
-    ledare håller den ordinarie ledaren i båda delarna.
+  udda_antal: En spelare vilar och byter in med den som var mest aktiv i föregående omgång.
+  ledare: En ledare krävs för att offsidedomandet och rollbytena ska fungera. Utan extra ledare håller
+    den ordinarie ledaren i båda delarna.
 kalla: Egen övning, inspirerad av speluppbyggnad och offsideträning i 9 mot 9 och äldre.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -134,3 +131,7 @@ granskning:
       Lyckas gruppen sällan, öka till fem meter; timingen blir densamma men marginalen större. 2.
       Beskrivningen har en kort radbrytning mitt i meningen om offsidereglerna. Slå ihop raden nästa
       gång filen ändå ändras.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

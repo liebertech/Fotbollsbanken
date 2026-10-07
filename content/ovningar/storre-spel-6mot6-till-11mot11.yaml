@@ -1,8 +1,8 @@
 schema: 1
 id: storre-spel-6mot6-till-11mot11
 namn: Större spel, sex mot sex till nio mot nio
-syfte: Spelarna ska hålla bollen i laget, bygga upp spelet bakifrån och
-  försvara tillsammans i ett stort matchlikt spel med lång speltid.
+syfte: Spelarna ska hålla bollen i laget, bygga upp spelet bakifrån och försvara tillsammans i ett
+  stort matchlikt spel med lång speltid.
 beskrivning: |
   Två lag med lika stor numerär möter varandra på en yta om 65 x 50 meter,
   med fullstora mål och varsin målvakt. Lagstorleken, inklusive målvakten,
@@ -68,25 +68,24 @@ coachningspunkter:
   - Håll ihop som lag i försvar och täck varandras ytor.
   - Pressa tillsammans direkt efter en bolltapp.
 varianter:
-  lattare: Målvakten får alltid spela ut till en fri medspelare utan press de
-    första sekunderna efter att ha fått bollen.
-  svarare: Motståndarna får pressa högt direkt när målvakten har bollen, och
-    målvakten måste spela ut kort längs marken.
+  lattare: Målvakten får alltid spela ut till en fri medspelare utan press de första sekunderna efter
+    att ha fått bollen.
+  svarare: Motståndarna får pressa högt direkt när målvakten har bollen, och målvakten måste spela ut
+    kort längs marken.
 anpassning:
-  fler_spelare: Vid fler än arton spelare, välj ett mindre spel. Från
-    tjugofyra spelare kan gruppen spela två matcher på varsin yta.
+  fler_spelare: Vid fler än arton spelare, välj ett mindre spel. Från tjugofyra spelare kan gruppen
+    spela två matcher på varsin yta.
   udda_antal: Ett lag spelar med en utespelare mer än det andra.
-  ledare: Övningen är självgående. Ledaren dömer offside och frilägen vid
-    mål, och peppar från sidan.
+  ledare: Övningen är självgående. Ledaren dömer offside och frilägen vid mål, och peppar från sidan.
 planskiss:
   version: 1
   omrade:
     langd: 65
     bredd: 50
   beskrivning: >-
-    Yta 65 x 50 meter med ett mål och en målvakt på varje kortsida. Sex mot
-    sex i grundläget, inklusive målvakterna, med fler spelare vid större
-    lag. Lag A anfaller åt höger och bygger upp spelet från målvakten.
+    Yta 65 x 50 meter med ett mål och en målvakt på varje kortsida. Sex mot sex i grundläget,
+    inklusive målvakterna, med fler spelare vid större lag. Lag A anfaller åt höger och bygger upp
+    spelet från målvakten.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 65, bredd: 50, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 25, storlek: 9mot9, riktning: hoger }
@@ -117,9 +116,8 @@ planskiss:
       - { x: 57, y: 45, lag: b }
       - { x: 20, y: 5, lag: a }
       - { x: 45, y: 5, lag: b }
-kalla: Egen övning, inspirerad av vanligt matchspel i stor skala med
-  varierande lagstorlek.
-status: granskad
+kalla: Egen övning, inspirerad av vanligt matchspel i stor skala med varierande lagstorlek.
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
@@ -127,41 +125,43 @@ granskning:
     kommentar: >-
       Att räkna antalen med målvakt är rätt, och offside och inspark gör att övningen inte ska
       märkas 7mot7. Fem saker ska ändras. 1. Med 9mot9 och 19-22 spelare blir spelet tio mot tio
-      eller elva mot elva, och det står emot passuppbyggnad.md ("i dagens spelform eller
-      mindre") och F1(c). Sätt spelare.max till 18 och namnet till "Större spel, sex mot sex
-      till nio mot nio". 2. Vid tolv spelare är ytan 270,8 kvadratmeter per spelare, 50 procent
-      över taket 181 för 13-14 år. Skriv att 12-15 spelare spelar på ungefär 50 x 40 meter och
-      att hela ytan används från 16. Lägg till koner i materialet. 3. Anpassningen för fler
-      spelare ska säga: välj ett mindre spel över arton, två matcher från tjugofyra. 4. Den
-      svårare varianten tvingar fram långa bollar och säger emot syftet. Byt mot hög press när
-      målvakten har bollen och kort utspel längs marken. 5. Skissen slutade med ett skott från
-      36 meter, 1,6 meter förbi en försvarare. Nya rörelser, bollens läge och de sex platser som
-      ska stå kvar står i docs/doman/granskning-omgang-5.md, B2.
+      eller elva mot elva, och det står emot passuppbyggnad.md ("i dagens spelform eller mindre")
+      och F1(c). Sätt spelare.max till 18 och namnet till "Större spel, sex mot sex till nio mot
+      nio". 2. Vid tolv spelare är ytan 270,8 kvadratmeter per spelare, 50 procent över taket 181
+      för 13-14 år. Skriv att 12-15 spelare spelar på ungefär 50 x 40 meter och att hela ytan
+      används från 16. Lägg till koner i materialet. 3. Anpassningen för fler spelare ska säga: välj
+      ett mindre spel över arton, två matcher från tjugofyra. 4. Den svårare varianten tvingar fram
+      långa bollar och säger emot syftet. Byt mot hög press när målvakten har bollen och kort utspel
+      längs marken. 5. Skissen slutade med ett skott från 36 meter, 1,6 meter förbi en försvarare.
+      Nya rörelser, bollens läge och de sex platser som ska stå kvar står i
+      docs/doman/granskning-omgang-5.md, B2.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Alla fem punkterna åtgärdade. Satte spelare.max till 18 och bytte namnet
-      till "Större spel, sex mot sex till nio mot nio", och ändrade "sex till
-      elva" till "sex till nio" i beskrivning och organisation. Lade till
-      meningen om att 12-15 spelare spelar på en mindre yta, ungefär 50 x 40
-      meter, och att hela ytan används från 16, i både beskrivning och
-      organisation, samt koner i materialet. Skrev om anpassning.fler_spelare
-      till att välja ett mindre spel över arton och två matcher från
-      tjugofyra. Bytte den svårare varianten till hög press på målvakten med
-      kort utspel. I skissen: bollen till (3, 25), rörelserna ersatta med tre
-      passningar (målvakt-a2-a3-a4) utan avslutande skott, och bara de sex
-      första platserna kvar så att skissen räcker till arton spelare.
+      Alla fem punkterna åtgärdade. Satte spelare.max till 18 och bytte namnet till "Större spel,
+      sex mot sex till nio mot nio", och ändrade "sex till elva" till "sex till nio" i beskrivning
+      och organisation. Lade till meningen om att 12-15 spelare spelar på en mindre yta, ungefär 50
+      x 40 meter, och att hela ytan används från 16, i både beskrivning och organisation, samt koner
+      i materialet. Skrev om anpassning.fler_spelare till att välja ett mindre spel över arton och
+      två matcher från tjugofyra. Bytte den svårare varianten till hög press på målvakten med kort
+      utspel. I skissen: bollen till (3, 25), rörelserna ersatta med tre passningar
+      (målvakt-a2-a3-a4) utan avslutande skott, och bara de sex första platserna kvar så att skissen
+      räcker till arton spelare.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Håller. Alla fem punkterna är införda. Spelare.max är 18, så spelet blir aldrig större än
-      nio mot nio, och det följer F1(c). Den mindre ytan, ungefär 50 x 40 meter, ger 167
-      kvadratmeter per spelare vid tolv och 133 vid femton. Hela ytan ger 203 vid sexton och 181
-      vid arton. Skissen är kontrollerad: bollen ligger på (3, 25) hos målvakten och tre
-      passningar går från målvakten via A2 och A3 till A4, utan skott. Ingen passning går
-      närmare än 5 meter en motståndare eller någon av de sex platserna, och tolv spelare plus
-      sex platser räcker till arton. Målen ritas i lagets egen storlek i båda spelformerna (ADR
-      0019). Förslag, som inte krävs: västarna kan bli 8, eftersom ett lag har högst åtta
-      utespelare. ID:t innehåller fortfarande 11mot11. Det är missvisande men får inte ändras.
+      Håller. Alla fem punkterna är införda. Spelare.max är 18, så spelet blir aldrig större än nio
+      mot nio, och det följer F1(c). Den mindre ytan, ungefär 50 x 40 meter, ger 167 kvadratmeter
+      per spelare vid tolv och 133 vid femton. Hela ytan ger 203 vid sexton och 181 vid arton.
+      Skissen är kontrollerad: bollen ligger på (3, 25) hos målvakten och tre passningar går från
+      målvakten via A2 och A3 till A4, utan skott. Ingen passning går närmare än 5 meter en
+      motståndare eller någon av de sex platserna, och tolv spelare plus sex platser räcker till
+      arton. Målen ritas i lagets egen storlek i båda spelformerna (ADR 0019). Förslag, som inte
+      krävs: västarna kan bli 8, eftersom ett lag har högst åtta utespelare. ID:t innehåller
+      fortfarande 11mot11. Det är missvisande men får inte ändras.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

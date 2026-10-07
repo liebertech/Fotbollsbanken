@@ -57,10 +57,10 @@ varianter:
 anpassning:
   fler_spelare: Bygg en andra yta bredvid med samma uppställning.
   udda_antal: Spelar ingen roll, alla har egen boll och rör sig fritt.
-  ledare: Övningen är självgående när uppgifterna är visade. Med en andra ledare kan denne
-    gå runt och rätta till teknik hos enskilda spelare.
+  ledare: Övningen är självgående när uppgifterna är visade. Med en andra ledare kan denne gå runt och
+    rätta till teknik hos enskilda spelare.
 kalla: Egen övning, inspirerad av vanlig bollkänsla i rörelse för äldre ungdomar.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -74,10 +74,14 @@ granskning:
       och koordination och bollkänsla är båda relevanta fokusområden för 13-14 år (fokusomraden.md).
       Tiden 6 till 14 minuter ligger inom fasens gräns för en övning, 20 minuter, och nivå 1 till 2
       stämmer. Alla är aktiva hela tiden med egen boll, alltså ingen kö alls. Två saker att veta,
-      ingen av dem stoppar övningen. 1. Ledarbehov 0 samtidigt som både beskrivningen och organisationen
-      bygger på att ledaren ropar nästa uppgift. Jag godtar det, eftersom uppvärmningen alltid körs
-      samlat med ledaren på plats (passuppbyggnad.md) och en ledare hinner ropa till två ytor
-      bredvid varandra. Hade ledarbehovet varit 1 hade högsta antalet behövt sänkas till fjorton,
-      taket per ledare i fasen (R-050). 2. Sexton spelare i rask fart på 432 kvadratmeter är i
-      underkant på utrymme även om golvet klaras. Har ledaren gott om plats är 28 x 20 meter
-      bekvämare.
+      ingen av dem stoppar övningen. 1. Ledarbehov 0 samtidigt som både beskrivningen och
+      organisationen bygger på att ledaren ropar nästa uppgift. Jag godtar det, eftersom
+      uppvärmningen alltid körs samlat med ledaren på plats (passuppbyggnad.md) och en ledare hinner
+      ropa till två ytor bredvid varandra. Hade ledarbehovet varit 1 hade högsta antalet behövt
+      sänkas till fjorton, taket per ledare i fasen (R-050). 2. Sexton spelare i rask fart på 432
+      kvadratmeter är i underkant på utrymme även om golvet klaras. Har ledaren gott om plats är 28
+      x 20 meter bekvämare.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."

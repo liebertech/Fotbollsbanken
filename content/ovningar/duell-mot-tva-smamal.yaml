@@ -1,8 +1,8 @@
 schema: 1
 id: duell-mot-tva-smamal
 namn: Duell mot två småmål
-syfte: Spelarna ska våga utmana i den egna duellen, både när de har bollen och när de ska
-  vinna den tillbaka.
+syfte: Spelarna ska våga utmana i den egna duellen, både när de har bollen och när de ska vinna den
+  tillbaka.
 beskrivning: |
   Två spelare möter varandra på en yta om 8 x 6 meter med ett litet mål i var ände, utan
   målvakt. Var och en anfaller det ena målet och försvarar det andra. Den som vinner
@@ -57,17 +57,16 @@ coachningspunkter:
   - Jaga tillbaka bollen direkt om du tappar den.
   - Skydda bollen med kroppen när kompisen kommer nära.
 varianter:
-  lattare: En spelare anfaller och en försvarar, med bara ett mål att göra mål i. Byt
-    roller efter varje försök.
+  lattare: En spelare anfaller och en försvarar, med bara ett mål att göra mål i. Byt roller efter
+    varje försök.
   svarare: Gör ytan en meter smalare, så att det blir trängre att ta sig förbi.
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: >-
-    Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan med
-    reservbollen. Efter varje mål, eller när bollen går ut, går hen in med bollen och tar
-    över målen från den som går ut. Den som går ut är den som har spelat längst, och
-    efter första duellen är det den som inte startade med bollen. Då spelar alla två
-    dueller och vilar en.
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid sidan av ytan med reservbollen.
+    Efter varje mål, eller när bollen går ut, går hen in med bollen och tar över målen från den som
+    går ut. Den som går ut är den som har spelat längst, och efter första duellen är det den som
+    inte startade med bollen. Då spelar alla två dueller och vilar en.
   ledare: Övningen sköter sig själv när paren väl är igång.
 planskiss:
   version: 1
@@ -75,9 +74,9 @@ planskiss:
     langd: 8
     bredd: 6
   beskrivning: >-
-    Yta 8 x 6 meter med ett litet mål i var ände, utan målvakt. Spelare 1 anfaller det
-    högra målet och spelare 2 det vänstra. Vid udda antal väntar en tredje spelare vid
-    sidan av ytan med en ny boll.
+    Yta 8 x 6 meter med ett litet mål i var ände, utan målvakt. Spelare 1 anfaller det högra målet
+    och spelare 2 det vänstra. Vid udda antal väntar en tredje spelare vid sidan av ytan med en ny
+    boll.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 8, bredd: 6, stil: streckad }
     - { id: mal-1, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
@@ -90,7 +89,7 @@ planskiss:
     - typ: dribbling
       fran: { objekt: sp-1 }
       till: { x: 6.5, y: 1.2 }
-      via: [{ x: 4, y: 0.5 }]
+      via: [ { x: 4, y: 0.5 } ]
       ordning: 1
     - { typ: lopning, fran: { objekt: sp-2 }, till: { x: 4.5, y: 3 }, ordning: 1 }
     - { typ: skott, fran: { x: 6.5, y: 1.2 }, till: { objekt: mal-2 }, ordning: 2 }
@@ -99,38 +98,41 @@ planskiss:
     koer:
       - { vid: sp-1, riktning: 90, avstand: 4, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga duellövningar mot småmål.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda. Rätt form för åldern och rätt passdelar enligt F4. Yta: 24 kvadratmeter per
-      spelare, mellan golvet 15 och taket 25. Ingen ytreferens: för liten eller ingen plandel
-      med rätt form, inte duell med startavstånd, eftersom spelarna rör sig fritt. Att båda
-      får göra mål i båda målen tar bort riktningen och försvaret. Ändringar, exakta i
-      docs/doman/granskning-omgang-5.md under A6: var och en anfaller ett mål och försvarar det
-      andra, omgångar om ungefär en minut med vila, ny text för udda antal (den gamla sa inte
-      vem som går ut efter första duellen), nya varianter, och i planskissen kön med avstand 4
-      så att den tredje står utanför ytan, nya rörelser som håller 1,8 m till försvararen och
-      reservbollen bredvid kön.
+      Åtgärda. Rätt form för åldern och rätt passdelar enligt F4. Yta: 24 kvadratmeter per spelare,
+      mellan golvet 15 och taket 25. Ingen ytreferens: för liten eller ingen plandel med rätt form,
+      inte duell med startavstånd, eftersom spelarna rör sig fritt. Att båda får göra mål i båda
+      målen tar bort riktningen och försvaret. Ändringar, exakta i docs/doman/granskning-omgang-5.md
+      under A6: var och en anfaller ett mål och försvarar det andra, omgångar om ungefär en minut
+      med vila, ny text för udda antal (den gamla sa inte vem som går ut efter första duellen), nya
+      varianter, och i planskissen kön med avstand 4 så att den tredje står utanför ytan, nya
+      rörelser som håller 1,8 m till försvararen och reservbollen bredvid kön.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A6. Skrev om beskrivning och
-      organisation så att var och en anfaller ett mål och försvarar det andra, med
-      omgångar om en minut och byte av motståndare. Skrev om anpassning.udda_antal så att
-      det står vem som går ut, och bytte båda varianterna. I planskissen flyttade jag
-      reservbollen till (3, 7), ersatte rörelserna med nya koordinater och gav kön
-      avstand 4 så att den tredje spelaren står utanför ytan i stället för inne i den.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A6. Skrev om beskrivning och organisation
+      så att var och en anfaller ett mål och försvarar det andra, med omgångar om en minut och byte
+      av motståndare. Skrev om anpassning.udda_antal så att det står vem som går ut, och bytte båda
+      varianterna. I planskissen flyttade jag reservbollen till (3, 7), ersatte rörelserna med nya
+      koordinater och gav kön avstand 4 så att den tredje spelaren står utanför ytan i stället för
+      inne i den.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Duellen
-      har riktning, omgångarna ger vila, och texten för udda antal ger en rotation där alla
-      spelar två dueller och vilar en (R-058). Yta 24 kvadratmeter per spelare, mellan golvet
-      15 och taket 25. Ingen ytreferens: för liten eller ingen plandel med rätt form. Den
-      tredje står på (2, 7), en meter utanför ytan bredvid reservbollen och inte i någon
-      skottlinje. Dribblingen håller 1,8 m till försvararen. Inga namn.
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Duellen har
+      riktning, omgångarna ger vila, och texten för udda antal ger en rotation där alla spelar två
+      dueller och vilar en (R-058). Yta 24 kvadratmeter per spelare, mellan golvet 15 och taket 25.
+      Ingen ytreferens: för liten eller ingen plandel med rätt form. Den tredje står på (2, 7), en
+      meter utanför ytan bredvid reservbollen och inte i någon skottlinje. Dribblingen håller 1,8 m
+      till försvararen. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

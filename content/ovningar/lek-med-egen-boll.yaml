@@ -56,11 +56,10 @@ coachningspunkter:
   - Prova att använda båda fötterna, inte bara den du gillar bäst.
 varianter:
   lattare: Gå i stället för att springa mellan uppgifterna.
-  svarare: Ledaren visar signalen med handen i stället för att ropa den, så att spelarna
-    måste titta upp.
+  svarare: Ledaren visar signalen med handen i stället för att ropa den, så att spelarna måste titta upp.
 anpassning:
-  fler_spelare: Lägg till fler bollar i samma yta, eller gör ytan något större om det blir
-    trångt för alla att röra sig fritt.
+  fler_spelare: Lägg till fler bollar i samma yta, eller gör ytan något större om det blir trångt för
+    alla att röra sig fritt.
   udda_antal: Spelar ingen roll, varje spelare har sin egen boll.
   ledare: En ledare räcker för att visa nya uppgifter och se att alla är igång.
 planskiss:
@@ -69,9 +68,9 @@ planskiss:
     langd: 18
     bredd: 12
   beskrivning: >-
-    Yta 18 x 12 meter med en kon i varje hörn. Varje spelare har en egen boll och rör sig
-    fritt. På ledarens signal gör alla samma sak, till exempel stoppar bollen under foten
-    eller driver till närmaste hörn.
+    Yta 18 x 12 meter med en kon i varje hörn. Varje spelare har en egen boll och rör sig fritt. På
+    ledarens signal gör alla samma sak, till exempel stoppar bollen under foten eller driver till
+    närmaste hörn.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
     - { typ: kon, x: 0, y: 0 }
@@ -94,37 +93,40 @@ planskiss:
       fran: { objekt: sp-3 }
       till: { x: 10, y: 8 }
 kalla: Egen övning, inspirerad av vanliga bollkänselekar för de yngsta.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Åtgärda. Yta: 13,5 kvadratmeter per spelare vid sexton, över golvet 8 utan motståndare.
-      Taket prövas inte som gräns när varje spelare har egen boll och ingen motståndare finns,
-      men texten ska säga att ytan görs mindre med få spelare. Ytreferensen är rätt. Övningen
-      är i dag nästan samma som bollkansla-och-driv-med-egen-boll. Med lek som huvudfokus och
-      koordination som tredje fokus ska den vara en lek med signaler och ha
-      koordinationsuppgifter. Ändringar, exakta i docs/doman/granskning-omgang-5.md under A2:
-      ny beskrivning med lekfulla signaler, ny organisation, andra coachningspunkten, svårare
-      variant, hörnkoner i planskissen och ingen ordning på pilarna.
+      Åtgärda. Yta: 13,5 kvadratmeter per spelare vid sexton, över golvet 8 utan motståndare. Taket
+      prövas inte som gräns när varje spelare har egen boll och ingen motståndare finns, men texten
+      ska säga att ytan görs mindre med få spelare. Ytreferensen är rätt. Övningen är i dag nästan
+      samma som bollkansla-och-driv-med-egen-boll. Med lek som huvudfokus och koordination som
+      tredje fokus ska den vara en lek med signaler och ha koordinationsuppgifter. Ändringar, exakta
+      i docs/doman/granskning-omgang-5.md under A2: ny beskrivning med lekfulla signaler, ny
+      organisation, andra coachningspunkten, svårare variant, hörnkoner i planskissen och ingen
+      ordning på pilarna.
   - datum: 2026-10-06
     av: ovningsforfattare
     roll: ovningsforfattare
     kommentar: >-
-      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A2. Skrev om beskrivning till en
-      signallek (rött, grönt, staty, sitt, hörn) och organisation med en kon i varje hörn
-      och regeln om mindre yta vid färre än åtta spelare. Bytte andra coachningspunkten och
-      den svårare varianten. I planskissen lade jag till fyra hörnkoner, skrev om skissens
-      beskrivning och tog bort ordning från båda dribblingarna eftersom alla rör sig
-      samtidigt.
+      Åtgärdat enligt docs/doman/granskning-omgang-5.md, A2. Skrev om beskrivning till en signallek
+      (rött, grönt, staty, sitt, hörn) och organisation med en kon i varje hörn och regeln om mindre
+      yta vid färre än åtta spelare. Bytte andra coachningspunkten och den svårare varianten. I
+      planskissen lade jag till fyra hörnkoner, skrev om skissens beskrivning och tog bort ordning
+      från båda dribblingarna eftersom alla rör sig samtidigt.
   - datum: 2026-10-06
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Övningen
-      är nu en signallek med koordinationsuppgifter (staty, sitt och res dig) och skiljer sig
-      tydligt från bollkansla-och-driv-med-egen-boll. Yta 13,5 kvadratmeter per spelare vid
-      sexton, över golvet 8. Taket prövas inte som gräns för egen boll utan motståndare, och
-      texten säger att ytan görs mindre med färre än åtta. Ytreferensen är rätt. Hörnkonerna
-      finns i skissen och pilarna saknar ordning. Inga namn.
+      Granskad. Ändringarna är införda exakt som i docs/doman/granskning-omgang-5.md. Övningen är nu
+      en signallek med koordinationsuppgifter (staty, sitt och res dig) och skiljer sig tydligt från
+      bollkansla-och-driv-med-egen-boll. Yta 13,5 kvadratmeter per spelare vid sexton, över golvet
+      8. Taket prövas inte som gräns för egen boll utan motståndare, och texten säger att ytan görs
+      mindre med färre än åtta. Ytreferensen är rätt. Hörnkonerna finns i skissen och pilarna saknar
+      ordning. Inga namn.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #34."

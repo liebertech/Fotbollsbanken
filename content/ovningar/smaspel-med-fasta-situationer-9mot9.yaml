@@ -1,8 +1,8 @@
 schema: 1
 id: smaspel-med-fasta-situationer-9mot9
 namn: Smålagsspel med fasta situationer, 9 mot 9
-syfte: Spelarna ska öva fasta situationer, inklusive inspark, som en naturlig del av ett
-  vanligt matchspel.
+syfte: Spelarna ska öva fasta situationer, inklusive inspark, som en naturlig del av ett vanligt
+  matchspel.
 beskrivning: |
   Två lag spelar mot varandra på en yta om 45 x 30 meter med fasta mål, alltid med varsin
   målvakt. Varje gång bollen går över kortlinjen efter att ha rört ett anfallande lag
@@ -60,8 +60,7 @@ material:
 coachningspunkter:
   - Var snabb ut i position vid en fast situation, stå inte still.
   - Håll rätt avstånd vid inspark, minst nio meter från bollen.
-  - Organisera försvaret gemensamt inför varje fast situation, markera varsin
-    motståndare.
+  - Organisera försvaret gemensamt inför varje fast situation, markera varsin motståndare.
   - Leta efter en snabb återstart när motståndarna inte är klara.
 varianter:
   lattare: Bara inkast och frisparkar, inga hörnor eller inspark från straffområdet.
@@ -69,10 +68,10 @@ varianter:
 anpassning:
   fler_spelare: Gör planen större och spela med fler spelare i varje lag.
   udda_antal: Ett lag får en spelare mer, eller en joker spelar med laget som har färre.
-  ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare
-    dömer lagen själva, vilket också tränar fair play.
+  ledare: Med en ledare som dömer blir de fasta situationerna mest matchlika. Utan ledare dömer lagen
+    själva, vilket också tränar fair play.
 kalla: Egen övning, inspirerad av vanligt smålagsspel med fasta situationer inbyggda.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-09-23
     av: fotbollsexpert
@@ -84,16 +83,16 @@ granskning:
       minsta längd, 35 meter, även om längdkriteriet inte slår till här. Insparken: bollen ligger
       still i straffområdet och är i spel när den har sparkats och tydligt rört sig, motståndarna
       minst nio meter bort. Det stämmer med spelformer.md och SvFF:s spelformsblad för 9 mot 9,
-      hämtat 2026-09-11. Två saker ska ändras. 1. Målvakten. Organisationen säger "inklusive
-      målvakt om gruppen är tillräckligt stor", utan något antal. Det är samma otydlighet som jag
-      fällde i matchspel 7 mot 7 i bredd i omgång 3, och här väger den tyngre: utan målvakt finns
-      ingen inspark, och insparken är hela syftet. Skriv att båda lagen alltid har målvakt, och
-      skriv ut lagstorleken per gruppstorlek, tio ger fyra mot fyra plus målvakter och fjorton sex
-      mot sex plus målvakter. 2. Straffområdet finns inte utmärkt. Bollen ska läggas i
-      straffområdet, men ytan har bara fyra hörnmarkeringar. Ange hur det markeras, eller skriv att
-      insparken tas från en punkt ungefär fem meter framför mål och att motståndarna står nio meter
-      därifrån. Det som stämmer i övrigt: fasta situationer och försvarsspel är kärnområden, tiden
-      ligger under gränsen för spel och ledarbehov 0 är rätt (R-057).
+      hämtat 2026-09-11. Två saker ska ändras. 1. Målvakten. Organisationen säger "inklusive målvakt
+      om gruppen är tillräckligt stor", utan något antal. Det är samma otydlighet som jag fällde i
+      matchspel 7 mot 7 i bredd i omgång 3, och här väger den tyngre: utan målvakt finns ingen
+      inspark, och insparken är hela syftet. Skriv att båda lagen alltid har målvakt, och skriv ut
+      lagstorleken per gruppstorlek, tio ger fyra mot fyra plus målvakter och fjorton sex mot sex
+      plus målvakter. 2. Straffområdet finns inte utmärkt. Bollen ska läggas i straffområdet, men
+      ytan har bara fyra hörnmarkeringar. Ange hur det markeras, eller skriv att insparken tas från
+      en punkt ungefär fem meter framför mål och att motståndarna står nio meter därifrån. Det som
+      stämmer i övrigt: fasta situationer och försvarsspel är kärnområden, tiden ligger under
+      gränsen för spel och ledarbehov 0 är rätt (R-057).
   - datum: 2026-09-24
     av: fotbollsexpert
     roll: fotbollsexpert
@@ -104,9 +103,13 @@ granskning:
       är markerad fem meter framför vartdera målet och står i beskrivningen, i organisationen och i
       materiallistan, och nio meters avstånd för motståndarna står både i beskrivningen och i en
       coachningspunkt. Det är en rimlig förenkling av straffområdet för en ideell ledare och stämmer
-      med hur insparken fungerar i 9 mot 9 (spelformer.md, SvFF:s spelformsblad, hämtat
-      2026-09-11). Räkningen är oförändrad och håller: 45 x 30 meter är 1350 kvadratmeter, alltså
-      96,4 per spelare vid fjorton och 135 vid tio, mellan golvet 70 och taket 181. Sju västar
-      räcker till det största laget. Utan krav: den lättare varianten säger fortfarande inspark från
+      med hur insparken fungerar i 9 mot 9 (spelformer.md, SvFF:s spelformsblad, hämtat 2026-09-11).
+      Räkningen är oförändrad och håller: 45 x 30 meter är 1350 kvadratmeter, alltså 96,4 per
+      spelare vid fjorton och 135 vid tio, mellan golvet 70 och taket 181. Sju västar räcker till
+      det största laget. Utan krav: den lättare varianten säger fortfarande inspark från
       straffområdet, ett uttryck som inte längre finns i uppställningen. Skriv inspark eller inspark
       från punkten i stället.
+  - datum: 2026-10-07
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #17."
