@@ -66,6 +66,19 @@ function fakeGit(
 
 const CHECK = { base: 'bas', head: 'huvud' };
 
+/** Samma läsare, men läsningen av `path` kastar, som `git show` med "Filename too long". */
+function failingRead(git: GitReader, path: string): GitReader {
+  return {
+    ...git,
+    read: (rev, candidate) => {
+      if (candidate === path) {
+        throw new Error(`git cat-file blob ${rev}:${path}: Filename too long`);
+      }
+      return git.read(rev, candidate);
+    },
+  };
+}
+
 describe('kontrollen godkannande', () => {
   it('S-04: underkänner en pull request som sätter godkand på en granskad övning', () => {
     const git = fakeGit({ [PATH]: exercise('granskad') }, { [PATH]: exercise('godkand') });
@@ -101,6 +114,19 @@ describe('kontrollen godkannande', () => {
   it('underkänner en fil som inte går att läsa i stället för att gissa', () => {
     const git = fakeGit({ [PATH]: exercise('granskad') }, { [PATH]: 'status: [inte, en, text' });
     expect(kontroll(git, CHECK).ok).toBe(false);
+  });
+
+  it('regression: ett läsfel ger ett fynd och räknas inte som en borttagen fil', () => {
+    const git = failingRead(
+      fakeGit({ [PATH]: exercise('granskad') }, { [PATH]: exercise('godkand') }),
+      PATH,
+    );
+    const result = kontroll(git, CHECK);
+
+    expect(result.ok).toBe(false);
+    expect(result.findings).toHaveLength(1);
+    expect(result.findings[0]?.file).toBe(PATH);
+    expect(result.findings[0]?.message).toContain('Filename too long');
   });
 });
 
@@ -204,6 +230,21 @@ describe('godkann', () => {
     const result = godkann(git, { ...options, write: true }, (path) => written.push(path));
 
     expect(result.ok).toBe(false);
+    expect(written).toEqual([]);
+  });
+
+  it('regression: ett läsfel ger fel och räknas inte som en borttagen fil', () => {
+    const git = failingRead(
+      fakeGit({ [PATH]: exercise('utkast') }, { [PATH]: exercise('granskad') }),
+      PATH,
+    );
+    const written: string[] = [];
+
+    const result = godkann(git, { ...options, write: true }, (path) => written.push(path));
+
+    expect(result.ok).toBe(false);
+    expect(result.files[0]?.outcome).toBe('fel');
+    expect(result.files[0]?.message).toContain('Filename too long');
     expect(written).toEqual([]);
   });
 });
@@ -346,5 +387,27 @@ describe('createGitReader mot ett riktigt repo', () => {
     const reader = createGitReader(dir);
     expect(reader.read('HEAD', 'a.txt')).toBe('hej\n');
     expect(reader.read('HEAD', 'saknas.txt')).toBeUndefined();
+  });
+
+  it('läser en fil i en undermapp med sökvägen från repots rot', () => {
+    const { dir, git } = temporaryRepo();
+    mkdirSync(join(dir, CONTENT_DIR), { recursive: true });
+    writeFileSync(join(dir, PATH), 'status: granskad\n', 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Lagg till ovning');
+
+    const reader = createGitReader(dir);
+    expect(reader.read('HEAD', PATH)).toBe('status: granskad\n');
+    expect(reader.read('HEAD', `${CONTENT_DIR}/saknas.yaml`)).toBeUndefined();
+  });
+
+  it('kastar i stället för att ge undefined när revisionen inte går att läsa', () => {
+    const { dir, git } = temporaryRepo();
+    writeFileSync(join(dir, 'a.txt'), 'hej\n', 'utf8');
+    git('add', '--all');
+    git('commit', '--quiet', '--message', 'Lagg till a');
+
+    const reader = createGitReader(dir);
+    expect(() => reader.read('finns-inte', 'a.txt')).toThrow(/git /);
   });
 });

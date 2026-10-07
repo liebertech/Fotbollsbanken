@@ -389,6 +389,51 @@ describe('planen', () => {
     expect(findings).toEqual([]);
     expect(plan.poster.map((entry) => entry.fil)).toEqual([A]);
   });
+
+  /*
+   * Regression 2026-10-07: `git show` föll på Windows med "Filename too long" för en övning,
+   * läsaren gav `undefined` och torrkörningen listade 29 i stället för 30 utan något fel.
+   */
+  const ab = (): HistoryReader =>
+    fakeHistory(
+      {
+        HEAD: { [A]: exercise('granskad'), [B]: exercise('granskad') },
+        [MERGE_15]: { [A]: exercise('granskad'), [B]: exercise('granskad') },
+      },
+      { [A]: MERGE_15, [B]: MERGE_15 },
+      messages,
+    );
+
+  it('regression: en fil som listas men ger undefined vid läsningen blir ett fynd', () => {
+    const git = ab();
+    const reader: HistoryReader = {
+      ...git,
+      read: (rev, path) => (path === B ? undefined : git.read(rev, path)),
+    };
+    const api = fakeApi({ 'pulls/15': pullJson(15, MERGE_15) });
+
+    const { findings } = planera(reader, api, 'HEAD', NO_WAIT);
+    expect(findings).toEqual([{ file: B, message: `listas i ${HEAD} men går inte att läsa` }]);
+  });
+
+  it('regression: en fil som listas men vars läsning kastar blir ett fynd', () => {
+    const git = ab();
+    const reader: HistoryReader = {
+      ...git,
+      read: (rev, path) => {
+        if (path === B) {
+          throw new Error(`git cat-file blob ${rev}:${path}: Filename too long`);
+        }
+        return git.read(rev, path);
+      },
+    };
+    const api = fakeApi({ 'pulls/15': pullJson(15, MERGE_15) });
+
+    const { findings } = planera(reader, api, 'HEAD', NO_WAIT);
+    expect(findings).toHaveLength(1);
+    expect(findings[0]?.file).toBe(B);
+    expect(findings[0]?.message).toContain('Filename too long');
+  });
 });
 
 describe('tolkningen av planen', () => {
@@ -548,6 +593,34 @@ describe('skrivningen av planen', () => {
     const written: string[] = [];
     const result = tillampa(git, okApi(), plan, {}, (path) => written.push(path));
     expect(result.written).toBe(false);
+    expect(written).toEqual([]);
+  });
+
+  it.each([
+    ['ger undefined', (): undefined => undefined, 'går inte att läsa'],
+    [
+      'kastar',
+      (): never => {
+        throw new Error('Filename too long');
+      },
+      'Filename too long',
+    ],
+  ])('regression: skriver ingenting när läsningen av en fil som finns %s', (_, fail, message) => {
+    const git = fakeHistory(
+      { HEAD: { [A]: a, [B]: b }, [MERGE_15]: { [A]: a }, [MERGE_17]: { [B]: b } },
+      last,
+      messages,
+    );
+    const reader: HistoryReader = {
+      ...git,
+      read: (rev, path) => (path === B ? fail() : git.read(rev, path)),
+    };
+    const written: string[] = [];
+
+    const result = tillampa(reader, okApi(), plan, { write: true }, (path) => written.push(path));
+
+    expect(result.ok).toBe(false);
+    expect(result.files.find((file) => file.file === B)?.message).toContain(message);
     expect(written).toEqual([]);
   });
 
