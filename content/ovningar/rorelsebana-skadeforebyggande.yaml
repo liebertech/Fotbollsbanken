@@ -22,7 +22,9 @@ alder:
   min: 8
   max: 9
 spelformer:
+  - 3mot3
   - 5mot5
+  - 7mot7
 niva:
   - niva-1
   - niva-2
@@ -152,3 +154,9 @@ granskning:
       Ingen ytreferens: fasta positioner, där avståndet är det som skyddar. Varje spelare arbetar på
       sin egen platta med minst två meter till närmaste kompis, och det avståndet är det som ska
       hållas, inte ytans storlek (ytreferenser.md, avsnitt 4).
+  - datum: 2026-10-07
+    av: huvudsession
+    roll: huvudsession
+    kommentar: >-
+      Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
+      fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.

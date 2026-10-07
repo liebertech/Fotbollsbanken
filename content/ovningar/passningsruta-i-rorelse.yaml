@@ -16,7 +16,9 @@ alder:
   min: 10
   max: 12
 spelformer:
+  - 5mot5
   - 7mot7
+  - 9mot9
 niva:
   - niva-1
   - niva-2
@@ -100,3 +102,9 @@ granskning:
       ingen motsvarighet bland planens linjer. Facit i ytreferenser.md, avsnitt 6.2, anger fasta
       positioner, men spelarna rör sig fritt i rutan och ingen motståndare är med. Jag föreslår att
       facit rättas. Utfallet, ingen referens, är detsamma.
+  - datum: 2026-10-07
+    av: huvudsession
+    roll: huvudsession
+    kommentar: >-
+      Omgång 5B: spelformer ändrade från [7mot7] till [5mot5, 7mot7, 9mot9] enligt
+      fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
