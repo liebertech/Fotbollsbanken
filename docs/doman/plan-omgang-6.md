@@ -402,6 +402,14 @@ Alla fem är godkända övningar som jag såg när 5B gicks igenom (`plan-omgang
 
 ## 6. Beslut som behövs
 
+*Användarens svar 2026-10-07:*
+
+- *B1: ja. R-086 byggs på en egen gren, med regeltexten i `generatorregler.md` och koden i samma pull request, och mergas före omgång 6.*
+- *B2: ja. Nya tider för B7 och B8 läggs som en egen commit i omgångens pull request.*
+- *B3: inte godkänt. Meningen förs inte in i `passuppbyggnad.md`. Granskningen av omgång 6 prövar taket som riktvärde enligt F1, på samma sätt som i paket B.*
+- *B4: inte godkänt. `omstallningsspel-9mot9` behåller sitt namn. Ändringarna av material och `anpassning.fler_spelare` i avsnitt 5 görs ändå. Inte heller `matchspel-7mot7-litet-format` (beslut B1 i `plan-omgang-5b.md`) byter namn.*
+- *B5: alla 14 övningar.*
+
 **B1. Ska en övning med `nickspel` bara kunna väljas när ledaren har valt `nickspel`?** I dag räcker det att övningen träffar *något* av ledarens fokus (R-040, R-041). `hornor-med-nickar` kan därför hamna i ett pass för 13-åringar där ledaren bara har valt `fasta-situationer`, och O6-06 i ett pass där ledaren bara har valt `passning-mottagning`. Nicktaket (R-082) gäller fortfarande, så det blir aldrig mer än 10 minuter, men ledaren har inte bett om nickning. R-121 säger i sin motivering att "nickning ska bara förekomma när ledaren själv har valt den", men ingen regel kräver det. Jag har kontrollerat i `src/regelmotor/` att det enda som stoppar nickövningar, utöver åldern och taket, är att `nickspel` aldrig blir ersättningsfokus (`FOCUS_NEVER_SUBSTITUTE` i `keys.ts`). *Rekommendation:* en ny regel i grupp 9, **R-086**: "Krav. En övning som har `nickspel` bland sina fokusområden kan bara väljas av generatorn, och bara visas som alternativ vid byte (R-104, R-106), om ledaren har valt `nickspel`." Det är en säkerhetsregel och bör komma före omgång 6 godkänns. Om svaret är nej ska O6-06 bara ha fokus `nickspel`, så att den inte väljs för `passning-mottagning`.
 
 **B2. Nya tider för B7 och B8** (avsnitt 4). Filerna är godkända, så ändringen kräver ett nytt godkännande. *Rekommendation:* ja, i omgång 6:s pull request som en egen commit, så att den kan granskas och mätas för sig.
