@@ -120,9 +120,17 @@ describe('Session.swapped släpper bara R-035 och R-036 (F3)', () => {
   });
 
   it('R-082 fälls fortfarande: ett spel med nickning över taket för 13 år', () => {
-    const pass = tampered(session(underlag13, bank13), 'spel-passa', nickspel);
+    const medNick: Input = { ...underlag13, fokus: ['passning-mottagning', 'nickspel'] };
+    const pass = tampered(session(medNick, bank13), 'spel-passa', nickspel);
     const { swapped, expected } = bothWays(pass);
     expect(rulesOf(swapped)).toEqual(['R-082']);
+    expect(swapped).toEqual(expected);
+  });
+
+  it('R-086 fälls fortfarande: en nickövning när ledaren inte har valt nickspel', () => {
+    const pass = tampered(session(underlag13, bank13), 'spel-passa', nickspel);
+    const { swapped, expected } = bothWays(pass);
+    expect(rulesOf(swapped)).toContain('R-086');
     expect(swapped).toEqual(expected);
   });
 

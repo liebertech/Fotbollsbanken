@@ -266,6 +266,7 @@ function headingCapHolds(
  * @regel R-070
  * @regel R-080
  * @regel R-082
+ * @regel R-086
  * @regel R-104
  * @regel R-121
  */
@@ -281,7 +282,7 @@ export function trySwap(
   if (base !== null) {
     return { ok: false, rejection: { villkor: 1, regel: base } };
   }
-  const safety = safetyRejection(candidate, input.alder);
+  const safety = safetyRejection(candidate, input);
   if (safety !== null) {
     return { ok: false, rejection: { villkor: 1, regel: safety } };
   }

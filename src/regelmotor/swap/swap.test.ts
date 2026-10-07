@@ -367,7 +367,7 @@ describe('R-082 Nicktaket efter byte', () => {
     spelare: 14,
     ledare: 2,
     passlangd: 60,
-    fokus: ['passning-mottagning'],
+    fokus: ['passning-mottagning', 'nickspel'],
   };
   const tretton = { alder: { min: 13, max: 14 }, spelformer: ['9mot9'] };
   const nickbank: BankExercise[] = [

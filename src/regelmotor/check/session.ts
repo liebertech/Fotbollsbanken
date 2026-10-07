@@ -123,6 +123,7 @@ function fitsInside(
  * @regel R-070
  * @regel R-080
  * @regel R-082
+ * @regel R-086
  * @regel R-092
  * @regel R-093
  * @regel R-102
@@ -237,6 +238,13 @@ export function checkSession(session: Session): string[] {
     // R-080: ingen nickträning före 13 år.
     if (exercise.fokusomraden.includes(FOCUS_AREA_HEADING) && input.alder < HEADING_MIN_AGE) {
       problems.push(`R-080: ${exercise.id} har nickspel men åldern är ${input.alder}`);
+    }
+    // R-086: nickning bara när ledaren har valt nickspel.
+    if (
+      exercise.fokusomraden.includes(FOCUS_AREA_HEADING) &&
+      !input.fokus.includes(FOCUS_AREA_HEADING)
+    ) {
+      problems.push(`R-086: ${exercise.id} har nickspel men ledaren har inte valt nickspel`);
     }
 
     // R-041: kärnan träffar det fokus som gäller i delen.
