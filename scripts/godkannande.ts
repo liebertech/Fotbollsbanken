@@ -51,7 +51,10 @@ const EMPTY_SHA = '0000000000000000000000000000000000000000';
 export interface GitReader {
   /** Filer som skiljer sig mellan två revisioner, som sökvägar relativt repots rot. */
   changedFiles(from: string, to: string): string[];
-  /** Filens innehåll vid en revision, eller `undefined` om filen inte finns där. */
+  /**
+   * Filens innehåll vid en revision, eller `undefined` om filen inte finns där. Kastar när
+   * filen finns men inte går att läsa, så att ett läsfel aldrig ser ut som en saknad fil.
+   */
   read(rev: string, path: string): string | undefined;
   /** Den gemensamma grenpunkten, alltså den commit grenen utgick från. */
   mergeBase(a: string, b: string): string;
@@ -87,11 +90,18 @@ export function createGitReader(cwd: string = process.cwd()): GitReader {
       git(['diff', '--name-only', '--no-renames', from, to])
         .split('\n')
         .filter((line) => line !== ''),
+    // `cat-file blob` läser bara objektet. `show` prövar också argumentet som en sökväg på
+    // disk, och föll på Windows med "Filename too long" för en fil som fanns i revisionen.
     read: (rev, path) => {
       try {
-        return git(['show', `${rev}:${path}`]);
-      } catch {
-        return undefined;
+        return git(['cat-file', 'blob', `${rev}:${path}`]);
+      } catch (cause) {
+        // Bara en fil som inte finns i revisionen ger `undefined`. Allt annat är ett fel.
+        const listed = git(['ls-tree', '--full-tree', '--name-only', rev, '--', path]);
+        if (listed.trim() === '') {
+          return undefined;
+        }
+        throw cause;
       }
     },
     mergeBase: (a, b) => git(['merge-base', a, b]).trim(),
@@ -134,6 +144,19 @@ export function readStatus(text: string): StatusReading {
     return { error: 'status är inte en text' };
   }
   return { status };
+}
+
+/** En läsning ur git: filens text, en fil som inte finns, eller ett fel att rapportera. */
+export type FileRead = { text: string } | { missing: true } | { error: string };
+
+/** `GitReader.read` utan undantag, så att ett läsfel blir ett fynd i stället för en krasch. */
+export function readFile(git: GitReader, rev: string, path: string): FileRead {
+  try {
+    const text = git.read(rev, path);
+    return text === undefined ? { missing: true } : { text };
+  } catch (cause) {
+    return { error: `går inte att läsa ur ${rev}: ${(cause as Error).message}` };
+  }
 }
 
 /** Basename används bara för utskrifter; sökvägen i git är alltid hela sökvägen. */
@@ -189,12 +212,16 @@ export function kontroll(git: GitReader, options: CheckOptions): CheckResult {
   const findings: Finding[] = [];
 
   for (const path of exercises) {
-    const after = git.read(options.head, path);
-    if (after === undefined) {
+    const after = readFile(git, options.head, path);
+    if ('error' in after) {
+      findings.push({ file: path, message: after.error });
+      continue;
+    }
+    if ('missing' in after) {
       continue; // Filen är borttagen i pull requesten och kan inte sätta någon status.
     }
 
-    const reading = readStatus(after);
+    const reading = readStatus(after.text);
     if (reading.error !== undefined) {
       findings.push({ file: path, message: reading.error });
       continue;
@@ -205,8 +232,12 @@ export function kontroll(git: GitReader, options: CheckOptions): CheckResult {
 
     // En fil som redan stod i `godkand` före pull requesten får ändras. Det är övergången till
     // `godkand` som bara arbetsflödet får göra, och en ny fil har ingen tidigare status.
-    const before = git.read(from, path);
-    const wasApproved = before !== undefined && readStatus(before).status === APPROVED_STATUS;
+    const before = readFile(git, from, path);
+    if ('error' in before) {
+      findings.push({ file: path, message: before.error });
+      continue;
+    }
+    const wasApproved = 'text' in before && readStatus(before.text).status === APPROVED_STATUS;
     if (!wasApproved) {
       findings.push({
         file: path,
@@ -375,11 +406,16 @@ export function godkann(
   const files: ApprovalFile[] = [];
 
   for (const path of git.changedFiles(options.before, options.after).filter(isExerciseFile)) {
-    const raw = git.read(options.after, path);
-    if (raw === undefined) {
+    const read = readFile(git, options.after, path);
+    if ('error' in read) {
+      files.push({ file: path, outcome: 'fel', message: read.error });
+      continue;
+    }
+    if ('missing' in read) {
       files.push({ file: path, outcome: 'orord', message: 'borttagen i omgången' });
       continue;
     }
+    const raw = read.text;
 
     const reading = readStatus(raw);
     if (reading.error !== undefined) {
@@ -719,10 +755,17 @@ export function planera(
   const probe: ReviewLine = { datum: '2000-01-01', av: 'x', roll: APPROVAL_ROLE };
 
   for (const path of git.listFiles(bas, CONTENT_DIR).filter(isExerciseFile).sort()) {
-    const raw = git.read(bas, path);
-    if (raw === undefined) {
+    // Filen listades i `bas`, så den finns. Går den inte att läsa är det ett fel, inte en
+    // saknad fil, och den får inte falla bort ur planen i tysthet (ADR 0020).
+    const read = readFile(git, bas, path);
+    if (!('text' in read)) {
+      findings.push({
+        file: path,
+        message: 'error' in read ? read.error : `listas i ${bas} men går inte att läsa`,
+      });
       continue;
     }
+    const raw = read.text;
     const reading = readStatus(raw);
     if (reading.error !== undefined) {
       findings.push({ file: path, message: reading.error });
@@ -855,12 +898,24 @@ export function tillampa(
   const pulls = new Map<string, ResolvedPull | { error: string }>();
 
   for (const entry of plan.poster) {
-    const raw = git.read(rev, entry.fil);
+    const read = readFile(git, rev, entry.fil);
     const blob = git.blob(rev, entry.fil);
-    if (raw === undefined || blob === undefined) {
-      files.push({ file: entry.fil, outcome: 'fel', message: 'filen finns inte längre' });
+    if ('error' in read) {
+      files.push({ file: entry.fil, outcome: 'fel', message: read.error });
       continue;
     }
+    if ('missing' in read || blob === undefined) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message:
+          'missing' in read && blob !== undefined
+            ? `finns i ${rev} men går inte att läsa`
+            : 'filen finns inte längre',
+      });
+      continue;
+    }
+    const raw = read.text;
     if (blob !== entry.blob) {
       const status = readStatus(raw).status;
       files.push(
