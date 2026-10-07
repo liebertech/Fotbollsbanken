@@ -212,3 +212,40 @@ describe('R-121 Närliggande fokusområde när kärnan annars blir tom', () => {
     ]);
   });
 });
+
+describe('R-086 tillsammans med R-121 (testfall 6 och 7)', () => {
+  const fjorton = { alder: { min: 13, max: 15 }, spelformer: ['9mot9'] };
+  const nickOvning = bankExercise({
+    ...fjorton,
+    id: 'snabb-nick',
+    fokusomraden: ['snabbhet', 'nickspel'],
+    passdelar: ['del-ovning'],
+    tid: { kortast: 5, rekommenderad: 10, langst: 15 },
+  });
+  const basInput: Input = {
+    alder: 14,
+    spelform: '9mot9',
+    niva: 'niva-2',
+    spelare: 12,
+    ledare: 1,
+    passlangd: 60,
+    fokus: ['koordination', 'nickspel'],
+  };
+
+  it('R-086 testfall 6: nickövningen får ligga i delen när nickspel är valt (den träffar då valt fokus, så inget ersättningsfokus behövs)', () => {
+    const resultat = beslut([nickOvning], basInput, 'fas-13-14');
+    expect(resultat.find((item) => item.part === 'del-ovning')).toEqual({
+      part: 'del-ovning',
+      substituteFocus: null,
+      cannotFill: false,
+    });
+  });
+
+  it('R-086 testfall 7: samma övning fyller inte delen när nickspel inte är valt', () => {
+    const input: Input = { ...basInput, fokus: ['koordination', 'bollkansla'] };
+    const resultat = beslut([nickOvning], input, 'fas-13-14');
+    const del = resultat.find((item) => item.part === 'del-ovning');
+    expect(del?.substituteFocus).toBeNull();
+    expect(del?.cannotFill).toBe(true);
+  });
+});

@@ -434,6 +434,69 @@ describe('R-082 Nicktaket efter byte', () => {
   });
 });
 
+describe('R-086 Nickövningar vid byte', () => {
+  const tretton = { alder: { min: 13, max: 14 }, spelformer: ['9mot9'] };
+  const bank: BankExercise[] = [
+    bankExercise({
+      ...tretton,
+      id: 'ova-tretton',
+      fokusomraden: ['passning-mottagning'],
+      passdelar: ['del-ovning'],
+      spelare: { min: 2, max: 14 },
+      tid: { kortast: 5, rekommenderad: 10, langst: 15 },
+    }),
+    bankExercise({
+      ...tretton,
+      id: 'spelovning-tretton',
+      fokusomraden: ['passning-mottagning'],
+      passdelar: ['del-spelovning'],
+      grupptyp: 'tva-lag',
+      spelare: { min: 4, max: 14 },
+      tid: { kortast: 5, rekommenderad: 15, langst: 20 },
+    }),
+    gameExercise({
+      ...tretton,
+      id: 'spel-tretton',
+      spelare: { min: 6, max: 14 },
+      tid: { kortast: 10, rekommenderad: 20, langst: 35 },
+    }),
+  ];
+  const utanNick: Input = {
+    alder: 13,
+    spelform: '9mot9',
+    niva: 'niva-2',
+    spelare: 14,
+    ledare: 2,
+    passlangd: 60,
+    fokus: ['passning-mottagning'],
+  };
+  const nick = bankExercise({
+    ...tretton,
+    id: 'nick-ova',
+    fokusomraden: ['passning-mottagning', 'nickspel'],
+    passdelar: ['del-ovning'],
+    spelare: { min: 2, max: 14 },
+    tid: { kortast: 5, rekommenderad: 5, langst: 5 },
+  });
+
+  it('R-086 trySwap nekar en nickövning när ledaren inte har valt nickspel, och visar den inte', () => {
+    const pass = session(utanNick, bank);
+    const ova = refOf(pass, 'ova-tretton');
+    expect(trySwap(pass, locateSwapTarget(pass, ova), nick)).toEqual({
+      ok: false,
+      rejection: { villkor: 1, regel: 'R-086' },
+    });
+    expect(ids(swapOptions(pass, ova, [nick]))).toEqual([]);
+  });
+
+  it('R-086 visar nickövningen när ledaren har valt nickspel och taket håller', () => {
+    const medNick: Input = { ...utanNick, fokus: ['passning-mottagning', 'nickspel'] };
+    const pass = session(medNick, bank);
+    const ova = refOf(pass, 'ova-tretton');
+    expect(ids(swapOptions(pass, ova, [nick]))).toEqual(['nick-ova']);
+  });
+});
+
 describe('R-105 Tid efter byte', () => {
   const pass = session(underlag, grundbank);
   const ova = refOf(pass, 'ova-passa');
