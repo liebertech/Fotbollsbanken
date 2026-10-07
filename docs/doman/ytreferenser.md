@@ -114,7 +114,7 @@ Ingen referens är ofta det rätta svaret. Det gäller i fyra fall:
 | Kategori | Varför | Övningar i banken |
 |---|---|---|
 | **Positionsspel där måttet är både golv och tak** | En större yta förstör övningen, och en parentes som säger *ungefär* antyder att måttet går att förhandla om. | `behall-bollen-i-gruppen`, `forsvara-i-overtal` |
-| **Stationer och fasta positioner, där avståndet är det som övas eller det som skyddar** | Det som styr är avståndet mellan spelare eller arbetsplatser, inte ytans storlek. En storleksjämförelse lockar till att sprida ut övningen. | `malvaktstraning-grunder`, `tva-touch-i-triangel`, `knakontroll-uppvarmning`, `rorelsebana-skadeforebyggande`, `skadeforebyggande-9mot9` |
+| **Stationer och fasta positioner, där avståndet är det som övas eller det som skyddar** | Det som styr är avståndet mellan spelare eller arbetsplatser, inte ytans storlek. En storleksjämförelse lockar till att sprida ut övningen. | `malvaktstraning-grunder`, `tva-touch-i-triangel`, `knakontroll-uppvarmning`, `rorelsebana-skadeforebyggande`, `skadeforebyggande-uppvarmning-13-19` |
 | **Dueller med startavstånd** | Anfallarens och försvararens startavstånd är måttkritiska och får inte skuggas av en ungefärlig parentes. | `en-mot-en-till-mal` |
 | **För liten eller ingen plandel med rätt form** | Ingenting på en fotbollsplan är så litet, eller har den formen. En långsökt jämförelse är sämre än ingen. | `driva-forbi-i-par`, `triangelpass-med-rorelse`, `en-mot-en-till-smamal`, `passningsruta-i-rorelse`, och i omgång 5 `duell-mot-tva-smamal`, `driv-och-skjut-pa-smamal`, `hitta-den-fria-i-overlage`, `svansjakt-med-egen-boll` |
 
@@ -202,7 +202,7 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 
 *Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
 
-### 6.2 Utan referens (18 övningar)
+### 6.2 Utan referens (17 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -217,7 +217,6 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `rorelsebana-skadeforebyggande` | 5 mot 5 | 12 × 15 | Station. Samma skäl | main |
 | `behall-bollen-i-gruppen` | 5 mot 5 | 14 × 12 | Positionsspel där måttet är golv och tak | main |
 | `forsvara-i-overtal` | 9 mot 9 | 14 × 12 | Positionsspel där måttet är golv och tak. Övningen fälldes en gång när ytan blåstes upp, eftersom pressen inte nådde fram | main |
-| `skadeforebyggande-9mot9` | 9 mot 9 | 14 × 12 | Station | main |
 | `duell-mot-tva-smamal` | 3 mot 3, 5 mot 5 | 8 × 6 | För liten eller ingen plandel med rätt form. Spelarna rör sig fritt mellan två mål, så det är inte en duell med startavstånd | omgang/5-paket-a |
 | `driv-och-skjut-pa-smamal` | 3 mot 3, 5 mot 5 | 10 × 5 | För liten eller ingen plandel med rätt form. En smal bana, ungefär halva stora planens målområde | omgang/5-paket-a |
 | `hitta-den-fria-i-overlage` | 3 mot 3, 5 mot 5 | 12 × 8 | För liten eller ingen plandel med rätt form. Samma mått och skäl som `en-mot-en-till-smamal` | omgang/5-paket-a |

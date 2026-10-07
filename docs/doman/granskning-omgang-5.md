@@ -532,3 +532,8 @@ Ingen etikett och ingen text innehåller namn. Det som står under *Kvarstår* o
 #### B6, tredje kontrollen (2026-10-06)
 
 **B6 `en-mot-en-till-mal-13-19`: granskad.** Huvudsessionen förde in rättelsen (commit 729056b). Den sista meningen i `beskrivning` står nu exakt som i domen ovan: "…rullar in den till den nya anfallaren. Nästa duell startar när båda står på plats." Den stämmer med organisationen. Jag har läst hela filen, och inget annat är ändrat. B6 är införd i `ytreferenser.md`, avsnitt 6.2, som duell med startavstånd. Därmed är alla åtta övningar i paket B granskade och alla åtta införda i ytreferenserna.
+
+## Användarens beslut 2026-10-07
+
+- **B4 ersätter `skadeforebyggande-9mot9`.** Den gamla övningen från omgång 4 är borttagen ur banken, eftersom generatorn annars kunde välja båda i samma uppvärmning. Den var aldrig godkänd. `ytreferenser.md` är uppdaterad.
+- Meningen om taket för övningar med egen boll och utan motståndare förs in i `passuppbyggnad.md`, och spannen i planen rättas (PR #32).
