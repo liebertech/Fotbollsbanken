@@ -15,7 +15,9 @@ alder:
   min: 10
   max: 12
 spelformer:
+  - 5mot5
   - 7mot7
+  - 9mot9
 niva:
   - niva-1
   - niva-2
@@ -121,3 +123,9 @@ granskning:
       Skrev om anpassning.udda_antal enligt fotbollsexpertens mall för R-058 och
       lade till en kö i planskissen som visar den tredje spelaren vid sidan av
       ytan med reservbollen, enligt beslutet 2026-10-02.
+  - datum: 2026-10-07
+    av: huvudsession
+    roll: huvudsession
+    kommentar: >-
+      Omgång 5B: spelformer ändrade från [7mot7] till [5mot5, 7mot7, 9mot9] enligt
+      fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.

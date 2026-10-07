@@ -17,7 +17,9 @@ alder:
   min: 10
   max: 12
 spelformer:
+  - 5mot5
   - 7mot7
+  - 9mot9
 niva:
   - niva-2
   - niva-3
@@ -100,3 +102,9 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #4."
+  - datum: 2026-10-07
+    av: huvudsession
+    roll: huvudsession
+    kommentar: >-
+      Omgång 5B: spelformer ändrade från [7mot7] till [5mot5, 7mot7, 9mot9] enligt
+      fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.

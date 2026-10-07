@@ -18,7 +18,9 @@ alder:
   min: 8
   max: 9
 spelformer:
+  - 3mot3
   - 5mot5
+  - 7mot7
 niva:
   - niva-1
   - niva-2
@@ -116,3 +118,9 @@ granskning:
       Ingen ytreferens: positionsspel där måttet är både golv och tak. En större ruta tar bort den
       press som gör passningsvalet svårt, och en parentes med ungefär skulle antyda att måttet går att
       förhandla om (ytreferenser.md, avsnitt 4).
+  - datum: 2026-10-07
+    av: huvudsession
+    roll: huvudsession
+    kommentar: >-
+      Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
+      fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
