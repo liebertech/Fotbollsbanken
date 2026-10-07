@@ -20,7 +20,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "validera:ovningar": "node scripts/validera-ovningar.ts",
-    "godkannande": "node scripts/godkannande.ts"
+    "godkannande": "node scripts/godkannande.ts",
+    "tackning": "node scripts/tackning.ts"
   },
   "dependencies": {
     "react": "19.3.0",
