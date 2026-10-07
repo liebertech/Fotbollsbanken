@@ -1,21 +1,20 @@
-# Sätter status: godkand på omgångens granskade övningar efter att ägaren mergat pull requesten
-# (ADR 0013 avsnitt 4). Utlösaren är push till main, aldrig pull_request eller
-# pull_request_target: ett arbetsflöde som utlöses av en pull request körs från pull requestens
-# egen version av filen, och en gren skulle då kunna skriva om filen och få contents: write.
+# Sätter status: godkand på granskade övningar efter att ägaren mergat dem (ADR 0013 avsnitt 4).
+# Utlösaren är push till main, aldrig pull_request eller pull_request_target: ett arbetsflöde som
+# utlöses av en pull request körs från pull requestens egen version av filen, och en gren skulle
+# då kunna skriva om filen och få skrivrätt.
 #
-# workflow_dispatch finns för att köra om skrivningen för en omgång som redan är mergad. En
-# push-utlöst körning hämtar arbetsflödet ur den pushade commiten, så ordningen mellan mergar
-# spelar roll: en omgång som mergades före en ändring av arbetsflödet kördes med den gamla
-# filen, och en omkörning av den körningen använder samma commit och samma gamla fil
-# (ADR 0014 avsnitt 8). Vid dispatch anges intervallet och pull requesten för hand, men
-# spärrarna är desamma: pull requesten måste vara mergad och ha kommit in med just den
-# commiten, kontot i granskningsraden hämtas ur API:t och inte ur indata, och jobbet skriv
-# kräver fortfarande miljön godkannande.
+# Arbetsflödet kommer ikapp i stället för att följa en enskild push (ADR 0020). Varje körning
+# letar upp alla övningar på main som står i granskad och knyter var och en till den merge som
+# senast ändrade filen, alltså den merge som förde in exakt den text som stämplas. En körning som
+# faller eller avbryts tappar därför ingen omgång: nästa körning, eller en dispatch, hittar samma
+# filer. Det var precis det som gick förlorat för pull request #15 (körning 36387044602).
 #
-# Jobb 1 läser, validerar hela banken och visar vad som skulle ändras. Jobb 2 kräver miljön
-# godkännande, som väntar på ägarens andra klick, och är det enda jobb som pushar. Båda jobben
-# kor med contents: read: GITHUB_TOKEN kan inte skriva till main. Pushen sker i stället over SSH
-# med deploy-nyckeln i hemligheten GODKANN_OMGANG_DEPLOY_KEY (ADR 0014).
+# workflow_dispatch tar inga indata. Den kör samma ikappskrivning som en push.
+#
+# Jobb 1 läser, validerar hela banken och skriver en plan över vad som skulle ändras. Jobb 2
+# kräver miljön godkannande, som väntar på ägarens andra klick, och skriver bara det som står i
+# planen. Båda jobben kör med contents: read: GITHUB_TOKEN kan inte skriva till main. Pushen sker
+# i stället över SSH med deploy-nyckeln i hemligheten GODKANN_OMGANG_DEPLOY_KEY (ADR 0014).
 name: Godkänn omgång
 
 on:
@@ -24,25 +23,9 @@ on:
     paths:
       - content/ovningar/**
   workflow_dispatch:
-    inputs:
-      commit_fore:
-        description: Commiten före omgången, alltså den commit på main som omgången mergades ovanpå
-        required: true
-      commit_efter:
-        description: Commiten omgången kom in med, alltså merge-commiten på main
-        required: true
-      pull_request:
-        description: Pull requestens nummer. Den måste vara mergad och ha kommit in med commiten ovan
-        required: true
 
 permissions:
   contents: read
-
-# Två körningar får aldrig skriva till main samtidigt, och en pågående körning avbryts inte:
-# den kan stå och vänta på miljögodkännandet.
-concurrency:
-  group: godkann-omgang
-  cancel-in-progress: false
 
 jobs:
   forbered:
@@ -52,18 +35,26 @@ jobs:
       contents: read
       pull-requests: read
     outputs:
-      fore: ${{ steps.intervall.outputs.fore }}
-      efter: ${{ steps.intervall.outputs.efter }}
-      utcheckning: ${{ steps.intervall.outputs.utcheckning }}
-      pr: ${{ steps.pull.outputs.nummer }}
-      av: ${{ steps.pull.outputs.av }}
-      antal: ${{ steps.torrkorning.outputs.antal }}
+      plan: ${{ steps.plan.outputs.plan }}
+      antal: ${{ steps.plan.outputs.antal }}
+      pr: ${{ steps.plan.outputs.pr }}
     steps:
+      # Skrivningen pushar alltid till main. En dispatch från en annan gren skulle köra den
+      # grenens version av den här filen, så den stoppas här. Det är ett skydd mot misstag; det
+      # verkliga skyddet är att miljön godkannande bara släpper fram main.
+      - name: Kontrollera grenen
+        env:
+          GREN: ${{ github.ref }}
+        run: |
+          if [ "$GREN" != "refs/heads/main" ]; then
+            echo "Arbetsflödet körs bara på main, inte på $GREN. Ingenting skrivs." >&2
+            exit 1
+          fi
+
       - name: Hämta koden
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Hela historiken behövs, eftersom skriptet jämför två commits. Vid en dispatch kan de
-          # ligga längre bak än pushens två.
+          # Hela historiken behövs: skriptet letar upp den merge som senast ändrade varje fil.
           fetch-depth: 0
           persist-credentials: false
 
@@ -79,130 +70,54 @@ jobs:
       - name: Validera hela övningsbanken
         run: npm run validera:ovningar
 
-      - name: Bestäm intervallet
-        id: intervall
-        env:
-          HANDELSE: ${{ github.event_name }}
-          IN_FORE: ${{ inputs.commit_fore }}
-          IN_EFTER: ${{ inputs.commit_efter }}
-          PUSH_FORE: ${{ github.event.before }}
-          PUSH_EFTER: ${{ github.sha }}
-          GREN: ${{ github.ref_name }}
-        run: |
-          set -euo pipefail
-          if [ "$HANDELSE" = "workflow_dispatch" ]; then
-            fore=$(git rev-parse --verify "${IN_FORE}^{commit}")
-            efter=$(git rev-parse --verify "${IN_EFTER}^{commit}")
-            # Intervallet styr vilka filer som lyfts. Commiten före omgången ska därför vara
-            # merge-commitens första förälder, precis som github.event.before är i en push.
-            # Annars kan en dispatch svepa in granskade övningar ur andra omgångar.
-            forsta=$(git rev-parse --verify "${efter}^1")
-            if [ "$fore" != "$forsta" ]; then
-              echo "Commiten före omgången är $fore, men $efter har $forsta som första" >&2
-              echo "förälder. Intervallet stämmer inte med mergen. Ingenting skrivs." >&2
-              exit 1
-            fi
-            # Skrivningen pushar till grenens topp, så jobbet skriv checkar ut grenen och inte
-            # merge-commiten: pushen ska vara en snabbspolning, aldrig en omskriven historik.
-            utcheckning="$GREN"
-          else
-            fore="$PUSH_FORE"
-            efter="$PUSH_EFTER"
-            utcheckning="$PUSH_EFTER"
-          fi
-          echo "Intervall: $fore..$efter"
-          {
-            echo "fore=$fore"
-            echo "efter=$efter"
-            echo "utcheckning=$utcheckning"
-          } >> "$GITHUB_OUTPUT"
-
-      # Vem som godkände hämtas alltid ur API:t. Vid en dispatch anger den som startar körningen
-      # bara pull requestens nummer: skulle kontot komma ur indata kunde vem som helst skriva
-      # vilket namn som helst i granskningsraden.
-      - name: Slå upp den mergade pull requesten
-        id: pull
+      # Pull requesten och kontot i granskningsraden hämtas ur API:t, aldrig ur indata. Skriptet
+      # försöker flera gånger när API:t svarar tomt eller med fel, eftersom kopplingen mellan en
+      # merge-commit och dess pull request byggs med fördröjning. Hittas ändå ingen pull request
+      # faller steget, så att felet syns som rött i stället för att omgången tyst hoppas över.
+      - name: Torrkörning och plan
+        id: plan
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          HANDELSE: ${{ github.event_name }}
-          IN_PR: ${{ inputs.pull_request }}
-          EFTER: ${{ steps.intervall.outputs.efter }}
         run: |
           set -euo pipefail
-          if [ "$HANDELSE" = "workflow_dispatch" ]; then
-            case "$IN_PR" in
-              '' | *[!0-9]*)
-                echo "Pull requestens nummer ska vara ett tal, inte \"$IN_PR\"." >&2
-                exit 1
-                ;;
-            esac
-            nummer="$IN_PR"
-            rad=$(gh api "repos/$REPO/pulls/$nummer" \
-              --jq '[.merged_at // "", .merge_commit_sha // "", .merged_by.login // ""] | @tsv')
-            IFS=$'\t' read -r mergad merge_sha av <<< "$rad"
-            if [ -z "$mergad" ] || [ -z "$av" ]; then
-              echo "Pull request #$nummer är inte mergad. Ingenting skrivs." >&2
-              exit 1
-            fi
-            if [ "$merge_sha" != "$EFTER" ]; then
-              echo "Pull request #$nummer kom in med $merge_sha, inte med $EFTER." >&2
-              echo "Numret hör inte till den angivna commiten. Ingenting skrivs." >&2
-              exit 1
-            fi
-          else
-            nummer=$(gh api "repos/$REPO/commits/$EFTER/pulls" \
-              --jq 'map(select(.merged_at != null)) | first | .number // empty')
-            if [ -z "$nummer" ]; then
-              echo "Ingen mergad pull request för $EFTER. Ingenting skrivs."
-              exit 0
-            fi
-            av=$(gh api "repos/$REPO/pulls/$nummer" --jq '.merged_by.login // empty')
-            if [ -z "$av" ]; then
-              echo "Pull request #$nummer saknar merged_by. Ingenting skrivs."
-              exit 0
-            fi
-          fi
-          echo "Omgången kommer från pull request #$nummer, mergad av $av."
-          echo "nummer=$nummer" >> "$GITHUB_OUTPUT"
-          echo "av=$av" >> "$GITHUB_OUTPUT"
-
-      - name: Torrkörning
-        id: torrkorning
-        if: steps.pull.outputs.nummer != ''
-        env:
-          FORE: ${{ steps.intervall.outputs.fore }}
-          EFTER: ${{ steps.intervall.outputs.efter }}
-          AV: ${{ steps.pull.outputs.av }}
-          PR: ${{ steps.pull.outputs.nummer }}
-        run: |
-          set -o pipefail
-          npm run --silent godkannande -- godkann \
-            --fore "$FORE" --efter "$EFTER" --av "$AV" --pr "$PR" | tee torrkorning.txt
-          echo "antal=$(grep -c '^Lyfter ' torrkorning.txt || true)" >> "$GITHUB_OUTPUT"
+          npm run --silent godkannande -- planera --repo "$REPO" --ut plan.json
+          antal=$(node -e 'const p = JSON.parse(require("fs").readFileSync("plan.json", "utf8")); console.log(p.poster.length)')
+          pr=$(node -e 'const p = JSON.parse(require("fs").readFileSync("plan.json", "utf8")); console.log([...new Set(p.poster.map((e) => "#" + e.pr))].join(", "))')
+          {
+            echo "plan=$(cat plan.json)"
+            echo "antal=$antal"
+            echo "pr=$pr"
+          } >> "$GITHUB_OUTPUT"
 
   skriv:
-    name: Sätt godkand på omgångens granskade övningar
+    name: Sätt godkand på de granskade övningarna
     needs: forbered
-    # Körs inte alls när omgången inte innehåller någon granskad övning, så att miljön inte
-    # ber om ett godkännande i onödan. Vid en dispatch utan mergad pull request faller jobbet
-    # forbered, och då körs det här jobbet inte heller.
+    # Körs inte alls när ingen övning står i granskad, så att miljön inte ber om ett godkännande
+    # i onödan. Statuscommiten utlöser en ny körning, och den slutar här.
     if: needs.forbered.outputs.antal != '' && needs.forbered.outputs.antal != '0'
     runs-on: ubuntu-latest
-    # Miljon väntar på ägarens andra klick, vid dispatch precis som vid push. Utan den skulle
-    # skrivningen följa av mergen ensam, eller av att någon startar en körning.
+    # Två skrivningar får aldrig pusha samtidigt, och en väntande skrivning avbryts inte. GitHub
+    # håller högst en väntande körning per grupp och avbryter den äldre när en ny kommer. Det är
+    # ofarligt här: den nyare körningens plan lästes senare och omfattar allt den äldre hade.
+    concurrency:
+      group: godkann-omgang-skriv
+      cancel-in-progress: false
+    # Miljön väntar på ägarens andra klick, vid dispatch precis som vid push.
     environment: godkannande
     # Jobbet pushar med deploy-nyckeln, inte med GITHUB_TOKEN, så token behöver ingen skrivrätt.
+    # Läsrätten till pull requests behövs för att slå upp pull request och konto på nytt (F5).
     permissions:
       contents: read
+      pull-requests: read
     steps:
       - name: Hämta koden
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Vid en push är det den pushade commiten. Vid en dispatch är det grenens topp, som
-          # kan ligga efter omgången. Innehållet som skrivs kommer ändå ur commiten omgången kom
-          # in med: skriptet läser filerna ur git, inte ur arbetskatalogen.
-          ref: ${{ needs.forbered.outputs.utcheckning }}
+          # Grenens topp, inte den commit som utlöste körningen: main kan ha gått vidare medan
+          # jobbet väntade på miljön, och pushen ska vara en snabbspolning. Vad som skrivs styrs
+          # av planen, som skriptet stämmer av fil för fil mot toppen.
+          ref: main
           fetch-depth: 0
           # Den inbyggda token får inte ligga kvar i git-konfigurationen: den kan ändå inte
           # pusha till main, och pushen ska ske med deploy-nyckeln.
@@ -214,41 +129,56 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      # --ignore-scripts: inget paket får köra egna installationsskript i det jobb som senare
+      # får deploy-nyckeln. Skripten här behöver bara yaml och zod, som inte har några.
       - name: Installera beroenden
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      # Skrivningen lägger filernas innehåll ur omgångens commit på grenens topp. Har banken
-      # ändrats däremellan skulle den skriva över de ändringarna, så då skrivs ingenting alls.
-      # Vid en push är HEAD samma commit som omgången kom in med, och steget är verkningslöst.
-      - name: Kontrollera att banken står orörd sedan omgången
-        env:
-          EFTER: ${{ needs.forbered.outputs.efter }}
-        run: |
-          set -euo pipefail
-          if ! git diff --quiet "$EFTER" HEAD -- content/ovningar; then
-            echo "content/ovningar har ändrats efter $EFTER:" >&2
-            git diff --name-only "$EFTER" HEAD -- content/ovningar >&2
-            echo "Skrivningen skulle skriva över de ändringarna. Ingenting skrivs." >&2
-            exit 1
-          fi
-
+      # Planen ska ha lästs ur main. Varje fil i den måste ha exakt den text torrkörningen visade,
+      # den texten måste vara den som kom in med planens merge, och mergen måste vara den som
+      # senast ändrade filen. Pull request och konto slås upp på nytt i API:t och måste stämma
+      # med planen; det är API:ts värden som skrivs (F5). Annars skrivs ingenting alls. En fil
+      # som redan blivit godkand hoppas över.
       - name: Sätt godkand
         env:
-          FORE: ${{ needs.forbered.outputs.fore }}
-          EFTER: ${{ needs.forbered.outputs.efter }}
-          AV: ${{ needs.forbered.outputs.av }}
-          PR: ${{ needs.forbered.outputs.pr }}
+          PLAN: ${{ needs.forbered.outputs.plan }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
-          npm run --silent godkannande -- godkann \
-            --fore "$FORE" --efter "$EFTER" --av "$AV" --pr "$PR" --skriv
+          set -euo pipefail
+          printf '%s' "$PLAN" > "$RUNNER_TEMP/plan.json"
+          # Att planens bas ligger på main kontrolleras i tillampa, efter att formen på bas
+          # stämts av. Värdet passerar aldrig skalet (F8).
+          npm run --silent godkannande -- tillampa --plan "$RUNNER_TEMP/plan.json" --repo "$REPO" --skriv
 
       - name: Validera banken efter skrivningen
         run: npm run validera:ovningar
 
-      # Nyckeln skrivs till en fil som bara körningen kan läsa, och pekas ut med core.sshCommand
-      # så att den gäller pushen nedan. Värdnyckeln förankras med ssh-keyscan i stället för att
-      # stängas av med StrictHostKeyChecking=no. Ingenting av detta echas.
-      - name: Sätt upp deploy-nyckeln
+      # Commiten görs före nyckeln, så att ingenting ur repot körs medan nyckeln finns på disk.
+      # core.hooksPath=/dev/null: inga git-krokar körs, varken vid commit eller push (F3).
+      - name: Committa
+        id: commit
+        env:
+          PR: ${{ needs.forbered.outputs.pr }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- content/ovningar
+          if git diff --cached --quiet; then
+            echo "Inget att committa."
+            echo "pusha=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git -c core.hooksPath=/dev/null commit --message "Sätt godkand på omgången från pull request $PR"
+          echo "pusha=true" >> "$GITHUB_OUTPUT"
+
+      # Nyckeln skrivs, används och tas bort i ett och samma steg. Efter att den skrivits körs
+      # bara ssh och git push, inga skript ur repot och inga paket. Den pekas ut med
+      # GIT_SSH_COMMAND för just pushen och hamnar aldrig i git-konfigurationen. Värdnyckeln
+      # förankras i stället för att stängas av med StrictHostKeyChecking=no. Ingenting echas.
+      - name: Pusha till main med deploy-nyckeln
+        if: steps.commit.outputs.pusha == 'true'
         env:
           DEPLOY_KEY: ${{ secrets.GODKANN_OMGANG_DEPLOY_KEY }}
         run: |
@@ -258,40 +188,33 @@ jobs:
             exit 1
           fi
           umask 077
-          mkdir -p "$HOME/.ssh"
-          chmod 700 "$HOME/.ssh"
-          printf '%s\n' "$DEPLOY_KEY" > "$HOME/.ssh/godkann-omgang"
-          chmod 600 "$HOME/.ssh/godkann-omgang"
-          ssh-keyscan github.com > "$HOME/.ssh/known_hosts"
-          chmod 600 "$HOME/.ssh/known_hosts"
-          if [ ! -s "$HOME/.ssh/known_hosts" ]; then
-            echo "ssh-keyscan gav ingen värdnyckel för github.com. Pushen kan inte ske." >&2
-            exit 1
-          fi
-          git config core.sshCommand \
-            "ssh -i $HOME/.ssh/godkann-omgang -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
-
-      - name: Committa och pusha till main
-        env:
-          PR: ${{ needs.forbered.outputs.pr }}
-          GREN: ${{ github.ref_name }}
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- content/ovningar
-          if git diff --cached --quiet; then
-            echo "Inget att committa."
-            exit 0
-          fi
-          git commit --message "Sätt godkand på omgången från pull request #$PR"
+          ssh_dir="$RUNNER_TEMP/godkann-omgang-ssh"
+          mkdir -p "$ssh_dir"
+          # GitHubs publicerade SSH-värdnycklar, ordagrant ur https://api.github.com/meta, fältet
+          # ssh_keys, hämtade 2026-10-05. Fingeravtryck (SHA256) enligt samma svar:
+          # ED25519 +DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU,
+          # ECDSA p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM,
+          # RSA uNiVztksCsDhcc0u9e8BujQXVUpKZIDTMczCvj3tD2s.
+          # De står här i stället för ssh-keyscan, som litar på det första svar nätet ger (F9).
+          # Byter GitHub nycklar faller pushen på värdnyckeln, och raderna ska då bytas för hand.
+          cat > "$ssh_dir/known_hosts" <<'NYCKLAR'
+          github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+          github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+          github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+          NYCKLAR
+          trap 'rm -f "$ssh_dir/nyckel"' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$ssh_dir/nyckel"
           # Deploy-nyckeln är registrerad på liebertech/Fotbollsbanken och är den enda aktör
           # som regeluppsättningen Skydd av main gör undantag för (ADR 0014). Pushen sker utan
           # --force: går den inte som snabbspolning ska den falla, inte skriva om historiken.
-          git push git@github.com:liebertech/Fotbollsbanken.git "HEAD:$GREN"
+          # Faller den för att main hunnit gå vidare räcker det att köra arbetsflödet igen.
+          # Absoluta sökvägar, ingen ssh-konfiguration (-F /dev/null) och inga globala eller
+          # systemvida git-inställningar, så att tidigare steg i jobbet inte kan peka om ssh eller
+          # git via PATH, ~/.ssh/config eller git-konfigurationen (säkerhetsuppföljningen, F3).
+          GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 \
+          GIT_SSH_COMMAND="/usr/bin/ssh -F /dev/null -i $ssh_dir/nyckel -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$ssh_dir/known_hosts" \
+            /usr/bin/git -c core.hooksPath=/dev/null push git@github.com:liebertech/Fotbollsbanken.git "HEAD:main"
 
       - name: Ta bort nyckelfilen
         if: always()
-        run: |
-          rm -f "$HOME/.ssh/godkann-omgang"
-          git config --unset core.sshCommand || true
+        run: rm -rf "$RUNNER_TEMP/godkann-omgang-ssh"

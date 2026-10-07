@@ -3,6 +3,11 @@
  *
  *   npm run godkannande -- kontroll --bas <sha> --huvud <sha>
  *   npm run godkannande -- godkann --fore <sha> --efter <sha> [--av <konto>] [--pr <nr>] [--skriv]
+ *   npm run godkannande -- planera [--repo <ägare/namn>] [--ut <plan.json>]
+ *   npm run godkannande -- tillampa --plan <plan.json> [--repo <ägare/namn>] [--skriv]
+ *
+ * `planera` och `tillampa` är arbetsflödets väg sedan ADR 0020: `planera` letar upp varje
+ * övning i `granskad` på main och den merge som förde in den, och `tillampa` skriver just det.
  *
  * `kontroll` underkänner en pull request som sätter `godkand` på en övning, och en omgång som
  * samtidigt ändrar filer utanför `content/` och `docs/` (ADR 0013 avsnitt 3, lager 3).
@@ -14,7 +19,7 @@
  * ut basgrenens kod och ändå läsa pull requestens innehåll utan att köra det (S-03).
  */
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isSeq, parse, parseDocument } from 'yaml';
@@ -267,7 +272,7 @@ export interface ApprovalResult {
 }
 
 /** Granskningsraden som godkännandet lämnar efter sig. */
-export function reviewLine(options: ApprovalOptions): ReviewLine {
+export function reviewLine(options: Pick<ApprovalOptions, 'av' | 'pr' | 'datum'>): ReviewLine {
   const datum = options.datum ?? new Date().toISOString().slice(0, 10);
   const kommentar =
     options.pr === undefined
@@ -414,10 +419,548 @@ export function godkann(
   };
 }
 
-const COMMANDS = ['kontroll', 'godkann'] as const;
+/*
+ * Ikappskrivningen (ADR 0020). Arbetsflödet följer inte längre en enskild push. Det letar upp
+ * varje övning på `main` som står i `granskad`, och knyter den till den merge som senast ändrade
+ * filen. Det är den merge som förde in exakt den text som ska stämplas. En körning som avbryts
+ * eller faller tappar därför ingen omgång: nästa körning hittar samma filer.
+ */
+
+/** Läsning ur git utöver `GitReader`, för ikappskrivningen. */
+export interface HistoryReader extends GitReader {
+  /** Filerna direkt under `dir` vid en revision, som sökvägar relativt repots rot. */
+  listFiles(rev: string, dir: string): string[];
+  /** Den commit på första-förälderkedjan som senast ändrade filen, eller `undefined`. */
+  lastChange(rev: string, path: string): string | undefined;
+  /** Commitens meddelande. */
+  message(sha: string): string;
+  /** Blobbens sha för filen vid en revision, eller `undefined` om filen inte finns där. */
+  blob(rev: string, path: string): string | undefined;
+  /** Den fullständiga sha:n för en revision. */
+  resolve(rev: string): string;
+  /** Sant när `ancestor` finns i historiken bakom `rev`. Falskt också när commiten saknas. */
+  isAncestor(ancestor: string, rev: string): boolean;
+}
+
+export function createHistoryReader(cwd: string = process.cwd()): HistoryReader {
+  const base = createGitReader(cwd);
+  const git = (args: string[]): string | undefined => {
+    try {
+      return execFileSync('git', args, {
+        cwd,
+        encoding: 'utf8',
+        maxBuffer: 64 * 1024 * 1024,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+    } catch {
+      return undefined;
+    }
+  };
+  const required = (args: string[]): string => {
+    const out = git(args);
+    if (out === undefined) {
+      throw new Error(`git ${args.join(' ')} misslyckades`);
+    }
+    return out;
+  };
+
+  return {
+    ...base,
+    listFiles: (rev, dir) =>
+      required(['ls-tree', '--name-only', rev, `${dir}/`])
+        .split('\n')
+        .filter((line) => line !== ''),
+    // --first-parent: på main är varje ändring en merge eller statuscommiten. En merge jämförs
+    // då bara med sin första förälder, alltså main före mergen, och räknas som den commit som
+    // förde in filens innehåll.
+    lastChange: (rev, path) => {
+      const sha = required(['log', '--first-parent', '-1', '--format=%H', rev, '--', path]).trim();
+      return sha === '' ? undefined : sha;
+    },
+    message: (sha) => required(['log', '-1', '--format=%B', sha]),
+    blob: (rev, path) => git(['rev-parse', '--verify', '--quiet', `${rev}:${path}`])?.trim(),
+    resolve: (rev) => required(['rev-parse', '--verify', `${rev}^{commit}`]).trim(),
+    // Slutkod 1 betyder "inte förfader" och 128 att commiten saknas. Båda ger falskt.
+    isAncestor: (ancestor, rev) =>
+      git(['merge-base', '--is-ancestor', ancestor, rev]) !== undefined,
+  };
+}
+
+/** Ett anrop mot GitHubs REST-API. Returnerar svarskroppen som text. */
+export type ApiGet = (path: string) => string;
+
+/** `gh api` mot repot. GH_TOKEN sätts av arbetsflödet. */
+export function createGhApi(repo: string): ApiGet {
+  return (path) =>
+    execFileSync('gh', ['api', `repos/${repo}/${path}`], {
+      encoding: 'utf8',
+      maxBuffer: 16 * 1024 * 1024,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+}
+
+/**
+ * Tolkar ett JSON-svar. Ett tomt svar är ett eget fel med ett begripligt meddelande, eftersom
+ * det var just ett tomt svar som fällde körningen för pull request #15 med
+ * "unexpected end of JSON input" (ADR 0020).
+ */
+export function parseJson(text: string, what: string): unknown {
+  if (text.trim() === '') {
+    throw new Error(`${what}: tomt svar`);
+  }
+  try {
+    return JSON.parse(text) as unknown;
+  } catch (cause) {
+    throw new Error(`${what}: svaret är inte JSON (${(cause as Error).message})`, { cause });
+  }
+}
+
+export interface PullRequestInfo {
+  number: number;
+  mergedAt: string | null;
+  mergeCommitSha: string | null;
+  mergedBy: string | null;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+/** Tolkar svaret från `pulls/{nummer}`. Kastar om svaret saknar det som behövs. */
+export function parsePullRequest(text: string): PullRequestInfo {
+  const data = parseJson(text, 'pull request');
+  if (!isRecord(data) || typeof data.number !== 'number') {
+    throw new Error('pull request: svaret saknar number');
+  }
+  const optionalString = (value: unknown): string | null =>
+    typeof value === 'string' && value !== '' ? value : null;
+  const mergedBy = isRecord(data.merged_by) ? optionalString(data.merged_by.login) : null;
+  return {
+    number: data.number,
+    mergedAt: optionalString(data.merged_at),
+    mergeCommitSha: optionalString(data.merge_commit_sha),
+    mergedBy,
+  };
+}
+
+/** Tolkar svaret från `commits/{sha}/pulls`: numren på de pull requests som är mergade. */
+export function parseCommitPulls(text: string): number[] {
+  const data = parseJson(text, 'pull requests för commiten');
+  if (!Array.isArray(data)) {
+    throw new Error('pull requests för commiten: svaret är ingen lista');
+  }
+  return data
+    .filter((item): item is Record<string, unknown> => isRecord(item))
+    .filter((item) => typeof item.merged_at === 'string' && typeof item.number === 'number')
+    .map((item) => item.number as number);
+}
+
+/**
+ * Numret ur GitHubs merge-meddelande, `Merge pull request #N from …`. Numret är bara en
+ * kandidat: det stäms alltid av mot API:t, eftersom meddelandet går att skriva om vid mergen.
+ */
+export function pullNumberFromMessage(message: string): number | undefined {
+  const match = /^Merge pull request #(\d+) from /.exec(message);
+  return match === null ? undefined : Number(match[1]);
+}
+
+export interface RetryOptions {
+  /** Antal försök per anrop. */
+  attempts: number;
+  /** Väntan före försök nummer `n + 1`, i millisekunder. */
+  delay: (attempt: number) => number;
+  sleep: (ms: number) => void;
+}
+
+const sleepSync = (ms: number): void => {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+};
+
+/**
+ * Fem försök med sammanlagt 30 sekunders väntan däremellan (2 + 4 + 8 + 16 s). Kopplingen
+ * commit → pull request byggs med fördröjning.
+ */
+export const DEFAULT_RETRY: RetryOptions = {
+  attempts: 5,
+  delay: (attempt) => 2000 * 2 ** (attempt - 1),
+  sleep: sleepSync,
+};
+
+/** Kör `call` tills den lyckas, och kastar det sista felet när försöken är slut. */
+export function withRetry<T>(call: () => T, retry: RetryOptions): T {
+  let last: unknown;
+  for (let attempt = 1; attempt <= retry.attempts; attempt += 1) {
+    try {
+      return call();
+    } catch (cause) {
+      last = cause;
+      if (attempt < retry.attempts) {
+        retry.sleep(retry.delay(attempt));
+      }
+    }
+  }
+  throw last instanceof Error ? last : new Error(String(last));
+}
+
+export interface ResolvedPull {
+  pr: number;
+  av: string;
+}
+
+/**
+ * Den mergade pull request som lade commiten på main, och kontot som mergade den. Kontot kommer
+ * alltid ur API:t. Pull requesten godtas bara om dess `merge_commit_sha` är precis commiten.
+ *
+ * Numret i merge-meddelandet prövas först. Saknas det, eller hör pull requesten till en annan
+ * commit, frågas `commits/{sha}/pulls` innan uppslaget ger fel: meddelandet går att skriva om
+ * vid mergen och är bara en kandidat (F6).
+ */
+export function resolvePullRequest(
+  api: ApiGet,
+  commit: string,
+  message: string,
+  retry: RetryOptions = DEFAULT_RETRY,
+): ResolvedPull | { error: string } {
+  const reasons: string[] = [];
+  const tried = new Set<number>();
+  const failed = (): { error: string } => ({
+    error: `ingen mergad pull request för ${commit} (${reasons.join('; ')})`,
+  });
+
+  const check = (number: number): ResolvedPull | undefined => {
+    tried.add(number);
+    let info: PullRequestInfo;
+    try {
+      info = withRetry(() => parsePullRequest(api(`pulls/${number}`)), retry);
+    } catch (cause) {
+      reasons.push(`#${number}: ${(cause as Error).message}`);
+      return undefined;
+    }
+    if (info.mergedAt === null || info.mergedBy === null) {
+      reasons.push(`#${number} är inte mergad`);
+      return undefined;
+    }
+    if (info.mergeCommitSha !== commit) {
+      reasons.push(
+        `#${number} kom in med ${info.mergeCommitSha ?? 'ingen commit'}, inte ${commit}`,
+      );
+      return undefined;
+    }
+    return { pr: number, av: info.mergedBy };
+  };
+
+  const fromMessage = pullNumberFromMessage(message);
+  if (fromMessage !== undefined) {
+    const found = check(fromMessage);
+    if (found !== undefined) {
+      return found;
+    }
+  }
+
+  let candidates: number[];
+  try {
+    candidates = withRetry(() => {
+      const numbers = parseCommitPulls(api(`commits/${commit}/pulls`));
+      if (numbers.length === 0) {
+        throw new Error('commits/{sha}/pulls gav ingen mergad pull request');
+      }
+      return numbers;
+    }, retry);
+  } catch (cause) {
+    reasons.push((cause as Error).message);
+    return failed();
+  }
+
+  for (const number of candidates.filter((candidate) => !tried.has(candidate))) {
+    const found = check(number);
+    if (found !== undefined) {
+      return found;
+    }
+  }
+  return failed();
+}
+
+/** En fil som ska lyftas: vilken text (blob), vilken merge och vem som mergade. */
+export interface PlanEntry {
+  fil: string;
+  blob: string;
+  commit: string;
+  pr: number;
+  av: string;
+}
+
+/** Torrkörningens resultat. Skrivjobbet skriver bara det som står här (ADR 0020). */
+export interface Plan {
+  version: 1;
+  /** Den commit på main som planen lästes ur. */
+  bas: string;
+  poster: PlanEntry[];
+}
+
+export interface PlanResult {
+  plan: Plan;
+  findings: Finding[];
+}
+
+/**
+ * Letar upp varje övning som står i `granskad` vid `rev` och knyter den till den merge som
+ * senast ändrade filen. Filens text vid `rev` är därmed exakt den text som mergades.
+ */
+export function planera(
+  git: HistoryReader,
+  api: ApiGet,
+  rev = 'HEAD',
+  retry: RetryOptions = DEFAULT_RETRY,
+): PlanResult {
+  const bas = git.resolve(rev);
+  const poster: PlanEntry[] = [];
+  const findings: Finding[] = [];
+  const pulls = new Map<string, ResolvedPull | { error: string }>();
+  const probe: ReviewLine = { datum: '2000-01-01', av: 'x', roll: APPROVAL_ROLE };
+
+  for (const path of git.listFiles(bas, CONTENT_DIR).filter(isExerciseFile).sort()) {
+    const raw = git.read(bas, path);
+    if (raw === undefined) {
+      continue;
+    }
+    const reading = readStatus(raw);
+    if (reading.error !== undefined) {
+      findings.push({ file: path, message: reading.error });
+      continue;
+    }
+    if (reading.status !== REVIEWED_STATUS) {
+      continue;
+    }
+
+    const raised = raiseToApproved(raw, probe);
+    if ('error' in raised) {
+      findings.push({ file: path, message: raised.error });
+      continue;
+    }
+
+    const commit = git.lastChange(bas, path);
+    const blob = git.blob(bas, path);
+    if (commit === undefined || blob === undefined) {
+      findings.push({ file: path, message: 'hittar ingen commit som förde in filen' });
+      continue;
+    }
+    if (git.blob(commit, path) !== blob) {
+      findings.push({ file: path, message: `texten skiljer sig från den i ${commit}` });
+      continue;
+    }
+
+    let pull = pulls.get(commit);
+    if (pull === undefined) {
+      pull = resolvePullRequest(api, commit, git.message(commit), retry);
+      pulls.set(commit, pull);
+    }
+    if ('error' in pull) {
+      findings.push({ file: path, message: pull.error });
+      continue;
+    }
+    poster.push({ fil: path, blob, commit, pr: pull.pr, av: pull.av });
+  }
+
+  return { plan: { version: 1, bas, poster }, findings };
+}
+
+const SHA = /^[0-9a-f]{40}$/;
+/** GitHubs regler för kontonamn: bokstäver, siffror och bindestreck, högst 39 tecken. */
+const LOGIN = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/;
+
+/**
+ * Tolkar planen som torrkörningen lämnade till skrivjobbet. Planen kommer från samma körning,
+ * men skrivjobbet litar ändå inte på formen: allt som skrivs i en fil ska ha rätt form.
+ */
+export function parsePlan(text: string): Plan | { error: string } {
+  let data: unknown;
+  try {
+    data = parseJson(text, 'planen');
+  } catch (cause) {
+    return { error: (cause as Error).message };
+  }
+  if (!isRecord(data) || data.version !== 1) {
+    return { error: 'planen har inte version 1' };
+  }
+  if (typeof data.bas !== 'string' || !SHA.test(data.bas)) {
+    return { error: 'planen saknar en giltig bas' };
+  }
+  if (!Array.isArray(data.poster)) {
+    return { error: 'planen saknar poster' };
+  }
+
+  const poster: PlanEntry[] = [];
+  for (const [index, item] of data.poster.entries()) {
+    const valid =
+      isRecord(item) &&
+      typeof item.fil === 'string' &&
+      isExerciseFile(item.fil) &&
+      typeof item.blob === 'string' &&
+      SHA.test(item.blob) &&
+      typeof item.commit === 'string' &&
+      SHA.test(item.commit) &&
+      typeof item.pr === 'number' &&
+      Number.isSafeInteger(item.pr) &&
+      item.pr > 0 &&
+      typeof item.av === 'string' &&
+      LOGIN.test(item.av);
+    if (!valid) {
+      return { error: `planens post ${index + 1} har fel form` };
+    }
+    poster.push({
+      fil: item.fil as string,
+      blob: item.blob as string,
+      commit: item.commit as string,
+      pr: item.pr as number,
+      av: item.av as string,
+    });
+  }
+  if (new Set(poster.map((entry) => entry.fil)).size !== poster.length) {
+    return { error: 'planen nämner samma fil två gånger' };
+  }
+  return { version: 1, bas: data.bas, poster };
+}
+
+/**
+ * Skriver planen. Varje fil måste ha precis den text torrkörningen visade, ha ändrats senast i
+ * planens merge, och planens pull request och konto måste stämma med det API:t svarar nu;
+ * annars skrivs ingenting alls. Planen är bara det ägaren såg, inte en källa till det som
+ * skrivs (F5). En fil som redan står i `godkand` hoppas över, så att två körningar med
+ * överlappande planer inte krockar. Utan `write` ändras ingenting.
+ */
+export function tillampa(
+  git: HistoryReader,
+  api: ApiGet,
+  plan: Plan,
+  options: { rev?: string; datum?: string; write?: boolean; retry?: RetryOptions } = {},
+  writeFile: WriteFile = writeToDisk,
+): ApprovalResult {
+  const rev = options.rev ?? 'HEAD';
+  // `bas` har redan formen av en sha (parsePlan) och går bara till git som ett argument, aldrig
+  // genom ett skal (F8).
+  if (!SHA.test(plan.bas) || !git.isAncestor(plan.bas, rev)) {
+    return {
+      ok: false,
+      files: [
+        {
+          file: '',
+          outcome: 'fel',
+          message: `planen lästes ur ${plan.bas}, som inte ligger på main`,
+        },
+      ],
+      written: false,
+    };
+  }
+  const files: ApprovalFile[] = [];
+  const pulls = new Map<string, ResolvedPull | { error: string }>();
+
+  for (const entry of plan.poster) {
+    const raw = git.read(rev, entry.fil);
+    const blob = git.blob(rev, entry.fil);
+    if (raw === undefined || blob === undefined) {
+      files.push({ file: entry.fil, outcome: 'fel', message: 'filen finns inte längre' });
+      continue;
+    }
+    if (blob !== entry.blob) {
+      const status = readStatus(raw).status;
+      files.push(
+        status === APPROVED_STATUS
+          ? { file: entry.fil, outcome: 'orord', message: `status är redan ${APPROVED_STATUS}` }
+          : {
+              file: entry.fil,
+              outcome: 'fel',
+              message: 'filen har ändrats sedan torrkörningen',
+            },
+      );
+      continue;
+    }
+    if (git.blob(entry.commit, entry.fil) !== entry.blob) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message: `texten är inte den som kom in med ${entry.commit}`,
+      });
+      continue;
+    }
+    // Samma blob kan ha kommit in igen med en senare merge. Raden ska nämna den merge som
+    // senast förde in texten, precis som i torrkörningen.
+    const last = git.lastChange(rev, entry.fil);
+    if (last !== entry.commit) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message: `filen ändrades senast i ${last ?? 'ingen commit'}, inte i ${entry.commit}`,
+      });
+      continue;
+    }
+
+    let pull = pulls.get(entry.commit);
+    if (pull === undefined) {
+      pull = resolvePullRequest(
+        api,
+        entry.commit,
+        git.message(entry.commit),
+        options.retry ?? DEFAULT_RETRY,
+      );
+      pulls.set(entry.commit, pull);
+    }
+    if ('error' in pull) {
+      files.push({ file: entry.fil, outcome: 'fel', message: pull.error });
+      continue;
+    }
+    if (pull.pr !== entry.pr || pull.av !== entry.av) {
+      files.push({
+        file: entry.fil,
+        outcome: 'fel',
+        message:
+          `planen säger pull request #${entry.pr} mergad av ${entry.av}, ` +
+          `API:t säger #${pull.pr} mergad av ${pull.av}`,
+      });
+      continue;
+    }
+
+    const raised = raiseToApproved(
+      raw,
+      reviewLine({ av: pull.av, pr: pull.pr, datum: options.datum }),
+    );
+    if ('error' in raised) {
+      files.push({ file: entry.fil, outcome: 'fel', message: raised.error });
+      continue;
+    }
+    files.push({
+      file: entry.fil,
+      outcome: 'lyft',
+      message: `${REVIEWED_STATUS} → ${APPROVED_STATUS} (pull request #${pull.pr}, mergad av ${pull.av})`,
+      text: raised.text,
+    });
+  }
+
+  const ok = files.every((file) => file.outcome !== 'fel');
+  const write = ok && options.write === true;
+  if (write) {
+    for (const file of files) {
+      if (file.outcome === 'lyft' && file.text !== undefined) {
+        writeFile(file.file, file.text);
+      }
+    }
+  }
+  return { ok, files, written: write };
+}
+
+const COMMANDS = ['kontroll', 'godkann', 'planera', 'tillampa'] as const;
 type Command = (typeof COMMANDS)[number];
 
-const VALUE_FLAGS = ['--bas', '--huvud', '--fore', '--efter', '--av', '--pr'] as const;
+const VALUE_FLAGS = [
+  '--bas',
+  '--huvud',
+  '--fore',
+  '--efter',
+  '--av',
+  '--pr',
+  '--repo',
+  '--ut',
+  '--plan',
+] as const;
 
 export interface ParsedArguments {
   command: Command;
@@ -528,18 +1071,127 @@ function runGodkann(git: GitReader, args: ParsedArguments, log: (line: string) =
   return result.ok ? 0 : 1;
 }
 
+const MISSING_REPO = 'Ange --repo <ägare/namn>, eller kör med GITHUB_REPOSITORY satt.';
+
+/** API:t för repot i `--repo` eller GITHUB_REPOSITORY, eller `undefined` om inget giltigt anges. */
+function apiFromArguments(args: ParsedArguments): ApiGet | undefined {
+  const repo = args.values.get('--repo') ?? process.env.GITHUB_REPOSITORY;
+  return repo !== undefined && /^[\w.-]+\/[\w.-]+$/.test(repo) ? createGhApi(repo) : undefined;
+}
+
+function runPlanera(
+  git: HistoryReader,
+  args: ParsedArguments,
+  log: (line: string) => void,
+  api: ApiGet | undefined,
+): number {
+  const github = api ?? apiFromArguments(args);
+  if (github === undefined) {
+    log(MISSING_REPO);
+    return 1;
+  }
+
+  const { plan, findings } = planera(git, github);
+  for (const entry of plan.poster) {
+    log(
+      `Lyfter ${fileName(entry.fil)}: ${REVIEWED_STATUS} → ${APPROVED_STATUS} ` +
+        `(pull request #${entry.pr}, mergad av ${entry.av})`,
+    );
+  }
+  for (const finding of findings) {
+    log(`Fel i ${formatFinding(finding)}`);
+  }
+
+  // Vid fel skrivs en tom plan, så att ett skrivjobb som ändå skulle starta inte har något att
+  // skriva. Arbetsflödet startar det inte heller, eftersom steget faller.
+  const out = args.values.get('--ut');
+  if (out !== undefined) {
+    writeFileSync(out, JSON.stringify(findings.length === 0 ? plan : { ...plan, poster: [] }));
+  }
+  log(
+    findings.length === 0
+      ? `Torrkörning: ${antal(plan.poster.length, 'övning', 'övningar')} skulle sättas till ` +
+          `${APPROVED_STATUS}.`
+      : `Torrkörningen hittade ${antal(findings.length, 'fel', 'fel')}. Ingenting skrivs.`,
+  );
+  return findings.length === 0 ? 0 : 1;
+}
+
+function runTillampa(
+  git: HistoryReader,
+  args: ParsedArguments,
+  log: (line: string) => void,
+  api: ApiGet | undefined,
+): number {
+  const path = args.values.get('--plan');
+  if (path === undefined) {
+    log('Ange --plan <fil>.');
+    return 1;
+  }
+  let text: string;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch (cause) {
+    log(`Planen går inte att läsa: ${(cause as Error).message}`);
+    return 1;
+  }
+  const plan = parsePlan(text);
+  if ('error' in plan) {
+    log(`Planen går inte att använda: ${plan.error}. Ingenting skrivs.`);
+    return 1;
+  }
+  const github = api ?? apiFromArguments(args);
+  if (github === undefined) {
+    log(MISSING_REPO);
+    return 1;
+  }
+
+  const result = tillampa(git, github, plan, { write: args.write });
+  for (const file of result.files) {
+    if (file.file === '') {
+      log(`Fel: ${file.message}`);
+      continue;
+    }
+    log(
+      `${file.outcome === 'lyft' ? 'Lyfter' : file.outcome === 'orord' ? 'Rör inte' : 'Fel i'} ${fileName(file.file)}: ${file.message}`,
+    );
+  }
+  if (!result.ok) {
+    log('Minst en fil stämmer inte med torrkörningen. Ingenting skrivs.');
+    return 1;
+  }
+  const raised = result.files.filter((file) => file.outcome === 'lyft').length;
+  log(
+    result.written
+      ? `${antal(raised, 'övning satt', 'övningar satta')} till ${APPROVED_STATUS}.`
+      : `Torrkörning: ${antal(raised, 'övning', 'övningar')} skulle sättas till ` +
+          `${APPROVED_STATUS}. Lägg till --skriv för att skriva.`,
+  );
+  return 0;
+}
+
 /** Kör skriptet. Returnerar processens slutkod: 1 om något underkänns. */
 export function main(
   argv: string[],
   log: (line: string) => void = console.log,
-  git: GitReader = createGitReader(),
+  git: HistoryReader = createHistoryReader(),
+  api?: ApiGet,
 ): number {
   const args = parseArguments(argv);
   if ('error' in args) {
     log(args.error);
     return 1;
   }
-  return args.command === 'kontroll' ? runKontroll(git, args, log) : runGodkann(git, args, log);
+  switch (args.command) {
+    case 'kontroll':
+      return runKontroll(git, args, log);
+    case 'godkann':
+      return runGodkann(git, args, log);
+    case 'planera':
+      return runPlanera(git, args, log, api);
+    case 'tillampa':
+      return runTillampa(git, args, log, api);
+  }
 }
 
 const invokedDirectly =
