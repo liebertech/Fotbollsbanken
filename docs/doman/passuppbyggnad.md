@@ -1,8 +1,10 @@
-Status: ändrad vid K3 (2026-09-14), två tillägg 2026-09-23, preciserade 2026-09-24, ändrad 2026-10-02 (R-058)
+Status: ändrad vid K3 (2026-09-14), två tillägg 2026-09-23, preciserade 2026-09-24, ändrad 2026-10-02 (R-058), tillägg 2026-10-07 (taket)
 
 # Passuppbyggnad
 
 **Ägare:** fotbollsexpert
+
+*Ändring 2026-10-07. Ett tillägg under punkten "Över taket" i avsnittet "Vad som händer när en övning inte håller måttet": taket prövas inte som gräns för övningar där varje spelare har egen boll och ingen motståndare finns, eftersom antalet bollkontakter då inte beror på ytan. Ledaren gör i stället ytan mindre när gruppen är liten, och övningens text ska säga det. Kull- och jaktlekar omfattas inte. Tillägget kommer ur granskningen av omgång 5, paket A, och användaren beslutade det 2026-10-07. Det är ett **granskningskriterium**, inte en generatorregel, och ingen ny regel har lagts till i `generatorregler.md`. Golvet och alla siffror i filen är oförändrade.*
 
 *Ändring 2026-10-02. Avsnittet "Hur spelarna delas i grupper" speglar den nya regeln R-058 i `generatorregler.md`, som användaren beslutade 2026-10-02: övningar med grupptypen `par`, och `fast-storlek` med en lösning för udda antal, delas i så många grupper av övningens storlek som möjligt, och de som blir över läggs en och en i grupperna. Punkt 1 och 4 i "Så gör generatorn" och raderna för `par` och `fast-storlek` i tabellen över grupptyper är ändrade. Den felaktiga meningen att bara `fast-storlek` kan väljas bort på grund av udda antal är rättad. En not om spelarspannet i `tva-lag`-övningar är tillagd; den är en rekommendation vid granskning, inte en regel och inte ett beslutat kriterium. Inga siffror i resten av filen är ändrade.*
 
@@ -398,6 +400,7 @@ Det finns övningar där trängsel är själva poängen. Listan nedan är **slut
 - **Under golvet men träffas av ett undantag:** övningen går vidare, och jag skriver i `granskning` vilket undantag som åberopats. Saknas motiveringen i övningens egen text sätts `atgarda` med kommentaren att texten ska säga varför ytan är trång.
 - **Över undantagets mått i undantag 1 eller 3:** `atgarda`. Golvet gäller inte för den sortens övning, så det duger inte som skäl för en större yta. Jag skriver vilket mått övningen ska ha och varför den blir sämre av att växa.
 - **Över taket:** räknat vid `spelare.min`. Inte automatiskt fel, men jag frågar varför. Oftast är svaret att ytan är kopierad från matchen när övningen har färre spelare än matchen, och det syns just vid minsta antal. Då sätts `atgarda`, och vägen framåt är antingen ett högre minsta antal eller en mindre yta för de mindre grupperna.
+  - **Övningar där varje spelare har egen boll och ingen motståndare finns:** här prövas taket inte som gräns. Taket finns för att spelarna annars inte möter varandra och bollkontakterna blir få, men när alla har egen boll beror antalet bollkontakter inte på ytan. Ledaren gör i stället ytan mindre när gruppen är liten, så att spelarna måste titta upp, och övningens text ska säga det. Saknas den meningen sätts `atgarda`. Det gäller inte kull- och jaktlekar, även om alla har boll: där är avståndet hela leken, och taket prövas som vanligt. *Tillagt 2026-10-07, beslutat av användaren samma dag.*
 - **En godkänd övning som ligger under golvet** ändras inte i efterhand av det här avsnittet. Golvet gäller övningar som granskas från och med 2026-09-23. Om en sådan övning ändå öppnas för ändring tas ytan upp då.
 
 ### Minsta längd när övningen ska öva djupled

@@ -109,11 +109,18 @@ Alla har ålder 6–7, `spelformer: [3mot3, 5mot5]`, ingen målvakt och fokusomr
 |---|---|---|---|---|---|---|---|
 | A1 | Spel 2 mot 2 till 3 mot 3 till småmål | `del-spel` | `ett-mot-ett`, `avslut`, `dribbling` | 1–3 | `tva-lag`, 4–7 | 0 | **Mest effekt i paketet.** Ensam gör den att ett pass skapas i båda cellerna för 6–7 år (R-101). Rapporten: 0 övningar i varje del för 3 mot 3 |
 | A2 | Lek med egen boll | `del-uppvarmning`, `del-ovning` | `lek`, `bollkansla`, `koordination` | 1–3 | `fri`, 4–16 | 0 | Uppvärmning (R-044 för `fas-6-7`) och Öva när lek eller koordination väljs |
-| A3 | Kull eller rörelselek med boll | `del-uppvarmning` | `lek`, `koordination`, `snabbhet` | 1–3 | `fri`, 4–16 | 0 | Den andra uppvärmningen som 60-minuterspass kräver |
+| A3 | Kull eller rörelselek med boll | `del-uppvarmning` | `lek`, `koordination`, `snabbhet` | 1–3 | `fri`, 4–12 (rättat 2026-10-07) | 0 | Den andra uppvärmningen som 60-minuterspass kräver |
 | A4 | Bollkänsla och driv med egen boll | `del-ovning` | `bollkansla`, `dribbling`, `koordination` | 1–3 | `fri`, 4–16 | 0 | Öva. Utan motståndare, ryms på liten yta |
 | A5 | Driv och skjut på småmål | `del-ovning` | `dribbling`, `avslut`, `bollkansla` | 1–3 | `fri` eller `par` | 0 | Den andra Öva-övningen. Delar `dribbling` och `bollkansla` med A4, så att Öva kan fyllas med två moment |
 | A6 | 1 mot 1 till småmål | `del-spelovning`, `del-ovning` | `ett-mot-ett`, `dribbling`, `avslut` | 1–3 | `par` | 0 | Spelövning. Med ersättningsfokus täcker den bollkänsla, dribbling, avslut, koordination, snabbhet och lek |
 | A7 | Spela ihop, 2 mot 1 eller 3 mot 1 till mål | `del-spelovning` | `spelbarhet`, `passning-mottagning`, `ett-mot-ett` | 1–2, helst 1–3 | `tva-lag`, 3–6 | 0 | Spelövning när passning eller spelbarhet väljs |
+
+*Rättelse 2026-10-07, beslutad av användaren samma dag efter granskningen av paket A.* Planen gav först A2, A3 och A4 spannet `fri`, 4–16. I `fas-6-7` går det inte att hålla både golvet för yta per spelare och taket med en och samma yta över hela det spannet. Felet låg i planen, inte hos övningsförfattaren. Nu gäller:
+
+- **Övningar där varje spelare har egen boll och ingen motståndare finns (A2 och A4): 4–16.** Taket prövas inte som gräns för dem, eftersom antalet bollkontakter inte beror på ytan när alla har egen boll. Ledaren gör i stället ytan mindre när gruppen är liten, och övningens text ska säga det (`passuppbyggnad.md`, avsnittet *Vad som händer när en övning inte håller måttet*, punkten *Över taket*).
+- **En kull- eller jaktlek (A3): 4–12.** Där är avståndet hela leken. På en för stor yta når fångaren aldrig fram, så leken får en mindre yta och ett lägre högsta antal. Med fler än tolv spelare lägger generatorn en andra yta bredvid.
+
+Designregel 1 i avsnitt 2.1 håller för båda spannen (16 ≥ 2 × 4 − 1 och 12 ≥ 2 × 4 − 1).
 
 **Kontroll av ersättningsfokus för 6–7 år.** Med A2–A7 kan varje fokusområde som kan väljas för fasen fylla både Öva och Spelövning, antingen direkt eller via listorna i R-121. Öva: allt som saknas faller på `bollkansla` eller `dribbling`, som A4 och A5 delar. Spelövning: allt faller på `ett-mot-ett` (A6) utom `passning-mottagning` och `spelbarhet`, som A7 tar.
 
@@ -131,6 +138,8 @@ Alla har ålder 13–19 om inget annat står (fråga F3), `spelformer: [9mot9, 1
 | B6 | 1 mot 1 till mål | `del-ovning`, `del-spelovning` | `ett-mot-ett`, `dribbling`, `snabbhet` | 1–3 | `par` | 0 | 7, 9, 11 | Bär ersättningen för bollkänsla, dribbling, koordination, snabbhet, uthållighet, försvarsspel och lek. Rapporten: `ett-mot-ett` 0 i Öva och Spelövning för 9 mot 9 |
 | B7 | Spela framåt i positionsspel med riktning | `del-spelovning` | `spelbarhet`, `speluppbyggnad`, `passning-mottagning` | 1–3 | `tva-lag`, 6–12 | 0 | 9, 11 | Spelövning för passning, spelbarhet, uppbyggnad och målvakt. Den enda uppbyggnadsövningen för 9 mot 9 i dag är ledarstyrd och har fast storlek |
 | B8 | Omställning i överläge till mål | `del-spelovning` | `omstallning`, `forsvarsspel`, `avslut` | 2–3 räcker | `tva-lag`, 5–10 | 0 | 7, 9, 11 | Spelövning för omställning, försvar, avslut, fasta situationer och nickspel (ersättning enligt R-121) |
+
+*Tillägg 2026-10-07, beslutat av användaren samma dag:* B4, `skadeforebyggande-uppvarmning-13-19`, ersätter den tidigare övningen `skadeforebyggande-9mot9`, som tas bort ur banken i omgång 5.
 
 **Kontroll av ersättningsfokus för 13–19 år.** I Öva (B3, B5, B6) kan alla 17 fokusområden fyllas direkt eller via R-121, med avvikelserna per fas, utom `skadeforebyggande` som enda val. Det har ersättningarna `koordination` och `bollkansla`, och ingen av dem finns i Öva. Då fylls Spelövning via `snabbhet` (B6), så passet skapas ändå. Jag godtar det, se fråga F5. I Spelövning (B6, B7, B8) kan alla fokusområden fyllas.
 
