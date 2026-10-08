@@ -18,6 +18,7 @@ import {
   swapOptions,
   toBankExercise,
 } from '../src/regelmotor/index.ts';
+import { candidatesForPart } from '../src/regelmotor/blocks/candidates.ts';
 import {
   PART_TOLERANCE,
   SESSION_LENGTH_MAX,
@@ -398,5 +399,117 @@ describe.each(bankVariantsForTests())('Banken med $name', (variant) => {
         expect(bytenVidStationer).toBeGreaterThan(50);
       },
     );
+  });
+
+  describe('R-086 Nickning bara när ledaren har valt nickspel', () => {
+    /*
+     * Testfallen i beslut B1 (plan-omgang-6.md): 13 år där ledaren har valt fasta situationer.
+     * hornor-med-nickar har både fasta-situationer och nickspel, och träffade därför fokuset
+     * innan R-086 fanns. Svepet går över de underlag där övningen kan komma i fråga
+     * (9 mot 9, nivå 2 och 3, 8 eller 16 spelare) och över flera frön.
+     */
+    const nickovningar = new Set(
+      banken
+        .filter((exercise) => exercise.fokusomraden.includes('nickspel'))
+        .map((item) => item.id),
+    );
+    const tretton: Input = {
+      alder: 13,
+      spelform: '9mot9',
+      niva: 'niva-2',
+      spelare: 8,
+      ledare: 2,
+      passlangd: 60,
+      fokus: ['fasta-situationer'],
+    };
+
+    function sweep(fokus: Input['fokus']) {
+      const pass = [];
+      for (const niva of ['niva-2', 'niva-3'] as const) {
+        for (const spelare of [8, 16]) {
+          for (const passlangd of [45, 60, 90]) {
+            for (const seed of ['fro-1', 'fro-2', 'fro-3', 'fro-4', 'fro-5']) {
+              const input: Input = { ...tretton, niva, spelare, passlangd, fokus };
+              const result = generateSession(input, banken, seed);
+              if (result.kind === 'session') {
+                pass.push(result.session);
+              }
+            }
+          }
+        }
+      }
+      return pass;
+    }
+
+    function exerciseIds(pass: { rows: readonly { exercise: { id: string } | null }[] }) {
+      return pass.rows.flatMap((row) => (row.exercise === null ? [] : [row.exercise.id]));
+    }
+
+    it('R-086 testfallet: banken har hornor-med-nickar med fasta-situationer och nickspel', () => {
+      const hornor = banken.find((exercise) => exercise.id === 'hornor-med-nickar');
+      expect(hornor?.fokusomraden).toEqual(
+        expect.arrayContaining(['fasta-situationer', 'nickspel']),
+      );
+    });
+
+    it('R-086 väljer inte hornor-med-nickar för 13 år när ledaren bara har valt fasta-situationer', () => {
+      const context = { input: tretton, phase: 'fas-13-14' as const };
+      expect(
+        candidatesForPart(banken, 'del-spelovning', context).map((item) => item.id),
+      ).not.toContain('hornor-med-nickar');
+      const pass = sweep(['fasta-situationer']);
+      expect(pass.length).toBeGreaterThan(0);
+      for (const item of pass) {
+        expect(exerciseIds(item).filter((id) => nickovningar.has(id))).toEqual([]);
+        expect(checkSession(item)).toEqual([]);
+      }
+    });
+
+    it('R-086 låter hornor-med-nickar väljas när ledaren också har valt nickspel', () => {
+      const medNick: Input = { ...tretton, fokus: ['fasta-situationer', 'nickspel'] };
+      const context = { input: medNick, phase: 'fas-13-14' as const };
+      expect(candidatesForPart(banken, 'del-spelovning', context).map((item) => item.id)).toContain(
+        'hornor-med-nickar',
+      );
+      const pass = sweep(['fasta-situationer', 'nickspel']);
+      expect(pass.some((item) => exerciseIds(item).includes('hornor-med-nickar'))).toBe(true);
+      for (const item of pass) {
+        expect(checkSession(item)).toEqual([]);
+      }
+    });
+
+    it('R-086 visar ingen nickövning som alternativ vid byte när ledaren inte har valt nickspel', () => {
+      /*
+       * Samma pass prövas två gånger: med ledarens fokus som det är, och med nickspel tillagt.
+       * Det andra är kontrollfallet. Det visar att nickövningen annars hade varit ett
+       * alternativ, så att testet inte är tomt av andra skäl.
+       */
+      let platser = 0;
+      const visadeMedNick = new Set<string>();
+      // Med bara fasta-situationer har Spelövning ett ersättningsfokus (R-121), och då träffar
+      // nickövningen inte delens fokus ens med nickspel tillagt. Avslut ger kontrollfallet.
+      for (const item of [...sweep(['fasta-situationer']), ...sweep(['avslut'])]) {
+        const medNick = {
+          ...item,
+          input: { ...item.input, fokus: [...item.input.fokus, 'nickspel' as const] },
+        };
+        for (const row of item.rows) {
+          if (row.exercise === null || row.block === null) {
+            continue;
+          }
+          const ref = { block: row.block, station: row.kind === 'station' ? row.station : null };
+          const alternativ = swapOptions(item, ref, banken).map((option) => option.id);
+          expect(alternativ.filter((id) => nickovningar.has(id))).toEqual([]);
+          platser += 1;
+          for (const option of swapOptions(medNick, ref, banken)) {
+            if (nickovningar.has(option.id)) {
+              visadeMedNick.add(option.id);
+            }
+          }
+        }
+      }
+      expect(platser).toBeGreaterThan(0);
+      expect(visadeMedNick).toContain('hornor-med-nickar');
+    });
   });
 });
