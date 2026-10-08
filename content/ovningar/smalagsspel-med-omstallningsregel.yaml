@@ -6,7 +6,8 @@ beskrivning: |
   Två lag spelar på en yta på 30 x 16 meter med ett småmål i varje ände och utan målvakt. Lagen är
   från två mot två upp till fem mot fem. Gör laget mål inom åtta sekunder efter att det har vunnit
   bollen räknas målet dubbelt. Det är regeln som gör att omställningen händer ofta. Efter ett mål
-  startar motståndarna med boll från sitt eget mål.
+  startar motståndarna med boll från sitt eget mål. Går bollen ut driver motståndarna in den
+  från linjen.
   Spela i perioder om fyra till fem minuter med en minuts vila och vattenpaus emellan. Är det
   längre än 15 minuter byter ni regel efter halva tiden: då räknas mål efter bollvinst dubbelt bara
   om laget har vunnit bollen på motståndarnas planhalva, så att laget övar att pressa högt
@@ -14,8 +15,10 @@ beskrivning: |
   Vid udda antal spelar ett lag med en spelare mer, och det byts efter varje period. Det finns ingen
   joker, eftersom en joker suddar ut vem som ska försvara efter bolltapp.
 organisation: |
-  En yta på 30 x 16 meter per grupp om fyra till tio spelare, med ett småmål i varje kortsida.
-  Fyra spelare ger två mot två, tio ger fem mot fem. Lagen har olika färg på västar. En ledare
+  En yta på 30 x 16 meter per grupp om fyra till tio spelare, med ett småmål i varje kortsida
+  och en kon mitt på varje långsida, så att planhalvorna syns. Fyra spelare ger två mot två, tio
+  ger fem mot fem. Med fyra spelare kan ni korta ytan till ungefär 24 meter, så att två mot två
+  inte blir för glest. Lagen har olika färg på västar. En ledare
   eller en spelare på sidan håller tiden och ropar när åtta sekunder har gått. Är ni fler än tio
   bygger ni en yta till bredvid, med tre meters mellanrum. Två ytor ryms på en kvarts plan.
 fokusomraden:
@@ -62,14 +65,14 @@ material:
     antal: 5
     anteckning: till det ena laget
   - typ: kon
-    antal: 4
-    anteckning: hörnen på ytan
+    antal: 6
+    anteckning: hörnen på ytan och mitten av långsidorna
 coachningspunkter:
   - Pressa bollhållaren direkt när ni tappat bollen, innan de hinner titta upp.
   - När ni vinner bollen, spela framåt direkt, åtta sekunder går fort.
   - Håll avståndet kort mellan er, så att ni pressar tillsammans.
 varianter:
-  lattare: Sex sekunder i stället för åtta, och laget som tappar bollen får inte pressa förrän
+  lattare: Tio sekunder i stället för åtta, och laget som tappar bollen får inte pressa förrän
     bollhållaren har gjort en touch.
   svarare: Fyra sekunder, och bollhållaren får högst tre touchar.
 anpassning:
@@ -83,7 +86,8 @@ planskiss:
     bredd: 16
   beskrivning: >-
     Yta 30 x 16 meter med ett småmål i varje kortsida, utan målvakt. Två mot två i grundläget, upp till
-    fem mot fem. Lag A anfaller åt höger. Laget som vinner bollen har åtta sekunder på sig att göra mål.
+    fem mot fem. Lag A anfaller åt höger. Lag A har just tappat bollen och pressar direkt. Vinner laget
+    tillbaka bollen har det åtta sekunder på sig att göra mål.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 16, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 8, storlek: smamal, riktning: hoger }
@@ -92,15 +96,16 @@ planskiss:
     - { typ: kon, x: 30, y: 0 }
     - { typ: kon, x: 30, y: 16 }
     - { typ: kon, x: 0, y: 16 }
+    - { typ: kon, x: 15, y: 0 }
+    - { typ: kon, x: 15, y: 16 }
     - { id: a1, typ: spelare, x: 10, y: 5, lag: a, etikett: A1 }
     - { id: a2, typ: spelare, x: 10, y: 11, lag: a, etikett: A2 }
     - { id: b1, typ: spelare, x: 20, y: 5, lag: b, etikett: B1 }
     - { id: b2, typ: spelare, x: 20, y: 11, lag: b, etikett: B2 }
-    - { typ: boll, x: 20.9, y: 5 }
+    - { typ: boll, x: 19.1, y: 5 }
   rorelser:
     - { typ: lopning, fran: { objekt: a1 }, till: { x: 18, y: 5 }, ordning: 1, etikett: Pressar }
-    - { typ: passning, fran: { objekt: b1 }, till: { x: 12, y: 8 }, ordning: 2 }
-    - { typ: skott, fran: { x: 12, y: 8 }, till: { objekt: mal-a }, ordning: 3 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 18, y: 9 }, ordning: 1, etikett: Stänger passningen }
   skalning:
     strategi: platser
     platser:
@@ -113,5 +118,28 @@ planskiss:
       - { x: 3, y: 8, lag: a }
       - { x: 27, y: 8, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända smålagsspel med poängregler.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fem småfel som jag har rättat själv. Omgångens viktigaste övning: ett
+      smålagsspel för 4-10 spelare där regeln om dubbla mål inom åtta sekunder gör att
+      omställningen händer hela tiden, och därför både Spelövning och Spel (regel 9). Omställning,
+      försvarsspel och avslut är K för 10-12 år. Ingen joker, med rätt skäl (F8). Längst 30
+      minuter håller, eftersom perioder om 4-5 minuter, en minuts vila och regelbytet efter halva
+      tiden står i siffror (F2). Yta: 480 kvadratmeter ger 48 per spelare vid tio, över golvet 45.
+      Två ytor ryms på kvarts plan (33 x 19 x 2 = 1 254). Rättat: 1. Den lättare varianten hade
+      sex sekunder i stället för åtta, men en kortare tid gör det svårare att få dubbla mål. Nu tio
+      sekunder. Felet fanns i min plan. 2. 480 / 4 = 120 kvadratmeter är 12 procent över taket
+      107, och skälet saknades i organisation (regel 13). Nu står att ytan kan kortas till ungefär
+      24 meter med fyra spelare (96 per spelare). 3. Regeln efter halva tiden räknar med
+      planhalvor, men ingen mittlinje var markerad. Nu en kon mitt på varje långsida, i text,
+      material och skiss. 4. Skissen visade en passning från lag B till en punkt där ingen
+      medspelare fanns, ett skott på 12 meter utan skytt och en passning rakt genom pressaren.
+      Bollen låg dessutom bakom B1. Nu visar skissen det övningen handlar om: lag A har tappat
+      bollen, A1 pressar bollhållaren och A2 stänger passningen, minst 1,4 meter från platserna.
+      Inget skott ritas (designregel 11 i plan-omgang-6.md). 5. Det stod inte vad som händer när
+      bollen går ut. Ytreferensen ungefär tre fjärdedelar av stora planens straffområde stämmer
+      (480 mot 495 kvadratmeter, samma form).

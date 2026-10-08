@@ -137,3 +137,11 @@ granskning:
     roll: ovningsforfattare
     kommentar: >-
       Omgång 7, avsnitt 3.3 i docs/doman/plan-omgang-7.md. Lade till en mening sist i organisation om att rutan görs ungefär 13 x 13 meter när ni är färre än nio, så att spelarna måste titta upp (tillägget 2026-10-07 i passuppbyggnad.md). 169 kvadratmeter ger 21 per spelare vid åtta, över golvet 10 för egen boll. Yta och skiss är oförändrade.
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollerat mot plan-omgang-7.md, avsnitt 3.3: meningen står ordagrant som i planen, och
+      yta, spelare och skiss är oförändrade. 169 kvadratmeter ger 28,2 per spelare vid sex och
+      21,1 vid åtta, över golvet 10 för egen boll. Coachningspunkten om att sakta ner vid konen
+      står kvar. Övningen behåller status godkand.

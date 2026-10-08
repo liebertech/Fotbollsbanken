@@ -5,12 +5,14 @@ syfte: Spelarna ska bygga upp spelet från målvakten, hitta fria spelare och sp
 beskrivning: |
   Ytan är 28 x 18 meter med ett mål med målvakt i ena kortsidan och två konportar i den andra.
   Uppspelslaget har målvakten och tre till fem utespelare. Pressarna är en färre än uppspelslagets
-  utespelare. Målvakten startar med bollen. Pressarna startar bakom en konlinje 10 meter från
-  målet och får gå fram först när målvakten har spelat den första passningen. Uppspelslaget får en
-  poäng när en spelare tar emot bollen bakom en av konportarna. Vinner pressarna bollen ska de göra
-  mål inom åtta sekunder. Efter varje försök startar målvakten om med en ny boll.
-  Rotation: efter tre minuter byter två pressare roll med två uppspelare, i tur och ordning. Målvakten
-  står hela tiden om hen vill det, annars byts målvakt efter varje period. Så här fördelas
+  utespelare, och två färre vid udda antal. Målvakten startar med bollen. Pressarna startar bakom
+  en konlinje 10 meter från målet och får gå fram först när målvakten har spelat den första
+  passningen. Uppspelslaget får en poäng när en spelare tar emot bollen bakom en av konportarna.
+  Vinner pressarna bollen ska de göra mål inom åtta sekunder, och de skjuter utanför konlinjen.
+  Efter varje försök startar målvakten om med en ny boll.
+  Rotation: efter tre minuter byter två pressare roll med två uppspelare, i tur och ordning, så
+  att alla får vara pressare. Med fem spelare finns bara en pressare, och hen byter med en
+  uppspelare. Målvakten står hela tiden om hen vill det, annars byts målvakt vid varje byte. Så här fördelas
   spelarna: fem är målvakt, tre uppspelare och en pressare. Sex är målvakt, tre och två. Sju är
   målvakt, fyra och två. Åtta är målvakt, fyra och tre. Nio är målvakt, fem och tre. Tio är
   målvakt, fem och fyra. Den extra spelaren vid udda antal är alltid i uppspelslaget.
@@ -88,10 +90,10 @@ planskiss:
     - { id: mal-a, typ: mal, x: 0, y: 9, storlek: eget, bredd: 5, riktning: hoger }
     - { id: mv, typ: spelare, x: 0.8, y: 9, lag: a, malvakt: true, etikett: MV }
     - { typ: markering, form: linje, x: 10, y: 0, till: { x: 10, y: 18 } }
-    - { typ: kon, x: 28, y: 3 }
-    - { typ: kon, x: 28, y: 6 }
-    - { typ: kon, x: 28, y: 12 }
-    - { typ: kon, x: 28, y: 15 }
+    - { typ: kon, x: 28, y: 3.5 }
+    - { typ: kon, x: 28, y: 5.5 }
+    - { typ: kon, x: 28, y: 12.5 }
+    - { typ: kon, x: 28, y: 14.5 }
     - { id: u1, typ: spelare, x: 5, y: 4, lag: a, etikett: U }
     - { id: u2, typ: spelare, x: 5, y: 14, lag: a, etikett: U }
     - { id: u3, typ: spelare, x: 8, y: 9, lag: a, etikett: U }
@@ -106,10 +108,32 @@ planskiss:
     strategi: platser
     platser:
       - { x: 12, y: 5, lag: b }
-      - { x: 12, y: 9, lag: a }
+      - { x: 18, y: 13, lag: a }
       - { x: 12, y: 13, lag: b }
-      - { x: 16, y: 9, lag: a }
+      - { x: 22, y: 10, lag: a }
       - { x: 12, y: 16, lag: b }
 kalla: Egen övning, inspirerad av allmänt känt uppspel från målvakt mot press.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Uppbyggnad från målvakten mot press,
+      med en egen startlinje för pressarna som inte bygger på retreatlinjen, så 5, 7 och 9 mot 9
+      är rätt (regel 11). Speluppbyggnad, passning-mottagning och spelbarhet är K för 10-12 år.
+      Målet är 5 meter brett i alla spelformer (regel 12, F9). Nivå 1 med halvaktiva pressare och
+      nivå 3 med lika många pressare som uppspelare är verkliga steg. Yta: 504 kvadratmeter ger
+      50,4 per spelare vid tio och 100,8 vid fem, inom golvet 45 och taket 107. Avvikelsen från
+      planen bekräftas: uppspelslaget har målvakten och tre till fem utespelare, inte två till
+      fyra. Planens tal räckte bara till åtta spelare, och felet var mitt. Fördelningen i
+      beskrivningen är entydig för fem till tio och stämmer med skissens platser: 3+1, 3+2, 4+2,
+      4+3, 5+3 och 5+4 utespelare och pressare. Rättat: 1. Texten sa att pressarna alltid är en
+      färre, men vid udda antal är de två färre. Nu står båda. 2. Rotationen bytte "två pressare"
+      också med fem spelare, där det bara finns en. 3. Konportarna var 3 meter breda i skissen men
+      2 meter i texten. Nu 2 meter, och passningen går genom portens mitt. 4. Den sjunde
+      spelarens plats låg på pressarens startplats, och den nionde 0,9 meter från passningen
+      genom porten. Nu står de på (18, 13) och (22, 10), minst 1,7 meter från rörelserna. Jag har
+      också lagt till att pressarna skjuter utanför konlinjen, alltså från minst 10 meter, så att
+      regel 19 gäller också för kontringen. Ytreferensen ungefär två tredjedelar av stora planens
+      straffområde stämmer (504 mot 445 kvadratmeter, 13 procent större).

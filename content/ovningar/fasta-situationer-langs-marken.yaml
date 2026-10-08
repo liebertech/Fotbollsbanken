@@ -5,20 +5,24 @@ syfte: Spelarna ska öva inkast, hörnor och frisparkar som spelas längs marken
 beskrivning: |
   Gruppen står vid ett mål med målvakt och kör tre varianter i tur och ordning, ungefär två minuter
   vardera, och sedan en omgång till. Variant ett är inkast till fötterna: slagaren kastar bollen
-  längs marken till en mottagare som spelar vägg tillbaka och tar emot i rörelse för avslut.
-  Variant två är kort hörna: slagaren spelar bollen längs marken till en mottagare, som lägger den
+  så att den landar vid mottagarens fötter, och mottagaren lägger den längs marken till
+  avslutaren, som kommer i fart och skjuter. Variant två är kort hörna: slagaren spelar bollen längs marken till en mottagare, som lägger den
   bakåt till en avslutare. Variant tre är spelad frispark runt en mur av koner: slagaren passar
   längs marken, mottagaren lägger av bollen och avslutaren skjuter. Inga höga bollar, och ingen
   nickning. Bollen läggs alltid först längs marken, och mål görs aldrig direkt från den fasta
   situationen. Det är samma sätt som i 5 mot 5, där varje fast situation börjar med ett driv eller
-  en passning längs marken.
+  en passning längs marken. Spelar laget 5 mot 5 tas inkastet i variant ett som en passning längs
+  marken från sidlinjen.
   Rotation: slagaren blir mottagare, mottagaren blir avslutare, och avslutaren hämtar bollen och
   ställer sig sist i kön. Den första i kön blir slagare. Avslut tas från minst tio meter.
 organisation: |
-  En grupp om fem till nio spelare per mål. Kön står bakom slagarens plats och aldrig i en
-  skottlinje, tre eller fyra spelare i kön. Målvakten är frivillig, har handskar om laget har
-  och byts efter en serie om sex till åtta skott. Är ni fler än nio bygger ni en andra yta med eget
-  mål bredvid, med tre meters mellanrum. Två grupper ryms på en kvarts plan.
+  En grupp om fem till nio spelare per mål. Kön står utanför ytan bakom slagarens plats och
+  aldrig i en skottlinje, en till fem spelare beroende på hur många ni är. Varje spelare är med i
+  tre försök i rad, som slagare, mottagare och avslutare, så kön går fort. Målvakten är frivillig,
+  har handskar om laget har och byts efter en serie om sex till åtta skott. Ytan är så stor för
+  att frisparken ska kunna läggas en bit ut. Med få spelare används bara den del som varianten
+  behöver. Är ni fler än nio bygger ni en andra yta med eget mål bredvid, med tre meters
+  mellanrum. Två grupper ryms på en kvarts plan.
 fokusomraden:
   - fasta-situationer
   - passning-mottagning
@@ -78,18 +82,18 @@ planskiss:
     langd: 30
     bredd: 20
   beskrivning: >-
-    Yta 30 x 20 meter med ett mål och en målvakt till höger. Kort hörna längs marken: slagaren spelar
-    till en mottagare, som lägger bollen bakåt till en avslutare som skjuter från minst tio meter.
-    Kön står bakom slagaren vid sidlinjen.
+    Yta 30 x 20 meter med ett mål och en målvakt till höger. Kort hörna längs marken: slagaren i
+    hörnet spelar till en mottagare, som lägger bollen bakåt till en avslutare som skjuter från minst
+    tio meter. Kön står utanför sidlinjen bakom slagaren.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 20, stil: streckad }
     - { id: mal-b, typ: mal, x: 30, y: 10, storlek: eget, bredd: 5, riktning: vanster }
     - { typ: spelare, x: 29.2, y: 10, lag: b, malvakt: true, etikett: MV }
-    - { id: sla, typ: spelare, x: 26, y: 0, lag: a, etikett: S }
-    - { id: mot, typ: spelare, x: 24, y: 5, lag: a, etikett: M }
-    - { id: avs, typ: spelare, x: 17, y: 11, lag: a, etikett: A }
-    - { id: ko1, typ: spelare, x: 27.5, y: 0, lag: a }
-    - { typ: boll, x: 26.3, y: 0.3 }
+    - { id: sla, typ: spelare, x: 30.3, y: -0.3, lag: a, etikett: S }
+    - { id: mot, typ: spelare, x: 25, y: 3, lag: a, etikett: M }
+    - { id: avs, typ: spelare, x: 19, y: 9, lag: a, etikett: A }
+    - { id: ko1, typ: spelare, x: 28.5, y: -1.5, lag: a }
+    - { typ: boll, x: 29.6, y: 0.4 }
   rorelser:
     - { typ: passning, fran: { objekt: sla }, till: { objekt: mot }, ordning: 1 }
     - { typ: passning, fran: { objekt: mot }, till: { objekt: avs }, ordning: 2 }
@@ -97,7 +101,28 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: ko1, riktning: 0, avstand: 1.5, etikett: Kö bakom slagaren }
+      - { vid: ko1, riktning: 180, avstand: 1.5, etikett: Kö bakom slagaren }
 kalla: Egen övning, inspirerad av allmänt kända övningar för fasta situationer.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Tre fasta situationer längs marken med
+      avslut mot målvakt från minst 10 meter, utan höga bollar och utan nick (regel 18, R-080).
+      Fasta situationer är R för 10-12 år, och märkningen 5mot5 är rätt (F6). Målvakten är
+      frivillig och har handskar. Yta: 600 kvadratmeter ger 66,7 per spelare vid nio, över golvet
+      15 utan motståndare. Rättat: 1. Inkastet i variant ett beskrevs som ett kast längs marken
+      och en vägg där mottagaren både passade och avslutade. Nu landar kastet vid mottagarens
+      fötter och mottagaren lägger till avslutaren, med samma tre roller som de andra varianterna.
+      I 5 mot 5 finns inget inkast, så det står nu att det då tas som en passning från
+      sidlinjen. 2. Organisation sa tre eller fyra i kön, men med fem spelare är kön en och med
+      nio fem. Nu en till fem. Fem är en över regel 17, och det godtar jag: varje spelare är med i
+      tre försök i rad, så väntan blir ungefär fem korta försök. 3. 600 / 5 = 120 kvadratmeter är
+      12 procent över taket 107, och skälet saknades (regel 13). 4. Skissen visade en kort hörna
+      där slagaren stod 4 meter från hörnet, och kön stod på sidlinjen. Nu står slagaren i hörnet,
+      mottagaren 5,5 meter bort och avslutaren 11 meter från målet, och kön står 1,5 meter utanför
+      sidlinjen och ryms med fem. Ytreferensen ungefär tre fjärdedelar av stora planens
+      straffområde, några steg djupare godtas: målet står på kortsidan, men referensen jämför bara
+      storlek (konvention 2), som för de fyra övningarna vid ett mål i omgång 6.

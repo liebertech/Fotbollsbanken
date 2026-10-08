@@ -494,6 +494,16 @@ Ingen ytreferens, som förut: rutan är för liten för någon plandel.
 - Inga andra fält ändras. Båda har redan riktning, mål och en rotation som fungerar i båda delarna.
 *Rekommendation:* ja, som en egen commit, och skriptet körs före och efter (avsnitt 1.4). Målen i avsnitt 1 gäller utan den här ändringen.
 
+## 5b. Rättelser vid granskningen 2026-10-08
+
+Granskningen av omgångens övningar visade fem fel i planen. Övningsfilerna är rättade, och tabellerna och avsnitten ovan ska läsas med de här ändringarna:
+
+- **O7-05:** nivå 3 har fem sekunder att avsluta, inte tre. 14 meter med boll och en passning tar 4–6 sekunder för en 8–9-åring. Rotationen med fyra spelare gav tre anfallare; nu väntar försvararen vid startlinjen när gruppen är fyra. Kontringen på nivå 3 går genom konportar, inte till småmål som inte fanns i materialet.
+- **O7-06:** nivå 1 har tio sekunder, inte sex. En kortare tid gör det svårare att få dubbla mål.
+- **O7-07:** uppspelslaget har målvakten och tre till fem utespelare, inte två till fyra. Planens tal räckte bara till åtta spelare. Vid udda antal är pressarna två färre.
+- **O7-11:** meningen att nio och tio spelare får två mål stämmer inte med `spelare.max` 10, eftersom generatorn delar gruppen först vid elva (R-051). Med tio spelare står högst fyra bakom den som startar i varje kö.
+- **Regel 17 (kö):** O7-04 med sju spelare har tre i ena änden och O7-10 med nio spelare fem i kön. Båda är godtagna och motiverade i övningarnas granskningsposter.
+
 ## 6. Källor
 
 | Källa | Använd för | Läst |

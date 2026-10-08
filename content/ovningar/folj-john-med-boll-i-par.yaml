@@ -10,7 +10,7 @@ beskrivning: |
   följaren härmar. Steg två är spegeln: paret står mittemot varandra på ett par meters avstånd
   och följaren härmar spegelvänt, så att höger fot svarar mot vänster. Steg tre är fart: ledaren
   driver runt i rutan och byter rörelse ofta, och följaren håller sig tätt bakom. Ledaren ska
-  vara tydlig, och följaren ska titta upp och följa med.
+  vara tydlig, och följaren ska titta upp och följa med. Är tiden kortare blir stegen kortare.
 organisation: |
   Ett par per yta på 9 x 9 meter, med varsin boll. Paren står bredvid varandra med tre meters
   mellanrum. Vid udda antal blir en grupp en trio, där den tredje följer den andra så att det blir
@@ -63,7 +63,8 @@ varianter:
   svarare: Följaren gör rörelsen med den andra foten, och paret lägger till en riktningsändring i
     full fart.
 anpassning:
-  fler_spelare: Bygg en ruta till per par, med tre meters mellanrum. Tio par ryms på en kvarts plan.
+  fler_spelare: Bygg en ruta till per par, med tre meters mellanrum. Med tio par på en kvarts plan
+    gör ni rutorna något mindre, ungefär 8 x 8 meter, så att alla får plats.
   udda_antal: Tre spelare gör en kedja. Den tredje följer den andra, och ledarrollen går vidare ett steg efter varje byte.
   ledare: Övningen är självgående. Ledaren kan visa de tre stegen och sedan bara gå runt.
 planskiss:
@@ -90,7 +91,25 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: fol, riktning: 90, avstand: 1.5, etikett: Följer kedjan }
+      - { vid: fol, riktning: 225, avstand: 1.5, etikett: Följer kedjan }
 kalla: Egen övning, inspirerad av den allmänt kända härmleken Följ John.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Härmlek i par där båda har egen boll och
+      ingen väntar. Koordination och dribbling är K i båda faserna och bollkänsla K för 8-9 och R
+      för 10-12, så 8-12 år är rätt (regel 2 och F1 i plan-omgang-7.md). Varianterna täcker
+      spannet: en rörelse i gångtempo för 8-åringar, andra foten och riktningsändring i full fart
+      för nivå 3. Yta: 81 kvadratmeter ger 40,5 per spelare och 27 i en trio, över golvet 15 för
+      10-12 år utan motståndare. Taket prövas inte (egen boll). Trion vid udda antal är en kedja,
+      och ingen står still (R-058). Ingen ytreferens: för liten eller ingen plandel med rätt form.
+      Rättat: 1. Den tredje i trion ritades 0,6 meter från följarens dribbling. Nu står hen snett
+      bakom följaren (riktning 225), minst 1,9 meter från båda dribblingarna. 2. Anpassningen sa
+      att tio par ryms på kvarts plan med 9 x 9 meter och tre meters mellanrum. Det stämmer med
+      ytan i kvadratmeter (R-092), men rutorna går bara att lägga ut åtta åt gången. Nu står det
+      att rutorna görs ungefär 8 x 8 meter för tio par, som ryms (32 per spelare, över golvet). 3.
+      Tre steg om fyra minuter ryms inte i kortast 5 minuter. En mening säger nu att stegen blir
+      kortare när tiden är kortare. Generatorn kapar själv vid 10 minuter för 8-9 år (R-034).

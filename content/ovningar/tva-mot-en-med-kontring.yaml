@@ -7,12 +7,11 @@ beskrivning: |
   anfallare startar med boll vid startlinjen och anfaller målet. Försvararen startar framför målet.
   Anfallaren utan boll ska ställa sig så att en passning förbi försvararen är möjlig. Vinner
   försvararen bollen ska hen driva den över anfallarnas startlinje. Anfallarna ska då vinna
-  tillbaka bollen inom fem sekunder. Gör anfallarna mål, eller slår försvararen bollen över
-  startlinjen, är försöket slut.
-  Rotation: efter varje försök blir försvararen anfallare. Den anfallare som gjorde mål eller
-  tappade bollen blir försvarare, och den andra anfallaren står kvar. Med fyra i gruppen väntar den
-  fjärde vid startlinjen, utanför ytan, och går in som anfallare i stället för den som blir
-  försvarare. Med tre spelare går rollerna runt direkt, utan väntande.
+  tillbaka bollen inom fem sekunder, och lyckas de får de anfalla vidare. Försöket är slut när
+  anfallarna gör mål, när bollen går ut eller när försvararen driver bollen över startlinjen.
+  Rotation: den anfallare som sist hade bollen blir försvarare, och den andra anfallaren står
+  kvar. Med tre spelare blir försvararen anfallare. Med fyra i gruppen går försvararen i stället
+  till startlinjen och väntar utanför ytan, och den som väntade går in som anfallare.
 organisation: |
   En yta på 14 x 10 meter per grupp om tre eller fyra spelare, med ett småmål i ena änden.
   Bollarna ligger i en hög vid startlinjen. Är ni fler än fyra bygger ni en yta till bredvid med
@@ -59,22 +58,22 @@ material:
     antal: 1
     anteckning: småmål i bortre änden
   - typ: kon
-    antal: 4
-    anteckning: hörnen på ytan
+    antal: 6
+    anteckning: hörnen på ytan, och två till för portarna i den svårare varianten
   - typ: vast
     antal: 1
     anteckning: till försvararen
 coachningspunkter:
   - Anfallare, den utan boll flyttar sig så att passningen går förbi försvararen.
   - Försvarare, våga gå på bollen men håll dig mellan bollen och målet.
-  - Efter bollvinst, kör bollen ut direkt.
+  - Efter bollvinst, driv bollen mot startlinjen direkt.
 varianter:
   lattare: Försvararen får bara gå tills den första passningen är spelad.
-  svarare: Anfallarna har tre sekunder på sig att avsluta, och kontringen går till ett av två småmål
-    i stället för över en linje.
+  svarare: Anfallarna har fem sekunder på sig att avsluta, och kontringen ska gå genom en av två
+    konportar på startlinjen, en vid varje hörn, i stället för över hela linjen.
 anpassning:
   fler_spelare: Bygg en yta till bredvid med samma mått. Sex ytor ryms på en kvarts plan.
-  udda_antal: Vid fyra i gruppen väntar den fjärde vid startlinjen utanför ytan och går in som anfallare i stället för den som blir försvarare.
+  udda_antal: Vid fyra i gruppen väntar en spelare vid startlinjen utanför ytan. Efter varje försök går försvararen dit och väntar, och den som väntade går in som anfallare.
   ledare: Övningen är självgående när rotationen är visad en gång.
 planskiss:
   version: 1
@@ -103,5 +102,28 @@ planskiss:
     koer:
       - { vid: a2, riktning: 180, avstand: 3, etikett: Väntar vid linjen }
 kalla: Egen övning, inspirerad av den allmänt kända övningen två mot en med kontring.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Två mot en med riktning och mål, och en
+      kontring när försvararen vinner bollen. Både Öva och Spelövning är rätt (regel 9 i
+      plan-omgang-7.md). Omställning och försvarsspel är R och spelbarhet K för 8-9 år, och
+      spelbarheten är det som coachas: anfallaren utan boll ställer sig så att passningen går förbi
+      försvararen. Yta: 140 kvadratmeter för de tre som är inne ger 46,7 per spelare, över golvet
+      25 och 4 procent över taket 45. Den fjärde väntar utanför ytan och räknas inte. Sex ytor
+      ryms på kvarts plan, också när de läggs ut (3 x 2). Skottet i skissen tas från 5,4 meter
+      mot ett småmål, och kön står 1,5 meter utanför startlinjen. Rättat: 1. Rotationen gick inte
+      ihop med fyra spelare: både försvararen och den som väntade gick in som anfallare, så det
+      blev tre anfallare. Nu går försvararen till startlinjen och väntar när gruppen är fyra. Jag
+      har också bytt "den som gjorde mål eller tappade bollen" mot "den som sist hade bollen", så
+      att rotationen gäller också när ett skott går utanför, och skrivit vad som händer när
+      anfallarna vinner tillbaka bollen. Felet fanns redan i min plan. 2. Planens nivå 3 med tre
+      sekunder att avsluta går inte: 14 meter med boll och en passning tar 4-6 sekunder för en
+      8-9-åring. Nu fem sekunder. 3. Kontringen till ett av två småmål krävde mål som inte fanns i
+      materialet. Nu går den genom en av två konportar på startlinjen, och två koner är tillagda.
+      4. Coachningspunkten "kör bollen ut" kunde läsas som ut ur ytan. Ytreferensen ungefär en
+      fjärdedel av stora planens straffområde stämmer (140 mot 165 kvadratmeter, 15 procent
+      mindre), som för de godkända övningarna på 15 x 10.

@@ -7,7 +7,7 @@ beskrivning: |
   står i mitten av rutan. På signal ska fiskarna driva bollen över rutan till den andra kortsidan,
   och hajarna försöker peta ut en boll ur rutan. Hajarna spelar bara på bollen, aldrig på benen,
   och ingen tacklar bakifrån. Den som tappar sin boll ur rutan lägger den vid sidan och blir haj
-  i nästa omgång. Nu springer fiskarna tillbaka åt andra hållet. När bara två fiskar är kvar
+  direkt. När fiskarna har kommit över driver de tillbaka åt andra hållet. När bara två fiskar är kvar
   börjar en ny omgång med två nya hajar, som turas om så att alla får vara haj. Ingen står still
   och väntar, eftersom den som tappar bollen direkt blir haj.
 organisation: |
@@ -98,7 +98,7 @@ planskiss:
     - { typ: boll, x: 2.3, y: 12 }
   rorelser:
     - { typ: dribbling, fran: { objekt: f1 }, till: { x: 20, y: 3 }, ordning: 1 }
-    - { typ: dribbling, fran: { objekt: f3 }, till: { x: 20, y: 11 }, via: [{ x: 10, y: 8 }], ordning: 1 }
+    - { typ: dribbling, fran: { objekt: f3 }, till: { x: 20, y: 11 }, via: [{ x: 10, y: 13 }], ordning: 1 }
     - { typ: lopning, fran: { objekt: h1 }, till: { x: 8, y: 4 }, ordning: 1 }
     - { typ: lopning, fran: { objekt: h2 }, till: { x: 9, y: 9 }, ordning: 1 }
   skalning:
@@ -111,5 +111,23 @@ planskiss:
       - { x: 1.5, y: 13.5, lag: a }
       - { x: 4, y: 7.5, lag: a }
 kalla: Egen övning, inspirerad av den allmänt kända jaktleken med boll över en yta.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter två småfel som jag har rättat själv. Jaktlek med boll där ingen åker ut och står
+      still (regel 20 och F3 i plan-omgang-7.md): den som tappar bollen blir haj, och alla får vara
+      haj i tur och ordning. Lek, dribbling och bollkänsla är K för 8-9 år och hör ihop med syftet.
+      Yta: 330 kvadratmeter ger 27,5 per spelare vid tolv, över golvet 25, och 55 vid sex, 22
+      procent över taket 45. Det är en jaktlek, så taket prövas, och skälet står i organisation.
+      Två rutor ryms på kvarts plan (25 x 18 x 2 = 900). Nivå 3 med tre hajar eller en vändning i
+      målzonen ger mer press och fler val. Rättat: 1. Beskrivningen sa både att den som tappar
+      bollen blir haj "i nästa omgång" och "direkt", och ordet omgång användes också för en hel
+      lek. Nu blir hen haj direkt, och fiskarna driver tillbaka när de har kommit över. 2. Den
+      andra fiskens dribbling gick rakt genom hajens slutpunkt och 1,2 meter från hajens
+      startplats. Nu böjer den av mot den fria sidan (via 10, 13), minst 1,4 meter från hajarna och
+      från platserna som läggs till, och visar coachningspunkten om att välja luckan. Ytreferensen
+      ungefär halva stora planens straffområde stämmer (330 mot 330 kvadratmeter, nästan samma
+      form). Inga skott i skissen.

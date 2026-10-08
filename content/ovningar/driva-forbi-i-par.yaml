@@ -142,3 +142,16 @@ granskning:
       28 per spelare. Ändrade yta, beskrivning, skissens beskrivning, område och ruta, konernas placering
       (portarna är fortfarande två meter breda), startplatserna för anfallare, boll och försvarare samt
       dribblingens och löpningens bana. Kön är oförändrad. Ingen ytreferens, som förut.
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollerat mot plan-omgang-7.md, avsnitt 3.2: varje fält i tabellen stämmer med filen.
+      56 kvadratmeter ger 28 per spelare, över golvet 25 och under taket 45. Portarna är 2 meter
+      breda mitt på kortsidorna. Dribblingen är kurvan x = 0,5 + 7t, y = 3,5 + 8t(1 - t), med
+      högsta punkt (4, 5,5), 1,5 meter innanför linjen. Den går minst 1,39 meter från
+      försvararens start och minst 1,90 meter från hans slutpunkt, och 1,05 meter från konerna i
+      de två portar som den börjar och slutar i, vilket är oundvikligt i en port som är 2 meter
+      bred. Kön står 1,5 meter utanför ytan. Granskningsposten 2026-09-28 talar om rutan 6 x 6
+      meter. Den gällde måttet då och står kvar oförändrad; måttet är nu 8 x 7, och skälet till
+      att referens saknas är detsamma. Övningen behåller status godkand.

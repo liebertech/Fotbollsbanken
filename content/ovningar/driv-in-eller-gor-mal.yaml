@@ -12,7 +12,8 @@ beskrivning: |
   med en spelare mer, och det byts efter varje period.
 organisation: |
   En yta på 30 x 16 meter per grupp om fyra till åtta spelare, med två småmål och en zon på varje
-  kortsida. Fyra spelare ger två mot två, åtta ger fyra mot fyra. Lagen har olika färg på västar.
+  kortsida. Fyra spelare ger två mot två, åtta ger fyra mot fyra. Med fyra spelare kan ni korta
+  ytan till ungefär 24 meter, så att två mot två inte blir för glest. Lagen har olika färg på västar.
   Är ni fler än åtta bygger ni en yta till bredvid med tre meters mellanrum. Två ytor ryms på en
   kvarts plan. Med fler än sexton spelare behövs en tredje yta utanför kvarts plan.
 fokusomraden:
@@ -64,7 +65,8 @@ coachningspunkter:
   - Välj, säker poäng i zonen eller dubbel poäng på mål.
   - Titta upp innan du dribblar, se var luckan finns.
 varianter:
-  lattare: Zonen ger poäng även utan dribbling, och målet räknas dubbelt bara efter en dribbling.
+  lattare: Zonen görs fem meter djup, och försvararna får inte gå in i sin egen zon. Då är det
+    lättare att våga driva in.
   svarare: Zonen tas bort och bara mål ger poäng, och målet räknas bara om spelaren har dribblat förbi en motståndare.
 anpassning:
   fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
@@ -100,7 +102,25 @@ planskiss:
       - { x: 8, y: 8, lag: a }
       - { x: 22, y: 8, lag: b }
       - { x: 14, y: 14, lag: a }
-      - { x: 16, y: 2, lag: b }
+      - { x: 25, y: 12, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända smålagsspel med poängregler.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Smålagsspel där två sätt att göra poäng
+      gör att det lönar sig att våga dribbla: drivet in i zonen ger alltid en poäng, mål efter en
+      dribbling två. Dribbling, ett mot ett och avslut är K för 10-12 år. Nivå 3, där zonen tas
+      bort och bara mål efter dribbling räknas, är färre val och mer press. Perioder om 3-4
+      minuter och en minuts vila står i siffror. Yta: 480 kvadratmeter ger 60 per spelare vid åtta,
+      över golvet 45. Två ytor ryms på kvarts plan, och att tre inte gör det med 17-20 spelare står
+      i organisation (planen, O7-08). Skottet i skissen tas från 8 meter mot ett småmål utan
+      målvakt. Rättat: 1. Den lättare varianten var samma sak som grundformen och gjorde inget
+      lättare. Nu är zonen fem meter djup och försvararna får inte gå in i sin egen zon, så att
+      drivet in lyckas oftare på nivå 1. 2. 480 / 4 = 120 kvadratmeter är 12 procent över taket
+      107, och skälet saknades i organisation (regel 13). Nu står att ytan kan kortas till ungefär
+      24 meter med fyra spelare. 3. Den åttonde spelarens plats (16, 2) låg 1,25 meter från
+      dribblingen. Nu står hen på (25, 12), minst 4 meter från rörelserna. Ytreferensen ungefär
+      tre fjärdedelar av stora planens straffområde stämmer, samma mått som O7-06.

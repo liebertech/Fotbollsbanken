@@ -15,9 +15,9 @@ beskrivning: |
   finns två väggspelare, en på var sida, och skytten väljer vilken hen spelar vägg med.
 organisation: |
   En yta på 16 x 12 meter per grupp om fyra till sju spelare. Kön står utanför ytan vid
-  kortsidorna och aldrig bakom målet. I varje ände är kön högst två, och med sju spelare står
-  tre i den ände där bollen inte är. Är ni fler än sju bygger ni en yta till bredvid, med tre
-  meters mellanrum. Tre grupper ryms på en kvarts plan.
+  kortsidorna, snett vid sidan av målet och aldrig bakom det. I varje ände står högst två, den
+  som startar och en till, utom med sju spelare, då står tre i den ena änden. Är ni fler än sju
+  bygger ni en yta till bredvid, med tre meters mellanrum. Tre grupper ryms på en kvarts plan.
 fokusomraden:
   - avslut
   - spelbarhet
@@ -85,11 +85,11 @@ planskiss:
     - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
     - { id: mal-b, typ: mal, x: 16, y: 6, storlek: smamal, riktning: vanster }
     - { id: sk1, typ: spelare, x: 1.5, y: 9, lag: a, etikett: S }
-    - { id: sk2, typ: spelare, x: 14.5, y: 9, lag: a, etikett: S }
-    - { id: sk3, typ: spelare, x: 1.5, y: 11.5, lag: a, etikett: S }
+    - { id: sk2, typ: spelare, x: 15, y: 10.5, lag: a, etikett: S }
+    - { id: sk3, typ: spelare, x: -1, y: 10.5, lag: a, etikett: S }
     - { id: vag, typ: spelare, x: 8, y: 2.5, lag: neutral, etikett: V }
     - { typ: boll, x: 2.4, y: 9 }
-    - { typ: boll, x: 13.6, y: 9 }
+    - { typ: boll, x: 14.1, y: 10.5 }
   rorelser:
     - { typ: dribbling, fran: { objekt: sk1 }, till: { x: 5.5, y: 7 }, ordning: 1 }
     - { typ: passning, fran: { x: 5.5, y: 7 }, till: { objekt: vag }, ordning: 2 }
@@ -98,8 +98,33 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: sk2, riktning: 0, avstand: 1.5, etikett: Väntar på tur }
+      - { vid: sk2, riktning: 0, avstand: 2, etikett: Väntar på tur }
+      - { vid: vag, riktning: 90, avstand: 5, etikett: Andra väggspelaren }
       - { vid: sk3, riktning: 180, avstand: 1.5 }
 kalla: Egen övning, inspirerad av allmänt känt väggspel med avslut.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter småfel i skissen och texten som jag har rättat själv. Väggspel med avslut på
+      småmål, utan målvakt och utan motståndare. Avslut, passning-mottagning och spelbarhet är K
+      för 8-9 år, och spelbarheten är konkret: väggspelaren flyttar sig till en fri vinkel. Nivå 3
+      med direkt vägg och högst två touchar är färre touchar på riktigt. Yta: 192 kvadratmeter ger
+      27,4 per spelare vid sju, över golvet 10 utan motståndare, och 48 vid fyra, 7 procent över
+      taket 45, vilket jag godtar. Skottet tas från 6 meter mot ett småmål. Avvikelsen från planen
+      godtas: med sju spelare står tre i ena änden, den som startar och två bakom. Planens högst
+      två per ände går inte ihop med sju och två väggspelare, och regel 17 tillåter 2-3 per mål
+      för 8-9 år. En tredje väggspelare vore sämre, eftersom skytten då får tre val på en liten yta.
+      Rättat: 1. Den andra i vänstra kön stod inne i ytan och den första i högra kön på
+      kortlinjen, intill målet. Nu står köerna 1 meter utanför kortsidorna, 4,5 meter från
+      målens mitt, och skytten som väntar till höger står 4,5 meter från skottlinjen. 2. Skissen
+      lade den femte, sjätte och sjunde spelaren i köerna, fast texten säger att den sjätte är en
+      andra väggspelare. Nu har skissen tre köer i tur och ordning: den femte går till högra
+      änden, den sjätte blir andra väggspelare på andra sidan mitten (8, 7,5) och den sjunde går
+      till vänstra änden. Då stämmer skissen med texten för fyra till sju. 3. Organisation sa att
+      tre står "i den ände där bollen inte är", vilket inte går att avgöra eftersom det ligger
+      bollar i båda ändar. Ytreferensen ungefär stora planens målområde, dubbelt så djupt
+      godtas: 192 mot cirka 200 kvadratmeter, 11 procent kortare och 9 procent bredare, och
+      ordet ungefär står med (ytreferenser.md, avsnitt 3.3).

@@ -12,7 +12,9 @@ beskrivning: |
   Lagen anfaller åt var sitt håll och byter håll efter varje period om fyra till fem minuter.
 organisation: |
   En yta på 28 x 18 meter per grupp om fyra till tio spelare, med två lag. Fyra spelare ger två
-  mot två, tio ger fem mot fem. Vid udda antal blir en spelare joker, som spelar med laget som har
+  mot två, tio ger fem mot fem. Med fyra spelare blir ytan ganska stor för två mot två, men den
+  behövs för att tre zoner och tre portar ska få plats, och de stora avstånden gör att den som
+  ska ta emot hinner bli fri. Vid udda antal blir en spelare joker, som spelar med laget som har
   bollen och inte får ta emot i den bakre zonen. Är ni fler än tio bygger ni en yta till bredvid med
   tre meters mellanrum. Två ytor ryms på en kvarts plan.
 fokusomraden:
@@ -74,8 +76,8 @@ planskiss:
     bredd: 18
   beskrivning: >-
     Yta 28 x 18 meter i tre zoner, med tre konportar i mittzonen. Två mot två. Lag A anfaller åt
-    höger och spelar genom en port till en medspelare, som sedan passar vidare till den bakre zonen.
-    Vid udda antal blir en spelare joker.
+    höger. A1 spelar genom en port till A2, löper sedan in i den bakre zonen och får bollen
+    tillbaka där. Vid udda antal blir en spelare joker.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 28, bredd: 18, stil: heldragen }
     - { typ: zon, x: 0, y: 0, langd: 7, bredd: 18, monster: tom, etikett: Bakre zon }
@@ -86,23 +88,44 @@ planskiss:
     - { typ: kon, x: 14, y: 10 }
     - { typ: kon, x: 14, y: 14 }
     - { typ: kon, x: 14, y: 16 }
-    - { id: a1, typ: spelare, x: 6, y: 5, lag: a, etikett: A1 }
+    - { id: a1, typ: spelare, x: 5, y: 9, lag: a, etikett: A1 }
     - { id: a2, typ: spelare, x: 17, y: 9, lag: a, etikett: A2 }
-    - { id: b1, typ: spelare, x: 12, y: 6, lag: b, etikett: B1 }
-    - { id: b2, typ: spelare, x: 22, y: 12, lag: b, etikett: B2 }
-    - { typ: boll, x: 6.9, y: 5 }
+    - { id: b1, typ: spelare, x: 10, y: 6, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 21, y: 12, lag: b, etikett: B2 }
+    - { typ: boll, x: 5.9, y: 9 }
   rorelser:
-    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, via: [{ x: 14, y: 9 }], ordning: 1 }
-    - { typ: passning, fran: { objekt: a2 }, till: { x: 24, y: 6 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1, etikett: Genom porten }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 23, y: 4 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a2 }, till: { x: 23, y: 4 }, ordning: 3 }
   skalning:
     strategi: platser
     platser:
       - { x: 9, y: 13, lag: a }
       - { x: 18, y: 4, lag: b }
-      - { x: 11, y: 10, lag: a }
+      - { x: 12, y: 14, lag: a }
       - { x: 20, y: 14, lag: b }
       - { x: 8, y: 2, lag: a }
       - { x: 24, y: 16, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända positionsspel med portar.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter två småfel som jag har rättat själv. Uppbyggnad genom lagdelar i liten form:
+      en poäng för en passning genom en port i mittzonen, två när laget sedan når en medspelare i
+      motståndarnas bakre zon. Passning-mottagning, speluppbyggnad och spelbarhet är K för 10-12
+      år. Djupledskravet gäller inte fas-10-12 (passuppbyggnad.md, Minsta längd). Jokern vid udda
+      antal är rätt här, till skillnad från O7-06, eftersom övningen handlar om att hitta den fria
+      och inte om att försvara efter bolltapp. Yta: 504 kvadratmeter ger 50,4 per spelare vid tio
+      med jokern, över golvet 45. Rättat: 1. 504 / 4 = 126 kvadratmeter är 18 procent över taket
+      107, och skälet saknades i organisation (regel 13). Nu står det: tre zoner och tre portar
+      behöver platsen, och avståndet ger den som ska ta emot tid att bli fri. 2. Passningen genom
+      porten var ritad som en böjd boll som gick 0,4 meter från en kon, eftersom spelarna inte stod
+      i linje med porten, och den andra passningen gick till en punkt där ingen fanns. Nu står A1
+      och A2 i linje med mittporten, passningen går rakt genom portens mitt, och A1 löper in i den
+      bakre zonen genom luckan mellan portarna och får bollen där. Löpningen går minst 1,3 meter
+      från spelare, koner och platser. Den tredje platsen för lag A flyttades från (11, 10), 1
+      meter från passningen, till (12, 14). Ytreferensen ungefär två tredjedelar av stora planens
+      straffområde stämmer (504 mot 445 kvadratmeter).
