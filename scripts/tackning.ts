@@ -52,13 +52,7 @@ import { exerciseSchema } from '../src/regelmotor/schema/ovning.ts';
 import {
   type CellKind,
   type CellStats,
-  type CellGoal,
-  type CellGoals,
-  EQUAL_PLAN_CELLS_OMGANG7,
-  GOAL_MEASURES,
-  type GoalMeasure,
   PLAN_GOALS,
-  type PlanGoal,
   addOutcome,
   ageCellKey,
   cellKind,
@@ -66,17 +60,21 @@ import {
   emptyCellStats,
   formatGameFormat,
   localDate,
-  meetsCellGoal,
   meetsGoal,
   onlySuggested,
   parseOptions,
-  percentOneDecimal,
   planCellLabel,
   reportPath,
   rollUpToPlanCells,
-  sameOnGoalMeasures,
   sumByKind,
 } from './tackning-celler.ts';
+import {
+  KIND_LABEL,
+  pct,
+  renderSummaryOmgang6,
+  renderSummaryOmgang7,
+  verdict,
+} from './tackning-mal.ts';
 import { publishExercise } from '../src/regelmotor/schema/published.ts';
 import type {
   AreaKey,
@@ -512,11 +510,6 @@ const PART_LIST: SessionPartFromBank[] = [
   'del-spel',
 ];
 
-function pct(count: number, total: number): string {
-  const value = percentOneDecimal(count, total);
-  return value === null ? '–' : `${value.toFixed(1)} %`;
-}
-
 function partTable(agg: Aggregate, bankCounts: Map<string, number>, spelform: GameFormat): string {
   const focusList = relevantFocusForSpelform(spelform);
   const lines: string[] = [];
@@ -626,8 +619,6 @@ function renderSubstituteSection(agg: Aggregate): string {
   return lines.join('\n');
 }
 
-const KIND_LABEL: Record<CellKind, string> = { foreslagen: 'föreslagen', granne: 'granne' };
-
 function cellColumns(stats: CellStats): string {
   const passCount = stats.total - stats.none;
   return [
@@ -682,141 +673,6 @@ function renderPlanCellTable(agg: Aggregate): string {
 
 function goalText(max: number | null): string {
   return max === null ? 'inget mål' : `≤ ${Math.round(max * 100)} %`;
-}
-
-function verdict(value: boolean | null): string {
-  if (value === null) {
-    return '–';
-  }
-  return value ? 'ja' : 'nej';
-}
-
-const MEASURE_LABEL: Record<GoalMeasure, string> = {
-  none: 'Inget pass',
-  coreFilled: 'Fylld kärna',
-  coreOnFocus: 'Kärna på valt fokus',
-};
-
-function cellGoalText(goal: CellGoal): string {
-  const value = `${goal.percent.toFixed(1)} %`;
-  switch (goal.kind) {
-    case 'max':
-      return `≤ ${value}`;
-    case 'min':
-      return `≥ ${value}`;
-    case 'oforandrat':
-      return `= ${value} (oförändrat)`;
-  }
-}
-
-/** Vad som skiljer sammanfattningarna för omgång 6 och omgång 7 åt. */
-interface CellGoalRound {
-  round: number;
-  goalsOf: (goal: PlanGoal) => CellGoals;
-  /** Åldrarna där planen höjer målen, till exempel "8–12 år". */
-  raisedAges: string;
-  /** Åldrarna där värdena ska vara exakt oförändrade. */
-  keptAges: string;
-  /** Tillägg efter meningen om de oförändrade värdena. */
-  keptNote: string;
-}
-
-const OMGANG6: CellGoalRound = {
-  round: 6,
-  goalsOf: (goal) => goal.omgang6,
-  raisedAges: '13–19 år',
-  keptAges: '6–12 år',
-  keptNote:
-    'ett ändrat värde där är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgång 6. Övningarna i omgång 7 ändrar 8–12 år med avsikt, så när de är med gäller den sammanfattningen för omgång 7 i stället.',
-};
-
-const OMGANG7: CellGoalRound = {
-  round: 7,
-  goalsOf: (goal) => goal.omgang7,
-  raisedAges: '8–12 år',
-  keptAges: '6–7 år och 13–19 år',
-  keptNote:
-    'ett ändrat värde där är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgången.',
-};
-
-function renderSummaryOmgang6(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
-  return renderCellGoalSummary(nu, efter, snabb, OMGANG6);
-}
-
-function renderSummaryOmgang7(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
-  const lines = [renderCellGoalSummary(nu, efter, snabb, OMGANG7)];
-  const nuCells = rollUpToPlanCells(nu.agg.cells);
-  const efterCells = rollUpToPlanCells(efter.agg.cells);
-  for (const [keyA, keyB] of EQUAL_PLAN_CELLS_OMGANG7) {
-    const label = (key: string): string => {
-      const [group, spelform] = key.split('|') as [GameFormat, GameFormat];
-      return planCellLabel(group, spelform);
-    };
-    const nuSame = sameOnGoalMeasures(nuCells.get(keyA), nuCells.get(keyB));
-    const efterSame = sameOnGoalMeasures(efterCells.get(keyA), efterCells.get(keyB));
-    lines.push('');
-    lines.push(
-      `Kontrollen i avsnitt 1.1, att ${label(keyA)} och ${label(keyB)} är lika i antal körfall och i de tre måtten (räknat i antal): ${verdict(nuSame)} nu och ${verdict(efterSame)} efter CI. Om de skiljer sig är en övning fel märkt.`,
-    );
-  }
-  return lines.join('\n');
-}
-
-function renderCellGoalSummary(
-  nu: ScenarioResult,
-  efter: ScenarioResult,
-  snabb: boolean,
-  spec: CellGoalRound,
-): string {
-  const nuCells = rollUpToPlanCells(nu.agg.cells);
-  const efterCells = rollUpToPlanCells(efter.agg.cells);
-  const lines: string[] = [];
-  lines.push(`## Sammanfattning: målen i plan-omgang-${spec.round}.md, avsnitt 1.1`);
-  lines.push('');
-  lines.push(
-    `"Nu" är banken med ${nu.bankSize} godkända övningar. "Efter CI" räknar också de ${efter.bankSize - nu.bankSize} granskade som godkända (bara i minnet). Planen prövar målen mot "Banken nu" när omgång ${spec.round} är godkänd, eller mot "Efter CI" när omgångens övningar är granskade men inte godkända. Fylld kärna och kärna på valt fokus räknas av alla körfall. Målen i avsnitt 1.2 och 1.3 prövas för hand mot tabellerna längre ned (se *Metod*).`,
-  );
-  if (snabb) {
-    lines.push('');
-    lines.push(
-      'Körningen gjordes med `--snabb`: bara de föreslagna cellerna är med. Grannceller saknas därför.',
-    );
-  }
-  lines.push('');
-  lines.push(
-    `| Cell | Typ | Mått | Nu | Efter CI | Mål efter omgång ${spec.round} | Nått nu | Nått efter CI |`,
-  );
-  lines.push('|---|---|---|---|---|---|---|---|');
-  const tally = {
-    raised: { count: 0, nu: 0, efter: 0 },
-    kept: { count: 0, nu: 0, efter: 0 },
-  };
-  for (const goal of PLAN_GOALS) {
-    const key = `${goal.group}|${goal.spelform}`;
-    const a = nuCells.get(key);
-    const b = efterCells.get(key);
-    if (a === undefined || b === undefined) {
-      continue;
-    }
-    const kind = goal.group === goal.spelform ? 'foreslagen' : 'granne';
-    for (const measure of GOAL_MEASURES) {
-      const target = spec.goalsOf(goal)[measure];
-      const metNu = meetsCellGoal(a, measure, target);
-      const metEfter = meetsCellGoal(b, measure, target);
-      const bucket = target.kind === 'oforandrat' ? tally.kept : tally.raised;
-      bucket.count += 1;
-      bucket.nu += metNu === true ? 1 : 0;
-      bucket.efter += metEfter === true ? 1 : 0;
-      lines.push(
-        `| ${planCellLabel(goal.group, goal.spelform)} | ${KIND_LABEL[kind]} | ${MEASURE_LABEL[measure]} | ${pct(a[measure], a.total)} | ${pct(b[measure], b.total)} | ${cellGoalText(target)} | ${verdict(metNu)} | ${verdict(metEfter)} |`,
-      );
-    }
-  }
-  lines.push('');
-  lines.push(
-    `Målen för ${spec.raisedAges}: ${tally.raised.nu} av ${tally.raised.count} nådda nu och ${tally.raised.efter} av ${tally.raised.count} efter CI. Värdena för ${spec.keptAges}: ${tally.kept.nu} av ${tally.kept.count} oförändrade nu och ${tally.kept.efter} av ${tally.kept.count} efter CI; ${spec.keptNote}`,
-  );
-  return lines.join('\n');
 }
 
 function renderSummary(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
@@ -1056,6 +912,9 @@ function renderReport(
   );
   lines.push(
     '- "Exakt oförändrat" för 6–12 år betyder lika med värdet i `tackning-2026-10-07.md` (Banken nu, *Per cell i planen*), på rapportens precision. En ändring mindre än 0,05 procentenheter syns alltså inte.',
+  );
+  lines.push(
+    '- Ett värde för 8–12 år som inte längre är oförändrat står som "ändras av omgång 7" i stället för "nej", eftersom plan-omgang-7.md höjer målen för de cellerna med avsikt. De bedöms i sammanfattningen för omgång 7.',
   );
   lines.push(
     '- Målen i avsnitt 1.2 (per spelform och del) och 1.3 (ersättningsfokus) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde* och *Ersättningsfokus (R-121)*.',
