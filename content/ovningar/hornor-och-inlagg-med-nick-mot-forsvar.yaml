@@ -12,16 +12,19 @@ beskrivning: |
   anfallare och rensar. Vinner de bollen spelar de ut den till en konport vid
   straffområdets förlängning, så att försvaret avslutas med en passning och inte
   med en lång rensning. En omgång är sex hörnor eller inlägg. Varje anfallare
-  nickar högst två gånger per omgång och högst tre omgångar per pass, och de
+  nickar högst två gånger per omgång och är anfallare i högst tre omgångar
+  per pass, alltså högst sex nickar, och de
   första inläggen slås lätta och från nära håll innan farten och avståndet ökar.
 organisation: |
-  Två lag om sju till tretton spelare, målvakten inräknad. Fyra anfallare mot
-  tre försvarare med målvakt vid sju spelare, och därefter fyller lagen på jämnt.
+  Två lag om sju till tretton spelare, målvakten inräknad. Vid sju spelare är
+  det fyra anfallare, slagaren inräknad, mot två försvarare och en målvakt,
+  och därefter fyller lagen på jämnt.
   Anfallarna numreras. Hörna ett slås av nummer ett, hörna två av nummer två och
   så vidare, och räcker inte antalet börjar numreringen om. Slagaren går in som
   löpare vid nästa hörna. Efter en omgång om sex hörnor byter lagen roll. Ledaren
   håller räkningen på nickarna och stoppar den som nått sin gräns, och det
-  lämnas aldrig till spelarna. Målvakten har handskar. Står en utespelare i mål
+  lämnas aldrig till spelarna. Målvakten har handskar, och ingen tvingas stå
+  i mål. Står en utespelare i mål
   placeras skotten i stället för att skjutas hårt. Ytan är rymligare när antalet
   spelare är litet: det är medvetet, eftersom hörnan ska slås från rätt avstånd.
 fokusomraden:
@@ -88,8 +91,9 @@ varianter:
 anpassning:
   fler_spelare: Vid fler än tretton spelare delar generatorn gruppen och bygger en andra yta med eget
     mål bredvid, eftersom hörnan annars får för många i boxen.
-  udda_antal: Anfallslaget har en spelare mer. Den extra spelaren är slagare, och byter plats med
-    en försvarare efter varje omgång, så att alla försvarar lika ofta.
+  udda_antal: Den extra spelaren är alltid med det anfallande laget och byter lag när lagen byter
+    roll efter varje omgång, så att båda lagen anfaller i överläge lika ofta. Slagaren bestäms av
+    numreringen som för de andra.
   ledare: En ledare krävs för att hålla koll på nicktaket. Utan extra ledare håller den ordinarie
     ledaren i räkningen.
 planskiss:
@@ -98,9 +102,9 @@ planskiss:
     langd: 30
     bredd: 60
   beskrivning: >-
-    Yta 30 x 60 meter, för elva mot elva, med mål och målvakt på den högra långa kortlinjen. Hörna
-    från övre hörnet, inlägg mot första stolpen och nick från cirka 6 meter. Fyra anfallare mot två
-    försvarare och målvakt. Ledaren står bakom målet. Lag A anfaller åt höger.
+    Yta 30 x 60 meter, för elva mot elva, med mål och målvakt på högra långsidan, som är mållinjen.
+    Hörna från övre hörnet, inlägg mot första stolpen och nick från cirka 5 meter. Fyra anfallare
+    mot två försvarare och målvakt. Ledaren står vid mållinjen. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 60, stil: heldragen }
     - { id: mal-1, typ: mal, x: 30, y: 30, storlek: 11mot11, riktning: vanster }
@@ -131,5 +135,28 @@ planskiss:
       - { x: 20, y: 38, lag: b }
 kalla: Egen övning, inspirerad av allmän hörnträning, anpassad efter SvFF:s riktlinje om begränsad
   nickmängd och efter hörnträningen i Hörnor med nickar för 13-14 år.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Märkt nickspel, 15-19 år, 9mot9 och
+      11mot11, nivå 2-3 och längst 15 minuter, under nicktaket 20 (R-082) och enligt
+      designregel 1. R-086 (pull request 39) gör att övningen bara väljs när ledaren har valt
+      nickspel. Ledaren räknar nickarna, och ledaruppgiften säger det (F8). Ytan följer matchplanens
+      bredd: 11mot11 30 x 60 ger 138 kvadratmeter per spelare vid tretton och 257 vid sju, 9mot9 30 x
+      50 ger 115 och 214, alla inom golv 90 och tak 273. Sidförhållandet ändras 20 procent, under
+      gränsen 25 (ADR 0019). Rättat: 1. "Fyra anfallare mot tre försvarare med målvakt" kunde läsas
+      som åtta spelare. Nu: fyra anfallare, slagaren inräknad, mot två försvarare och en målvakt,
+      som i skissen. 2. Lösningen för udda antal sa att den extra spelaren byter plats med en
+      försvarare, fast lagen byter roll efter varje omgång. Nu följer den extra spelaren det
+      anfallande laget, som i O6-04. 3. Nickmängden säger nu högst tre omgångar som anfallare och
+      högst sex nickar per pass, och att ingen tvingas stå i mål. 4. Skissens beskrivning sa "den
+      högra långa kortlinjen", nick från 6 meter och ledaren bakom målet. Nu: högra långsidan som
+      är mållinjen, cirka 5 meter och ledaren vid mållinjen. Ytreferenserna är de två nya från F7
+      och är införda i ytreferenser.md: knappt en tredjedel av 11 mot 11-planen på hela bredden
+      (30 mot 33-37 meter, 9-19 procent kortare) och knappt halva 9 mot 9-planen (30 mot
+      32,5-36). Skissen är kontrollerad för hand: hörnan går 2,4 meter från platsen 24, 17 och 2,7
+      från F1, nicken går 1,7 meter förbi målvakten mot bortre delen av målet och håller 2,7 till
+      platsen 27, 33.

@@ -7,7 +7,8 @@ beskrivning: |
   Två lag möts på en yta om 36 x 30 meter med ett mål och en målvakt i varje
   kortsida och ingen mittzon. Två mot två till fyra mot fyra ute. Mål räknas
   bara på skott som tas utanför en markering ungefär åtta meter från målet,
-  så att målvakterna får många skott men inga från nära håll. Efter varje
+  så att målvakterna får många skott men inga från nära håll. Utespelarna
+  går inte in innanför markeringen, så en retur där tillhör målvakten. Efter varje
   räddning startar målvakten ett nytt anfall inom sex sekunder, med kast,
   med utspel med foten eller, i nio mot nio och elva mot elva, med inspark.
   Det ger både målvaktsspel och omställning. Spelet går i perioder om tre
@@ -18,9 +19,10 @@ organisation: |
   det laget byter en spelare till det andra efter varje period. Lagets egna
   målvakter står hela tiden om det finns några. Annars är målvakten nästa
   nummer i tur och ordning i laget vid varje period, och den som stått i mål
-  går ut. Ingen tvingas stå i mål. Målvakten har handskar. Står en
-  utespelare i mål placeras skotten i stället för att skjutas hårt. Ledaren
-  eller en spelare vid sidan håller tiden på sex sekunderna. Spelet tar ofta
+  går ut. Ingen tvingas stå i mål: den som inte vill hoppar över sin tur.
+  Målvakten har handskar. Står en utespelare i mål placeras skotten i
+  stället för att skjutas hårt. Målvakten räknar själv högt till sex, eller
+  så håller en ledare tiden. Spelet tar ofta
   slut på bollen, så några bollar står i reserv bakom varje mål.
 fokusomraden:
   - malvaktsspel
@@ -72,7 +74,7 @@ material:
     anteckning: målvaktshandskar till de som står i mål
 coachningspunkter:
   - Målvakten ropar och läser spelet, ta ett steg ut mot skytten.
-  - Skjut lågt mot hörnen och följ upp till retur.
+  - Skjut lågt mot hörnen så fort du har läge utanför markeringen.
   - Spela ut direkt efter räddningen, leta efter en fri medspelare.
   - Ställ om direkt, anfallet ska vara igång inom sex sekunder.
 varianter:
@@ -118,7 +120,29 @@ planskiss:
       - { x: 16, y: 27, lag: a }
       - { x: 26, y: 4, lag: b }
       - { x: 15, y: 16, lag: a }
-      - { x: 29, y: 25, lag: b }
+      - { x: 26, y: 25, lag: b }
 kalla: Egen övning, inspirerad av allmänna målvaktsspel med snabba utspel.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. 108 kvadratmeter per spelare vid tio
+      (golv 90) och 180 vid sex (tak 181). Målvakten får många skott men inga inifrån åtta meter,
+      och startar nya anfall inom sex sekunder, så både målvaktsspel och omställning händer hela
+      tiden. Perioder om tre minuter med en minuts vila. Handskar, placerade skott mot en
+      utespelare i mål, och 7mot7 är rätt eftersom insparken bara är ett av tre sätt att starta.
+      Målen ritas i den spelform passet gäller. För en målvaktsövning är det rätt att målvakten
+      står i sitt eget matchmål. Rättat: 1. Coachningen sa "följ upp till retur", men en retur
+      innanför markeringen kan inte ge mål. Nu går utespelarna inte in innanför markeringen, och en
+      retur där tillhör målvakten. Det skyddar också målvakten mot närkamper på mållinjen. 2.
+      Coachningspunkten är omskriven till att skjuta så fort läget finns utanför markeringen. 3.
+      Målvaktsrotationen och "ingen tvingas" sa emot varandra. Nu hoppar den som inte vill över sin
+      tur. 4. Sexsekundersregeln lades på ledaren fast ledarbehovet är 0. Nu räknar målvakten själv.
+      I skissen stod platsen (29, 25) innanför markeringen. Den står nu på (26, 25). Ytreferensen,
+      ungefär stora planens straffområde, nästan dubbelt så djupt, håller: 1 080 kvadratmeter mot
+      referensens 1 200-1 350, 10 procent mindre, och ungefär säger det. Målen står på kortsidorna
+      om 30 meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för
+      hand: skottet går från 15,1 meter, utanför markeringen, och träffar målet i alla tre
+      spelformernas målbredd. Skottlinjen går 2,7 meter förbi målvakten.

@@ -82,8 +82,9 @@ Stora planens straffområde är ungefär 40 meter brett och 16,5 meter djupt. **
 | ert eget straffområde (bara nyckeln `7mot7`) | 19 × 7 | 130 m² | Avlånga små ytor för 7 mot 7-lag |
 | ert eget straffområde (bara nyckeln `9mot9`) | 24 × 9 | 215 m² | 9 mot 9-lag vid 18 × 12. Exakt samma yta |
 | hela, halva, en fjärdedel av *spelformens* plan | se `spelformer.md` | | Bara stora spelövningar och matchspel |
+| en tredjedel av *spelformens* plan, på hela bredden | 11 mot 11: 33–37 × 60–68 | | Ytor vid ett mål som ska ha matchplanens bredd, till exempel hörnor och inlägg. Ledaren delar planens längd i tre och tar hela bredden. *Tillagd 2026-10-08 (F7 i `plan-omgang-6.md`)* |
 
-Tillägg som får användas för att justera: *ungefär*, *nästan*, *något större än*, *några steg bredare* eller *smalare*, *djupare*, och ett stegtal som *tio steg utanför*.
+Tillägg som får användas för att justera: *ungefär*, *nästan*, *knappt* (samma som *nästan*), *något större än*, *några steg bredare* eller *smalare*, *djupare*, och ett stegtal som *tio steg utanför*. Stegtalet får också användas på längdreferensen för djupledsövningar: *åtta steg längre än stora planens straffområde är brett*, när *något längre* skulle underskatta längden. *Knappt* och stegtalet på längden är tillagda 2026-10-08 med omgång 6.
 
 ### 3.3 Var gränsen går
 
@@ -140,7 +141,9 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 
 *Tillägg 2026-10-06, paket B:* de åtta övningarna för 13–19 år i omgång 5, paket B, står sist i 6.1 och 6.2 med *Var* `omgang/5-paket-b`. Med båda paketen har tabellerna 73 övningar.
 
-### 6.1 Med referens (55 övningar)
+*Tillägg 2026-10-08, omgång 6:* de fjorton övningarna för 13–19 år i omgång 6 står sist i 6.1 och 6.2 med *Var* `omgang/6`. De är granskade men ännu inte godkända, och mått och spelform är kontrollerade mot filerna på grenen samma dag. Tabellerna har därmed 86 övningar. Tillägget för paket B ovan sa 73, men tabellerna hade 72 rader, och banken hade också 72 övningar efter omgång 5B (`plan-omgang-6.md`, avsnitt 0). Siffran 73 var en felräkning; ingen övning saknas. `hornor-och-inlagg-med-nick-mot-forsvar` är den första övningen med referens per spelform (avsnitt 3.4), eftersom ytan följer matchplanens bredd och därför har olika mått i 9 mot 9 och 11 mot 11. Den står därför på två rader i 6.1, en per spelform. Spelformerna för paket A och B i tabellerna är de som gällde när paketen granskades. Märkningen med fler spelformer i omgång 5B har inte förts in här, eftersom ingen referens ändrades av den.
+
+### 6.1 Med referens (67 övningar)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -199,10 +202,25 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `omstallning-i-overlage-till-mal` | 7, 9 och 11 mot 11 | 36 × 25 | ungefär halva 7 mot 7-planen | 28 | omgang/5-paket-b |
 | `spela-framat-i-positionsspel` | 9 och 11 mot 11 | 42 × 28 | något längre än stora planens straffområde är brett | 51 | omgang/5-paket-b |
 | `storre-spel-6mot6-till-11mot11` | 9 och 11 mot 11 | 65 × 50 | hela 9 mot 9-planen, ungefär halva stora planen | 47 | omgang/5-paket-b |
+| `stort-spel-tio-till-elva-mot-elva` | 11 mot 11 | 100 × 60 | hela 11 mot 11-planen | 21 | omgang/6 |
+| `spel-med-malvakter-pa-kvarts-plan` | 9 och 11 mot 11 | 48 × 32 | åtta steg längre än stora planens straffområde är brett | 55 | omgang/6 |
+| `inovade-fasta-situationer` | 7, 9 och 11 mot 11 | 40 × 30 | stora planens straffområde, nästan dubbelt så djupt | 51 | omgang/6 |
+| `fasta-situationer-anfall-mot-forsvar` | 7, 9 och 11 mot 11 | 42 × 32 | stora planens straffområde, nästan dubbelt så djupt | 51 | omgang/6 |
+| `hornor-och-inlagg-med-nick-mot-forsvar` | 11 mot 11 | 30 × 60 | knappt en tredjedel av 11 mot 11-planen, på hela bredden | 56 | omgang/6 |
+| `hornor-och-inlagg-med-nick-mot-forsvar` | 9 mot 9 | 30 × 50 | knappt halva 9 mot 9-planen | 27 | omgang/6 |
+| `intervallspel-med-joker` | 9 och 11 mot 11 | 33 × 20 | ungefär tre fjärdedelar av stora planens straffområde, några steg djupare | 73 | omgang/6 |
+| `backlinjen-i-linje-kliv-fall-och-tack` | 9 och 11 mot 11 | 45 × 32 | något längre än stora planens straffområde är brett | 51 | omgang/6 |
+| `forsvara-djupet-backlinje-mot-anfall` | 9 och 11 mot 11 | 45 × 32 | något längre än stora planens straffområde är brett | 51 | omgang/6 |
+| `malvaktsduell-raddning-och-snabbt-utspel` | 7, 9 och 11 mot 11 | 36 × 30 | ungefär stora planens straffområde, nästan dubbelt så djupt | 59 | omgang/6 |
+| `bygg-upp-fran-malvakten-genom-lagdelarna` | 7, 9 och 11 mot 11 | 45 × 32 | något längre än stora planens straffområde är brett | 51 | omgang/6 |
+| `spelvandning-byt-sida-och-gor-mal` | 7, 9 och 11 mot 11 | 38 × 28 | ungefär stora planens straffområde, nästan dubbelt så djupt | 59 | omgang/6 |
+| `avslut-i-overlage-vid-straffomradet` | 7, 9 och 11 mot 11 | 30 × 30 | tre fjärdedelar av stora planens straffområde, nästan dubbelt så djupt | 70 | omgang/6 |
+
+*Tillägg 2026-10-08, omgång 6:* fyra övningar spelas vid ett mål på ytans kortsida, fast stora planens straffområde har målet på sin långsida: `inovade-fasta-situationer`, `fasta-situationer-anfall-mot-forsvar`, `malvaktsduell-raddning-och-snabbt-utspel` och `avslut-i-overlage-vid-straffomradet` (den sista är kvadratisk, så där spelar det ingen roll). Referensen jämför bara storlek, och var målet står säger beskrivningen (konvention 2). Sidornas förhållande är nästan detsamma, så formen stämmer. `spel-med-malvakter-pa-kvarts-plan` och de tre övningarna på 45 × 32 har offside eller uppbyggnad genom lagdelar, och får därför längdreferensen. 48 meter är 19 procent längre än straffområdets bredd, och *något längre* skulle underskatta det, därför stegtalet.
 
 *Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
 
-### 6.2 Utan referens (17 övningar)
+### 6.2 Utan referens (19 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -223,6 +241,8 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `svansjakt-med-egen-boll` | 3 mot 3, 5 mot 5 | 12 × 12 | För liten eller ingen plandel med rätt form. En fjärdedel av stora planens straffområde har ungefär samma yta men fel form | omgang/5-paket-a |
 | `skadeforebyggande-uppvarmning-13-19` | 7, 9 och 11 mot 11 | 16 × 14 | Station. Avståndet mellan arbetsplatserna styr, och ytan följer undantag 3 | omgang/5-paket-b |
 | `en-mot-en-till-mal-13-19` | 7, 9 och 11 mot 11 | 16 × 12 | Duell med startavstånd. Anfallaren startar 12 och försvararen 6 meter från målet | omgang/5-paket-b |
+| `nickteknik-i-par-fran-kast-till-nick` | 9 och 11 mot 11 | 10 × 6 | För liten eller ingen plandel med rätt form. Avståndet mellan kastare och nickare, tre till fem meter, är det som styr | omgang/6 |
+| `dribblingsbana-i-intervaller` | 9 och 11 mot 11 | 36 × 20 | Station och bestämd bana. Ytan följer undantag 3, och avståndet mellan banans delar styr | omgang/6 |
 
 ### 6.3 Anmärkningar
 

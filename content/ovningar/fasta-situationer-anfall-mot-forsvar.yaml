@@ -24,7 +24,9 @@ organisation: |
   vila, och laget som anfaller bestämmer då sina varianter. Laget som försvarar
   byter målvakt efter varje omgång om ingen vill stå kvar. Målvakten har
   handskar, och står en utespelare i mål placeras skotten i stället för att
-  skjutas hårt.
+  skjutas hårt. Ingen tvingas stå i mål. Ytan är lika stor också för sex
+  spelare, eftersom de fasta situationerna ska slås från sina platser runt
+  målet och kontringen behöver sin längd.
 fokusomraden:
   - fasta-situationer
   - forsvarsspel
@@ -63,7 +65,7 @@ material:
     anteckning: i den spelform ni tränar för
   - typ: vast
     antal: 7
-    anteckning: till det försvarande laget
+    anteckning: till det ena laget, som behåller dem när lagen byter roll
   - typ: boll
     antal: 6
   - typ: kon
@@ -83,8 +85,8 @@ anpassning:
     mål bredvid.
   udda_antal: Den extra spelaren är alltid med det anfallande laget. Efter varje omgång byter lagen
     roll, så alla är i överläge varannan omgång.
-  ledare: Övningen är självgående när varianterna är bestämda. Ledaren kan döma offside och hålla
-    räkningen på de fem situationerna.
+  ledare: Övningen är självgående när varianterna är bestämda. Ledaren kan hålla räkningen på de fem
+    situationerna och poängen.
 planskiss:
   version: 1
   omrade:
@@ -124,5 +126,23 @@ planskiss:
       - { x: 22, y: 10, lag: a }
       - { x: 32, y: 29, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända träningsformer för fasta situationer med kontring.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. 96 kvadratmeter per spelare vid fjorton
+      (golv 90) och 224 vid sex, 24 procent över taket 181. Ingen planerad nick, och hörnor och
+      inlägg slås längs marken eller i midjehöjd (designregel 17). Slagarrotationen är entydig, en
+      omgång är fem situationer i varje riktning med en minuts vila, och den extra spelaren är alltid
+      med det anfallande laget. Varje lag har sin målvakt, som är utespelare när laget anfaller.
+      Rättat: 1. Ledartexten nämnde offside. Det är fel i 7 mot 7, som saknar offside, och ingen
+      regel i övningen bygger på offside. Strukit. 2. Västarna gick till "det försvarande laget",
+      fast lagen byter roll. Nu till det ena laget. 3. Skälet till att taket överskrids och
+      meningen om att ingen tvingas stå i mål står nu i organisationen. Ytreferensen, stora planens
+      straffområde, nästan dubbelt så djupt, håller: 1 344 kvadratmeter ligger i referensens spann
+      1 200-1 350, och sidornas förhållande är nästan detsamma. Målet ligger på kortsidan om 32
+      meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för hand:
+      skottet går från 12,6 meter, passningen och skottet håller minst 3,8 meter till försvarare och
+      platser, och åtta platser varvade a och b räcker till fjorton.

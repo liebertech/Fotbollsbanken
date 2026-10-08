@@ -13,7 +13,11 @@ beskrivning: |
   till exempel en något urluftad fotboll eller en skumboll, och 13-åringar
   använder storlek fyra. Byt roll efter tio kast. Varje spelare nickar högst
   tio gånger per omgång, och högst två omgångar för 13 och 14 år och tre
-  omgångar för 15 till 19 år.
+  omgångar för 15 till 19 år. Första omgången är steg ett och andra omgången
+  steg två. Den tredje omgången upprepar steg två, eller är steg tre i den
+  svårare varianten. När paret har nickat sina omgångar är nickningen slut,
+  och resten av tiden tar nickaren emot kastet på bröstet eller låret och
+  passar tillbaka längs marken.
 organisation: |
   Ett par per yta, utan motståndare. Paret turas om: efter tio kast byter
   de, så att nickaren blir kastare och kastaren nickare. Med tre spelare i
@@ -94,5 +98,22 @@ planskiss:
       - { vid: ka, riktning: 90, etikett: Kastar nästa varv }
 kalla: Egen övning, inspirerad av vanlig nickteknikträning i par med lätta bollar, i enlighet med SvFF:s
   riktlinje om att nickningen börjar med lätta bollar.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter ett småfel som jag har rättat själv. Grundtekniken med lätta bollar, kast med
+      händerna på fyra meter och tydliga tak för nickmängden följer aldrar-och-fokus.md. Märkt
+      nickspel, minsta ålder 13 (R-081), 9mot9 och 11mot11 enligt F2, och R-086 (pull request 39)
+      gör att övningen bara väljs när ledaren har valt nickspel. Kortast 5 minuter ryms under
+      nicktaket 10 för 13-14 år (designregel 4). Ytan är 30 kvadratmeter per spelare, över golvet
+      25 utan motståndare. Trion vid udda antal följer R-058, och kön "Kastar nästa varv" står
+      bredvid kastaren. Rättat: texten sa inte vad en omgång innehåller eller vad paret gör när
+      omgångarna är slut, så att en lång tid kunde läsas som fler nickar. Nu är omgång ett steg
+      ett, omgång två steg två, och den tredje upprepar steg två eller är steg tre i den svårare
+      varianten. När omgångarna är slut tar nickaren emot kastet på bröstet eller låret och
+      passar tillbaka, vilket också knyter övningen till passning-mottagning. Ingen ytreferens:
+      för liten eller ingen plandel med rätt form. Skissen är kontrollerad för hand: nicken är en
+      böjd pil som går 0,6 meter vid sidan av kastet.

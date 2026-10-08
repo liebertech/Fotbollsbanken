@@ -8,7 +8,8 @@ beskrivning: |
   ingen målvakt, så att spelet går fort. Spelet består av perioder med
   arbete och vila. Två mot två spelar en och en halv minut och vilar en och
   en halv. Tre mot tre, med eller utan joker, spelar två till tre minuter och
-  vilar en och en halv. Det blir fyra till sex perioder. Under vilan passar
+  vilar en och en halv. Antalet perioder följer tiden: ungefär två perioder
+  på åtta minuter och fem till åtta på tjugofem minuter. Under vilan passar
   spelarna lugnt i par vid sidan av ytan och dricker. Laget som vinner bollen
   ställer om direkt mot motståndarnas mål. Jokern spelar alltid med laget som
   har bollen och får inte göra mål.
@@ -17,8 +18,10 @@ organisation: |
   spelare är två mot två, fem är två mot två och joker, sex är tre mot tre
   och sju är tre mot tre och joker. Jokern byts efter varje period. Spelarna
   numreras och jokern är nästa nummer i tur och ordning, så att ingen är
-  joker två perioder i rad. Mål räknas bara i minimålen. Efter varje mål eller
-  utboll startar laget som släppte in en ny boll från sin kortlinje. Spelet
+  joker två perioder i rad. Den som var joker går in i det lag som den nya
+  jokern lämnade. Mål räknas bara i minimålen. Efter mål startar laget som
+  släppte in, och efter utboll laget som inte rörde bollen sist, med en ny
+  boll från sin kortlinje. Spelet
   används i delen Spelövning eller i delen Spel, och den som vill hålla
   intervallerna längre ökar antalet perioder, inte periodernas längd.
 fokusomraden:
@@ -72,8 +75,8 @@ coachningspunkter:
   - Jokern erbjuder sig hela tiden åt det lag som har bollen.
 varianter:
   lattare: Kortare perioder, en minut spel och en och en halv minut vila, och ingen begränsning av touchar.
-  svarare: Mindre yta, ungefär 28 x 17 meter, och högst två touchar per spelare, eller ett mål som
-    räknas först när alla i laget har rört bollen.
+  svarare: Högst två touchar per spelare, och ett mål räknas först när alla i laget utom jokern har
+    rört bollen under anfallet.
 anpassning:
   fler_spelare: Vid fler än sju spelare delas gruppen i två spel på varsin yta. Två ytor ryms bredvid
     varandra på en kvarts plan, upp till fjorton spelare.
@@ -111,5 +114,23 @@ planskiss:
       - { x: 28, y: 16, lag: b }
       - { x: 18, y: 17, lag: neutral }
 kalla: Egen övning, inspirerad av vanligt intervallspel i smålag med joker.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Intervaller bara för 15-19 år enligt F3,
+      arbete och vila i minuter (designregel 16), och både Spelövning och Spel enligt F4. 94
+      kvadratmeter per spelare vid sju (golv 90) och 165 vid fyra (tak 273). Två ytor ryms på
+      kvarts plan. Rättat: 1. "Fyra till sex perioder" gick inte ihop med kortast åtta minuter. Nu
+      följer antalet perioder tiden, ungefär två på åtta minuter och fem till åtta på tjugofem. 2.
+      Jokerbytet sa inte vart den förra jokern tar vägen. Nu går den in i laget som den nya jokern
+      lämnade (designregel 15). 3. Omstarten efter utboll sa "laget som släppte in". Nu startar
+      laget som inte rörde bollen sist. 4. Den svårare varianten hade en mindre yta, 28 x 17,
+      som ger 68 kvadratmeter per spelare vid sju, under golvet 90. Strukit. Kvar är två touchar och
+      att alla utom jokern ska ha rört bollen, vilket är nivå 3 enligt designregel 19. Ytreferensen,
+      ungefär tre fjärdedelar av stora planens straffområde, några steg djupare, håller: 30 x 20
+      mot 33 x 20. Skissen är kontrollerad för hand: dribblingen går mitt emellan försvararna, 5,1
+      meter från var och en, skottet går från 10 meter, och tre platser (a, b, joker) räcker till
+      sju.

@@ -12,6 +12,8 @@ beskrivning: |
   och säkert efter varje räddning och inspark, i stället för att chippa
   bollen långt. Laget med boll ska bygga upp genom lagdelarna, och laget
   utan boll ska hålla en samlad backlinje och döma offside tillsammans.
+  Hörnor, frisparkar och inlägg slås längs marken eller i midjehöjd,
+  eftersom övningen inte är en nickövning.
 organisation: |
   Två lag om sammanlagt 19 till 23 spelare, inklusive två målvakter. Lagen
   är så jämnstora som möjligt: vid 19 spelare nio mot åtta utespelare, vid
@@ -19,9 +21,10 @@ organisation: |
   elva). Vid 23 spelare är båda lagen fulla, och den tjugotredje spelaren
   är avbytare som byts in i tur och ordning var femte minut, så att alla
   får lika mycket speltid. Spelas i perioder om tolv till femton minuter
-  med vattenpaus mellan varje period: en period räcker vid femton minuters
-  speltid, två vid trettio och tre vid fyrtiofem. Lagen byter planhalva
-  mellan perioderna.
+  med två till tre minuters vattenpaus mellan perioderna: en period vid
+  femton minuters speltid, två vid trettio och tre vid fyrtiofem. Lagen
+  byter planhalva mellan perioderna. Ytan är matchplanens minsta mått också
+  vid nitton spelare, eftersom spelet ska vara matchens egen form.
 fokusomraden:
   - forsvarsspel
   - speluppbyggnad
@@ -70,14 +73,15 @@ coachningspunkter:
   - Pressa tillsammans direkt efter en bolltapp, håll ihop backlinjen och döm offside som ett lag.
 varianter:
   lattare: Ingen offside döms, så att anfallsspelet flyter utan avbrott.
-  svarare: Efter halva tiden gäller högst två touchar per spelare i eget lags uppbyggnadszon.
+  svarare: Efter halva tiden gäller högst två touchar per spelare på egen planhalva.
 anpassning:
   fler_spelare: Vid fler än tjugotre spelare, bygg en andra yta med samma mått bredvid om en hel plan
     till finns. Annars turas fler spelare om att vara avbytare, i samma ordning som de andra.
   udda_antal: Lagen görs en spelare olika stora i stället för att generatorn sätter in en joker, se
     fördelningen i organisation för varje antal.
-  ledare: Övningen är självgående när reglerna och avbytarordningen är satta. Ledaren dömer offside
-    och fasta situationer och håller koll på avbytarrotationen från sidan.
+  ledare: Övningen är självgående när reglerna och avbytarordningen är satta. En ledare kan döma
+    offside och fasta situationer och hålla koll på avbytarrotationen från sidan. Utan ledare dömer
+    lagen själva.
 planskiss:
   version: 1
   omrade:
@@ -123,5 +127,22 @@ planskiss:
       - { x: 75, y: 45, lag: b }
       - { x: 50, y: -2, lag: neutral }
 kalla: Egen övning, inspirerad av vanligt stort matchspel med rullande avbytare.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Ytan är 11 mot 11-planens minsta mått: 261
+      kvadratmeter per spelare vid 23 (golv 90) och 316 vid 19, 16 procent över taket 273. Det är
+      godtagbart för matchens egen form, och skälet står nu i organisationen. Avbytare i stället för
+      joker följer F6, och fördelningen för 19-23 spelare är entydig. Tiden 15/30/45 klarar
+      designregel 3. Rättat: 1. Vattenpausen står i minuter, två till tre (designregel 16). 2. En
+      mening om att hörnor, frisparkar och inlägg slås längs marken eller i midjehöjd, eftersom
+      övningen har fasta-situationer men inte nickspel (designregel 17, R-081). 3. Den svårare
+      varianten sa "uppbyggnadszon", som inte är definierad. Nu: egen planhalva. 4. Ledartexten sa
+      att ledaren dömer, fast ledarbehovet är 0. Nu kan en ledare döma, annars dömer lagen själva.
+      Skissen är kontrollerad för hand: 19 spelare, nio mot åtta utespelare, tre passningar från
+      målvakten utan skott, närmaste motståndare 3,0 meter från passningslinjen (B på 55, 30), och
+      fyra platser varvade b, a, b och en avbytare utanför sidlinjen. Ytreferensen hela 11 mot
+      11-planen är rätt.

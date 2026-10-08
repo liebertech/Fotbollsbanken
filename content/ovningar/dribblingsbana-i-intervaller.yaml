@@ -17,13 +17,15 @@ beskrivning: |
 organisation: |
   Upp till tio spelare i taget på banan, var och en med egen boll. Banan är
   bestämd och delarna korsar inte varandra, med minst två meter mellan dem.
-  Spelarna ställer sig i kö vid starten på vänstra kortsidan och startar fem
-  sekunder efter den förra. Fyra till fem omgångar om tre minuters arbete och
-  en och en halv minuts vila. Med elva till tjugo spelare delas gruppen i två
-  lika stora halvor som växlar: den ena halvan arbetar tre minuter medan
-  den andra vilar, och därefter byter de. Då räcker det med tre omgångar per
-  halva. Den som är först i kön startar först i varje omgång, och den som var
-  sist i förra omgången är först i nästa. Hindren är låga, till exempel
+  Spelarna ställer sig i kö utanför vänstra kortsidan, bredvid starten, och
+  startar fem sekunder efter den förra. Den som kommer ikapp någon går förbi
+  på raksträckan, aldrig i slalomen eller vid hindren. Två till fyra omgångar
+  om tre minuters arbete och en och en halv minuts vila, efter hur lång tid
+  övningen har. Med elva till tjugo spelare delas gruppen i två lika stora
+  halvor som växlar: den ena halvan arbetar tre minuter medan den andra vilar
+  vid sidan av banan, och därefter byter de. Då kör varje halva en till tre
+  omgångar. Den som är först i kön startar först i varje omgång, och den som
+  var sist i förra omgången är först i nästa. Hindren är låga, till exempel
   markeringsplattor, så att ingen kan snubbla svårt.
 fokusomraden:
   - uthallighet
@@ -75,7 +77,7 @@ varianter:
     varv ska klaras på en bestämd tid, 40 sekunder.
 anpassning:
   fler_spelare: Vid fler än tio spelare delas gruppen i två halvor som växlar mellan arbete och
-    vila, med tre omgångar per halva.
+    vila, med en till tre omgångar per halva.
   udda_antal: Spelar ingen roll. Spelarna arbetar var för sig, och en halva kan vara en spelare större.
   ledare: Övningen är självgående när banan är byggd. Ledaren håller tiden på arbete och vila och
     rättar tekniken i vändningen.
@@ -86,8 +88,8 @@ planskiss:
     bredd: 20
   beskrivning: >-
     Yta 36 x 20 meter med en sluten bana: slalom längst upp, en bollbana och tre låga hinder
-    till höger, en vändning runt en kon och en acceleration längs undre kanten. Fyra spelare står i kö vid
-    starten till vänster. Fler spelare fyller på kön.
+    till höger, en vändning runt en kon och en acceleration längs undre kanten. Den första står vid
+    starten och de andra i kö utanför vänstra kortsidan. Fler spelare fyller på kön.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: streckad }
     - { typ: kon, x: 8, y: 3 }
@@ -101,9 +103,9 @@ planskiss:
     - { typ: ruta, x: 31, y: 9, langd: 2, bredd: 0.6, stil: heldragen }
     - { typ: ruta, x: 31, y: 11.5, langd: 2, bredd: 0.6, stil: heldragen }
     - { id: p1, typ: spelare, x: 3, y: 4.5, lag: a, etikett: "1" }
-    - { id: p2, typ: spelare, x: 3, y: 6.5, lag: a, etikett: "2" }
-    - { id: p3, typ: spelare, x: 3, y: 8.5, lag: a, etikett: "3" }
-    - { id: p4, typ: spelare, x: 3, y: 10.5, lag: a, etikett: "4" }
+    - { id: p2, typ: spelare, x: -1.5, y: 4.5, lag: a, etikett: "2" }
+    - { id: p3, typ: spelare, x: -1.5, y: 6.5, lag: a, etikett: "3" }
+    - { id: p4, typ: spelare, x: -1.5, y: 8.5, lag: a, etikett: "4" }
     - { typ: boll, x: 3.9, y: 4.5 }
   rorelser:
     - { typ: dribbling, fran: { objekt: p1 }, till: { x: 26, y: 4.5 }, ordning: 1, etikett: Slalom }
@@ -116,5 +118,24 @@ planskiss:
     koer:
       - { vid: p4, riktning: 90, avstand: 2, etikett: Väntar på start }
 kalla: Egen övning, inspirerad av allmänna dribblingsbanor och intervallträning med boll.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. En bestämd bana, så ytan bedöms enligt
+      undantag 3: delarna korsar inte varandra och har minst 2 meter mellan sig (bollbanan och
+      hinderlöpningen 3 meter, hindren och vändningen 2 meter, bollbanans stoppkon och
+      raksträckan 2 meter). Arbete och vila står i minuter (designregel 16). Avvikelsen från
+      planen godtas: högst tio på banan och två halvor som växlar vid 11-20 spelare, med tre
+      minuters arbete och tre minuters vila. En bana för tjugo samtidigt blir för tät, och två
+      banor ryms inte på kvarts plan (39 x 23 x 2 = 1 794 mot 1 664 kvadratmeter). Vila lika lång
+      som arbetet är fortfarande intervallträning, varje spelare får en till tre omgångar och
+      övningen ryms inom 20 minuter. Rättat: 1. Kön stod inne i ytan på vänstra kortsidan, där
+      spelarna kommer tillbaka efter accelerationen. Nu står den första vid starten och kön 1,5
+      meter utanför kortsidan, och kön ryms med elva spelare inom marginalen. 2. Med tio spelare
+      på ett varv om cirka 85 meter kommer de snabba ikapp de långsamma. Nu går man förbi bara på
+      raksträckan. 3. "Fyra till fem omgångar" gick inte ihop med 8-20 minuter. Nu två till fyra
+      omgångar, och en till tre per halva. Ingen ytreferens: bestämd bana, stationer och fasta
+      positioner. Inga skott i skissen.

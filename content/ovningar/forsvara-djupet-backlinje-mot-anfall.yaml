@@ -19,10 +19,14 @@ organisation: |
   samma med en joker, tio är målvakt och fyra backar mot fem anfallare, elva
   samma med joker, tolv är målvakt och fem backar mot sex anfallare, och tretton
   samma med joker. Jokern räknas som anfallare och spelar bara med
-  anfallslaget. Vid fjorton och femton spelare är det tretton på ytan och en
-  eller två avbytare utanför, som byter in efter varje period med den
-  anfallare som har lägst nummer. Spela tre minuter, vila en minut, och byt
-  roller mellan lagen varannan period. Målvakten har handskar.
+  anfallslaget. Varje lag har en målvakt, som står i mål när laget försvarar
+  och är anfallare när laget anfaller. Vid fjorton och femton spelare är det
+  tretton på ytan och en eller två avbytare utanför sidlinjen. Alla
+  utespelare har ett nummer. Efter varje period går den eller de två på ytan
+  som har lägst nummer ut, avbytarna tar deras roll, och den som går ut får
+  nästa nummer efter det högsta, så att alla är avbytare lika ofta. Spela tre
+  minuter, vila en minut, och byt roller mellan lagen varannan period.
+  Målvakten har handskar, och ingen tvingas stå i mål.
 fokusomraden:
   - forsvarsspel
   - speluppbyggnad
@@ -60,7 +64,7 @@ material:
     anteckning: i den spelform ni tränar för, förankrat
   - typ: vast
     antal: 7
-    anteckning: till anfallarna, en annan färg till jokern
+    anteckning: sex till det ena laget och en i en annan färg till jokern
   - typ: boll
     antal: 5
   - typ: kon
@@ -80,8 +84,8 @@ anpassning:
     varje period, i tur och ordning efter nummer.
   udda_antal: Anfallslaget får en joker som spelar med anfallarna. Antalet backar och anfallare för
     varje antal står i organisationen.
-  ledare: Övningen är självgående när reglerna är satta. Ledaren dömer offside och coachar
-    backlinjens rop från sidan.
+  ledare: Övningen är självgående när reglerna är satta, och backlinjen dömer offside med egna rop.
+    En ledare kan döma offside och coacha backlinjens rop från sidan.
 planskiss:
   version: 1
   omrade:
@@ -90,7 +94,7 @@ planskiss:
   beskrivning: >-
     Yta 45 x 32 meter med mål och målvakt till höger och en målzon till vänster. Tre försvarare i
     linje, fyra anfallare. Ett djupledspass går mot en anfallare som löpt bakom linjen. Fler spelare
-    fyller på, och en joker spelar med anfallarna.
+    fyller på, och en joker spelar med anfallarna. Avbytare står utanför sidlinjen.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 45, bredd: 32, stil: heldragen }
     - { id: mal-1, typ: mal, x: 45, y: 16, storlek: 11mot11, riktning: vanster }
@@ -112,10 +116,33 @@ planskiss:
     strategi: platser
     platser:
       - { x: 16, y: 20, lag: neutral }
-      - { x: 31, y: 29, lag: b }
+      - { x: 33, y: 29, lag: b }
       - { x: 26, y: 26, lag: a }
-      - { x: 28, y: 31, lag: b }
+      - { x: 32, y: 7, lag: b }
       - { x: 27, y: 10, lag: a }
+      - { x: 3, y: 34, lag: a }
+      - { x: 6, y: 34, lag: a }
 kalla: Egen övning, inspirerad av allmänt kända former för att träna försvar i djupled och uppbyggnad.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. 96 kvadratmeter per spelare vid femton
+      (golv 90), och bara tretton står på ytan, och 180 vid åtta (tak 181). Längden 45 klarar
+      djupledskravet, offside gäller och målzonen ger speluppbyggnad efter bollvinst. Perioder om
+      tre minuter med en minuts vila (designregel 1). Avbytare vid fjorton och femton godtas: en
+      eller två står ute en period i taget och alla är ute lika ofta, ungefär var sjunde period.
+      Att i stället sänka spelare.max till tretton skulle ta bort övningen för fjorton och femton
+      på kvarts plan, eftersom två grupper inte ryms och sju är under spelare.min. Rättat: 1.
+      Avbytarnas byte är nu entydigt: de med lägst nummer på ytan går ut och får nästa nummer efter
+      det högsta (designregel 15). 2. Texten sa inte vem som står i mål när lagen byter roll. Nu
+      har varje lag en målvakt som är anfallare när laget anfaller, vilket ger lika stora lag vid
+      jämnt antal, och ingen tvingas stå i mål. 3. Västarna gick till "anfallarna", fast lagen byter
+      roll. Nu till det ena laget och jokern. 4. I skissen stod den femte backen på (28, 31) vid
+      sidlinjen fem meter framför linjen. Nu står backarna på (33, 29) och (32, 7), och två
+      platser för avbytare är tillagda utanför sidlinjen, så att skissen räcker till femton. Den
+      nya platsen (32, 7) håller 1,7 meter till A1:s löpning och 1,9 till djupledspassningen.
+      Skottet går från 13,6 meter, och A1 är onside när passningen slås. Ytreferensen, något
+      längre än stora planens straffområde är brett, håller för 45 meter.

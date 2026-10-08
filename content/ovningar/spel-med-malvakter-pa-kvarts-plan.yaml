@@ -5,7 +5,7 @@ syfte: Spelarna ska ställa om direkt vid bollvinst, hålla ihop försvaret och 
   ett matchlikt spel som ryms på en kvarts plan.
 beskrivning: |
   Två lag möts på en yta om 48 x 32 meter med ett mål och en målvakt i varje
-  kortsida. Målen är sjua mot sjua-mål, fem meter breda, så att de inte blir
+  kortsida. Målen är 7 mot 7-mål, fem meter breda, så att de inte blir
   för stora i en smal yta. Offside gäller på hela ytan. Efter varje räddning
   och varje inspark startar målvakten med ett kort, säkert utspel till en
   medspelare i stället för en lång spark. Mål som görs inom tio sekunder
@@ -49,7 +49,7 @@ yta:
     langd: 48
     bredd: 32
 ytreferens:
-  alla: något längre än stora planens straffområde är brett
+  alla: åtta steg längre än stora planens straffområde är brett
 material:
   - typ: mal
     antal: 2
@@ -119,5 +119,20 @@ planskiss:
       - { x: 18, y: 28, lag: a }
       - { x: 30, y: 4, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända smålagsspel med målvakter och omställningsregler.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller. 48 x 32 ryms på kvarts plan, ger 96 kvadratmeter per spelare vid 16 (golv 90) och 192
+      vid 8, 6 procent över taket 181. Längden 48 klarar djupledskravet, och offside gör att 7mot7
+      med rätta saknas. Målen är 7 mot 7-mål med storlek eget och bredd 5, och samma storlek står i
+      materialet (designregel 9). Perioder och vila står i minuter, målvakten har handskar och ingen
+      tvingas stå i mål. Rättat själv: "sjua mot sjua-mål" till "7 mot 7-mål" i beskrivningen, och
+      ytreferensen. "Något längre" användes för 42 meter och passar 45, men 48 är 19 procent längre
+      än straffområdets bredd. Nu: "åtta steg längre än stora planens straffområde är brett", som
+      bygger på stegtillägget i ytreferenser.md, avsnitt 3.2. Skissen är kontrollerad för hand:
+      skottet går från 16,2 meter, alla pilar håller minst 1,8 meter till spelare och platser (den
+      närmaste är platsen 6, 22 mot målvaktens utspel), A1 är onside när passningen slås, och åtta
+      platser varvade a och b räcker till sexton.

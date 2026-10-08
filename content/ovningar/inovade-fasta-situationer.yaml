@@ -13,7 +13,9 @@ beskrivning: |
   Tredje är spelad frispark runt en mur av koner: slagaren passar vid sidan av
   muren, löparna löper bakom den och avslutaren tar emot och skjuter. I nio mot
   nio och elva mot elva läggs en fjärde variant till: inspark till en back som
-  vänder upp. I sju mot sju ersätts den av målvaktens utspel från marken. Alla
+  vänder upp och spelar bollen vidare via löparna till avslutaren vid den
+  bortre kortlinjen, och där slutar varianten utan skott. I sju mot sju
+  ersätts insparken av målvaktens utspel från marken. Alla
   inlägg och hörnor slås längs marken eller i midjehöjd, inga höga bollar.
 organisation: |
   En grupp om fem till nio spelare per mål. Rollerna är målvakt, slagare,
@@ -26,7 +28,9 @@ organisation: |
   handskar. Står en utespelare i mål placeras skotten i stället för att
   skjutas hårt. Utan målvakt skjuter man på tomt mål. Muren är koner. Efter
   en runda om fem försök byter gruppen variant, och ledaren eller någon i
-  gruppen ropar vilken som är näst.
+  gruppen ropar vilken som är näst. Ytan är lika stor också för fem
+  spelare, eftersom inkast, hörna och frispark ska slås från sina riktiga
+  platser runt målet.
 fokusomraden:
   - fasta-situationer
   - passning-mottagning
@@ -80,7 +84,7 @@ coachningspunkter:
 varianter:
   lattare: Bara en variant åt gången, utan tidskrav, och slagaren väntar tills alla är på plats.
   svarare: Hela varianten ska vara klar inom tolv sekunder från att slagaren rör bollen, och löparna
-    får högst två touchar. Ledaren ropar varianten i sista sekund.
+    får högst två touchar. Målvakten eller en ledare ropar varianten i sista sekund.
 anpassning:
   fler_spelare: Vid fler än nio spelare delar generatorn gruppen och bygger en andra yta med eget mål
     bredvid, eftersom kön annars blir för lång.
@@ -116,5 +120,22 @@ planskiss:
     koer:
       - { vid: sl, riktning: 180, etikett: Kö bakom slagaren }
 kalla: Egen övning, inspirerad av allmänt kända träningsformer för fasta situationer.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Utan motståndare, eftersom muren är koner
+      och målvakten inte gör övningen till en övning med motståndare: 133 kvadratmeter per spelare
+      vid nio (golv 25) och 240 vid fem, 33 procent över taket 181. Rotationen är entydig för fem
+      till nio, kön står utanför ytan och inte i en skottlinje, och inga höga bollar finns i
+      grundformen (designregel 17). Målvakten har handskar och ingen tvingas. Rättat: 1. Insparken
+      saknade ett slut i en yta med bara ett mål. Nu går bollen via löparna till avslutaren vid
+      den bortre kortlinjen, utan skott. 2. Skälet till att taket överskrids står nu i
+      organisationen (designregel 5). 3. Den svårare varianten lät ledaren ropa trots ledarbehov
+      0. Nu ropar målvakten eller en ledare. Ytreferensen, stora planens straffområde, nästan
+      dubbelt så djupt, träffar 40 x 30 exakt. Målet ligger i skissen på kortsidan om 30 meter, och
+      referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för hand: skottet går
+      från 10,4 meter, skottlinjen går 5,8 meter från löpare 2, och kön går längs sidlinjen 1
+      meter utanför ytan.
