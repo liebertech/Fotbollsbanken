@@ -10,6 +10,7 @@ beskrivning: |
 organisation: |
   Två lag om två till tre spelare per yta. Flera ytor läggs bredvid varandra om gruppen är
   större, med tre meters avstånd mellan dem.
+  Spela i perioder om fyra till fem minuter med en minuts vila, och byt lag mellan perioderna.
 fokusomraden:
   - ett-mot-ett
   - avslut
@@ -34,7 +35,7 @@ grupptyp: tva-lag
 tid:
   kortast: 10
   rekommenderad: 15
-  langst: 20
+  langst: 25
 yta:
   alla:
     langd: 18
@@ -129,3 +130,8 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Omgång 7, beslut B3 i docs/doman/plan-omgang-7.md. Höjde tid.langst från 20 till 25 minuter, så att Spel kan fyllas i 75-minuterspass för 8-9 år i 3 mot 3, och lade till en mening sist i organisation om perioder om fyra till fem minuter med en minuts vila och lagbyte mellan perioderna. Yta, spelare och skiss är oförändrade.
