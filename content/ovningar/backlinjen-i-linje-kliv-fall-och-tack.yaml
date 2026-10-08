@@ -1,0 +1,154 @@
+schema: 1
+id: backlinjen-i-linje-kliv-fall-och-tack
+namn: "Backlinjen i linje: kliv, fall och täck"
+syfte: Backlinjen ska röra sig tillsammans efter bollen, kliva upp eller falla på rop, täcka bakom
+  varandra och ställa om vid bollvinst.
+beskrivning: |
+  Ett mål med målvakt står i ena kortsidan av en yta om 45 x 32 meter. Tre till
+  fem försvarare står i en linje framför målet. Tre till sex anfallare passar
+  fritt i en zon framför linjen, med halvt tempo i början. Linjen rör sig efter
+  bollen: den faller när bollhållaren är vänd framåt utan press, och den
+  kliver upp när bollen spelas bakåt eller bollhållaren pressas. Anfallarna
+  får löpa bakom linjen och ta emot bollen där, och offside gäller. Vinner
+  försvararna bollen spelar de den genom en av två konportar vid den motsatta
+  kortlinjen. Målvakten eller mittbacken ropar "upp" och "fall" så att alla
+  rör sig samtidigt.
+organisation: |
+  Åtta till femton spelare. Antalet i backlinjen och bland anfallarna: åtta
+  spelare är tre backar och fyra anfallare, nio är tre och fem, tio är fyra
+  och fem, elva är fyra och sex, tolv är fem och sex. Vid tretton till femton
+  är backarna fem, och anfallarna går i två vågor om fyra och tre, fyra och
+  fyra eller fem och fyra som byter efter varje anfall. Vågen som väntar står
+  utanför ytan bakom kortlinjen, vid sidan av konportarna och inte i deras
+  linje, och räknas inte på ytan. Målvakten står i mål. Spela serier om sex
+  anfall med en minuts vila. Alla utespelare har ett nummer. Efter två serier
+  byter rollerna: backarna blir anfallare, och lika många anfallare blir
+  backar, i tur och ordning efter nummer, så att fördelningen ovan gäller och
+  nästa byte fortsätter där det förra slutade. Målvakten står
+  kvar. En ledare kan stå bakom målet och rätta. Bredden 32 meter är avsiktligt
+  smalare än stora planens straffområde, eftersom en kompakt backlinje på fyra
+  täcker ungefär den bredden. Målvakten har handskar.
+fokusomraden:
+  - forsvarsspel
+  - omstallning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 8
+  max: 15
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 20
+yta:
+  alla:
+    langd: 45
+    bredd: 32
+ytreferens:
+  alla: något längre än stora planens straffområde är brett
+material:
+  - typ: mal
+    antal: 1
+    anteckning: i den spelform ni tränar för, förankrat
+  - typ: vast
+    antal: 5
+    anteckning: till backlinjen, så att anfallarnas vågor kan byta utan att byta västar
+  - typ: boll
+    antal: 5
+  - typ: kon
+    antal: 8
+    anteckning: fyra bildar de två konportarna och fyra markerar ytans hörn
+coachningspunkter:
+  - Rop är nödvändiga, mittbacken ropar upp och fall, och alla rör sig samtidigt.
+  - Håll linjen rak, kliv inte ensam och lämna ingen kvar bakom.
+  - Den som står närmast bollen pressar, de andra täcker bakom honom eller henne.
+  - Vinner ni bollen, spela ut genom konporten direkt.
+varianter:
+  lattare: Ingen offside och anfallarna passar i lugnt tempo utan att löpa bakom linjen.
+  svarare: Anfallarna får bara två touchar och spelar i full fart, och linjen ska avgöra upp eller
+    fall på under två sekunder. Anfallsserien är tio sekunder per anfall.
+anpassning:
+  fler_spelare: Vid fler än tolv spelare går anfallarna i två vågor som byter efter varje anfall.
+    Ytan växer inte, eftersom den som väntar står utanför.
+  udda_antal: Den extra spelaren är anfallare. Fördelningen av backar och anfallare för varje antal
+    står i organisationen.
+  ledare: Övningen är självgående när rollerna är satta, eftersom backlinjen styrs av egna rop. Ledaren
+    står bakom målet och rättar linjen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 45
+    bredd: 32
+  beskrivning: >-
+    Yta 45 x 32 meter med mål och målvakt till höger och två konportar till vänster. Tre försvarare
+    i linje kliver upp när bollen spelas bakåt, sedan djupledspass mot en anfallare bakom linjen.
+    Fler spelare fyller på, och vågen som väntar står bakom kortlinjen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 45, bredd: 32, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 45, y: 16, storlek: 11mot11, riktning: vanster }
+    - { typ: kon, x: 0, y: 9 }
+    - { typ: kon, x: 0, y: 12 }
+    - { typ: kon, x: 0, y: 20 }
+    - { typ: kon, x: 0, y: 23 }
+    - { id: gk, typ: spelare, x: 44, y: 16, lag: b, malvakt: true, etikett: MV }
+    - { id: b1, typ: spelare, x: 33, y: 10, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 33, y: 16, lag: b, etikett: B2 }
+    - { id: b3, typ: spelare, x: 33, y: 22, lag: b, etikett: B3 }
+    - { id: a1, typ: spelare, x: 22, y: 26, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 22, y: 12, lag: a, etikett: A2 }
+    - { id: a3, typ: spelare, x: 24, y: 19, lag: a, etikett: A3 }
+    - { id: a4, typ: spelare, x: 18, y: 24, lag: a, etikett: A4 }
+    - { typ: boll, x: 22.9, y: 12 }
+    - { typ: ledare, x: 48, y: 16 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a2 }, till: { objekt: a4 }, ordning: 1, etikett: Bakåt }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 30, y: 10 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: b2 }, till: { x: 30, y: 16 }, ordning: 1, etikett: Kliv upp }
+    - { typ: lopning, fran: { objekt: b3 }, till: { x: 30, y: 22 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 37, y: 25 }, ordning: 3 }
+    - { typ: passning, fran: { objekt: a4 }, till: { x: 37, y: 25 }, ordning: 3, etikett: Bakom linjen }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 20, y: 6, lag: a }
+      - { x: 33, y: 4, lag: b }
+      - { x: 26, y: 8, lag: a }
+      - { x: 33, y: 28, lag: b }
+      - { x: -2, y: 16, lag: a }
+      - { x: -2, y: 4, lag: a }
+      - { x: -2, y: 28, lag: a }
+kalla: Egen övning, inspirerad av allmänt kända former för att träna backlinjens rörelser.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Halvaktiva anfallare som kan löpa bakom
+      linjen räknas som motståndare (F10): 96 kvadratmeter per spelare vid femton (golv 90), och de
+      som väntar står utanför ytan, och 180 vid åtta (tak 181). Längden 45 klarar djupledskravet,
+      och bredden 32 följer F9. Fördelningen av backar och anfallare står för varje antal 8-15, och
+      ledarbehov 0 bärs av att linjen styrs av egna rop (F8). Rättat: 1. Rollbytet "backarna blir
+      anfallare och tvärtom" gick inte ihop med att anfallarna är fler. Nu blir lika många
+      anfallare backar i nummerordning. 2. Vågen som väntar stod bakom konportarna, där
+      försvararna spelar ut bollen. Nu står den bakom kortlinjen vid sidan av portarna, och två av
+      skissens platser är flyttade från (-2, 10) och (-2, 22) till (-2, 4) och (-2, 28). 3. I
+      skissen löpte A1 bakom linjen (ordning 2) innan passningen slogs (ordning 3), alltså offside.
+      Nu har löpningen och passningen samma ordning. 4. Västarna går till backlinjen, så att
+      vågorna kan byta utan västbyte, och ledaren "kan" stå bakom målet. Ytreferensen, något längre
+      än stora planens straffområde är brett, håller för 45 meter. Kvar i skissen: vid tretton
+      spelare visar bilden sex anfallare på ytan och en utanför, fast vågorna är fyra och tre.
+      Formatet kan inte flytta en spelare ut när gruppen växer, och skissens beskrivning säger var
+      vågen står. Passningen bakom linjen håller 2,6 meter till B3 och 3,2 till platsen 33, 28.

@@ -1,0 +1,148 @@
+schema: 1
+id: malvaktsduell-raddning-och-snabbt-utspel
+namn: "Målvaktsduell: räddning och snabbt utspel"
+syfte: Målvakterna ska rädda skott och starta nya anfall snabbt, och utespelarna ska avsluta på mål
+  och ställa om direkt när bollen byter lag.
+beskrivning: |
+  Två lag möts på en yta om 36 x 30 meter med ett mål och en målvakt i varje
+  kortsida och ingen mittzon. Två mot två till fyra mot fyra ute. Mål räknas
+  bara på skott som tas utanför en markering ungefär åtta meter från målet,
+  så att målvakterna får många skott men inga från nära håll. Utespelarna
+  går inte in innanför markeringen, så en retur där tillhör målvakten. Efter varje
+  räddning startar målvakten ett nytt anfall inom sex sekunder, med kast,
+  med utspel med foten eller, i nio mot nio och elva mot elva, med inspark.
+  Det ger både målvaktsspel och omställning. Spelet går i perioder om tre
+  minuter med en minuts vila.
+organisation: |
+  Sex till tio spelare: två mot två till fyra mot fyra utespelare plus en
+  målvakt per lag. Vid udda antal spelar ett lag med en utespelare mer, och
+  det laget byter en spelare till det andra efter varje period. Lagets egna
+  målvakter står hela tiden om det finns några. Annars är målvakten nästa
+  nummer i tur och ordning i laget vid varje period, och den som stått i mål
+  går ut. Ingen tvingas stå i mål: den som inte vill hoppar över sin tur.
+  Målvakten har handskar. Står en utespelare i mål placeras skotten i
+  stället för att skjutas hårt. Målvakten räknar själv högt till sex, eller
+  så håller en ledare tiden. Spelet tar ofta
+  slut på bollen, så några bollar står i reserv bakom varje mål.
+fokusomraden:
+  - malvaktsspel
+  - avslut
+  - omstallning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 15
+  langst: 25
+yta:
+  alla:
+    langd: 36
+    bredd: 30
+ytreferens:
+  alla: ungefär stora planens straffområde, nästan dubbelt så djupt
+material:
+  - typ: mal
+    antal: 2
+    anteckning: i den spelform ni tränar för, förankrade
+  - typ: vast
+    antal: 5
+    anteckning: till det ena lagets utespelare
+  - typ: boll
+    antal: 8
+    anteckning: fyra bakom varje mål
+  - typ: markering
+    antal: 6
+    anteckning: markerar linjen åtta meter från varje mål
+  - typ: ovrigt
+    antal: 2
+    anteckning: målvaktshandskar till de som står i mål
+coachningspunkter:
+  - Målvakten ropar och läser spelet, ta ett steg ut mot skytten.
+  - Skjut lågt mot hörnen så fort du har läge utanför markeringen.
+  - Spela ut direkt efter räddningen, leta efter en fri medspelare.
+  - Ställ om direkt, anfallet ska vara igång inom sex sekunder.
+varianter:
+  lattare: Målvakten får tio sekunder på sig och spelar ut med händerna till en medspelare nära.
+  svarare: Målvakten får fyra sekunder på sig, och ett mål efter utspelet inom åtta sekunder
+    räknas dubbelt. Utespelarna har högst två touchar.
+anpassning:
+  fler_spelare: Vid fler än tio spelare byggs en andra yta bredvid med samma mått, eller så står de
+    extra utanför som avbytare och byter in efter varje period.
+  udda_antal: Ett lag spelar med en utespelare mer. Det laget byter en spelare till det andra efter
+    varje period, så att alla spelar i både över- och underläge.
+  ledare: Övningen är självgående när reglerna är satta. Ledaren kan stå vid sidan, rätta
+    målvakternas teknik och hålla koll på sexsekundersregeln.
+planskiss:
+  version: 1
+  omrade:
+    langd: 36
+    bredd: 30
+  beskrivning: >-
+    Yta 36 x 30 meter med ett mål och en målvakt i varje kortsida och en linje åtta meter från
+    varje mål. Två mot två ute. Lag A avslutar från cirka 15 meter, utanför linjen. Fler spelare
+    fyller på lagen jämnt. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 30, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 11mot11, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 36, y: 15, storlek: 11mot11, riktning: vanster }
+    - { typ: markering, form: linje, x: 8, y: 0, till: { x: 8, y: 30 } }
+    - { typ: markering, form: linje, x: 28, y: 0, till: { x: 28, y: 30 } }
+    - { id: gk-a, typ: spelare, x: 1, y: 15, lag: a, malvakt: true, etikett: MV }
+    - { id: gk-b, typ: spelare, x: 35, y: 16, lag: b, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 10, y: 8, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 10, y: 22, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 22, y: 8, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 24, y: 22, lag: b, etikett: B2 }
+    - { typ: boll, x: 10.9, y: 8 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 21, y: 15 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a1 }, till: { x: 21, y: 15 }, ordning: 1 }
+    - { typ: skott, fran: { x: 21, y: 15 }, till: { x: 36, y: 13.2 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 16, y: 27, lag: a }
+      - { x: 26, y: 4, lag: b }
+      - { x: 15, y: 16, lag: a }
+      - { x: 26, y: 25, lag: b }
+kalla: Egen övning, inspirerad av allmänna målvaktsspel med snabba utspel.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. 108 kvadratmeter per spelare vid tio
+      (golv 90) och 180 vid sex (tak 181). Målvakten får många skott men inga inifrån åtta meter,
+      och startar nya anfall inom sex sekunder, så både målvaktsspel och omställning händer hela
+      tiden. Perioder om tre minuter med en minuts vila. Handskar, placerade skott mot en
+      utespelare i mål, och 7mot7 är rätt eftersom insparken bara är ett av tre sätt att starta.
+      Målen ritas i den spelform passet gäller. För en målvaktsövning är det rätt att målvakten
+      står i sitt eget matchmål. Rättat: 1. Coachningen sa "följ upp till retur", men en retur
+      innanför markeringen kan inte ge mål. Nu går utespelarna inte in innanför markeringen, och en
+      retur där tillhör målvakten. Det skyddar också målvakten mot närkamper på mållinjen. 2.
+      Coachningspunkten är omskriven till att skjuta så fort läget finns utanför markeringen. 3.
+      Målvaktsrotationen och "ingen tvingas" sa emot varandra. Nu hoppar den som inte vill över sin
+      tur. 4. Sexsekundersregeln lades på ledaren fast ledarbehovet är 0. Nu räknar målvakten själv.
+      I skissen stod platsen (29, 25) innanför markeringen. Den står nu på (26, 25). Ytreferensen,
+      ungefär stora planens straffområde, nästan dubbelt så djupt, håller: 1 080 kvadratmeter mot
+      referensens 1 200-1 350, 10 procent mindre, och ungefär säger det. Målen står på kortsidorna
+      om 30 meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för
+      hand: skottet går från 15,1 meter, utanför markeringen, och träffar målet i alla tre
+      spelformernas målbredd. Skottlinjen går 2,7 meter förbi målvakten.

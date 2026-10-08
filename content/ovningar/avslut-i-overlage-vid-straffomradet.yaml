@@ -1,0 +1,148 @@
+schema: 1
+id: avslut-i-overlage-vid-straffomradet
+namn: Avslut i överläge vid straffområdet
+syfte: Spelarna ska hitta det bästa avslutet i överläge, att driva, passa eller skjuta, och lösa läget
+  snabbt innan försvararna hinner tillbaka.
+beskrivning: |
+  Ett mål med målvakt i ena kortsidan av en yta om 30 x 30 meter. Anfallarna
+  startar från en linje 25 meter från målet och anfaller i överläge: två mot
+  en vid fyra spelare, målvakten inräknad, upp till fyra mot tre vid åtta.
+  Försvararna startar ungefär tio meter framför målet. Anfallarna
+  väljer själva om de driver, passar eller skjuter, och ska avsluta innan
+  försvararna hinner stänga. Försvararna som vinner bollen spelar den över
+  anfallarnas startlinje. I delen Öva är försvararna halvaktiva och lämnar
+  överläget öppet, och i delen Spelövning försvarar de fullt och räknar
+  poäng för varje boll de får över startlinjen. Skott tas från högst cirka
+  sexton meter.
+organisation: |
+  Fyra till nio spelare. Fyra är målvakt, två anfallare och en försvarare, fem är
+  tre anfallare och en försvarare, sex är tre anfallare och två försvarare,
+  sju är fyra anfallare och två försvarare, åtta är fyra anfallare och tre
+  försvarare. Nio är samma som åtta, och den nionde står i kö utanför ytan
+  bakom startlinjen, aldrig i en skottlinje. Rotation efter varje anfall: den som
+  avslutade blir försvarare, eller den anfallare som sist rörde bollen om
+  anfallet slutade utan skott. Den försvarare som har försvarat längst går till
+  anfallarnas startlinje som ny anfallare, och målvakten står kvar. Finns en kö
+  går i stället den försvarare som försvarat längst sist i kön, och den första i
+  kön går till startlinjen. Målvakten har handskar, och står en utespelare i mål
+  placeras skotten i stället för att skjutas hårt. Ingen tvingas stå i mål.
+  Ytan är lika stor också för fyra spelare, eftersom anfallet behöver sina
+  25 meter från startlinjen till målet.
+fokusomraden:
+  - avslut
+  - spelbarhet
+  - ett-mot-ett
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 9
+grupptyp: tva-lag
+tid:
+  kortast: 6
+  rekommenderad: 12
+  langst: 25
+yta:
+  alla:
+    langd: 30
+    bredd: 30
+ytreferens:
+  alla: tre fjärdedelar av stora planens straffområde, nästan dubbelt så djupt
+material:
+  - typ: mal
+    antal: 1
+    anteckning: i den spelform ni tränar för, förankrat
+  - typ: boll
+    antal: 6
+    anteckning: några i reserv bakom målet
+  - typ: markering
+    antal: 1
+    anteckning: startlinjen 25 meter från målet
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Läs läget, driv tills försvararen väljer och passa sedan.
+  - Skjut direkt när du har ett fritt läge, vänta inte på det perfekta.
+  - Passa i rätt tid, så att din medspelare får skjuta fritt.
+  - Försvararna ska fördröja och stänga det mest hotfulla läget.
+varianter:
+  lattare: Försvararna står passiva de första två anfallen och startar sedan två sekunder efter
+    anfallarna.
+  svarare: Anfallet har åtta sekunder på sig, anfallarna får bara två touchar, och försvararna startar
+    några steg närmare anfallarna.
+anpassning:
+  fler_spelare: Vid fler än nio spelare bygger generatorn en andra yta med eget mål bredvid, eftersom
+    kön annars blir lång.
+  udda_antal: Spelar ingen roll. Fördelningen av anfallare och försvarare för varje antal står i
+    organisationen, och den nionde står i kö.
+  ledare: Övningen är självgående när rotationen är satt. Ledaren kan stå vid sidan och coacha valen
+    i överläget.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 30
+  beskrivning: >-
+    Yta 30 x 30 meter med ett mål och en målvakt på högra kortsidan och en startlinje 25 meter från
+    målet. Två anfallare mot en försvarare. A1 driver, passar till A2 som avslutar från cirka 11 meter.
+    Fler spelare fyller på, och den nionde står i kö bakom startlinjen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 30, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 30, y: 15, storlek: 11mot11, riktning: vanster }
+    - { typ: markering, form: linje, x: 5, y: 0, till: { x: 5, y: 30 } }
+    - { id: gk, typ: spelare, x: 29, y: 14.5, lag: b, malvakt: true, etikett: MV }
+    - { id: f1, typ: spelare, x: 20, y: 14, lag: b, etikett: F }
+    - { id: a1, typ: spelare, x: 6, y: 10, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 6, y: 20, lag: a, etikett: A2 }
+    - { typ: boll, x: 6.9, y: 10 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 16, y: 12 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 20, y: 20 }, ordning: 1 }
+    - { typ: passning, fran: { x: 16, y: 12 }, till: { x: 20, y: 20 }, ordning: 2 }
+    - { typ: skott, fran: { x: 20, y: 20 }, till: { x: 30, y: 17.2 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 5, lag: a }
+      - { x: 24, y: 9, lag: b }
+      - { x: 6, y: 25, lag: a }
+      - { x: 25, y: 22, lag: b }
+      - { x: -1.5, y: 15, lag: neutral }
+kalla: Egen övning, inspirerad av allmänna överlägesspel mot mål med målvakt.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fem småfel som jag har rättat själv. 100 kvadratmeter per spelare vid nio (golv
+      90), där den nionde står utanför ytan, och 225 vid fyra, 24 procent över taket 181. Både Öva
+      och Spelövning enligt F4, med halvaktiva försvarare i Öva och fullt försvar i Spelövning.
+      Fördelningen för fyra till nio står i organisationen, och kön står utanför ytan och inte i
+      en skottlinje. Rättat: 1. Rotationen byggde på "den som avslutade", som saknas när försvararna
+      vinner bollen. Nu går den anfallare som sist rörde bollen (designregel 15). 2. Texten sa inte
+      var försvararna startar. Nu ungefär tio meter framför målet, som i skissen. 3. Den lättare
+      varianten gav en extra anfallare, och den svårare en extra försvarare. Vid fyra och fem spelare
+      blir det tre mot noll eller lika många, och ingen plats säger varifrån spelaren kommer. Nu:
+      passiva försvarare som startar två sekunder efter anfallarna, och i den svårare åtta sekunder,
+      två touchar och försvarare som startar närmare. 4. Västarna till försvararna är strukna,
+      eftersom rollerna byts efter varje anfall. 5. Skälet till att taket överskrids och att ingen
+      tvingas stå i mål står nu i organisationen. Ytreferensen, tre fjärdedelar av stora planens
+      straffområde, nästan dubbelt så djupt, träffar 30 x 30 utan "ungefär". Skissen är
+      kontrollerad för hand: skottet går från 10,4 meter, under 16, passningen går 2,7 meter från
+      försvararen och skottet 5,8 meter från honom och 2,9 meter förbi målvakten, och platsen för
+      den nionde står 1,5 meter bakom ytans kortsida.

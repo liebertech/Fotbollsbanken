@@ -19,7 +19,8 @@ organisation: |
   mot två och två jokrar. Sju: tre mot tre och en joker. Åtta: tre mot tre
   och två jokrar. Nio: fyra mot fyra och en joker. Tio: fyra mot fyra och
   två jokrar. Gruppen håller själv de åtta sekunderna, till exempel genom
-  att räkna högt.
+  att räkna högt. Spela i perioder om tre minuter med en minuts vila,
+  eftersom de åtta sekunderna håller tempot högt hela tiden.
 fokusomraden:
   - omstallning
   - forsvarsspel
@@ -42,9 +43,9 @@ spelare:
   max: 10
 grupptyp: tva-lag
 tid:
-  kortast: 10
+  kortast: 8
   rekommenderad: 15
-  langst: 20
+  langst: 25
 yta:
   alla:
     langd: 36
@@ -164,3 +165,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #34."
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Ändrad enligt docs/doman/plan-omgang-6.md, avsnitt 4 (beslut B2): tid 10 / 15 / 20 blir
+      8 / 15 / 25, och en mening om perioder om tre minuter med en minuts vila är tillagd sist i
+      organisation. Inget annat ändrat.

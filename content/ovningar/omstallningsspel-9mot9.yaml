@@ -43,6 +43,7 @@ ytreferens:
 material:
   - typ: mal
     antal: 2
+    anteckning: 7 mot 7-mål eller 9 mot 9-mål, inte fullstora
   - typ: vast
     antal: 4
     anteckning: till det ena laget
@@ -56,7 +57,7 @@ varianter:
   lattare: Ta bort tidsgränsen och ge poäng för alla mål som görs efter en bollvinst.
   svarare: Bonuspoängen kräver mål inom fem sekunder efter bollvinsten i stället för tio.
 anpassning:
-  fler_spelare: Gör ytan större och spela med fler utespelare i varje lag.
+  fler_spelare: Vid fler än tio spelare, bygg en andra yta med samma mått bredvid.
   udda_antal: Ett lag spelar med en utespelare mer i stället för att sakna målvakt.
   ledare: Övningen är självgående. Ledaren dömer, byter målvakter och peppar från sidan.
 kalla: Egen övning, inspirerad av allmänt kända omställningsspel i matchform.
@@ -91,3 +92,11 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [9mot9] till [7mot7, 9mot9, 11mot11] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Ändrad enligt docs/doman/plan-omgang-6.md, avsnitt 5: material för målen anger nu 7 mot 7-mål
+      eller 9 mot 9-mål, inte fullstora, och anpassning.fler_spelare säger nu att en andra yta
+      byggs vid fler än tio spelare, vilket stämmer med yta och spelare.max. Namnet är oförändrat
+      enligt beslut B4.

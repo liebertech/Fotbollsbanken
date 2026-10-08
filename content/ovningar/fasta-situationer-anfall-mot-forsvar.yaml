@@ -1,0 +1,148 @@
+schema: 1
+id: fasta-situationer-anfall-mot-forsvar
+namn: Fasta situationer, anfall mot försvar med kontring
+syfte: Spelarna ska anfalla och försvara fasta situationer med motstånd, och ställa om till kontring
+  direkt efter bollvinst.
+beskrivning: |
+  Två lag på en yta om 42 x 32 meter med ett mål och en målvakt i ena
+  kortsidan. Det anfallande laget slår fem fasta situationer i följd från
+  olika platser runt målet: kort hörna, låg hörna till första stolpen, inkast
+  i anfallszonen och spelad frispark. Det försvarande laget har målvakt,
+  markerar och försvarar. Vinner det bollen kontrar det mot två konportar på
+  den motsatta kortlinjen och spelar bollen genom en av dem. Mål på fast
+  situation ger två poäng, mål inom åtta sekunder efter en fast situation en
+  poäng, och ett kontringsmål en poäng till försvararna. Efter fem situationer
+  byter lagen roll. Hörnor och inlägg slås längs marken eller i midjehöjd, och
+  ingen nickning är planerad.
+organisation: |
+  Två lag om tre till sju spelare, målvakten inräknad: tre mot tre vid sex
+  spelare och sju mot sju vid fjorton. Anfallarna numreras och slagaren byter
+  i tur och ordning: den första situationen slås av nummer ett, den andra av
+  nummer två och så vidare, och räcker inte antalet börjar numreringen om. Den
+  som slagit går in i anfallet efter sin boll och är löpare vid nästa. En omgång
+  är fem fasta situationer i varje riktning. Mellan omgångarna är det en minuts
+  vila, och laget som anfaller bestämmer då sina varianter. Laget som försvarar
+  byter målvakt efter varje omgång om ingen vill stå kvar. Målvakten har
+  handskar, och står en utespelare i mål placeras skotten i stället för att
+  skjutas hårt. Ingen tvingas stå i mål. Ytan är lika stor också för sex
+  spelare, eftersom de fasta situationerna ska slås från sina platser runt
+  målet och kontringen behöver sin längd.
+fokusomraden:
+  - fasta-situationer
+  - forsvarsspel
+  - omstallning
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 14
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 15
+  langst: 25
+yta:
+  alla:
+    langd: 42
+    bredd: 32
+ytreferens:
+  alla: stora planens straffområde, nästan dubbelt så djupt
+material:
+  - typ: mal
+    antal: 1
+    anteckning: i den spelform ni tränar för
+  - typ: vast
+    antal: 7
+    anteckning: till det ena laget, som behåller dem när lagen byter roll
+  - typ: boll
+    antal: 6
+  - typ: kon
+    antal: 8
+    anteckning: fyra till konportarna och fyra till hörnen
+coachningspunkter:
+  - Försvarare markerar varsin anfallare innan bollen slås, ingen står kvar på bollen.
+  - Anfallarna spelar efter lagets mönster, kort och snabbt längs marken.
+  - Vinner ni bollen, spela ut direkt och kontra genom konporten.
+  - Rop på markeringen, säg vem du tar och vem som täcker.
+varianter:
+  lattare: Ingen kontring och inga extra poäng, försvararna rensar bara. Anfallet får tio sekunder på sig.
+  svarare: Slagaren har bara åtta sekunder på sig från att bollen läggs ned, och försvararna byter
+    markering efter varje situation så att ingen markerar samma anfallare två gånger.
+anpassning:
+  fler_spelare: Vid fler än fjorton spelare delar generatorn gruppen och bygger en andra yta med eget
+    mål bredvid.
+  udda_antal: Den extra spelaren är alltid med det anfallande laget. Efter varje omgång byter lagen
+    roll, så alla är i överläge varannan omgång.
+  ledare: Övningen är självgående när varianterna är bestämda. Ledaren kan hålla räkningen på de fem
+    situationerna och poängen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 42
+    bredd: 32
+  beskrivning: >-
+    Yta 42 x 32 meter med ett mål och en målvakt på högra kortsidan och två konportar på vänstra. Tre
+    mot två ute plus målvakt. Kort hörna: slagaren passar kort, bollen läggs bakåt och avslutas från
+    cirka 13 meter. Fler spelare fyller på lagen jämnt. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 42, bredd: 32, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 42, y: 16, storlek: 11mot11, riktning: vanster }
+    - { typ: kon, x: 0, y: 8 }
+    - { typ: kon, x: 0, y: 11 }
+    - { typ: kon, x: 0, y: 21 }
+    - { typ: kon, x: 0, y: 24 }
+    - { id: gk, typ: spelare, x: 41, y: 16, lag: b, malvakt: true, etikett: MV }
+    - { id: b1, typ: spelare, x: 37, y: 10, lag: b, etikett: F1 }
+    - { id: b2, typ: spelare, x: 38, y: 20, lag: b, etikett: F2 }
+    - { id: sl, typ: spelare, x: 41, y: 1, lag: a, etikett: S }
+    - { id: a1, typ: spelare, x: 36, y: 5, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 30, y: 12, lag: a, etikett: A2 }
+    - { typ: boll, x: 40.2, y: 1 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sl }, till: { objekt: a1 }, ordning: 1, etikett: Kort hörna }
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 2 }
+    - { typ: skott, fran: { objekt: a2 }, till: { objekt: mal-1 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 33, y: 18, lag: a }
+      - { x: 36, y: 18, lag: b }
+      - { x: 26, y: 5, lag: a }
+      - { x: 34, y: 24, lag: b }
+      - { x: 24, y: 20, lag: a }
+      - { x: 30, y: 26, lag: b }
+      - { x: 22, y: 10, lag: a }
+      - { x: 32, y: 29, lag: b }
+kalla: Egen övning, inspirerad av allmänt kända träningsformer för fasta situationer med kontring.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. 96 kvadratmeter per spelare vid fjorton
+      (golv 90) och 224 vid sex, 24 procent över taket 181. Ingen planerad nick, och hörnor och
+      inlägg slås längs marken eller i midjehöjd (designregel 17). Slagarrotationen är entydig, en
+      omgång är fem situationer i varje riktning med en minuts vila, och den extra spelaren är alltid
+      med det anfallande laget. Varje lag har sin målvakt, som är utespelare när laget anfaller.
+      Rättat: 1. Ledartexten nämnde offside. Det är fel i 7 mot 7, som saknar offside, och ingen
+      regel i övningen bygger på offside. Strukit. 2. Västarna gick till "det försvarande laget",
+      fast lagen byter roll. Nu till det ena laget. 3. Skälet till att taket överskrids och
+      meningen om att ingen tvingas stå i mål står nu i organisationen. Ytreferensen, stora planens
+      straffområde, nästan dubbelt så djupt, håller: 1 344 kvadratmeter ligger i referensens spann
+      1 200-1 350, och sidornas förhållande är nästan detsamma. Målet ligger på kortsidan om 32
+      meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för hand:
+      skottet går från 12,6 meter, passningen och skottet håller minst 3,8 meter till försvarare och
+      platser, och åtta platser varvade a och b räcker till fjorton.
