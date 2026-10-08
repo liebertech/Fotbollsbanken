@@ -5,7 +5,8 @@
  * för åldern (R-013, `suggestedGameFormat`, samma funktion som formuläret i
  * src/app/input/form.ts använder) och **granne** annars (R-014). Planens celler i
  * docs/doman/plan-omgang-5.md slår ihop åldrarna med samma föreslagna spelform, till exempel
- * "6–7 år, 3 mot 3", och det är på den nivån målen i avsnitt 1.2 står.
+ * "6–7 år, 3 mot 3", och det är på den nivån målen i plan-omgang-5.md avsnitt 1.2 och i
+ * plan-omgang-6.md avsnitt 1.1 står.
  *
  * Modulen har inga sidoeffekter, så att den går att testa utan att köra svepet.
  */
@@ -153,7 +154,7 @@ export function sumByKind(ageCells: ReadonlyMap<string, CellStats>, kind?: CellK
 }
 
 // ---------------------------------------------------------------------------
-// Målen i plan-omgang-5.md, avsnitt 1.1 och 1.2
+// Målen i plan-omgang-5.md (avsnitt 1.1 och 1.2) och plan-omgang-6.md (avsnitt 1.1)
 // ---------------------------------------------------------------------------
 
 export interface PlanGoal {
@@ -163,28 +164,147 @@ export interface PlanGoal {
   maxNoneOmgang5: number | null;
   /** Högsta andel "inget pass" efter omgång 5B. */
   maxNone5B: number | null;
+  /** Målen efter omgång 6 för de tre måtten (plan-omgang-6.md, avsnitt 1.1). */
+  omgang6: Readonly<Record<GoalMeasure, Omgang6Goal>>;
+}
+
+/** Ett av de tre måtten per cell, med samma namn som fälten i `CellStats`. */
+export type GoalMeasure = 'none' | 'coreFilled' | 'coreOnFocus';
+
+export const GOAL_MEASURES: readonly GoalMeasure[] = ['none', 'coreFilled', 'coreOnFocus'];
+
+/**
+ * Ett mål i plan-omgang-6.md, avsnitt 1.1, i procent med en decimal. `max` och `min` är
+ * planens "högst" och "minst". `oforandrat` är "exakt oförändrat": lika med värdet i
+ * docs/doman/tackning-2026-10-07.md, *Banken nu*, tabellen *Per cell i planen*.
+ */
+export type Omgang6Goal =
+  | { kind: 'max'; percent: number }
+  | { kind: 'min'; percent: number }
+  | { kind: 'oforandrat'; percent: number };
+
+/** Högst `none`, minst `coreFilled` och minst `coreOnFocus`, i procent. */
+function raise6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal['omgang6'] {
+  return {
+    none: { kind: 'max', percent: none },
+    coreFilled: { kind: 'min', percent: coreFilled },
+    coreOnFocus: { kind: 'min', percent: coreOnFocus },
+  };
+}
+
+/** Exakt oförändrade värden, i procent som rapporten skriver dem. */
+function keep6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal['omgang6'] {
+  return {
+    none: { kind: 'oforandrat', percent: none },
+    coreFilled: { kind: 'oforandrat', percent: coreFilled },
+    coreOnFocus: { kind: 'oforandrat', percent: coreOnFocus },
+  };
 }
 
 /**
- * Målen i planens tabell 1.2, avskrivna för hand (planen är ett dokument, inte data).
- * "oförändrat" för 8–9 år i 5 mot 5 och 10–12 år i 7 mot 7 är översatt till huvudmålet i
- * avsnitt 1.1, högst 5 procent i varje föreslagen cell. "100 %" i kolumnen för omgång 5 är
- * ett läge, inte ett mål, och blir null.
+ * Målen i planernas tabeller, avskrivna för hand (planerna är dokument, inte data).
+ *
+ * plan-omgang-5.md, tabell 1.2: "oförändrat" för 8–9 år i 5 mot 5 och 10–12 år i 7 mot 7 är
+ * översatt till huvudmålet i avsnitt 1.1, högst 5 procent i varje föreslagen cell. "100 %" i
+ * kolumnen för omgång 5 är ett läge, inte ett mål, och blir null.
+ *
+ * plan-omgang-6.md, tabell 1.1: för 13–19 år "högst" för inget pass och "minst" för fylld
+ * kärna och kärna på valt fokus (båda av alla körfall). "Alla celler för 6–12 år" ska vara
+ * exakt oförändrade; värdena är avskrivna ur tackning-2026-10-07.md (Banken nu, Per cell i
+ * planen).
  */
 export const PLAN_GOALS: readonly PlanGoal[] = [
-  { group: '3mot3', spelform: '3mot3', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '3mot3', spelform: '5mot5', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '5mot5', spelform: '5mot5', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '5mot5', spelform: '3mot3', maxNoneOmgang5: null, maxNone5B: 0.05 },
-  { group: '5mot5', spelform: '7mot7', maxNoneOmgang5: null, maxNone5B: 0.05 },
-  { group: '7mot7', spelform: '7mot7', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '7mot7', spelform: '5mot5', maxNoneOmgang5: null, maxNone5B: 0.1 },
-  { group: '7mot7', spelform: '9mot9', maxNoneOmgang5: null, maxNone5B: 0.05 },
-  { group: '9mot9', spelform: '9mot9', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '9mot9', spelform: '7mot7', maxNoneOmgang5: 0.1, maxNone5B: 0.05 },
-  { group: '9mot9', spelform: '11mot11', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '11mot11', spelform: '11mot11', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
-  { group: '11mot11', spelform: '9mot9', maxNoneOmgang5: 0.05, maxNone5B: 0.05 },
+  {
+    group: '3mot3',
+    spelform: '3mot3',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: keep6(0.0, 85.7, 33.9),
+  },
+  {
+    group: '3mot3',
+    spelform: '5mot5',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: keep6(0.0, 85.7, 33.9),
+  },
+  {
+    group: '5mot5',
+    spelform: '5mot5',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: keep6(0.3, 74.8, 25.5),
+  },
+  {
+    group: '5mot5',
+    spelform: '3mot3',
+    maxNoneOmgang5: null,
+    maxNone5B: 0.05,
+    omgang6: keep6(2.3, 69.4, 22.6),
+  },
+  {
+    group: '5mot5',
+    spelform: '7mot7',
+    maxNoneOmgang5: null,
+    maxNone5B: 0.05,
+    omgang6: keep6(0.3, 74.8, 25.5),
+  },
+  {
+    group: '7mot7',
+    spelform: '7mot7',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: keep6(4.0, 73.9, 23.2),
+  },
+  {
+    group: '7mot7',
+    spelform: '5mot5',
+    maxNoneOmgang5: null,
+    maxNone5B: 0.1,
+    omgang6: keep6(9.3, 73.9, 23.2),
+  },
+  {
+    group: '7mot7',
+    spelform: '9mot9',
+    maxNoneOmgang5: null,
+    maxNone5B: 0.05,
+    omgang6: keep6(4.0, 73.9, 23.2),
+  },
+  {
+    group: '9mot9',
+    spelform: '9mot9',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: raise6(2.0, 68.0, 33.0),
+  },
+  {
+    group: '9mot9',
+    spelform: '7mot7',
+    maxNoneOmgang5: 0.1,
+    maxNone5B: 0.05,
+    omgang6: raise6(3.0, 58.0, 22.0),
+  },
+  {
+    group: '9mot9',
+    spelform: '11mot11',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: raise6(2.0, 68.0, 33.0),
+  },
+  {
+    group: '11mot11',
+    spelform: '11mot11',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: raise6(2.0, 65.0, 30.0),
+  },
+  {
+    group: '11mot11',
+    spelform: '9mot9',
+    maxNoneOmgang5: 0.05,
+    maxNone5B: 0.05,
+    omgang6: raise6(2.0, 65.0, 30.0),
+  },
 ];
 
 /** Uppfyller andelen målet? Null när målet saknas eller cellen inte har några körfall. */
@@ -193,6 +313,41 @@ export function meetsGoal(stats: CellStats, max: number | null): boolean | null 
     return null;
   }
   return stats.none / stats.total <= max;
+}
+
+/**
+ * Måttets andel i procent, avrundad till en decimal på samma sätt som rapporten skriver den
+ * (`toFixed(1)`). Null när cellen saknar körfall.
+ */
+export function reportedPercent(stats: CellStats, measure: GoalMeasure): number | null {
+  if (stats.total === 0) {
+    return null;
+  }
+  return Number(((100 * stats[measure]) / stats.total).toFixed(1));
+}
+
+/**
+ * Uppfyller måttet målet i plan-omgang-6.md? Planen prövar målen mot rapportens värden
+ * (till exempel `<= 2.0` och `>= 65.0`), så jämförelsen görs på det avrundade värdet, gränsen
+ * inräknad. Null när cellen saknar körfall.
+ */
+export function meetsOmgang6Goal(
+  stats: CellStats,
+  measure: GoalMeasure,
+  goal: Omgang6Goal,
+): boolean | null {
+  const value = reportedPercent(stats, measure);
+  if (value === null) {
+    return null;
+  }
+  switch (goal.kind) {
+    case 'max':
+      return value <= goal.percent;
+    case 'min':
+      return value >= goal.percent;
+    case 'oforandrat':
+      return value === goal.percent;
+  }
 }
 
 // ---------------------------------------------------------------------------
