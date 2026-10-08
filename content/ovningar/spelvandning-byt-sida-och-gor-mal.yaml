@@ -1,0 +1,121 @@
+schema: 1
+id: spelvandning-byt-sida-och-gor-mal
+namn: "Spelvändning: byt sida och gör mål"
+syfte: Spelarna ska hålla bollen över flera passningar, vända spelet från en sida till den andra och
+  utnyttja ytan som uppstår.
+beskrivning: |
+  Två lag möts på en yta om 38 x 28 meter med ett minimål i varje ände och ingen
+  målvakt. Längs varje långsida finns en kantzon, fyra meter bred. Ett mål
+  räknas dubbelt om bollen under anfallet har tagits emot i båda kantzonerna,
+  alltså om laget har vänt spelet, och annars enkelt. Ingen får stå kvar i en
+  kantzon: man löper in, tar emot och spelar vidare. Ingen offside gäller.
+  Efter mål eller utboll startar laget som släppte in med en ny boll från sin
+  kortlinje. Laget utan boll försvarar kompakt mot bollen och försöker
+  stänga av vändningen.
+organisation: |
+  Två lag om tre till fem spelare, plus en joker vid udda antal: sex är tre mot
+  tre, sju är tre mot tre och joker, åtta är fyra mot fyra, nio är fyra mot fyra
+  och joker, tio är fem mot fem och elva är fem mot fem och joker. Jokern
+  spelar med laget som har bollen och får inte göra mål. Spelarna numreras,
+  och jokern är nästa nummer i tur och ordning efter varje period, så att
+  ingen är joker två perioder i rad. Spela perioder om fyra minuter med en
+  minuts vila, och byt sida mellan perioderna.
+fokusomraden:
+  - spelbarhet
+  - passning-mottagning
+  - speluppbyggnad
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 7mot7
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 11
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 15
+  langst: 25
+yta:
+  alla:
+    langd: 38
+    bredd: 28
+ytreferens:
+  alla: ungefär stora planens straffområde, nästan dubbelt så djupt
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 6
+    anteckning: fem till det ena laget och en till jokern
+  - typ: boll
+    antal: 5
+  - typ: kon
+    antal: 8
+    anteckning: fyra markerar ytans hörn och fyra kantzonernas inre hörn
+coachningspunkter:
+  - Vänd spelet snabbt när den andra sidan är öppen, en bra passning över ytan.
+  - Löp in i kantzonen, ta emot och spela vidare, stå aldrig kvar.
+  - Håll bollen när det inte finns en öppning, tålamod i anfallet.
+  - Försvara kompakt och tvinga motståndarna att vända tillbaka.
+varianter:
+  lattare: Ett mål räknas efter bara en kantzon, så att laget inte måste vända hela spelet.
+  svarare: Högst två touchar i kantzonen, och laget har bara tjugo sekunder på sig från start
+    av anfallet.
+anpassning:
+  fler_spelare: Vid fler än elva spelare byggs en andra yta bredvid med samma mått, eller så turas
+    de som är över om att vara avbytare efter varje period.
+  udda_antal: En joker som spelar med laget som har bollen och inte får göra mål. Jokern är nästa
+    nummer i tur och ordning efter varje period.
+  ledare: Övningen är självgående när zonerna och poängen är satta. Ledaren håller tiden på
+    perioderna och räknar vändningarna.
+planskiss:
+  version: 1
+  omrade:
+    langd: 38
+    bredd: 28
+  beskrivning: >-
+    Yta 38 x 28 meter med ett minimål i varje ände och två kantzoner, en längs varje långsida. Tre mot
+    tre. Lag A tar emot i övre kantzonen, byter sida med en lång passning till nedre och avslutar. Vid
+    udda antal blir en spelare joker. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 38, bredd: 28, stil: heldragen }
+    - { typ: zon, x: 0, y: 0, langd: 38, bredd: 4, monster: diagonal, etikett: Kantzon }
+    - { typ: zon, x: 0, y: 24, langd: 38, bredd: 4, monster: diagonal, etikett: Kantzon }
+    - { id: mal-a, typ: mal, x: 0, y: 14, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 38, y: 14, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 8, y: 14, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 12, y: 8, lag: a, etikett: A2 }
+    - { id: a3, typ: spelare, x: 12, y: 20, lag: a, etikett: A3 }
+    - { id: b1, typ: spelare, x: 26, y: 8, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 31, y: 22, lag: b, etikett: B2 }
+    - { id: b3, typ: spelare, x: 14, y: 18, lag: b, etikett: B3 }
+    - { typ: boll, x: 8.9, y: 14 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 16, y: 2 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a3 }, till: { x: 22, y: 26 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a1 }, till: { x: 16, y: 2 }, ordning: 2 }
+    - { typ: passning, fran: { x: 16, y: 2 }, till: { x: 22, y: 26 }, ordning: 3, etikett: Vändning }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 30, y: 15 }, ordning: 4 }
+    - { typ: passning, fran: { x: 22, y: 26 }, till: { x: 30, y: 15 }, ordning: 5 }
+    - { typ: skott, fran: { x: 30, y: 15 }, till: { objekt: mal-b }, ordning: 6 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 24, y: 11, lag: a }
+      - { x: 33, y: 10, lag: b }
+      - { x: 6, y: 21, lag: a }
+      - { x: 34, y: 18, lag: b }
+      - { x: 4, y: 8, lag: a }
+kalla: Egen övning, inspirerad av allmänt kända spel där bollen ska vändas mellan sidorna.
+status: utkast
+granskning: []

@@ -1,0 +1,115 @@
+schema: 1
+id: intervallspel-med-joker
+namn: Intervallspel två mot två till tre mot tre med joker
+syfte: Spelarna ska hålla hög intensitet i korta spelperioder, ställa om direkt vid bollvinst och
+  ta emot och spela vidare med få touchar när pulsen är hög.
+beskrivning: |
+  Två lag möts på en yta om 33 x 20 meter med ett minimål i varje ände och
+  ingen målvakt, så att spelet går fort. Spelet består av perioder med
+  arbete och vila. Två mot två spelar en och en halv minut och vilar en och
+  en halv. Tre mot tre, med eller utan joker, spelar två till tre minuter och
+  vilar en och en halv. Det blir fyra till sex perioder. Under vilan passar
+  spelarna lugnt i par vid sidan av ytan och dricker. Laget som vinner bollen
+  ställer om direkt mot motståndarnas mål. Jokern spelar alltid med laget som
+  har bollen och får inte göra mål.
+organisation: |
+  Två lag om två till tre spelare, plus en joker vid udda antal: fyra
+  spelare är två mot två, fem är två mot två och joker, sex är tre mot tre
+  och sju är tre mot tre och joker. Jokern byts efter varje period. Spelarna
+  numreras och jokern är nästa nummer i tur och ordning, så att ingen är
+  joker två perioder i rad. Mål räknas bara i minimålen. Efter varje mål eller
+  utboll startar laget som släppte in en ny boll från sin kortlinje. Spelet
+  används i delen Spelövning eller i delen Spel, och den som vill hålla
+  intervallerna längre ökar antalet perioder, inte periodernas längd.
+fokusomraden:
+  - uthallighet
+  - omstallning
+  - spelbarhet
+alder:
+  min: 15
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 7
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 18
+  langst: 25
+yta:
+  alla:
+    langd: 33
+    bredd: 20
+ytreferens:
+  alla: ungefär tre fjärdedelar av stora planens straffområde, några steg djupare
+material:
+  - typ: minimal
+    antal: 2
+  - typ: vast
+    antal: 4
+    anteckning: tre till det ena laget och en till jokern
+  - typ: boll
+    antal: 4
+    anteckning: några i reserv vid målen
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Ställ om direkt när bollen byter lag, första passningen framåt.
+  - Spela på få touchar, ta emot med kroppen vänd mot spelet.
+  - Håll tempot under hela perioden och vila ordentligt i pausen.
+  - Jokern erbjuder sig hela tiden åt det lag som har bollen.
+varianter:
+  lattare: Kortare perioder, en minut spel och en och en halv minut vila, och ingen begränsning av touchar.
+  svarare: Mindre yta, ungefär 28 x 17 meter, och högst två touchar per spelare, eller ett mål som
+    räknas först när alla i laget har rört bollen.
+anpassning:
+  fler_spelare: Vid fler än sju spelare delas gruppen i två spel på varsin yta. Två ytor ryms bredvid
+    varandra på en kvarts plan, upp till fjorton spelare.
+  udda_antal: En joker som spelar med laget som har bollen och byts efter varje period, i tur och
+    ordning efter spelarnas nummer.
+  ledare: Övningen är självgående när perioderna är satta. Ledaren håller tiden på arbete och vila
+    och ser till att ingen går över sin puls.
+planskiss:
+  version: 1
+  omrade:
+    langd: 33
+    bredd: 20
+  beskrivning: >-
+    Yta 33 x 20 meter med ett minimål i varje ände, utan målvakt. Två mot två i grundläget. A2
+    driver in mellan försvararna och skjuter från cirka 10 meter. Vid udda antal blir en spelare joker
+    som spelar med laget som har bollen, men bilden visar ett lag med en spelare mer. Lag A anfaller åt
+    höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 33, bredd: 20, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 33, y: 10, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 8, y: 5, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 8, y: 15, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 22, y: 5, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 22, y: 15, lag: b, etikett: B2 }
+    - { typ: boll, x: 8.9, y: 5 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: a2 }, till: { x: 23, y: 10 }, ordning: 2 }
+    - { typ: skott, fran: { x: 23, y: 10 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 14, y: 4, lag: a }
+      - { x: 28, y: 16, lag: b }
+      - { x: 18, y: 17, lag: neutral }
+kalla: Egen övning, inspirerad av vanligt intervallspel i smålag med joker.
+status: utkast
+granskning: []
