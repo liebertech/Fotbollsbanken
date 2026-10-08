@@ -18,6 +18,7 @@ organisation: |
   någon har tagit emot i mittzonen innan de räknar ett mål. Lagen byter
   sida efter halva tiden. Efter mål, och när bollen går ut över en
   kortlinje, startar det anfallande laget med bollen i sin egen zon.
+  Spela i perioder om fem till sex minuter med en minuts vila.
 fokusomraden:
   - spelbarhet
   - speluppbyggnad
@@ -40,9 +41,9 @@ spelare:
   max: 12
 grupptyp: tva-lag
 tid:
-  kortast: 10
+  kortast: 8
   rekommenderad: 16
-  langst: 20
+  langst: 25
 yta:
   alla:
     langd: 42
@@ -154,3 +155,10 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #34."
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Ändrad enligt docs/doman/plan-omgang-6.md, avsnitt 4 (beslut B2): tid 10 / 16 / 20 blir
+      8 / 16 / 25, och en mening om perioder om fem till sex minuter med en minuts vila är tillagd
+      sist i organisation. Inget annat ändrat.

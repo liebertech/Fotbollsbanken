@@ -10,7 +10,7 @@ beskrivning: |
   bortre stolpen och avslutar med huvudet när inlägget passar, annars med foten.
   Försvararna ska markera varsin anfallare och rensa undan faran. Varje anfallare nickar
   högst två gånger per omgång, och de första omgångarna slås som lätta, långsamma inlägg
-  från nära håll innan avståndet och farten ökar.
+  från nära håll innan avståndet och farten ökar. En omgång är sex hörnor.
 organisation: |
   En grupp om åtta spelare per yta: målvakt, fyra anfallare och tre försvarare. Ledaren
   slår in hörnorna och styr rotationen mellan anfallare och försvarare.
@@ -112,3 +112,9 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #17."
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Ändrad enligt docs/doman/plan-omgang-6.md, avsnitt 5: meningen En omgång är sex hörnor är
+      tillagd sist i beskrivning. Inget annat ändrat.
