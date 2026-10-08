@@ -22,6 +22,7 @@ import {
   meetsOmgang6Goal,
   onlySuggested,
   parseOptions,
+  percentOneDecimal,
   planCellKey,
   planCellLabel,
   reportPath,
@@ -276,6 +277,13 @@ describe('reportedPercent', () => {
 
   it('ger null utan körfall', () => {
     expect(reportedPercent(emptyCellStats(), 'none')).toBeNull();
+  });
+
+  it('ger samma värde som percentOneDecimal, som rapportens tabeller använder', () => {
+    const stats = { total: 73200, none: 6030, coreFilled: 0, coreOnFocus: 0, coreRemoved: 0 };
+    expect(reportedPercent(stats, 'none')).toBe(percentOneDecimal(6030, 73200));
+    expect(percentOneDecimal(6030, 73200)).toBe(8.2);
+    expect(percentOneDecimal(1, 0)).toBeNull();
   });
 });
 

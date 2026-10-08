@@ -316,14 +316,20 @@ export function meetsGoal(stats: CellStats, max: number | null): boolean | null 
 }
 
 /**
- * Måttets andel i procent, avrundad till en decimal på samma sätt som rapporten skriver den
- * (`toFixed(1)`). Null när cellen saknar körfall.
+ * Andelen i procent, avrundad till en decimal. Rapportens tabeller (`pct` i
+ * scripts/tackning.ts) och målprövningen använder båda den, så att de inte kan glida isär.
+ * Null när `total` är noll.
  */
-export function reportedPercent(stats: CellStats, measure: GoalMeasure): number | null {
-  if (stats.total === 0) {
+export function percentOneDecimal(count: number, total: number): number | null {
+  if (total === 0) {
     return null;
   }
-  return Number(((100 * stats[measure]) / stats.total).toFixed(1));
+  return Number(((100 * count) / total).toFixed(1));
+}
+
+/** Måttets andel i procent så som rapporten skriver den. Null när cellen saknar körfall. */
+export function reportedPercent(stats: CellStats, measure: GoalMeasure): number | null {
+  return percentOneDecimal(stats[measure], stats.total);
 }
 
 /**

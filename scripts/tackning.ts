@@ -67,6 +67,7 @@ import {
   meetsOmgang6Goal,
   onlySuggested,
   parseOptions,
+  percentOneDecimal,
   planCellLabel,
   reportPath,
   rollUpToPlanCells,
@@ -508,10 +509,8 @@ const PART_LIST: SessionPartFromBank[] = [
 ];
 
 function pct(count: number, total: number): string {
-  if (total === 0) {
-    return '–';
-  }
-  return `${((100 * count) / total).toFixed(1)} %`;
+  const value = percentOneDecimal(count, total);
+  return value === null ? '–' : `${value.toFixed(1)} %`;
 }
 
 function partTable(agg: Aggregate, bankCounts: Map<string, number>, spelform: GameFormat): string {
