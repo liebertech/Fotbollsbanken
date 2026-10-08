@@ -1,4 +1,4 @@
-Status: ändrad 2026-10-02 (R-058 tillagd efter användarens beslut samma dag; hänvisningar i R-050, R-051, R-054 och R-063)
+Status: ändrad 2026-10-07 (R-086 tillagd efter användarens beslut samma dag; hänvisning i R-106)
 
 # Generatorregler
 
@@ -35,6 +35,8 @@ Domänmodellen godkändes vid K1 den 2026-09-11. Sedan dess har den här filen �
 | 2026-09-23 | **Läsanvisning i grupp 10, ingen regel.** Inledningen till grupp 10 pekar nu ut att avsnittet *Yta per spelare* i `passuppbyggnad.md` innehåller granskningskriterier för övningsbanken, inte något generatorn använder. Det gäller båda kriterierna där: golvet för yta per spelare och det minsta längdmåttet för djupledsövningar i `fas-13-14` och `fas-15-19`. Anledningen är att kvadratmetertalen och längdmåtten annars kan hittas i domänfilen och implementeras som filter, alltså regler som ingen har beslutat. Inget nytt regel-ID, ingen ändrad regel och inget nytt krav på koden. Användaren godkände båda granskningskriterierna 2026-09-23. |
 | 2026-10-02 | **R-058 tillagd.** Övningar med grupptypen `par`, och `fast-storlek` med en lösning för udda antal, delas i grupper av övningens grundstorlek s, och de spelare som blir över läggs en och en i grupperna. Tidigare räknades de som alla andra övningar med R-051 och R-052. Det gav två fel. En parövning valdes bort vid varje udda antal, eftersom 13 spelare i grupper om högst 2 ger en grupp med en spelare, trots att R-054 säger att det ska bli en trio. En övning med fast storlek och lösning för udda antal fick för stora grupper vid jämna antal, till exempel tre grupper om 4 i stället för fyra grupper om 3 för en treman med 12 spelare. Frågan kom fram när de sju parövningarna i banken gicks igenom. Användaren beslutade 2026-10-02 att regeln läggs till med båda delarna, att stationer inte delas i flera grupper sida vid sida (R-063 står kvar, frågan tas i ett senare inkrement) och att texterna för udda antal i parövningarna skrivs om av övningsförfattaren. |
 | 2026-10-02 | **R-050, R-051, R-054 och R-063 hänvisar till R-058.** R-050:s första strecksats gäller nu både `par` och `fast-storlek` med lösning för udda antal, så att största grupp blir s + 1, vilket är det R-063 behöver vid stationer. R-051 pekar ut att R-058 gäller i stället för R-051 och R-052 för de här grupptyperna i ett helgruppsmoment. R-063 pekar ut att största grupp vid stationer är s + 1 och att en stationsgrupp inte delas. R-054 visar övningens egen text för udda antal också för `par`. Slutsatsen i R-054 att bara `fast-storlek` kan väljas bort på grund av udda antal var fel och är rättad: en parövning väljs aldrig bort på grund av udda antal, medan `fri` och `tva-lag` kan väljas bort genom R-052 när spannet i `spelare` är smalt. |
+| 2026-10-07 | **R-086 tillagd.** En övning som har `nickspel` bland sina fokusområden väljs bara av generatorn, och visas bara som alternativ vid byte (R-104, R-106), när ledaren har valt `nickspel`. Tidigare räckte det att övningen träffade *något* av ledarens fokus (R-040, R-041), så `hornor-med-nickar` kunde hamna i ett pass för 13-åringar där ledaren bara hade valt `fasta-situationer`. Nicktaket (R-082) höll mängden nere, men ledaren hade inte bett om nickning. R-121 sa i sin motivering att nickning bara ska förekomma när ledaren själv har valt den, men ingen regel krävde det. Frågan kom fram i planeringen av omgång 6 av övningsbanken (`plan-omgang-6.md`, beslut B1). Användaren beslutade 2026-10-07 att regeln läggs till i grupp 9, på en egen gren tillsammans med koden, före omgång 6. |
+| 2026-10-07 | **R-106 hänvisar till R-086.** Punkt 4 räknar nu upp R-086 bland de säkerhetsregler som gäller för klubbens egna övningar. Vad R-106 kräver är oförändrat, eftersom punkt 4 redan sa att hela grupp 9 gäller. |
 
 ## Så läser du reglerna
 
@@ -704,7 +706,7 @@ Följande är inte fotbollsregler. Det avgörs av senior-systemutvecklare, så l
 
 ---
 
-## Grupp 9: Säkerhet (R-080–R-085)
+## Grupp 9: Säkerhet (R-080–R-086)
 
 **Varför:** säkerhetsreglerna gäller alltid, även när det gör att färre övningar matchar. De gäller också när ledaren själv byter in en övning, både ur banken (R-104) och bland klubbens egna övningar (R-106).
 
@@ -743,6 +745,51 @@ Båda typerna räknas, eftersom ett minimål är lätt och välter minst lika l�
 
 ### R-085 Påminnelse om benskydd
 Krav. Varje pass visar en påminnelse om benskydd, eftersom `del-spel` alltid innehåller närkamper (`spelformer.md`).
+
+### R-086 Nickövningar bara när ledaren har valt nickspel
+Krav. En övning som har `nickspel` bland sina fokusområden kan bara väljas av generatorn, och bara visas som alternativ vid byte (R-104, R-106), om ledaren har valt `nickspel` som fokus.
+
+- Det spelar ingen roll var i övningens lista `nickspel` står. En övning där nickning inte är huvudfokus omfattas lika mycket.
+- Regeln gäller i alla passdelar, alltså också i `del-uppvarmning` och `del-spel`, och för varje station i ett stationsmoment.
+- Villkoret prövas mot ledarens valda fokus, aldrig mot ett ersättningsfokus (R-121). Ett ersättningsfokus gör alltså aldrig en nickövning tillåten. Om ledaren har valt `nickspel` får en nickövning däremot ligga i en del med ersättningsfokus, om den uppfyller R-041 mot det fokuset.
+- Regeln gäller övningar ur den gemensamma banken och klubbens egna övningar på samma sätt.
+- När ledaren har valt `nickspel` gäller R-080, R-081 och R-082 som vanligt. R-086 ger aldrig mer nickning än nicktaket tillåter.
+
+*Testfall:*
+
+| Nr | Underlag | Övning | Resultat |
+|---|---|---|---|
+| 1 | 13 år, `9mot9`, `niva-2`, fokus `fasta-situationer` | `hornor-med-nickar` (`fasta-situationer`, `nickspel`, `del-spelovning`) | Väljs inte och visas inte vid byte, fast den träffar valt fokus (R-040). |
+| 2 | 13 år, `9mot9`, `niva-2`, fokus `fasta-situationer` och `nickspel` | Samma | Kan väljas, med högst 10 minuter nickning i passet (R-082). |
+| 3 | 15 år, fokus `passning-mottagning`. Ledaren byter en övning i `del-ovning` | En övning ur banken med `nickspel` och `passning-mottagning`, märkt `del-ovning` | Visas inte som alternativ. |
+| 4 | Som nr 3, men ledaren har valt `passning-mottagning` och `nickspel` | Samma | Visas som alternativ, om nicktaket håller efter bytet (R-082, R-105). |
+| 5 | 15 år, fokus `avslut` | En av klubbens egna övningar som ledaren har märkt med `avslut` och `nickspel` | Visas inte som alternativ vid byte (R-106). |
+| 6 | 14 år, P = 120, fokus `koordination` och `nickspel`, i den ordningen. Måltiden för `del-ovning` är ⌊0,15 × 105⌋ = 15 minuter (R-031, R-032), så delen ska ta 12–18 minuter (R-035). Banken har ingen giltig övning med `koordination` för delen. Däremot finns en giltig övning med `snabbhet` utan `nickspel`, märkt `del-ovning`, som får ta 5–15 minuter | En övning med `snabbhet` och `nickspel`, märkt `del-ovning`, som får ta 8 minuter | Delen kan inte fyllas med valt fokus. Nickövningen träffar visserligen valt fokus genom `nickspel`, men nicktaket på 10 minuter (R-082) gör att nickövningar ensamma aldrig når 12 minuter, och det finns ingen övning med `koordination` att fylla ut med. R-121 ger ersättningsfokus `snabbhet`, första kandidaten enligt avvikelsen för `koordination` i `fas-13-14`. Med `snabbhet` kan delen fyllas, och nickövningen får ingå i delen, till exempel 8 minuter tillsammans med snabbhetsövningen på 7 minuter, eftersom ledaren har valt `nickspel` (R-086) och övningen träffar `snabbhet` (R-041). Nickningen i passet är högst 10 minuter. |
+| 7 | Som nr 6, men ledaren har valt `koordination` och `bollkansla`, och banken har inte heller någon giltig övning med `bollkansla` för delen | Samma | Delen får ersättningsfokus `snabbhet` (R-121) och fylls med snabbhetsövningen utan `nickspel`. Nickövningen kan inte ligga i delen, fast den träffar ersättningsfokuset `snabbhet`, eftersom ledaren inte har valt `nickspel` (R-086). |
+
+*Om testfall 6:* när ledaren har valt `nickspel` träffar varje nickövning valt fokus direkt. Om en nickövning ensam räcker för att fylla delen inom nicktaket kan delen alltså fyllas med valt fokus, och då används inget ersättningsfokus (R-121, steg 1). En nickövning hamnar bara i en del med ersättningsfokus när delen inte kan fyllas med valt fokus, i praktiken när nicktaket hindrar nickövningarna från att räcka till hela delen och ledarens andra fokus saknar övningar för delen. Det är det fallet testfall 6 prövar.
+
+*Motivering:* nickning är det moment i ungdomsfotbollen där SvFF är mest försiktig, och användaren har beslutat att appen följer SvFF (kravspec, *Beslut vid K1*, punkt 2). R-080 och R-082 sätter en åldersgräns och ett tak, men de säger inget om vem som bestämmer att passet ska innehålla nickning. Det ska ledaren göra. En ledare som väljer `fasta-situationer` kan vilja träna korta hörnor och inkast, och ska inte få nickade hörnor för att övningen råkar ha samma fokus. Samma sak gäller föräldrar och spelare: ett pass ska inte innehålla nickning som ingen har valt. Att nickning bara ska förekomma när ledaren valt den var redan tanken bakom att `nickspel` aldrig är ersättningsfokus (R-121), men utan R-086 kunde en nickövning ändå komma in genom ett annat av sina fokusområden. Regeln kostar lite: fasta situationer, avslut och passningar kan tränas utan nickning, och övningar för fasta situationer utan planerad nick ska säga att bollen slås längs marken eller i midjehöjd (`plan-omgang-6.md`, F4).
+
+*Kontroll mot andra regler:*
+
+- **R-040 och R-041.** R-041 kräver att en övning i kärnan träffar valt fokus. R-086 är ett extra krav ovanpå det och ändrar inte vad en träff är. När ledaren har valt `nickspel` och ett annat fokus kan en nickövning träffa genom vilket som helst av dem, som tidigare.
+- **R-080 och R-081.** Under 13 år kan `nickspel` inte väljas (R-080, R-019), så R-086 utesluter då redan alla nickövningar. R-080 står ändå kvar, av samma skäl som tidigare: åldersgränsen ska gälla även om något annat ändras. R-086 bygger, precis som R-080 och R-082, på att nickning är märkt med `nickspel` (R-081, andra stycket).
+- **R-082.** Taket gäller oförändrat. R-086 avgör *om* nickning får förekomma, R-082 *hur mycket*.
+- **R-083.** `nickspel` väljs alltid tillsammans med ett annat fokus. Därför finns det alltid ett annat fokus som kan fylla kärnan när nickövningarna inte räcker eller nicktaket nås. R-086 och R-083 säger inte emot varandra.
+- **R-121.** `nickspel` tas fortfarande bort ur kandidatlistan (steg 3). Det blir med R-086 ett dubbelt skydd: ett ersättningsfokus är aldrig ett fokus ledaren har valt, och ledaren måste ha valt `nickspel` för att en nickövning ska få användas. Rad `nickspel` i närhetstabellen påverkas inte, eftersom den bara gäller när ledaren valt `nickspel`. Motiveringen i R-121 hänvisar fortfarande till R-080 till R-083 och inte till R-086. R-121 är inte ändrad.
+- **R-044, R-045 och R-046.** Uppvärmning och spel kan fyllas utan hänsyn till fokus när ingen övning träffar (R-046). R-086 är ett krav och gäller ändå: en nickövning kommer aldrig in i uppvärmningen eller spelet den vägen.
+- **R-047.** Om ledaren har valt `nickspel` ska helst minst en övning i passet träffa det. Oförändrat.
+- **R-062.** Stationernas övningar ska uppfylla säkerhetsreglerna, alltså också R-086.
+- **R-049 och begreppen.** *Giltigt moment* innehåller hela grupp 9, så R-086 ingår i *Delen kan fyllas*, *Delen kan fyllas med fokus F* och i varje enkel ändring i R-049. Inget i de reglerna behöver ändras.
+- **R-100 och R-101.** En del som bara kunde fyllas med en nickövning kan nu sakna övning, eller i värsta fall ge inget pass, när ledaren inte har valt `nickspel`. Det är meningen. R-121 prövas först, och för `del-uppvarmning` och `del-spel` finns andra övningar.
+- **R-103.** Prövningen av andra värden görs med det prövade värdet som ledarens val. Om delen bara kan fyllas när `nickspel` finns bland fokusen visar appen alltså att fokusområdena kan ändras. Det stämmer: ledaren kan lägga till `nickspel` tillsammans med ett annat fokus (R-083).
+- **R-104.** Villkor 1 kräver säkerhetsreglerna (grupp 9) och omfattar därmed R-086 utan ändring.
+- **R-106 och klubbens egna övningar.** Punkt 4 säger att hela grupp 9 gäller utan undantag, så R-086 gäller redan. Uppräkningen i punkt 4 har fått en hänvisning till R-086. En egen övning som ledaren har märkt med `nickspel` kan alltså bara bytas in när `nickspel` är valt. Det bygger, som de andra nickreglerna, på att ledaren märker sin övning rätt (kravspec, *Beslut vid K1*, punkt 13).
+- **R-022.** Oförändrad. Generatorn väljer fortfarande bara ur den gemensamma banken.
+- **R-110.** Säsongsplanens veckofokus påverkas inte, eftersom R-086 inte ändrar ledarens val.
+
+*Regeln är ny 2026-10-07.* Den kom fram i planeringen av omgång 6, när jag kontrollerade i `src/regelmotor/` att det enda som stoppade nickövningar, utöver åldern och taket, var att `nickspel` aldrig blir ersättningsfokus. Användaren godkände den 2026-10-07 (`plan-omgang-6.md`, beslut B1). Att ledaren själv ska välja nickning är min bedömning som tränarutbildare. SvFF anger så vitt jag vet ingen sådan regel; källan för nickning i övrigt är densamma som för R-080 till R-082.
 
 ---
 
@@ -848,7 +895,7 @@ En av klubbens egna övningar, Y, kan ersätta X om alla de här villkoren är u
    - yta, om ledaren har valt en yta (R-093),
    - namn, syfte och beskrivning, som varje övning i passet visar (berättelse 02, kriterium 2).
 3. **Samma villkor som för banken.** Y uppfyller villkor 1 till 5 i R-104, med undantaget i punkt 1 ovan. Det betyder att grundfiltret i övrigt (ålder, spelform, nivå, fokusområden som passar fasen och rätt del), R-041, grupperna, ledarna och R-070 gäller fullt ut.
-4. **Säkerhetsreglerna gäller alltid.** Hela grupp 9 gäller för Y utan undantag. Y kan alltså inte bytas in om den har `nickspel` och åldern är under 13 (R-080), om den har `nickspel` och en minsta ålder under 13 (R-081) eller om passet efter bytet går över nicktaket (R-082).
+4. **Säkerhetsreglerna gäller alltid.** Hela grupp 9 gäller för Y utan undantag. Y kan alltså inte bytas in om den har `nickspel` och åldern är under 13 (R-080), om den har `nickspel` och en minsta ålder under 13 (R-081), om passet efter bytet går över nicktaket (R-082) eller om den har `nickspel` och ledaren inte har valt `nickspel` (R-086).
 
 **Om uppgifter saknas.** Om Y saknar en uppgift som punkt 2 kräver, eller om en uppgift bryter mot R-001 till R-009, kan Y inte bytas in. Appen gissar aldrig ett värde som saknas. Den antar till exempel inte att en övning utan nivå passar alla nivåer, att en övning utan antal spelare passar alla antal eller att en övning utan passdelar passar i alla delar. Hur appen visar att en egen övning saknar uppgifter bestäms av ux-designern.
 
@@ -905,10 +952,10 @@ Krav. Åldern i säsongsplanen räknas som i R-010: den ålder spelarna fyller u
 | 6 Grupper och udda antal | R-050–R-058 | 9 | 0 | 0 |
 | 7 Ledare och stationer | R-060–R-067 | 8 | 0 | 0 |
 | 8 Variation | R-070–R-072 | 3 | 0 | 0 |
-| 9 Säkerhet | R-080–R-085 | 6 | 0 | 0 |
+| 9 Säkerhet | R-080–R-086 | 7 | 0 | 0 |
 | 10 Yta | R-090–R-094 | 5 | 0 | 0 |
 | 11 Inget matchande, byte | R-100–R-106 | 7 | 0 | 0 |
 | 12 Säsongsplan | R-110–R-113 | 4 | 1 (R-112) | 0 |
-| **Summa** | | **93** | **1** | **0** |
+| **Summa** | | **94** | **1** | **0** |
 
-Lediga nummer, reserverade för nya regler i respektive grupp: R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-086–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1 och R-121 av grupp 5, så nästa sådan regel får R-122.
+Lediga nummer, reserverade för nya regler i respektive grupp: R-059 (grupp 6), R-068–R-069 (grupp 7), R-073–R-079 (grupp 8), R-087–R-089 (grupp 9), R-095–R-099 (grupp 10), R-107–R-109 (grupp 11) och R-114–R-119 (grupp 12). Grupp 1 till 5 har inga lediga nummer kvar i sina ursprungliga intervall. En ny regel i någon av dem får därför nästa lediga nummer från R-120 och uppåt och placeras i den grupp den hör till. R-120 är tagen av grupp 1 och R-121 av grupp 5, så nästa sådan regel får R-122.

@@ -1,10 +1,10 @@
 /**
- * Säkerhetsreglerna (R-080 till R-085). De gäller alltid, även när det gör att färre
+ * Säkerhetsreglerna (R-080 till R-086). De gäller alltid, även när det gör att färre
  * övningar matchar.
  */
 import { FOCUS_AREA_HEADING, HEADING_MINUTES_CAP, HEADING_MIN_AGE } from '../keys.ts';
 import type { Phase } from '../keys.ts';
-import type { Exercise } from '../types.ts';
+import type { Exercise, Input } from '../types.ts';
 
 /**
  * Har övningen nickning bland sina fokusområden?
@@ -16,14 +16,25 @@ export function hasHeading(exercise: Exercise): boolean {
 }
 
 /**
- * Får övningen väljas med hänsyn till åldern? Under 13 år väljs ingen övning med
- * `nickspel`, och ingen sådan kan bytas in.
+ * Får övningen väljas med hänsyn till åldern och ledarens fokus? Under 13 år väljs ingen
+ * övning med `nickspel`, och ingen sådan kan bytas in (R-080). En övning med `nickspel` väljs
+ * och visas som alternativ vid byte bara när ledaren själv har valt `nickspel` (R-086).
  *
  * @regel R-080
+ * @regel R-086
  */
-export function safetyRejection(exercise: Exercise, age: number): string | null {
-  if (hasHeading(exercise) && age < HEADING_MIN_AGE) {
+export function safetyRejection(
+  exercise: Exercise,
+  input: Pick<Input, 'alder' | 'fokus'>,
+): string | null {
+  if (!hasHeading(exercise)) {
+    return null;
+  }
+  if (input.alder < HEADING_MIN_AGE) {
     return 'R-080';
+  }
+  if (!input.fokus.includes(FOCUS_AREA_HEADING)) {
+    return 'R-086';
   }
   return null;
 }

@@ -37,6 +37,7 @@ export interface BuildContext {
  * @regel R-022
  * @regel R-028
  * @regel R-080
+ * @regel R-086
  */
 export function candidatesForPart(
   bank: readonly Exercise[],
@@ -49,7 +50,7 @@ export function candidatesForPart(
       (exercise) =>
         baseRejection(exercise, input, phase) === null &&
         fitsPart(exercise, part) &&
-        safetyRejection(exercise, input.alder) === null,
+        safetyRejection(exercise, input) === null,
     )
     .sort((a, b) => compareIds(a.id, b.id));
 }

@@ -102,7 +102,12 @@ describe('R-082 Begränsad mängd nickning', () => {
       passdelar: ['del-ovning'],
       spelare: { min: 2, max: 12 },
     });
-    const aldre: Input = { ...underlag, alder: 13, spelform: '9mot9', fokus: ['avslut'] };
+    const aldre: Input = {
+      ...underlag,
+      alder: 13,
+      spelform: '9mot9',
+      fokus: ['avslut', 'nickspel'],
+    };
     const aldreContext = { input: aldre, phase: 'fas-13-14' as const };
     const list = blocksForPart(
       candidatesForPart([nick, annan], 'del-ovning', aldreContext),

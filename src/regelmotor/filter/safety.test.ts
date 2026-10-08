@@ -12,8 +12,38 @@ const nickovning = (id: string) =>
 
 describe('R-080 Ingen nickträning före 13 år', () => {
   it('R-080 väljer bort en nickövning för en yngre grupp', () => {
-    expect(safetyRejection(nickovning('nick-a'), 12)).toBe('R-080');
-    expect(safetyRejection(nickovning('nick-a'), 13)).toBeNull();
+    expect(safetyRejection(nickovning('nick-a'), { alder: 12, fokus: ['nickspel'] })).toBe('R-080');
+    expect(safetyRejection(nickovning('nick-a'), { alder: 13, fokus: ['nickspel'] })).toBeNull();
+  });
+});
+
+describe('R-086 Nickning bara när ledaren har valt nickspel', () => {
+  it('R-086 väljer bort en nickövning när ledaren inte har valt nickspel', () => {
+    const underlag = { alder: 13, fokus: ['avslut' as const] };
+    expect(safetyRejection(nickovning('nick-a'), underlag)).toBe('R-086');
+  });
+
+  it('R-086 släpper fram en nickövning när ledaren har valt nickspel bland flera fokus', () => {
+    const underlag = { alder: 13, fokus: ['avslut' as const, 'nickspel' as const] };
+    expect(safetyRejection(nickovning('nick-a'), underlag)).toBeNull();
+  });
+
+  it('R-086 gäller också när nickspel inte är övningens första fokusområde', () => {
+    const blandad = bankExercise({
+      id: 'nick-b',
+      fokusomraden: ['avslut', 'nickspel'],
+      alder: { min: 13, max: 14 },
+      spelformer: ['9mot9'],
+    });
+    expect(safetyRejection(blandad, { alder: 13, fokus: ['avslut'] })).toBe('R-086');
+  });
+
+  it('R-086 berör inte en övning utan nickspel', () => {
+    expect(safetyRejection(bankExercise(), { alder: 13, fokus: ['avslut'] })).toBeNull();
+  });
+
+  it('R-080 går före R-086 under 13 år, även när ledaren inte har valt nickspel', () => {
+    expect(safetyRejection(nickovning('nick-a'), { alder: 12, fokus: ['avslut'] })).toBe('R-080');
   });
 });
 
