@@ -289,7 +289,7 @@ describe('Berättelse 01: underlagsformuläret', () => {
     expect(markup).toContain('Några uppgifter saknas eller stämmer inte');
   });
 
-  it('01.11 visar hjälptexten om vilken ålder som ska anges', () => {
+  it('01.11 R-010 visar hjälptexten om vilken ålder som ska anges', () => {
     expect(render()).toContain('Ange den ålder som flest i gruppen fyller i år.');
   });
 

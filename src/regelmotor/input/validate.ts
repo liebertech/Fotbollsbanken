@@ -46,6 +46,7 @@ export function selectableFocusAreas(phase: Phase, age: number): FocusArea[] {
  *
  * @regel R-011
  * @regel R-014
+ * @regel R-015
  * @regel R-016
  * @regel R-017
  * @regel R-018

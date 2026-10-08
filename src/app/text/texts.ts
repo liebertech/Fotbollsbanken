@@ -9,6 +9,7 @@ export const TEXTS = {
   input: {
     heading: 'Nytt pass',
     age: 'Ålder',
+    /** @regel R-010 */
     ageHelp:
       'Ange den ålder som flest i gruppen fyller i år. Har ni två lika vanliga åldrar, ange den yngre.',
     gameFormat: 'Spelform',

@@ -219,6 +219,11 @@ const ytreferensSchema = z
     message: 'utelämna ytreferens helt hellre än att ange den tom (ADR 0017)',
   });
 
+/**
+ * Ett material i övningen. Typen prövas mot den slutna listan i `keys.ts`.
+ *
+ * @regel R-120
+ */
 const materialItemSchema = z.strictObject({
   typ: z.enum(MATERIAL_TYPES),
   antal: positiveInt(1, LIMITS.material.maxAntal),
@@ -292,6 +297,11 @@ function buildObject() {
       .array(trimmedText(LIMITS.coachningspunkter.min, LIMITS.coachningspunkter.max))
       .min(LIMITS.coachningspunkter.minCount)
       .max(LIMITS.coachningspunkter.maxCount),
+    /**
+     * Varianterna är fält på övningen och inte egna övningar, så R-070 gäller också för dem.
+     *
+     * @regel R-071
+     */
     varianter: z.strictObject({
       lattare: trimmedText(LIMITS.fritext.min, LIMITS.fritext.max),
       svarare: trimmedText(LIMITS.fritext.min, LIMITS.fritext.max),
@@ -386,6 +396,17 @@ function emailMessage(path: (string | number)[]): string {
 /**
  * Reglerna som schemat kontrollerar utöver fälttyperna (ADR 0010 avsnitt 1).
  * Varje kontroll tål att fältet saknas, eftersom samma funktion används för en `utkast`-fil.
+ *
+ * @regel R-001
+ * @regel R-002
+ * @regel R-003
+ * @regel R-004
+ * @regel R-005
+ * @regel R-006
+ * @regel R-007
+ * @regel R-008
+ * @regel R-009
+ * @regel R-120
  */
 function checkCrossRules(value: Partial<Exercise>, ctx: z.RefinementCtx): void {
   const { alder, fokusomraden, spelformer, niva, passdelar, spelare, grupptyp, tid, yta } = value;
