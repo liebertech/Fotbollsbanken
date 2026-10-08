@@ -475,6 +475,13 @@ Ingen ytreferens, som förut: rutan är för liten för någon plandel.
 
 ## 5. Beslut som behövs
 
+*Användarens svar 2026-10-08:*
+
+- *B1: alla 12 övningar.*
+- *B2: ja. Fördjupningen för 6–7 år flyttas till omgång 8. `plan-omgang-5.md`, avsnitt 4, är rättad med ett tillägg daterat 2026-10-08.*
+- *B3: ja. `litet-spel-till-smamal` får `tid` 10 / 15 / 25 och meningen om perioder sist i `organisation`, som en egen commit i omgångens pull request.*
+- *B4: ja. `en-mot-en-till-mal` får `del-ovning` och `dribbling-mot-tidspress` får `del-spelovning`, som en egen commit i omgångens pull request. Skriptet körs före och efter ändringarna (avsnitt 1.4).*
+
 **B1. Antalet övningar.** *Rekommendation:* alla 12. Om omgången ska bli mindre gäller ordningen i avsnitt 2.6, och O7-06 ska alltid vara med.
 
 **B2. Fördjupningen för 6–7 år flyttas från omgång 7.** `plan-omgang-5.md`, avsnitt 4, lade 5–6 övningar för 6–7 år i omgång 7. Den här planen tar bara 8–12 år, enligt uppdraget och `plan-omgang-6.md`. *Rekommendation:* fördjupningen för 6–7 år blir omgång 8. Om målet om högst 40 procent ersättningsfokus för hela banken (avsnitt 1.3) inte nås efter omgång 7, är omgång 8 också nästa steg för det målet. Jag rättar `plan-omgang-5.md` om användaren vill det.
