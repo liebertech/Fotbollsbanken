@@ -1,0 +1,100 @@
+schema: 1
+id: avslut-fran-tva-hall-mot-malvakt
+namn: Avslut från två håll mot målvakt
+syfte: Spelarna ska ta emot en passning snett från sidan och avsluta lågt och hårt mot en målvakt.
+beskrivning: |
+  Vid ett mål med målvakt står två köer, en snett ut på var sida av målet, ungefär 16 meter från
+  det. Den första i ena kön driver in mot en kon, gör en finta och passar till den första i andra
+  kön. Den spelaren tar emot bollen i rörelse och avslutar från minst tio meter. Nästa anfall
+  startar från andra sidan. Skjut inte förrän målvakten är klar.
+  Rotation: passaren går till andra kön, och skytten hämtar bollen och går till den kö hen kom
+  från. Målvakten är frivillig och byts efter en serie om sex till åtta skott, så att ingen tvingas
+  stå. Med nio och tio spelare finns två mål, en grupp vid varje.
+organisation: |
+  Ett mål med målvakt per grupp om fyra till tio spelare. Köerna står vid sidan av målet och aldrig
+  bakom det, tre eller fyra spelare per kö. Målvakten har handskar om laget har. Skott tas från
+  minst tio meter. Är ni fler än tio bygger ni en andra yta med eget mål bredvid. Två grupper ryms
+  på en kvarts plan.
+fokusomraden:
+  - avslut
+  - passning-mottagning
+  - dribbling
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 10
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 15
+yta:
+  alla:
+    langd: 20
+    bredd: 16
+ytreferens:
+  alla: ungefär halva stora planens straffområde
+material:
+  - typ: mal
+    antal: 1
+    anteckning: 7 mot 7-mål, 5 x 2 meter, eller 5 mot 5-mål
+  - typ: boll
+    antal: 5
+  - typ: kon
+    antal: 6
+    anteckning: två startkoner, två fintkoner och två till ytans hörn
+coachningspunkter:
+  - Passaren, driv in mot konen och gör en finta innan du passar.
+  - Skytten, ta emot i rörelse och skjut lågt i hörnet.
+  - Titta på målvakten innan du skjuter.
+varianter:
+  lattare: Passaren står still och spelar en rullande boll.
+  svarare: Skytten har två touchar, och en halvaktiv försvarare följer skytten.
+anpassning:
+  fler_spelare: Bygg en andra yta med eget mål bredvid. Två grupper ryms på en kvarts plan.
+  udda_antal: Spelar ingen roll. Den extra spelaren ställer sig i en av köerna.
+  ledare: Övningen är självgående när rotationen är visad en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 16
+  beskrivning: >-
+    Yta 20 x 16 meter med ett mål och en målvakt till höger. Två köer står vid vänstra sidan, uppe och
+    nere. Passaren driver mot en kon och passar till skytten, som tar emot och skjuter från minst tio
+    meter.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 16, stil: streckad }
+    - { id: mal-b, typ: mal, x: 20, y: 8, storlek: eget, bredd: 5, riktning: vanster }
+    - { typ: spelare, x: 19.2, y: 8, lag: b, malvakt: true, etikett: MV }
+    - { typ: kon, x: 6, y: 4 }
+    - { id: pas, typ: spelare, x: 4, y: 2, lag: a, etikett: P }
+    - { id: sky, typ: spelare, x: 4, y: 14, lag: a, etikett: S }
+    - { id: pas2, typ: spelare, x: 2.5, y: 2, lag: a }
+    - { typ: boll, x: 4.3, y: 2.3 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: pas }, till: { x: 6, y: 4 }, ordning: 1 }
+    - { typ: passning, fran: { x: 6, y: 4 }, till: { x: 9, y: 11 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sky }, till: { x: 9, y: 11 }, ordning: 2 }
+    - { typ: skott, fran: { x: 9, y: 11 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: pas2, riktning: 180, avstand: 1.5, etikett: Passarkö }
+      - { vid: sky, riktning: 180, avstand: 1.5, etikett: Skyttekö }
+kalla: Egen övning, inspirerad av allmänt kända avslutsövningar med passning från sidan.
+status: utkast
+granskning: []

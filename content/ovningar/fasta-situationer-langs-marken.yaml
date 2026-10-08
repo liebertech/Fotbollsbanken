@@ -1,0 +1,103 @@
+schema: 1
+id: fasta-situationer-langs-marken
+namn: Fasta situationer längs marken
+syfte: Spelarna ska öva inkast, hörnor och frisparkar som spelas längs marken och avslutas på mål.
+beskrivning: |
+  Gruppen står vid ett mål med målvakt och kör tre varianter i tur och ordning, ungefär två minuter
+  vardera, och sedan en omgång till. Variant ett är inkast till fötterna: slagaren kastar bollen
+  längs marken till en mottagare som spelar vägg tillbaka och tar emot i rörelse för avslut.
+  Variant två är kort hörna: slagaren spelar bollen längs marken till en mottagare, som lägger den
+  bakåt till en avslutare. Variant tre är spelad frispark runt en mur av koner: slagaren passar
+  längs marken, mottagaren lägger av bollen och avslutaren skjuter. Inga höga bollar, och ingen
+  nickning. Bollen läggs alltid först längs marken, och mål görs aldrig direkt från den fasta
+  situationen. Det är samma sätt som i 5 mot 5, där varje fast situation börjar med ett driv eller
+  en passning längs marken.
+  Rotation: slagaren blir mottagare, mottagaren blir avslutare, och avslutaren hämtar bollen och
+  ställer sig sist i kön. Den första i kön blir slagare. Avslut tas från minst tio meter.
+organisation: |
+  En grupp om fem till nio spelare per mål. Kön står bakom slagarens plats och aldrig i en
+  skottlinje, tre eller fyra spelare i kön. Målvakten är frivillig, har handskar om laget har
+  och byts efter en serie om sex till åtta skott. Är ni fler än nio bygger ni en andra yta med eget
+  mål bredvid, med tre meters mellanrum. Två grupper ryms på en kvarts plan.
+fokusomraden:
+  - fasta-situationer
+  - passning-mottagning
+  - avslut
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 5
+  max: 9
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 15
+yta:
+  alla:
+    langd: 30
+    bredd: 20
+ytreferens:
+  alla: ungefär tre fjärdedelar av stora planens straffområde, några steg djupare
+material:
+  - typ: mal
+    antal: 1
+    anteckning: 7 mot 7-mål, 5 x 2 meter, eller 5 mot 5-mål
+  - typ: boll
+    antal: 5
+  - typ: kon
+    antal: 8
+    anteckning: ytans hörn och muren i variant tre
+coachningspunkter:
+  - Slå bollen längs marken, hård nog att nå men mjuk nog att ta emot.
+  - Mottagare, kom emot bollen och lägg av den i en rörelse.
+  - Skjut lågt och hårt i hörnet.
+varianter:
+  lattare: Alla tre varianterna spelas utan mur, och skytten får ta en extra touch innan skottet.
+  svarare: En halvaktiv försvarare står i straffområdet, och gruppen väljer variant tyst med ett
+    tecken.
+anpassning:
+  fler_spelare: Bygg en andra yta med eget mål bredvid. Två grupper ryms på en kvarts plan.
+  udda_antal: Spelar ingen roll. Den extra spelaren ställer sig i kön och går in när det blir hens tur.
+  ledare: Övningen är självgående. Ledaren kan visa de tre varianterna en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 20
+  beskrivning: >-
+    Yta 30 x 20 meter med ett mål och en målvakt till höger. Kort hörna längs marken: slagaren spelar
+    till en mottagare, som lägger bollen bakåt till en avslutare som skjuter från minst tio meter.
+    Kön står bakom slagaren vid sidlinjen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 20, stil: streckad }
+    - { id: mal-b, typ: mal, x: 30, y: 10, storlek: eget, bredd: 5, riktning: vanster }
+    - { typ: spelare, x: 29.2, y: 10, lag: b, malvakt: true, etikett: MV }
+    - { id: sla, typ: spelare, x: 26, y: 0, lag: a, etikett: S }
+    - { id: mot, typ: spelare, x: 24, y: 5, lag: a, etikett: M }
+    - { id: avs, typ: spelare, x: 17, y: 11, lag: a, etikett: A }
+    - { id: ko1, typ: spelare, x: 27.5, y: 0, lag: a }
+    - { typ: boll, x: 26.3, y: 0.3 }
+  rorelser:
+    - { typ: passning, fran: { objekt: sla }, till: { objekt: mot }, ordning: 1 }
+    - { typ: passning, fran: { objekt: mot }, till: { objekt: avs }, ordning: 2 }
+    - { typ: skott, fran: { objekt: avs }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: ko1, riktning: 0, avstand: 1.5, etikett: Kö bakom slagaren }
+kalla: Egen övning, inspirerad av allmänt kända övningar för fasta situationer.
+status: utkast
+granskning: []

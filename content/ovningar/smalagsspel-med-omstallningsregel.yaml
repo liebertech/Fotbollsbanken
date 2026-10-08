@@ -1,0 +1,117 @@
+schema: 1
+id: smalagsspel-med-omstallningsregel
+namn: Smålagsspel med omställningsregel
+syfte: Spelarna ska försvara direkt när laget tappar bollen och anfalla snabbt när laget vinner den.
+beskrivning: |
+  Två lag spelar på en yta på 30 x 16 meter med ett småmål i varje ände och utan målvakt. Lagen är
+  från två mot två upp till fem mot fem. Gör laget mål inom åtta sekunder efter att det har vunnit
+  bollen räknas målet dubbelt. Det är regeln som gör att omställningen händer ofta. Efter ett mål
+  startar motståndarna med boll från sitt eget mål.
+  Spela i perioder om fyra till fem minuter med en minuts vila och vattenpaus emellan. Är det
+  längre än 15 minuter byter ni regel efter halva tiden: då räknas mål efter bollvinst dubbelt bara
+  om laget har vunnit bollen på motståndarnas planhalva, så att laget övar att pressa högt
+  tillsammans.
+  Vid udda antal spelar ett lag med en spelare mer, och det byts efter varje period. Det finns ingen
+  joker, eftersom en joker suddar ut vem som ska försvara efter bolltapp.
+organisation: |
+  En yta på 30 x 16 meter per grupp om fyra till tio spelare, med ett småmål i varje kortsida.
+  Fyra spelare ger två mot två, tio ger fem mot fem. Lagen har olika färg på västar. En ledare
+  eller en spelare på sidan håller tiden och ropar när åtta sekunder har gått. Är ni fler än tio
+  bygger ni en yta till bredvid, med tre meters mellanrum. Två ytor ryms på en kvarts plan.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+  - avslut
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 15
+  langst: 30
+yta:
+  alla:
+    langd: 30
+    bredd: 16
+ytreferens:
+  alla: ungefär tre fjärdedelar av stora planens straffområde
+material:
+  - typ: minimal
+    antal: 2
+    anteckning: småmål, ett i varje ände
+  - typ: boll
+    antal: 3
+    anteckning: reservbollar vid målen
+  - typ: vast
+    antal: 5
+    anteckning: till det ena laget
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på ytan
+coachningspunkter:
+  - Pressa bollhållaren direkt när ni tappat bollen, innan de hinner titta upp.
+  - När ni vinner bollen, spela framåt direkt, åtta sekunder går fort.
+  - Håll avståndet kort mellan er, så att ni pressar tillsammans.
+varianter:
+  lattare: Sex sekunder i stället för åtta, och laget som tappar bollen får inte pressa förrän
+    bollhållaren har gjort en touch.
+  svarare: Fyra sekunder, och bollhållaren får högst tre touchar.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
+  udda_antal: Ett lag spelar med en spelare mer, och det byts efter varje period. Ingen joker.
+  ledare: Övningen är självgående. Ledaren kan hålla tiden och ropa åtta sekunder.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 16
+  beskrivning: >-
+    Yta 30 x 16 meter med ett småmål i varje kortsida, utan målvakt. Två mot två i grundläget, upp till
+    fem mot fem. Lag A anfaller åt höger. Laget som vinner bollen har åtta sekunder på sig att göra mål.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 16, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 8, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 30, y: 8, storlek: smamal, riktning: vanster }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 30, y: 0 }
+    - { typ: kon, x: 30, y: 16 }
+    - { typ: kon, x: 0, y: 16 }
+    - { id: a1, typ: spelare, x: 10, y: 5, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 10, y: 11, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 20, y: 5, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 20, y: 11, lag: b, etikett: B2 }
+    - { typ: boll, x: 20.9, y: 5 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 18, y: 5 }, ordning: 1, etikett: Pressar }
+    - { typ: passning, fran: { objekt: b1 }, till: { x: 12, y: 8 }, ordning: 2 }
+    - { typ: skott, fran: { x: 12, y: 8 }, till: { objekt: mal-a }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 3, lag: a }
+      - { x: 24, y: 13, lag: b }
+      - { x: 6, y: 13, lag: a }
+      - { x: 24, y: 3, lag: b }
+      - { x: 14, y: 8, lag: a }
+      - { x: 16, y: 8, lag: b }
+      - { x: 3, y: 8, lag: a }
+      - { x: 27, y: 8, lag: b }
+kalla: Egen övning, inspirerad av allmänt kända smålagsspel med poängregler.
+status: utkast
+granskning: []

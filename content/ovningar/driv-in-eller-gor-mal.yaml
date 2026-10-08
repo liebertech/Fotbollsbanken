@@ -1,0 +1,106 @@
+schema: 1
+id: driv-in-eller-gor-mal
+namn: Driv in eller gör mål
+syfte: Spelarna ska våga dribbla förbi en motståndare och välja mellan säker poäng och dubbel poäng.
+beskrivning: |
+  Två lag spelar på en yta på 30 x 16 meter. På varje kortsida står två småmål med ungefär 10 meter
+  emellan, och framför kortsidan finns en zon som är 3 meter djup. Ett lag får en poäng för att driva
+  in bollen i motståndarnas zon och stoppa den där. Det får två poäng för mål i ett av småmålen,
+  men bara om en spelare i samma anfall har dribblat förbi en motståndare. Efter poäng startar
+  motståndarna med boll från sin egen zon.
+  Spela i perioder om tre till fyra minuter med en minuts vila emellan. Vid udda antal spelar ett lag
+  med en spelare mer, och det byts efter varje period.
+organisation: |
+  En yta på 30 x 16 meter per grupp om fyra till åtta spelare, med två småmål och en zon på varje
+  kortsida. Fyra spelare ger två mot två, åtta ger fyra mot fyra. Lagen har olika färg på västar.
+  Är ni fler än åtta bygger ni en yta till bredvid med tre meters mellanrum. Två ytor ryms på en
+  kvarts plan. Med fler än sexton spelare behövs en tredje yta utanför kvarts plan.
+fokusomraden:
+  - dribbling
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 8
+grupptyp: tva-lag
+tid:
+  kortast: 6
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 30
+    bredd: 16
+ytreferens:
+  alla: ungefär tre fjärdedelar av stora planens straffområde
+material:
+  - typ: minimal
+    antal: 4
+    anteckning: småmål, två i varje kortsida
+  - typ: kon
+    antal: 8
+    anteckning: hörn och zongränser
+  - typ: boll
+    antal: 3
+  - typ: vast
+    antal: 4
+    anteckning: till det ena laget
+coachningspunkter:
+  - Våga driva på en motståndare, drivet in i zonen ger alltid poäng.
+  - Välj, säker poäng i zonen eller dubbel poäng på mål.
+  - Titta upp innan du dribblar, se var luckan finns.
+varianter:
+  lattare: Zonen ger poäng även utan dribbling, och målet räknas dubbelt bara efter en dribbling.
+  svarare: Zonen tas bort och bara mål ger poäng, och målet räknas bara om spelaren har dribblat förbi en motståndare.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
+  udda_antal: Ett lag spelar med en spelare mer, och det byts efter varje period.
+  ledare: Övningen är självgående. Ledaren kan hålla tiden för perioderna.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 16
+  beskrivning: >-
+    Yta 30 x 16 meter med två småmål och en zon på 3 meters djup på varje kortsida. Två mot två.
+    Lag A anfaller åt höger och får poäng för att driva in i zonen eller göra mål efter en dribbling.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 16, stil: heldragen }
+    - { typ: zon, x: 0, y: 0, langd: 3, bredd: 16, monster: diagonal, etikett: Zon }
+    - { typ: zon, x: 27, y: 0, langd: 3, bredd: 16, monster: diagonal, etikett: Zon }
+    - { id: mal-a1, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
+    - { id: mal-a2, typ: mal, x: 0, y: 13, storlek: smamal, riktning: hoger }
+    - { id: mal-b1, typ: mal, x: 30, y: 3, storlek: smamal, riktning: vanster }
+    - { id: mal-b2, typ: mal, x: 30, y: 13, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 10, y: 5, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 10, y: 11, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 18, y: 6, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 21, y: 11, lag: b, etikett: B2 }
+    - { typ: boll, x: 10.9, y: 5 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 22, y: 3 }, via: [{ x: 16, y: 2.5 }], ordning: 1 }
+    - { typ: skott, fran: { x: 22, y: 3 }, till: { objekt: mal-b1 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 8, y: 8, lag: a }
+      - { x: 22, y: 8, lag: b }
+      - { x: 14, y: 14, lag: a }
+      - { x: 16, y: 2, lag: b }
+kalla: Egen övning, inspirerad av allmänt kända smålagsspel med poängregler.
+status: utkast
+granskning: []

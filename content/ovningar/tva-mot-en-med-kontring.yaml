@@ -1,0 +1,107 @@
+schema: 1
+id: tva-mot-en-med-kontring
+namn: Två mot en med kontring
+syfte: Spelarna ska utnyttja överläget som anfallare, och som försvarare vinna bollen och driva ut den snabbt.
+beskrivning: |
+  Ytan är 14 x 10 meter med en startlinje vid ena kortsidan och ett småmål vid den andra. Två
+  anfallare startar med boll vid startlinjen och anfaller målet. Försvararen startar framför målet.
+  Anfallaren utan boll ska ställa sig så att en passning förbi försvararen är möjlig. Vinner
+  försvararen bollen ska hen driva den över anfallarnas startlinje. Anfallarna ska då vinna
+  tillbaka bollen inom fem sekunder. Gör anfallarna mål, eller slår försvararen bollen över
+  startlinjen, är försöket slut.
+  Rotation: efter varje försök blir försvararen anfallare. Den anfallare som gjorde mål eller
+  tappade bollen blir försvarare, och den andra anfallaren står kvar. Med fyra i gruppen väntar den
+  fjärde vid startlinjen, utanför ytan, och går in som anfallare i stället för den som blir
+  försvarare. Med tre spelare går rollerna runt direkt, utan väntande.
+organisation: |
+  En yta på 14 x 10 meter per grupp om tre eller fyra spelare, med ett småmål i ena änden.
+  Bollarna ligger i en hög vid startlinjen. Är ni fler än fyra bygger ni en yta till bredvid med
+  tre meters mellanrum. Sex grupper ryms på en kvarts plan.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+  - spelbarhet
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 3mot3
+  - 5mot5
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 3
+  max: 3
+grupptyp: fast-storlek
+udda_antal_losning: true
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 14
+    bredd: 10
+ytreferens:
+  alla: ungefär en fjärdedel av stora planens straffområde
+material:
+  - typ: boll
+    antal: 4
+    anteckning: i en hög vid startlinjen
+  - typ: minimal
+    antal: 1
+    anteckning: småmål i bortre änden
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på ytan
+  - typ: vast
+    antal: 1
+    anteckning: till försvararen
+coachningspunkter:
+  - Anfallare, den utan boll flyttar sig så att passningen går förbi försvararen.
+  - Försvarare, våga gå på bollen men håll dig mellan bollen och målet.
+  - Efter bollvinst, kör bollen ut direkt.
+varianter:
+  lattare: Försvararen får bara gå tills den första passningen är spelad.
+  svarare: Anfallarna har tre sekunder på sig att avsluta, och kontringen går till ett av två småmål
+    i stället för över en linje.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Sex ytor ryms på en kvarts plan.
+  udda_antal: Vid fyra i gruppen väntar den fjärde vid startlinjen utanför ytan och går in som anfallare i stället för den som blir försvarare.
+  ledare: Övningen är självgående när rotationen är visad en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 14
+    bredd: 10
+  beskrivning: >-
+    Yta 14 x 10 meter med en startlinje till vänster och ett småmål till höger. Två anfallare (A)
+    startar med boll, försvararen (F) står framför målet. Vid fyra spelare väntar den fjärde
+    utanför startlinjen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 14, bredd: 10, stil: heldragen }
+    - { typ: markering, form: linje, x: 0, y: 0, till: { x: 0, y: 10 } }
+    - { id: mal-b, typ: mal, x: 14, y: 5, storlek: smamal, riktning: vanster }
+    - { id: a1, typ: spelare, x: 1.5, y: 3, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 1.5, y: 7, lag: a, etikett: A }
+    - { id: fo, typ: spelare, x: 11, y: 5, lag: b, etikett: F }
+    - { typ: boll, x: 2.4, y: 3 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: a1 }, till: { x: 8, y: 3 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 8, y: 8 }, ordning: 1 }
+    - { typ: passning, fran: { x: 8, y: 3 }, till: { x: 9.5, y: 8 }, ordning: 2 }
+    - { typ: skott, fran: { x: 9.5, y: 8 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: a2, riktning: 180, avstand: 3, etikett: Väntar vid linjen }
+kalla: Egen övning, inspirerad av den allmänt kända övningen två mot en med kontring.
+status: utkast
+granskning: []

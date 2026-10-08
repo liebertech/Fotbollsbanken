@@ -1,0 +1,115 @@
+schema: 1
+id: spela-ut-fran-malvakten-mot-press
+namn: Spela ut från målvakten mot press
+syfte: Spelarna ska bygga upp spelet från målvakten, hitta fria spelare och spela sig förbi pressen.
+beskrivning: |
+  Ytan är 28 x 18 meter med ett mål med målvakt i ena kortsidan och två konportar i den andra.
+  Uppspelslaget har målvakten och tre till fem utespelare. Pressarna är en färre än uppspelslagets
+  utespelare. Målvakten startar med bollen. Pressarna startar bakom en konlinje 10 meter från
+  målet och får gå fram först när målvakten har spelat den första passningen. Uppspelslaget får en
+  poäng när en spelare tar emot bollen bakom en av konportarna. Vinner pressarna bollen ska de göra
+  mål inom åtta sekunder. Efter varje försök startar målvakten om med en ny boll.
+  Rotation: efter tre minuter byter två pressare roll med två uppspelare, i tur och ordning. Målvakten
+  står hela tiden om hen vill det, annars byts målvakt efter varje period. Så här fördelas
+  spelarna: fem är målvakt, tre uppspelare och en pressare. Sex är målvakt, tre och två. Sju är
+  målvakt, fyra och två. Åtta är målvakt, fyra och tre. Nio är målvakt, fem och tre. Tio är
+  målvakt, fem och fyra. Den extra spelaren vid udda antal är alltid i uppspelslaget.
+organisation: |
+  En yta på 28 x 18 meter per grupp om fem till tio spelare. Målet står på ena kortsidan och
+  konportarna, två meter breda, på den andra. En konlinje 10 meter från målet visar var pressarna
+  startar. Målvakten är frivillig och har handskar om laget har. Är ni fler än tio bygger ni en yta
+  till bredvid med tre meters mellanrum. Två ytor ryms på en kvarts plan.
+fokusomraden:
+  - speluppbyggnad
+  - passning-mottagning
+  - spelbarhet
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 5
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 6
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 28
+    bredd: 18
+ytreferens:
+  alla: ungefär två tredjedelar av stora planens straffområde
+material:
+  - typ: mal
+    antal: 1
+    anteckning: 7 mot 7-mål, 5 x 2 meter, eller 5 mot 5-mål
+  - typ: kon
+    antal: 12
+    anteckning: fyra i portarna, fyra i hörnen och fyra i konlinjen
+  - typ: boll
+    antal: 4
+  - typ: vast
+    antal: 4
+    anteckning: till pressarna
+coachningspunkter:
+  - Målvakt, titta upp innan du spelar, och spela till den som är fri.
+  - Uppspelare, visa er så att målvakten har en passning, och ta emot i rörelse.
+  - Pressare, gå fram tillsammans och stäng passningsvägarna.
+varianter:
+  lattare: Pressarna är halvaktiva, de stänger passningsvägar men tar inte bollen.
+  svarare: Lika många pressare som uppspelare.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
+  udda_antal: Den extra spelaren är alltid i uppspelslaget.
+  ledare: Övningen är självgående. Ledaren kan hålla tiden för rotationen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 28
+    bredd: 18
+  beskrivning: >-
+    Yta 28 x 18 meter med ett mål och målvakt till vänster och två konportar till höger. En konlinje
+    10 meter från målet visar var pressarna startar. Målvakten och tre uppspelare mot en pressare.
+    Lag A bygger upp åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 28, bredd: 18, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 9, storlek: eget, bredd: 5, riktning: hoger }
+    - { id: mv, typ: spelare, x: 0.8, y: 9, lag: a, malvakt: true, etikett: MV }
+    - { typ: markering, form: linje, x: 10, y: 0, till: { x: 10, y: 18 } }
+    - { typ: kon, x: 28, y: 3 }
+    - { typ: kon, x: 28, y: 6 }
+    - { typ: kon, x: 28, y: 12 }
+    - { typ: kon, x: 28, y: 15 }
+    - { id: u1, typ: spelare, x: 5, y: 4, lag: a, etikett: U }
+    - { id: u2, typ: spelare, x: 5, y: 14, lag: a, etikett: U }
+    - { id: u3, typ: spelare, x: 8, y: 9, lag: a, etikett: U }
+    - { id: p1, typ: spelare, x: 12, y: 9, lag: b, etikett: P }
+    - { typ: boll, x: 1.8, y: 9 }
+  rorelser:
+    - { typ: passning, fran: { objekt: mv }, till: { objekt: u1 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: p1 }, till: { x: 7, y: 6 }, ordning: 2, etikett: Pressar }
+    - { typ: passning, fran: { objekt: u1 }, till: { objekt: u3 }, ordning: 3 }
+    - { typ: passning, fran: { objekt: u3 }, till: { x: 28.5, y: 4.5 }, ordning: 4, etikett: Genom porten }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 12, y: 5, lag: b }
+      - { x: 12, y: 9, lag: a }
+      - { x: 12, y: 13, lag: b }
+      - { x: 16, y: 9, lag: a }
+      - { x: 12, y: 16, lag: b }
+kalla: Egen övning, inspirerad av allmänt känt uppspel från målvakt mot press.
+status: utkast
+granskning: []

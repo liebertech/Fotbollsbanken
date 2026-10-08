@@ -1,0 +1,96 @@
+schema: 1
+id: folj-john-med-boll-i-par
+namn: Följ John med boll i par
+syfte: Spelarna ska röra bollen på många olika sätt, härma varandra och byta rörelse utan att tappa kontrollen.
+beskrivning: |
+  Två spelare har varsin boll och en yta på 9 x 9 meter. Den ena leder och gör rörelser med bollen,
+  den andra följer efter och gör samma sak. Rörelserna kan vara vändningar, sulan, hopp över bollen,
+  byta fot, stanna och starta. Byt ledare efter ungefär 45 sekunder. Övningen går i tre steg på
+  ungefär fyra minuter vardera. Steg ett är lugnt: ledaren gör en rörelse i taget i gångtempo och
+  följaren härmar. Steg två är spegeln: paret står mittemot varandra på ett par meters avstånd
+  och följaren härmar spegelvänt, så att höger fot svarar mot vänster. Steg tre är fart: ledaren
+  driver runt i rutan och byter rörelse ofta, och följaren håller sig tätt bakom. Ledaren ska
+  vara tydlig, och följaren ska titta upp och följa med.
+organisation: |
+  Ett par per yta på 9 x 9 meter, med varsin boll. Paren står bredvid varandra med tre meters
+  mellanrum. Vid udda antal blir en grupp en trio, där den tredje följer den andra så att det blir
+  en kedja. Ledarrollen går ett steg framåt i kedjan efter varje byte. Ingen väntar.
+fokusomraden:
+  - koordination
+  - bollkansla
+  - dribbling
+alder:
+  min: 8
+  max: 12
+spelformer:
+  - 3mot3
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 12
+yta:
+  alla:
+    langd: 9
+    bredd: 9
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en per spelare
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på rutan
+coachningspunkter:
+  - Ledare, var tydlig och gör rörelsen så att kompisen hinner se den.
+  - Följare, titta upp och härma rörelsen med samma fot.
+  - Håll bollen nära foten hela tiden, också när ni byter rörelse.
+varianter:
+  lattare: Ledaren gör bara en rörelse i taget i gångtempo, och följaren får ta den i sin egen takt.
+  svarare: Följaren gör rörelsen med den andra foten, och paret lägger till en riktningsändring i
+    full fart.
+anpassning:
+  fler_spelare: Bygg en ruta till per par, med tre meters mellanrum. Tio par ryms på en kvarts plan.
+  udda_antal: Tre spelare gör en kedja. Den tredje följer den andra, och ledarrollen går vidare ett steg efter varje byte.
+  ledare: Övningen är självgående. Ledaren kan visa de tre stegen och sedan bara gå runt.
+planskiss:
+  version: 1
+  omrade:
+    langd: 9
+    bredd: 9
+  beskrivning: >-
+    Ruta 9 x 9 meter med en kon i varje hörn. Ledaren (L) driver bollen och följaren (F) gör samma
+    rörelse bakom. Båda har egen boll. Vid udda antal ställer sig en tredje bakom följaren.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 9, bredd: 9, stil: streckad }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 9, y: 0 }
+    - { typ: kon, x: 9, y: 9 }
+    - { typ: kon, x: 0, y: 9 }
+    - { id: led, typ: spelare, x: 6, y: 3, lag: a, etikett: L, riktning: 180 }
+    - { id: fol, typ: spelare, x: 3, y: 6, lag: a, etikett: F, riktning: 0 }
+    - { typ: boll, x: 5.1, y: 3 }
+    - { typ: boll, x: 3.9, y: 6 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: led }, till: { x: 2, y: 3 }, via: [{ x: 4, y: 1.5 }], ordning: 1 }
+    - { typ: dribbling, fran: { objekt: fol }, till: { x: 2, y: 7 }, via: [{ x: 4, y: 7.5 }], ordning: 1 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: fol, riktning: 90, avstand: 1.5, etikett: Följer kedjan }
+kalla: Egen övning, inspirerad av den allmänt kända härmleken Följ John.
+status: utkast
+granskning: []
