@@ -6,9 +6,10 @@
  *
  * Reglerna läses ur rubrikerna (`### R-…`) i docs/doman/generatorregler.md, inte ur en kopia,
  * så att en ny regel fäller kontrollen tills den har kod och test. Koden är `@regel R-…`-
- * taggarna i src/ utanför testfilerna. Testerna är namnen på `describe`, `it` och `test` i
- * testfilerna i src/ och scripts/, de som Vitest kör. Ett namn räknas för varje regel-ID det
- * innehåller (ADR 0021 avsnitt 2). Överhoppade tester (`skip`, `todo`) räknas inte.
+ * taggarna i src/ utanför testfilerna. Testerna är `it` och `test` i testfilerna i src/ och
+ * scripts/, de som Vitest kör. Ett test räknas för varje regel-ID i sitt namn eller i namnet
+ * på en `describe` det ligger i (ADR 0021 avsnitt 2). Överhoppade tester (`skip`, `todo`,
+ * `xit`) räknas inte, och en `describe` utan tester som körs ger ingen täckning.
  *
  * Skriptet skriver ut en matris med en rad per regel och avslutar med kod 1 när
  *   - en regel saknar kod eller test och inte står i undantagslistan `EXCEPTIONS`,
@@ -112,7 +113,7 @@ export const EXCEPTIONS: readonly RuleException[] = [
     id: 'R-111',
     saknar: ['kod', 'test'],
     motivering: 'Säsongsplanen är inte byggd.',
-    hanvisning: 'CLAUDE.md inkrement 7; berättelse 24; ADR 0011 avsnitt 4, grupp 12',
+    hanvisning: 'CLAUDE.md inkrement 7; ADR 0011 avsnitt 4, grupp 12, raden R-111',
   },
   {
     id: 'R-112',
@@ -189,7 +190,9 @@ export function findCodeTags(file: string, text: string): CodeTags {
   return { tags, errors };
 }
 
-const TEST_FUNCTIONS = new Set(['describe', 'it', 'test', 'suite']);
+const GROUP_FUNCTIONS = new Set(['describe', 'suite']);
+const TEST_FUNCTIONS = new Set([...GROUP_FUNCTIONS, 'it', 'test']);
+const SKIPPED_FUNCTIONS = new Set(['xit', 'xtest', 'xdescribe']);
 const SKIPPING_MODIFIERS = new Set(['skip', 'todo']);
 
 /**
@@ -233,7 +236,12 @@ function titleText(node: ts.Expression): string | null {
   return null;
 }
 
-/** Samlar regel-ID:n i namnen på testerna och testgrupperna i en testfil. */
+/**
+ * Samlar regel-ID:n per test i en testfil. Bara `it` och `test` räknas, så att varje
+ * förekomst är ett test som körs (ADR 0011 avsnitt 7: minst ett test). Ett test räknas för
+ * regel-ID:n i sitt eget namn och i namnen på de grupper (`describe`) det ligger i. En grupp
+ * utan tester, eller där alla tester är överhoppade, ger alltså ingen täckning.
+ */
 export function findTestReferences(file: string, text: string): Reference[] {
   const source = ts.createSourceFile(
     file,
@@ -244,26 +252,35 @@ export function findTestReferences(file: string, text: string): Reference[] {
   );
   const references: Reference[] = [];
 
-  const visit = (node: ts.Node): void => {
+  const visit = (node: ts.Node, inherited: readonly string[]): void => {
     if (ts.isCallExpression(node)) {
       const callee = testCallee(node.expression);
+      if (callee && SKIPPED_FUNCTIONS.has(callee.name)) {
+        return;
+      }
       const first = node.arguments[0];
       if (callee && TEST_FUNCTIONS.has(callee.name) && first) {
         if (callee.modifiers.some((modifier) => SKIPPING_MODIFIERS.has(modifier))) {
           return;
         }
         const title = titleText(first);
+        const ids = [...new Set([...inherited, ...(title?.match(RULE_ID) ?? [])])];
+        if (GROUP_FUNCTIONS.has(callee.name)) {
+          ts.forEachChild(node, (child) => visit(child, ids));
+          return;
+        }
         if (title !== null) {
           const line = source.getLineAndCharacterOfPosition(first.getStart(source)).line + 1;
-          for (const id of new Set(title.match(RULE_ID) ?? [])) {
+          for (const id of ids) {
             references.push({ id, file, line });
           }
+          return;
         }
       }
     }
-    ts.forEachChild(node, visit);
+    ts.forEachChild(node, (child) => visit(child, inherited));
   };
-  visit(source);
+  visit(source, []);
   return references;
 }
 

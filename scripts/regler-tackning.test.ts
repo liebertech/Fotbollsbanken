@@ -102,7 +102,7 @@ describe('findTestReferences läser regel-ID:n i testnamnen', () => {
   const ids = (text: string, file = 'src/x.test.ts'): string[] =>
     findTestReferences(file, text).map((r) => r.id);
 
-  it('läser describe, it och test, med regel-ID:t först eller inne i namnet', () => {
+  it('läser it och test med regel-ID:t i namnet eller i gruppens namn', () => {
     const text = [
       "describe('R-051 Antal grupper', () => {",
       "  it('R-051 delar 13 spelare i 7 och 6', () => {});",
@@ -124,7 +124,7 @@ describe('findTestReferences läser regel-ID:n i testnamnen', () => {
       'it(`R-058 testfall ${n} R-052`, () => {});',
       "it(\n  'R-082 räknar ett moment ' +\n    'en gång (R-065)',\n  () => {},\n);",
       "it.each(fall)('R-101 skapar inget pass för $namn', () => {});",
-      "describe.each([1, 2])('R-034 för %s', () => {});",
+      "describe.each([1, 2])('R-034 för %s', () => { it('körs', () => {}); });",
     ].join('\n');
     expect(ids(text)).toEqual(['R-058', 'R-052', 'R-082', 'R-065', 'R-101', 'R-034']);
   });
@@ -143,6 +143,36 @@ describe('findTestReferences läser regel-ID:n i testnamnen', () => {
       "it.concurrent('R-005 körs', () => {});",
     ].join('\n');
     expect(ids(text)).toEqual(['R-004', 'R-005']);
+  });
+
+  it('räknar inte en grupp utan tester eller där alla tester är överhoppade', () => {
+    const text = [
+      "describe('R-091 Ytornas mått', () => {",
+      "  it.skip('R-091 hoppas över', () => {});",
+      "  it.todo('ska skrivas');",
+      '});',
+      "describe('R-092 Tom grupp', () => {});",
+      "describe('R-093 Yttre', () => { describe('inre', () => { it.skip('x', () => {}); }); });",
+    ].join('\n');
+    expect(ids(text)).toEqual([]);
+  });
+
+  it('räknar ett test en gång per regel i gruppens och testets namn tillsammans', () => {
+    const text = [
+      "describe('R-058 Grupper', () => {",
+      "  describe('R-052 och R-058 stationer', () => {",
+      "    it('testfall 19', () => {});",
+      "    it('R-065 testfall 20', () => {});",
+      '  });',
+      '});',
+    ].join('\n');
+    expect(findTestReferences('src/x.test.ts', text)).toEqual([
+      ref('R-058', 'src/x.test.ts', 3),
+      ref('R-052', 'src/x.test.ts', 3),
+      ref('R-058', 'src/x.test.ts', 4),
+      ref('R-052', 'src/x.test.ts', 4),
+      ref('R-065', 'src/x.test.ts', 4),
+    ]);
   });
 
   it('räknar inte regel-ID:n utanför testnamnen', () => {
