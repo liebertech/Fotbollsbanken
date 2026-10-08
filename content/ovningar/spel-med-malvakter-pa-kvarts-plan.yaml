@@ -1,0 +1,123 @@
+schema: 1
+id: spel-med-malvakter-pa-kvarts-plan
+namn: Spel med målvakter på kvarts plan
+syfte: Spelarna ska ställa om direkt vid bollvinst, hålla ihop försvaret och bygga upp från målvakten i
+  ett matchlikt spel som ryms på en kvarts plan.
+beskrivning: |
+  Två lag möts på en yta om 48 x 32 meter med ett mål och en målvakt i varje
+  kortsida. Målen är sjua mot sjua-mål, fem meter breda, så att de inte blir
+  för stora i en smal yta. Offside gäller på hela ytan. Efter varje räddning
+  och varje inspark startar målvakten med ett kort, säkert utspel till en
+  medspelare i stället för en lång spark. Mål som görs inom tio sekunder
+  efter en bollvinst räknas dubbelt, så att omställningen händer ofta.
+  Laget utan boll ska pressa direkt och hålla en samlad backlinje.
+organisation: |
+  Två lag om fyra till åtta spelare var, målvakten inräknad: tre mot tre
+  utespelare plus målvakter vid åtta spelare, upp till sju mot sju vid
+  sexton. Spela perioder om fyra till sex minuter med en till två minuters
+  vila emellan, då spelarna dricker och laget byter planhalva. Lagen byter
+  målvakt efter varje period om ingen vill stå kvar, och ingen tvingas stå i
+  mål. Målvakten har handskar. Står en utespelare i mål placeras skotten i
+  stället för att skjutas hårt. Ytan ryms en gång på en kvarts plan.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+  - speluppbyggnad
+alder:
+  min: 13
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spel
+ledarbehov: 0
+spelare:
+  min: 8
+  max: 16
+grupptyp: tva-lag
+tid:
+  kortast: 10
+  rekommenderad: 25
+  langst: 40
+yta:
+  alla:
+    langd: 48
+    bredd: 32
+ytreferens:
+  alla: något längre än stora planens straffområde är brett
+material:
+  - typ: mal
+    antal: 2
+    anteckning: 7 mot 7-mål, 5 x 2 meter
+  - typ: vast
+    antal: 7
+    anteckning: till det ena lagets utespelare
+  - typ: boll
+    antal: 4
+    anteckning: några i reserv vid målen
+  - typ: kon
+    antal: 4
+    anteckning: markerar ytans hörn
+coachningspunkter:
+  - Ställ om direkt när bollen byter lag, pressa eller kontra utan att stanna.
+  - Håll backlinjen samlad och döm offside tillsammans.
+  - Målvakten spelar ut kort och snabbt till en fri medspelare.
+  - Prata med varandra, säg vem som pressar och vem som täcker.
+varianter:
+  lattare: Ingen offside och ingen dubbel poäng, så att spelet flyter och laget hinner tänka.
+  svarare: Högst två touchar för utespelarna i egen planhalva, och mål efter bollvinst inom sju sekunder
+    räknas dubbelt.
+anpassning:
+  fler_spelare: Vid fler än sexton spelare delas gruppen i två spel på varsin yta, eller så turas
+    de som är över om att vara avbytare och byts in efter varje period.
+  udda_antal: Ett lag spelar med en utespelare mer. Det laget byter en spelare till det andra laget
+    efter varje period, så att alla spelar både i överläge och underläge.
+  ledare: Övningen är självgående när reglerna är satta. Ledaren dömer offside från sidan, håller
+    tiden på perioderna och coachar mellan spelen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 48
+    bredd: 32
+  beskrivning: >-
+    Yta 48 x 32 meter med ett sju mot sju-mål och en målvakt i varje kortsida. Tre mot tre ute. Lag A
+    bygger upp från målvakten och avslutar från cirka 16 meter. Fler spelare fyller på lagen jämnt.
+    Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 48, bredd: 32, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 16, storlek: eget, bredd: 5, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 48, y: 16, storlek: eget, bredd: 5, riktning: vanster }
+    - { id: gk-a, typ: spelare, x: 2, y: 16, lag: a, malvakt: true, etikett: MV }
+    - { id: a1, typ: spelare, x: 12, y: 7, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 12, y: 25, lag: a, etikett: A2 }
+    - { id: a3, typ: spelare, x: 22, y: 16, lag: a, etikett: A3 }
+    - { id: gk-b, typ: spelare, x: 46, y: 16, lag: b, malvakt: true, etikett: MV }
+    - { id: b1, typ: spelare, x: 36, y: 7, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 36, y: 25, lag: b, etikett: B2 }
+    - { id: b3, typ: spelare, x: 30, y: 16, lag: b, etikett: B3 }
+    - { typ: boll, x: 3, y: 16 }
+  rorelser:
+    - { typ: passning, fran: { objekt: gk-a }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a2 }, till: { objekt: a3 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 33, y: 10 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a3 }, till: { x: 33, y: 10 }, ordning: 3 }
+    - { typ: skott, fran: { x: 33, y: 10 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 6, y: 10, lag: a }
+      - { x: 42, y: 22, lag: b }
+      - { x: 6, y: 22, lag: a }
+      - { x: 42, y: 10, lag: b }
+      - { x: 20, y: 12, lag: a }
+      - { x: 26, y: 22, lag: b }
+      - { x: 18, y: 28, lag: a }
+      - { x: 30, y: 4, lag: b }
+kalla: Egen övning, inspirerad av allmänt kända smålagsspel med målvakter och omställningsregler.
+status: utkast
+granskning: []

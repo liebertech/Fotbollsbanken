@@ -1,0 +1,135 @@
+schema: 1
+id: hornor-och-inlagg-med-nick-mot-forsvar
+namn: Hörnor och inlägg med nick mot försvar
+syfte: Spelarna ska tajma löpningar och nicka hörnor och inlägg mot ett försvar som markerar, och som
+  försvarare markera och rensa undan faran.
+beskrivning: |
+  Två lag övar hörnor och inlägg vid ett mål med målvakt. Ytan följer matchplanens
+  bredd, så att hörnflaggan står på rätt avstånd från stolparna: 30 x 60 meter i
+  elva mot elva och 30 x 50 meter i nio mot nio, med målet på den långa linjen.
+  Anfallarna löper i tajmade mönster mot första och bortre stolpen och avslutar
+  med huvudet när inlägget passar, annars med foten. Försvararna markerar varsin
+  anfallare och rensar. Vinner de bollen spelar de ut den till en konport vid
+  straffområdets förlängning, så att försvaret avslutas med en passning och inte
+  med en lång rensning. En omgång är sex hörnor eller inlägg. Varje anfallare
+  nickar högst två gånger per omgång och högst tre omgångar per pass, och de
+  första inläggen slås lätta och från nära håll innan farten och avståndet ökar.
+organisation: |
+  Två lag om sju till tretton spelare, målvakten inräknad. Fyra anfallare mot
+  tre försvarare med målvakt vid sju spelare, och därefter fyller lagen på jämnt.
+  Anfallarna numreras. Hörna ett slås av nummer ett, hörna två av nummer två och
+  så vidare, och räcker inte antalet börjar numreringen om. Slagaren går in som
+  löpare vid nästa hörna. Efter en omgång om sex hörnor byter lagen roll. Ledaren
+  håller räkningen på nickarna och stoppar den som nått sin gräns, och det
+  lämnas aldrig till spelarna. Målvakten har handskar. Står en utespelare i mål
+  placeras skotten i stället för att skjutas hårt. Ytan är rymligare när antalet
+  spelare är litet: det är medvetet, eftersom hörnan ska slås från rätt avstånd.
+fokusomraden:
+  - fasta-situationer
+  - nickspel
+  - forsvarsspel
+alder:
+  min: 15
+  max: 19
+spelformer:
+  - 9mot9
+  - 11mot11
+niva:
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 1
+ledaruppgift: Ledaren räknar nickarna och stoppar den som har nickat två gånger i omgången, slår
+  de första lätta inläggen och rättar tajmingen i löpningarna.
+spelare:
+  min: 7
+  max: 13
+grupptyp: tva-lag
+tid:
+  kortast: 8
+  rekommenderad: 12
+  langst: 15
+yta:
+  11mot11:
+    langd: 30
+    bredd: 60
+  9mot9:
+    langd: 30
+    bredd: 50
+ytreferens:
+  11mot11: knappt en tredjedel av 11 mot 11-planen, på hela bredden
+  9mot9: knappt halva 9 mot 9-planen
+material:
+  - typ: mal
+    antal: 1
+    anteckning: i den spelform ni tränar för, förankrat
+  - typ: vast
+    antal: 7
+    anteckning: till det ena laget
+  - typ: boll
+    antal: 6
+  - typ: kon
+    antal: 3
+    anteckning: en markerar hörnflaggans plats och två bildar konporten
+  - typ: ovrigt
+    antal: 1
+    anteckning: målvaktshandskar till den som står i mål
+coachningspunkter:
+  - Tajma löpningen så att du möter bollen i stället för att stå still och vänta.
+  - Möt bollen med pannan, blunda inte, och styr nicken nedåt mot mål.
+  - Försvarare ska markera varsin anfallare redan innan hörnan slås.
+  - Rensa bort från målet, och spela ut till konporten när ni vinner bollen.
+varianter:
+  lattare: Första omgången slås inläggen lätta från nära håll, och försvararna står passiva som
+    stolpar. Därefter får de försvara fullt.
+  svarare: Försvaret får en spelare mer, och inlägget slås med fart från hörnflaggan. Slagaren har
+    tio sekunder från att bollen är död till att hörnan är slagen.
+anpassning:
+  fler_spelare: Vid fler än tretton spelare delar generatorn gruppen och bygger en andra yta med eget
+    mål bredvid, eftersom hörnan annars får för många i boxen.
+  udda_antal: Anfallslaget har en spelare mer. Den extra spelaren är slagare, och byter plats med
+    en försvarare efter varje omgång, så att alla försvarar lika ofta.
+  ledare: En ledare krävs för att hålla koll på nicktaket. Utan extra ledare håller den ordinarie
+    ledaren i räkningen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 30
+    bredd: 60
+  beskrivning: >-
+    Yta 30 x 60 meter, för elva mot elva, med mål och målvakt på den högra långa kortlinjen. Hörna
+    från övre hörnet, inlägg mot första stolpen och nick från cirka 6 meter. Fyra anfallare mot två
+    försvarare och målvakt. Ledaren står bakom målet. Lag A anfaller åt höger.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 60, stil: heldragen }
+    - { id: mal-1, typ: mal, x: 30, y: 30, storlek: 11mot11, riktning: vanster }
+    - { id: gk, typ: spelare, x: 29, y: 28.5, lag: b, malvakt: true, etikett: MV }
+    - { id: f1, typ: spelare, x: 28, y: 24, lag: b, etikett: F1 }
+    - { id: f2, typ: spelare, x: 22, y: 28, lag: b, etikett: F2 }
+    - { id: sl, typ: spelare, x: 29, y: 1, lag: a, etikett: S }
+    - { id: a1, typ: spelare, x: 19, y: 23, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 17, y: 36, lag: a, etikett: A2 }
+    - { id: a3, typ: spelare, x: 15, y: 28, lag: a, etikett: A3 }
+    - { typ: boll, x: 29.8, y: 0.3 }
+    - { typ: kon, x: 12, y: 8 }
+    - { typ: kon, x: 12, y: 11 }
+    - { typ: ledare, x: 32, y: 15 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 25, y: 26 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a2 }, till: { x: 23, y: 33 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: sl }, till: { x: 25, y: 26 }, ordning: 2, etikett: Hörna }
+    - { typ: skott, fran: { x: 25, y: 26 }, till: { x: 30, y: 32.5 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 22, y: 12, lag: a }
+      - { x: 24, y: 17, lag: b }
+      - { x: 16, y: 20, lag: a }
+      - { x: 27, y: 33, lag: b }
+      - { x: 11, y: 34, lag: a }
+      - { x: 20, y: 38, lag: b }
+kalla: Egen övning, inspirerad av allmän hörnträning, anpassad efter SvFF:s riktlinje om begränsad
+  nickmängd och efter hörnträningen i Hörnor med nickar för 13-14 år.
+status: utkast
+granskning: []
