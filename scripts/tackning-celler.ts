@@ -6,7 +6,7 @@
  * src/app/input/form.ts använder) och **granne** annars (R-014). Planens celler i
  * docs/doman/plan-omgang-5.md slår ihop åldrarna med samma föreslagna spelform, till exempel
  * "6–7 år, 3 mot 3", och det är på den nivån målen i plan-omgang-5.md avsnitt 1.2 och i
- * plan-omgang-6.md avsnitt 1.1 står.
+ * plan-omgang-6.md och plan-omgang-7.md, avsnitt 1.1, står.
  *
  * Modulen har inga sidoeffekter, så att den går att testa utan att köra svepet.
  */
@@ -154,7 +154,8 @@ export function sumByKind(ageCells: ReadonlyMap<string, CellStats>, kind?: CellK
 }
 
 // ---------------------------------------------------------------------------
-// Målen i plan-omgang-5.md (avsnitt 1.1 och 1.2) och plan-omgang-6.md (avsnitt 1.1)
+// Målen i plan-omgang-5.md (avsnitt 1.1 och 1.2), plan-omgang-6.md och plan-omgang-7.md
+// (avsnitt 1.1)
 // ---------------------------------------------------------------------------
 
 export interface PlanGoal {
@@ -165,7 +166,9 @@ export interface PlanGoal {
   /** Högsta andel "inget pass" efter omgång 5B. */
   maxNone5B: number | null;
   /** Målen efter omgång 6 för de tre måtten (plan-omgang-6.md, avsnitt 1.1). */
-  omgang6: Readonly<Record<GoalMeasure, Omgang6Goal>>;
+  omgang6: CellGoals;
+  /** Målen efter omgång 7 för de tre måtten (plan-omgang-7.md, avsnitt 1.1). */
+  omgang7: CellGoals;
 }
 
 /** Ett av de tre måtten per cell, med samma namn som fälten i `CellStats`. */
@@ -174,17 +177,25 @@ export type GoalMeasure = 'none' | 'coreFilled' | 'coreOnFocus';
 export const GOAL_MEASURES: readonly GoalMeasure[] = ['none', 'coreFilled', 'coreOnFocus'];
 
 /**
- * Ett mål i plan-omgang-6.md, avsnitt 1.1, i procent med en decimal. `max` och `min` är
- * planens "högst" och "minst". `oforandrat` är "exakt oförändrat": lika med värdet i
- * docs/doman/tackning-2026-10-07.md, *Banken nu*, tabellen *Per cell i planen*.
+ * Ett mål i avsnitt 1.1 i plan-omgang-6.md eller plan-omgang-7.md, i procent med en decimal.
+ * `max` och `min` är planens "högst" och "minst". `oforandrat` är "exakt oförändrat": lika
+ * med värdet i den rapport planen pekar ut, tabellen *Per cell i planen*: för omgång 6
+ * docs/doman/tackning-2026-10-07.md, *Banken nu*, och för omgång 7
+ * docs/doman/tackning-2026-10-08.md, *Efter CI-rättning*.
  */
-export type Omgang6Goal =
+export type CellGoal =
   | { kind: 'max'; percent: number }
   | { kind: 'min'; percent: number }
   | { kind: 'oforandrat'; percent: number };
 
+/** Ett mål per mått i en cell. */
+export type CellGoals = Readonly<Record<GoalMeasure, CellGoal>>;
+
+/** Det tidigare namnet på `CellGoal`, kvar för befintliga anropare. */
+export type Omgang6Goal = CellGoal;
+
 /** Högst `none`, minst `coreFilled` och minst `coreOnFocus`, i procent. */
-function raise6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal['omgang6'] {
+function raise(none: number, coreFilled: number, coreOnFocus: number): CellGoals {
   return {
     none: { kind: 'max', percent: none },
     coreFilled: { kind: 'min', percent: coreFilled },
@@ -193,7 +204,7 @@ function raise6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal
 }
 
 /** Exakt oförändrade värden, i procent som rapporten skriver dem. */
-function keep6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal['omgang6'] {
+function keep(none: number, coreFilled: number, coreOnFocus: number): CellGoals {
   return {
     none: { kind: 'oforandrat', percent: none },
     coreFilled: { kind: 'oforandrat', percent: coreFilled },
@@ -212,6 +223,11 @@ function keep6(none: number, coreFilled: number, coreOnFocus: number): PlanGoal[
  * kärna och kärna på valt fokus (båda av alla körfall). "Alla celler för 6–12 år" ska vara
  * exakt oförändrade; värdena är avskrivna ur tackning-2026-10-07.md (Banken nu, Per cell i
  * planen).
+ *
+ * plan-omgang-7.md, tabell 1.1: för 8–12 år "högst" för inget pass och "minst" för fylld
+ * kärna och kärna på valt fokus (båda av alla körfall). 6–7 år och 13–19 år ska vara exakt
+ * oförändrade; värdena är avskrivna ur tackning-2026-10-08.md (Efter CI-rättning, Per cell i
+ * planen), som planen anger som utgångsläge.
  */
 export const PLAN_GOALS: readonly PlanGoal[] = [
   {
@@ -219,91 +235,104 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     spelform: '3mot3',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: keep6(0.0, 85.7, 33.9),
+    omgang6: keep(0.0, 85.7, 33.9),
+    omgang7: keep(0.0, 85.7, 33.9),
   },
   {
     group: '3mot3',
     spelform: '5mot5',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: keep6(0.0, 85.7, 33.9),
+    omgang6: keep(0.0, 85.7, 33.9),
+    omgang7: keep(0.0, 85.7, 33.9),
   },
   {
     group: '5mot5',
     spelform: '5mot5',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: keep6(0.3, 74.8, 25.5),
+    omgang6: keep(0.3, 74.8, 25.5),
+    omgang7: raise(0.3, 82.0, 36.0),
   },
   {
     group: '5mot5',
     spelform: '3mot3',
     maxNoneOmgang5: null,
     maxNone5B: 0.05,
-    omgang6: keep6(2.3, 69.4, 22.6),
+    omgang6: keep(2.3, 69.4, 22.6),
+    omgang7: raise(2.3, 77.0, 32.0),
   },
   {
     group: '5mot5',
     spelform: '7mot7',
     maxNoneOmgang5: null,
     maxNone5B: 0.05,
-    omgang6: keep6(0.3, 74.8, 25.5),
+    omgang6: keep(0.3, 74.8, 25.5),
+    omgang7: raise(0.3, 82.0, 36.0),
   },
   {
     group: '7mot7',
     spelform: '7mot7',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: keep6(4.0, 73.9, 23.2),
+    omgang6: keep(4.0, 73.9, 23.2),
+    omgang7: raise(0.5, 82.0, 34.0),
   },
   {
     group: '7mot7',
     spelform: '5mot5',
     maxNoneOmgang5: null,
     maxNone5B: 0.1,
-    omgang6: keep6(9.3, 73.9, 23.2),
+    omgang6: keep(9.3, 73.9, 23.2),
+    omgang7: raise(0.5, 80.0, 33.0),
   },
   {
     group: '7mot7',
     spelform: '9mot9',
     maxNoneOmgang5: null,
     maxNone5B: 0.05,
-    omgang6: keep6(4.0, 73.9, 23.2),
+    omgang6: keep(4.0, 73.9, 23.2),
+    omgang7: raise(0.5, 82.0, 34.0),
   },
   {
     group: '9mot9',
     spelform: '9mot9',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: raise6(2.0, 68.0, 33.0),
+    omgang6: raise(2.0, 68.0, 33.0),
+    omgang7: keep(1.5, 77.4, 53.5),
   },
   {
     group: '9mot9',
     spelform: '7mot7',
     maxNoneOmgang5: 0.1,
     maxNone5B: 0.05,
-    omgang6: raise6(3.0, 58.0, 22.0),
+    omgang6: raise(3.0, 58.0, 22.0),
+    omgang7: keep(2.8, 75.5, 44.6),
   },
   {
     group: '9mot9',
     spelform: '11mot11',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: raise6(2.0, 68.0, 33.0),
+    omgang6: raise(2.0, 68.0, 33.0),
+    omgang7: keep(1.5, 77.4, 53.5),
   },
   {
     group: '11mot11',
     spelform: '11mot11',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: raise6(2.0, 65.0, 30.0),
+    omgang6: raise(2.0, 65.0, 30.0),
+    omgang7: keep(1.0, 89.5, 58.7),
   },
   {
     group: '11mot11',
     spelform: '9mot9',
     maxNoneOmgang5: 0.05,
     maxNone5B: 0.05,
-    omgang6: raise6(2.0, 65.0, 30.0),
+    omgang6: raise(2.0, 65.0, 30.0),
+    omgang7: keep(1.0, 89.5, 58.7),
   },
 ];
 
@@ -333,14 +362,14 @@ export function reportedPercent(stats: CellStats, measure: GoalMeasure): number 
 }
 
 /**
- * Uppfyller måttet målet i plan-omgang-6.md? Planen prövar målen mot rapportens värden
- * (till exempel `<= 2.0` och `>= 65.0`), så jämförelsen görs på det avrundade värdet, gränsen
- * inräknad. Null när cellen saknar körfall.
+ * Uppfyller måttet målet i plan-omgang-6.md eller plan-omgang-7.md? Planerna prövar målen mot
+ * rapportens värden (till exempel `<= 2.0` och `>= 65.0`), så jämförelsen görs på det
+ * avrundade värdet, gränsen inräknad. Null när cellen saknar körfall.
  */
-export function meetsOmgang6Goal(
+export function meetsCellGoal(
   stats: CellStats,
   measure: GoalMeasure,
-  goal: Omgang6Goal,
+  goal: CellGoal,
 ): boolean | null {
   const value = reportedPercent(stats, measure);
   if (value === null) {
@@ -354,6 +383,32 @@ export function meetsOmgang6Goal(
     case 'oforandrat':
       return value === goal.percent;
   }
+}
+
+/** Det tidigare namnet på `meetsCellGoal`, kvar för befintliga anropare. */
+export const meetsOmgang6Goal = meetsCellGoal;
+
+/**
+ * Cellpar som ska vara lika på alla tre måtten efter omgång 7 (plan-omgang-7.md, avsnitt
+ * 1.1): alla övningar för 8–9 år som är märkta 5 mot 5 är också märkta 7 mot 7, och tvärtom.
+ * Skiljer cellerna sig är en övning fel märkt.
+ */
+export const EQUAL_PLAN_CELLS_OMGANG7: readonly (readonly [string, string])[] = [
+  ['5mot5|5mot5', '5mot5|7mot7'],
+];
+
+/**
+ * Är två celler lika i antal körfall och i de tre måtten, räknat i antal och inte i avrundad
+ * procent? Null när någon av cellerna saknas eller saknar körfall.
+ */
+export function sameOnGoalMeasures(
+  a: CellStats | undefined,
+  b: CellStats | undefined,
+): boolean | null {
+  if (a === undefined || b === undefined || a.total === 0 || b.total === 0) {
+    return null;
+  }
+  return a.total === b.total && GOAL_MEASURES.every((measure) => a[measure] === b[measure]);
 }
 
 // ---------------------------------------------------------------------------
