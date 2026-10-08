@@ -26,6 +26,7 @@ niva:
   - niva-3
 passdelar:
   - del-ovning
+  - del-spelovning
 ledarbehov: 0
 spelare:
   min: 2
@@ -160,3 +161,8 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [7mot7] till [5mot5, 7mot7, 9mot9] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Omgång 7, beslut B4 i docs/doman/plan-omgang-7.md. Lade till del-spelovning bredvid del-ovning, eftersom duellen har riktning och mål och en rotation som fungerar i båda delarna (F4 i plan-omgang-5.md). Inga andra fält ändrade.
