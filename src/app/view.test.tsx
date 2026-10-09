@@ -289,8 +289,10 @@ describe('Berättelse 01: underlagsformuläret', () => {
     expect(markup).toContain('Några uppgifter saknas eller stämmer inte');
   });
 
-  it('01.11 visar hjälptexten om vilken ålder som ska anges', () => {
-    expect(render()).toContain('Ange den ålder som flest i gruppen fyller i år.');
+  it('01.11 R-010 visar hjälptexten om vilken ålder som ska anges', () => {
+    const markup = render();
+    expect(markup).toContain('Ange den ålder som flest i gruppen fyller i år.');
+    expect(markup).toContain('Har ni två lika vanliga åldrar, ange den yngre.');
   });
 
   it('01.12 visar yta som ett valfritt val med Ingen som förval', () => {

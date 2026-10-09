@@ -46,6 +46,11 @@ jobs:
       - name: Tester
         run: npm test
 
+      # Varje generatorregel ska ha en @regel-tagg i koden och ett test med regel-ID:t i
+      # namnet, utom de som står i undantagslistan (ADR 0011 avsnitt 7, ADR 0021).
+      - name: Generatorreglernas spårbarhet
+        run: npm run regler:tackning
+
       - name: Validera övningsbanken
         run: npm run validera:ovningar
 

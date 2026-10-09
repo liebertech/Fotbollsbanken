@@ -58,7 +58,11 @@ export const CLOSING_PART = 'del-avslutning';
 export const GROUP_TYPES = ['fri', 'par', 'tva-lag', 'fast-storlek'] as const;
 export type GroupType = (typeof GROUP_TYPES)[number];
 
-/** Materialtyper, sluten lista. Källa: passuppbyggnad.md avsnitt *Material*, R-120. */
+/**
+ * Materialtyper, sluten lista. Källa: passuppbyggnad.md avsnitt *Material*, R-120.
+ *
+ * @regel R-120
+ */
 export const MATERIAL_TYPES = [
   'boll',
   'kon',
@@ -71,7 +75,11 @@ export const MATERIAL_TYPES = [
 ] as const;
 export type MaterialType = (typeof MATERIAL_TYPES)[number];
 
-/** Materialtyp som kräver en anteckning. Källa: R-120. */
+/**
+ * Materialtyp som kräver en anteckning. Källa: R-120.
+ *
+ * @regel R-120
+ */
 export const MATERIAL_TYPE_REQUIRING_NOTE = 'ovrigt';
 
 /** Materialtyper som utlöser påminnelsen om förankrade mål. Källa: R-084, passuppbyggnad.md. */
@@ -448,7 +456,11 @@ export const HEADING_MINUTES_CAP: Record<Phase, number> = {
 export const AREA_KEYS = ['yta-hel', 'yta-halv', 'yta-kvart'] as const;
 export type AreaKey = (typeof AREA_KEYS)[number];
 
-/** Ytornas mått, längd x bredd i meter. Källa: R-091. */
+/**
+ * Ytornas mått, längd x bredd i meter. Källa: R-091.
+ *
+ * @regel R-091
+ */
 export const AREA_SIZES: Record<AreaKey, { langd: number; bredd: number }> = {
   'yta-hel': { langd: 105, bredd: 65 },
   'yta-halv': { langd: 65, bredd: 52 },
