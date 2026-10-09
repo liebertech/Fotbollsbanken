@@ -1,0 +1,123 @@
+schema: 1
+id: avslut-fran-tva-hall-mot-malvakt
+namn: Avslut från två håll mot målvakt
+syfte: Spelarna ska ta emot en passning snett från sidan och avsluta lågt och hårt mot en målvakt.
+beskrivning: |
+  Vid ett mål med målvakt står två köer, en snett ut på var sida av målet, ungefär 16 meter från
+  det. Den första i ena kön driver in mot en kon, gör en finta och passar till den första i andra
+  kön. Den spelaren tar emot bollen i rörelse och avslutar från minst tio meter. Nästa anfall
+  startar från andra sidan. Skjut inte förrän målvakten är klar.
+  Rotation: passaren går till andra kön, och skytten hämtar bollen och går till den kö hen kom
+  från. Målvakten är frivillig och byts efter en serie om sex till åtta skott, så att ingen tvingas
+  stå.
+organisation: |
+  Ett mål med målvakt per grupp om fyra till tio spelare. Köerna står utanför ytan vid var sin
+  sidlinje, ungefär 16 meter från målet, snett ut från det och aldrig bakom det. Bakom den som startar står högst fyra i varje
+  kö, och eftersom anfallen går från var sida i tur och ordning går köerna fort. Målvakten har
+  handskar om laget har. Skott tas från minst tio meter. Är ni fler än tio bygger ni en andra yta
+  med eget mål bredvid, med tre meters mellanrum. Två grupper ryms på en kvarts plan.
+fokusomraden:
+  - avslut
+  - passning-mottagning
+  - dribbling
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 10
+grupptyp: fri
+tid:
+  kortast: 6
+  rekommenderad: 10
+  langst: 15
+yta:
+  alla:
+    langd: 20
+    bredd: 16
+ytreferens:
+  alla: ungefär halva stora planens straffområde
+material:
+  - typ: mal
+    antal: 1
+    anteckning: 7 mot 7-mål, 5 x 2 meter, eller 5 mot 5-mål
+  - typ: boll
+    antal: 5
+  - typ: kon
+    antal: 6
+    anteckning: två fintkoner och fyra till ytans hörn
+coachningspunkter:
+  - Passaren, driv in mot konen och gör en finta innan du passar.
+  - Skytten, ta emot i rörelse och skjut lågt i hörnet.
+  - Titta på målvakten innan du skjuter.
+varianter:
+  lattare: Passaren står still och spelar en rullande boll.
+  svarare: Skytten har två touchar, och en halvaktiv försvarare följer skytten.
+anpassning:
+  fler_spelare: Bygg en andra yta med eget mål bredvid. Två grupper ryms på en kvarts plan.
+  udda_antal: Spelar ingen roll. Den extra spelaren ställer sig i en av köerna.
+  ledare: Övningen är självgående när rotationen är visad en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 16
+  beskrivning: >-
+    Yta 20 x 16 meter med ett mål och en målvakt till höger. Två köer står utanför ytan, uppe och
+    nere till vänster. Passaren driver mot en kon, finter och passar till skytten, som tar emot
+    i rörelse och skjuter från minst tio meter.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 16, stil: streckad }
+    - { id: mal-b, typ: mal, x: 20, y: 8, storlek: eget, bredd: 5, riktning: vanster }
+    - { typ: spelare, x: 19.2, y: 8, lag: b, malvakt: true, etikett: MV }
+    - { typ: kon, x: 9, y: 2.5 }
+    - { typ: kon, x: 9, y: 13.5 }
+    - { id: pas, typ: spelare, x: 6, y: -0.7, lag: a, etikett: P }
+    - { id: sky, typ: spelare, x: 6, y: 16.7, lag: a, etikett: S }
+    - { id: pas2, typ: spelare, x: 4.5, y: -0.7, lag: a }
+    - { typ: boll, x: 6.4, y: 0.1 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: pas }, till: { x: 8, y: 3.5 }, ordning: 1 }
+    - { typ: passning, fran: { x: 8, y: 3.5 }, till: { x: 10, y: 11 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sky }, till: { x: 10, y: 11 }, via: [{ x: 6.5, y: 12.5 }], ordning: 2 }
+    - { typ: skott, fran: { x: 10, y: 11 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: pas2, riktning: 180, avstand: 1.5, etikett: Passarkö }
+      - { vid: sky, riktning: 180, avstand: 1.5, etikett: Skyttekö }
+kalla: Egen övning, inspirerad av allmänt kända avslutsövningar med passning från sidan.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Avslut mot målvakt från minst 10 meter
+      efter ett driv med finta och en passning från sidan. Avslut, passning-mottagning och
+      dribbling är K för 10-12 år, och nivå 1 med en rullande boll från stillastående ger
+      övningen på niva-1, som saknades. Målvakten är frivillig, byts efter sex till åtta skott och
+      har handskar. Yta: 320 kvadratmeter ger 32 per spelare vid tio och 80 vid fyra, inom golvet
+      15 och taket 107. Rotationen går jämnt ut mellan köerna. Rättat: 1. Texten sa att nio och
+      tio spelare får två mål, men med spelare.max 10 delar generatorn inte gruppen förrän vid
+      elva (R-051). Felet fanns i min plan. Meningen är struken, och organisation säger nu att
+      högst fyra står bakom den som startar, vilket stämmer med tio spelare och regel 17. 2. Köerna
+      stod inne i ytan, och den nedre kön kunde inte ritas utanför. Nu startar passare och skytt
+      0,7 meter utanför var sin sidlinje, 16,5 meter från målet, och köerna går
+      längs linjen utanför ytan. 3. Skissen hade en fintkon, fast anfallen går från båda sidor, och
+      drivet slutade inne i konen. Nu finns en kon på var sida, drivet slutar 1,3 meter före konen
+      och skyttens löpning böjer inåt minst 1,6 meter från den andra konen. Skottet tas från 10,4
+      meter. Ytreferensen ungefär halva stora planens straffområde stämmer (320 mot 330
+      kvadratmeter). Målet står på ytans kortsida, men referensen jämför bara storlek
+      (konvention 2).

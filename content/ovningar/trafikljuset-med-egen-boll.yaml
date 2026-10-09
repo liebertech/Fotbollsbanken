@@ -1,0 +1,132 @@
+schema: 1
+id: trafikljuset-med-egen-boll
+namn: Trafikljuset med egen boll
+syfte: Spelarna ska hålla bollen nära foten med båda fötterna, reagera på signal och titta upp medan de driver.
+beskrivning: |
+  Alla har varsin boll och driver fritt i rutan. Ledaren ropar eller visar en signal. Grönt betyder
+  driva i fart. Gult betyder driva sakta med sulan. Rött betyder stoppa bollen och stå på ett ben
+  med foten på bollen. Lägg sedan till signaler som tränar koordinationen. "Rondell" betyder gå
+  runt bollen med foten på den. "Farthinder" betyder hoppa jämfota över bollen och landa mjukt.
+  "Backa" betyder dra bollen bakåt med sulan. Som uppvärmning räcker de tre första signalerna.
+  Som övning läggs fler och svårare signaler till efter några minuter, och ledaren byter signal
+  ungefär var tionde sekund. Ge alla en chans att prova med båda fötterna.
+organisation: |
+  En ruta på 20 x 20 meter för upp till sexton spelare. Alla har varsin boll. Är gruppen färre än
+  åtta gör ni rutan ungefär 12 x 12 meter, så att spelarna måste titta upp för att inte krocka.
+  Ledaren står vid sidan av rutan och ropar eller visar signalerna. En ledare kan ge signaler till
+  två rutor bredvid varandra. Är ni fler än sexton bygger ni en ruta till.
+fokusomraden:
+  - lek
+  - bollkansla
+  - koordination
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 3mot3
+  - 5mot5
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 20
+    bredd: 20
+ytreferens:
+  alla: en ruta något större än stora planens mittcirkel
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på rutan
+  - typ: kon
+    antal: 3
+    anteckning: i grönt, gult och rött, till ledarens signaler på nivå 3
+coachningspunkter:
+  - Titta upp och se signalen, inte bara bollen.
+  - Små touchar med både höger och vänster fot.
+  - Stanna bollen mjukt och stå stadigt på ett ben.
+varianter:
+  lattare: Bara de tre färgsignalerna, och ledaren visar dem tydligt med armen.
+  svarare: Signalen visas bara med en färgad kon eller en handrörelse, utan rop. Spelaren byter
+    fot vid varje signal.
+anpassning:
+  fler_spelare: Mer än sexton spelare delas på två rutor med samma mått.
+  udda_antal: Spelar ingen roll, eftersom alla har egen boll.
+  ledare: Övningen kräver bara att någon ger signaler. En ledare kan ge signaler till två rutor.
+planskiss:
+  version: 1
+  omrade:
+    langd: 20
+    bredd: 20
+  beskrivning: >-
+    Ruta 20 x 20 meter med en kon i varje hörn. Fyra spelare med varsin boll driver fritt. Ledaren
+    står vid sidan och visar färgsignalerna. Fler spelare fyller på i rutan.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 20, stil: heldragen }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 20, y: 0 }
+    - { typ: kon, x: 20, y: 20 }
+    - { typ: kon, x: 0, y: 20 }
+    - { id: s1, typ: spelare, x: 5, y: 5, lag: neutral, riktning: 0 }
+    - { id: s2, typ: spelare, x: 14, y: 6, lag: neutral, riktning: 135 }
+    - { id: s3, typ: spelare, x: 6, y: 14, lag: neutral, riktning: 270 }
+    - { id: s4, typ: spelare, x: 15, y: 15, lag: neutral, riktning: 180 }
+    - { typ: boll, x: 5.9, y: 5 }
+    - { typ: boll, x: 13.4, y: 6.6 }
+    - { typ: boll, x: 6, y: 13.1 }
+    - { typ: boll, x: 14.1, y: 15 }
+    - { typ: ledare, x: 10, y: 22.5 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: s1 }, till: { x: 10, y: 6 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: s3 }, till: { x: 5, y: 8.5 }, ordning: 1 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 10, y: 10, lag: neutral }
+      - { x: 3, y: 10, lag: neutral }
+      - { x: 17, y: 10, lag: neutral }
+      - { x: 10, y: 3, lag: neutral }
+      - { x: 10, y: 17, lag: neutral }
+      - { x: 3, y: 17, lag: neutral }
+      - { x: 17, y: 3, lag: neutral }
+      - { x: 3, y: 3, lag: neutral }
+      - { x: 17, y: 17, lag: neutral }
+      - { x: 7, y: 10, lag: neutral }
+      - { x: 13, y: 10, lag: neutral }
+      - { x: 10, y: 14, lag: neutral }
+kalla: Egen övning, inspirerad av den allmänt kända signalleken Trafikljuset.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter ett småfel i skissen som jag har rättat själv. Signallek med egen boll som ger
+      många bollkontakter med båda fötterna, och signalerna rondell, farthinder och backa gör
+      koordinationen konkret. Lek, bollkänsla och koordination är K för 8-9 år. Två passdelar är
+      rätt enligt F4 i plan-omgang-7.md: tre signaler i uppvärmningen, fler och svårare i Öva.
+      Nivå 3 där signalen bara visas och foten ska bytas kräver att spelaren tittar upp och väljer,
+      inte bara springer fortare. Yta: 400 kvadratmeter ger 25 per spelare vid sexton, över golvet
+      10 för egen boll. Taket prövas inte (egen boll, ingen jaktlek), och meningen om en mindre
+      ruta, ungefär 12 x 12 meter, för färre än åtta står i organisation (144 / 7 = 20,6). Ledaren
+      står 2,5 meter utanför rutan. Rättat: den tredje spelaren var vänd uppåt med bollen framför
+      sig men drev nedåt till en punkt där en tillagd spelare står. Nu driver hen uppåt, minst 1,7
+      meter från platserna. Ytreferensen en ruta något större än stora planens mittcirkel stämmer
+      med 20 x 20, som i två godkända övningar. Inga skott i skissen.

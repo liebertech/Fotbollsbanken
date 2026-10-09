@@ -194,7 +194,10 @@ Rapportens siffror gör att 15–19 år väger fem gånger mer än 6–7 år (73
 | **5** | Paket A (6–7 år, 7 övningar) och paket B (13–19 år, 8 övningar) | **15 nya** | De föreslagna cellerna går till högst cirka 4 procent "inget pass". Alla celler till högst cirka 32 procent |
 | **5B** | Märkning av befintliga övningar med fler spelformer enligt fråga F1. Inga nya övningar, ingen ändrad ålder. Fältet `spelformer`, och vid behov `yta`, `ytreferens` och planskissen per spelform | cirka 35 filer för 8–12 år, därefter cirka 14 filer för 13–14 år när omgång 4 är godkänd | Grannspelformerna, cirka 28 procent av körfallen, går från 100 procent till högst cirka 5–10 procent. Alla celler till högst cirka 6 procent |
 | **6** | 13–19 år, fördjupning: fasta situationer (hörna, frispark, inkast och inspark), nickspel med kortast högst 10 minuter så att taket för 13–14 år håller (R-082), uthållighet i fotbollsform med arbete och vila, försvar i linje och djupled för 11 mot 11 (minst 40 meter), målvaktsspel, fler övningar för nivå 3 | 12–14 nya | Ersättningsfokus för 13–19 år ned. K-områdena `fasta-situationer`, `speluppbyggnad` och `forsvarsspel` får egna övningar |
-| **7** | 6–7 år, fördjupning (5–6 övningar), och kärnhål för 8–12 år (8–10 övningar), se nedan | 13–16 nya | Ersättningsfokus för 8–12 år ned mot målet om högst 40 procent |
+| **7** | Kärnhål för 8–12 år, se nedan och `plan-omgang-7.md` (ändrat 2026-10-08) | 12 nya | Ersättningsfokus för 8–12 år ned mot målet om högst 40 procent |
+| **8** | 6–7 år, fördjupning (5–6 övningar) (flyttat från omgång 7 2026-10-08) | 5–6 nya | Ersättningsfokus för 6–7 år ned. Nästa steg mot målet om högst 40 procent, om det inte nås efter omgång 7 |
+
+*Tillägg 2026-10-08, beslutat av användaren samma dag (beslut B1 och B2 i `plan-omgang-7.md`):* omgång 7 tar bara kärnhålen för 8–12 år, med 12 övningar. Fördjupningen för 6–7 år, som tabellen först lade i omgång 7, flyttas till omgång 8. Innehållet i fördjupningen är inte ändrat.
 
 Varje ny övning har planskiss och ytreferens enligt designregel 7. Omgång 5B ändrar ytreferens och planskiss bara när måtten eller plandelarna skiljer sig mellan spelformerna. En referens som *halva 7 mot 7-planen* stämmer till exempel inte för ett 5 mot 5-lag och ska då anges per spelform.
 

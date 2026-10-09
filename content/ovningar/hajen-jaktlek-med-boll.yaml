@@ -1,0 +1,133 @@
+schema: 1
+id: hajen-jaktlek-med-boll
+namn: Hajen, jaktlek med boll
+syfte: Spelarna ska driva bollen nära foten, titta upp och hitta luckor när någon försöker ta bollen.
+beskrivning: |
+  Rutan är 22 x 15 meter. Fiskarna har varsin boll och står på ena kortsidan. Två hajar utan boll
+  står i mitten av rutan. På signal ska fiskarna driva bollen över rutan till den andra kortsidan,
+  och hajarna försöker peta ut en boll ur rutan. Hajarna spelar bara på bollen, aldrig på benen,
+  och ingen tacklar bakifrån. Den som tappar sin boll ur rutan lägger den vid sidan och blir haj
+  direkt. När fiskarna har kommit över driver de tillbaka åt andra hållet. När bara två fiskar är kvar
+  börjar en ny omgång med två nya hajar, som turas om så att alla får vara haj. Ingen står still
+  och väntar, eftersom den som tappar bollen direkt blir haj.
+organisation: |
+  En ruta på 22 x 15 meter per grupp om sex till tolv spelare, med en kon i varje hörn. Två
+  spelare är hajar, resten fiskar med varsin boll. Med sex spelare är det fyra fiskar på en stor
+  yta (ungefär 55 kvadratmeter per spelare), och det är avsiktligt: fiskarna behöver plats att
+  välja väg på när två hajar jagar. Är ni fler än tolv bygger ni en andra ruta bredvid, med tre
+  meters mellanrum. Hajarna byts i tur och ordning, och ledaren ropar start och byte.
+fokusomraden:
+  - lek
+  - dribbling
+  - bollkansla
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 3mot3
+  - 5mot5
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 6
+  max: 12
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 22
+    bredd: 15
+ytreferens:
+  alla: ungefär halva stora planens straffområde
+material:
+  - typ: boll
+    antal: 10
+    anteckning: en per fisk, alltså högst tio per ruta
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på rutan
+  - typ: vast
+    antal: 2
+    anteckning: till hajarna
+coachningspunkter:
+  - Håll bollen nära foten och titta upp, välj luckan.
+  - Skydda bollen med kroppen när hajen kommer.
+  - Byt riktning och fart, så hinner hajen inte med.
+varianter:
+  lattare: En haj i stället för två, och hajen får bara gå, inte springa, de första fem sekunderna.
+  svarare: Tre hajar, eller så ska fisken göra en vändning i en målzon vid kortsidan innan den får
+    driva tillbaka.
+anpassning:
+  fler_spelare: Mer än tolv spelare delas på två rutor med samma mått. Varje ruta har två hajar.
+  udda_antal: Spelar ingen roll. Antalet hajar är alltid två, och resten är fiskar.
+  ledare: Övningen är självgående. Ledaren ropar start och byte och kan se till att alla får vara haj.
+planskiss:
+  version: 1
+  omrade:
+    langd: 22
+    bredd: 15
+  beskrivning: >-
+    Ruta 22 x 15 meter. Fyra fiskar med varsin boll står vid vänstra kortsidan och två hajar utan
+    boll i mitten. Fiskarna driver bollen över rutan, hajarna försöker ta bollen. Fler fiskar ställer
+    sig längs samma kortsida.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 22, bredd: 15, stil: heldragen }
+    - { typ: kon, x: 0, y: 0 }
+    - { typ: kon, x: 22, y: 0 }
+    - { typ: kon, x: 22, y: 15 }
+    - { typ: kon, x: 0, y: 15 }
+    - { id: f1, typ: spelare, x: 1.5, y: 3, lag: a, etikett: F }
+    - { id: f2, typ: spelare, x: 1.5, y: 6, lag: a, etikett: F }
+    - { id: f3, typ: spelare, x: 1.5, y: 9, lag: a, etikett: F }
+    - { id: f4, typ: spelare, x: 1.5, y: 12, lag: a, etikett: F }
+    - { id: h1, typ: spelare, x: 11, y: 5, lag: b, etikett: H }
+    - { id: h2, typ: spelare, x: 11, y: 10, lag: b, etikett: H }
+    - { typ: boll, x: 2.3, y: 3 }
+    - { typ: boll, x: 2.3, y: 6 }
+    - { typ: boll, x: 2.3, y: 9 }
+    - { typ: boll, x: 2.3, y: 12 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: f1 }, till: { x: 20, y: 3 }, ordning: 1 }
+    - { typ: dribbling, fran: { objekt: f3 }, till: { x: 20, y: 11 }, via: [{ x: 10, y: 13 }], ordning: 1 }
+    - { typ: lopning, fran: { objekt: h1 }, till: { x: 8, y: 4 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: h2 }, till: { x: 9, y: 9 }, ordning: 1 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 1.5, y: 1.5, lag: a }
+      - { x: 1.5, y: 4.5, lag: a }
+      - { x: 1.5, y: 7.5, lag: a }
+      - { x: 1.5, y: 10.5, lag: a }
+      - { x: 1.5, y: 13.5, lag: a }
+      - { x: 4, y: 7.5, lag: a }
+kalla: Egen övning, inspirerad av den allmänt kända jaktleken med boll över en yta.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter två småfel som jag har rättat själv. Jaktlek med boll där ingen åker ut och står
+      still (regel 20 och F3 i plan-omgang-7.md): den som tappar bollen blir haj, och alla får vara
+      haj i tur och ordning. Lek, dribbling och bollkänsla är K för 8-9 år och hör ihop med syftet.
+      Yta: 330 kvadratmeter ger 27,5 per spelare vid tolv, över golvet 25, och 55 vid sex, 22
+      procent över taket 45. Det är en jaktlek, så taket prövas, och skälet står i organisation.
+      Två rutor ryms på kvarts plan (25 x 18 x 2 = 900). Nivå 3 med tre hajar eller en vändning i
+      målzonen ger mer press och fler val. Rättat: 1. Beskrivningen sa både att den som tappar
+      bollen blir haj "i nästa omgång" och "direkt", och ordet omgång användes också för en hel
+      lek. Nu blir hen haj direkt, och fiskarna driver tillbaka när de har kommit över. 2. Den
+      andra fiskens dribbling gick rakt genom hajens slutpunkt och 1,2 meter från hajens
+      startplats. Nu böjer den av mot den fria sidan (via 10, 13), minst 1,4 meter från hajarna och
+      från platserna som läggs till, och visar coachningspunkten om att välja luckan. Ytreferensen
+      ungefär halva stora planens straffområde stämmer (330 mot 330 kvadratmeter, nästan samma
+      form). Inga skott i skissen.

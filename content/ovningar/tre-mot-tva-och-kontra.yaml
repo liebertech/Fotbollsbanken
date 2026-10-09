@@ -1,0 +1,141 @@
+schema: 1
+id: tre-mot-tva-och-kontra
+namn: Tre mot två och kontra
+syfte: Spelarna ska utnyttja överläget som anfallare, och som försvarare skydda målet, vinna bollen och kontra.
+beskrivning: |
+  Ytan är 28 x 18 meter med ett mål vid ena kortsidan och en startlinje med två konportar, två
+  meter breda, vid den andra. Tre anfallare startar med boll vid startlinjen och anfaller målet mot
+  två försvarare. Försvararna skyddar målet. Vinner de bollen ska de spela den genom en av de två
+  konportarna på anfallarnas startlinje, och anfallarna ska vinna tillbaka bollen. Gör anfallarna
+  mål, eller spelar försvararna bollen genom en port, är försöket slut. Med fler spelare växer
+  övningen till fyra mot tre och fem mot fyra.
+  Rotation: efter varje anfall blir den anfallare som sist hade bollen försvarare, och den
+  försvarare som har varit försvarare längst blir anfallare. Den extra spelaren vid udda antal är
+  alltid anfallare. Så fördelas utespelarna: fem är tre mot två, sex är fyra mot två, sju är fyra
+  mot tre, åtta är fem mot tre, nio är fem mot fyra och tio är sex mot fyra. Står någon i mål
+  räknas hen inte in i fördelningen, så att till exempel sex spelare blir tre mot två och
+  målvakt. Med fem spelare spelar ni utan målvakt.
+organisation: |
+  En yta på 28 x 18 meter per grupp om fem till tio spelare, med ett mål i ena änden. Målvakten är
+  frivillig, har handskar om laget har, och byts efter en serie om sex till åtta skott. Utan
+  målvakt går det lika bra, och då räknas bara mål i nätet eller mellan stolparna. Två koner på
+  sidlinjerna 10 meter från målet visar skottlinjen, och skott tas utanför den. Är ni fler än tio bygger ni en yta till bredvid med tre meters mellanrum. Två
+  ytor ryms på en kvarts plan.
+fokusomraden:
+  - omstallning
+  - forsvarsspel
+  - spelbarhet
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 5
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 6
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 28
+    bredd: 18
+ytreferens:
+  alla: ungefär två tredjedelar av stora planens straffområde
+material:
+  - typ: mal
+    antal: 1
+    anteckning: 7 mot 7-mål, 5 x 2 meter, eller 5 mot 5-mål
+  - typ: kon
+    antal: 10
+    anteckning: fyra till portarna, fyra till hörnen och två till skottlinjen
+  - typ: boll
+    antal: 4
+  - typ: vast
+    antal: 4
+    anteckning: till försvararna
+coachningspunkter:
+  - Anfallare, skapa en fri passning, den som saknar boll flyttar sig.
+  - Försvarare, en pressar och en täcker, och prata med varandra.
+  - Efter bollvinst, spela genom porten direkt.
+varianter:
+  lattare: Försvararna får inte gå fram förrän den första passningen är spelad.
+  svarare: Anfallarna har sex sekunder på sig att avsluta.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
+  udda_antal: Den extra spelaren är alltid anfallare.
+  ledare: Övningen är självgående när rotationen är visad en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 28
+    bredd: 18
+  beskrivning: >-
+    Yta 28 x 18 meter med ett mål till höger och en startlinje med två konportar till vänster. Tre
+    anfallare (A) med boll mot två försvarare (F). Lag A anfaller åt höger och skjuter utanför
+    skottlinjen 10 meter från målet. Fler spelare fyller på i lagen.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 28, bredd: 18, stil: heldragen }
+    - { id: mal-b, typ: mal, x: 28, y: 9, storlek: eget, bredd: 5, riktning: vanster }
+    - { typ: markering, form: linje, x: 18, y: 0, till: { x: 18, y: 18 } }
+    - { typ: kon, x: 0, y: 3 }
+    - { typ: kon, x: 0, y: 5 }
+    - { typ: kon, x: 0, y: 13 }
+    - { typ: kon, x: 0, y: 15 }
+    - { typ: kon, x: 18, y: 0 }
+    - { typ: kon, x: 18, y: 18 }
+    - { id: a1, typ: spelare, x: 6, y: 9, lag: a, etikett: A }
+    - { id: a2, typ: spelare, x: 11, y: 4, lag: a, etikett: A }
+    - { id: a3, typ: spelare, x: 11, y: 14, lag: a, etikett: A }
+    - { id: f1, typ: spelare, x: 17, y: 6, lag: b, etikett: F }
+    - { id: f2, typ: spelare, x: 21, y: 10, lag: b, etikett: F }
+    - { typ: boll, x: 6.9, y: 9 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: a3 }, till: { x: 17.5, y: 14 }, ordning: 1 }
+    - { typ: passning, fran: { objekt: a2 }, till: { x: 17.5, y: 14 }, ordning: 2 }
+    - { typ: skott, fran: { x: 17.5, y: 14 }, till: { objekt: mal-b }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 8, y: 2, lag: a }
+      - { x: 24, y: 8, lag: b }
+      - { x: 8, y: 16, lag: a }
+      - { x: 22, y: 15, lag: b }
+      - { x: 16, y: 2, lag: a }
+kalla: Egen övning, inspirerad av allmänt kända övningar med överläge och kontring.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Överläge mot ett mål med kontring genom
+      konportar, både Öva och Spelövning (regel 9). Omställning, försvarsspel och spelbarhet är K
+      för 10-12 år. Den skiljer sig från overtal-i-forsvar genom brett spann, ledarbehov 0 och
+      nivå 1-3. Yta: 504 kvadratmeter ger 50,4 per spelare vid tio och 100,8 vid fem, inom golvet
+      45 och taket 107. Författarens lagfördelning bekräftas: anfallarna är en fler och får den
+      extra spelaren vid udda antal, så det blir 3-2, 4-2, 4-3, 5-3, 5-4 och 6-4. Fyra mot två och
+      sex mot fyra är starka överlägen, men en spelare som väntar vore sämre, och skissens platser
+      stämmer med varje antal. Rättat: 1. Fördelningen gick inte ihop med en målvakt, som
+      organisation säger är frivillig. Nu räknas målvakten inte in, och med fem spelare spelar man
+      utan. 2. Rotationen sa "i tur och ordning" utan att säga vem (designregel 15 i
+      plan-omgang-6.md). Nu blir den anfallare som sist hade bollen försvarare, och den som varit
+      försvarare längst blir anfallare. 3. Skott från minst 10 meter stod i texten men syntes inte
+      på planen. Nu markerar två koner skottlinjen, i text, material och skiss. 4. Skissen visade
+      ett skott från en spelare som aldrig fick bollen, skottet gick rakt genom en försvarare och
+      en tillagd plats stod på passningslinjen. Nu passar A2 till A3, som skjuter från 11,6 meter,
+      minst 1,3 meter från försvarare och platser. Ytreferensen ungefär två tredjedelar av stora
+      planens straffområde stämmer, samma mått som O7-07 och O7-09.

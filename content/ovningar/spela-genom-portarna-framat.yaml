@@ -1,0 +1,131 @@
+schema: 1
+id: spela-genom-portarna-framat
+namn: Spela genom portarna framåt
+syfte: Spelarna ska bygga upp spelet genom lagdelarna med passningar framåt som kamraterna kan ta emot.
+beskrivning: |
+  Ytan är 28 x 18 meter och delas på längden i tre zoner. Den bakre zonen vid varje kortsida är
+  7 meter djup. Mittzonen är 14 meter djup och har tre konportar, två meter breda, på en rad tvärs
+  över ytan. Två lag spelar mot varandra. Ett lag får en poäng när det spelar en passning genom en
+  port i mittzonen till en medspelare som tar emot bollen på andra sidan. Laget får två poäng när det
+  därefter passar vidare till en medspelare som tar emot i motståndarnas bakre zon. Det är uppbyggnad
+  genom lagdelar i liten form. Vid poäng startar motståndarna om med boll från sin egen bakre zon.
+  Lagen anfaller åt var sitt håll och byter håll efter varje period om fyra till fem minuter.
+organisation: |
+  En yta på 28 x 18 meter per grupp om fyra till tio spelare, med två lag. Fyra spelare ger två
+  mot två, tio ger fem mot fem. Med fyra spelare blir ytan ganska stor för två mot två, men den
+  behövs för att tre zoner och tre portar ska få plats, och de stora avstånden gör att den som
+  ska ta emot hinner bli fri. Vid udda antal blir en spelare joker, som spelar med laget som har
+  bollen och inte får ta emot i den bakre zonen. Är ni fler än tio bygger ni en yta till bredvid med
+  tre meters mellanrum. Två ytor ryms på en kvarts plan.
+fokusomraden:
+  - passning-mottagning
+  - speluppbyggnad
+  - spelbarhet
+alder:
+  min: 10
+  max: 12
+spelformer:
+  - 5mot5
+  - 7mot7
+  - 9mot9
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 10
+grupptyp: tva-lag
+tid:
+  kortast: 6
+  rekommenderad: 12
+  langst: 15
+yta:
+  alla:
+    langd: 28
+    bredd: 18
+ytreferens:
+  alla: ungefär två tredjedelar av stora planens straffområde
+material:
+  - typ: kon
+    antal: 14
+    anteckning: sex till portarna, fyra till hörnen och fyra till zongränserna
+  - typ: boll
+    antal: 3
+  - typ: vast
+    antal: 5
+    anteckning: till det ena laget
+coachningspunkter:
+  - Spela genom porten till en kompis som visar sig.
+  - Ta emot i rörelse och titta framåt direkt.
+  - Rör er i lagdelar, så att det alltid finns en fri spelare att passa till.
+varianter:
+  lattare: Bara den första poängen räknas, och ingen får stå i en port.
+  svarare: Högst två touchar per spelare, och portarna görs en meter smalare.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Två ytor ryms på en kvarts plan.
+  udda_antal: En joker spelar med laget som har bollen och får inte ta emot i den bakre zonen.
+  ledare: Övningen är självgående. Ledaren kan hålla tiden för perioderna.
+planskiss:
+  version: 1
+  omrade:
+    langd: 28
+    bredd: 18
+  beskrivning: >-
+    Yta 28 x 18 meter i tre zoner, med tre konportar i mittzonen. Två mot två. Lag A anfaller åt
+    höger. A1 spelar genom en port till A2, löper sedan in i den bakre zonen och får bollen
+    tillbaka där. Vid udda antal blir en spelare joker.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 28, bredd: 18, stil: heldragen }
+    - { typ: zon, x: 0, y: 0, langd: 7, bredd: 18, monster: tom, etikett: Bakre zon }
+    - { typ: zon, x: 21, y: 0, langd: 7, bredd: 18, monster: diagonal, etikett: Bakre zon }
+    - { typ: kon, x: 14, y: 2 }
+    - { typ: kon, x: 14, y: 4 }
+    - { typ: kon, x: 14, y: 8 }
+    - { typ: kon, x: 14, y: 10 }
+    - { typ: kon, x: 14, y: 14 }
+    - { typ: kon, x: 14, y: 16 }
+    - { id: a1, typ: spelare, x: 5, y: 9, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 17, y: 9, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 10, y: 6, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 21, y: 12, lag: b, etikett: B2 }
+    - { typ: boll, x: 5.9, y: 9 }
+  rorelser:
+    - { typ: passning, fran: { objekt: a1 }, till: { objekt: a2 }, ordning: 1, etikett: Genom porten }
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 23, y: 4 }, ordning: 2 }
+    - { typ: passning, fran: { objekt: a2 }, till: { x: 23, y: 4 }, ordning: 3 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 9, y: 13, lag: a }
+      - { x: 18, y: 4, lag: b }
+      - { x: 12, y: 14, lag: a }
+      - { x: 20, y: 14, lag: b }
+      - { x: 8, y: 2, lag: a }
+      - { x: 24, y: 16, lag: b }
+kalla: Egen övning, inspirerad av allmänt kända positionsspel med portar.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter två småfel som jag har rättat själv. Uppbyggnad genom lagdelar i liten form:
+      en poäng för en passning genom en port i mittzonen, två när laget sedan når en medspelare i
+      motståndarnas bakre zon. Passning-mottagning, speluppbyggnad och spelbarhet är K för 10-12
+      år. Djupledskravet gäller inte fas-10-12 (passuppbyggnad.md, Minsta längd). Jokern vid udda
+      antal är rätt här, till skillnad från O7-06, eftersom övningen handlar om att hitta den fria
+      och inte om att försvara efter bolltapp. Yta: 504 kvadratmeter ger 50,4 per spelare vid tio
+      med jokern, över golvet 45. Rättat: 1. 504 / 4 = 126 kvadratmeter är 18 procent över taket
+      107, och skälet saknades i organisation (regel 13). Nu står det: tre zoner och tre portar
+      behöver platsen, och avståndet ger den som ska ta emot tid att bli fri. 2. Passningen genom
+      porten var ritad som en böjd boll som gick 0,4 meter från en kon, eftersom spelarna inte stod
+      i linje med porten, och den andra passningen gick till en punkt där ingen fanns. Nu står A1
+      och A2 i linje med mittporten, passningen går rakt genom portens mitt, och A1 löper in i den
+      bakre zonen genom luckan mellan portarna och får bollen där. Löpningen går minst 1,3 meter
+      från spelare, koner och platser. Den tredje platsen för lag A flyttades från (11, 10), 1
+      meter från passningen, till (12, 14). Ytreferensen ungefär två tredjedelar av stora planens
+      straffområde stämmer (504 mot 445 kvadratmeter).

@@ -3,7 +3,7 @@ id: driva-forbi-i-par
 namn: Driva förbi i par
 syfte: Spelarna ska dribbla förbi en försvarare i en liten yta och försvara mot en anfallare.
 beskrivning: |
-  Två spelare möts i en ruta om 6 x 6 meter med en liten port av två koner i var ände.
+  Två spelare möts i en ruta om 8 x 7 meter med en liten port av två koner i var ände.
   Anfallaren startar med boll och försöker dribbla igenom försvararens port. Försvararen
   försöker vinna bollen eller stoppa passagen utan att tacklas hårt. Efter varje försök
   byter spelarna roll.
@@ -36,8 +36,8 @@ tid:
   langst: 10
 yta:
   alla:
-    langd: 6
-    bredd: 6
+    langd: 8
+    bredd: 7
 material:
   - typ: boll
     antal: 1
@@ -62,29 +62,29 @@ anpassning:
 planskiss:
   version: 1
   omrade:
-    langd: 6
-    bredd: 6
+    langd: 8
+    bredd: 7
   beskrivning: >-
-    Ruta 6 x 6 meter med en liten port av två koner i var ände. Anfallaren startar med boll
+    Ruta 8 x 7 meter med en liten port av två koner i var ände. Anfallaren startar med boll
     vid sin egen port och försöker dribbla igenom försvararens port i andra änden.
     Försvararen försöker vinna bollen eller stoppa passagen. Efter varje försök byter
     spelarna roll.
   objekt:
-    - { typ: ruta, x: 0, y: 0, langd: 6, bredd: 6, stil: heldragen }
-    - { typ: kon, x: 0, y: 2 }
-    - { typ: kon, x: 0, y: 4 }
-    - { typ: kon, x: 6, y: 2 }
-    - { typ: kon, x: 6, y: 4 }
-    - { id: anf, typ: spelare, x: 0.5, y: 3, lag: a, etikett: A }
-    - { id: fors, typ: spelare, x: 4, y: 3, lag: b, etikett: F }
-    - { typ: boll, x: 0.8, y: 3 }
+    - { typ: ruta, x: 0, y: 0, langd: 8, bredd: 7, stil: heldragen }
+    - { typ: kon, x: 0, y: 2.5 }
+    - { typ: kon, x: 0, y: 4.5 }
+    - { typ: kon, x: 8, y: 2.5 }
+    - { typ: kon, x: 8, y: 4.5 }
+    - { id: anf, typ: spelare, x: 0.5, y: 3.5, lag: a, etikett: A }
+    - { id: fors, typ: spelare, x: 5.5, y: 3.5, lag: b, etikett: F }
+    - { typ: boll, x: 0.8, y: 3.5 }
   rorelser:
     - typ: dribbling
       fran: { objekt: anf }
-      till: { x: 5.5, y: 3 }
-      via: [{ x: 3, y: 6.5 }]
+      till: { x: 7.5, y: 3.5 }
+      via: [{ x: 4, y: 7.5 }]
       ordning: 1
-    - { typ: lopning, fran: { objekt: fors }, till: { x: 3, y: 3 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: fors }, till: { x: 4.5, y: 3.5 }, ordning: 1 }
   skalning:
     strategi: koer
     koer:
@@ -133,3 +133,25 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Omgång 7, avsnitt 3.2 i docs/doman/plan-omgang-7.md. Ökade ytan från 6 x 6 till 8 x 7 meter, eftersom
+      36 kvadratmeter för två är 18 per spelare, under golvet 25 för 8-9 år med motståndare. Nu är det
+      28 per spelare. Ändrade yta, beskrivning, skissens beskrivning, område och ruta, konernas placering
+      (portarna är fortfarande två meter breda), startplatserna för anfallare, boll och försvarare samt
+      dribblingens och löpningens bana. Kön är oförändrad. Ingen ytreferens, som förut.
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollerat mot plan-omgang-7.md, avsnitt 3.2: varje fält i tabellen stämmer med filen.
+      56 kvadratmeter ger 28 per spelare, över golvet 25 och under taket 45. Portarna är 2 meter
+      breda mitt på kortsidorna. Dribblingen är kurvan x = 0,5 + 7t, y = 3,5 + 8t(1 - t), med
+      högsta punkt (4, 5,5), 1,5 meter innanför linjen. Den går minst 1,39 meter från
+      försvararens start och minst 1,90 meter från hans slutpunkt, och 1,05 meter från konerna i
+      de två portar som den börjar och slutar i, vilket är oundvikligt i en port som är 2 meter
+      bred. Kön står 1,5 meter utanför ytan. Granskningsposten 2026-09-28 talar om rutan 6 x 6
+      meter. Den gällde måttet då och står kvar oförändrad; måttet är nu 8 x 7, och skälet till
+      att referens saknas är detsamma. Övningen behåller status godkand.

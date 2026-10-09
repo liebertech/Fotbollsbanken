@@ -1,0 +1,130 @@
+schema: 1
+id: vagg-och-avslut-pa-smamal
+namn: Vägg och avslut på småmål
+syfte: Spelarna ska spela vägg, ta emot bollen i rörelse och skjuta, och väggspelaren ska flytta sig till en fri vinkel.
+beskrivning: |
+  Ytan är 16 x 12 meter med ett småmål i varje ände och en väggspelare i mitten. Skytten startar
+  med boll vid ena kortsidan och driver in mot mitten. Skytten spelar en vägg med väggspelaren,
+  tar emot passningen i rörelse och skjuter på målet i motsatta änden. Nästa skytt startar från
+  den andra kortsidan när den förra har skjutit. Väggspelaren är en medspelare och ingen
+  motståndare. Väggspelaren flyttar sig till en fri vinkel innan passningen kommer, och
+  passar tillbaka i skyttens löpväg, inte rakt i fötterna.
+  Rotation: skytten blir väggspelare, väggspelaren hämtar bollen och ställer sig sist i kön i den
+  ände där bollen är. Med fyra spelare är det en väggspelare och en kö om två i den ena änden
+  och en i den andra. Med fem är det en väggspelare och två i vardera änden. Med sex och sju
+  finns två väggspelare, en på var sida, och skytten väljer vilken hen spelar vägg med.
+organisation: |
+  En yta på 16 x 12 meter per grupp om fyra till sju spelare. Kön står utanför ytan vid
+  kortsidorna, snett vid sidan av målet och aldrig bakom det. I varje ände står högst två, den
+  som startar och en till, utom med sju spelare, då står tre i den ena änden. Är ni fler än sju
+  bygger ni en yta till bredvid, med tre meters mellanrum. Tre grupper ryms på en kvarts plan.
+fokusomraden:
+  - avslut
+  - spelbarhet
+  - passning-mottagning
+alder:
+  min: 8
+  max: 9
+spelformer:
+  - 3mot3
+  - 5mot5
+  - 7mot7
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 7
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 8
+  langst: 10
+yta:
+  alla:
+    langd: 16
+    bredd: 12
+ytreferens:
+  alla: ungefär stora planens målområde, dubbelt så djupt
+material:
+  - typ: boll
+    antal: 4
+    anteckning: två vid vardera ände
+  - typ: minimal
+    antal: 2
+    anteckning: småmål, ett i varje ände
+  - typ: kon
+    antal: 4
+    anteckning: hörnen på ytan
+coachningspunkter:
+  - Väggspelare, flytta dig till en fri plats innan passningen kommer.
+  - Skytt, ta emot i rörelse och skjut direkt.
+  - Passa tillbaka i löpvägen, inte i fötterna.
+varianter:
+  lattare: Skytten får ta en extra touch innan skottet, och väggspelaren står still.
+  svarare: Väggen spelas direkt och skottet tas på högst två touchar.
+anpassning:
+  fler_spelare: Bygg en yta till bredvid med samma mått. Tre ytor ryms på en kvarts plan.
+  udda_antal: Spelar ingen roll. Med sex och sju spelare finns två väggspelare, annars en. Resten ställer sig i kö vid ändarna.
+  ledare: Övningen är självgående. Ledaren kan visa rotationen en gång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 16
+    bredd: 12
+  beskrivning: >-
+    Yta 16 x 12 meter med ett småmål i varje ände. Skytten driver från vänstra kortsidan, spelar vägg
+    med väggspelaren i mitten, tar emot och skjuter mot högra målet. Nästa skytt väntar vid högra
+    kortsidan. Med sex och sju spelare finns en andra väggspelare.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 16, bredd: 12, stil: heldragen }
+    - { id: mal-a, typ: mal, x: 0, y: 6, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 16, y: 6, storlek: smamal, riktning: vanster }
+    - { id: sk1, typ: spelare, x: 1.5, y: 9, lag: a, etikett: S }
+    - { id: sk2, typ: spelare, x: 15, y: 10.5, lag: a, etikett: S }
+    - { id: sk3, typ: spelare, x: -1, y: 10.5, lag: a, etikett: S }
+    - { id: vag, typ: spelare, x: 8, y: 2.5, lag: neutral, etikett: V }
+    - { typ: boll, x: 2.4, y: 9 }
+    - { typ: boll, x: 14.1, y: 10.5 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: sk1 }, till: { x: 5.5, y: 7 }, ordning: 1 }
+    - { typ: passning, fran: { x: 5.5, y: 7 }, till: { objekt: vag }, ordning: 2 }
+    - { typ: passning, fran: { objekt: vag }, till: { x: 10, y: 6 }, ordning: 3 }
+    - { typ: skott, fran: { x: 10, y: 6 }, till: { objekt: mal-b }, ordning: 4 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sk2, riktning: 0, avstand: 2, etikett: Väntar på tur }
+      - { vid: vag, riktning: 90, avstand: 5, etikett: Andra väggspelaren }
+      - { vid: sk3, riktning: 180, avstand: 1.5 }
+kalla: Egen övning, inspirerad av allmänt känt väggspel med avslut.
+status: granskad
+granskning:
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter småfel i skissen och texten som jag har rättat själv. Väggspel med avslut på
+      småmål, utan målvakt och utan motståndare. Avslut, passning-mottagning och spelbarhet är K
+      för 8-9 år, och spelbarheten är konkret: väggspelaren flyttar sig till en fri vinkel. Nivå 3
+      med direkt vägg och högst två touchar är färre touchar på riktigt. Yta: 192 kvadratmeter ger
+      27,4 per spelare vid sju, över golvet 10 utan motståndare, och 48 vid fyra, 7 procent över
+      taket 45, vilket jag godtar. Skottet tas från 6 meter mot ett småmål. Avvikelsen från planen
+      godtas: med sju spelare står tre i ena änden, den som startar och två bakom. Planens högst
+      två per ände går inte ihop med sju och två väggspelare, och regel 17 tillåter 2-3 per mål
+      för 8-9 år. En tredje väggspelare vore sämre, eftersom skytten då får tre val på en liten yta.
+      Rättat: 1. Den andra i vänstra kön stod inne i ytan och den första i högra kön på
+      kortlinjen, intill målet. Nu står köerna 1 meter utanför kortsidorna, 4,5 meter från
+      målens mitt, och skytten som väntar till höger står 4,5 meter från skottlinjen. 2. Skissen
+      lade den femte, sjätte och sjunde spelaren i köerna, fast texten säger att den sjätte är en
+      andra väggspelare. Nu har skissen tre köer i tur och ordning: den femte går till högra
+      änden, den sjätte blir andra väggspelare på andra sidan mitten (8, 7,5) och den sjunde går
+      till vänstra änden. Då stämmer skissen med texten för fyra till sju. 3. Organisation sa att
+      tre står "i den ände där bollen inte är", vilket inte går att avgöra eftersom det ligger
+      bollar i båda ändar. Ytreferensen ungefär stora planens målområde, dubbelt så djupt
+      godtas: 192 mot cirka 200 kvadratmeter, 11 procent kortare och 9 procent bredare, och
+      ordet ungefär står med (ytreferenser.md, avsnitt 3.3).

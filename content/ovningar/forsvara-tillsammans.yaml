@@ -10,7 +10,8 @@ beskrivning: |
 organisation: |
   Två lag om tre spelare per yta i grundläget, alltså sex spelare. Är gruppen på ytan mindre
   spelas två mot två, är den större fyra mot fyra. Flera ytor läggs bredvid varandra om
-  gruppen är större än så, med tre meters mellanrum.
+  gruppen är större än så, med tre meters mellanrum. Med fyra eller fem spelare spelas på en mindre
+  yta, ungefär 16 x 10 meter, eftersom två mot två annars blir för glest.
 fokusomraden:
   - forsvarsspel
   - omstallning
@@ -68,7 +69,8 @@ planskiss:
   beskrivning: >-
     Yta 20 x 14 meter med ett minimål i varje ände. Två lag om två möts. Laget utan boll
     försvarar tillsammans: en spelare pressar bollhållaren medan den andra täcker bakom. Vid
-    bollvinst anfaller laget snabbt.
+    bollvinst anfaller laget snabbt. Med fyra eller fem spelare används en mindre yta, ungefär 16 x 10
+    meter.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 20, bredd: 14, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 7, storlek: smamal, riktning: hoger }
@@ -125,3 +127,20 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
+  - datum: 2026-10-08
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Omgång 7, avsnitt 3.1 i docs/doman/plan-omgang-7.md. Lade till en mening sist i organisation
+      och i planskissens beskrivning om att fyra eller fem spelare använder en mindre yta, ungefär
+      16 x 10 meter. Skälet är att 20 x 14 meter ger 70 kvadratmeter per spelare vid fyra spelare,
+      över taket 45. Yta, spelare och skiss är oförändrade, så att ytkontrollen räknar med det
+      största måttet.
+  - datum: 2026-10-08
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Kontrollerat mot plan-omgang-7.md, avsnitt 3.1: båda meningarna står ordagrant som i
+      planen, och yta, spelare och skissobjekt är oförändrade. 16 x 10 meter ger 40 per spelare vid
+      fyra och 32 vid fem, inom golvet 25 och taket 45. Skissens beskrivning är cirka 270 tecken,
+      under taket 300. Basskissen visar den största ytan (F7). Övningen behåller status godkand.
