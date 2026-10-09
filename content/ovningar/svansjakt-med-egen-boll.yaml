@@ -29,6 +29,7 @@ niva:
   - niva-3
 passdelar:
   - del-uppvarmning
+  - del-ovning
 ledarbehov: 0
 spelare:
   min: 4
@@ -144,3 +145,8 @@ granskning:
     av: benbom
     roll: redaktör
     kommentar: "Godkänd genom merge av pull request #34."
+  - datum: 2026-10-09
+    av: ovningsforfattare
+    roll: ovningsforfattare
+    kommentar: >-
+      Omgång 8, beslut B2 i docs/doman/plan-omgang-8.md. Lade till del-ovning i passdelar, så att övningen kan väljas både som uppvärmning och i Öva för lek och snabbhet. Inga andra fält är ändrade. Statusen är kvar på godkand.
