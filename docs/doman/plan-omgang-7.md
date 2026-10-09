@@ -481,6 +481,7 @@ Ingen ytreferens, som förut: rutan är för liten för någon plandel.
 - *B2: ja. Fördjupningen för 6–7 år flyttas till omgång 8. `plan-omgang-5.md`, avsnitt 4, är rättad med ett tillägg daterat 2026-10-08.*
 - *B3: ja. `litet-spel-till-smamal` får `tid` 10 / 15 / 25 och meningen om perioder sist i `organisation`, som en egen commit i omgångens pull request.*
 - *B4: ja. `en-mot-en-till-mal` får `del-ovning` och `dribbling-mot-tidspress` får `del-spelovning`, som en egen commit i omgångens pull request. Skriptet körs före och efter ändringarna (avsnitt 1.4).*
+- *B4 togs bort 2026-10-09, beslutat av användaren efter mätningen. Med B4 blev fylld kärna för 8–9 år 83,2 % i 5 mot 5, 7 mot 7 och 3 mot 3, mot 85,5 % utan, och kärna på valt fokus 45,3 % mot 46,0 % (5 mot 5). 10–12 år påverkades inte. Alla mål i avsnitt 1.1 nås utan B4, se `tackning-2026-10-08-omgang-7.md`.*
 
 **B1. Antalet övningar.** *Rekommendation:* alla 12. Om omgången ska bli mindre gäller ordningen i avsnitt 2.6, och O7-06 ska alltid vara med.
 
