@@ -1,6 +1,7 @@
 /**
  * Tester för indelningen i celler och måtten per cell i täckningsskriptet.
  */
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type {
   GameFormat,
@@ -10,6 +11,7 @@ import type {
 } from '../src/regelmotor/index.ts';
 import { AGE_MAX, AGE_MIN, allowedGameFormats } from '../src/regelmotor/keys.ts';
 import {
+  EQUAL_PLAN_CELLS_OMGANG7,
   GOAL_MEASURES,
   PLAN_GOALS,
   addOutcome,
@@ -18,6 +20,7 @@ import {
   classifyOutcome,
   emptyCellStats,
   localDate,
+  meetsCellGoal,
   meetsGoal,
   meetsOmgang6Goal,
   onlySuggested,
@@ -28,6 +31,7 @@ import {
   reportPath,
   reportedPercent,
   rollUpToPlanCells,
+  sameOnGoalMeasures,
   sumByKind,
 } from './tackning-celler.ts';
 
@@ -264,6 +268,157 @@ describe('målen i plan-omgang-6.md, avsnitt 1.1', () => {
     for (const goal of PLAN_GOALS) {
       expect(Object.keys(goal.omgang6).sort()).toEqual([...GOAL_MEASURES].sort());
     }
+  });
+});
+
+describe('målen i plan-omgang-7.md, avsnitt 1.1', () => {
+  const goalFor = (group: GameFormat, spelform: GameFormat) =>
+    PLAN_GOALS.find((goal) => goal.group === group && goal.spelform === spelform)!.omgang7;
+
+  it('har planens mål för de sex cellerna för 8–12 år', () => {
+    const expected: [GameFormat, GameFormat, number, number, number][] = [
+      ['5mot5', '5mot5', 0.3, 82.0, 36.0],
+      ['5mot5', '7mot7', 0.3, 82.0, 36.0],
+      ['5mot5', '3mot3', 2.3, 77.0, 32.0],
+      ['7mot7', '7mot7', 0.5, 82.0, 34.0],
+      ['7mot7', '9mot9', 0.5, 82.0, 34.0],
+      ['7mot7', '5mot5', 0.5, 80.0, 33.0],
+    ];
+    for (const [group, spelform, none, coreFilled, coreOnFocus] of expected) {
+      expect(goalFor(group, spelform)).toEqual({
+        none: { kind: 'max', percent: none },
+        coreFilled: { kind: 'min', percent: coreFilled },
+        coreOnFocus: { kind: 'min', percent: coreOnFocus },
+      });
+    }
+  });
+
+  it('kräver exakt oförändrade värden för 6–7 år och 13–19 år', () => {
+    const expected: [GameFormat, GameFormat, number, number, number][] = [
+      ['3mot3', '3mot3', 0.0, 85.7, 33.9],
+      ['3mot3', '5mot5', 0.0, 85.7, 33.9],
+      ['9mot9', '9mot9', 1.5, 77.4, 53.5],
+      ['9mot9', '11mot11', 1.5, 77.4, 53.5],
+      ['9mot9', '7mot7', 2.8, 75.5, 44.6],
+      ['11mot11', '11mot11', 1.0, 89.5, 58.7],
+      ['11mot11', '9mot9', 1.0, 89.5, 58.7],
+    ];
+    for (const [group, spelform, none, coreFilled, coreOnFocus] of expected) {
+      expect(goalFor(group, spelform)).toEqual({
+        none: { kind: 'oforandrat', percent: none },
+        coreFilled: { kind: 'oforandrat', percent: coreFilled },
+        coreOnFocus: { kind: 'oforandrat', percent: coreOnFocus },
+      });
+    }
+  });
+
+  it('har ett mål för vart och ett av de tre måtten i varje cell', () => {
+    for (const goal of PLAN_GOALS) {
+      expect(Object.keys(goal.omgang7).sort()).toEqual([...GOAL_MEASURES].sort());
+    }
+  });
+
+  it('ger 8–9 år i 5 mot 5 och i 7 mot 7 samma mål, så att kontrollen av märkningen går', () => {
+    expect(EQUAL_PLAN_CELLS_OMGANG7).toEqual([['5mot5|5mot5', '5mot5|7mot7']]);
+    for (const [keyA, keyB] of EQUAL_PLAN_CELLS_OMGANG7) {
+      const [groupA, spelformA] = keyA.split('|') as [GameFormat, GameFormat];
+      const [groupB, spelformB] = keyB.split('|') as [GameFormat, GameFormat];
+      expect(goalFor(groupA, spelformA)).toEqual(goalFor(groupB, spelformB));
+    }
+  });
+});
+
+describe('PLAN_GOALS.omgang7 mot rapporten tackning-2026-10-08.md', () => {
+  // Planens utgångsläge är kolumnen "Efter CI", alltså tabellen efter rubriken
+  // "## Efter CI-rättning".
+  const report = readFileSync(
+    new URL('../docs/doman/tackning-2026-10-08.md', import.meta.url),
+    'utf8',
+  );
+  const efterSection = report.slice(report.indexOf('## Efter CI-rättning'));
+  const rowOf = (label: string, kind: string) => {
+    const line = efterSection.split('\n').find((l) => l.startsWith(`| ${label} | ${kind} |`));
+    expect(line, `${label} saknas i rapporten`).toBeDefined();
+    const cols = line!.split('|').map((c) => c.trim());
+    return {
+      none: Number(/\(([\d.]+) %\)/.exec(cols[4]!)![1]),
+      coreFilled: Number(cols[5]!.replace(' %', '')),
+      coreOnFocus: Number(cols[7]!.replace(' %', '')),
+    };
+  };
+
+  it('har för varje oförändrad cell samma värden som rapportens Efter CI', () => {
+    const kept = PLAN_GOALS.filter((g) => g.omgang7.none.kind === 'oforandrat');
+    expect(kept).toHaveLength(7);
+    for (const goal of kept) {
+      const kind = goal.group === goal.spelform ? 'föreslagen' : 'granne';
+      const row = rowOf(planCellLabel(goal.group, goal.spelform), kind);
+      for (const measure of GOAL_MEASURES) {
+        expect(goal.omgang7[measure].percent, `${goal.group}|${goal.spelform} ${measure}`).toBe(
+          row[measure],
+        );
+      }
+    }
+  });
+
+  it('har höjda mål för 8–12 år som inte redan är nådda i Efter CI, utom inget pass för 8–9 år', () => {
+    const raised = PLAN_GOALS.filter((g) => g.omgang7.none.kind === 'max');
+    expect(raised.map((g) => g.group).sort()).toEqual([
+      '5mot5',
+      '5mot5',
+      '5mot5',
+      '7mot7',
+      '7mot7',
+      '7mot7',
+    ]);
+    for (const goal of raised) {
+      const kind = goal.group === goal.spelform ? 'föreslagen' : 'granne';
+      const row = rowOf(planCellLabel(goal.group, goal.spelform), kind);
+      // Planen: "inget pass" för 8–9 år ska bara hållas, och är alltså nått redan nu.
+      expect(row.none <= goal.omgang7.none.percent).toBe(goal.group === '5mot5');
+      expect(row.coreFilled >= goal.omgang7.coreFilled.percent).toBe(false);
+      expect(row.coreOnFocus >= goal.omgang7.coreOnFocus.percent).toBe(false);
+    }
+  });
+});
+
+describe('sameOnGoalMeasures', () => {
+  const stats = { total: 100, none: 1, coreFilled: 70, coreOnFocus: 30, coreRemoved: 0 };
+
+  it('är sant för celler med samma antal', () => {
+    expect(sameOnGoalMeasures(stats, { ...stats })).toBe(true);
+  });
+
+  it('bryr sig inte om borttagna kärndelar, som inte är ett av måtten', () => {
+    expect(sameOnGoalMeasures(stats, { ...stats, coreRemoved: 5 })).toBe(true);
+  });
+
+  it('är falskt när ett mått eller antalet körfall skiljer, även om procenten avrundas lika', () => {
+    expect(sameOnGoalMeasures(stats, { ...stats, none: 2 })).toBe(false);
+    expect(sameOnGoalMeasures(stats, { ...stats, coreFilled: 69 })).toBe(false);
+    expect(sameOnGoalMeasures(stats, { ...stats, coreOnFocus: 31 })).toBe(false);
+    const big = { total: 100000, none: 300, coreFilled: 82000, coreOnFocus: 36000, coreRemoved: 0 };
+    expect(sameOnGoalMeasures(big, { ...big, coreFilled: 82001 })).toBe(false);
+    expect(sameOnGoalMeasures(stats, { ...stats, total: 101 })).toBe(false);
+  });
+
+  it('ger null när en cell saknas eller saknar körfall', () => {
+    expect(sameOnGoalMeasures(stats, undefined)).toBeNull();
+    expect(sameOnGoalMeasures(undefined, stats)).toBeNull();
+    expect(sameOnGoalMeasures(stats, emptyCellStats())).toBeNull();
+  });
+});
+
+describe('meetsCellGoal', () => {
+  it('är samma funktion som meetsOmgang6Goal', () => {
+    expect(meetsOmgang6Goal).toBe(meetsCellGoal);
+  });
+
+  it('prövar ett mål för omgång 7 med gränsen inräknad', () => {
+    const goal = { kind: 'max', percent: 0.5 } as const;
+    const s = { total: 1000, none: 5, coreFilled: 0, coreOnFocus: 0, coreRemoved: 0 };
+    expect(meetsCellGoal(s, 'none', goal)).toBe(true);
+    expect(meetsCellGoal({ ...s, none: 6 }, 'none', goal)).toBe(false);
   });
 });
 

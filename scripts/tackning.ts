@@ -9,8 +9,8 @@
  * svepet se rapportens metodavsnitt.
  *
  * Rapporten redovisar också måtten per cell (ålder gånger spelform, föreslagen eller granne)
- * och jämför dem med målen i docs/doman/plan-omgang-6.md (avsnitt 1.1) och, som förut,
- * docs/doman/plan-omgang-5.md (avsnitt 1.1 och 1.2). Indelningen och måtten ligger i
+ * och jämför dem med målen i docs/doman/plan-omgang-7.md och plan-omgang-6.md (avsnitt 1.1)
+ * och, som förut, docs/doman/plan-omgang-5.md (avsnitt 1.1 och 1.2). Indelningen och måtten ligger i
  * `scripts/tackning-celler.ts`, som har egna tester.
  *
  * Syftet är att ge fotbollsexperten siffror att planera nästa omgång övningar efter, inte att
@@ -52,9 +52,6 @@ import { exerciseSchema } from '../src/regelmotor/schema/ovning.ts';
 import {
   type CellKind,
   type CellStats,
-  GOAL_MEASURES,
-  type GoalMeasure,
-  type Omgang6Goal,
   PLAN_GOALS,
   addOutcome,
   ageCellKey,
@@ -64,15 +61,20 @@ import {
   formatGameFormat,
   localDate,
   meetsGoal,
-  meetsOmgang6Goal,
   onlySuggested,
   parseOptions,
-  percentOneDecimal,
   planCellLabel,
   reportPath,
   rollUpToPlanCells,
   sumByKind,
 } from './tackning-celler.ts';
+import {
+  KIND_LABEL,
+  pct,
+  renderSummaryOmgang6,
+  renderSummaryOmgang7,
+  verdict,
+} from './tackning-mal.ts';
 import { publishExercise } from '../src/regelmotor/schema/published.ts';
 import type {
   AreaKey,
@@ -508,11 +510,6 @@ const PART_LIST: SessionPartFromBank[] = [
   'del-spel',
 ];
 
-function pct(count: number, total: number): string {
-  const value = percentOneDecimal(count, total);
-  return value === null ? '–' : `${value.toFixed(1)} %`;
-}
-
 function partTable(agg: Aggregate, bankCounts: Map<string, number>, spelform: GameFormat): string {
   const focusList = relevantFocusForSpelform(spelform);
   const lines: string[] = [];
@@ -622,8 +619,6 @@ function renderSubstituteSection(agg: Aggregate): string {
   return lines.join('\n');
 }
 
-const KIND_LABEL: Record<CellKind, string> = { foreslagen: 'föreslagen', granne: 'granne' };
-
 function cellColumns(stats: CellStats): string {
   const passCount = stats.total - stats.none;
   return [
@@ -678,83 +673,6 @@ function renderPlanCellTable(agg: Aggregate): string {
 
 function goalText(max: number | null): string {
   return max === null ? 'inget mål' : `≤ ${Math.round(max * 100)} %`;
-}
-
-function verdict(value: boolean | null): string {
-  if (value === null) {
-    return '–';
-  }
-  return value ? 'ja' : 'nej';
-}
-
-const MEASURE_LABEL: Record<GoalMeasure, string> = {
-  none: 'Inget pass',
-  coreFilled: 'Fylld kärna',
-  coreOnFocus: 'Kärna på valt fokus',
-};
-
-function omgang6GoalText(goal: Omgang6Goal): string {
-  const value = `${goal.percent.toFixed(1)} %`;
-  switch (goal.kind) {
-    case 'max':
-      return `≤ ${value}`;
-    case 'min':
-      return `≥ ${value}`;
-    case 'oforandrat':
-      return `= ${value} (oförändrat)`;
-  }
-}
-
-function renderSummaryOmgang6(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
-  const nuCells = rollUpToPlanCells(nu.agg.cells);
-  const efterCells = rollUpToPlanCells(efter.agg.cells);
-  const lines: string[] = [];
-  lines.push('## Sammanfattning: målen i plan-omgang-6.md, avsnitt 1.1');
-  lines.push('');
-  lines.push(
-    `"Nu" är banken med ${nu.bankSize} godkända övningar. "Efter CI" räknar också de ${efter.bankSize - nu.bankSize} granskade som godkända (bara i minnet). Planen prövar målen mot "Banken nu" när omgång 6 är godkänd, eller mot "Efter CI" när omgångens övningar är granskade men inte godkända. Fylld kärna och kärna på valt fokus räknas av alla körfall. Målen i avsnitt 1.2 och 1.3 prövas för hand mot tabellerna längre ned (se *Metod*).`,
-  );
-  if (snabb) {
-    lines.push('');
-    lines.push(
-      'Körningen gjordes med `--snabb`: bara de föreslagna cellerna är med. Grannceller saknas därför.',
-    );
-  }
-  lines.push('');
-  lines.push(
-    '| Cell | Typ | Mått | Nu | Efter CI | Mål efter omgång 6 | Nått nu | Nått efter CI |',
-  );
-  lines.push('|---|---|---|---|---|---|---|---|');
-  const tally = {
-    raised: { count: 0, nu: 0, efter: 0 },
-    kept: { count: 0, nu: 0, efter: 0 },
-  };
-  for (const goal of PLAN_GOALS) {
-    const key = `${goal.group}|${goal.spelform}`;
-    const a = nuCells.get(key);
-    const b = efterCells.get(key);
-    if (a === undefined || b === undefined) {
-      continue;
-    }
-    const kind = goal.group === goal.spelform ? 'foreslagen' : 'granne';
-    for (const measure of GOAL_MEASURES) {
-      const target = goal.omgang6[measure];
-      const metNu = meetsOmgang6Goal(a, measure, target);
-      const metEfter = meetsOmgang6Goal(b, measure, target);
-      const bucket = target.kind === 'oforandrat' ? tally.kept : tally.raised;
-      bucket.count += 1;
-      bucket.nu += metNu === true ? 1 : 0;
-      bucket.efter += metEfter === true ? 1 : 0;
-      lines.push(
-        `| ${planCellLabel(goal.group, goal.spelform)} | ${KIND_LABEL[kind]} | ${MEASURE_LABEL[measure]} | ${pct(a[measure], a.total)} | ${pct(b[measure], b.total)} | ${omgang6GoalText(target)} | ${verdict(metNu)} | ${verdict(metEfter)} |`,
-      );
-    }
-  }
-  lines.push('');
-  lines.push(
-    `Målen för 13–19 år: ${tally.raised.nu} av ${tally.raised.count} nådda nu och ${tally.raised.efter} av ${tally.raised.count} efter CI. Värdena för 6–12 år: ${tally.kept.nu} av ${tally.kept.count} oförändrade nu och ${tally.kept.efter} av ${tally.kept.count} efter CI; ett ändrat värde där är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgången.`,
-  );
-  return lines.join('\n');
 }
 
 function renderSummary(nu: ScenarioResult, efter: ScenarioResult, snabb: boolean): string {
@@ -940,6 +858,8 @@ function renderReport(
     `Siffror, inte tolkning. Skriptet är \`scripts/tackning.ts\` (\`npm run tackning${method.snabb ? ' -- --snabb' : ''}\`) och körs mot den riktiga övningsbanken i \`content/ovningar/\` genom \`src/regelmotor/index.ts\`. Fotbollsfrågor avgörs inte här; fotbollsexperten äger tolkningen av målen.`,
   );
   lines.push('');
+  lines.push(renderSummaryOmgang7(nu, efter, method.snabb));
+  lines.push('');
   lines.push(renderSummaryOmgang6(nu, efter, method.snabb));
   lines.push('');
   lines.push(renderSummary(nu, efter, method.snabb));
@@ -964,6 +884,24 @@ function renderReport(
     '- Måtten per cell bygger på **båda** sveparna nedan, så att cellernas körfall stämmer med planens tabell i avsnitt 0. Avsnittet om ersättningsfokus längre ned bygger, som förut, bara på enkelfokussvepet.',
   );
   lines.push('');
+  lines.push('### Hur målen i plan-omgang-7.md avsnitt 1.1 är översatta');
+  lines.push('');
+  lines.push(
+    '- Målen är avskrivna för hand i fältet `omgang7` i `PLAN_GOALS` i `scripts/tackning-celler.ts`: "högst" för inget pass och "minst" för fylld kärna och kärna på valt fokus i cellerna för 8–12 år.',
+  );
+  lines.push(
+    '- Jämförelsen görs, som för omgång 6, på andelen avrundad till en decimal, och gränsen räknas in.',
+  );
+  lines.push(
+    '- "Exakt oförändrat" för 6–7 år och 13–19 år betyder lika med värdet i `tackning-2026-10-08.md` (Efter CI-rättning, *Per cell i planen*), på rapportens precision. En ändring mindre än 0,05 procentenheter syns alltså inte.',
+  );
+  lines.push(
+    '- Planens kontroll att 8–9 år i 5 mot 5 och i 7 mot 7 är lika görs på antal körfall och antalen bakom de tre måtten, inte på avrundad procent.',
+  );
+  lines.push(
+    '- Målen i avsnitt 1.2 (per spelform och del) och 1.3 (ersättningsfokus) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde* och *Ersättningsfokus (R-121)*.',
+  );
+  lines.push('');
   lines.push('### Hur målen i plan-omgang-6.md avsnitt 1.1 är översatta');
   lines.push('');
   lines.push(
@@ -974,6 +912,9 @@ function renderReport(
   );
   lines.push(
     '- "Exakt oförändrat" för 6–12 år betyder lika med värdet i `tackning-2026-10-07.md` (Banken nu, *Per cell i planen*), på rapportens precision. En ändring mindre än 0,05 procentenheter syns alltså inte.',
+  );
+  lines.push(
+    '- Ett värde för 8–12 år som inte längre är oförändrat står som "ändras av omgång 7" i stället för "nej", eftersom plan-omgang-7.md höjer målen för de cellerna med avsikt. De bedöms i sammanfattningen för omgång 7.',
   );
   lines.push(
     '- Målen i avsnitt 1.2 (per spelform och del) och 1.3 (ersättningsfokus) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde* och *Ersättningsfokus (R-121)*.',
