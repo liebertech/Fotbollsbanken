@@ -1,0 +1,116 @@
+schema: 1
+id: fargjakten
+namn: Färgjakten
+syfte: Spelarna ska reagera på en signal och spurta med bollen nära foten, och vända runt en kon utan att tappa den.
+beskrivning: |
+  Åtta koner i fyra färger står längs sidorna av en ruta om 18 x 18 meter, två av varje färg på
+  motsatta sidor. Alla driver lugnt med egen boll inne i rutan. Ledaren ropar en färg, eller håller
+  upp en kon i färgen. Alla driver så snabbt de kan till en kon i den färgen, runt den och tillbaka
+  in i rutan, och fortsätter lugnt. Före spurten intar alla ett startläge som ledaren visar, till
+  exempel sitta på bollen, ligga på rygg bredvid den eller stå på ett ben med foten på bollen.
+  Spurten tar 5-8 sekunder, och mellan signalerna driver alla lugnt i 20-30 sekunder. I
+  uppvärmningen är det få signaler och lugnt tempo. I Öva ropas två färger i rad ("röd, sedan
+  blå") och vändningen runt konen görs med sulan.
+organisation: |
+  En boll per spelare i samma ruta. Alla rundar konen åt samma håll, och det står två koner per
+  färg så att inte alla möts vid samma kon. Titta upp när du vänder. Är ni färre än åtta spelare
+  görs rutan ungefär 12 x 12 meter. Två rutor ryms på en kvarts plan. Ledaren visar startläget en
+  gång innan spurten.
+fokusomraden:
+  - snabbhet
+  - koordination
+  - dribbling
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-uppvarmning
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 18
+    bredd: 18
+ytreferens:
+  alla: en ruta som rymmer stora planens mittcirkel
+material:
+  - typ: boll
+    antal: 16
+    anteckning: en per spelare
+  - typ: kon
+    antal: 8
+    anteckning: i fyra färger, två av varje
+coachningspunkter:
+  - Spring direkt när du hör eller ser färgen.
+  - Håll bollen nära foten hela vägen runt konen.
+  - Titta upp när du vänder, så att du ser var de andra är.
+varianter:
+  lattare: En färg i taget och inget startläge, bara spurt på signalen.
+  svarare: Signalen visas bara med en kon, utan rop, och två färger ropas i rad med vändning med sulan runt konen.
+anpassning:
+  fler_spelare: Lägg till fler bollar i samma ruta eller en ny ruta bredvid för varje grupp om åtta till sexton spelare.
+  udda_antal: Spelar ingen roll, varje spelare har sin egen boll.
+  ledare: En ledare räcker för att visa färgen och startläget och se att alla rundar konen åt samma håll.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 18
+  beskrivning: >-
+    Ruta 18 x 18 meter med åtta koner längs sidorna, två av varje färg på motsatta sidor. Fyra
+    spelare med egen boll driver lugnt i rutan. På signalen spurtar alla till en kon i den
+    utropade färgen, runt den och tillbaka in i rutan. Fler spelare fördelas i rutan.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 18, stil: streckad }
+    - { typ: kon, x: 4.5, y: 0 }
+    - { typ: kon, x: 13.5, y: 18 }
+    - { typ: kon, x: 13.5, y: 0 }
+    - { typ: kon, x: 4.5, y: 18 }
+    - { typ: kon, x: 0, y: 4.5 }
+    - { typ: kon, x: 18, y: 13.5 }
+    - { typ: kon, x: 0, y: 13.5 }
+    - { typ: kon, x: 18, y: 4.5 }
+    - { id: sp-1, typ: spelare, x: 5, y: 5, lag: neutral, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 13, y: 5, lag: neutral, etikett: "2" }
+    - { id: sp-3, typ: spelare, x: 5, y: 13, lag: neutral, etikett: "3" }
+    - { id: sp-4, typ: spelare, x: 13, y: 13, lag: neutral, etikett: "4" }
+    - { typ: boll, x: 5.3, y: 5 }
+    - { typ: boll, x: 13.3, y: 5 }
+    - { typ: boll, x: 5.3, y: 13 }
+    - { typ: boll, x: 13.3, y: 13 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 4.5, y: 1 } }
+    - { typ: dribbling, fran: { objekt: sp-2 }, till: { x: 17, y: 4.5 } }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 2.5, y: 2.5, lag: neutral }
+      - { x: 9, y: 2.5, lag: neutral }
+      - { x: 15.5, y: 2.5, lag: neutral }
+      - { x: 2.5, y: 9, lag: neutral }
+      - { x: 9, y: 9, lag: neutral }
+      - { x: 15.5, y: 9, lag: neutral }
+      - { x: 2.5, y: 15.5, lag: neutral }
+      - { x: 9, y: 15.5, lag: neutral }
+      - { x: 15.5, y: 15.5, lag: neutral }
+      - { x: 9, y: 6, lag: neutral }
+      - { x: 9, y: 12, lag: neutral }
+      - { x: 6, y: 9, lag: neutral }
+kalla: Egen övning, inspirerad av vanliga signalleker med färger och egen boll.
+status: utkast
+granskning: []

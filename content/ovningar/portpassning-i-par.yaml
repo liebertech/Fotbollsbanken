@@ -1,0 +1,119 @@
+schema: 1
+id: portpassning-i-par
+namn: Portpassning i par
+syfte: Spelarna ska passa genom en port och ställa sig så att kompisen kan se och passa till dem.
+beskrivning: |
+  Åtta portar, ungefär 1,5 meter breda, står utspridda i en yta om 18 x 12 meter. Paret har en
+  boll. Den ena passar genom en port till kompisen på andra sidan, kompisen tar emot, och båda
+  letar upp en ny port. Samma port får inte användas två gånger i rad. Paret räknar hur många
+  portar de hinner på en minut och försöker slå sitt eget rekord. Ledaren frågar: "Var kan du
+  stå så att kompisen kan passa dig?"
+organisation: |
+  En boll per par, och flera par delar på ytan och portarna. Är ni färre än åtta spelare görs ytan
+  ungefär 12 x 9 meter med fyra portar, så att paren möts lagom ofta. Två ytor ryms på en kvarts
+  plan. Efter varje minut kan paret byta kompis med ett annat par. Vid udda antal bildar sista
+  gruppen en trio.
+fokusomraden:
+  - passning-mottagning
+  - spelbarhet
+  - bollkansla
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 16
+grupptyp: fri
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 18
+    bredd: 12
+ytreferens:
+  alla: stora planens målområde, dubbelt så djupt
+material:
+  - typ: boll
+    antal: 8
+    anteckning: en per par
+  - typ: kon
+    antal: 16
+    anteckning: två per port, åtta portar
+coachningspunkter:
+  - Ställ dig så att kompisen ser dig genom porten.
+  - Passa längs marken med insidan och lagom hårt.
+  - Titta upp efter andra par innan du passar.
+varianter:
+  lattare: Kompisen står stilla vid porten, och avståndet är 3-4 meter.
+  svarare: Portarna är en meter breda, bollen tas emot i rörelse åt sidan och passas vidare med högst två touchar.
+anpassning:
+  fler_spelare: Lägg till fler portar, eller en ny yta bredvid för varje grupp om åtta spelare.
+  udda_antal: >-
+    En trio passar i tur och ordning, ett till två, två till tre och tre till ett. Den som har passat
+    letar upp en ny port, och den som tar emot passar vidare genom nästa port.
+  ledare: Ledaren går runt, ställer frågan om var man ska stå och ser att ingen passar hårt.
+planskiss:
+  version: 1
+  omrade:
+    langd: 18
+    bredd: 12
+  beskrivning: >-
+    Yta 18 x 12 meter med åtta portar av koner. Fyra spelare i två par med en boll per par passar
+    genom varsin port. Fler par fördelas vid portarna. Vid udda antal bildar sista gruppen en trio.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
+    - { typ: kon, x: 4, y: 2 }
+    - { typ: kon, x: 4, y: 3.5 }
+    - { typ: kon, x: 9, y: 1.5 }
+    - { typ: kon, x: 9, y: 3 }
+    - { typ: kon, x: 14, y: 2.5 }
+    - { typ: kon, x: 14, y: 4 }
+    - { typ: kon, x: 6.5, y: 8 }
+    - { typ: kon, x: 6.5, y: 9.5 }
+    - { typ: kon, x: 11.5, y: 8.5 }
+    - { typ: kon, x: 11.5, y: 10 }
+    - { typ: kon, x: 9, y: 5 }
+    - { typ: kon, x: 9, y: 6.5 }
+    - { typ: kon, x: 15.5, y: 6.5 }
+    - { typ: kon, x: 15.5, y: 8 }
+    - { typ: kon, x: 2.5, y: 6.5 }
+    - { typ: kon, x: 2.5, y: 8 }
+    - { id: p1, typ: spelare, x: 2, y: 2.75, lag: neutral, etikett: "1" }
+    - { id: p2, typ: spelare, x: 6, y: 2.75, lag: neutral, etikett: "2" }
+    - { id: p3, typ: spelare, x: 5, y: 8.75, lag: neutral, etikett: "3" }
+    - { id: p4, typ: spelare, x: 8, y: 8.75, lag: neutral, etikett: "4" }
+    - { typ: boll, x: 2.9, y: 2.75 }
+    - { typ: boll, x: 5.1, y: 8.75 }
+  rorelser:
+    - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 } }
+    - { typ: passning, fran: { objekt: p3 }, till: { objekt: p4 } }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 12, y: 3.25, lag: neutral }
+      - { x: 16, y: 3.25, lag: neutral }
+      - { x: 10, y: 9.25, lag: neutral }
+      - { x: 13.5, y: 9.25, lag: neutral }
+      - { x: 7, y: 5.75, lag: neutral }
+      - { x: 11, y: 5.75, lag: neutral }
+      - { x: 7.5, y: 2.25, lag: neutral }
+      - { x: 10.5, y: 2.25, lag: neutral }
+      - { x: 14, y: 7.25, lag: neutral }
+      - { x: 17, y: 7.25, lag: neutral }
+      - { x: 1, y: 7.25, lag: neutral }
+      - { x: 4, y: 7.25, lag: neutral }
+kalla: Egen övning, inspirerad av vanliga passningslekar genom portar.
+status: utkast
+granskning: []

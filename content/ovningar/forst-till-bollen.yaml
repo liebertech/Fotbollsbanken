@@ -1,0 +1,98 @@
+schema: 1
+id: forst-till-bollen
+namn: Först till bollen
+syfte: Spelarna ska starta snabbt mot bollen och göra mål eller försvara direkt efter kapplöpningen.
+beskrivning: |
+  Ytan är 10 x 6 meter med ett litet mål mitt på var kortsida, utan målvakt. Bollen ligger mitt
+  på ytan. De två i paret står sida vid sida vid mitten av ena långsidan, ungefär en och en halv
+  meter isär. Den ena anfaller alltid det högra målet och den andra det vänstra. På signal
+  springer båda till bollen. Den som når den först anfaller sitt mål, och den andra försvarar och
+  anfaller sitt eget mål om hen vinner bollen. Duellen är slut vid mål, när bollen går ut eller
+  efter ungefär 15 sekunder. Paret startar varje gång i ett nytt läge: stående, sittande, på mage,
+  på huk som en groda eller med ryggen mot bollen.
+organisation: |
+  En yta per par, med ett småmål på var kortsida. Flera ytor ligger bredvid varandra med tre
+  meters mellanrum. Ledaren klappar för alla par på en gång, eller så räknar den som förlorade
+  förra duellen "ett, två, tre". En duell är högst cirka 15 sekunder, och paret vilar cirka 30
+  sekunder medan bollen läggs tillbaka och nästa startläge väljs. Byt motståndare efter ungefär
+  två minuter. Efter halva tiden byter paret sida så att alla anfaller båda målen.
+fokusomraden:
+  - snabbhet
+  - ett-mot-ett
+  - avslut
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 10
+    bredd: 6
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en reserv per par
+  - typ: minimal
+    antal: 2
+    anteckning: ett mål per kortsida, två koner fungerar om minimål saknas
+  - typ: kon
+    antal: 4
+coachningspunkter:
+  - Spring direkt på signalen och titta på bollen hela vägen.
+  - Först fram skyddar bollen med kroppen innan skottet.
+  - Den som kommer sist försvarar direkt, utan att vänta.
+varianter:
+  lattare: Båda startar stående med blicken mot bollen, och den som kom sist väntar en sekund innan hen får försvara.
+  svarare: Start med ryggen mot bollen, och den som är först har högst åtta sekunder på sig att göra mål.
+anpassning:
+  fler_spelare: Lägg till fler ytor med par bredvid varandra, tio par ryms på en kvarts plan.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar utanför långsidan bakom paret med en
+    reservboll. Efter första duellen går den som kom sist ut och den tredje tar hens plats och mål.
+    Sedan går alltid den ut som har spelat två dueller i rad, och den som kommer in tar den
+    utgåendes mål och plats vid långsidan. Alla spelar då två dueller och vilar en.
+  ledare: Övningen sköter sig själv när paren väl är igång. Ledaren ger startsignalen och väljer startläge.
+planskiss:
+  version: 1
+  omrade:
+    langd: 10
+    bredd: 6
+  beskrivning: >-
+    Yta 10 x 6 meter med ett litet mål mitt på var kortsida, utan målvakt. Paret står sida vid sida
+    vid mitten av nedre långsidan och bollen ligger mitt på ytan. Båda springer mot bollen. Vid udda
+    antal väntar en tredje spelare utanför nedre långsidan, bakom paret, med en reservboll.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 6, stil: streckad }
+    - { id: mal-a, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
+    - { id: mal-b, typ: mal, x: 10, y: 3, storlek: smamal, riktning: vanster }
+    - { id: sp-1, typ: spelare, x: 4.2, y: 6, lag: a, etikett: "1" }
+    - { id: sp-2, typ: spelare, x: 5.8, y: 6, lag: b, etikett: "2" }
+    - { typ: boll, x: 5, y: 3 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: sp-1 }, till: { x: 4.6, y: 3.4 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-2 }, till: { x: 5.4, y: 3.4 }, ordning: 1 }
+    - { typ: skott, fran: { x: 8, y: 3 }, till: { objekt: mal-b }, ordning: 2 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sp-1, riktning: 90, avstand: 1.5, etikett: Väntar med ny boll }
+kalla: Egen övning, inspirerad av vanliga startlekar där två barn tävlar om samma boll.
+status: utkast
+granskning: []

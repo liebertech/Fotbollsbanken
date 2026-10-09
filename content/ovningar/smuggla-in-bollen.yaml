@@ -1,0 +1,90 @@
+schema: 1
+id: smuggla-in-bollen
+namn: Smuggla in bollen
+syfte: Spelarna ska våga driva bollen förbi en motståndare och skydda den med kroppen när hen kommer nära.
+beskrivning: |
+  Ytan är 9 x 6 meter. På ena kortsidan är en hamn, en zon om 2 meter över hela bredden.
+  Smugglaren startar med bollen mitt på den andra kortsidan, och tullaren startar på hamnens linje.
+  Smugglaren ska driva in bollen i hamnen och stoppa den med sulan där. Vinner tullaren bollen
+  driver hen den över smugglarens startlinje. Efter varje försök byter de roller: smugglaren går
+  till hamnens linje och blir tullare, och tullaren tar bollen och går till startlinjen. De går
+  längs var sin långsida, så att de inte möts.
+organisation: |
+  En yta per par, och flera ytor ligger bredvid varandra med tre meters mellanrum. Ett försök är
+  några sekunder, och paret byter roller direkt. Efter ungefär en minut byter paret motståndare
+  med nästa yta. Tio par ryms på en kvarts plan.
+fokusomraden:
+  - ett-mot-ett
+  - dribbling
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-ovning
+ledarbehov: 0
+spelare:
+  min: 2
+  max: 2
+grupptyp: par
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 9
+    bredd: 6
+material:
+  - typ: boll
+    antal: 2
+    anteckning: en i spel och en reserv per par
+  - typ: kon
+    antal: 6
+    anteckning: fyra markerar ytan och två markerar hamnens inre kant
+coachningspunkter:
+  - Välj sida direkt, du har hela hamnen att komma in i.
+  - Håll bollen på den fot som är längst från tullaren.
+  - Tullaren spelar på bollen och aldrig på kroppen.
+varianter:
+  lattare: Tullaren får bara gå och startar först när smugglaren har tagit sin första touch.
+  svarare: Hamnen byts mot två konportar, en meter breda, i hörnen, och smugglaren har högst sex sekunder.
+anpassning:
+  fler_spelare: Lägg till fler ytor med par bredvid varandra.
+  udda_antal: >-
+    Vid udda antal blir en grupp en trio. Den tredje väntar bakom startlinjen, utanför ytan, med en
+    egen boll och startar som smugglare. Efter varje försök blir smugglaren tullare, tullaren går ut
+    och väntar bakom startlinjen, och den som väntade blir smugglare. Alla tre är med i tur och
+    ordning.
+  ledare: Övningen sköter sig själv när paren väl är igång.
+planskiss:
+  version: 1
+  omrade:
+    langd: 9
+    bredd: 6
+  beskrivning: >-
+    Yta 9 x 6 meter med hamnen som en zon om 2 meter på högra kortsidan. Smugglaren startar med
+    boll vid vänstra kortsidan och tullaren på hamnens linje. Vid udda antal väntar en tredje
+    spelare bakom startlinjen, utanför ytan, med en egen boll.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 9, bredd: 6, stil: streckad }
+    - { typ: zon, x: 7, y: 0, langd: 2, bredd: 6, monster: diagonal, etikett: Hamn }
+    - { id: sm, typ: spelare, x: 0.6, y: 3, lag: a, etikett: S }
+    - { id: tu, typ: spelare, x: 7, y: 3, lag: b, etikett: T }
+    - { typ: boll, x: 1.5, y: 3 }
+  rorelser:
+    - { typ: dribbling, fran: { objekt: sm }, till: { x: 8, y: 4.6 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: tu }, till: { x: 5.5, y: 1.8 }, ordning: 1 }
+  skalning:
+    strategi: koer
+    koer:
+      - { vid: sm, riktning: 180, avstand: 1.5, etikett: Väntar med egen boll }
+kalla: Egen övning, inspirerad av vanliga 1 mot 1-lekar där målet är en zon.
+status: utkast
+granskning: []

@@ -1,0 +1,111 @@
+schema: 1
+id: skattjakten
+namn: Skattjakten
+syfte: Spelarna ska driva bollen med kontroll under press och skydda den när en motståndare kommer nära.
+beskrivning: |
+  Två lag har varsitt bo, en zon om 2 meter på var kortsida av en yta om 14 x 10 meter. I en ring
+  mitt på ytan ligger skatten: ungefär en och en halv boll per spelare, högst 12. På signal hämtar
+  alla en boll i taget ur skatten, driver den till sitt bo och stoppar den med foten där, och
+  springer tillbaka efter nästa. Den som inte har någon boll får försöka vinna en motståndares
+  boll på vägen. Vinner man den driver man den till sitt eget bo. När skatten är tom och alla
+  bollar ligger i ett bo räknar lagen sina bollar. Sedan börjar en ny omgång. Bollar som ligger i
+  ett bo får inte tas, och ingen får stå i något bo och vakta. Efter halva tiden ändras regeln:
+  nu får ingen gå in i skatten förrän ledaren ropar "öppna", så att alla startar samtidigt.
+organisation: |
+  Lag A har sitt bo på ena kortsidan och lag B på den andra. Lagen byter bo efter varje omgång,
+  och en omgång tar ungefär 1-2 minuter. Ytan är 14 x 10 meter, men med fyra eller fem spelare
+  görs den ungefär 10 x 8 meter, med bon om 2 meter, så att det inte blir för glest. Tre grupper
+  ryms på en kvarts plan. Vid udda antal har ett lag en spelare mer, och en spelare byter lag
+  mellan omgångarna. Det finns ingen joker. Spela på bollen: ingen tar en boll bakifrån.
+fokusomraden:
+  - lek
+  - bollkansla
+  - dribbling
+alder:
+  min: 6
+  max: 7
+spelformer:
+  - 3mot3
+  - 5mot5
+niva:
+  - niva-1
+  - niva-2
+  - niva-3
+passdelar:
+  - del-spelovning
+ledarbehov: 0
+spelare:
+  min: 4
+  max: 8
+grupptyp: tva-lag
+tid:
+  kortast: 5
+  rekommenderad: 7
+  langst: 8
+yta:
+  alla:
+    langd: 14
+    bredd: 10
+ytreferens:
+  alla: ungefär en fjärdedel av stora planens straffområde
+material:
+  - typ: boll
+    antal: 12
+    anteckning: ungefär en och en halv per spelare, högst 12 per grupp
+  - typ: kon
+    antal: 12
+    anteckning: fyra i varje bo och fyra som ring runt skatten
+  - typ: vast
+    antal: 8
+    anteckning: i två färger, hälften av varje
+coachningspunkter:
+  - Håll bollen nära foten och kroppen mellan bollen och motståndaren.
+  - Titta upp när du driver, så ser du var det finns plats.
+  - Stoppa bollen under foten i boet så att den ligger kvar.
+varianter:
+  lattare: Den som försöker vinna en boll får bara gå. Alla driver lugnt och ingen springer fort.
+  svarare: Boet byts mot en konport, en meter bred, som bollen ska drivas igenom och stoppas bakom. En
+    omgång är högst 45 sekunder.
+anpassning:
+  fler_spelare: Lägg till en ny yta bredvid för varje grupp om fyra till åtta spelare, med eget skatt och egna bon.
+  udda_antal: Ett lag har en spelare mer. En spelare byter lag mellan omgångarna så att alla får vara i det mindre laget en gång. Ingen joker.
+  ledare: Övningen sköter sig själv. Ledaren ropar signalerna och räknar bollarna tillsammans med lagen.
+planskiss:
+  version: 1
+  omrade:
+    langd: 14
+    bredd: 10
+  beskrivning: >-
+    Yta 14 x 10 meter med ett bo om 2 meter på var kortsida och skatten med bollar i en ring mitt
+    på ytan. Fyra spelare, två i varje lag. Lag A har boet till höger och lag B boet till vänster.
+    Fler spelare ställer sig vid sina bon. Vid udda antal har ett lag en spelare mer.
+  objekt:
+    - { typ: ruta, x: 0, y: 0, langd: 14, bredd: 10, stil: streckad }
+    - { typ: zon, x: 0, y: 0, langd: 2, bredd: 10, monster: diagonal, etikett: Bo B }
+    - { typ: zon, x: 12, y: 0, langd: 2, bredd: 10, monster: diagonal, etikett: Bo A }
+    - { typ: ruta, x: 5.5, y: 3.5, langd: 3, bredd: 3, stil: heldragen, etikett: Skatten }
+    - { id: a1, typ: spelare, x: 13, y: 2.5, lag: a, etikett: A1 }
+    - { id: a2, typ: spelare, x: 13, y: 7.5, lag: a, etikett: A2 }
+    - { id: b1, typ: spelare, x: 1, y: 2.5, lag: b, etikett: B1 }
+    - { id: b2, typ: spelare, x: 1, y: 7.5, lag: b, etikett: B2 }
+    - { typ: boll, x: 6.5, y: 4.5 }
+    - { typ: boll, x: 7.5, y: 4.5 }
+    - { typ: boll, x: 6.5, y: 5.5 }
+    - { typ: boll, x: 7.5, y: 5.5 }
+    - { typ: boll, x: 7, y: 4 }
+    - { typ: boll, x: 7, y: 6 }
+  rorelser:
+    - { typ: lopning, fran: { objekt: a1 }, till: { x: 8.3, y: 4.3 }, ordning: 1 }
+    - { typ: dribbling, fran: { x: 8.3, y: 4.3 }, till: { x: 12.2, y: 4.5 }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: b1 }, till: { x: 5.7, y: 5.7 }, ordning: 1 }
+    - { typ: dribbling, fran: { x: 5.7, y: 5.7 }, till: { x: 1.8, y: 6 }, ordning: 2 }
+  skalning:
+    strategi: platser
+    platser:
+      - { x: 13, y: 5, lag: a }
+      - { x: 1, y: 5, lag: b }
+      - { x: 11.5, y: 9, lag: a }
+      - { x: 2.5, y: 1, lag: b }
+kalla: Egen övning, inspirerad av vanliga bollekar där lag samlar bollar i ett bo.
+status: utkast
+granskning: []
