@@ -28,7 +28,6 @@ niva:
   - niva-1
   - niva-2
 passdelar:
-  - del-ovning
   - del-spelovning
 ledarbehov: 0
 spelare:
@@ -120,15 +119,3 @@ granskning:
     kommentar: >-
       Omgång 5B: spelformer ändrade från [5mot5] till [3mot3, 5mot5, 7mot7] enligt
       fotbollsexpertens lista i docs/doman/plan-omgang-5b.md, införd mekaniskt. Inga andra fält ändrade.
-  - datum: 2026-10-08
-    av: ovningsforfattare
-    roll: ovningsforfattare
-    kommentar: >-
-      Omgång 7, beslut B4 i docs/doman/plan-omgang-7.md. Lade till del-ovning bredvid del-spelovning, eftersom duellen har riktning och mål (F4 i plan-omgang-5.md). Inga andra fält ändrade.
-  - datum: 2026-10-08
-    av: fotbollsexpert
-    roll: fotbollsexpert
-    kommentar: >-
-      Kontrollerat mot beslut B4 i plan-omgang-7.md: passdelar är del-ovning och del-spelovning,
-      och inga andra fält är ändrade. Tiden 6-10 minuter ryms i Öva för 8-9 år (R-034).
-      Övningen behåller status godkand.
