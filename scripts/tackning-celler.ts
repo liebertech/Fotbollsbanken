@@ -154,8 +154,8 @@ export function sumByKind(ageCells: ReadonlyMap<string, CellStats>, kind?: CellK
 }
 
 // ---------------------------------------------------------------------------
-// Målen i plan-omgang-5.md (avsnitt 1.1 och 1.2), plan-omgang-6.md och plan-omgang-7.md
-// (avsnitt 1.1)
+// Målen i plan-omgang-5.md (avsnitt 1.1 och 1.2), plan-omgang-6.md, plan-omgang-7.md och
+// plan-omgang-8.md (avsnitt 1.1, och för omgång 8 också 1.3)
 // ---------------------------------------------------------------------------
 
 export interface PlanGoal {
@@ -169,6 +169,8 @@ export interface PlanGoal {
   omgang6: CellGoals;
   /** Målen efter omgång 7 för de tre måtten (plan-omgang-7.md, avsnitt 1.1). */
   omgang7: CellGoals;
+  /** Målen efter omgång 8 för de tre måtten (plan-omgang-8.md, avsnitt 1.1). */
+  omgang8: CellGoals;
 }
 
 /** Ett av de tre måtten per cell, med samma namn som fälten i `CellStats`. */
@@ -228,6 +230,11 @@ function keep(none: number, coreFilled: number, coreOnFocus: number): CellGoals 
  * kärna och kärna på valt fokus (båda av alla körfall). 6–7 år och 13–19 år ska vara exakt
  * oförändrade; värdena är avskrivna ur tackning-2026-10-08.md (Efter CI-rättning, Per cell i
  * planen), som planen anger som utgångsläge.
+ *
+ * plan-omgang-8.md, tabell 1.1: för 6–7 år "högst" för inget pass och "minst" för fylld
+ * kärna och kärna på valt fokus (båda av alla körfall). 8–19 år ska vara exakt oförändrade;
+ * värdena är avskrivna ur tackning-2026-10-08-omgang-7.md (Efter CI-rättning, Per cell i
+ * planen), som planen anger som utgångsläge.
  */
 export const PLAN_GOALS: readonly PlanGoal[] = [
   {
@@ -237,6 +244,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(0.0, 85.7, 33.9),
     omgang7: keep(0.0, 85.7, 33.9),
+    omgang8: raise(0.0, 95.0, 70.0),
   },
   {
     group: '3mot3',
@@ -245,6 +253,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(0.0, 85.7, 33.9),
     omgang7: keep(0.0, 85.7, 33.9),
+    omgang8: raise(0.0, 95.0, 70.0),
   },
   {
     group: '5mot5',
@@ -253,6 +262,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(0.3, 74.8, 25.5),
     omgang7: raise(0.3, 82.0, 36.0),
+    omgang8: keep(0.0, 85.5, 46.0),
   },
   {
     group: '5mot5',
@@ -261,6 +271,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(2.3, 69.4, 22.6),
     omgang7: raise(2.3, 77.0, 32.0),
+    omgang8: keep(0.0, 85.5, 43.2),
   },
   {
     group: '5mot5',
@@ -269,6 +280,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(0.3, 74.8, 25.5),
     omgang7: raise(0.3, 82.0, 36.0),
+    omgang8: keep(0.0, 85.5, 46.0),
   },
   {
     group: '7mot7',
@@ -277,6 +289,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(4.0, 73.9, 23.2),
     omgang7: raise(0.5, 82.0, 34.0),
+    omgang8: keep(0.0, 91.7, 47.4),
   },
   {
     group: '7mot7',
@@ -285,6 +298,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.1,
     omgang6: keep(9.3, 73.9, 23.2),
     omgang7: raise(0.5, 80.0, 33.0),
+    omgang8: keep(0.0, 91.7, 47.4),
   },
   {
     group: '7mot7',
@@ -293,6 +307,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: keep(4.0, 73.9, 23.2),
     omgang7: raise(0.5, 82.0, 34.0),
+    omgang8: keep(0.0, 91.7, 47.4),
   },
   {
     group: '9mot9',
@@ -301,6 +316,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: raise(2.0, 68.0, 33.0),
     omgang7: keep(1.5, 77.4, 53.5),
+    omgang8: keep(1.5, 77.4, 53.5),
   },
   {
     group: '9mot9',
@@ -309,6 +325,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: raise(3.0, 58.0, 22.0),
     omgang7: keep(2.8, 75.5, 44.6),
+    omgang8: keep(2.8, 75.5, 44.6),
   },
   {
     group: '9mot9',
@@ -317,6 +334,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: raise(2.0, 68.0, 33.0),
     omgang7: keep(1.5, 77.4, 53.5),
+    omgang8: keep(1.5, 77.4, 53.5),
   },
   {
     group: '11mot11',
@@ -325,6 +343,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: raise(2.0, 65.0, 30.0),
     omgang7: keep(1.0, 89.5, 58.7),
+    omgang8: keep(1.0, 89.5, 58.7),
   },
   {
     group: '11mot11',
@@ -333,6 +352,7 @@ export const PLAN_GOALS: readonly PlanGoal[] = [
     maxNone5B: 0.05,
     omgang6: raise(2.0, 65.0, 30.0),
     omgang7: keep(1.0, 89.5, 58.7),
+    omgang8: keep(1.0, 89.5, 58.7),
   },
 ];
 
@@ -371,7 +391,14 @@ export function meetsCellGoal(
   measure: GoalMeasure,
   goal: CellGoal,
 ): boolean | null {
-  const value = reportedPercent(stats, measure);
+  return meetsPercentGoal(reportedPercent(stats, measure), goal);
+}
+
+/**
+ * Uppfyller en andel, i procent avrundad till en decimal som rapporten skriver den, målet?
+ * Gränsen räknas in. Null när andelen saknas.
+ */
+export function meetsPercentGoal(value: number | null, goal: CellGoal): boolean | null {
   if (value === null) {
     return null;
   }
@@ -396,6 +423,92 @@ export const meetsOmgang6Goal = meetsCellGoal;
 export const EQUAL_PLAN_CELLS_OMGANG7: readonly (readonly [string, string])[] = [
   ['5mot5|5mot5', '5mot5|7mot7'],
 ];
+
+/**
+ * Cellpar som ska vara lika på alla tre måtten efter omgång 8 (plan-omgang-8.md, avsnitt 1.1
+ * och 1.4): alla övningar för 6–7 år är märkta både 3 mot 3 och 5 mot 5.
+ */
+export const EQUAL_PLAN_CELLS_OMGANG8: readonly (readonly [string, string])[] = [
+  ['3mot3|3mot3', '3mot3|5mot5'],
+];
+
+/** Ersättningsfokus per spelform, eller för hela banken (`alla`). */
+export type SubstituteScope = GameFormat | 'alla';
+
+/**
+ * Målen för ersättningsfokus (R-121) efter omgång 8, plan-omgang-8.md avsnitt 1.3: andelen
+ * fyllda kärnmoment med ersättningsfokus i enkelfokussvepet. "Exakt oförändrat" är lika med
+ * tackning-2026-10-08-omgang-7.md (Efter CI-rättning, *Ersättningsfokus (R-121)*).
+ */
+export const SUBSTITUTE_GOALS_OMGANG8: readonly { scope: SubstituteScope; goal: CellGoal }[] = [
+  { scope: '3mot3', goal: { kind: 'max', percent: 31.0 } },
+  { scope: '5mot5', goal: { kind: 'max', percent: 33.0 } },
+  { scope: '7mot7', goal: { kind: 'oforandrat', percent: 35.7 } },
+  { scope: '9mot9', goal: { kind: 'oforandrat', percent: 33.3 } },
+  { scope: '11mot11', goal: { kind: 'oforandrat', percent: 31.6 } },
+  { scope: 'alla', goal: { kind: 'max', percent: 33.2 } },
+];
+
+// ---------------------------------------------------------------------------
+// Tom uppvärmning (användarens beslut B3, 2026-10-09, plan-omgang-8.md avsnitt 5)
+// ---------------------------------------------------------------------------
+
+/**
+ * Saknar uppvärmningen övning i passet? Null när generatorn inte gav något pass.
+ *
+ * Uppvärmningen tas aldrig bort av R-033, som bara gäller Öva och Spelövning, så den finns
+ * alltid bland passets delar. När den inte kunde fyllas har den status `saknar-ovning`
+ * (R-100). En uppvärmning som av någon anledning saknas bland delarna räknas också som tom,
+ * eftersom den då inte har någon övning.
+ */
+export function warmupIsEmpty(result: GenerationResult): boolean | null {
+  if (result.kind !== 'session') {
+    return null;
+  }
+  return !result.session.parts.some(
+    (part) => part.part === 'del-uppvarmning' && part.status === 'fylld',
+  );
+}
+
+/** Tom uppvärmning per cell: antal skapade pass och hur många av dem som saknar uppvärmning. */
+export interface WarmupStats {
+  sessions: number;
+  warmupEmpty: number;
+}
+
+export function emptyWarmupStats(): WarmupStats {
+  return { sessions: 0, warmupEmpty: 0 };
+}
+
+export function addWarmup(stats: WarmupStats, result: GenerationResult): void {
+  const empty = warmupIsEmpty(result);
+  if (empty === null) {
+    return;
+  }
+  stats.sessions += 1;
+  if (empty) {
+    stats.warmupEmpty += 1;
+  }
+}
+
+/** Summerar tom uppvärmning på åldersnivå (nycklar från `ageCellKey`) till planens celler. */
+export function rollUpWarmupToPlanCells(
+  ageCells: ReadonlyMap<string, WarmupStats>,
+): Map<string, WarmupStats> {
+  const result = new Map<string, WarmupStats>();
+  for (const [key, stats] of ageCells) {
+    const [alderText, spelform] = key.split('|') as [string, GameFormat];
+    const planKey = planCellKey(Number(alderText), spelform);
+    if (planKey === undefined) {
+      continue;
+    }
+    const entry = result.get(planKey) ?? emptyWarmupStats();
+    entry.sessions += stats.sessions;
+    entry.warmupEmpty += stats.warmupEmpty;
+    result.set(planKey, entry);
+  }
+  return result;
+}
 
 /**
  * Är två celler lika i antal körfall och i de tre måtten, räknat i antal och inte i avrundad
