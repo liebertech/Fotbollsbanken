@@ -441,6 +441,11 @@ F4 i `plan-omgang-5.md` tillåter det, eftersom övningen är ett överläge med
 
 ## 5. Beslut som behövs
 
+*Användarens svar 2026-10-09:*
+- *B1: alla sex övningar.*
+- *B2: ja. `svansjakt-med-egen-boll` får `del-ovning` som en egen commit efter granskningen, och skriptet körs före och efter. Om mätningen visar en försämring tas ändringen bort, som B4 i omgång 7.*
+- *B3: ja. Täckningsrapporten får en kolumn för tom uppvärmning, i samma pull request som målen för omgång 8.*
+
 **B1. Antalet övningar.** *Rekommendation:* alla 6. Om omgången ska bli mindre gäller ordningen i avsnitt 2.6, och O8-01, O8-02 och O8-04 ska alltid vara med.
 
 **B2. `svansjakt-med-egen-boll` (6–7 år, godkänd) får `del-ovning`** (avsnitt 3.3). Inga andra fält ändras. Det ger 3,7 procentenheter mer kärna på valt fokus för 6–7 år och tar inte bort någon spelövning. *Rekommendation:* ja, som en egen commit efter att de sex nya övningarna är granskade, och bara om O8-04 och O8-06 är med. Skriptet körs före och efter (avsnitt 1.4). Målen i avsnitt 1 gäller utan den här ändringen.
