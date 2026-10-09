@@ -10,7 +10,7 @@ beskrivning: |
   boll på vägen. Vinner man den driver man den till sitt eget bo. När skatten är tom och alla
   bollar ligger i ett bo räknar lagen sina bollar. Sedan börjar en ny omgång. Bollar som ligger i
   ett bo får inte tas, och ingen får stå i något bo och vakta. Efter halva tiden ändras regeln:
-  nu får ingen gå in i skatten förrän ledaren ropar "öppna", så att alla startar samtidigt.
+  nu ligger det bara en boll per spelare i skatten, så att det blir fler försök att vinna en boll.
 organisation: |
   Lag A har sitt bo på ena kortsidan och lag B på den andra. Lagen byter bo efter varje omgång,
   och en omgång tar ungefär 1-2 minuter. Ytan är 14 x 10 meter, men med fyra eller fem spelare
@@ -96,9 +96,9 @@ planskiss:
     - { typ: boll, x: 7, y: 6 }
   rorelser:
     - { typ: lopning, fran: { objekt: a1 }, till: { x: 8.3, y: 4.3 }, ordning: 1 }
-    - { typ: dribbling, fran: { x: 8.3, y: 4.3 }, till: { x: 12.2, y: 4.5 }, ordning: 2 }
+    - { typ: dribbling, fran: { x: 8.3, y: 4.3 }, till: { x: 12.2, y: 3.7 }, ordning: 2 }
     - { typ: lopning, fran: { objekt: b1 }, till: { x: 5.7, y: 5.7 }, ordning: 1 }
-    - { typ: dribbling, fran: { x: 5.7, y: 5.7 }, till: { x: 1.8, y: 6 }, ordning: 2 }
+    - { typ: dribbling, fran: { x: 5.7, y: 5.7 }, till: { x: 1.8, y: 6.3 }, ordning: 2 }
   skalning:
     strategi: platser
     platser:
@@ -107,5 +107,26 @@ planskiss:
       - { x: 11.5, y: 9, lag: a }
       - { x: 2.5, y: 1, lag: b }
 kalla: Egen övning, inspirerad av vanliga bollekar där lag samlar bollar i ett bo.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter två småfel som jag har rättat själv. En lek med berättelse där ingen åker ut,
+      och där det som övas mest är att driva med kontroll under press och skydda bollen. Lek,
+      bollkänsla och dribbling är K för 6-7 år och hör ihop med syftet. Bara Spelövning (F1 i
+      plan-omgang-8.md). Inga bon plundras och ingen vaktar (F7), så lagen går åt var sitt håll från
+      skatten. Yta: 140 kvadratmeter ger 17,5 per spelare vid åtta, över golvet 15, och 35 vid fyra,
+      40 procent över taket 25. Skälet står i organisation: med fyra eller fem spelare görs ytan 10 x
+      8 meter (20 och 16 per spelare). Tre grupper ryms på kvarts plan (17 x 13 x 3 = 663). Nivå 3
+      med en konport som mål och högst 45 sekunder ger mindre mål och kortare tid. Udda antal: ett
+      lag med en spelare mer, och en spelare byter lag mellan omgångarna. Rättat: 1. Regeln efter
+      halva tiden, att ingen får gå in i skatten förrän ledaren ropar, var otydlig och gav väntan.
+      Nu ligger det bara en boll per spelare i skatten efter halva tiden, vilket ger fler försök att
+      vinna en boll. 2. Dribblingarna slutade 0,9 och 1,3 meter från de platser som läggs till i
+      boet (13, 5 och 1, 5), under 1,3 meter (regel 10 i plan-omgang-6.md). Nu slutar de i 12,2,
+      3,7 och 1,8, 6,3, minst 1,4 meter från spelare och platser. Ytreferensen ungefär en
+      fjärdedel av stora planens straffområde stämmer (140 mot 165 kvadratmeter, samma avlånga
+      form). Inga skott i skissen. Namnet: jag hittade ingen övning med namnet i SvFF:s
+      övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar.

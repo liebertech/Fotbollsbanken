@@ -7,12 +7,14 @@ beskrivning: |
   boll. Den ena passar genom en port till kompisen på andra sidan, kompisen tar emot, och båda
   letar upp en ny port. Samma port får inte användas två gånger i rad. Paret räknar hur många
   portar de hinner på en minut och försöker slå sitt eget rekord. Ledaren frågar: "Var kan du
-  stå så att kompisen kan passa dig?"
+  stå så att kompisen kan passa dig?" Efter halva tiden ska den som har passat springa direkt
+  till en ny port, så att kompisen kan passa vidare så fort bollen är stoppad.
 organisation: |
   En boll per par, och flera par delar på ytan och portarna. Är ni färre än åtta spelare görs ytan
-  ungefär 12 x 9 meter med fyra portar, så att paren möts lagom ofta. Två ytor ryms på en kvarts
-  plan. Efter varje minut kan paret byta kompis med ett annat par. Vid udda antal bildar sista
-  gruppen en trio.
+  ungefär 12 x 9 meter med fyra portar, så att paren möts lagom ofta. Det ska alltid finnas fler
+  portar än par, så med fjorton eller sexton spelare ställer ni ut tio portar. Två ytor ryms på
+  en kvarts plan. Efter varje minut kan paret byta kompis med ett annat par. Vid udda antal
+  bildar sista gruppen en trio.
 fokusomraden:
   - passning-mottagning
   - spelbarhet
@@ -49,8 +51,8 @@ material:
     antal: 8
     anteckning: en per par
   - typ: kon
-    antal: 16
-    anteckning: två per port, åtta portar
+    antal: 20
+    anteckning: två per port, åtta portar och tio med fjorton eller fler spelare
 coachningspunkter:
   - Ställ dig så att kompisen ser dig genom porten.
   - Passa längs marken med insidan och lagom hårt.
@@ -59,7 +61,7 @@ varianter:
   lattare: Kompisen står stilla vid porten, och avståndet är 3-4 meter.
   svarare: Portarna är en meter breda, bollen tas emot i rörelse åt sidan och passas vidare med högst två touchar.
 anpassning:
-  fler_spelare: Lägg till fler portar, eller en ny yta bredvid för varje grupp om åtta spelare.
+  fler_spelare: Med fjorton eller sexton spelare ställer ni ut tio portar. Är ni fler än sexton läggs en ny yta bredvid.
   udda_antal: >-
     En trio passar i tur och ordning, ett till två, två till tre och tre till ett. Den som har passat
     letar upp en ny port, och den som tar emot passar vidare genom nästa port.
@@ -71,7 +73,8 @@ planskiss:
     bredd: 12
   beskrivning: >-
     Yta 18 x 12 meter med åtta portar av koner. Fyra spelare i två par med en boll per par passar
-    genom varsin port. Fler par fördelas vid portarna. Vid udda antal bildar sista gruppen en trio.
+    genom varsin port. Fler par fördelas vid portarna, och med fjorton eller fler spelare ställs
+    tio portar ut. Vid udda antal bildar sista gruppen en trio.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
     - { typ: kon, x: 4, y: 2 }
@@ -95,7 +98,7 @@ planskiss:
     - { id: p3, typ: spelare, x: 5, y: 8.75, lag: neutral, etikett: "3" }
     - { id: p4, typ: spelare, x: 8, y: 8.75, lag: neutral, etikett: "4" }
     - { typ: boll, x: 2.9, y: 2.75 }
-    - { typ: boll, x: 5.1, y: 8.75 }
+    - { typ: boll, x: 5.9, y: 8.75 }
   rorelser:
     - { typ: passning, fran: { objekt: p1 }, till: { objekt: p2 } }
     - { typ: passning, fran: { objekt: p3 }, till: { objekt: p4 } }
@@ -115,5 +118,31 @@ planskiss:
       - { x: 1, y: 7.25, lag: neutral }
       - { x: 4, y: 7.25, lag: neutral }
 kalla: Egen övning, inspirerad av vanliga passningslekar genom portar.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter fyra småfel som jag har rättat själv. Passning i par genom portar, där den som
+      ska ta emot måste ställa sig så att kompisen ser hen genom porten. Det är spelbarhet i sin
+      enklaste form, utan motståndare, och det passar åldern (F4 i plan-omgang-8.md). Passning och
+      mottagning är huvudfokus, och alla tre fokus är K eller R för 6-7 år. Bara Öva (F1). En boll
+      per par, så taket prövas (F5): 216 kvadratmeter ger 13,5 per spelare vid sexton, över golvet
+      8, och den mindre ytan 12 x 9 meter med fyra portar för färre än åtta ger 27 vid fyra, 8
+      procent över taket 25. Det godtar jag, eftersom portarna behöver plats och passningarna ändå
+      är 3-6 meter. Åtta portar på den stora ytan och fyra på den lilla, som författaren valt inom
+      planens sex till åtta, godtas. Två grupper ryms på kvarts plan (21 x 15 x 2 = 630). Nivå 3
+      med smala portar, mottagning i rörelse och högst två touchar ger mindre mål och färre
+      touchar. Trion vid udda antal syns bara i skissens beskrivning, och det räcker för en övning
+      med grupptyp fri (regel 14 i plan-omgang-6.md). Rättat: 1. Med sexton spelare var det åtta
+      par på åtta portar, och då får något par alltid vänta på en ledig port. Nu ska det alltid
+      finnas fler portar än par, och med fjorton eller sexton spelare ställs tio portar ut.
+      Material, anpassning och skissens beskrivning är ändrade efter det (kon 20). 2.
+      fler_spelare sa en ny yta för varje grupp om åtta spelare, fast övningen tar sexton. Nu sägs
+      en ny yta först över sexton. 3. Det stod inte vad som ändras efter halva tiden (regel 14).
+      Nu springer den som har passat direkt till en ny port. 4. Bollen vid spelare 3 låg 0,1 meter
+      från spelarens mitt, under symbolen. Nu ligger den på sidan mot porten, som för spelare 1.
+      Ytreferensen stora planens målområde, dubbelt så djupt stämmer exakt (18 x 12). Namnet: jag
+      hittade ingen övning med namnet i SvFF:s övningsbank vid sökning 2026-10-09, men banken är
+      bara delvis sökbar.

@@ -145,7 +145,9 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 
 *Tillägg 2026-10-08, omgång 7:* de tolv övningarna för 8–12 år i omgång 7 står sist i 6.1 och 6.2 med *Var* `omgang/7`. De är granskade men ännu inte godkända, och mått och spelform är kontrollerade mot filerna på grenen samma dag. Elva har referens och en, `folj-john-med-boll-i-par`, saknar. Tabellerna har därmed 98 övningar. Alla nya referenser har nyckeln `alla` och står på en rad var, eftersom samma referens håller i alla övningens spelformer (avsnitt 3.4). Raden för `driva-forbi-i-par` i 6.2 har fått det nya måttet 8 × 7 (`plan-omgang-7.md`, avsnitt 3.2); kategorin är oförändrad.
 
-### 6.1 Med referens (78 övningar)
+*Tillägg 2026-10-09, omgång 8:* de sex övningarna för 6–7 år i omgång 8 står sist i 6.1 och 6.2 med *Var* `omgang/8`. De är granskade men ännu inte godkända, och mått och spelform är kontrollerade mot filerna på grenen samma dag. Fyra har referens och två, `forst-till-bollen` och `smuggla-in-bollen`, saknar, eftersom de är dueller med startavstånd. Tabellerna har därmed 104 övningar. Alla nya referenser har nyckeln `alla` och står på en rad var, eftersom samma referens håller i både 3 mot 3 och 5 mot 5 (avsnitt 3.4). `skattjakten` och `portpassning-i-par` görs mindre för små grupper enligt `organisation`. Referensen gäller måttet i `yta`, som är det största.
+
+### 6.1 Med referens (82 övningar)
 
 | Övning | Spelform | Mått (m) | `ytreferens.alla` | Tecken | Var |
 |---|---|---|---|---|---|
@@ -228,12 +230,16 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `fasta-situationer-langs-marken` | 5, 7 och 9 mot 9 | 30 × 20 | ungefär tre fjärdedelar av stora planens straffområde, några steg djupare | 73 | omgang/7 |
 | `avslut-fran-tva-hall-mot-malvakt` | 5, 7 och 9 mot 9 | 20 × 16 | ungefär halva stora planens straffområde | 40 | omgang/7 |
 | `tre-mot-tva-och-kontra` | 5, 7 och 9 mot 9 | 28 × 18 | ungefär två tredjedelar av stora planens straffområde | 53 | omgang/7 |
+| `skattjakten` | 3 mot 3, 5 mot 5 | 14 × 10 | ungefär en fjärdedel av stora planens straffområde | 50 | omgang/8 |
+| `rensa-tradgarden` | 3 mot 3, 5 mot 5 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | omgang/8 |
+| `portpassning-i-par` | 3 mot 3, 5 mot 5 | 18 × 12 | stora planens målområde, dubbelt så djupt | 41 | omgang/8 |
+| `fargjakten` | 3 mot 3, 5 mot 5 | 18 × 18 | en ruta som rymmer stora planens mittcirkel | 43 | omgang/8 |
 
 *Tillägg 2026-10-08, omgång 6:* fyra övningar spelas vid ett mål på ytans kortsida, fast stora planens straffområde har målet på sin långsida: `inovade-fasta-situationer`, `fasta-situationer-anfall-mot-forsvar`, `malvaktsduell-raddning-och-snabbt-utspel` och `avslut-i-overlage-vid-straffomradet` (den sista är kvadratisk, så där spelar det ingen roll). Referensen jämför bara storlek, och var målet står säger beskrivningen (konvention 2). Sidornas förhållande är nästan detsamma, så formen stämmer. `spel-med-malvakter-pa-kvarts-plan` och de tre övningarna på 45 × 32 har offside eller uppbyggnad genom lagdelar, och får därför längdreferensen. 48 meter är 19 procent längre än straffområdets bredd, och *något längre* skulle underskatta det, därför stegtalet.
 
 *Tillägg 2026-10-06, omgång 5 paket B:* de sex sista raderna gäller övningar med flera spelformer. Alla har nyckeln `alla`, eftersom referensen håller för varje spelform de är märkta med (avsnitt 3.4). `omstallning-i-overlage-till-mal` jämförs med en 7 mot 7-plan också för 9 mot 9- och 11 mot 11-lag, på samma sätt som `omstallning-med-jokrar`. Det är en storleksjämförelse och pekar inte ut någon plats (konvention 2).
 
-### 6.2 Utan referens (20 övningar)
+### 6.2 Utan referens (22 övningar)
 
 | Övning | Spelform | Mått (m) | Kategori (avsnitt 4) | Var |
 |---|---|---|---|---|
@@ -257,6 +263,8 @@ Den här tabellen är underlaget för att skriva in fältet i ett svep. Referens
 | `nickteknik-i-par-fran-kast-till-nick` | 9 och 11 mot 11 | 10 × 6 | För liten eller ingen plandel med rätt form. Avståndet mellan kastare och nickare, tre till fem meter, är det som styr | omgang/6 |
 | `dribblingsbana-i-intervaller` | 9 och 11 mot 11 | 36 × 20 | Station och bestämd bana. Ytan följer undantag 3, och avståndet mellan banans delar styr | omgang/6 |
 | `folj-john-med-boll-i-par` | 3, 5, 7 och 9 mot 9 | 9 × 9 | För liten eller ingen plandel med rätt form. En ruta per par | omgang/7 |
+| `forst-till-bollen` | 3 mot 3, 5 mot 5 | 10 × 6 | Duell med startavstånd. Paret startar sida vid sida och springer tre meter till bollen | omgang/8 |
+| `smuggla-in-bollen` | 3 mot 3, 5 mot 5 | 9 × 6 | Duell med startavstånd. Smugglaren startar på kortsidan och tullaren på hamnens linje | omgang/8 |
 
 ### 6.3 Anmärkningar
 

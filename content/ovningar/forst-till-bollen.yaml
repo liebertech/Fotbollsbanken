@@ -15,7 +15,10 @@ organisation: |
   meters mellanrum. Ledaren klappar för alla par på en gång, eller så räknar den som förlorade
   förra duellen "ett, två, tre". En duell är högst cirka 15 sekunder, och paret vilar cirka 30
   sekunder medan bollen läggs tillbaka och nästa startläge väljs. Byt motståndare efter ungefär
-  två minuter. Efter halva tiden byter paret sida så att alla anfaller båda målen.
+  två minuter. Efter halva tiden byter paret sida så att alla anfaller båda målen. Paret står
+  alltid sida vid sida och aldrig mitt emot varandra, så att ingen springer rakt mot den andra.
+  Spela på bollen: ingen knuffar eller tar bollen bakifrån. Ytan är något större per spelare än i
+  match, så att det finns en startsträcka att springa på.
 fokusomraden:
   - snabbhet
   - ett-mot-ett
@@ -75,9 +78,10 @@ planskiss:
     langd: 10
     bredd: 6
   beskrivning: >-
-    Yta 10 x 6 meter med ett litet mål mitt på var kortsida, utan målvakt. Paret står sida vid sida
-    vid mitten av nedre långsidan och bollen ligger mitt på ytan. Båda springer mot bollen. Vid udda
-    antal väntar en tredje spelare utanför nedre långsidan, bakom paret, med en reservboll.
+    Yta 10 x 6 meter med ett litet mål på var kortsida. Paret står sida vid sida vid nedre
+    långsidan, och bollen ligger i mitten. Båda springer till bollen, och den som kommer först
+    driver mot sitt mål och skjuter. Vid udda antal väntar en tredje bakom paret, utanför ytan,
+    med en reservboll.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 6, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
@@ -86,13 +90,40 @@ planskiss:
     - { id: sp-2, typ: spelare, x: 5.8, y: 6, lag: b, etikett: "2" }
     - { typ: boll, x: 5, y: 3 }
   rorelser:
-    - { typ: lopning, fran: { objekt: sp-1 }, till: { x: 4.6, y: 3.4 }, ordning: 1 }
-    - { typ: lopning, fran: { objekt: sp-2 }, till: { x: 5.4, y: 3.4 }, ordning: 1 }
-    - { typ: skott, fran: { x: 8, y: 3 }, till: { objekt: mal-b }, ordning: 2 }
+    - { typ: lopning, fran: { objekt: sp-1 }, till: { x: 4.3, y: 3.7 }, ordning: 1 }
+    - { typ: lopning, fran: { objekt: sp-2 }, till: { x: 5.7, y: 3.7 }, ordning: 1 }
+    - { typ: dribbling, fran: { x: 5.3, y: 3 }, till: { x: 8, y: 3 }, ordning: 2 }
+    - { typ: skott, fran: { x: 8, y: 3 }, till: { objekt: mal-b }, ordning: 3 }
   skalning:
     strategi: koer
     koer:
       - { vid: sp-1, riktning: 90, avstand: 1.5, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga startlekar där två barn tävlar om samma boll.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Kapplöpningen till bollen och starten i
+      olika lägen är leken, och den korta duellen efteråt ger ett mot ett och avslut. Snabbhet,
+      ett mot ett och avslut är K eller R för 6-7 år och hör ihop med syftet. Bara Spelövning (F1
+      i plan-omgang-8.md). Arbete och vila i siffror: högst cirka 15 sekunder duell och cirka 30
+      sekunders vila (regel 17). Paret startar sida vid sida (F6). Yta: 60 kvadratmeter ger 30 per
+      spelare, 20 procent över taket 25, för startsträckan. Tio par ryms på kvarts plan (13 x 9 x
+      10 = 1 170). Nivå 3 med start med ryggen mot bollen och högst åtta sekunder ger kortare tid.
+      Udda antal: författarens avvikelse från planen godtas. Den tredje väntar bakom paret,
+      utanför samma långsida, eftersom en kö högst kan ligga 5 meter bort. Där står hen utanför
+      ytan och utanför skottlinjerna, och paret springer bort från hen. Rotationen är entydig: efter
+      första duellen går den som kom sist till bollen ut, och sedan går alltid den ut som har
+      spelat två dueller i rad. Alla spelar två dueller och vilar en. Den som vilar står utanför
+      i under en minut, och det godtar jag i en snabbhetsövning, där vilan ändå ska vara minst
+      dubbelt så lång som arbetet. Rättat: 1. Texten sa inget om att spela på
+      bollen eller varför paret står sida vid sida. Det står nu i organisation (regel 16). 2. Skälet
+      till ytan över taket stod inte i texten. Det står nu i organisation. 3. Löppilarna slutade 0,8
+      meter från varandra och 0,6 från bollen, och skissen hoppade från kapplöpningen direkt till
+      ett skott 3 meter bort. Nu slutar löpningarna 1,4 meter isär, en dribbling visar att den som
+      kom först driver mot sitt mål, och skottet går från 2 meter. Skissens beskrivning är
+      omskriven så att den säger samma sak och håller sig under 300 tecken. Ingen ytreferens:
+      duell med startavstånd (ytreferenser.md, avsnitt 4). Namnet: jag hittade ingen övning med
+      namnet i SvFF:s övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar.

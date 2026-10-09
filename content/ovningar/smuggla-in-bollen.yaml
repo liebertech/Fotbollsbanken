@@ -8,11 +8,13 @@ beskrivning: |
   Smugglaren ska driva in bollen i hamnen och stoppa den med sulan där. Vinner tullaren bollen
   driver hen den över smugglarens startlinje. Efter varje försök byter de roller: smugglaren går
   till hamnens linje och blir tullare, och tullaren tar bollen och går till startlinjen. De går
-  längs var sin långsida, så att de inte möts.
+  längs var sin långsida, så att de inte möts. Efter halva tiden väljer tullaren själv var på
+  hamnens linje hen startar, och smugglaren ska se det och driva mot den andra sidan av hamnen.
 organisation: |
   En yta per par, och flera ytor ligger bredvid varandra med tre meters mellanrum. Ett försök är
   några sekunder, och paret byter roller direkt. Efter ungefär en minut byter paret motståndare
-  med nästa yta. Tio par ryms på en kvarts plan.
+  med nästa yta. Tio par ryms på en kvarts plan. Ytan är något större per spelare än i match, så
+  att smugglaren har en startsträcka och hinner välja sida.
 fokusomraden:
   - ett-mot-ett
   - dribbling
@@ -58,9 +60,9 @@ varianter:
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra.
   udda_antal: >-
-    Vid udda antal blir en grupp en trio. Den tredje väntar bakom startlinjen, utanför ytan, med en
-    egen boll och startar som smugglare. Efter varje försök blir smugglaren tullare, tullaren går ut
-    och väntar bakom startlinjen, och den som väntade blir smugglare. Alla tre är med i tur och
+    Vid udda antal blir en grupp en trio. Den tredje väntar vid startlinjens ena hörn, utanför
+    ytan, med en egen boll och startar som smugglare. Efter varje försök blir smugglaren tullare, tullaren går ut
+    och väntar vid startlinjens hörn, och den som väntade blir smugglare. Alla tre är med i tur och
     ordning.
   ledare: Övningen sköter sig själv när paren väl är igång.
 planskiss:
@@ -71,7 +73,7 @@ planskiss:
   beskrivning: >-
     Yta 9 x 6 meter med hamnen som en zon om 2 meter på högra kortsidan. Smugglaren startar med
     boll vid vänstra kortsidan och tullaren på hamnens linje. Vid udda antal väntar en tredje
-    spelare bakom startlinjen, utanför ytan, med en egen boll.
+    spelare vid startlinjens övre hörn, utanför ytan, med en egen boll.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 9, bredd: 6, stil: streckad }
     - { typ: zon, x: 7, y: 0, langd: 2, bredd: 6, monster: diagonal, etikett: Hamn }
@@ -84,7 +86,30 @@ planskiss:
   skalning:
     strategi: koer
     koer:
-      - { vid: sm, riktning: 180, avstand: 1.5, etikett: Väntar med egen boll }
+      - { vid: sm, riktning: 235, avstand: 3.5, etikett: Väntar med egen boll }
 kalla: Egen övning, inspirerad av vanliga 1 mot 1-lekar där målet är en zon.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. Ett mot ett in i en hel zon, så att
+      sexåringen alltid har en väg och bara behöver välja sida. Ett mot ett och dribbling är K för
+      6-7 år, och huvudfokus ett-mot-ett gör att övningen och duell-mot-tva-smamal blir paret i Öva
+      i 60-minuterspass (F2 i plan-omgang-8.md). Bara Öva (F1). Namnet Smuggla in bollen i stället
+      för planens arbetsnamn med tillägget 1 mot 1 godtas: det är kortare, och ett mot ett syns i
+      fokus och beskrivning. Rotationen är entydig för två och tre: rollerna byts efter varje
+      försök, och i en trio blir smugglaren tullare, tullaren går ut och den som väntade blir
+      smugglare. Ingen väntar mer än ett försök. Yta: 54 kvadratmeter ger 27 per spelare, 8
+      procent över taket 25. Tio par ryms på kvarts plan (12 x 9 x 10 = 1 080). Nivå 1 med en
+      tullare som går och startar efter första touchen gör övningen möjlig. Nivå 3 med två smala
+      portar och högst sex sekunder ger mindre mål och kortare tid. Rättat: 1. Det stod inte vad
+      som ändras efter halva tiden (regel 14). Nu väljer tullaren var hen startar, och smugglaren
+      ska se det och driva mot den andra sidan, vilket är syftet i ett nytt läge. 2. Skälet till
+      ytan över taket stod inte i texten. Det står nu i organisation. 3. Den tredje i en trio
+      väntade mitt bakom startlinjen, där tullaren driver över linjen när hen vinner bollen. Nu
+      väntar hen vid startlinjens hörn, i texten och i skissen (kön i riktning 235, 3,5 meter,
+      1,4 meter utanför linjen). Ingen ytreferens: duell med startavstånd (ytreferenser.md,
+      avsnitt 4). Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid sökning
+      2026-10-09, men banken är bara delvis sökbar.

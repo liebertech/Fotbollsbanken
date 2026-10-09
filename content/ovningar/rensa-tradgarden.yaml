@@ -10,7 +10,8 @@ beskrivning: |
   innan den passas tillbaka. På "stopp" fryser alla, och lagen räknar bollarna i sin halva. Det
   lag som har färst bollar vinner omgången. I uppvärmningen räcker att passa med insidan och
   stoppa. I Öva passar man varannan boll med den fot man tycker är svårast, och bollen ska stoppas
-  helt innan den passas.
+  helt innan den passas. Efter halva tiden ropar ledaren ibland "byt fot", och då passar alla med
+  den andra foten tills nästa "byt fot".
 organisation: |
   Två lag, en halva var, och en omgång tar ungefär en minut. Lagen byter halva efter varje omgång.
   Ingen står i den fria zonen, och bollar som stannar där hämtas först efter "stopp". Är ni färre
@@ -109,5 +110,26 @@ planskiss:
       - { x: 1, y: 10.5, lag: a }
       - { x: 17, y: 10.5, lag: b }
 kalla: Egen övning, inspirerad av vanliga bollekar där två lag skickar bollar över en mittzon.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter ett småfel som jag har rättat själv. En lek med egen boll där alla stoppar och
+      passar hela tiden, så bollkontakterna blir många och ingen står i kö. Lek är huvudfokus, så
+      att övningen och lek-med-egen-boll blir paret i Öva i 60-minuterspass (F2 i
+      plan-omgang-8.md), och passning och mottagning är det som görs mest. Alla tre fokus är K
+      eller R för 6-7 år. Uppvärmning och Öva (F8), och skillnaden mellan dem står i
+      beskrivningen. Utan motståndare (F5): ingen kan vinna någon annans boll. Yta: 216
+      kvadratmeter ger 13,5 per spelare vid sexton, över golvet 8. Taket prövas inte, och den
+      mindre ytan 14 x 9 meter för färre än åtta står i organisation. Två grupper ryms på kvarts
+      plan (21 x 15 x 2 = 630). Säkerhet: bara längs marken med insidan, ingen står i den fria
+      zonen, och bollar som stannar där hämtas efter stopp. Nivå 1 med stopp med händerna gör
+      övningen möjlig. Nivå 3 med tre smala portar och mottagning åt sidan ger mindre mål och
+      svårare teknik. Udda antal: ett lag med en spelare mer, och en spelare byter lag mellan
+      omgångarna. Skissen stämmer med texten, och passningarna går minst 1,6 meter från spelare
+      och platser. Rättat: det stod inte vad som ändras efter halva tiden (regel 14). Nu ropar
+      ledaren "byt fot" ibland. Ytreferensen stora planens målområde, dubbelt så djupt stämmer
+      exakt (18 x 12). Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid
+      sökning 2026-10-09, men banken är bara delvis sökbar.

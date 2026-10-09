@@ -3,19 +3,22 @@ id: fargjakten
 namn: Färgjakten
 syfte: Spelarna ska reagera på en signal och spurta med bollen nära foten, och vända runt en kon utan att tappa den.
 beskrivning: |
-  Åtta koner i fyra färger står längs sidorna av en ruta om 18 x 18 meter, två av varje färg på
-  motsatta sidor. Alla driver lugnt med egen boll inne i rutan. Ledaren ropar en färg, eller håller
-  upp en kon i färgen. Alla driver så snabbt de kan till en kon i den färgen, runt den och tillbaka
-  in i rutan, och fortsätter lugnt. Före spurten intar alla ett startläge som ledaren visar, till
+  Åtta koner i fyra färger står längs sidorna av en ruta om 18 x 18 meter, två av varje färg mitt
+  emot varandra på motsatta sidor. Alla driver lugnt med egen boll inne i rutan. Ledaren ropar en
+  färg, eller håller upp en kon i färgen. Alla driver så snabbt de kan till närmaste kon i den
+  färgen, runt den och tillbaka in i rutan, och fortsätter lugnt. Före spurten intar alla ett startläge som ledaren visar, till
   exempel sitta på bollen, ligga på rygg bredvid den eller stå på ett ben med foten på bollen.
   Spurten tar 5-8 sekunder, och mellan signalerna driver alla lugnt i 20-30 sekunder. I
   uppvärmningen är det få signaler och lugnt tempo. I Öva ropas två färger i rad ("röd, sedan
   blå") och vändningen runt konen görs med sulan.
 organisation: |
-  En boll per spelare i samma ruta. Alla rundar konen åt samma håll, och det står två koner per
-  färg så att inte alla möts vid samma kon. Titta upp när du vänder. Är ni färre än åtta spelare
-  görs rutan ungefär 12 x 12 meter. Två rutor ryms på en kvarts plan. Ledaren visar startläget en
-  gång innan spurten.
+  En boll per spelare i samma ruta. Alla rundar konen åt samma håll, först med konen på vänster
+  sida. Efter halva tiden byter alla håll, så att vändningen görs med den andra foten. Det står
+  två koner per färg så att inte alla möts vid samma kon. Är ni fler än åtta ropar ledaren två
+  färger på en gång, "röd eller blå", och var och en spurtar till närmaste kon i någon av dem.
+  Då blir det ungefär fyra spelare vid varje kon. Titta upp när du vänder. Är ni färre än åtta
+  spelare görs rutan ungefär 12 x 12 meter. Två rutor ryms på en kvarts plan. Ledaren visar
+  startläget en gång innan spurten.
 fokusomraden:
   - snabbhet
   - koordination
@@ -72,8 +75,8 @@ planskiss:
     langd: 18
     bredd: 18
   beskrivning: >-
-    Ruta 18 x 18 meter med åtta koner längs sidorna, två av varje färg på motsatta sidor. Fyra
-    spelare med egen boll driver lugnt i rutan. På signalen spurtar alla till en kon i den
+    Ruta 18 x 18 meter med åtta koner längs sidorna, två av varje färg mitt emot varandra. Fyra
+    spelare med egen boll driver lugnt i rutan. På signalen spurtar alla till närmaste kon i den
     utropade färgen, runt den och tillbaka in i rutan. Fler spelare fördelas i rutan.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 18, stil: streckad }
@@ -95,7 +98,7 @@ planskiss:
     - { typ: boll, x: 13.3, y: 13 }
   rorelser:
     - { typ: dribbling, fran: { objekt: sp-1 }, till: { x: 4.5, y: 1 } }
-    - { typ: dribbling, fran: { objekt: sp-2 }, till: { x: 17, y: 4.5 } }
+    - { typ: dribbling, fran: { objekt: sp-3 }, till: { x: 4.5, y: 17 } }
   skalning:
     strategi: platser
     platser:
@@ -112,5 +115,31 @@ planskiss:
       - { x: 9, y: 12, lag: neutral }
       - { x: 6, y: 9, lag: neutral }
 kalla: Egen övning, inspirerad av vanliga signalleker med färger och egen boll.
-status: utkast
-granskning: []
+status: granskad
+granskning:
+  - datum: 2026-10-09
+    av: fotbollsexpert
+    roll: fotbollsexpert
+    kommentar: >-
+      Håller, efter tre småfel som jag har rättat själv. En signallek med egen boll där
+      snabbheten övas som reaktion, spurt och vändning med bollen, aldrig som löpning utan boll
+      (F9 i plan-omgang-8.md). Snabbhet, koordination och dribbling är K eller R för 6-7 år, och
+      startlägena ger koordinationen. Uppvärmning och Öva (F8), och skillnaden mellan dem står i
+      beskrivningen. Arbete och vila i siffror: spurt 5-8 sekunder och 20-30 sekunder lugnt driv
+      (regel 17). Yta: 324 kvadratmeter ger 20,3 per spelare vid sexton, över golvet 8. Egen boll
+      utan motståndare, så taket prövas inte, och den mindre rutan 12 x 12 meter för färre än åtta
+      står i organisation. Två rutor ryms på kvarts plan (21 x 21 x 2 = 882). Nivå 3 med signal
+      bara med en kon, två färger i rad och vändning med sulan ger fler val och svårare teknik.
+      Konernas färger visas bara i texten, eftersom skissformatet inte har färger. Det godtar jag:
+      skissen visar var konerna står, och texten säger vilka som hör ihop. Rättat: 1. Med sexton
+      spelare och två koner per färg rundade åtta barn i full fart samma kon. Nu ropar ledaren två
+      färger på en gång när gruppen är fler än åtta, så att det blir ungefär fyra vid varje kon.
+      2. Det stod att alla rundar konen åt samma håll men inte vilket, och inte vad som ändras
+      efter halva tiden (regel 14). Nu rundas konen först med konen på vänster sida, och efter
+      halva tiden åt andra hållet, så att vändningen görs med den andra foten. 3. De två
+      dribblingarna i skissen gick till koner som inte kunde ha samma färg. Nu står konerna i
+      samma färg mitt emot varandra, och spelare 1 och 3 spurtar till var sin kon i samma färg,
+      uppåt och nedåt, minst 2 meter från platserna som läggs till. Ytreferensen en ruta som rymmer
+      stora planens mittcirkel stämmer exakt (18 x 18). Namnet: jag hittade ingen övning med
+      namnet i SvFF:s övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar. Där
+      finns reaktionsövningar med färgade koner, men formen är allmänt känd och texten här är egen.
