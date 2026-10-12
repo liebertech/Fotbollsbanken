@@ -4,7 +4,7 @@
  * Riktning A, Gräsmattan (docs/design/visuell-design-byggbeskrivning.md): sidhuvudet, ikonerna
  * och passdelens rubrik får nytt utseende, men de tillgängliga namnen är desamma som förut.
  */
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { Icon } from './Icon.tsx';
@@ -19,6 +19,7 @@ import {
 
 afterEach(() => {
   cleanup();
+  vi.restoreAllMocks();
 });
 
 function renderSession(bank = FULL_BANK) {
@@ -65,6 +66,33 @@ describe('Sidhuvudet (designsystem.md avsnitt 6.10)', () => {
     const heading = screen.getByRole('heading', { level: 1, name: 'Byt övning: Öva' });
     expect(heading).toHaveFocus();
     expect(heading).toHaveAttribute('tabindex', '-1');
+  });
+
+  /*
+   * Säkerhetsgranskningen av den visuella designen, F1: focusHeading är en konstant för vyn.
+   * Ritas vyn om med samma värde och en ny rubrik, till exempel när bytet gäller en annan
+   * del, ska rubriken inte monteras om och fokus ska stanna där ledaren har det.
+   */
+  it('flyttar inte fokus när vyn ritas om med samma focusHeading och ny rubrik', () => {
+    const view = (heading: string) => (
+      <>
+        <PageHeader heading={heading} focusHeading />
+        <button type="button">Sök</button>
+      </>
+    );
+    const { rerender } = render(view('Byt övning: Öva'));
+    const first = screen.getByRole('heading', { level: 1, name: 'Byt övning: Öva' });
+    expect(first).toHaveFocus();
+
+    const button = screen.getByRole('button', { name: 'Sök' });
+    button.focus();
+    const focus = vi.spyOn(HTMLElement.prototype, 'focus');
+    rerender(view('Byt övning: Spel'));
+
+    const second = screen.getByRole('heading', { level: 1, name: 'Byt övning: Spel' });
+    expect(second).toBe(first);
+    expect(button).toHaveFocus();
+    expect(focus).not.toHaveBeenCalled();
   });
 
   it('det som skickas in står före rubriken', () => {

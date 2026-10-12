@@ -171,9 +171,13 @@
   box-shadow: 0 -6px 16px rgb(0 0 0 / 6%);
 }
 
-/* Vid 200 % text vid 390 px skulle knappraden ta en tredjedel av skärmen. Där ligger den
-   sist i passet i stället för att vara fast. */
-@media (max-width: 20em) {
+/*
+ * Knappraden är fast bara när den tar högst en fjärdedel av den synliga höjden (designsystem.md
+ * avsnitt 6.10). Annars ligger den sist i passet. Raden är cirka 90 px hög på en rad, så den
+ * släpps under 24em (384 px) höjd. På smal skärm, under 20em, står knapparna under varandra
+ * och raden blir dubbelt så hög. Frågorna är i em, så att de följer zoom och textstorlek.
+ */
+@media (max-width: 20em), (max-height: 24em) {
   .actions {
     position: static;
     box-shadow: none;

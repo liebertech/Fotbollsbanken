@@ -150,6 +150,16 @@
   box-shadow: 0 -6px 16px rgb(0 0 0 / 6%);
 }
 
+/* Knappraden är fast bara när den tar högst en fjärdedel av den synliga höjden
+   (designsystem.md avsnitt 6.10), annars ligger den sist i formuläret. Samma gräns som i
+   passet: raden är cirka 90 px hög och släpps under 24em (384 px) höjd. */
+@media (max-height: 24em) {
+  .submitBar {
+    position: static;
+    box-shadow: none;
+  }
+}
+
 /* Primärknapp (designsystem.md avsnitt 6.1): 56 px i knappraden, 18 px/700. */
 .submit {
   min-height: 56px;

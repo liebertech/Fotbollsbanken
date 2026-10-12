@@ -70,12 +70,13 @@ export const TEXTS = {
      * ytreferensen följer efter i parentes när övningen har en, och raden ser ut som i dag
      * när den saknas — ingen tom parentes och ingen platshållare.
      *
-     * Se docs/design/texter.md avsnitt 4. "Yta: {size} meter (" hålls ihop med hårda
-     * mellanslag (U+00A0), så att måttet och parentesens början aldrig bryts isär; själva
-     * referensen har vanliga mellanslag och bryter fritt.
+     * Se docs/design/texter.md avsnitt 4 (ändrat 2026-10-12). Bara "{längd} × {bredd} meter"
+     * hålls ihop med hårda mellanslag (U+00A0): `{size}` har dem runt "×", och här står ett
+     * före "meter". Efter "Yta:" och före "(" står vanliga mellanslag, så att inget helt ord
+     * knyts ihop med resten av raden och bryts mitt i vid stor text. Referensen bryter fritt.
      */
-    area: 'Yta:\u00a0{size}\u00a0meter',
-    areaWithReference: 'Yta:\u00a0{size}\u00a0meter\u00a0({reference})',
+    area: 'Yta: {size}\u00a0meter',
+    areaWithReference: 'Yta: {size}\u00a0meter ({reference})',
     /**
      * Ytförklaringen (docs/design/texter.md avsnitt 4, uppföljning till ADR 0017): visas bara
      * på det första kortet i passet vars yta har en ytreferens, så att referensen läses som en

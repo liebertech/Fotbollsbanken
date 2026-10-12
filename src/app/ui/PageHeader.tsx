@@ -17,6 +17,10 @@ interface PageHeaderProps {
   /**
    * Flyttar fokus till rubriken när vyn visas, som i bytesvyn (skisser/04-byt-ovning.md).
    * Rubriken får då `tabIndex={-1}`, så att den kan ta fokus utan att hamna i tabbordningen.
+   *
+   * **Värdet ska vara en konstant för vyn** (säkerhetsgranskningen av den visuella designen,
+   * F1). Byts det medan vyn visas, monteras rubriken om och fokus kan flyttas utan att
+   * ledaren gjort något. Rubrikens text får ändras: fokus flyttas bara när rubriken monteras.
    */
   focusHeading?: boolean;
   /** Det som står före rubriken i bandet, till exempel en tillbaka-knapp. */
