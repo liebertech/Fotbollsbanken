@@ -90,6 +90,11 @@ type SketchObject = Planskissdata['objekt'][number];
 const LABEL_SIZE = 0.6;
 /** En ruta eller zon vars båda sidor är högst så här många `D` räknas som en symbol. */
 const SMALL_RECT = 2;
+/**
+ * Gräsrandens bredd som andel av bildens bredd: 9 enheter av 120 i referensskissen
+ * (designsystem.md avsnitt 10). Ränderna bär ingen information.
+ */
+const GRASS_STRIPE_SHARE = 0.075;
 
 /** Rutan runt ett mål: stolparna och nätet bakom mållinjen. */
 function goalBox(
@@ -247,6 +252,7 @@ export function Planskiss({
     wavePoints: wavePointBudget(
       (skiss.rorelser ?? []).filter((item) => item.typ === 'dribbling').length,
     ),
+    stripe: (drawn.langd + 2 * MARGIN) * GRASS_STRIPE_SHARE,
   };
   const titleId = `${instansId}-titel`;
   const descId = `${instansId}-beskrivning`;
@@ -503,6 +509,7 @@ export function Planskiss({
     });
   }
 
+  const bleed = Math.max(drawn.langd, drawn.bredd) + 2 * MARGIN;
   const viewBox = [
     u(-MARGIN),
     u(-MARGIN),
@@ -520,7 +527,28 @@ export function Planskiss({
       <title id={titleId}>{sketchTitle(titel)}</title>
       <desc id={descId}>{sketchDescription(skiss, frame, players)}</desc>
       {patternDefs(ctx, usedPatterns(skiss))}
+      {/* Marginalen runt ytan är gräs i planeringsläget, så att vita linjer, köer och mål
+          utanför ytan syns. Den räcker en hel bildbredd utanför bildytan, så att den också
+          fyller miniatyrens ruta när skissens proportioner inte är 4:3 (SVG:n klipper vid
+          sin egen kant). I planläget och utskriften ritas den inte (designsystem.md 10). */}
+      <rect
+        className={styles.marginal}
+        x={u(-MARGIN - bleed)}
+        y={u(-MARGIN - bleed)}
+        width={u(drawn.langd + 2 * MARGIN + 2 * bleed)}
+        height={u(drawn.bredd + 2 * MARGIN + 2 * bleed)}
+      />
       <rect className={styles.yta} x={0} y={0} width={u(drawn.langd)} height={u(drawn.bredd)} />
+      {/* Ränderna ligger ovanpå den enfärgade ytan, så att mönstrets skarvar aldrig släpper
+          igenom bakgrunden. De ritas bara på gräset, inte i planläget eller utskriften. */}
+      <rect
+        className={styles.rander}
+        x={0}
+        y={0}
+        width={u(drawn.langd)}
+        height={u(drawn.bredd)}
+        fill={`url(#${ctx.ids.grass})`}
+      />
       <g>{layers.back}</g>
       <g>{layers.lines}</g>
       <g>{layers.front}</g>

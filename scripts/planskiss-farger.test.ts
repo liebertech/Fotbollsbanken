@@ -21,7 +21,14 @@ function block(selector: string, start = 0): string {
 }
 
 function variables(css: string): string[] {
-  return [...css.matchAll(/(--skiss-[a-z-]+):/g)].map((match) => match[1] ?? '').sort();
+  return [...css.matchAll(/(--skiss-[a-z0-9-]+):/g)].map((match) => match[1] ?? '').sort();
+}
+
+/** Variabelns värde i ett block, utan blanksteg. */
+function value(css: string, name: string): string {
+  const match = new RegExp(`${name}:\\s*([^;]+);`).exec(css);
+  expect(match, `${name} saknas`).not.toBeNull();
+  return match?.[1]?.trim() ?? '';
 }
 
 describe('färgerna i planskissen', () => {
@@ -31,7 +38,7 @@ describe('färgerna i planskissen', () => {
     );
     expect(declarations.length).toBeGreaterThan(20);
     for (const value of declarations) {
-      expect(value).toMatch(/^(none|var\(--skiss-[a-z-]+\))$/);
+      expect(value).toMatch(/^(none|var\(--skiss-[a-z0-9-]+\))$/);
     }
   });
 
@@ -43,9 +50,53 @@ describe('färgerna i planskissen', () => {
     expect(dark).toEqual(light);
   });
 
-  it('ljust och mörkt läge följer appens färgtokens', () => {
-    expect(block('.skiss')).toContain('var(--color-text');
-    expect(block('.skiss')).toContain('var(--color-primary');
+  it('planeringsläget har gräsmattans egna värden (designsystem.md avsnitt 10)', () => {
+    const darkStart = CSS.indexOf('@media (prefers-color-scheme: dark)');
+    const expected = {
+      light: { '--skiss-yta': '#3e8e4f', '--skiss-yta-2': '#46995a' },
+      dark: { '--skiss-yta': '#357847', '--skiss-yta-2': '#3b8350' },
+    };
+    for (const [mode, css] of [
+      ['light', block('.skiss')],
+      ['dark', block('.skiss', darkStart)],
+    ] as const) {
+      for (const [name, colour] of Object.entries(expected[mode])) {
+        expect(value(css, name)).toBe(colour);
+      }
+      expect(value(css, '--skiss-linje')).toBe('#ffffff');
+      expect(value(css, '--skiss-lag-a')).toBe('#ffd23f');
+      expect(value(css, '--skiss-lag-a-kant')).toBe('#14231a');
+      expect(value(css, '--skiss-kon')).toBe('#ff8a3d');
+      expect(value(css, '--skiss-text')).toBe('#14231a');
+      expect(value(css, '--skiss-halo')).toBe('#ffffff');
+      expect(value(css, '--skiss-marginal')).toBe('var(--skiss-yta)');
+    }
+  });
+
+  it('planläget och utskriften ritas som förut: en färg på ytan, ingen marginal', () => {
+    const blocks = [
+      block('.planlage'),
+      block(
+        '.planlage',
+        CSS.indexOf('@media (prefers-color-scheme: dark)', CSS.indexOf('.planlage {')),
+      ),
+      block('.utskrift'),
+      block('.skiss', CSS.indexOf('@media print')),
+    ];
+    for (const css of blocks) {
+      expect(value(css, '--skiss-yta-2')).toBe(value(css, '--skiss-yta'));
+      expect(value(css, '--skiss-yta')).toBe(value(css, '--skiss-bakgrund'));
+      expect(value(css, '--skiss-halo')).toBe(value(css, '--skiss-bakgrund'));
+      expect(value(css, '--skiss-lag-a-kant')).toBe(value(css, '--skiss-linje'));
+      expect(value(css, '--skiss-lag-a-kant')).toBe(value(css, '--skiss-lag-a'));
+      expect(value(css, '--skiss-marginal')).toBe('none');
+    }
+  });
+
+  it('kanterna och halon som bara hör till gräset gäller inte planläget eller utskriften', () => {
+    const screen = CSS.slice(CSS.indexOf('@media screen'));
+    expect(screen).toContain('.skiss:not(.planlage):not(.utskrift) .kon');
+    expect(screen).toContain('.skiss:not(.planlage):not(.utskrift) .etikettPaOfylld');
   });
 
   it('planläget, utskriften och utskriftsmediet sätter alla variabler', () => {
