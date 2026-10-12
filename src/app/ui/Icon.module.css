@@ -1,0 +1,6 @@
+/* Ikonerna visas i 1,25 em, 20 px vid 16 px brödtext (designsystem.md avsnitt 6.11). */
+.icon {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+}

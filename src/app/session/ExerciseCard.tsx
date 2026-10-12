@@ -178,7 +178,9 @@ export function ExerciseCard({
       {confirmation !== null && <p className={styles.confirmation}>{confirmation}</p>}
 
       {/* Miniatyr som fälls ut till normal storlek (designsystem.md avsnitt 7, berättelse 07). */}
-      <KortSkiss exercise={exercise} format={format} layout={layout} placeKey={placeKey} />
+      <div className={styles.sketch}>
+        <KortSkiss exercise={exercise} format={format} layout={layout} placeKey={placeKey} />
+      </div>
 
       <p className={styles.purpose}>{exercise.syfte}</p>
 

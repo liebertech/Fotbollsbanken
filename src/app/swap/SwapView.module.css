@@ -15,31 +15,33 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  font-weight: 700;
 }
 
 .searchInput {
   min-height: var(--tap-target);
   padding: 0 var(--space-3);
-  border: 1px solid var(--color-text-muted);
-  border-radius: var(--radius);
-  background: var(--color-bg);
+  border: 2px solid var(--color-field-border);
+  border-radius: var(--radius-field);
+  background: var(--color-surface);
+  font-weight: 400;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
 .sectionHeading {
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -51,14 +53,16 @@
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border: 2px solid var(--color-card-border);
+  border-radius: var(--radius-card);
   background: var(--color-surface);
+  box-shadow: 0 2px 0 var(--color-card-border);
 }
 
 .name {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin: 0;
 }
 
@@ -69,7 +73,7 @@
 
 .figures {
   color: var(--color-text-muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 .none {
@@ -82,36 +86,42 @@
   margin: 0;
 }
 
+/* Knappar (designsystem.md avsnitt 6.1): 16 px radie, sekundär med 2 px kant i fältkantens
+   färg och primär med en markerad undre kant. */
 .back,
 .choose,
 .primary {
   min-height: var(--tap-target);
   min-width: var(--tap-target);
   padding: 0 var(--space-4);
-  border-radius: var(--radius);
-  font-weight: 600;
+  border-radius: var(--radius-card);
+  font-weight: 700;
   cursor: pointer;
 }
 
+/* Tillbaka ligger i sidhuvudet, med pilen och texten, aldrig bara pilen (avsnitt 6.10). */
 .back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   align-self: flex-start;
-  margin-top: var(--space-4);
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-on-header);
   background: transparent;
-  color: var(--color-primary);
+  color: var(--color-on-header);
 }
 
 /* Sekundär: listan har många "Välj denna", och högst en primärknapp ska synas samtidigt
    (designsystem.md avsnitt 6.1). */
 .choose {
   align-self: flex-end;
-  border: 1px solid var(--color-primary);
+  border: 2px solid var(--color-field-border);
   background: transparent;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .primary {
   border: 0;
   background: var(--color-primary);
   color: var(--color-on-primary);
+  box-shadow: 0 3px 0 var(--color-primary-edge);
 }

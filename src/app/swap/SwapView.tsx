@@ -6,12 +6,13 @@
  * Klubbens egna övningar (R-106) kommer med inkrement 4, så här finns bara bankens sektion.
  */
 import { useId, useMemo, useState } from 'react';
-import { useFocusOnMount } from '../fokus/useFocusOnMount.ts';
 import { swapOptionsWithLayout } from '../../regelmotor/index.ts';
 import type { BankExercise, ItemRef, Session } from '../../regelmotor/index.ts';
 import { KortSkiss } from '../planskiss/KortSkiss.tsx';
 import { FOCUS_AREA_NAMES, PART_NAMES, stationLabel } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
+import { Icon } from '../ui/Icon.tsx';
+import { PageHeader } from '../ui/PageHeader.tsx';
 import styles from './SwapView.module.css';
 
 interface SwapViewProps {
@@ -70,7 +71,6 @@ function matches(exercise: BankExercise, query: string): boolean {
 
 export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewProps) {
   const texts = TEXTS.swap;
-  const focusOnMount = useFocusOnMount();
   const options = useMemo(
     () => swapOptionsWithLayout(session, target, bank),
     [session, target, bank],
@@ -85,19 +85,17 @@ export function SwapView({ session, target, bank, onChoose, onBack }: SwapViewPr
 
   return (
     <div className={styles.view}>
-      <button className={styles.back} type="button" onClick={onBack}>
-        <span aria-hidden="true">← </span>
-        {texts.back}
-      </button>
-
       {/*
        * Vyn byts när ledaren trycker "Byt övning", och fokus får inte bli kvar på en knapp som
        * inte längre finns. Fokus flyttas till vyns rubrik, så att en skärmläsare hör titeln
        * först (skisser/04-byt-ovning.md, säkerhetsgranskningen av inkrement 2b).
        */}
-      <h1 tabIndex={-1} ref={focusOnMount}>
-        {fill(texts.heading, { part: replaced.part })}
-      </h1>
+      <PageHeader heading={fill(texts.heading, { part: replaced.part })} focusHeading>
+        <button className={styles.back} type="button" onClick={onBack}>
+          <Icon name="back" />
+          {texts.back}
+        </button>
+      </PageHeader>
       <p className={styles.replacing}>{replaced.text}</p>
 
       {options.length === 0 ? (

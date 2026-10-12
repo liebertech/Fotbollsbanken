@@ -1,5 +1,5 @@
 /*
- * Designtokens och grundstilar (docs/design/designsystem.md).
+ * Designtokens och grundstilar (docs/design/designsystem.md), riktning A, Gräsmattan.
  *
  * Ljust läge är förval och mörkt läge följer enhetens systeminställning (avsnitt 1).
  * Planlägets eget tema hör till inkrement 5 och finns inte här.
@@ -7,16 +7,27 @@
 
 :root {
   /* Avsnitt 2.1, ljust läge. */
-  --color-bg: #ffffff;
-  --color-surface: #f4f6f4;
-  --color-text: #1a1a1a;
-  --color-text-muted: #595959;
+  --color-bg: #f4f7ee;
+  --color-surface: #ffffff;
+  --color-text: #14231a;
+  --color-text-muted: #46564b;
   --color-primary: #0b6b3a;
+  --color-primary-edge: #07502a;
   --color-on-primary: #ffffff;
+  --color-accent: #ffd23f;
+  --color-on-accent: #14231a;
+  --color-header: #0b5a31;
+  --color-on-header: #ffffff;
   --color-error: #b3261e;
-  --color-warning-bg: #fff6da;
-  --color-warning-text: #6b4300;
-  --color-border: #d6d9d6;
+  --color-warning-bg: #fff1c2;
+  --color-warning-text: #5c3a00;
+  --color-warning-edge: #e9c453;
+  /* Fält, val-piller och sekundärknappar: minst 3:1 mot kort och bakgrund (WCAG 1.4.11). */
+  --color-field-border: #7c8f80;
+  /* Kort och dekor. Kortet avgränsas också av skuggan och innehållet (avsnitt 6.3). */
+  --color-card-border: #c9d3c4;
+  --color-selected-bg: #0b5a31;
+  --color-selected-text: #ffffff;
   --color-focus: #0b6b3a;
 
   /* Avsnitt 4: basenheten är 8 px. */
@@ -30,24 +41,36 @@
   /* Avsnitt 5: minsta träffyta. */
   --tap-target: 48px;
 
+  /* Avsnitt 4: hörnradierna är dekor och påverkar inga träffytor. */
   --radius: 8px;
+  --radius-field: 12px;
+  --radius-notice: 14px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
 
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Avsnitt 2.2, mörkt läge. */
-    --color-bg: #121212;
-    --color-surface: #1e2620;
-    --color-text: #f2f2f2;
-    --color-text-muted: #c7c7c7;
+    /* Avsnitt 2.2, mörkt läge. Accenten är densamma i båda lägena. */
+    --color-bg: #0d1a12;
+    --color-surface: #16271c;
+    --color-text: #eef4ea;
+    --color-text-muted: #b9c7bc;
     --color-primary: #57c98a;
-    --color-on-primary: #121212;
-    --color-error: #e4685d;
+    --color-primary-edge: #57c98a;
+    --color-on-primary: #0d1a12;
+    --color-header: #123422;
+    --color-on-header: #eef4ea;
+    --color-error: #f08a80;
     --color-warning-bg: #3a2e10;
-    --color-warning-text: #f5d98a;
-    --color-border: #3a423c;
+    --color-warning-text: #ffe08a;
+    --color-warning-edge: #6b5518;
+    --color-field-border: #6f8a76;
+    --color-card-border: #2c4533;
+    --color-selected-bg: #57c98a;
+    --color-selected-text: #0d1a12;
     --color-focus: #57c98a;
   }
 }
@@ -56,10 +79,17 @@
   box-sizing: border-box;
 }
 
+/* Den fasta knappraden längst ner får aldrig skymma det som har fokus (WCAG 2.4.11,
+   designsystem.md avsnitt 6.10). I rem, så att avståndet växer med textstorleken. */
+html {
+  scroll-padding-bottom: 6.5rem;
+}
+
 body {
   margin: 0;
   /* Avsnitt 3: systemets egna typsnitt, 16 px brödtext, radavstånd minst 1,5. */
   font-family:
+    ui-rounded,
     system-ui,
     -apple-system,
     'Segoe UI',
@@ -71,13 +101,17 @@ body {
   background: var(--color-bg);
 }
 
+/* Avsnitt 3: vynamn 32 px/800 och delnamn 18 px/800. Versaler sätts per komponent. */
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
   margin: 0 0 var(--space-2);
 }
 
 h2 {
   font-size: 1.125rem;
+  font-weight: 800;
   margin: 0;
 }
 
