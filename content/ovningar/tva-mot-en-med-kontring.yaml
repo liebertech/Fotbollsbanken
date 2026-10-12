@@ -1,7 +1,8 @@
 schema: 1
 id: tva-mot-en-med-kontring
 namn: Två mot en med kontring
-syfte: Spelarna ska utnyttja överläget som anfallare, och som försvarare vinna bollen och driva ut den snabbt.
+syfte: Spelarna ska utnyttja överläget som anfallare, och som försvarare vinna bollen och driva ut
+  den snabbt.
 beskrivning: |
   Ytan är 14 x 10 meter med en startlinje vid ena kortsidan och ett småmål vid den andra. Två
   anfallare startar med boll vid startlinjen och anfaller målet. Försvararen startar framför målet.
@@ -73,7 +74,8 @@ varianter:
     konportar på startlinjen, en vid varje hörn, i stället för över hela linjen.
 anpassning:
   fler_spelare: Bygg en yta till bredvid med samma mått. Sex ytor ryms på en kvarts plan.
-  udda_antal: Vid fyra i gruppen väntar en spelare vid startlinjen utanför ytan. Efter varje försök går försvararen dit och väntar, och den som väntade går in som anfallare.
+  udda_antal: Vid fyra i gruppen väntar en spelare vid startlinjen utanför ytan. Efter varje försök
+    går försvararen dit och väntar, och den som väntade går in som anfallare.
   ledare: Övningen är självgående när rotationen är visad en gång.
 planskiss:
   version: 1
@@ -82,8 +84,8 @@ planskiss:
     bredd: 10
   beskrivning: >-
     Yta 14 x 10 meter med en startlinje till vänster och ett småmål till höger. Två anfallare (A)
-    startar med boll, försvararen (F) står framför målet. Vid fyra spelare väntar den fjärde
-    utanför startlinjen.
+    startar med boll, försvararen (F) står framför målet. Vid fyra spelare väntar den fjärde utanför
+    startlinjen.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 14, bredd: 10, stil: heldragen }
     - { typ: markering, form: linje, x: 0, y: 0, till: { x: 0, y: 10 } }
@@ -102,7 +104,7 @@ planskiss:
     koer:
       - { vid: a2, riktning: 180, avstand: 3, etikett: Väntar vid linjen }
 kalla: Egen övning, inspirerad av den allmänt kända övningen två mot en med kontring.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -112,18 +114,22 @@ granskning:
       kontring när försvararen vinner bollen. Både Öva och Spelövning är rätt (regel 9 i
       plan-omgang-7.md). Omställning och försvarsspel är R och spelbarhet K för 8-9 år, och
       spelbarheten är det som coachas: anfallaren utan boll ställer sig så att passningen går förbi
-      försvararen. Yta: 140 kvadratmeter för de tre som är inne ger 46,7 per spelare, över golvet
-      25 och 4 procent över taket 45. Den fjärde väntar utanför ytan och räknas inte. Sex ytor
-      ryms på kvarts plan, också när de läggs ut (3 x 2). Skottet i skissen tas från 5,4 meter
-      mot ett småmål, och kön står 1,5 meter utanför startlinjen. Rättat: 1. Rotationen gick inte
-      ihop med fyra spelare: både försvararen och den som väntade gick in som anfallare, så det
-      blev tre anfallare. Nu går försvararen till startlinjen och väntar när gruppen är fyra. Jag
-      har också bytt "den som gjorde mål eller tappade bollen" mot "den som sist hade bollen", så
-      att rotationen gäller också när ett skott går utanför, och skrivit vad som händer när
-      anfallarna vinner tillbaka bollen. Felet fanns redan i min plan. 2. Planens nivå 3 med tre
-      sekunder att avsluta går inte: 14 meter med boll och en passning tar 4-6 sekunder för en
-      8-9-åring. Nu fem sekunder. 3. Kontringen till ett av två småmål krävde mål som inte fanns i
-      materialet. Nu går den genom en av två konportar på startlinjen, och två koner är tillagda.
-      4. Coachningspunkten "kör bollen ut" kunde läsas som ut ur ytan. Ytreferensen ungefär en
-      fjärdedel av stora planens straffområde stämmer (140 mot 165 kvadratmeter, 15 procent
-      mindre), som för de godkända övningarna på 15 x 10.
+      försvararen. Yta: 140 kvadratmeter för de tre som är inne ger 46,7 per spelare, över golvet 25
+      och 4 procent över taket 45. Den fjärde väntar utanför ytan och räknas inte. Sex ytor ryms på
+      kvarts plan, också när de läggs ut (3 x 2). Skottet i skissen tas från 5,4 meter mot ett
+      småmål, och kön står 1,5 meter utanför startlinjen. Rättat: 1. Rotationen gick inte ihop med
+      fyra spelare: både försvararen och den som väntade gick in som anfallare, så det blev tre
+      anfallare. Nu går försvararen till startlinjen och väntar när gruppen är fyra. Jag har också
+      bytt "den som gjorde mål eller tappade bollen" mot "den som sist hade bollen", så att
+      rotationen gäller också när ett skott går utanför, och skrivit vad som händer när anfallarna
+      vinner tillbaka bollen. Felet fanns redan i min plan. 2. Planens nivå 3 med tre sekunder att
+      avsluta går inte: 14 meter med boll och en passning tar 4-6 sekunder för en 8-9-åring. Nu fem
+      sekunder. 3. Kontringen till ett av två småmål krävde mål som inte fanns i materialet. Nu går
+      den genom en av två konportar på startlinjen, och två koner är tillagda. 4. Coachningspunkten
+      "kör bollen ut" kunde läsas som ut ur ytan. Ytreferensen ungefär en fjärdedel av stora planens
+      straffområde stämmer (140 mot 165 kvadratmeter, 15 procent mindre), som för de godkända
+      övningarna på 15 x 10.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #45."

@@ -70,8 +70,7 @@ coachningspunkter:
   - Skjut lågt och hårt i hörnet.
 varianter:
   lattare: Alla tre varianterna spelas utan mur, och skytten får ta en extra touch innan skottet.
-  svarare: En halvaktiv försvarare står i straffområdet, och gruppen väljer variant tyst med ett
-    tecken.
+  svarare: En halvaktiv försvarare står i straffområdet, och gruppen väljer variant tyst med ett tecken.
 anpassning:
   fler_spelare: Bygg en andra yta med eget mål bredvid. Två grupper ryms på en kvarts plan.
   udda_antal: Spelar ingen roll. Den extra spelaren ställer sig i kön och går in när det blir hens tur.
@@ -83,8 +82,8 @@ planskiss:
     bredd: 20
   beskrivning: >-
     Yta 30 x 20 meter med ett mål och en målvakt till höger. Kort hörna längs marken: slagaren i
-    hörnet spelar till en mottagare, som lägger bollen bakåt till en avslutare som skjuter från minst
-    tio meter. Kön står utanför sidlinjen bakom slagaren.
+    hörnet spelar till en mottagare, som lägger bollen bakåt till en avslutare som skjuter från
+    minst tio meter. Kön står utanför sidlinjen bakom slagaren.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 20, stil: streckad }
     - { id: mal-b, typ: mal, x: 30, y: 10, storlek: eget, bredd: 5, riktning: vanster }
@@ -103,7 +102,7 @@ planskiss:
     koer:
       - { vid: ko1, riktning: 180, avstand: 1.5, etikett: Kö bakom slagaren }
 kalla: Egen övning, inspirerad av allmänt kända övningar för fasta situationer.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -111,18 +110,22 @@ granskning:
     kommentar: >-
       Håller, efter fyra småfel som jag har rättat själv. Tre fasta situationer längs marken med
       avslut mot målvakt från minst 10 meter, utan höga bollar och utan nick (regel 18, R-080).
-      Fasta situationer är R för 10-12 år, och märkningen 5mot5 är rätt (F6). Målvakten är
-      frivillig och har handskar. Yta: 600 kvadratmeter ger 66,7 per spelare vid nio, över golvet
-      15 utan motståndare. Rättat: 1. Inkastet i variant ett beskrevs som ett kast längs marken
-      och en vägg där mottagaren både passade och avslutade. Nu landar kastet vid mottagarens
-      fötter och mottagaren lägger till avslutaren, med samma tre roller som de andra varianterna.
-      I 5 mot 5 finns inget inkast, så det står nu att det då tas som en passning från
-      sidlinjen. 2. Organisation sa tre eller fyra i kön, men med fem spelare är kön en och med
-      nio fem. Nu en till fem. Fem är en över regel 17, och det godtar jag: varje spelare är med i
-      tre försök i rad, så väntan blir ungefär fem korta försök. 3. 600 / 5 = 120 kvadratmeter är
-      12 procent över taket 107, och skälet saknades (regel 13). 4. Skissen visade en kort hörna
-      där slagaren stod 4 meter från hörnet, och kön stod på sidlinjen. Nu står slagaren i hörnet,
-      mottagaren 5,5 meter bort och avslutaren 11 meter från målet, och kön står 1,5 meter utanför
-      sidlinjen och ryms med fem. Ytreferensen ungefär tre fjärdedelar av stora planens
-      straffområde, några steg djupare godtas: målet står på kortsidan, men referensen jämför bara
-      storlek (konvention 2), som för de fyra övningarna vid ett mål i omgång 6.
+      Fasta situationer är R för 10-12 år, och märkningen 5mot5 är rätt (F6). Målvakten är frivillig
+      och har handskar. Yta: 600 kvadratmeter ger 66,7 per spelare vid nio, över golvet 15 utan
+      motståndare. Rättat: 1. Inkastet i variant ett beskrevs som ett kast längs marken och en vägg
+      där mottagaren både passade och avslutade. Nu landar kastet vid mottagarens fötter och
+      mottagaren lägger till avslutaren, med samma tre roller som de andra varianterna. I 5 mot 5
+      finns inget inkast, så det står nu att det då tas som en passning från sidlinjen. 2.
+      Organisation sa tre eller fyra i kön, men med fem spelare är kön en och med nio fem. Nu en
+      till fem. Fem är en över regel 17, och det godtar jag: varje spelare är med i tre försök i
+      rad, så väntan blir ungefär fem korta försök. 3. 600 / 5 = 120 kvadratmeter är 12 procent över
+      taket 107, och skälet saknades (regel 13). 4. Skissen visade en kort hörna där slagaren stod 4
+      meter från hörnet, och kön stod på sidlinjen. Nu står slagaren i hörnet, mottagaren 5,5 meter
+      bort och avslutaren 11 meter från målet, och kön står 1,5 meter utanför sidlinjen och ryms med
+      fem. Ytreferensen ungefär tre fjärdedelar av stora planens straffområde, några steg djupare
+      godtas: målet står på kortsidan, men referensen jämför bara storlek (konvention 2), som för de
+      fyra övningarna vid ett mål i omgång 6.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #45."

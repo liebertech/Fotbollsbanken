@@ -62,7 +62,8 @@ coachningspunkter:
   - Först fram skyddar bollen med kroppen innan skottet.
   - Den som kommer sist försvarar direkt, utan att vänta.
 varianter:
-  lattare: Båda startar stående med blicken mot bollen, och den som kom sist väntar en sekund innan hen får försvara.
+  lattare: Båda startar stående med blicken mot bollen, och den som kom sist väntar en sekund innan
+    hen får försvara.
   svarare: Start med ryggen mot bollen, och den som är först har högst åtta sekunder på sig att göra mål.
 anpassning:
   fler_spelare: Lägg till fler ytor med par bredvid varandra, tio par ryms på en kvarts plan.
@@ -80,8 +81,8 @@ planskiss:
   beskrivning: >-
     Yta 10 x 6 meter med ett litet mål på var kortsida. Paret står sida vid sida vid nedre
     långsidan, och bollen ligger i mitten. Båda springer till bollen, och den som kommer först
-    driver mot sitt mål och skjuter. Vid udda antal väntar en tredje bakom paret, utanför ytan,
-    med en reservboll.
+    driver mot sitt mål och skjuter. Vid udda antal väntar en tredje bakom paret, utanför ytan, med
+    en reservboll.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 10, bredd: 6, stil: streckad }
     - { id: mal-a, typ: mal, x: 0, y: 3, storlek: smamal, riktning: hoger }
@@ -99,31 +100,35 @@ planskiss:
     koer:
       - { vid: sp-1, riktning: 90, avstand: 1.5, etikett: Väntar med ny boll }
 kalla: Egen övning, inspirerad av vanliga startlekar där två barn tävlar om samma boll.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-09
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Håller, efter tre småfel som jag har rättat själv. Kapplöpningen till bollen och starten i
-      olika lägen är leken, och den korta duellen efteråt ger ett mot ett och avslut. Snabbhet,
-      ett mot ett och avslut är K eller R för 6-7 år och hör ihop med syftet. Bara Spelövning (F1
-      i plan-omgang-8.md). Arbete och vila i siffror: högst cirka 15 sekunder duell och cirka 30
+      olika lägen är leken, och den korta duellen efteråt ger ett mot ett och avslut. Snabbhet, ett
+      mot ett och avslut är K eller R för 6-7 år och hör ihop med syftet. Bara Spelövning (F1 i
+      plan-omgang-8.md). Arbete och vila i siffror: högst cirka 15 sekunder duell och cirka 30
       sekunders vila (regel 17). Paret startar sida vid sida (F6). Yta: 60 kvadratmeter ger 30 per
-      spelare, 20 procent över taket 25, för startsträckan. Tio par ryms på kvarts plan (13 x 9 x
-      10 = 1 170). Nivå 3 med start med ryggen mot bollen och högst åtta sekunder ger kortare tid.
-      Udda antal: författarens avvikelse från planen godtas. Den tredje väntar bakom paret,
-      utanför samma långsida, eftersom en kö högst kan ligga 5 meter bort. Där står hen utanför
-      ytan och utanför skottlinjerna, och paret springer bort från hen. Rotationen är entydig: efter
-      första duellen går den som kom sist till bollen ut, och sedan går alltid den ut som har
-      spelat två dueller i rad. Alla spelar två dueller och vilar en. Den som vilar står utanför
-      i under en minut, och det godtar jag i en snabbhetsövning, där vilan ändå ska vara minst
-      dubbelt så lång som arbetet. Rättat: 1. Texten sa inget om att spela på
-      bollen eller varför paret står sida vid sida. Det står nu i organisation (regel 16). 2. Skälet
-      till ytan över taket stod inte i texten. Det står nu i organisation. 3. Löppilarna slutade 0,8
-      meter från varandra och 0,6 från bollen, och skissen hoppade från kapplöpningen direkt till
-      ett skott 3 meter bort. Nu slutar löpningarna 1,4 meter isär, en dribbling visar att den som
-      kom först driver mot sitt mål, och skottet går från 2 meter. Skissens beskrivning är
-      omskriven så att den säger samma sak och håller sig under 300 tecken. Ingen ytreferens:
-      duell med startavstånd (ytreferenser.md, avsnitt 4). Namnet: jag hittade ingen övning med
-      namnet i SvFF:s övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar.
+      spelare, 20 procent över taket 25, för startsträckan. Tio par ryms på kvarts plan (13 x 9 x 10
+      = 1 170). Nivå 3 med start med ryggen mot bollen och högst åtta sekunder ger kortare tid. Udda
+      antal: författarens avvikelse från planen godtas. Den tredje väntar bakom paret, utanför samma
+      långsida, eftersom en kö högst kan ligga 5 meter bort. Där står hen utanför ytan och utanför
+      skottlinjerna, och paret springer bort från hen. Rotationen är entydig: efter första duellen
+      går den som kom sist till bollen ut, och sedan går alltid den ut som har spelat två dueller i
+      rad. Alla spelar två dueller och vilar en. Den som vilar står utanför i under en minut, och
+      det godtar jag i en snabbhetsövning, där vilan ändå ska vara minst dubbelt så lång som
+      arbetet. Rättat: 1. Texten sa inget om att spela på bollen eller varför paret står sida vid
+      sida. Det står nu i organisation (regel 16). 2. Skälet till ytan över taket stod inte i
+      texten. Det står nu i organisation. 3. Löppilarna slutade 0,8 meter från varandra och 0,6 från
+      bollen, och skissen hoppade från kapplöpningen direkt till ett skott 3 meter bort. Nu slutar
+      löpningarna 1,4 meter isär, en dribbling visar att den som kom först driver mot sitt mål, och
+      skottet går från 2 meter. Skissens beskrivning är omskriven så att den säger samma sak och
+      håller sig under 300 tecken. Ingen ytreferens: duell med startavstånd (ytreferenser.md,
+      avsnitt 4). Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid sökning
+      2026-10-09, men banken är bara delvis sökbar.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #47."

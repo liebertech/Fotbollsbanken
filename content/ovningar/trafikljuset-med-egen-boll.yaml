@@ -1,7 +1,8 @@
 schema: 1
 id: trafikljuset-med-egen-boll
 namn: Trafikljuset med egen boll
-syfte: Spelarna ska hålla bollen nära foten med båda fötterna, reagera på signal och titta upp medan de driver.
+syfte: Spelarna ska hålla bollen nära foten med båda fötterna, reagera på signal och titta upp medan
+  de driver.
 beskrivning: |
   Alla har varsin boll och driver fritt i rutan. Ledaren ropar eller visar en signal. Grönt betyder
   driva i fart. Gult betyder driva sakta med sulan. Rött betyder stoppa bollen och stå på ett ben
@@ -64,8 +65,8 @@ coachningspunkter:
   - Stanna bollen mjukt och stå stadigt på ett ben.
 varianter:
   lattare: Bara de tre färgsignalerna, och ledaren visar dem tydligt med armen.
-  svarare: Signalen visas bara med en färgad kon eller en handrörelse, utan rop. Spelaren byter
-    fot vid varje signal.
+  svarare: Signalen visas bara med en färgad kon eller en handrörelse, utan rop. Spelaren byter fot
+    vid varje signal.
 anpassning:
   fler_spelare: Mer än sexton spelare delas på två rutor med samma mått.
   udda_antal: Spelar ingen roll, eftersom alla har egen boll.
@@ -112,7 +113,7 @@ planskiss:
       - { x: 13, y: 10, lag: neutral }
       - { x: 10, y: 14, lag: neutral }
 kalla: Egen övning, inspirerad av den allmänt kända signalleken Trafikljuset.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -121,12 +122,16 @@ granskning:
       Håller, efter ett småfel i skissen som jag har rättat själv. Signallek med egen boll som ger
       många bollkontakter med båda fötterna, och signalerna rondell, farthinder och backa gör
       koordinationen konkret. Lek, bollkänsla och koordination är K för 8-9 år. Två passdelar är
-      rätt enligt F4 i plan-omgang-7.md: tre signaler i uppvärmningen, fler och svårare i Öva.
-      Nivå 3 där signalen bara visas och foten ska bytas kräver att spelaren tittar upp och väljer,
-      inte bara springer fortare. Yta: 400 kvadratmeter ger 25 per spelare vid sexton, över golvet
-      10 för egen boll. Taket prövas inte (egen boll, ingen jaktlek), och meningen om en mindre
-      ruta, ungefär 12 x 12 meter, för färre än åtta står i organisation (144 / 7 = 20,6). Ledaren
-      står 2,5 meter utanför rutan. Rättat: den tredje spelaren var vänd uppåt med bollen framför
-      sig men drev nedåt till en punkt där en tillagd spelare står. Nu driver hen uppåt, minst 1,7
-      meter från platserna. Ytreferensen en ruta något större än stora planens mittcirkel stämmer
-      med 20 x 20, som i två godkända övningar. Inga skott i skissen.
+      rätt enligt F4 i plan-omgang-7.md: tre signaler i uppvärmningen, fler och svårare i Öva. Nivå
+      3 där signalen bara visas och foten ska bytas kräver att spelaren tittar upp och väljer, inte
+      bara springer fortare. Yta: 400 kvadratmeter ger 25 per spelare vid sexton, över golvet 10 för
+      egen boll. Taket prövas inte (egen boll, ingen jaktlek), och meningen om en mindre ruta,
+      ungefär 12 x 12 meter, för färre än åtta står i organisation (144 / 7 = 20,6). Ledaren står
+      2,5 meter utanför rutan. Rättat: den tredje spelaren var vänd uppåt med bollen framför sig men
+      drev nedåt till en punkt där en tillagd spelare står. Nu driver hen uppåt, minst 1,7 meter
+      från platserna. Ytreferensen en ruta något större än stora planens mittcirkel stämmer med 20 x
+      20, som i två godkända övningar. Inga skott i skissen.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #45."

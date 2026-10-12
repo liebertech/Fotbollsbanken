@@ -103,7 +103,13 @@ planskiss:
     - { typ: passning, fran: { objekt: mv }, till: { objekt: u1 }, ordning: 1 }
     - { typ: lopning, fran: { objekt: p1 }, till: { x: 7, y: 6 }, ordning: 2, etikett: Pressar }
     - { typ: passning, fran: { objekt: u1 }, till: { objekt: u3 }, ordning: 3 }
-    - { typ: passning, fran: { objekt: u3 }, till: { x: 28.5, y: 4.5 }, ordning: 4, etikett: Genom porten }
+    - {
+        typ: passning,
+        fran: { objekt: u3 },
+        till: { x: 28.5, y: 4.5 },
+        ordning: 4,
+        etikett: Genom porten
+      }
   skalning:
     strategi: platser
     platser:
@@ -113,27 +119,31 @@ planskiss:
       - { x: 22, y: 10, lag: a }
       - { x: 12, y: 16, lag: b }
 kalla: Egen övning, inspirerad av allmänt känt uppspel från målvakt mot press.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Håller, efter fyra småfel som jag har rättat själv. Uppbyggnad från målvakten mot press,
-      med en egen startlinje för pressarna som inte bygger på retreatlinjen, så 5, 7 och 9 mot 9
-      är rätt (regel 11). Speluppbyggnad, passning-mottagning och spelbarhet är K för 10-12 år.
-      Målet är 5 meter brett i alla spelformer (regel 12, F9). Nivå 1 med halvaktiva pressare och
-      nivå 3 med lika många pressare som uppspelare är verkliga steg. Yta: 504 kvadratmeter ger
-      50,4 per spelare vid tio och 100,8 vid fem, inom golvet 45 och taket 107. Avvikelsen från
-      planen bekräftas: uppspelslaget har målvakten och tre till fem utespelare, inte två till
-      fyra. Planens tal räckte bara till åtta spelare, och felet var mitt. Fördelningen i
-      beskrivningen är entydig för fem till tio och stämmer med skissens platser: 3+1, 3+2, 4+2,
-      4+3, 5+3 och 5+4 utespelare och pressare. Rättat: 1. Texten sa att pressarna alltid är en
-      färre, men vid udda antal är de två färre. Nu står båda. 2. Rotationen bytte "två pressare"
-      också med fem spelare, där det bara finns en. 3. Konportarna var 3 meter breda i skissen men
-      2 meter i texten. Nu 2 meter, och passningen går genom portens mitt. 4. Den sjunde
-      spelarens plats låg på pressarens startplats, och den nionde 0,9 meter från passningen
-      genom porten. Nu står de på (18, 13) och (22, 10), minst 1,7 meter från rörelserna. Jag har
-      också lagt till att pressarna skjuter utanför konlinjen, alltså från minst 10 meter, så att
-      regel 19 gäller också för kontringen. Ytreferensen ungefär två tredjedelar av stora planens
-      straffområde stämmer (504 mot 445 kvadratmeter, 13 procent större).
+      Håller, efter fyra småfel som jag har rättat själv. Uppbyggnad från målvakten mot press, med
+      en egen startlinje för pressarna som inte bygger på retreatlinjen, så 5, 7 och 9 mot 9 är rätt
+      (regel 11). Speluppbyggnad, passning-mottagning och spelbarhet är K för 10-12 år. Målet är 5
+      meter brett i alla spelformer (regel 12, F9). Nivå 1 med halvaktiva pressare och nivå 3 med
+      lika många pressare som uppspelare är verkliga steg. Yta: 504 kvadratmeter ger 50,4 per
+      spelare vid tio och 100,8 vid fem, inom golvet 45 och taket 107. Avvikelsen från planen
+      bekräftas: uppspelslaget har målvakten och tre till fem utespelare, inte två till fyra.
+      Planens tal räckte bara till åtta spelare, och felet var mitt. Fördelningen i beskrivningen är
+      entydig för fem till tio och stämmer med skissens platser: 3+1, 3+2, 4+2, 4+3, 5+3 och 5+4
+      utespelare och pressare. Rättat: 1. Texten sa att pressarna alltid är en färre, men vid udda
+      antal är de två färre. Nu står båda. 2. Rotationen bytte "två pressare" också med fem spelare,
+      där det bara finns en. 3. Konportarna var 3 meter breda i skissen men 2 meter i texten. Nu 2
+      meter, och passningen går genom portens mitt. 4. Den sjunde spelarens plats låg på pressarens
+      startplats, och den nionde 0,9 meter från passningen genom porten. Nu står de på (18, 13) och
+      (22, 10), minst 1,7 meter från rörelserna. Jag har också lagt till att pressarna skjuter
+      utanför konlinjen, alltså från minst 10 meter, så att regel 19 gäller också för kontringen.
+      Ytreferensen ungefär två tredjedelar av stora planens straffområde stämmer (504 mot 445
+      kvadratmeter, 13 procent större).
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #45."

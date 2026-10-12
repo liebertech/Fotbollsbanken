@@ -1,7 +1,8 @@
 schema: 1
 id: fargjakten
 namn: Färgjakten
-syfte: Spelarna ska reagera på en signal och spurta med bollen nära foten, och vända runt en kon utan att tappa den.
+syfte: Spelarna ska reagera på en signal och spurta med bollen nära foten, och vända runt en kon
+  utan att tappa den.
 beskrivning: |
   Åtta koner i fyra färger står längs sidorna av en ruta om 18 x 18 meter, två av varje färg mitt
   emot varandra på motsatta sidor. Alla driver lugnt med egen boll inne i rutan. Ledaren ropar en
@@ -64,9 +65,11 @@ coachningspunkter:
   - Titta upp när du vänder, så att du ser var de andra är.
 varianter:
   lattare: En färg i taget och inget startläge, bara spurt på signalen.
-  svarare: Signalen visas bara med en kon, utan rop, och två färger ropas i rad med vändning med sulan runt konen.
+  svarare: Signalen visas bara med en kon, utan rop, och två färger ropas i rad med vändning med sulan
+    runt konen.
 anpassning:
-  fler_spelare: Lägg till fler bollar i samma ruta eller en ny ruta bredvid för varje grupp om åtta till sexton spelare.
+  fler_spelare: Lägg till fler bollar i samma ruta eller en ny ruta bredvid för varje grupp om åtta
+    till sexton spelare.
   udda_antal: Spelar ingen roll, varje spelare har sin egen boll.
   ledare: En ledare räcker för att visa färgen och startläget och se att alla rundar konen åt samma håll.
 planskiss:
@@ -115,31 +118,35 @@ planskiss:
       - { x: 9, y: 12, lag: neutral }
       - { x: 6, y: 9, lag: neutral }
 kalla: Egen övning, inspirerad av vanliga signalleker med färger och egen boll.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-09
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Håller, efter tre småfel som jag har rättat själv. En signallek med egen boll där
-      snabbheten övas som reaktion, spurt och vändning med bollen, aldrig som löpning utan boll
-      (F9 i plan-omgang-8.md). Snabbhet, koordination och dribbling är K eller R för 6-7 år, och
+      Håller, efter tre småfel som jag har rättat själv. En signallek med egen boll där snabbheten
+      övas som reaktion, spurt och vändning med bollen, aldrig som löpning utan boll (F9 i
+      plan-omgang-8.md). Snabbhet, koordination och dribbling är K eller R för 6-7 år, och
       startlägena ger koordinationen. Uppvärmning och Öva (F8), och skillnaden mellan dem står i
       beskrivningen. Arbete och vila i siffror: spurt 5-8 sekunder och 20-30 sekunder lugnt driv
       (regel 17). Yta: 324 kvadratmeter ger 20,3 per spelare vid sexton, över golvet 8. Egen boll
       utan motståndare, så taket prövas inte, och den mindre rutan 12 x 12 meter för färre än åtta
-      står i organisation. Två rutor ryms på kvarts plan (21 x 21 x 2 = 882). Nivå 3 med signal
-      bara med en kon, två färger i rad och vändning med sulan ger fler val och svårare teknik.
-      Konernas färger visas bara i texten, eftersom skissformatet inte har färger. Det godtar jag:
-      skissen visar var konerna står, och texten säger vilka som hör ihop. Rättat: 1. Med sexton
-      spelare och två koner per färg rundade åtta barn i full fart samma kon. Nu ropar ledaren två
-      färger på en gång när gruppen är fler än åtta, så att det blir ungefär fyra vid varje kon.
-      2. Det stod att alla rundar konen åt samma håll men inte vilket, och inte vad som ändras
-      efter halva tiden (regel 14). Nu rundas konen först med konen på vänster sida, och efter
-      halva tiden åt andra hållet, så att vändningen görs med den andra foten. 3. De två
-      dribblingarna i skissen gick till koner som inte kunde ha samma färg. Nu står konerna i
-      samma färg mitt emot varandra, och spelare 1 och 3 spurtar till var sin kon i samma färg,
-      uppåt och nedåt, minst 2 meter från platserna som läggs till. Ytreferensen en ruta som rymmer
-      stora planens mittcirkel stämmer exakt (18 x 18). Namnet: jag hittade ingen övning med
-      namnet i SvFF:s övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar. Där
-      finns reaktionsövningar med färgade koner, men formen är allmänt känd och texten här är egen.
+      står i organisation. Två rutor ryms på kvarts plan (21 x 21 x 2 = 882). Nivå 3 med signal bara
+      med en kon, två färger i rad och vändning med sulan ger fler val och svårare teknik. Konernas
+      färger visas bara i texten, eftersom skissformatet inte har färger. Det godtar jag: skissen
+      visar var konerna står, och texten säger vilka som hör ihop. Rättat: 1. Med sexton spelare och
+      två koner per färg rundade åtta barn i full fart samma kon. Nu ropar ledaren två färger på en
+      gång när gruppen är fler än åtta, så att det blir ungefär fyra vid varje kon. 2. Det stod att
+      alla rundar konen åt samma håll men inte vilket, och inte vad som ändras efter halva tiden
+      (regel 14). Nu rundas konen först med konen på vänster sida, och efter halva tiden åt andra
+      hållet, så att vändningen görs med den andra foten. 3. De två dribblingarna i skissen gick
+      till koner som inte kunde ha samma färg. Nu står konerna i samma färg mitt emot varandra, och
+      spelare 1 och 3 spurtar till var sin kon i samma färg, uppåt och nedåt, minst 2 meter från
+      platserna som läggs till. Ytreferensen en ruta som rymmer stora planens mittcirkel stämmer
+      exakt (18 x 18). Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid sökning
+      2026-10-09, men banken är bara delvis sökbar. Där finns reaktionsövningar med färgade koner,
+      men formen är allmänt känd och texten här är egen.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #47."

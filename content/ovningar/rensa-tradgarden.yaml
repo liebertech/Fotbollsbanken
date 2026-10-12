@@ -66,10 +66,12 @@ coachningspunkter:
   - Titta upp, så ser du var det finns plats att passa till.
 varianter:
   lattare: Bollen får stoppas med händerna innan den passas.
-  svarare: Tre konportar, en meter breda, står i den fria zonen, och en boll räknas bara som rensad om den går genom en port. Mottagningen ska föra bollen åt sidan i stället för att stoppa den död.
+  svarare: Tre konportar, en meter breda, står i den fria zonen, och en boll räknas bara som rensad om
+    den går genom en port. Mottagningen ska föra bollen åt sidan i stället för att stoppa den död.
 anpassning:
   fler_spelare: Lägg till en ny yta bredvid för varje grupp om åtta till sexton spelare.
-  udda_antal: Ett lag har en spelare mer, och en spelare byter lag mellan omgångarna så att alla får vara i det mindre laget en gång.
+  udda_antal: Ett lag har en spelare mer, och en spelare byter lag mellan omgångarna så att alla får
+    vara i det mindre laget en gång.
   ledare: En ledare räcker för att ge signalerna "kör" och "stopp" och se att ingen står i den fria zonen.
 planskiss:
   version: 1
@@ -78,8 +80,8 @@ planskiss:
     bredd: 12
   beskrivning: >-
     Yta 18 x 12 meter delad i två halvor med en fri zon mitt emellan där ingen får stå. Fyra
-    spelare, två i varje lag, med en boll var. Alla passar sina bollar längs marken över zonen.
-    Fler spelare fördelas på de två halvorna. Vid udda antal har ett lag en spelare mer.
+    spelare, två i varje lag, med en boll var. Alla passar sina bollar längs marken över zonen. Fler
+    spelare fördelas på de två halvorna. Vid udda antal har ett lag en spelare mer.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 18, bredd: 12, stil: streckad }
     - { typ: zon, x: 7, y: 0, langd: 4, bredd: 12, monster: diagonal, etikett: Fri zon }
@@ -110,7 +112,7 @@ planskiss:
       - { x: 1, y: 10.5, lag: a }
       - { x: 17, y: 10.5, lag: b }
 kalla: Egen övning, inspirerad av vanliga bollekar där två lag skickar bollar över en mittzon.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-09
     av: fotbollsexpert
@@ -118,18 +120,21 @@ granskning:
     kommentar: >-
       Håller, efter ett småfel som jag har rättat själv. En lek med egen boll där alla stoppar och
       passar hela tiden, så bollkontakterna blir många och ingen står i kö. Lek är huvudfokus, så
-      att övningen och lek-med-egen-boll blir paret i Öva i 60-minuterspass (F2 i
-      plan-omgang-8.md), och passning och mottagning är det som görs mest. Alla tre fokus är K
-      eller R för 6-7 år. Uppvärmning och Öva (F8), och skillnaden mellan dem står i
-      beskrivningen. Utan motståndare (F5): ingen kan vinna någon annans boll. Yta: 216
-      kvadratmeter ger 13,5 per spelare vid sexton, över golvet 8. Taket prövas inte, och den
-      mindre ytan 14 x 9 meter för färre än åtta står i organisation. Två grupper ryms på kvarts
-      plan (21 x 15 x 2 = 630). Säkerhet: bara längs marken med insidan, ingen står i den fria
-      zonen, och bollar som stannar där hämtas efter stopp. Nivå 1 med stopp med händerna gör
-      övningen möjlig. Nivå 3 med tre smala portar och mottagning åt sidan ger mindre mål och
-      svårare teknik. Udda antal: ett lag med en spelare mer, och en spelare byter lag mellan
-      omgångarna. Skissen stämmer med texten, och passningarna går minst 1,6 meter från spelare
-      och platser. Rättat: det stod inte vad som ändras efter halva tiden (regel 14). Nu ropar
-      ledaren "byt fot" ibland. Ytreferensen stora planens målområde, dubbelt så djupt stämmer
-      exakt (18 x 12). Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid
-      sökning 2026-10-09, men banken är bara delvis sökbar.
+      att övningen och lek-med-egen-boll blir paret i Öva i 60-minuterspass (F2 i plan-omgang-8.md),
+      och passning och mottagning är det som görs mest. Alla tre fokus är K eller R för 6-7 år.
+      Uppvärmning och Öva (F8), och skillnaden mellan dem står i beskrivningen. Utan motståndare
+      (F5): ingen kan vinna någon annans boll. Yta: 216 kvadratmeter ger 13,5 per spelare vid
+      sexton, över golvet 8. Taket prövas inte, och den mindre ytan 14 x 9 meter för färre än åtta
+      står i organisation. Två grupper ryms på kvarts plan (21 x 15 x 2 = 630). Säkerhet: bara längs
+      marken med insidan, ingen står i den fria zonen, och bollar som stannar där hämtas efter
+      stopp. Nivå 1 med stopp med händerna gör övningen möjlig. Nivå 3 med tre smala portar och
+      mottagning åt sidan ger mindre mål och svårare teknik. Udda antal: ett lag med en spelare mer,
+      och en spelare byter lag mellan omgångarna. Skissen stämmer med texten, och passningarna går
+      minst 1,6 meter från spelare och platser. Rättat: det stod inte vad som ändras efter halva
+      tiden (regel 14). Nu ropar ledaren "byt fot" ibland. Ytreferensen stora planens målområde,
+      dubbelt så djupt stämmer exakt (18 x 12). Namnet: jag hittade ingen övning med namnet i SvFF:s
+      övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #47."

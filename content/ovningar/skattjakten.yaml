@@ -67,8 +67,10 @@ varianter:
   svarare: Boet byts mot en konport, en meter bred, som bollen ska drivas igenom och stoppas bakom. En
     omgång är högst 45 sekunder.
 anpassning:
-  fler_spelare: Lägg till en ny yta bredvid för varje grupp om fyra till åtta spelare, med eget skatt och egna bon.
-  udda_antal: Ett lag har en spelare mer. En spelare byter lag mellan omgångarna så att alla får vara i det mindre laget en gång. Ingen joker.
+  fler_spelare: Lägg till en ny yta bredvid för varje grupp om fyra till åtta spelare, med eget skatt
+    och egna bon.
+  udda_antal: Ett lag har en spelare mer. En spelare byter lag mellan omgångarna så att alla får vara
+    i det mindre laget en gång. Ingen joker.
   ledare: Övningen sköter sig själv. Ledaren ropar signalerna och räknar bollarna tillsammans med lagen.
 planskiss:
   version: 1
@@ -76,9 +78,9 @@ planskiss:
     langd: 14
     bredd: 10
   beskrivning: >-
-    Yta 14 x 10 meter med ett bo om 2 meter på var kortsida och skatten med bollar i en ring mitt
-    på ytan. Fyra spelare, två i varje lag. Lag A har boet till höger och lag B boet till vänster.
-    Fler spelare ställer sig vid sina bon. Vid udda antal har ett lag en spelare mer.
+    Yta 14 x 10 meter med ett bo om 2 meter på var kortsida och skatten med bollar i en ring mitt på
+    ytan. Fyra spelare, två i varje lag. Lag A har boet till höger och lag B boet till vänster. Fler
+    spelare ställer sig vid sina bon. Vid udda antal har ett lag en spelare mer.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 14, bredd: 10, stil: streckad }
     - { typ: zon, x: 0, y: 0, langd: 2, bredd: 10, monster: diagonal, etikett: Bo B }
@@ -107,7 +109,7 @@ planskiss:
       - { x: 11.5, y: 9, lag: a }
       - { x: 2.5, y: 1, lag: b }
 kalla: Egen övning, inspirerad av vanliga bollekar där lag samlar bollar i ett bo.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-09
     av: fotbollsexpert
@@ -118,15 +120,19 @@ granskning:
       bollkänsla och dribbling är K för 6-7 år och hör ihop med syftet. Bara Spelövning (F1 i
       plan-omgang-8.md). Inga bon plundras och ingen vaktar (F7), så lagen går åt var sitt håll från
       skatten. Yta: 140 kvadratmeter ger 17,5 per spelare vid åtta, över golvet 15, och 35 vid fyra,
-      40 procent över taket 25. Skälet står i organisation: med fyra eller fem spelare görs ytan 10 x
-      8 meter (20 och 16 per spelare). Tre grupper ryms på kvarts plan (17 x 13 x 3 = 663). Nivå 3
+      40 procent över taket 25. Skälet står i organisation: med fyra eller fem spelare görs ytan 10
+      x 8 meter (20 och 16 per spelare). Tre grupper ryms på kvarts plan (17 x 13 x 3 = 663). Nivå 3
       med en konport som mål och högst 45 sekunder ger mindre mål och kortare tid. Udda antal: ett
       lag med en spelare mer, och en spelare byter lag mellan omgångarna. Rättat: 1. Regeln efter
       halva tiden, att ingen får gå in i skatten förrän ledaren ropar, var otydlig och gav väntan.
       Nu ligger det bara en boll per spelare i skatten efter halva tiden, vilket ger fler försök att
       vinna en boll. 2. Dribblingarna slutade 0,9 och 1,3 meter från de platser som läggs till i
-      boet (13, 5 och 1, 5), under 1,3 meter (regel 10 i plan-omgang-6.md). Nu slutar de i 12,2,
-      3,7 och 1,8, 6,3, minst 1,4 meter från spelare och platser. Ytreferensen ungefär en
-      fjärdedel av stora planens straffområde stämmer (140 mot 165 kvadratmeter, samma avlånga
-      form). Inga skott i skissen. Namnet: jag hittade ingen övning med namnet i SvFF:s
-      övningsbank vid sökning 2026-10-09, men banken är bara delvis sökbar.
+      boet (13, 5 och 1, 5), under 1,3 meter (regel 10 i plan-omgang-6.md). Nu slutar de i 12,2, 3,7
+      och 1,8, 6,3, minst 1,4 meter från spelare och platser. Ytreferensen ungefär en fjärdedel av
+      stora planens straffområde stämmer (140 mot 165 kvadratmeter, samma avlånga form). Inga skott
+      i skissen. Namnet: jag hittade ingen övning med namnet i SvFF:s övningsbank vid sökning
+      2026-10-09, men banken är bara delvis sökbar.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #47."
