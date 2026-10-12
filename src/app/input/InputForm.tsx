@@ -30,6 +30,7 @@ import {
   LEVEL_NAMES,
 } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
+import { PageHeader } from '../ui/PageHeader.tsx';
 import styles from './InputForm.module.css';
 
 /** Högst tre fokusområden kan kryssas i (R-019). */
@@ -83,7 +84,7 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
         onGenerate();
       }}
     >
-      <h1>{texts.heading}</h1>
+      <PageHeader heading={texts.heading} />
 
       <div className={styles.field}>
         <label className={styles.label} htmlFor="alder">
@@ -125,7 +126,6 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
                 checked={form.spelform === format}
                 onChange={() => onChange(withGameFormat(form, format))}
               />
-              <span aria-hidden="true">{form.spelform === format ? '● ' : ''}</span>
               {GAME_FORMAT_NAMES[format]}
             </label>
           ))}
@@ -150,7 +150,6 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
                 checked={form.niva === level}
                 onChange={() => onChange({ ...form, niva: level })}
               />
-              <span aria-hidden="true">{form.niva === level ? '● ' : ''}</span>
               {LEVEL_NAMES[level]}
             </label>
           ))}
@@ -299,7 +298,6 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
                   checked={form.yta === area}
                   onChange={() => onChange({ ...form, yta: area })}
                 />
-                <span aria-hidden="true">{form.yta === area ? '● ' : ''}</span>
                 {name}
               </label>
             );
@@ -315,9 +313,11 @@ export function InputForm({ form, errors, onChange, onGenerate }: InputFormProps
         </p>
       )}
 
-      <button className={styles.submit} type="submit">
-        {texts.submit}
-      </button>
+      <div className={styles.submitBar}>
+        <button className={styles.submit} type="submit">
+          {texts.submit}
+        </button>
+      </div>
     </form>
   );
 }

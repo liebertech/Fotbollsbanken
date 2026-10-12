@@ -43,7 +43,7 @@ Varning med triangeln används först av senare vyer (säsongsplan, redaktörsk�
 
 Dagens `<h1>` ligger i `InputForm.tsx` (rad 86), `SessionView.tsx` (rad 219), `NoSessionView.tsx` (rad 54) och `SwapView.tsx` (rad 98, med `tabIndex={-1}` och `ref={focusOnMount}`). Alla fyra byter till `PageHeader`:
 
-- Egenskaper: `heading` (texten, oförändrad från `TEXTS`), valfri `headingRef` så att fokus vid mount fungerar som i `SwapView`.
+- Egenskaper: `heading` (texten, oförändrad från `TEXTS`), valfri `focusHeading` så att fokus vid mount fungerar som i `SwapView` (utvecklarens val i stället för `headingRef`, godkänt: komponenten äger själv fokushanteringen), och `children` för en knapp i bandet ("Tillbaka till passet").
 - Utseende enligt `designsystem.md` 6.10: gräsrandat band, boll och "Fotbollsbanken", h1, mittcirkelsdekor och gul list. Dekoren är CSS (`::before`/`::after`), inte innehåll.
 - "Fotbollsbanken" är den enda nya texten. Lägg den i `src/app/text/texts.ts` (`TEXTS.app.name`), inte inbakad i komponenten.
 - Ingen sidscroll vid 390 px och 200 % textförstoring. Dekoren ska klippas (`overflow: hidden`).
@@ -51,12 +51,12 @@ Dagens `<h1>` ligger i `InputForm.tsx` (rad 86), `SessionView.tsx` (rad 219), `N
 
 ## 4. Underlaget: `src/app/input/InputForm.module.css` (senior-systemutvecklare)
 
-Bara CSS, ingen ändring i `InputForm.tsx` eller i texter.
+Mest CSS. `InputForm.tsx` ändras i två små avseenden som CSS inte kan göra: de gamla `●`-tecknen tas bort (✓ ersätter dem) och knappen får en omslutande rad för den fasta knappraden. Inga texter ändras. (Rättat efter granskningen: beskrivningen sade tidigare "bara CSS".)
 
 - `.choice` blir pill (`--radius-pill`), 2 px kant i `--color-field-border`. `.choiceSelected` får `--color-selected-bg`/`--color-selected-text`, ingen kantändring i bredd och ✓ före texten via `::before` (`content: "✓" / ""`, dekorativt).
 - `.number`: 2 px kant i `--color-field-border`, `--radius-field`, `--color-surface` som bakgrund.
 - `.label` 17 px/700. Kryssrutor oförändrade (24 px, `accent-color`), 48 px-raderna är kvar.
-- Fokusgrupperna (`.group`) får en linje i `--color-card-border` ovanför varje grupp och en `▸`/`▾`-markör som CSS (`aria-hidden`, inte i knapptexten, `designsystem.md` 6.7).
+- Fokusgrupperna (`.group`) får en linje i `--color-card-border` ovanför varje grupp men ingen `▸`/`▾`-markör så länge grupperna inte går att fälla ihop (beslut vid granskningen, `designsystem.md` 6.7).
 - Knappen "Generera pass" och den fasta knappraden: se avsnitt 6.
 
 ## 5. Passet och övningskortet (senior-systemutvecklare)

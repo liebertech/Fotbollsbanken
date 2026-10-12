@@ -13,6 +13,7 @@ import {
   LEVEL_NAMES,
 } from '../text/names.ts';
 import { TEXTS } from '../text/texts.ts';
+import { PageHeader } from '../ui/PageHeader.tsx';
 import styles from './NoSessionView.module.css';
 
 interface NoSessionViewProps {
@@ -51,7 +52,7 @@ export function NoSessionView({ input, reason, onChangeInput }: NoSessionViewPro
 
   return (
     <div className={styles.view}>
-      <h1>{texts.heading}</h1>
+      <PageHeader heading={texts.heading} />
 
       {fields.length > 0 ? (
         <>
