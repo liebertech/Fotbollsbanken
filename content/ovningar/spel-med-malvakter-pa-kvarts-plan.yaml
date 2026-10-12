@@ -1,8 +1,8 @@
 schema: 1
 id: spel-med-malvakter-pa-kvarts-plan
 namn: Spel med målvakter på kvarts plan
-syfte: Spelarna ska ställa om direkt vid bollvinst, hålla ihop försvaret och bygga upp från målvakten i
-  ett matchlikt spel som ryms på en kvarts plan.
+syfte: Spelarna ska ställa om direkt vid bollvinst, hålla ihop försvaret och bygga upp från
+  målvakten i ett matchlikt spel som ryms på en kvarts plan.
 beskrivning: |
   Två lag möts på en yta om 48 x 32 meter med ett mål och en målvakt i varje
   kortsida. Målen är 7 mot 7-mål, fem meter breda, så att de inte blir
@@ -70,11 +70,11 @@ coachningspunkter:
   - Prata med varandra, säg vem som pressar och vem som täcker.
 varianter:
   lattare: Ingen offside och ingen dubbel poäng, så att spelet flyter och laget hinner tänka.
-  svarare: Högst två touchar för utespelarna i egen planhalva, och mål efter bollvinst inom sju sekunder
-    räknas dubbelt.
+  svarare: Högst två touchar för utespelarna i egen planhalva, och mål efter bollvinst inom sju
+    sekunder räknas dubbelt.
 anpassning:
-  fler_spelare: Vid fler än sexton spelare delas gruppen i två spel på varsin yta, eller så turas
-    de som är över om att vara avbytare och byts in efter varje period.
+  fler_spelare: Vid fler än sexton spelare delas gruppen i två spel på varsin yta, eller så turas de
+    som är över om att vara avbytare och byts in efter varje period.
   udda_antal: Ett lag spelar med en utespelare mer. Det laget byter en spelare till det andra laget
     efter varje period, så att alla spelar både i överläge och underläge.
   ledare: Övningen är självgående när reglerna är satta. Ledaren dömer offside från sidan, håller
@@ -85,9 +85,9 @@ planskiss:
     langd: 48
     bredd: 32
   beskrivning: >-
-    Yta 48 x 32 meter med ett sju mot sju-mål och en målvakt i varje kortsida. Tre mot tre ute. Lag A
-    bygger upp från målvakten och avslutar från cirka 16 meter. Fler spelare fyller på lagen jämnt.
-    Lag A anfaller åt höger.
+    Yta 48 x 32 meter med ett sju mot sju-mål och en målvakt i varje kortsida. Tre mot tre ute. Lag
+    A bygger upp från målvakten och avslutar från cirka 16 meter. Fler spelare fyller på lagen
+    jämnt. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 48, bredd: 32, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 16, storlek: eget, bredd: 5, riktning: hoger }
@@ -119,7 +119,7 @@ planskiss:
       - { x: 18, y: 28, lag: a }
       - { x: 30, y: 4, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända smålagsspel med målvakter och omställningsregler.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -136,3 +136,7 @@ granskning:
       skottet går från 16,2 meter, alla pilar håller minst 1,8 meter till spelare och platser (den
       närmaste är platsen 6, 22 mot målvaktens utspel), A1 är onside när passningen slås, och åtta
       platser varvade a och b räcker till sexton.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

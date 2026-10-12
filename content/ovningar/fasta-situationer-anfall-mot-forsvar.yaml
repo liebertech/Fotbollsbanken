@@ -93,9 +93,9 @@ planskiss:
     langd: 42
     bredd: 32
   beskrivning: >-
-    Yta 42 x 32 meter med ett mål och en målvakt på högra kortsidan och två konportar på vänstra. Tre
-    mot två ute plus målvakt. Kort hörna: slagaren passar kort, bollen läggs bakåt och avslutas från
-    cirka 13 meter. Fler spelare fyller på lagen jämnt. Lag A anfaller åt höger.
+    Yta 42 x 32 meter med ett mål och en målvakt på högra kortsidan och två konportar på vänstra.
+    Tre mot två ute plus målvakt. Kort hörna: slagaren passar kort, bollen läggs bakåt och avslutas
+    från cirka 13 meter. Fler spelare fyller på lagen jämnt. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 42, bredd: 32, stil: heldragen }
     - { id: mal-1, typ: mal, x: 42, y: 16, storlek: 11mot11, riktning: vanster }
@@ -126,7 +126,7 @@ planskiss:
       - { x: 22, y: 10, lag: a }
       - { x: 32, y: 29, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända träningsformer för fasta situationer med kontring.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -135,14 +135,18 @@ granskning:
       Håller, efter tre småfel som jag har rättat själv. 96 kvadratmeter per spelare vid fjorton
       (golv 90) och 224 vid sex, 24 procent över taket 181. Ingen planerad nick, och hörnor och
       inlägg slås längs marken eller i midjehöjd (designregel 17). Slagarrotationen är entydig, en
-      omgång är fem situationer i varje riktning med en minuts vila, och den extra spelaren är alltid
-      med det anfallande laget. Varje lag har sin målvakt, som är utespelare när laget anfaller.
-      Rättat: 1. Ledartexten nämnde offside. Det är fel i 7 mot 7, som saknar offside, och ingen
-      regel i övningen bygger på offside. Strukit. 2. Västarna gick till "det försvarande laget",
-      fast lagen byter roll. Nu till det ena laget. 3. Skälet till att taket överskrids och
+      omgång är fem situationer i varje riktning med en minuts vila, och den extra spelaren är
+      alltid med det anfallande laget. Varje lag har sin målvakt, som är utespelare när laget
+      anfaller. Rättat: 1. Ledartexten nämnde offside. Det är fel i 7 mot 7, som saknar offside, och
+      ingen regel i övningen bygger på offside. Strukit. 2. Västarna gick till "det försvarande
+      laget", fast lagen byter roll. Nu till det ena laget. 3. Skälet till att taket överskrids och
       meningen om att ingen tvingas stå i mål står nu i organisationen. Ytreferensen, stora planens
-      straffområde, nästan dubbelt så djupt, håller: 1 344 kvadratmeter ligger i referensens spann
-      1 200-1 350, och sidornas förhållande är nästan detsamma. Målet ligger på kortsidan om 32
-      meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för hand:
-      skottet går från 12,6 meter, passningen och skottet håller minst 3,8 meter till försvarare och
+      straffområde, nästan dubbelt så djupt, håller: 1 344 kvadratmeter ligger i referensens spann 1
+      200-1 350, och sidornas förhållande är nästan detsamma. Målet ligger på kortsidan om 32 meter,
+      och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för hand: skottet
+      går från 12,6 meter, passningen och skottet håller minst 3,8 meter till försvarare och
       platser, och åtta platser varvade a och b räcker till fjorton.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

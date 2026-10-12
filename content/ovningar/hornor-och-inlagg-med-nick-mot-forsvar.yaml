@@ -1,8 +1,8 @@
 schema: 1
 id: hornor-och-inlagg-med-nick-mot-forsvar
 namn: Hörnor och inlägg med nick mot försvar
-syfte: Spelarna ska tajma löpningar och nicka hörnor och inlägg mot ett försvar som markerar, och som
-  försvarare markera och rensa undan faran.
+syfte: Spelarna ska tajma löpningar och nicka hörnor och inlägg mot ett försvar som markerar, och
+  som försvarare markera och rensa undan faran.
 beskrivning: |
   Två lag övar hörnor och inlägg vid ett mål med målvakt. Ytan följer matchplanens
   bredd, så att hörnflaggan står på rätt avstånd från stolparna: 30 x 60 meter i
@@ -43,8 +43,8 @@ niva:
 passdelar:
   - del-spelovning
 ledarbehov: 1
-ledaruppgift: Ledaren räknar nickarna och stoppar den som har nickat två gånger i omgången, slår
-  de första lätta inläggen och rättar tajmingen i löpningarna.
+ledaruppgift: Ledaren räknar nickarna och stoppar den som har nickat två gånger i omgången, slår de
+  första lätta inläggen och rättar tajmingen i löpningarna.
 spelare:
   min: 7
   max: 13
@@ -86,13 +86,13 @@ coachningspunkter:
 varianter:
   lattare: Första omgången slås inläggen lätta från nära håll, och försvararna står passiva som
     stolpar. Därefter får de försvara fullt.
-  svarare: Försvaret får en spelare mer, och inlägget slås med fart från hörnflaggan. Slagaren har
-    tio sekunder från att bollen är död till att hörnan är slagen.
+  svarare: Försvaret får en spelare mer, och inlägget slås med fart från hörnflaggan. Slagaren har tio
+    sekunder från att bollen är död till att hörnan är slagen.
 anpassning:
   fler_spelare: Vid fler än tretton spelare delar generatorn gruppen och bygger en andra yta med eget
     mål bredvid, eftersom hörnan annars får för många i boxen.
-  udda_antal: Den extra spelaren är alltid med det anfallande laget och byter lag när lagen byter
-    roll efter varje omgång, så att båda lagen anfaller i överläge lika ofta. Slagaren bestäms av
+  udda_antal: Den extra spelaren är alltid med det anfallande laget och byter lag när lagen byter roll
+    efter varje omgång, så att båda lagen anfaller i överläge lika ofta. Slagaren bestäms av
     numreringen som för de andra.
   ledare: En ledare krävs för att hålla koll på nicktaket. Utan extra ledare håller den ordinarie
     ledaren i räkningen.
@@ -135,28 +135,31 @@ planskiss:
       - { x: 20, y: 38, lag: b }
 kalla: Egen övning, inspirerad av allmän hörnträning, anpassad efter SvFF:s riktlinje om begränsad
   nickmängd och efter hörnträningen i Hörnor med nickar för 13-14 år.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Håller, efter fyra småfel som jag har rättat själv. Märkt nickspel, 15-19 år, 9mot9 och
-      11mot11, nivå 2-3 och längst 15 minuter, under nicktaket 20 (R-082) och enligt
-      designregel 1. R-086 (pull request 39) gör att övningen bara väljs när ledaren har valt
-      nickspel. Ledaren räknar nickarna, och ledaruppgiften säger det (F8). Ytan följer matchplanens
-      bredd: 11mot11 30 x 60 ger 138 kvadratmeter per spelare vid tretton och 257 vid sju, 9mot9 30 x
-      50 ger 115 och 214, alla inom golv 90 och tak 273. Sidförhållandet ändras 20 procent, under
-      gränsen 25 (ADR 0019). Rättat: 1. "Fyra anfallare mot tre försvarare med målvakt" kunde läsas
-      som åtta spelare. Nu: fyra anfallare, slagaren inräknad, mot två försvarare och en målvakt,
-      som i skissen. 2. Lösningen för udda antal sa att den extra spelaren byter plats med en
-      försvarare, fast lagen byter roll efter varje omgång. Nu följer den extra spelaren det
-      anfallande laget, som i O6-04. 3. Nickmängden säger nu högst tre omgångar som anfallare och
-      högst sex nickar per pass, och att ingen tvingas stå i mål. 4. Skissens beskrivning sa "den
-      högra långa kortlinjen", nick från 6 meter och ledaren bakom målet. Nu: högra långsidan som
-      är mållinjen, cirka 5 meter och ledaren vid mållinjen. Ytreferenserna är de två nya från F7
-      och är införda i ytreferenser.md: knappt en tredjedel av 11 mot 11-planen på hela bredden
-      (30 mot 33-37 meter, 9-19 procent kortare) och knappt halva 9 mot 9-planen (30 mot
-      32,5-36). Skissen är kontrollerad för hand: hörnan går 2,4 meter från platsen 24, 17 och 2,7
-      från F1, nicken går 1,7 meter förbi målvakten mot bortre delen av målet och håller 2,7 till
-      platsen 27, 33.
+      11mot11, nivå 2-3 och längst 15 minuter, under nicktaket 20 (R-082) och enligt designregel 1.
+      R-086 (pull request 39) gör att övningen bara väljs när ledaren har valt nickspel. Ledaren
+      räknar nickarna, och ledaruppgiften säger det (F8). Ytan följer matchplanens bredd: 11mot11 30
+      x 60 ger 138 kvadratmeter per spelare vid tretton och 257 vid sju, 9mot9 30 x 50 ger 115 och
+      214, alla inom golv 90 och tak 273. Sidförhållandet ändras 20 procent, under gränsen 25 (ADR
+      0019). Rättat: 1. "Fyra anfallare mot tre försvarare med målvakt" kunde läsas som åtta
+      spelare. Nu: fyra anfallare, slagaren inräknad, mot två försvarare och en målvakt, som i
+      skissen. 2. Lösningen för udda antal sa att den extra spelaren byter plats med en försvarare,
+      fast lagen byter roll efter varje omgång. Nu följer den extra spelaren det anfallande laget,
+      som i O6-04. 3. Nickmängden säger nu högst tre omgångar som anfallare och högst sex nickar per
+      pass, och att ingen tvingas stå i mål. 4. Skissens beskrivning sa "den högra långa
+      kortlinjen", nick från 6 meter och ledaren bakom målet. Nu: högra långsidan som är mållinjen,
+      cirka 5 meter och ledaren vid mållinjen. Ytreferenserna är de två nya från F7 och är införda i
+      ytreferenser.md: knappt en tredjedel av 11 mot 11-planen på hela bredden (30 mot 33-37 meter,
+      9-19 procent kortare) och knappt halva 9 mot 9-planen (30 mot 32,5-36). Skissen är
+      kontrollerad för hand: hörnan går 2,4 meter från platsen 24, 17 och 2,7 från F1, nicken går
+      1,7 meter förbi målvakten mot bortre delen av målet och håller 2,7 till platsen 27, 33.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

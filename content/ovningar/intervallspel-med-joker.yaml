@@ -1,8 +1,8 @@
 schema: 1
 id: intervallspel-med-joker
 namn: Intervallspel två mot två till tre mot tre med joker
-syfte: Spelarna ska hålla hög intensitet i korta spelperioder, ställa om direkt vid bollvinst och
-  ta emot och spela vidare med få touchar när pulsen är hög.
+syfte: Spelarna ska hålla hög intensitet i korta spelperioder, ställa om direkt vid bollvinst och ta
+  emot och spela vidare med få touchar när pulsen är hög.
 beskrivning: |
   Två lag möts på en yta om 33 x 20 meter med ett minimål i varje ände och
   ingen målvakt, så att spelet går fort. Spelet består av perioder med
@@ -82,8 +82,8 @@ anpassning:
     varandra på en kvarts plan, upp till fjorton spelare.
   udda_antal: En joker som spelar med laget som har bollen och byts efter varje period, i tur och
     ordning efter spelarnas nummer.
-  ledare: Övningen är självgående när perioderna är satta. Ledaren håller tiden på arbete och vila
-    och ser till att ingen går över sin puls.
+  ledare: Övningen är självgående när perioderna är satta. Ledaren håller tiden på arbete och vila och
+    ser till att ingen går över sin puls.
 planskiss:
   version: 1
   omrade:
@@ -91,9 +91,9 @@ planskiss:
     bredd: 20
   beskrivning: >-
     Yta 33 x 20 meter med ett minimål i varje ände, utan målvakt. Två mot två i grundläget. A2
-    driver in mellan försvararna och skjuter från cirka 10 meter. Vid udda antal blir en spelare joker
-    som spelar med laget som har bollen, men bilden visar ett lag med en spelare mer. Lag A anfaller åt
-    höger.
+    driver in mellan försvararna och skjuter från cirka 10 meter. Vid udda antal blir en spelare
+    joker som spelar med laget som har bollen, men bilden visar ett lag med en spelare mer. Lag A
+    anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 33, bredd: 20, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 10, storlek: smamal, riktning: hoger }
@@ -114,7 +114,7 @@ planskiss:
       - { x: 28, y: 16, lag: b }
       - { x: 18, y: 17, lag: neutral }
 kalla: Egen övning, inspirerad av vanligt intervallspel i smålag med joker.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -122,15 +122,18 @@ granskning:
     kommentar: >-
       Håller, efter fyra småfel som jag har rättat själv. Intervaller bara för 15-19 år enligt F3,
       arbete och vila i minuter (designregel 16), och både Spelövning och Spel enligt F4. 94
-      kvadratmeter per spelare vid sju (golv 90) och 165 vid fyra (tak 273). Två ytor ryms på
-      kvarts plan. Rättat: 1. "Fyra till sex perioder" gick inte ihop med kortast åtta minuter. Nu
-      följer antalet perioder tiden, ungefär två på åtta minuter och fem till åtta på tjugofem. 2.
+      kvadratmeter per spelare vid sju (golv 90) och 165 vid fyra (tak 273). Två ytor ryms på kvarts
+      plan. Rättat: 1. "Fyra till sex perioder" gick inte ihop med kortast åtta minuter. Nu följer
+      antalet perioder tiden, ungefär två på åtta minuter och fem till åtta på tjugofem. 2.
       Jokerbytet sa inte vart den förra jokern tar vägen. Nu går den in i laget som den nya jokern
       lämnade (designregel 15). 3. Omstarten efter utboll sa "laget som släppte in". Nu startar
-      laget som inte rörde bollen sist. 4. Den svårare varianten hade en mindre yta, 28 x 17,
-      som ger 68 kvadratmeter per spelare vid sju, under golvet 90. Strukit. Kvar är två touchar och
-      att alla utom jokern ska ha rört bollen, vilket är nivå 3 enligt designregel 19. Ytreferensen,
-      ungefär tre fjärdedelar av stora planens straffområde, några steg djupare, håller: 30 x 20
-      mot 33 x 20. Skissen är kontrollerad för hand: dribblingen går mitt emellan försvararna, 5,1
-      meter från var och en, skottet går från 10 meter, och tre platser (a, b, joker) räcker till
-      sju.
+      laget som inte rörde bollen sist. 4. Den svårare varianten hade en mindre yta, 28 x 17, som
+      ger 68 kvadratmeter per spelare vid sju, under golvet 90. Strukit. Kvar är två touchar och att
+      alla utom jokern ska ha rört bollen, vilket är nivå 3 enligt designregel 19. Ytreferensen,
+      ungefär tre fjärdedelar av stora planens straffområde, några steg djupare, håller: 30 x 20 mot
+      33 x 20. Skissen är kontrollerad för hand: dribblingen går mitt emellan försvararna, 5,1 meter
+      från var och en, skottet går från 10 meter, och tre platser (a, b, joker) räcker till sju.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

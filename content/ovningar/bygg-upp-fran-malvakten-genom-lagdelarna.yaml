@@ -77,8 +77,8 @@ coachningspunkter:
   - Spela med få touchar när pressen kommer.
 varianter:
   lattare: Pressarna står passiva som stolpar de första tre uppbyggnaderna, därefter halvaktiva.
-  svarare: Pressarna får vinna bollen, och då ska de göra mål mot målvaktens mål inom åtta sekunder. Backarna
-    och mittfältarna får högst två touchar.
+  svarare: Pressarna får vinna bollen, och då ska de göra mål mot målvaktens mål inom åtta sekunder.
+    Backarna och mittfältarna får högst två touchar.
 anpassning:
   fler_spelare: Vid fler än tolv spelare byggs en andra yta bredvid med samma mått och eget mål.
   udda_antal: Spelar ingen roll. Den extra spelaren får den roll som organisationen anger för antalet,
@@ -120,25 +120,29 @@ planskiss:
       - { x: 34, y: 24, lag: a }
       - { x: 28, y: 10, lag: b }
 kalla: Egen övning, inspirerad av allmänt kända former för uppbyggnad från målvakten med halvaktiv press.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
       Håller, efter två ändringar som jag har gjort själv. Halvaktiva pressare räknas som
-      motståndare (F10): 120 kvadratmeter per spelare vid tolv (golv 90) och 240 vid sex, 33
-      procent över taket 181. Längden 45 klarar kravet för uppbyggnad genom lagdelar. Varannan
-      uppbyggnad med inspark i 9 och 11 mot 11 och nedlagd boll i 7 mot 7 gör att alla tre
-      spelformerna är rätt. Ringrotationen är entydig, och den svårare varianten är riktig press
-      (designregel 19). Ändrat: 1. Vid elva och tolv spelare väntade en eller två bakom målet. I en
-      Öva med halvaktiv press finns ingen anledning att vänta. Nu får elva en anfallare till och
-      tolv en tredje pressare, så att alla är med. Tre halvaktiva pressare mot nio uppbyggare är
-      fortfarande ett tydligt överläge. Beskrivningen, organisationen, västarna (tre) och lösningen
-      för udda antal är ändrade efter det, och skissens två sista platser är flyttade från bakom
-      målet till (34, 24) för den andra anfallaren och (28, 10) för den tredje pressaren. 2.
-      Skälet till att taket överskrids står nu i organisationen (designregel 5). Ytreferensen,
-      något längre än stora planens straffområde är brett, håller för 45 meter. Skissen är
-      kontrollerad för hand: passningarna går målvakt, back, mittfältare och till anfallaren i
-      målzonen, närmast 3,6 meter från pressaren. Den nya platsen (28, 10) håller 5,7 meter till
-      den sista passningen och 6 meter till anfallaren.
+      motståndare (F10): 120 kvadratmeter per spelare vid tolv (golv 90) och 240 vid sex, 33 procent
+      över taket 181. Längden 45 klarar kravet för uppbyggnad genom lagdelar. Varannan uppbyggnad
+      med inspark i 9 och 11 mot 11 och nedlagd boll i 7 mot 7 gör att alla tre spelformerna är
+      rätt. Ringrotationen är entydig, och den svårare varianten är riktig press (designregel 19).
+      Ändrat: 1. Vid elva och tolv spelare väntade en eller två bakom målet. I en Öva med halvaktiv
+      press finns ingen anledning att vänta. Nu får elva en anfallare till och tolv en tredje
+      pressare, så att alla är med. Tre halvaktiva pressare mot nio uppbyggare är fortfarande ett
+      tydligt överläge. Beskrivningen, organisationen, västarna (tre) och lösningen för udda antal
+      är ändrade efter det, och skissens två sista platser är flyttade från bakom målet till (34,
+      24) för den andra anfallaren och (28, 10) för den tredje pressaren. 2. Skälet till att taket
+      överskrids står nu i organisationen (designregel 5). Ytreferensen, något längre än stora
+      planens straffområde är brett, håller för 45 meter. Skissen är kontrollerad för hand:
+      passningarna går målvakt, back, mittfältare och till anfallaren i målzonen, närmast 3,6 meter
+      från pressaren. Den nya platsen (28, 10) håller 5,7 meter till den sista passningen och 6
+      meter till anfallaren.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

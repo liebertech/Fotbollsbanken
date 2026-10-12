@@ -127,7 +127,7 @@ planskiss:
       - { x: 75, y: 45, lag: b }
       - { x: 50, y: -2, lag: neutral }
 kalla: Egen övning, inspirerad av vanligt stort matchspel med rullande avbytare.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -146,3 +146,7 @@ granskning:
       målvakten utan skott, närmaste motståndare 3,0 meter från passningslinjen (B på 55, 30), och
       fyra platser varvade b, a, b och en avbytare utanför sidlinjen. Ytreferensen hela 11 mot
       11-planen är rätt.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

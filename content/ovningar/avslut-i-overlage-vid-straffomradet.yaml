@@ -1,8 +1,8 @@
 schema: 1
 id: avslut-i-overlage-vid-straffomradet
 namn: Avslut i överläge vid straffområdet
-syfte: Spelarna ska hitta det bästa avslutet i överläge, att driva, passa eller skjuta, och lösa läget
-  snabbt innan försvararna hinner tillbaka.
+syfte: Spelarna ska hitta det bästa avslutet i överläge, att driva, passa eller skjuta, och lösa
+  läget snabbt innan försvararna hinner tillbaka.
 beskrivning: |
   Ett mål med målvakt i ena kortsidan av en yta om 30 x 30 meter. Anfallarna
   startar från en linje 25 meter från målet och anfaller i överläge: två mot
@@ -80,8 +80,7 @@ coachningspunkter:
   - Passa i rätt tid, så att din medspelare får skjuta fritt.
   - Försvararna ska fördröja och stänga det mest hotfulla läget.
 varianter:
-  lattare: Försvararna står passiva de första två anfallen och startar sedan två sekunder efter
-    anfallarna.
+  lattare: Försvararna står passiva de första två anfallen och startar sedan två sekunder efter anfallarna.
   svarare: Anfallet har åtta sekunder på sig, anfallarna får bara två touchar, och försvararna startar
     några steg närmare anfallarna.
 anpassning:
@@ -89,8 +88,8 @@ anpassning:
     kön annars blir lång.
   udda_antal: Spelar ingen roll. Fördelningen av anfallare och försvarare för varje antal står i
     organisationen, och den nionde står i kö.
-  ledare: Övningen är självgående när rotationen är satt. Ledaren kan stå vid sidan och coacha valen
-    i överläget.
+  ledare: Övningen är självgående när rotationen är satt. Ledaren kan stå vid sidan och coacha valen i
+    överläget.
 planskiss:
   version: 1
   omrade:
@@ -98,8 +97,8 @@ planskiss:
     bredd: 30
   beskrivning: >-
     Yta 30 x 30 meter med ett mål och en målvakt på högra kortsidan och en startlinje 25 meter från
-    målet. Två anfallare mot en försvarare. A1 driver, passar till A2 som avslutar från cirka 11 meter.
-    Fler spelare fyller på, och den nionde står i kö bakom startlinjen.
+    målet. Två anfallare mot en försvarare. A1 driver, passar till A2 som avslutar från cirka 11
+    meter. Fler spelare fyller på, och den nionde står i kö bakom startlinjen.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 30, bredd: 30, stil: heldragen }
     - { id: mal-1, typ: mal, x: 30, y: 15, storlek: 11mot11, riktning: vanster }
@@ -123,7 +122,7 @@ planskiss:
       - { x: 25, y: 22, lag: b }
       - { x: -1.5, y: 15, lag: neutral }
 kalla: Egen övning, inspirerad av allmänna överlägesspel mot mål med målvakt.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -132,17 +131,21 @@ granskning:
       Håller, efter fem småfel som jag har rättat själv. 100 kvadratmeter per spelare vid nio (golv
       90), där den nionde står utanför ytan, och 225 vid fyra, 24 procent över taket 181. Både Öva
       och Spelövning enligt F4, med halvaktiva försvarare i Öva och fullt försvar i Spelövning.
-      Fördelningen för fyra till nio står i organisationen, och kön står utanför ytan och inte i
-      en skottlinje. Rättat: 1. Rotationen byggde på "den som avslutade", som saknas när försvararna
+      Fördelningen för fyra till nio står i organisationen, och kön står utanför ytan och inte i en
+      skottlinje. Rättat: 1. Rotationen byggde på "den som avslutade", som saknas när försvararna
       vinner bollen. Nu går den anfallare som sist rörde bollen (designregel 15). 2. Texten sa inte
       var försvararna startar. Nu ungefär tio meter framför målet, som i skissen. 3. Den lättare
-      varianten gav en extra anfallare, och den svårare en extra försvarare. Vid fyra och fem spelare
-      blir det tre mot noll eller lika många, och ingen plats säger varifrån spelaren kommer. Nu:
-      passiva försvarare som startar två sekunder efter anfallarna, och i den svårare åtta sekunder,
-      två touchar och försvarare som startar närmare. 4. Västarna till försvararna är strukna,
-      eftersom rollerna byts efter varje anfall. 5. Skälet till att taket överskrids och att ingen
-      tvingas stå i mål står nu i organisationen. Ytreferensen, tre fjärdedelar av stora planens
-      straffområde, nästan dubbelt så djupt, träffar 30 x 30 utan "ungefär". Skissen är
+      varianten gav en extra anfallare, och den svårare en extra försvarare. Vid fyra och fem
+      spelare blir det tre mot noll eller lika många, och ingen plats säger varifrån spelaren
+      kommer. Nu: passiva försvarare som startar två sekunder efter anfallarna, och i den svårare
+      åtta sekunder, två touchar och försvarare som startar närmare. 4. Västarna till försvararna är
+      strukna, eftersom rollerna byts efter varje anfall. 5. Skälet till att taket överskrids och
+      att ingen tvingas stå i mål står nu i organisationen. Ytreferensen, tre fjärdedelar av stora
+      planens straffområde, nästan dubbelt så djupt, träffar 30 x 30 utan "ungefär". Skissen är
       kontrollerad för hand: skottet går från 10,4 meter, under 16, passningen går 2,7 meter från
       försvararen och skottet 5,8 meter från honom och 2,9 meter förbi målvakten, och platsen för
       den nionde står 1,5 meter bakom ytans kortsida.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

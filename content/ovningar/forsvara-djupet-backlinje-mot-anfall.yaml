@@ -1,8 +1,8 @@
 schema: 1
 id: forsvara-djupet-backlinje-mot-anfall
 namn: "Försvara djupet: backlinje mot anfall med offside"
-syfte: Backlinjen ska försvara djupet tillsammans med offside, och laget ska bygga upp spelet
-  direkt efter bollvinst.
+syfte: Backlinjen ska försvara djupet tillsammans med offside, och laget ska bygga upp spelet direkt
+  efter bollvinst.
 beskrivning: |
   Samma yta som i backlinjeövningen, 45 x 32 meter, men med fullt spel. Ett
   försvarslag med målvakt och tre till fem i backlinjen försvarar ett mål i
@@ -84,8 +84,8 @@ anpassning:
     varje period, i tur och ordning efter nummer.
   udda_antal: Anfallslaget får en joker som spelar med anfallarna. Antalet backar och anfallare för
     varje antal står i organisationen.
-  ledare: Övningen är självgående när reglerna är satta, och backlinjen dömer offside med egna rop.
-    En ledare kan döma offside och coacha backlinjens rop från sidan.
+  ledare: Övningen är självgående när reglerna är satta, och backlinjen dömer offside med egna rop. En
+    ledare kan döma offside och coacha backlinjens rop från sidan.
 planskiss:
   version: 1
   omrade:
@@ -123,7 +123,7 @@ planskiss:
       - { x: 3, y: 34, lag: a }
       - { x: 6, y: 34, lag: a }
 kalla: Egen övning, inspirerad av allmänt kända former för att träna försvar i djupled och uppbyggnad.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -133,16 +133,20 @@ granskning:
       (golv 90), och bara tretton står på ytan, och 180 vid åtta (tak 181). Längden 45 klarar
       djupledskravet, offside gäller och målzonen ger speluppbyggnad efter bollvinst. Perioder om
       tre minuter med en minuts vila (designregel 1). Avbytare vid fjorton och femton godtas: en
-      eller två står ute en period i taget och alla är ute lika ofta, ungefär var sjunde period.
-      Att i stället sänka spelare.max till tretton skulle ta bort övningen för fjorton och femton
-      på kvarts plan, eftersom två grupper inte ryms och sju är under spelare.min. Rättat: 1.
+      eller två står ute en period i taget och alla är ute lika ofta, ungefär var sjunde period. Att
+      i stället sänka spelare.max till tretton skulle ta bort övningen för fjorton och femton på
+      kvarts plan, eftersom två grupper inte ryms och sju är under spelare.min. Rättat: 1.
       Avbytarnas byte är nu entydigt: de med lägst nummer på ytan går ut och får nästa nummer efter
-      det högsta (designregel 15). 2. Texten sa inte vem som står i mål när lagen byter roll. Nu
-      har varje lag en målvakt som är anfallare när laget anfaller, vilket ger lika stora lag vid
-      jämnt antal, och ingen tvingas stå i mål. 3. Västarna gick till "anfallarna", fast lagen byter
-      roll. Nu till det ena laget och jokern. 4. I skissen stod den femte backen på (28, 31) vid
-      sidlinjen fem meter framför linjen. Nu står backarna på (33, 29) och (32, 7), och två
-      platser för avbytare är tillagda utanför sidlinjen, så att skissen räcker till femton. Den
-      nya platsen (32, 7) håller 1,7 meter till A1:s löpning och 1,9 till djupledspassningen.
-      Skottet går från 13,6 meter, och A1 är onside när passningen slås. Ytreferensen, något
-      längre än stora planens straffområde är brett, håller för 45 meter.
+      det högsta (designregel 15). 2. Texten sa inte vem som står i mål när lagen byter roll. Nu har
+      varje lag en målvakt som är anfallare när laget anfaller, vilket ger lika stora lag vid jämnt
+      antal, och ingen tvingas stå i mål. 3. Västarna gick till "anfallarna", fast lagen byter roll.
+      Nu till det ena laget och jokern. 4. I skissen stod den femte backen på (28, 31) vid sidlinjen
+      fem meter framför linjen. Nu står backarna på (33, 29) och (32, 7), och två platser för
+      avbytare är tillagda utanför sidlinjen, så att skissen räcker till femton. Den nya platsen
+      (32, 7) håller 1,7 meter till A1:s löpning och 1,9 till djupledspassningen. Skottet går från
+      13,6 meter, och A1 är onside när passningen slås. Ytreferensen, något längre än stora planens
+      straffområde är brett, håller för 45 meter.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

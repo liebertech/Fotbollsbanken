@@ -79,24 +79,24 @@ coachningspunkter:
   - Ställ om direkt, anfallet ska vara igång inom sex sekunder.
 varianter:
   lattare: Målvakten får tio sekunder på sig och spelar ut med händerna till en medspelare nära.
-  svarare: Målvakten får fyra sekunder på sig, och ett mål efter utspelet inom åtta sekunder
-    räknas dubbelt. Utespelarna har högst två touchar.
+  svarare: Målvakten får fyra sekunder på sig, och ett mål efter utspelet inom åtta sekunder räknas
+    dubbelt. Utespelarna har högst två touchar.
 anpassning:
   fler_spelare: Vid fler än tio spelare byggs en andra yta bredvid med samma mått, eller så står de
     extra utanför som avbytare och byter in efter varje period.
   udda_antal: Ett lag spelar med en utespelare mer. Det laget byter en spelare till det andra efter
     varje period, så att alla spelar i både över- och underläge.
-  ledare: Övningen är självgående när reglerna är satta. Ledaren kan stå vid sidan, rätta
-    målvakternas teknik och hålla koll på sexsekundersregeln.
+  ledare: Övningen är självgående när reglerna är satta. Ledaren kan stå vid sidan, rätta målvakternas
+    teknik och hålla koll på sexsekundersregeln.
 planskiss:
   version: 1
   omrade:
     langd: 36
     bredd: 30
   beskrivning: >-
-    Yta 36 x 30 meter med ett mål och en målvakt i varje kortsida och en linje åtta meter från
-    varje mål. Två mot två ute. Lag A avslutar från cirka 15 meter, utanför linjen. Fler spelare
-    fyller på lagen jämnt. Lag A anfaller åt höger.
+    Yta 36 x 30 meter med ett mål och en målvakt i varje kortsida och en linje åtta meter från varje
+    mål. Två mot två ute. Lag A avslutar från cirka 15 meter, utanför linjen. Fler spelare fyller på
+    lagen jämnt. Lag A anfaller åt höger.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 30, stil: heldragen }
     - { id: mal-a, typ: mal, x: 0, y: 15, storlek: 11mot11, riktning: hoger }
@@ -122,27 +122,31 @@ planskiss:
       - { x: 15, y: 16, lag: a }
       - { x: 26, y: 25, lag: b }
 kalla: Egen övning, inspirerad av allmänna målvaktsspel med snabba utspel.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
     roll: fotbollsexpert
     kommentar: >-
-      Håller, efter fyra småfel som jag har rättat själv. 108 kvadratmeter per spelare vid tio
-      (golv 90) och 180 vid sex (tak 181). Målvakten får många skott men inga inifrån åtta meter,
-      och startar nya anfall inom sex sekunder, så både målvaktsspel och omställning händer hela
-      tiden. Perioder om tre minuter med en minuts vila. Handskar, placerade skott mot en
-      utespelare i mål, och 7mot7 är rätt eftersom insparken bara är ett av tre sätt att starta.
-      Målen ritas i den spelform passet gäller. För en målvaktsövning är det rätt att målvakten
-      står i sitt eget matchmål. Rättat: 1. Coachningen sa "följ upp till retur", men en retur
-      innanför markeringen kan inte ge mål. Nu går utespelarna inte in innanför markeringen, och en
-      retur där tillhör målvakten. Det skyddar också målvakten mot närkamper på mållinjen. 2.
-      Coachningspunkten är omskriven till att skjuta så fort läget finns utanför markeringen. 3.
-      Målvaktsrotationen och "ingen tvingas" sa emot varandra. Nu hoppar den som inte vill över sin
-      tur. 4. Sexsekundersregeln lades på ledaren fast ledarbehovet är 0. Nu räknar målvakten själv.
-      I skissen stod platsen (29, 25) innanför markeringen. Den står nu på (26, 25). Ytreferensen,
+      Håller, efter fyra småfel som jag har rättat själv. 108 kvadratmeter per spelare vid tio (golv
+      90) och 180 vid sex (tak 181). Målvakten får många skott men inga inifrån åtta meter, och
+      startar nya anfall inom sex sekunder, så både målvaktsspel och omställning händer hela tiden.
+      Perioder om tre minuter med en minuts vila. Handskar, placerade skott mot en utespelare i mål,
+      och 7mot7 är rätt eftersom insparken bara är ett av tre sätt att starta. Målen ritas i den
+      spelform passet gäller. För en målvaktsövning är det rätt att målvakten står i sitt eget
+      matchmål. Rättat: 1. Coachningen sa "följ upp till retur", men en retur innanför markeringen
+      kan inte ge mål. Nu går utespelarna inte in innanför markeringen, och en retur där tillhör
+      målvakten. Det skyddar också målvakten mot närkamper på mållinjen. 2. Coachningspunkten är
+      omskriven till att skjuta så fort läget finns utanför markeringen. 3. Målvaktsrotationen och
+      "ingen tvingas" sa emot varandra. Nu hoppar den som inte vill över sin tur. 4.
+      Sexsekundersregeln lades på ledaren fast ledarbehovet är 0. Nu räknar målvakten själv. I
+      skissen stod platsen (29, 25) innanför markeringen. Den står nu på (26, 25). Ytreferensen,
       ungefär stora planens straffområde, nästan dubbelt så djupt, håller: 1 080 kvadratmeter mot
       referensens 1 200-1 350, 10 procent mindre, och ungefär säger det. Målen står på kortsidorna
       om 30 meter, och referensen jämför bara storlek (konvention 2). Skissen är kontrollerad för
       hand: skottet går från 15,1 meter, utanför markeringen, och träffar målet i alla tre
       spelformernas målbredd. Skottlinjen går 2,7 meter förbi målvakten.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

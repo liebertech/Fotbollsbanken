@@ -80,12 +80,12 @@ varianter:
   svarare: Anfallarna får bara två touchar och spelar i full fart, och linjen ska avgöra upp eller
     fall på under två sekunder. Anfallsserien är tio sekunder per anfall.
 anpassning:
-  fler_spelare: Vid fler än tolv spelare går anfallarna i två vågor som byter efter varje anfall.
-    Ytan växer inte, eftersom den som väntar står utanför.
+  fler_spelare: Vid fler än tolv spelare går anfallarna i två vågor som byter efter varje anfall. Ytan
+    växer inte, eftersom den som väntar står utanför.
   udda_antal: Den extra spelaren är anfallare. Fördelningen av backar och anfallare för varje antal
     står i organisationen.
-  ledare: Övningen är självgående när rollerna är satta, eftersom backlinjen styrs av egna rop. Ledaren
-    står bakom målet och rättar linjen.
+  ledare: Övningen är självgående när rollerna är satta, eftersom backlinjen styrs av egna rop.
+    Ledaren står bakom målet och rättar linjen.
 planskiss:
   version: 1
   omrade:
@@ -118,7 +118,13 @@ planskiss:
     - { typ: lopning, fran: { objekt: b2 }, till: { x: 30, y: 16 }, ordning: 1, etikett: Kliv upp }
     - { typ: lopning, fran: { objekt: b3 }, till: { x: 30, y: 22 }, ordning: 1 }
     - { typ: lopning, fran: { objekt: a1 }, till: { x: 37, y: 25 }, ordning: 3 }
-    - { typ: passning, fran: { objekt: a4 }, till: { x: 37, y: 25 }, ordning: 3, etikett: Bakom linjen }
+    - {
+        typ: passning,
+        fran: { objekt: a4 },
+        till: { x: 37, y: 25 },
+        ordning: 3,
+        etikett: Bakom linjen
+      }
   skalning:
     strategi: platser
     platser:
@@ -130,7 +136,7 @@ planskiss:
       - { x: -2, y: 4, lag: a }
       - { x: -2, y: 28, lag: a }
 kalla: Egen övning, inspirerad av allmänt kända former för att träna backlinjens rörelser.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -141,14 +147,18 @@ granskning:
       som väntar står utanför ytan, och 180 vid åtta (tak 181). Längden 45 klarar djupledskravet,
       och bredden 32 följer F9. Fördelningen av backar och anfallare står för varje antal 8-15, och
       ledarbehov 0 bärs av att linjen styrs av egna rop (F8). Rättat: 1. Rollbytet "backarna blir
-      anfallare och tvärtom" gick inte ihop med att anfallarna är fler. Nu blir lika många
-      anfallare backar i nummerordning. 2. Vågen som väntar stod bakom konportarna, där
-      försvararna spelar ut bollen. Nu står den bakom kortlinjen vid sidan av portarna, och två av
-      skissens platser är flyttade från (-2, 10) och (-2, 22) till (-2, 4) och (-2, 28). 3. I
-      skissen löpte A1 bakom linjen (ordning 2) innan passningen slogs (ordning 3), alltså offside.
-      Nu har löpningen och passningen samma ordning. 4. Västarna går till backlinjen, så att
-      vågorna kan byta utan västbyte, och ledaren "kan" stå bakom målet. Ytreferensen, något längre
-      än stora planens straffområde är brett, håller för 45 meter. Kvar i skissen: vid tretton
-      spelare visar bilden sex anfallare på ytan och en utanför, fast vågorna är fyra och tre.
-      Formatet kan inte flytta en spelare ut när gruppen växer, och skissens beskrivning säger var
-      vågen står. Passningen bakom linjen håller 2,6 meter till B3 och 3,2 till platsen 33, 28.
+      anfallare och tvärtom" gick inte ihop med att anfallarna är fler. Nu blir lika många anfallare
+      backar i nummerordning. 2. Vågen som väntar stod bakom konportarna, där försvararna spelar ut
+      bollen. Nu står den bakom kortlinjen vid sidan av portarna, och två av skissens platser är
+      flyttade från (-2, 10) och (-2, 22) till (-2, 4) och (-2, 28). 3. I skissen löpte A1 bakom
+      linjen (ordning 2) innan passningen slogs (ordning 3), alltså offside. Nu har löpningen och
+      passningen samma ordning. 4. Västarna går till backlinjen, så att vågorna kan byta utan
+      västbyte, och ledaren "kan" stå bakom målet. Ytreferensen, något längre än stora planens
+      straffområde är brett, håller för 45 meter. Kvar i skissen: vid tretton spelare visar bilden
+      sex anfallare på ytan och en utanför, fast vågorna är fyra och tre. Formatet kan inte flytta
+      en spelare ut när gruppen växer, och skissens beskrivning säger var vågen står. Passningen
+      bakom linjen håller 2,6 meter till B3 och 3,2 till platsen 33, 28.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

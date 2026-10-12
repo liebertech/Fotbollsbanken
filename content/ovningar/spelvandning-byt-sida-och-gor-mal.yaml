@@ -70,15 +70,14 @@ coachningspunkter:
   - Försvara kompakt och tvinga motståndarna att vända tillbaka.
 varianter:
   lattare: Ett mål räknas efter bara en kantzon, så att laget inte måste vända hela spelet.
-  svarare: Högst två touchar i kantzonen, och laget har bara tjugo sekunder på sig från start
-    av anfallet.
+  svarare: Högst två touchar i kantzonen, och laget har bara tjugo sekunder på sig från start av anfallet.
 anpassning:
-  fler_spelare: Vid fler än elva spelare byggs en andra yta bredvid med samma mått, eller så turas
-    de som är över om att vara avbytare efter varje period.
+  fler_spelare: Vid fler än elva spelare byggs en andra yta bredvid med samma mått, eller så turas de
+    som är över om att vara avbytare efter varje period.
   udda_antal: En joker som spelar med laget som har bollen och inte får göra mål. Jokern är nästa
     nummer i tur och ordning efter varje period.
-  ledare: Övningen är självgående när zonerna och poängen är satta. Ledaren håller tiden på
-    perioderna och räknar vändningarna.
+  ledare: Övningen är självgående när zonerna och poängen är satta. Ledaren håller tiden på perioderna
+    och räknar vändningarna.
 planskiss:
   version: 1
   omrade:
@@ -118,7 +117,7 @@ planskiss:
       - { x: 34, y: 18, lag: b }
       - { x: 4, y: 8, lag: a }
 kalla: Egen övning, inspirerad av allmänt kända spel där bollen ska vändas mellan sidorna.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -128,12 +127,16 @@ granskning:
       (golv 90) och 177 vid sex (tak 181). Ingen offside och inget längdkrav, eftersom ytan inte har
       någon försvarslinje att passera. Nivå 2-3 enligt F11, med en lättare variant för nivå 2 och
       två touchar i kantzonen och tjugo sekunder som nivå 3 (designregel 19). Perioder om fyra
-      minuter med en minuts vila. Rättat: 1. Jokerbytet sa inte vart den förra jokern tar vägen.
-      Nu går den in i laget som den nya jokern lämnade (designregel 15). 2. Omstarten efter utboll
-      sa "laget som släppte in". Nu startar laget som inte rörde bollen sist. 3. I skissen gick
-      A1:s passning till övre kantzonen rakt genom A2:s startplats (0 meter). A2 står nu på (14,
-      9), och passningen går 2,2 meter förbi. Skissens beskrivning säger nu att bilden visar ett
-      lag med en spelare mer vid udda antal, och den är 268 tecken. I övrigt håller alla pilar
-      minst 2,7 meter till motståndare och platser, vändningen är en passning på 25 meter mellan
-      kantzonerna och skottet går från 8 meter. Ytreferensen, ungefär stora planens straffområde,
-      nästan dubbelt så djupt, håller: 1 064 kvadratmeter, 11 procent under referensen.
+      minuter med en minuts vila. Rättat: 1. Jokerbytet sa inte vart den förra jokern tar vägen. Nu
+      går den in i laget som den nya jokern lämnade (designregel 15). 2. Omstarten efter utboll sa
+      "laget som släppte in". Nu startar laget som inte rörde bollen sist. 3. I skissen gick A1:s
+      passning till övre kantzonen rakt genom A2:s startplats (0 meter). A2 står nu på (14, 9), och
+      passningen går 2,2 meter förbi. Skissens beskrivning säger nu att bilden visar ett lag med en
+      spelare mer vid udda antal, och den är 268 tecken. I övrigt håller alla pilar minst 2,7 meter
+      till motståndare och platser, vändningen är en passning på 25 meter mellan kantzonerna och
+      skottet går från 8 meter. Ytreferensen, ungefär stora planens straffområde, nästan dubbelt så
+      djupt, håller: 1 064 kvadratmeter, 11 procent under referensen.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."

@@ -1,8 +1,8 @@
 schema: 1
 id: dribblingsbana-i-intervaller
 namn: Dribblingsbana i intervaller
-syfte: Spelarna ska hålla hög kvalitet på bollföring, vändning och acceleration med boll när
-  de är trötta, och bygga uthållighet och koordination med bollen vid foten.
+syfte: Spelarna ska hålla hög kvalitet på bollföring, vändning och acceleration med boll när de är
+  trötta, och bygga uthållighet och koordination med bollen vid foten.
 beskrivning: |
   En sluten bana på en yta om 36 x 20 meter, med varje spelare på egen boll.
   Banan går i ett varv: först slalom mellan fem koner med bollen, sedan en
@@ -76,8 +76,8 @@ varianter:
   svarare: Slalomen på färre touchar, och i vändningen ska bollen tas med den svagare foten. Varje
     varv ska klaras på en bestämd tid, 40 sekunder.
 anpassning:
-  fler_spelare: Vid fler än tio spelare delas gruppen i två halvor som växlar mellan arbete och
-    vila, med en till tre omgångar per halva.
+  fler_spelare: Vid fler än tio spelare delas gruppen i två halvor som växlar mellan arbete och vila,
+    med en till tre omgångar per halva.
   udda_antal: Spelar ingen roll. Spelarna arbetar var för sig, och en halva kan vara en spelare större.
   ledare: Övningen är självgående när banan är byggd. Ledaren håller tiden på arbete och vila och
     rättar tekniken i vändningen.
@@ -87,8 +87,8 @@ planskiss:
     langd: 36
     bredd: 20
   beskrivning: >-
-    Yta 36 x 20 meter med en sluten bana: slalom längst upp, en bollbana och tre låga hinder
-    till höger, en vändning runt en kon och en acceleration längs undre kanten. Den första står vid
+    Yta 36 x 20 meter med en sluten bana: slalom längst upp, en bollbana och tre låga hinder till
+    höger, en vändning runt en kon och en acceleration längs undre kanten. Den första står vid
     starten och de andra i kö utanför vänstra kortsidan. Fler spelare fyller på kön.
   objekt:
     - { typ: ruta, x: 0, y: 0, langd: 36, bredd: 20, stil: streckad }
@@ -111,14 +111,26 @@ planskiss:
     - { typ: dribbling, fran: { objekt: p1 }, till: { x: 26, y: 4.5 }, ordning: 1, etikett: Slalom }
     - { typ: passning, fran: { x: 29, y: 5 }, till: { x: 29, y: 14 }, ordning: 2, etikett: Bollbana }
     - { typ: lopning, fran: { x: 32, y: 5.5 }, till: { x: 32, y: 13 }, ordning: 2 }
-    - { typ: dribbling, fran: { x: 29, y: 15 }, till: { x: 34, y: 17 }, ordning: 3, etikett: Vändning }
-    - { typ: dribbling, fran: { x: 34, y: 18 }, till: { x: 8, y: 18 }, ordning: 4, etikett: Acceleration }
+    - {
+        typ: dribbling,
+        fran: { x: 29, y: 15 },
+        till: { x: 34, y: 17 },
+        ordning: 3,
+        etikett: Vändning
+      }
+    - {
+        typ: dribbling,
+        fran: { x: 34, y: 18 },
+        till: { x: 8, y: 18 },
+        ordning: 4,
+        etikett: Acceleration
+      }
   skalning:
     strategi: koer
     koer:
       - { vid: p4, riktning: 90, avstand: 2, etikett: Väntar på start }
 kalla: Egen övning, inspirerad av allmänna dribblingsbanor och intervallträning med boll.
-status: granskad
+status: godkand
 granskning:
   - datum: 2026-10-08
     av: fotbollsexpert
@@ -126,16 +138,19 @@ granskning:
     kommentar: >-
       Håller, efter tre småfel som jag har rättat själv. En bestämd bana, så ytan bedöms enligt
       undantag 3: delarna korsar inte varandra och har minst 2 meter mellan sig (bollbanan och
-      hinderlöpningen 3 meter, hindren och vändningen 2 meter, bollbanans stoppkon och
-      raksträckan 2 meter). Arbete och vila står i minuter (designregel 16). Avvikelsen från
-      planen godtas: högst tio på banan och två halvor som växlar vid 11-20 spelare, med tre
-      minuters arbete och tre minuters vila. En bana för tjugo samtidigt blir för tät, och två
-      banor ryms inte på kvarts plan (39 x 23 x 2 = 1 794 mot 1 664 kvadratmeter). Vila lika lång
-      som arbetet är fortfarande intervallträning, varje spelare får en till tre omgångar och
-      övningen ryms inom 20 minuter. Rättat: 1. Kön stod inne i ytan på vänstra kortsidan, där
-      spelarna kommer tillbaka efter accelerationen. Nu står den första vid starten och kön 1,5
-      meter utanför kortsidan, och kön ryms med elva spelare inom marginalen. 2. Med tio spelare
-      på ett varv om cirka 85 meter kommer de snabba ikapp de långsamma. Nu går man förbi bara på
-      raksträckan. 3. "Fyra till fem omgångar" gick inte ihop med 8-20 minuter. Nu två till fyra
-      omgångar, och en till tre per halva. Ingen ytreferens: bestämd bana, stationer och fasta
-      positioner. Inga skott i skissen.
+      hinderlöpningen 3 meter, hindren och vändningen 2 meter, bollbanans stoppkon och raksträckan 2
+      meter). Arbete och vila står i minuter (designregel 16). Avvikelsen från planen godtas: högst
+      tio på banan och två halvor som växlar vid 11-20 spelare, med tre minuters arbete och tre
+      minuters vila. En bana för tjugo samtidigt blir för tät, och två banor ryms inte på kvarts
+      plan (39 x 23 x 2 = 1 794 mot 1 664 kvadratmeter). Vila lika lång som arbetet är fortfarande
+      intervallträning, varje spelare får en till tre omgångar och övningen ryms inom 20 minuter.
+      Rättat: 1. Kön stod inne i ytan på vänstra kortsidan, där spelarna kommer tillbaka efter
+      accelerationen. Nu står den första vid starten och kön 1,5 meter utanför kortsidan, och kön
+      ryms med elva spelare inom marginalen. 2. Med tio spelare på ett varv om cirka 85 meter kommer
+      de snabba ikapp de långsamma. Nu går man förbi bara på raksträckan. 3. "Fyra till fem
+      omgångar" gick inte ihop med 8-20 minuter. Nu två till fyra omgångar, och en till tre per
+      halva. Ingen ytreferens: bestämd bana, stationer och fasta positioner. Inga skott i skissen.
+  - datum: 2026-10-12
+    av: benbom
+    roll: redaktör
+    kommentar: "Godkänd genom merge av pull request #42."
