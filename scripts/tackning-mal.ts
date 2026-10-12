@@ -1,6 +1,7 @@
 /**
- * Sammanfattningarna mot målen per cell i plan-omgang-6.md och plan-omgang-7.md (avsnitt 1.1)
- * för täckningsskriptet (`scripts/tackning.ts`).
+ * Sammanfattningarna mot målen per cell i plan-omgang-6.md, plan-omgang-7.md och
+ * plan-omgang-8.md (avsnitt 1.1, och för omgång 8 också ersättningsfokus i avsnitt 1.3), och
+ * kolumnerna i rapportens celltabeller, för täckningsskriptet (`scripts/tackning.ts`).
  *
  * Modulen har inga sidoeffekter, så att sammanställningen går att testa med syntetiska
  * celler utan att köra svepet. `scripts/tackning.ts` kör svepet när den importeras och kan
@@ -14,11 +15,16 @@ import {
   type CellKind,
   type CellStats,
   EQUAL_PLAN_CELLS_OMGANG7,
+  EQUAL_PLAN_CELLS_OMGANG8,
   GOAL_MEASURES,
   type GoalMeasure,
   PLAN_GOALS,
   type PlanGoal,
+  SUBSTITUTE_GOALS_OMGANG8,
+  type SubstituteScope,
+  type WarmupStats,
   meetsCellGoal,
+  meetsPercentGoal,
   percentOneDecimal,
   planCellLabel,
   rollUpToPlanCells,
@@ -57,6 +63,37 @@ export function cellGoalText(goal: CellGoal): string {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Kolumnerna i tabellerna per cell
+// ---------------------------------------------------------------------------
+
+export const CELL_HEADER =
+  'Körfall | Inget pass | Fylld kärna, av alla körfall | Fylld kärna, av skapade pass | Kärna på valt fokus, av alla körfall | Kärndel borttagen (R-033) | Uppvärmning saknar övning, av skapade pass';
+
+/** Antalet kolumner i `CELL_HEADER`, för tabellernas avgränsningsrad. */
+export const CELL_COLUMN_COUNT = CELL_HEADER.split(' | ').length;
+
+/**
+ * Kolumnerna i `CELL_HEADER` för en cell. Tom uppvärmning (beslut B3) räknas av de skapade
+ * passen, eftersom ett körfall utan pass inte har någon uppvärmning att fylla.
+ */
+export function cellColumns(stats: CellStats, warmup: WarmupStats | undefined): string {
+  const passCount = stats.total - stats.none;
+  const warmupText =
+    warmup === undefined
+      ? '–'
+      : `${warmup.warmupEmpty} (${pct(warmup.warmupEmpty, warmup.sessions)})`;
+  return [
+    stats.total,
+    `${stats.none} (${pct(stats.none, stats.total)})`,
+    pct(stats.coreFilled, stats.total),
+    pct(stats.coreFilled, passCount),
+    pct(stats.coreOnFocus, stats.total),
+    pct(stats.coreRemoved, stats.total),
+    warmupText,
+  ].join(' | ');
+}
+
 /**
  * Åldrarna för åldersgrupperna, med angränsande spann ihopslagna: `['3mot3', '9mot9',
  * '11mot11']` ger "6–7 år och 13–19 år".
@@ -77,32 +114,57 @@ export function agesLabel(groups: Iterable<GameFormat>): string {
   if (merged.length === 0) {
     return '–';
   }
-  const texts = merged.map((span) => `${span.min}–${span.max} år`);
+  return joinSwedish(merged.map((span) => `${span.min}–${span.max} år`));
+}
+
+/** "a", "a och b", "a, b och c". */
+function joinSwedish(texts: readonly string[]): string {
   return texts.length === 1
     ? texts[0]!
     : `${texts.slice(0, -1).join(', ')} och ${texts[texts.length - 1]!}`;
 }
 
-/** Vad som skiljer sammanfattningarna för omgång 6 och omgång 7 åt. */
+/** En senare omgång, med sina mål per cell. */
+export interface LaterRound {
+  round: number;
+  goalsOf: (goal: PlanGoal) => CellGoals;
+}
+
+/** Vad som skiljer sammanfattningarna för omgång 6, 7 och 8 åt. */
 export interface CellGoalRound {
   round: number;
   goalsOf: (goal: PlanGoal) => CellGoals;
   /**
-   * En senare omgång som höjer mål som den här omgången kräver ska vara oförändrade. Ett
-   * sådant värde som inte längre är oförändrat märks "ändras av omgång N" i stället för "nej".
+   * Senare omgångar, i ordning, som höjer mål som den här omgången kräver ska vara
+   * oförändrade. Ett sådant värde som inte längre är oförändrat märks "ändras av omgång N",
+   * med den första senare omgång som höjer det, i stället för "nej".
    */
-  later?: { round: number; goalsOf: (goal: PlanGoal) => CellGoals };
+  later?: readonly LaterRound[];
+  /** Avsnitten i planen som inte prövas i skriptet utan för hand. */
+  manualSections: string;
 }
+
+const LATER_OMGANG7: LaterRound = { round: 7, goalsOf: (goal) => goal.omgang7 };
+const LATER_OMGANG8: LaterRound = { round: 8, goalsOf: (goal) => goal.omgang8 };
 
 export const OMGANG6: CellGoalRound = {
   round: 6,
   goalsOf: (goal) => goal.omgang6,
-  later: { round: 7, goalsOf: (goal) => goal.omgang7 },
+  later: [LATER_OMGANG7, LATER_OMGANG8],
+  manualSections: '1.2 och 1.3',
 };
 
 export const OMGANG7: CellGoalRound = {
   round: 7,
   goalsOf: (goal) => goal.omgang7,
+  later: [LATER_OMGANG8],
+  manualSections: '1.2 och 1.3',
+};
+
+export const OMGANG8: CellGoalRound = {
+  round: 8,
+  goalsOf: (goal) => goal.omgang8,
+  manualSections: '1.2',
 };
 
 export interface GoalRow {
@@ -127,7 +189,7 @@ export interface GoalSummary {
   raised: GoalTally;
   /** Mål "exakt oförändrat". */
   kept: GoalTally;
-  /** Oförändrat-mål som inte nåtts och som den senare omgången höjer. */
+  /** Oförändrat-mål som inte nåtts och som en senare omgång höjer. */
   changedByLater: { nu: number; efter: number };
   raisedAges: string;
   keptAges: string;
@@ -135,6 +197,18 @@ export interface GoalSummary {
 
 function emptyTally(): GoalTally {
   return { count: 0, nu: 0, efter: 0 };
+}
+
+/** Den första senare omgång som höjer ett mål som den här omgången kräver ska vara oförändrat. */
+function raisingRound(
+  spec: CellGoalRound,
+  goal: PlanGoal,
+  measure: GoalMeasure,
+): LaterRound | undefined {
+  if (spec.goalsOf(goal)[measure].kind !== 'oforandrat') {
+    return undefined;
+  }
+  return spec.later?.find((later) => later.goalsOf(goal)[measure].kind !== 'oforandrat');
 }
 
 /** Raderna och räknarna i sammanfattningen, utan text. */
@@ -164,21 +238,17 @@ export function summarizeCellGoals(
       const target = spec.goalsOf(goal)[measure];
       const metNu = meetsCellGoal(a, measure, target);
       const metEfter = meetsCellGoal(b, measure, target);
-      const isKept = target.kind === 'oforandrat';
-      const bucket = isKept ? kept : raised;
+      const bucket = target.kind === 'oforandrat' ? kept : raised;
       bucket.count += 1;
       bucket.nu += metNu === true ? 1 : 0;
       bucket.efter += metEfter === true ? 1 : 0;
-      const raisedLater =
-        isKept &&
-        spec.later !== undefined &&
-        spec.later.goalsOf(goal)[measure].kind !== 'oforandrat';
+      const raiser = raisingRound(spec, goal, measure);
       const label = (met: boolean | null): string =>
-        raisedLater && met === false ? `ändras av omgång ${spec.later!.round}` : verdict(met);
-      if (raisedLater && metNu === false) {
+        raiser !== undefined && met === false ? `ändras av omgång ${raiser.round}` : verdict(met);
+      if (raiser !== undefined && metNu === false) {
         changedByLater.nu += 1;
       }
-      if (raisedLater && metEfter === false) {
+      if (raiser !== undefined && metEfter === false) {
         changedByLater.efter += 1;
       }
       rows.push({
@@ -223,7 +293,7 @@ export function renderCellGoalSummary(
   lines.push(`## Sammanfattning: målen i plan-omgang-${spec.round}.md, avsnitt 1.1`);
   lines.push('');
   lines.push(
-    `"Nu" är banken med ${nu.bankSize} godkända övningar. "Efter CI" räknar också de ${efter.bankSize - nu.bankSize} granskade som godkända (bara i minnet). Planen prövar målen mot "Banken nu" när omgång ${spec.round} är godkänd, eller mot "Efter CI" när omgångens övningar är granskade men inte godkända. Fylld kärna och kärna på valt fokus räknas av alla körfall. Målen i avsnitt 1.2 och 1.3 prövas för hand mot tabellerna längre ned (se *Metod*).`,
+    `"Nu" är banken med ${nu.bankSize} godkända övningar. "Efter CI" räknar också de ${efter.bankSize - nu.bankSize} granskade som godkända (bara i minnet). Planen prövar målen mot "Banken nu" när omgång ${spec.round} är godkänd, eller mot "Efter CI" när omgångens övningar är granskade men inte godkända. Fylld kärna och kärna på valt fokus räknas av alla körfall. Målen i avsnitt ${spec.manualSections} prövas för hand mot tabellerna längre ned (se *Metod*).`,
   );
   if (snabb) {
     lines.push('');
@@ -245,18 +315,52 @@ export function renderCellGoalSummary(
   }
   const { raised, kept, changedByLater } = summary;
   let keptText = `Värdena för ${summary.keptAges}: ${kept.nu} av ${kept.count} oförändrade nu och ${kept.efter} av ${kept.count} efter CI`;
-  if (spec.later === undefined) {
+  if (spec.later === undefined || spec.later.length === 0) {
     keptText +=
       '; ett ändrat värde där är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgången.';
   } else {
-    const marker = `"ändras av omgång ${spec.later.round}"`;
-    keptText += `. Av de ändrade är ${changedByLater.nu} nu och ${changedByLater.efter} efter CI märkta ${marker}: omgång ${spec.later.round} höjer målen för dem med avsikt, och de bedöms i sammanfattningen för omgång ${spec.later.round}. Ett annat ändrat värde är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgången.`;
+    const rounds = spec.later.map((later) => later.round);
+    const markers = rounds.map((round) => `"ändras av omgång ${round}"`);
+    const markerText =
+      markers.length === 1
+        ? markers[0]!
+        : `${markers.slice(0, -1).join(', ')} eller ${markers.at(-1)!}`;
+    const roundText = joinSwedish(rounds.map(String));
+    const which =
+      rounds.length === 1
+        ? `omgång ${roundText} höjer målen för dem med avsikt, och de bedöms i sammanfattningen för omgång ${roundText}`
+        : `omgång ${roundText} höjer målen för dem med avsikt, och de bedöms i sammanfattningen för den omgång som märkningen anger`;
+    keptText += `. Av de ändrade är ${changedByLater.nu} nu och ${changedByLater.efter} efter CI märkta ${markerText}: ${which}. Ett annat ändrat värde är enligt planen ett fel i skriptet eller i en fil, inte en effekt av omgången.`;
   }
   lines.push('');
   lines.push(
     `Målen för ${summary.raisedAges}: ${raised.nu} av ${raised.count} nådda nu och ${raised.efter} av ${raised.count} efter CI. ${keptText}`,
   );
   return lines.join('\n');
+}
+
+/** Kontrollerna att två celler i planen är lika i antal körfall och i de tre måtten. */
+function renderEqualityChecks(
+  nu: SummaryScenario,
+  efter: SummaryScenario,
+  pairs: readonly (readonly [string, string])[],
+): string[] {
+  const nuCells = rollUpToPlanCells(nu.agg.cells);
+  const efterCells = rollUpToPlanCells(efter.agg.cells);
+  const label = (key: string): string => {
+    const [group, spelform] = key.split('|') as [GameFormat, GameFormat];
+    return planCellLabel(group, spelform);
+  };
+  const lines: string[] = [];
+  for (const [keyA, keyB] of pairs) {
+    const nuSame = sameOnGoalMeasures(nuCells.get(keyA), nuCells.get(keyB));
+    const efterSame = sameOnGoalMeasures(efterCells.get(keyA), efterCells.get(keyB));
+    lines.push('');
+    lines.push(
+      `Kontrollen i avsnitt 1.1, att ${label(keyA)} och ${label(keyB)} är lika i antal körfall och i de tre måtten (räknat i antal): ${verdict(nuSame)} nu och ${verdict(efterSame)} efter CI. Om de skiljer sig är en övning fel märkt.`,
+    );
+  }
+  return lines;
 }
 
 export function renderSummaryOmgang6(
@@ -272,19 +376,104 @@ export function renderSummaryOmgang7(
   efter: SummaryScenario,
   snabb: boolean,
 ): string {
-  const lines = [renderCellGoalSummary(nu, efter, snabb, OMGANG7)];
-  const nuCells = rollUpToPlanCells(nu.agg.cells);
-  const efterCells = rollUpToPlanCells(efter.agg.cells);
-  const label = (key: string): string => {
-    const [group, spelform] = key.split('|') as [GameFormat, GameFormat];
-    return planCellLabel(group, spelform);
+  return [
+    renderCellGoalSummary(nu, efter, snabb, OMGANG7),
+    ...renderEqualityChecks(nu, efter, EQUAL_PLAN_CELLS_OMGANG7),
+  ].join('\n');
+}
+
+// ---------------------------------------------------------------------------
+// Ersättningsfokus (R-121) mot plan-omgang-8.md, avsnitt 1.3
+// ---------------------------------------------------------------------------
+
+/** Fyllda kärnmoment och hur många av dem som fick ersättningsfokus. */
+export interface SubstituteCount {
+  filled: number;
+  substitute: number;
+}
+
+/** Det som ersättningsfokusets mål behöver av ett scenario: enkelfokussvepets räkning. */
+export interface SubstituteScenario extends SummaryScenario {
+  agg: SummaryScenario['agg'] & {
+    coreFilled: number;
+    coreSubstitute: number;
+    coreBySpelform: ReadonlyMap<GameFormat, SubstituteCount>;
   };
-  for (const [keyA, keyB] of EQUAL_PLAN_CELLS_OMGANG7) {
-    const nuSame = sameOnGoalMeasures(nuCells.get(keyA), nuCells.get(keyB));
-    const efterSame = sameOnGoalMeasures(efterCells.get(keyA), efterCells.get(keyB));
+}
+
+export interface SubstituteRow {
+  scope: SubstituteScope;
+  target: CellGoal;
+  nu: SubstituteCount;
+  efter: SubstituteCount;
+  metNu: boolean | null;
+  metEfter: boolean | null;
+}
+
+function substituteCount(agg: SubstituteScenario['agg'], scope: SubstituteScope): SubstituteCount {
+  if (scope === 'alla') {
+    return { filled: agg.coreFilled, substitute: agg.coreSubstitute };
+  }
+  return agg.coreBySpelform.get(scope) ?? { filled: 0, substitute: 0 };
+}
+
+/** Raderna mot målen för ersättningsfokus i avsnitt 1.3, utan text. */
+export function summarizeSubstituteGoals(
+  nu: SubstituteScenario,
+  efter: SubstituteScenario,
+): SubstituteRow[] {
+  return SUBSTITUTE_GOALS_OMGANG8.map(({ scope, goal }) => {
+    const a = substituteCount(nu.agg, scope);
+    const b = substituteCount(efter.agg, scope);
+    return {
+      scope,
+      target: goal,
+      nu: a,
+      efter: b,
+      metNu: meetsPercentGoal(percentOneDecimal(a.substitute, a.filled), goal),
+      metEfter: meetsPercentGoal(percentOneDecimal(b.substitute, b.filled), goal),
+    };
+  });
+}
+
+export function renderSummaryOmgang8(
+  nu: SubstituteScenario,
+  efter: SubstituteScenario,
+  snabb: boolean,
+): string {
+  const lines = [
+    renderCellGoalSummary(nu, efter, snabb, OMGANG8),
+    ...renderEqualityChecks(nu, efter, EQUAL_PLAN_CELLS_OMGANG8),
+  ];
+  lines.push('');
+  lines.push('### Ersättningsfokus (R-121), avsnitt 1.3');
+  lines.push('');
+  lines.push(
+    'Andelen fyllda kärnmoment med ersättningsfokus i enkelfokussvepet, samma tal som tabellen *Ersättningsfokus (R-121)* längre ned. "Oförändrat" är lika med värdet i `tackning-2026-10-08-omgang-7.md` (Efter CI-rättning).',
+  );
+  if (snabb) {
     lines.push('');
     lines.push(
-      `Kontrollen i avsnitt 1.1, att ${label(keyA)} och ${label(keyB)} är lika i antal körfall och i de tre måtten (räknat i antal): ${verdict(nuSame)} nu och ${verdict(efterSame)} efter CI. Om de skiljer sig är en övning fel märkt.`,
+      'Körningen gjordes med `--snabb`, så andelarna bygger bara på de föreslagna cellerna och går inte att jämföra med målen.',
+    );
+  }
+  lines.push('');
+  lines.push('| Spelform | Nu | Efter CI | Mål efter omgång 8 | Nått nu | Nått efter CI |');
+  lines.push('|---|---|---|---|---|---|');
+  const rows = summarizeSubstituteGoals(nu, efter);
+  for (const row of rows) {
+    const label = row.scope === 'alla' ? 'Hela banken' : row.scope;
+    const met = (value: boolean | null): string => (snabb ? '–' : verdict(value));
+    lines.push(
+      `| ${label} | ${pct(row.nu.substitute, row.nu.filled)} | ${pct(row.efter.substitute, row.efter.filled)} | ${cellGoalText(row.target)} | ${met(row.metNu)} | ${met(row.metEfter)} |`,
+    );
+  }
+  if (!snabb) {
+    const count = (pick: (row: SubstituteRow) => boolean | null): number =>
+      rows.filter((row) => pick(row) === true).length;
+    lines.push('');
+    lines.push(
+      `Målen för ersättningsfokus: ${count((row) => row.metNu)} av ${rows.length} nådda nu och ${count((row) => row.metEfter)} av ${rows.length} efter CI.`,
     );
   }
   return lines.join('\n');
