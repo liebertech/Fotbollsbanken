@@ -444,6 +444,7 @@ F4 i `plan-omgang-5.md` tillåter det, eftersom övningen är ett överläge med
 *Användarens svar 2026-10-09:*
 - *B1: alla sex övningar.*
 - *B2: ja. `svansjakt-med-egen-boll` får `del-ovning` som en egen commit efter granskningen, och skriptet körs före och efter. Om mätningen visar en försämring tas ändringen bort, som B4 i omgång 7.*
+  *Mätt 2026-10-09: B2 behålls. Efter CI blev kärna på valt fokus för 6–7 år 89,1 % med B2 och 85,4 % utan, och fylld kärna 100,0 % i båda fallen. Ersättningsfokus i `3mot3` blev 27,3 % med B2 och 28,1 % utan. Se `tackning-2026-10-09.md`.*
 - *B3: ja. Täckningsrapporten får en kolumn för tom uppvärmning, i samma pull request som målen för omgång 8.*
 
 **B1. Antalet övningar.** *Rekommendation:* alla 6. Om omgången ska bli mindre gäller ordningen i avsnitt 2.6, och O8-01, O8-02 och O8-04 ska alltid vara med.
