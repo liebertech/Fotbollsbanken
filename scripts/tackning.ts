@@ -9,9 +9,12 @@
  * svepet se rapportens metodavsnitt.
  *
  * Rapporten redovisar också måtten per cell (ålder gånger spelform, föreslagen eller granne)
- * och jämför dem med målen i docs/doman/plan-omgang-7.md och plan-omgang-6.md (avsnitt 1.1)
- * och, som förut, docs/doman/plan-omgang-5.md (avsnitt 1.1 och 1.2). Indelningen och måtten ligger i
- * `scripts/tackning-celler.ts`, som har egna tester.
+ * och jämför dem med målen i docs/doman/plan-omgang-8.md (avsnitt 1.1 och 1.3),
+ * plan-omgang-7.md och plan-omgang-6.md (avsnitt 1.1) och, som förut,
+ * docs/doman/plan-omgang-5.md (avsnitt 1.1 och 1.2). Den visar också per cell hur ofta
+ * uppvärmningen saknar övning (beslut B3 i plan-omgang-8.md). Indelningen och måtten ligger i
+ * `scripts/tackning-celler.ts` och sammanfattningarna i `scripts/tackning-mal.ts`, som har
+ * egna tester.
  *
  * Syftet är att ge fotbollsexperten siffror att planera nästa omgång övningar efter, inte att
  * tolka dem fotbollsfackligt. Skriptet ändrar aldrig filer i content/ovningar/: den andra
@@ -53,11 +56,14 @@ import {
   type CellKind,
   type CellStats,
   PLAN_GOALS,
+  type WarmupStats,
   addOutcome,
+  addWarmup,
   ageCellKey,
   cellKind,
   classifyOutcome,
   emptyCellStats,
+  emptyWarmupStats,
   formatGameFormat,
   localDate,
   meetsGoal,
@@ -66,13 +72,18 @@ import {
   planCellLabel,
   reportPath,
   rollUpToPlanCells,
+  rollUpWarmupToPlanCells,
   sumByKind,
 } from './tackning-celler.ts';
 import {
+  CELL_COLUMN_COUNT,
+  CELL_HEADER,
   KIND_LABEL,
+  cellColumns,
   pct,
   renderSummaryOmgang6,
   renderSummaryOmgang7,
+  renderSummaryOmgang8,
   verdict,
 } from './tackning-mal.ts';
 import { publishExercise } from '../src/regelmotor/schema/published.ts';
@@ -314,6 +325,8 @@ interface Aggregate {
   combinationFailures: SweepCase[];
   /** Per cell på åldersnivå (`ageCellKey`), från båda sveparna. */
   cells: Map<string, CellStats>;
+  /** Tom uppvärmning per cell på åldersnivå (beslut B3), från båda sveparna. */
+  warmup: Map<string, WarmupStats>;
 }
 
 function newAggregate(): Aggregate {
@@ -333,6 +346,7 @@ function newAggregate(): Aggregate {
     substituteMapping: new Map(),
     combinationFailures: [],
     cells: new Map(),
+    warmup: new Map(),
   };
 }
 
@@ -363,6 +377,9 @@ function recordAttempt(
   const cell = agg.cells.get(cellKey) ?? emptyCellStats();
   addOutcome(cell, classifyOutcome(result));
   agg.cells.set(cellKey, cell);
+  const warmup = agg.warmup.get(cellKey) ?? emptyWarmupStats();
+  addWarmup(warmup, result);
+  agg.warmup.set(cellKey, warmup);
 
   if (result.kind === 'none') {
     agg.noneCount += 1;
@@ -619,36 +636,26 @@ function renderSubstituteSection(agg: Aggregate): string {
   return lines.join('\n');
 }
 
-function cellColumns(stats: CellStats): string {
-  const passCount = stats.total - stats.none;
-  return [
-    stats.total,
-    `${stats.none} (${pct(stats.none, stats.total)})`,
-    pct(stats.coreFilled, stats.total),
-    pct(stats.coreFilled, passCount),
-    pct(stats.coreOnFocus, stats.total),
-    pct(stats.coreRemoved, stats.total),
-  ].join(' | ');
+function separatorRow(columns: number): string {
+  return `|${'---|'.repeat(columns)}`;
 }
-
-const CELL_HEADER =
-  'Körfall | Inget pass | Fylld kärna, av alla körfall | Fylld kärna, av skapade pass | Kärna på valt fokus, av alla körfall | Kärndel borttagen (R-033)';
 
 function renderAgeCellTable(agg: Aggregate): string {
   const lines = [
     `| Ålder | Spelform | Typ | ${CELL_HEADER} |`,
-    '|---|---|---|---|---|---|---|---|---|',
+    separatorRow(3 + CELL_COLUMN_COUNT),
   ];
   for (const alder of range(AGE_MIN, AGE_MAX)) {
     for (const spelform of allowedGameFormats(alder)) {
-      const stats = agg.cells.get(ageCellKey(alder, spelform));
+      const key = ageCellKey(alder, spelform);
+      const stats = agg.cells.get(key);
       if (stats === undefined) {
         continue;
       }
       const kind = cellKind(alder, spelform);
       const kindLabel = kind === undefined ? '–' : KIND_LABEL[kind];
       lines.push(
-        `| ${alder} | ${formatGameFormat(spelform)} | ${kindLabel} | ${cellColumns(stats)} |`,
+        `| ${alder} | ${formatGameFormat(spelform)} | ${kindLabel} | ${cellColumns(stats, agg.warmup.get(key))} |`,
       );
     }
   }
@@ -657,15 +664,17 @@ function renderAgeCellTable(agg: Aggregate): string {
 
 function renderPlanCellTable(agg: Aggregate): string {
   const planCells = rollUpToPlanCells(agg.cells);
-  const lines = [`| Cell | Typ | ${CELL_HEADER} |`, '|---|---|---|---|---|---|---|---|'];
+  const planWarmup = rollUpWarmupToPlanCells(agg.warmup);
+  const lines = [`| Cell | Typ | ${CELL_HEADER} |`, separatorRow(2 + CELL_COLUMN_COUNT)];
   for (const goal of PLAN_GOALS) {
-    const stats = planCells.get(`${goal.group}|${goal.spelform}`);
+    const key = `${goal.group}|${goal.spelform}`;
+    const stats = planCells.get(key);
     if (stats === undefined) {
       continue;
     }
     const kind = goal.group === goal.spelform ? 'foreslagen' : 'granne';
     lines.push(
-      `| ${planCellLabel(goal.group, goal.spelform)} | ${KIND_LABEL[kind]} | ${cellColumns(stats)} |`,
+      `| ${planCellLabel(goal.group, goal.spelform)} | ${KIND_LABEL[kind]} | ${cellColumns(stats, planWarmup.get(key))} |`,
     );
   }
   return lines.join('\n');
@@ -858,6 +867,8 @@ function renderReport(
     `Siffror, inte tolkning. Skriptet är \`scripts/tackning.ts\` (\`npm run tackning${method.snabb ? ' -- --snabb' : ''}\`) och körs mot den riktiga övningsbanken i \`content/ovningar/\` genom \`src/regelmotor/index.ts\`. Fotbollsfrågor avgörs inte här; fotbollsexperten äger tolkningen av målen.`,
   );
   lines.push('');
+  lines.push(renderSummaryOmgang8(nu, efter, method.snabb));
+  lines.push('');
   lines.push(renderSummaryOmgang7(nu, efter, method.snabb));
   lines.push('');
   lines.push(renderSummaryOmgang6(nu, efter, method.snabb));
@@ -881,7 +892,28 @@ function renderReport(
     '- **Kärna på valt fokus:** kärnan är fylld och ingen kärndel fick ersättningsfokus (R-121). Då träffar varje kärndel minst ett av ledarens valda fokusområden (R-040, R-041). Andelen räknas av alla körfall.',
   );
   lines.push(
+    '- **Uppvärmning saknar övning** (beslut B3 i plan-omgang-8.md): passet skapades, men `del-uppvarmning` har ingen övning (status `saknar-ovning`, R-100). Uppvärmningen tas aldrig bort av R-033. Andelen räknas av de skapade passen. Den påverkar inte "fylld kärna", som bara gäller Öva och Spelövning, och planerna sätter inget mål för den.',
+  );
+  lines.push(
     '- Måtten per cell bygger på **båda** sveparna nedan, så att cellernas körfall stämmer med planens tabell i avsnitt 0. Avsnittet om ersättningsfokus längre ned bygger, som förut, bara på enkelfokussvepet.',
+  );
+  lines.push('');
+  lines.push('### Hur målen i plan-omgang-8.md avsnitt 1.1 och 1.3 är översatta');
+  lines.push('');
+  lines.push(
+    '- Målen i avsnitt 1.1 är avskrivna för hand i fältet `omgang8` i `PLAN_GOALS` i `scripts/tackning-celler.ts`: "högst" för inget pass och "minst" för fylld kärna och kärna på valt fokus i cellerna för 6–7 år.',
+  );
+  lines.push(
+    '- "Exakt oförändrat" för 8–19 år betyder lika med värdet i `tackning-2026-10-08-omgang-7.md` (Efter CI-rättning, *Per cell i planen*), på rapportens precision. Jämförelsen görs, som för omgång 6 och 7, på andelen avrundad till en decimal, och gränsen räknas in.',
+  );
+  lines.push(
+    '- Planens kontroll att 6–7 år i 3 mot 3 och i 5 mot 5 är lika görs på antal körfall och antalen bakom de tre måtten, inte på avrundad procent.',
+  );
+  lines.push(
+    '- Målen för ersättningsfokus i avsnitt 1.3 är avskrivna i `SUBSTITUTE_GOALS_OMGANG8` i `scripts/tackning-celler.ts` och prövas mot tabellen *Ersättningsfokus (R-121)* (enkelfokussvepet), på samma sätt. "Exakt oförändrat" för `7mot7`, `9mot9` och `11mot11` betyder lika med värdet i `tackning-2026-10-08-omgang-7.md` (Efter CI-rättning). Listan över de vanligaste ersättningarna är inte mål i planen och prövas inte.',
+  );
+  lines.push(
+    '- Målen i avsnitt 1.2 (per spelform och del) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde*, kolumnen "Kan inte fyllas för sig" efter CI.',
   );
   lines.push('');
   lines.push('### Hur målen i plan-omgang-7.md avsnitt 1.1 är översatta');
@@ -899,6 +931,9 @@ function renderReport(
     '- Planens kontroll att 8–9 år i 5 mot 5 och i 7 mot 7 är lika görs på antal körfall och antalen bakom de tre måtten, inte på avrundad procent.',
   );
   lines.push(
+    '- Ett värde för 6–7 år som inte längre är oförändrat står som "ändras av omgång 8" i stället för "nej", eftersom plan-omgang-8.md höjer målen för de cellerna med avsikt. De bedöms i sammanfattningen för omgång 8.',
+  );
+  lines.push(
     '- Målen i avsnitt 1.2 (per spelform och del) och 1.3 (ersättningsfokus) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde* och *Ersättningsfokus (R-121)*.',
   );
   lines.push('');
@@ -914,7 +949,7 @@ function renderReport(
     '- "Exakt oförändrat" för 6–12 år betyder lika med värdet i `tackning-2026-10-07.md` (Banken nu, *Per cell i planen*), på rapportens precision. En ändring mindre än 0,05 procentenheter syns alltså inte.',
   );
   lines.push(
-    '- Ett värde för 8–12 år som inte längre är oförändrat står som "ändras av omgång 7" i stället för "nej", eftersom plan-omgang-7.md höjer målen för de cellerna med avsikt. De bedöms i sammanfattningen för omgång 7.',
+    '- Ett värde för 8–12 år som inte längre är oförändrat står som "ändras av omgång 7" i stället för "nej", eftersom plan-omgang-7.md höjer målen för de cellerna med avsikt. De bedöms i sammanfattningen för omgång 7. På samma sätt står ett ändrat värde för 6–7 år som "ändras av omgång 8".',
   );
   lines.push(
     '- Målen i avsnitt 1.2 (per spelform och del) och 1.3 (ersättningsfokus) är inte inlagda i skriptet. Planen prövar dem för hand mot tabellerna *Per spelform, passdel och fokusområde* och *Ersättningsfokus (R-121)*.',
