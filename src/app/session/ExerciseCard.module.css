@@ -1,12 +1,73 @@
-/* Kort (designsystem.md avsnitt 6.3): ram mot bakgrunden, aldrig bara en färgskiftning. */
+/*
+ * Kort (designsystem.md avsnitt 6.3): ram och skugga mot bakgrunden, aldrig bara en
+ * färgskiftning. Rutnät med två kolumner: miniatyren till vänster, namn och syfte till
+ * höger, och resten över hela bredden.
+ */
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-2) var(--space-3);
   padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border: 2px solid var(--color-card-border);
+  border-radius: var(--radius-card);
   background: var(--color-surface);
+  box-shadow: 0 2px 0 var(--color-card-border);
+  overflow-wrap: break-word;
+}
+
+.card > * {
+  grid-column: 1 / -1;
+}
+
+/* Namn, bekräftelse och syfte står bredvid miniatyren. De placeras först, så att den
+   utfällda skissen hamnar under dem och inte mellan namnet och syftet. */
+.head,
+.confirmation,
+.purpose {
+  grid-column: 2;
+  order: -1;
+}
+
+/*
+ * Miniatyren och den utfällda skissen ligger i KortSkiss. Behållarna tas ur layouten, så att
+ * miniatyrknappen hamnar i vänsterkolumnen och den utfällda skissen över hela bredden.
+ * Storleken på miniatyren är oförändrad, 96 × 72 px (designsystem.md avsnitt 7).
+ */
+.sketch {
+  display: contents;
+}
+
+.sketch > *,
+.sketch button[aria-expanded] {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.sketch > :has(> button[aria-expanded]) {
+  display: contents;
+}
+
+.sketch > * > :not(button) {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+
+/* Vid smal skärm eller förstorad text (200 % vid 390 px) får texten inte plats bredvid
+   miniatyren. Då står allt i en kolumn, så att sidan aldrig skrollar i sidled. */
+@media (max-width: 20em) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .head,
+  .confirmation,
+  .purpose,
+  .sketch > *,
+  .sketch button[aria-expanded] {
+    grid-column: 1;
+    grid-row: auto;
+  }
 }
 
 .head {
@@ -18,13 +79,16 @@
 }
 
 .name {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 .minutes {
   color: var(--color-text-muted);
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -35,7 +99,7 @@
 .layout {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 /* Ytan är ett nyckeltal som gruppindelningen och ser likadan ut (designsystem.md 6.3).
@@ -43,7 +107,7 @@
 .area {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 /* Ytförklaringen är en liten hjälp till ytraden, inte en handling på kortet: den ser ut som en
@@ -53,6 +117,7 @@
   min-height: var(--tap-target);
   min-width: var(--tap-target);
   align-self: flex-start;
+  justify-self: start;
   padding: 0;
   border: 0;
   background: transparent;
@@ -72,11 +137,11 @@
   min-height: var(--tap-target);
   align-self: flex-start;
   padding: 0 var(--space-4);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius);
+  border: 2px solid var(--color-field-border);
+  border-radius: var(--radius-card);
   background: transparent;
-  color: var(--color-primary);
-  font-weight: 600;
+  color: var(--color-text);
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -87,7 +152,7 @@
 }
 
 .detailHeading {
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
 }
 
@@ -104,8 +169,8 @@
 .confirmation {
   margin: 0;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-primary);
-  border-radius: var(--radius);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-field);
   font-weight: 600;
 }
 

@@ -18,6 +18,8 @@ import {
   stationLabel,
 } from '../text/names.ts';
 import { TEXTS, fill } from '../text/texts.ts';
+import { Icon } from '../ui/Icon.tsx';
+import { PageHeader } from '../ui/PageHeader.tsx';
 import styles from './SessionView.module.css';
 
 interface SessionViewProps {
@@ -126,11 +128,33 @@ function Part({
   });
   const texts = TEXTS.session;
   const empty = part.result?.status === 'saknar-ovning';
+  // Måltiden för en tom del är den som EmptyPart visar.
+  const targetMinutes = part.items.find((item) => item.kind === 'empty')?.minutes ?? part.minutes;
   return (
     <section className={styles.part}>
+      {/*
+       * Det tillgängliga namnet är detsamma som före riktning A: "1. Uppvärmning · 9 min".
+       * Siffercirkeln är dekor, och siffran och skiljetecknet läses i stället ur dolda spann
+       * (designsystem.md avsnitt 6.10). Mellanslagen står utanför de dolda spannen, så att de
+       * inte försvinner när namnet räknas fram. En tom del har ingen tid i rubriken: där är
+       * tidspillen dekor, och måltiden läses ur texten under rubriken.
+       */}
       <h2 className={styles.partHeading}>
-        {part.number}. {PART_NAMES[part.part]}
-        {empty ? '' : ` · ${part.minutes} min`}
+        <span className={styles.partNumber} aria-hidden="true">
+          {part.number}
+        </span>
+        <span className={styles.partName}>
+          <span className="visually-hidden">{`${part.number}.`}</span> {PART_NAMES[part.part]}
+        </span>{' '}
+        {empty ? (
+          <span className={styles.partMinutes} aria-hidden="true">
+            {targetMinutes} min
+          </span>
+        ) : (
+          <span className={styles.partMinutes}>
+            <span className="visually-hidden">·</span> {part.minutes} min
+          </span>
+        )}
       </h2>
 
       {part.result !== null && <SubstituteNote result={part.result} />}
@@ -182,8 +206,10 @@ function Part({
           case 'break':
             return (
               <p className={styles.break} key={item.key}>
-                <span aria-hidden="true">💧 </span>
-                {texts.breakRow} · {item.minutes} min
+                <Icon name="drop" className={styles.breakIcon} />
+                <span>
+                  {texts.breakRow} · {item.minutes} min
+                </span>
               </p>
             );
 
@@ -216,7 +242,7 @@ export function SessionView({
 
   return (
     <div className={styles.view}>
-      <h1>{texts.heading}</h1>
+      <PageHeader heading={texts.heading} />
 
       <div className={styles.summary}>
         <p className={styles.summaryLine}>
@@ -241,7 +267,11 @@ export function SessionView({
           const text = NOTICE_TEXTS[notice.kind];
           return (
             <li className={styles.notice} key={notice.kind}>
-              <span aria-hidden="true">{text.kind === 'tips' ? '💡' : '⚠'}</span>
+              {text.kind === 'tips' ? (
+                <span aria-hidden="true">💡</span>
+              ) : (
+                <Icon name="yellow-card" className={styles.noticeIcon} />
+              )}
               <span>{text.text}</span>
             </li>
           );

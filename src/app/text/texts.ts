@@ -5,6 +5,11 @@
  * Nycklarna är engelska som all annan kod; värdena är det ledaren läser.
  */
 export const TEXTS = {
+  /** Avsnitt 1: allmänt. Varumärkesraden i sidhuvudet (designsystem.md avsnitt 6.10). */
+  app: {
+    name: 'Fotbollsbanken',
+  },
+
   /** Avsnitt 3: underlaget. */
   input: {
     heading: 'Nytt pass',
