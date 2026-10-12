@@ -1,5 +1,7 @@
 Status: godkänd (K2, 2026-09-12)
 
+> **Ändringar 2026-10-12 är utkast tills användaren godkänt dem.** Användaren valde 2026-10-12 riktning A, Gräsmattan (se `visuell-design-forslag.md`). Avsnitt 2.1, 2.2, 2.4, 3, 4, 6.1, 6.3–6.5, 6.10, 6.11, 7 och 10 är uppdaterade efter det beslutet, och ändringarna är listade sist i dokumentet. Statusraden ovan gäller K2-versionen och ändras bara av användaren.
+
 # Designsystem – Fotbollsbanken
 
 Det här dokumentet beskriver färger, typografi, avstånd, komponenter och tillgänglighetskrav som gäller genom hela appen. Tekniskt genomförande (CSS-ramverk, komponentbibliotek) beslutas vid K2 av senior-systemutvecklare – det här dokumentet är teknikoberoende och beskriver *vad* som ska uppnås, inte *hur* det byggs.
@@ -22,33 +24,47 @@ Ljust och mörkt läge följer enhetens systeminställning som förval, med möj
 
 ## 2. Färger
 
+Paletten gäller från beslutet om riktning A, Gräsmattan (2026-10-12, se `visuell-design-forslag.md`). De gröna primärfärgerna är desamma som tidigare. Bakgrund, kort, text och varning har nya värden, och två nya roller har tillkommit: *Accent* och *Sidhuvud*. Kontrasten är beräknad med samma formel som ovan.
+
 ### 2.1 Ljust läge
 
 | Roll | Färg | Hex | Används mot | Kontrast | Klarar |
 |---|---|---|---|---|---|
-| Bakgrund | Vit | `#FFFFFF` | – | – | – |
-| Yta/kort | Ljusgrå-grön | `#F4F6F4` | Text primär ovanpå | 16,9:1 | AAA |
-| Text, primär | Nästan svart | `#1A1A1A` | Bakgrund `#FFFFFF` | 17,4:1 | AAA |
-| Text, sekundär | Mörkgrå | `#595959` | Bakgrund `#FFFFFF` | 7,0:1 | AAA |
+| Bakgrund | Ljus gräsgrön-vit | `#F4F7EE` | – | – | – |
+| Yta/kort | Vit | `#FFFFFF` | Text primär ovanpå | 16,3:1 | AAA |
+| Text, primär | Mörk skogsgrön-svart | `#14231A` | Kort `#FFFFFF` / bakgrund `#F4F7EE` | 16,3:1 / 15,1:1 | AAA |
+| Text, sekundär | Mörk gröngrå | `#46564B` | Kort `#FFFFFF` / bakgrund `#F4F7EE` | 7,8:1 / 7,2:1 | AAA |
 | Primär/knapp (grön) | Fotbollsgrön | `#0B6B3A` | Vit text `#FFFFFF` | 6,6:1 | AA (text), AA (UI) |
-| Fel/varning, röd | Tegelröd | `#B3261E` | Vit text `#FFFFFF` | 6,5:1 | AA |
-| Varningsruta, bakgrund | Ljus gul | `#FFF6DA` | Text `#6B4300` | 8,0:1 | AAA |
-| Länk | Samma som primär | `#0B6B3A` | Bakgrund `#FFFFFF` | 6,6:1 | AA |
-| Ram/avgränsare | Ljusgrå | `#D6D9D6` | – (icke-text, dekorativ) | – | – |
-| Fokusram | Fotbollsgrön, 3 px | `#0B6B3A` | Bakgrund `#FFFFFF` | 6,6:1 | AA (icke-text, 3:1-krav) |
+| Sidhuvud | Djup gräsgrön | `#0B5A31` | Vit text `#FFFFFF` | 8,3:1 | AAA |
+| Accent (siffercirkel, slutrad) | Matchgul | `#FFD23F` | Text `#14231A` | 11,3:1 | AAA |
+| Fel, röd | Tegelröd | `#B3261E` | Kort `#FFFFFF` / bakgrund `#F4F7EE` | 6,5:1 / 6,0:1 | AA |
+| Varning, bakgrund (gult kort) | Ljus gul | `#FFF1C2` | Text `#5C3A00` | 9,0:1 | AAA |
+| Länk | Samma som primär | `#0B6B3A` | Bakgrund `#F4F7EE` / kort | 6,1:1 / 6,6:1 | AA |
+| Fältkant, valkant | Gröngrå | `#7C8F80` | Kort / bakgrund | 3,4:1 / 3,2:1 | AA (icke-text, 3:1-krav) |
+| Kortkant | Ljus gröngrå, 2 px | `#C9D3C4` | – (dekorativ, kortet har dessutom en skugga, se 6.3) | 1,5:1 mot vitt | – |
+| Valt val (piller) | Mörkgrön fyllning, vit text och ✓ | `#0B5A31` | Vit text `#FFFFFF` | 8,3:1 | AAA |
+| Fokusram | Fotbollsgrön, 3 px | `#0B6B3A` | Bakgrund `#F4F7EE` / kort | 6,1:1 / 6,6:1 | AA (icke-text, 3:1-krav) |
 
 ### 2.2 Mörkt läge
 
 | Roll | Färg | Hex | Används mot | Kontrast | Klarar |
 |---|---|---|---|---|---|
-| Bakgrund | Nästan svart | `#121212` | – | – | – |
-| Yta/kort | Mörk grön-grå | `#1E2620` | Text primär ovanpå | ca 15:1 | AAA |
-| Text, primär | Nästan vit | `#F2F2F2` | Bakgrund `#121212` | 16,7:1 | AAA |
-| Text, sekundär | Ljusgrå | `#C7C7C7` | Bakgrund `#121212` | ca 11:1 | AAA |
-| Primär/knapp (grön) | Ljus fotbollsgrön | `#57C98A` | Mörk text `#121212` | 9,0:1 | AAA |
-| Fel/varning, röd | Ljus tegelröd | `#E4685D` | Mörk text `#121212` | ca 8:1 | AAA |
-| Varningsruta, bakgrund | Mörk gul-brun | `#3A2E10` | Text `#F5D98A` | ca 9:1 | AAA |
-| Fokusram | Ljus fotbollsgrön, 3 px | `#57C98A` | Bakgrund `#121212` | 9,0:1 | AA (icke-text) |
+| Bakgrund | Mörk skogsgrön | `#0D1A12` | – | – | – |
+| Yta/kort | Mörk grön | `#16271C` | Text primär ovanpå | 14,0:1 | AAA |
+| Text, primär | Nästan vit, grönton | `#EEF4EA` | Bakgrund `#0D1A12` / kort `#16271C` | 16,0:1 / 14,0:1 | AAA |
+| Text, sekundär | Ljus gröngrå | `#B9C7BC` | Kort `#16271C` | 8,9:1 | AAA |
+| Primär/knapp (grön) | Ljus fotbollsgrön | `#57C98A` | Mörk text `#0D1A12` | 8,6:1 | AAA |
+| Primär som länk/text | Ljus fotbollsgrön | `#57C98A` | Kort `#16271C` | 7,6:1 | AAA |
+| Sidhuvud | Mörk gräsgrön | `#123422` | Text `#EEF4EA` | 12,2:1 | AAA |
+| Accent (siffercirkel, slutrad) | Matchgul | `#FFD23F` | Text `#14231A` | 11,3:1 | AAA |
+| Fel, röd | Ljus tegelröd | `#F08A80` | Kort `#16271C` | 6,5:1 | AA |
+| Varning, bakgrund (gult kort) | Mörk gul-brun | `#3A2E10` | Text `#FFE08A` | 10,3:1 | AAA |
+| Fältkant, valkant | Gröngrå | `#6F8A76` | Kort `#16271C` | 4,2:1 | AA (icke-text) |
+| Kortkant | Mörk grön, 2 px | `#2C4533` | – (dekorativ, se 6.3) | – | – |
+| Valt val (piller) | Ljusgrön fyllning, mörk text och ✓ | `#57C98A` | Text `#0D1A12` | 8,6:1 | AAA |
+| Fokusram | Ljus fotbollsgrön, 3 px | `#57C98A` | Bakgrund `#0D1A12` / kort | 8,6:1 / 7,6:1 | AA (icke-text) |
+
+Planläget (2.3) påverkas inte av paletten ovan. Det har egna färger, och ingen gräsrand, gul accent eller dekor används där.
 
 ### 2.3 Planläget (hög kontrast för sol)
 
@@ -72,15 +88,29 @@ En egen övning som klubben äger har **ingen granskningsstatus** – bara en h�
 |---|---|---|---|---|
 | Ofullständig | Egen övning, ej inskickad | Grå `#595959` | Grå `#C7C7C7` | "Ofullständig" |
 | Klar att använda | Egen övning, ej inskickad | Grön `#0B6B3A` | Ljusgrön `#57C98A` | "Klar att använda" + ✔ |
-| Inskickad, väntar på granskning | `submissions.status` | Blå `#1A5FB4` (kontrast 5,6:1 mot vitt) | Ljusblå `#7AB0F5` | "Inskickad, väntar på granskning" |
+| Inskickad, väntar på granskning | `submissions.status` | Blå `#1A5FB4` (6,3:1 mot vitt kort, 5,8:1 mot bakgrunden `#F4F7EE`) | Ljusblå `#7AB0F5` (7,0:1 mot kortet `#16271C`) | "Inskickad, väntar på granskning" |
 | Godkänd | `submissions.status` | Grön `#0B6B3A` | Ljusgrön `#57C98A` | "Godkänd" + ✔ |
-| Åtgärda | `submissions.status` | Röd/orange `#B3261E` | `#E4685D` | "Åtgärda" + ⚠ |
+| Åtgärda | `submissions.status` | Röd/orange `#B3261E` | `#F08A80` (följer felfärgen i 2.2) | "Åtgärda" + varningstriangeln (6.11) |
+
+Statusfärgerna är kontrollräknade mot de nya korten i 2.1 och 2.2 (grå `#595959` mot `#F4F7EE` 6,5:1 och `#C7C7C7` mot `#16271C` 9,3:1, båda över 4,5:1). Den ljusblå färgen i mörkt läge och den gröna är oförändrade.
 
 ---
 
 ## 3. Typografi
 
-- **Typsnitt:** systemets standard sans serif (t.ex. den plattformsegna typsnittsstacken), för snabb inladdning utan extra kostnad och för att alltid följa användarens egna tillgänglighetsinställningar (textstorlek, fetstil).
+- **Typsnitt:** systemets egna typsnitt, inget nedladdat och inga externa typsnittstjänster (beslut 2026-10-12). Stacken är `ui-rounded, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`. `ui-rounded` ger avrundade former på Apple-enheter och faller tillbaka på systemets vanliga sans serif på övriga, vilket är medvetet. Det ger snabb inladdning utan extra kostnad och följer användarens tillgänglighetsinställningar (textstorlek, fetstil).
+- **Storlekar och vikter, planeringsläget** (rem vid 16 px basstorlek):
+
+  | Användning | Storlek | Vikt |
+  |---|---|---|
+  | Vynamn (h1) | 32 px (2 rem) | 800 |
+  | Delnamn i passet (h2), versaler, 0,03 em teckenavstånd | 18 px | 800 |
+  | Övningens namn (h3) och fältetikett | 17 px | 700 |
+  | Brödtext, syfte | 16 px | 400 |
+  | Nyckeltal (yta, grupper), hjälptext, tidspill | 15 px | 400 respektive 600 för tidspillen |
+  | Minsta storlek var som helst | 14 px | – |
+
+  Sidans varumärkesrad ("Fotbollsbanken" i sidhuvudet) är 15 px/700.
 - **Basstorlek, planeringsläget:** 16 px (1 rem) för brödtext, aldrig mindre än 14 px någonstans i gränssnittet.
 - **Basstorlek, planläget:** minst 20 px för brödtext och etiketter, minst 48 px för timerns siffror, minst 24 px för övningens namn. Planläget skalar aldrig ner för att få plats – innehållet radbryts eller skrollar i stället.
 - **Radavstånd:** minst 1,5 gånger textstorleken i brödtext (WCAG 1.4.8/1.4.12-anpassat, gynnar läsbarhet i stress och dåligt ljus).
@@ -95,6 +125,8 @@ En egen övning som klubben äger har **ingen granskningsstatus** – bara en h�
 - **Sidmarginal, mobil (360 px):** 16 px vänster/höger.
 - **Avstånd mellan kort/sektioner:** 16–24 px, så att gränsen mellan två övningar aldrig är otydlig ens i solljus.
 - **Avstånd mellan intilliggande träffytor:** minst 8 px, så att två knappar inte råkar tryckas samtidigt med våta fingrar eller handskar.
+- **Avstånd mellan passets delar (h2 till h2):** 32 px. Mellan delrubrik och kort 12 px, kortets innerpadding 16 px.
+- **Hörnradier (riktning A):** kort 16 px, passkortets planskissruta 10 px, varningskort och sekundärknappar 14–16 px, textfält 12 px, val-piller helt runda (999 px). Radierna är dekor och påverkar inga träffytor.
 
 ---
 
@@ -110,8 +142,8 @@ En egen övning som klubben äger har **ingen granskningsstatus** – bara en h�
 
 ### 6.1 Knappar
 
-- **Primär:** fylld bakgrund i primärfärgen, används för det huvudsakliga handlingssteget per vy (till exempel "Generera pass", "Spara pass", "Godkänn"). Högst en primärknapp synlig samtidigt i normala vyer.
-- **Sekundär:** kantlinje, transparent bakgrund, används för alternativa handlingar ("Ändra uppgifter", "Avbryt").
+- **Primär:** fylld bakgrund i primärfärgen, används för det huvudsakliga handlingssteget per vy (till exempel "Generera pass", "Spara pass", "Godkänn"). Högst en primärknapp synlig samtidigt i normala vyer. Hörnradie 16 px, höjd minst 56 px i den fasta knappraden längst ner (annars minst 48 px), text 18 px/700. I ljust läge har knappen en 3 px markerad undre kant i `#07502A`, i mörkt läge ingen extra kant (primärfärgen är då så ljus att den bär själv).
+- **Sekundär:** kantlinje (2 px, fältkantens färg), transparent bakgrund, text i vanlig textfärg, används för alternativa handlingar ("Ändra uppgifter", "Avbryt"). Samma hörnradie som primärknappen, 16 px.
 - **Destruktiv:** röd/tegelfärgad, används bara för oåterkalleliga handlingar ("Ta bort övning", "Arkivera lag"), alltid efter en bekräftelse.
 - **Tillstånd:** vila, fokus (3 px synlig ram, aldrig bara skugga), tryckt, inaktiverad (fortsatt 4,5:1 textkontrast där möjligt; annars kompletterad med förklarande text, se `04-byt-ovning.md`).
 - Text på knappar beskriver alltid handlingen, aldrig bara "OK" eller "Skicka" utan sammanhang (se `texter.md`).
@@ -127,6 +159,8 @@ En egen övning som klubben äger har **ingen granskningsstatus** – bara en h�
 
 - Ram eller lätt skugga mot bakgrunden (aldrig bara en färgskiftning som enda avgränsning, för att fungera i svartvit utskrift och för synnedsättning).
 - Innehållsordning: namn/titel → nyckeltal (tid, antal spelare, fokus) → åtgärdsknappar.
+- **Utseende (riktning A):** vit (ljust) eller mörkgrön (mörkt) yta, 2 px kant i kortkantens färg (2.1, 2.2), hörnradie 16 px, 16 px innerpadding och en 2 px skugga rakt under kortet (`0 2px 0` i kantfärgen). Kantens kontrast mot sidans bakgrund är låg (1,5:1 i ljust läge), vilket är medvetet för ett kort som inte är en kontroll: kortets innehåll, knappar och planskissens ram bär avgränsningen och skuggan förstärker den. Det gäller bara kort. Fält, knappar och val har alltid kant på minst 3:1.
+- **Passets övningskort:** rutnät med två kolumner: planskissen (96 × 72 px, som byggt, 2 px kant i kortkantens färg, hörnradie 10 px) till vänster, och övningens namn, minuter och syfte till höger. Gruppindelning, yta, ytförklaring och knappar ligger under över hela kortets bredd. Planskissen är en knapp som förstoras vid tryck, som i avsnitt 7. Namnet står till vänster och minuterna till höger på samma rad och radbryter fritt.
 
 ### 6.4 Meddelanden (info, tips, varning, fel)
 
@@ -136,12 +170,19 @@ Fyra typer, som alltid kombinerar ikon + färg + text (aldrig bara färg):
 |---|---|---|
 | Info | ⓘ | Hjälptext om hur ålder tolkas |
 | Tips | 💡 | Tips om fler ledare (R-021) |
-| Varning | ⚠ | Mål-påminnelse, benskyddspåminnelse, åldersvarning i säsongsplan |
+| Varning, påminnelse i passet | Gult kort (6.11) | Benskyddspåminnelse, mål-påminnelse |
+| Varning, övrig | Varningstriangel (6.11) | Åldersvarning i säsongsplan, varning om att något saknas |
 | Fel | ⛔ | Ogiltigt fält, inloggning misslyckades |
+
+**Varning som gult kort (riktning A):** påminnelserna i passet visas som en ruta med varningsfärgen från 2.1/2.2 som bakgrund, 2 px kant i en ton av samma färg (`#E9C453` ljust, `#6B5518` mörkt), hörnradie 14 px, 12 px padding, ikonen "gult kort" till vänster och texten till höger. Ikonen är dekorativ (`aria-hidden`) och texten förmedlar hela innebörden utan den. Rutan ligger direkt under sammanfattningen, före passets första del, som tidigare. Tips-rutan (R-021) och informationsrader behåller sina egna ikoner och använder samma ruta, med kantfärg som är en ton av respektive bakgrund.
+
+Ikonerna för Info, Tips och Fel är tecken tills vidare, eftersom ikonuppsättningen i 6.11 bara omfattar fem ikoner. De kan ritas om i samma stil senare utan nytt beslut.
 
 ### 6.5 Statustagg (chip)
 
 Används för fokusområden, spelform, nivå och övningsstatus. Textbaserad, inte färg-only. Radbryts fritt på smal skärm, aldrig avklippt.
+
+**Val-piller (riktning A):** val av spelform, nivå och yta i underlaget, samt sammanfattningen överst i ett pass, visas som runda piller med 2 px kant. Ett valt val har fyllning i "Valt val" (2.1, 2.2) och en ✓ före texten. ✓ ritas som dekor och ligger inte i det tillgängliga namnet (använd `content: "✓" / ""` eller ett `aria-hidden`-element), eftersom radioknappens markerade tillstånd redan läses upp. Minst 48 × 48 px, 8 px mellan pillren. Sammanfattningen överst i passet är en lista med korta piller (11 år, 7 mot 7, Fortsättning, 12 spelare, 2 ledare, 60 min) som inte är klickbara och därför ingen 48 px-yta.
 
 ### 6.6 Flikar (tabs)
 
@@ -163,6 +204,42 @@ Används för bekräftelser (ta bort, arkivera) och för att skicka åtgärda-ko
 
 Se `skisser/06-planlage.md`. Egen komponent med tre tillstånd (redo, går, tiden slut) som var och en har unik kombination av färg, ram, ikon och text.
 
+### 6.10 Sidhuvud, passdel och tidspill (riktning A)
+
+Gäller bara planeringsläget. Planläget (2.3) och utskriften har ingen av dekorerna nedan.
+
+**Sidhuvud.** Ett band över hela bredden överst i varje vy med en h1: bakgrund "Sidhuvud" (2.1, 2.2) med klippta gräsränder, det vill säga lodräta band om 36 px där vartannat band är något ljusare (bakgrunden blandad med 12 % vitt), samt en 4 px gul list (`#FFD23F`) under. Överst i bandet står varumärkesraden: bollikonen och ordet "Fotbollsbanken" (15 px/700). Därunder h1 (32 px/800) i vit (ljust) eller `#EEF4EA` (mörkt) text. Som dekor ligger en halv mittcirkel (diameter 150 px, 3 px linje, vit med 28 % täckning) och en lodrät mittlinje vid högerkanten. Dekorerna är rena bakgrunder (`::before`/`::after`), inte innehåll, och de påverkar inte textens kontrast, som är räknad mot den ljusare av de två bandfärgerna: vit text mot `#0E6636` 7,1:1. Bandet får inte innehålla knappar eller länkar som är mindre än 48 px. Bakåt, om det behövs, ritas med bakåtpilen (6.11) och texten "Ändra uppgifter" eller vynamnet, aldrig bara pilen.
+
+**Passdel (h2).** En rad: en rund siffra, delnamnet i versaler och tidspillen längst till höger.
+- **Siffran:** cirkel 36 × 36 px med accentfärgen `#FFD23F`, siffra 17 px/800 i `#14231A` (11,3:1). Siffran är dekor (`aria-hidden`); den tillgängliga rubriken är "{n}. {delnamn}". Det gäller alla fem delarna, även Avslutning.
+- **Delnamnet:** 18 px/800, versaler via CSS (texten i koden är fortfarande "Uppvärmning", så skärmläsare påverkas inte).
+- **Tidspillen:** "{n} min", 15 px/600, pill med 2 px kant i kortkantens färg, kortets bakgrund och vanlig textfärg, padding 0 12 px, hörnradie 999 px.
+- Vid tom del ("Övning saknas") används samma rad, och måltiden står i tidspillen.
+
+**Vattenpaus.** Rad med droppikonen (6.11) i primärfärgen och texten "Vattenpaus · 2 min" i sekundär textfärg, 600. Ingen ram.
+
+**Avslutningsraden.** Texten under delrubriken står i en ruta med kortets bakgrund, en 6 px bred gul vänsterkant och rundade hörn (12 px).
+
+**Sticky knappraden längst ner** har sidans bakgrundsfärg, en 1 px linje i kortkantens färg och en svag skugga uppåt. Den får aldrig täcka fokus (WCAG 2.4.11), alltså ska sidan ha fri nederkant motsvarande knappradens höjd.
+
+### 6.11 Ikoner
+
+Appen har en egen liten ikonuppsättning (beslut 2026-10-12): fem enkla SVG-ikoner som ritas i repot, utan ikonbibliotek och utan extern tjänst. Samma uppsättning används i alla vyer.
+
+| Ikon | Används för |
+|---|---|
+| Boll | Varumärkesraden i sidhuvudet. Får också användas som dekor på tomma tillstånd. |
+| Varningstriangel | Varningar som inte är en påminnelse i passet (åldersvarning, "Åtgärda" i redaktörskön, överskriden gräns) |
+| Gult kort | Påminnelserna i passet (benskydd, mål). Ett upprätt, något lutat rektangulärt kort. |
+| Droppe | Vattenpaus |
+| Bakåtpil | Tillbaka-knappen i sidhuvudet och i vyer med "Ändra uppgifter" |
+
+Regler:
+- Ritas på ett 24 × 24-raster och fylls eller linjeritas med `currentColor`, så att färgen följer sammanhanget och fungerar i ljust, mörkt läge och planläge. Linjetjocklek 2 px, rundade ändar.
+- Visas i 1,25 em (20 px vid 16 px brödtext). Alltid `aria-hidden="true"` och `focusable="false"` när de står bredvid en text som förmedlar samma sak. En ikon som är hela innehållet i en knapp (till exempel bakåtpilen) får ett tillgängligt namn på knappen, och träffytan är minst 48 × 48 px (avsnitt 5).
+- Ikoner förmedlar aldrig något ensamma (avsnitt 8, 1.4.1).
+- Ikonerna ligger samlade i en enda fil i repot (ett SVG-"sprite" eller en liten komponent per ikon) och är en del av koden, inte av `content/`, så att de omfattas av kodens licens (Apache-2.0).
+
 ---
 
 ## 7. Planskisser i vyerna
@@ -171,7 +248,7 @@ Själva ritningen av en planskiss (SVG från skissdata) ägs av planskissutveckl
 
 | Vy | Storlek/plats | Krav |
 |---|---|---|
-| Genererat/sparat pass (`02`) | Litet kort, cirka 96 × 72 px eller motsvarande höjd/breddförhållande, till vänster om eller ovanför texten | Klickbar för att förstora (öppnar större vy eller "Visa mer") |
+| Genererat/sparat pass (`02`) | Litet kort, 96 × 72 px (4:3, som byggt i inkrement 2) med 2 px ram i kortkantens färg, till vänster om texten (se 6.3) | Klickbar för att förstora (öppnar större vy eller "Visa mer"). Beslut 2026-10-12: miniatyren behålls och förstoras vid tryck, skissen görs inte till full kortbredd i passvyn |
 | Byt övning (`04`) | Samma miniatyrformat som ovan, i varje alternativkort | – |
 | Planläget (`06`) | Stort, minst 70 % av skärmbredden, centralt placerat direkt under timern | Måste vara läsbar utan att zooma (19.3); proportionerlig oavsett spelform |
 | Utskrift (`07`) | Fast bredd cirka 45 mm i A4-layouten, svart på vit, inga färgberoende linjer | Måste fungera i svartvit utskrift |
@@ -227,3 +304,42 @@ Ifyllt innehåll i formuläret rensas aldrig av detta fel.
 ### 9.3 Det som fungerar utan nät visar ingen indikator
 
 Sparade pass, planläget och utskrift hämtar ingenting och ska kännas precis lika snabba och tillförlitliga utan nät som med, enligt tabellen "Det här fungerar utan nät" i ADR 0005. Anslutningsindikatorn (9.1) visas därför bara i vyer som faktiskt hämtar eller skriver mot servern.
+
+---
+
+## 10. Planskissens färger i planeringsläget (riktning A)
+
+Det här avsnittet anger *vilka färger* planskissen ska ha i ljust och mörkt läge i planeringsläget. Hur den ritas (symboler, linjetyper, etiketter, kontrollen av trängsel) ägs av planskissutvecklaren (ADR 0012). Planskissmodulen har redan fasta CSS-variabler med namnet `--skiss-*` i `src/planskiss/planskiss.module.css`, och det är de som får nya värden. Planläget (`.planlage`), utskriften (`.utskrift`) och `@media print` behåller sina nuvarande svartvita värden oförändrade (2.3, avsnitt 7).
+
+**Principen:** skissen ligger på en gräsgrön yta med vita linjer, som en plan, men all information bärs fortfarande av form, mönster och linjetyp, inte bara av färg. Lag A är fylld och lag B ofylld, som i ADR 0012 avsnitt 2. Inget i skissen förmedlas bara av gult eller orange.
+
+| Variabel | Ljust läge | Mörkt läge | Roll och kontrast |
+|---|---|---|---|
+| `--skiss-yta` | `#3E8E4F` | `#357847` | Gräsyta, första ränder (ny nyans, se nedan) |
+| `--skiss-yta-2` (ny) | `#46995A` | `#3B8350` | Gräsyta, andra ränder. Samma ränder löper över hela ytan, 9 enheter breda i skissens egen skala, och bär ingen information |
+| `--skiss-linje` | `#FFFFFF` | `#FFFFFF` | Planlinjer, mål och rörelsepilar. Mot `--skiss-yta` 4,0:1 / 5,3:1 och mot `--skiss-yta-2` 3,5:1 / 4,6:1, alla över 3:1 (icke-text) |
+| `--skiss-tunn` | `#FFFFFF` | `#FFFFFF` | Tunna hjälplinjer. Samma kontrast som linjerna, tunna linjer görs streckade i stället för blekare |
+| `--skiss-monster` | `#FFFFFF` | `#FFFFFF` | Mönsterlinjer (streckning) |
+| `--skiss-lag-a` | `#FFD23F` | `#FFD23F` | Lag A, fylld. Alltid med kant i `--skiss-lag-a-kant` |
+| `--skiss-lag-a-kant` (ny) | `#14231A` | `#14231A` | Kant runt lag A och konen. Mot gult 11,3:1. Mot gräsytan 4,0:1 / 3,1:1 (ljust läge mot `--skiss-yta`, mörkt läge mot `--skiss-yta`), alltså minst 3:1 för figurens kontur i båda lägena. Kanten är minst 1,5 px |
+| `--skiss-pa-lag-a` | `#14231A` | `#14231A` | Text eller nummer ovanpå lag A. Mot gult 11,3:1 |
+| `--skiss-lag-b` | `#FFFFFF` | `#FFFFFF` | Lag B, ofylld: bara en vit kontur (2 px) mot gräset. Formen skiljer lagen åt som i dag |
+| `--skiss-neutral` | `#FFFFFF` | `#FFFFFF` | Neutrala spelare, ofyllda som i dag, med vit kontur |
+| `--skiss-ledare` | `#FFFFFF` | `#FFFFFF` | Ledare, med den form som ritmotorn redan ger |
+| `--skiss-kon` | `#FF8A3D` | `#FF8A3D` | Konfyllning. Orange mot gräsytan är bara 1,7:1 / 2,3:1 och bär därför inget ensamt: konen är en triangel med mörk kant (`--skiss-lag-a-kant`) |
+| `--skiss-text` | `#14231A` | `#14231A` | Etiketter och siffror. Står alltid på en ljus halo, så kontrasten blir 16,3:1 oavsett vad som ligger bakom |
+| `--skiss-halo` | `#FFFFFF` | `#FFFFFF` | Halo bakom etiketter (samma teknik som i dag) |
+| `--skiss-bakgrund` | kortets yta (`#FFFFFF`) | kortets yta (`#16271C`) | Utanför gräsytan, om skissen har marginal runt planen |
+| Skissens ram | 2 px, kortkantens färg | 2 px, kortkantens färg | Ritas av vyn (6.3, 7), inte av ritmotorn |
+
+**Mörkt läge är lite ljusare än skissens gamla gröna** (`#357847` i stället för `#2F6E3E`), för att den mörka konturen på lag A och konen ska nå 3:1 mot gräset. I skissfilen `skisser/visuell/riktning-a-grasmattan.html` är mörkt läge ritat med de värden som gäller här. De två nya variablerna (`--skiss-yta-2`, `--skiss-lag-a-kant`) tillkommer eftersom en yta med ränder och en kontur i annan färg än fyllningen inte kan uttryckas med dagens variabler. Att lag B förblir ofylld på en färgad yta är en tolkning av ADR 0012 avsnitt 2 som planskissutvecklaren ska bekräfta; om det kräver ändrad fyllning ska det beslutas i en ny ADR och inte ändras här.
+
+Skissens textetiketter (`--skiss-text` på `--skiss-halo`) är den enda text som ritas i skissen och kontrasten är den som är angiven ovan, inte kontrasten mot gräset.
+
+---
+
+## Ändringar efter K2
+
+| Datum | Ändring |
+|---|---|
+| 2026-10-12 | Riktning A, Gräsmattan, vald av användaren (`visuell-design-forslag.md`). Nya paletter i 2.1 och 2.2 (bakgrund, kort, text, sekundär text, fel, varning, kant, nya roller *Accent*, *Sidhuvud*, *Kortkant*, *Valt val*), statusfärgerna i 2.4 kontrollräknade mot de nya korten (den ljusblå färgen stod som 5,6:1 mot vitt men är 6,3:1) och Åtgärda i mörkt läge följer nya felfärgen, typografin i avsnitt 3 (stack med `ui-rounded`, storlekstabell), avstånd och radier i avsnitt 4, knappar, kort, varning som gult kort, val-piller (6.1, 6.3–6.5), nya 6.10 (sidhuvud, passdel, tidspill, vattenpaus) och 6.11 (ikoner), uppdaterad rad för passvyn i avsnitt 7 och nytt avsnitt 10 (planskissens färger). Planläget (2.3) och utskriften är oförändrade. Statusraden ändras inte av en agent. |

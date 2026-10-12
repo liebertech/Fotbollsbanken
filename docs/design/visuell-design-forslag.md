@@ -1,4 +1,6 @@
-Status: utkast
+Status: godkänd (riktningsval A, 2026-10-12)
+
+Riktningsvalet är godkänt av användaren. Resten av dokumentet är beslutsunderlaget och står kvar som det skrevs. Det som ändras i `designsystem.md` finns beskrivet i avsnitt 10 och 11, och själva ändringarna i `designsystem.md` är utkast tills användaren godkänt dem.
 
 # Visuell design – förslag till beslut
 
@@ -80,14 +82,14 @@ Mörkt läge:
 | Fältkant | `#6F8A76` | kort | 4,2:1 |
 | Varning | `#FFE08A` på `#3A2E10` | – | 10,3:1 |
 
-Planskissens linjer (vitt på gräsgrönt): `#FFFFFF` mot `#3E8E4F` (ljust) 4,0:1 och mot `#2F6E3E` (mörkt) 6,1:1, båda över 3:1 för icke-text. Konen är orange med mörk kontur, så den syns även om orangen är svag mot grönt.
+Planskissens linjer (vitt på gräsgrönt): `#FFFFFF` mot `#3E8E4F` (ljust) 4,0:1 och mot `#357847` (mörkt) 5,3:1, båda över 3:1 för icke-text. (Skissens mörka gräs justerades efter beslutet från `#2F6E3E` till `#357847`, så att den mörka konturen runt lag A och konen når 3:1. De slutliga värdena står i `designsystem.md` avsnitt 10.) Konen är orange med mörk kontur, så den syns även om orangen är svag mot grönt.
 
 ### Typografi
 Systemets avrundade typsnitt när det finns (`ui-rounded`, annars samma system-stack som i dag). Sidrubrik 32 px/800, delrubrik 18 px/800 i versaler, kortnamn 17 px/700, brödtext 16 px, hjälptext 14–15 px. Inget nytt typsnitt.
 
 ### Komponenter
 - **Sidhuvud:** gröna klippta ränder med en halv mittcirkel och mittlinje som dekor i högerkanten, gul kantlinje under. Logotyp: en liten boll plus ordet.
-- **Passkort:** vitt kort med rundade hörn (16 px). Planskissen ligger kvar som miniatyr till vänster (112 × 84 px i skissen, nära K2:s 96 × 72) på en gräsgrön yta med klippta ränder.
+- **Passkort:** vitt kort med rundade hörn (16 px). Planskissen ligger kvar som miniatyr till vänster (96 × 72 px, som byggt i inkrement 2) på en gräsgrön yta med klippta ränder.
 - **Delrubrik:** gul rund siffra, delnamn i versaler och en tidspill till höger ("9 min"). Minuterna syns därmed i första ögonkastet.
 - **Varningar:** gula kort med en liten gult-kort-symbol. Texten ensam bär innebörden.
 - **Underlaget:** val av spelform, nivå och yta som runda piller. Valt piller är mörkgrönt med vit text och ✓ (ljust läge) eller ljusgrönt med mörk text och ✓ (mörkt läge). Spelformsrader och sammanfattning blir därmed lätta att läsa som chips.
@@ -278,9 +280,30 @@ Eftersom `app.css` bara innehåller tokens (färger, avstånd) är bygget för A
 
 ---
 
-## 9. Beslut som behövs
+## 9. Användarens beslut 2026-10-12
 
-1. **Vilken riktning?** Rekommendation: A (Gräsmattan) med lånen från B och C ovan. C är det rimliga alternativet om du vill ha en tydligare avvikande identitet.
-2. **Typsnitt.** Om C väljs: får vi självhosta ett OFL-typsnitt (Barlow Condensed eller Oswald, en till två vikter, cirka 20–30 kB)? Rekommendation: ja i så fall, men det behövs inte för A.
-3. **Ikoner.** Är det okej att vi ritar en liten egen ikonuppsättning (boll, varning, gult kort, droppe, bakåt) som SVG i repot, i stället för en fri ikonuppsättning? Rekommendation: ja, det är en handfull ikoner utan licensfråga.
-4. **Skissens storlek (bara om B väljs eller om du vill ha större skisser).** Får passvyns skiss växa från cirka 96 × 72 px? Rekommendation: nej, behåll miniatyren och förstora vid tryck.
+| # | Fråga | Beslut |
+|---|---|---|
+| 1 | Vilken riktning? | **A, Gräsmattan.** Lånen i avsnitt 7 ("svart delskylt från C" om siffercirklarna inte räcker i test, och "tryck på miniatyren" från B) står kvar som de är. Det andra är redan beslutat vid K2 (avsnitt 7 i `designsystem.md`). |
+| 2 | Ikoner | **Ja:** vi ritar en liten egen SVG-uppsättning i repot: boll, varning, gult kort, droppe och bakåtpil. Beskrivs i `designsystem.md` 6.11. |
+| 3 | Skissens storlek i passvyn | **Nej.** Miniatyren behålls (96 × 72 px som byggt) och visas stor vid tryck, enligt K2. |
+| 4 | Typsnitt | **Inget nytt.** Frågan gällde bara C. Systemets typsnitt behålls, med `ui-rounded` först i stacken. |
+
+## 10. Vad som ändrades i `designsystem.md`
+
+Enligt avsnitt 8 för riktning A. Ändringsloggen längst ner i `designsystem.md` har samma uppgifter.
+
+- **2.1 och 2.2:** ny palett med kontrastvärden för ljust och mörkt läge. Nya roller: Accent (matchgul), Sidhuvud, Kortkant, Valt val. Fältkanten är nu `#7C8F80`/`#6F8A76` (minst 3:1).
+- **2.4:** statusfärgerna kontrollräknade mot de nya korten. Den ljusblå statusfärgens värde rättat (6,3:1, inte 5,6:1), och "Åtgärda" i mörkt läge följer felfärgen `#F08A80`.
+- **3:** typsnittsstack med `ui-rounded` och en storlekstabell (32/800, 18/800 versaler, 17/700, 16, 15, aldrig under 14).
+- **4:** avstånd mellan delar och hörnradier.
+- **6.1, 6.3, 6.4, 6.5:** knappar, kort och passets övningskort, varning som gult kort, val-piller.
+- **Nytt 6.10:** sidhuvud med gräsränder, passdelens siffra, tidspill, vattenpaus, avslutningsrad.
+- **Nytt 6.11:** ikonuppsättningen.
+- **7:** raden för passvyn bekräftar miniatyren, med förstoring vid tryck.
+- **Nytt 10:** planskissens `--skiss-*`-värden för ljust och mörkt läge (två nya variabler).
+- **Oförändrat:** planläget (2.3), utskriften, träffytor (avsnitt 5) och WCAG-tabellen (avsnitt 8).
+
+## 11. Byggbeskrivning
+
+Se `docs/design/visuell-design-byggbeskrivning.md`.

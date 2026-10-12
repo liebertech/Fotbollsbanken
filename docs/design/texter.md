@@ -12,6 +12,7 @@ Platshållare skrivs inom `{hakparentes}`.
 
 | Sammanhang | Text |
 |---|---|
+| Varumärkesrad i sidhuvudet (visas bredvid bollikonen, `designsystem.md` 6.10) | Fotbollsbanken |
 | Primärknapp, generera | Generera pass |
 | Primärknapp, spara pass | Spara pass |
 | Primärknapp, spara övning | Spara övning |
