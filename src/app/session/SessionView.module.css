@@ -70,9 +70,11 @@
   font-weight: 800;
 }
 
+/* Namnet krymper aldrig under sitt längsta ord, så att ordet inte bryts mitt i. Får det inte
+   plats bredvid siffran hamnar det på en egen rad, och tidspillen under. Bara ett ord som är
+   bredare än hela raden bryts. */
 .partName {
-  flex: 1 1 8rem;
-  min-width: 0;
+  flex: 1 1 auto;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   overflow-wrap: break-word;

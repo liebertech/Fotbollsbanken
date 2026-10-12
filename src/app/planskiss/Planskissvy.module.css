@@ -73,7 +73,7 @@
   min-width: var(--tap-target);
   min-height: var(--tap-target);
   padding: var(--space-1);
-  border: 2px solid var(--color-card-border);
+  border: 2px solid var(--color-field-border);
   border-radius: 10px;
   background: var(--color-bg);
   color: inherit;

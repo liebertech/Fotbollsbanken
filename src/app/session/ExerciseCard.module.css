@@ -53,20 +53,30 @@
   grid-row: auto;
 }
 
-/* Vid smal skärm eller förstorad text (200 % vid 390 px) får texten inte plats bredvid
-   miniatyren. Då står allt i en kolumn, så att sidan aldrig skrollar i sidled. */
-@media (max-width: 20em) {
-  .card {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/*
+ * När kortet är smalt, på en smal skärm eller med förstorad text, får texten inte plats
+ * bredvid miniatyren. Då står allt i en kolumn, så att sidan aldrig skrollar i sidled.
+ * Frågan ställs mot kortets bredd i rem, så att den följer både skärmbredd, zoom och
+ * webbläsarens textstorlek. Vänsterkolumnen blir då tom och noll bred.
+ */
+.card {
+  container-type: inline-size;
+}
 
+@container (max-width: 18rem) {
   .head,
   .confirmation,
   .purpose,
   .sketch > *,
   .sketch button[aria-expanded] {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: auto;
+  }
+
+  /* Miniatyrknappen behåller sin storlek och sträcks inte ut över kortet. */
+  .sketch > *,
+  .sketch button[aria-expanded] {
+    justify-self: start;
   }
 }
 
@@ -82,6 +92,7 @@
   font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.25;
+  min-width: 0;
   margin: 0;
   overflow-wrap: break-word;
 }
