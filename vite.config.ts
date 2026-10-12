@@ -31,7 +31,7 @@ export default defineConfig({
      * med god marginal, men under trängsel drog enstaka block över gränsen – olika block
      * varje gång, vilket är svält och inte ett tajmingfel i koden. 15 s är drygt tjugo gånger
      * det uppmätta värsta fallet och fäller fortfarande ett test som hängt sig på riktigt.
-     * Testet i scripts/regelmotor-mot-banken.test.ts sätter sin egen gräns på 60 s och rörs
+     * Testet i scripts/regelmotor-mot-banken.test.ts sätter egna gränser på 120 s och rörs
      * inte av det här.
      */
     testTimeout: 15_000,

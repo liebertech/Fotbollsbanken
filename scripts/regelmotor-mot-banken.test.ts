@@ -107,6 +107,14 @@ describe.each(bankVariantsForTests())('Banken med $name', (variant) => {
       expect(checkSession(session(underlag))).toEqual([]);
     });
 
+    it('R-049 svepet har alla 18 underlag, så ingen del hoppas tyst över', () => {
+      const delar = r049Underlag().map(
+        ({ alder, spelform, niva }) => `${alder} ${spelform} ${niva}`,
+      );
+      expect(delar).toHaveLength(18);
+      expect(new Set(delar).size).toBe(18);
+    });
+
     it.each(r049Underlag())(
       'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till: $alder år, $spelform, $niva',
       { timeout: R049_TIMEOUT },
