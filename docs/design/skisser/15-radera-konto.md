@@ -44,7 +44,7 @@ En dialog (`designsystem.md` 6.8) öppnas av knappen. Åtgärden går inte att �
 │                                 │
 │ Du loggas ut här direkt. Andra  │
 │ enheter loggas ut inom högst    │
-│ en timme. Därefter måste du     │
+│ 15 minuter. Därefter måste du   │
 │ logga in med en ny kod på       │
 │ varje enhet.                    │
 │                                 │
@@ -57,8 +57,8 @@ En dialog (`designsystem.md` 6.8) öppnas av knappen. Åtgärden går inte att �
 └────────────────────────────────┘
 ```
 
-- **Efter bekräftelse (27.1, 27.4):** den här enheten loggas ut direkt och dess lokala kopia rensas. Personen kommer till inloggningen med informationsrutan "Du är utloggad på alla enheter. Det kan dröja upp till en timme …" (`14-inloggning.md`).
-- **Ärligheten (27.2, 27.4):** texten påstår inte att andra enheter redan är stängda ute. Den säger två saker: att det kan dröja upp till en timme, och att en enhet utan nät behåller sin sparade kopia tills den får kontakt igen.
+- **Efter bekräftelse (27.1, 27.4):** den här enheten loggas ut direkt och dess lokala kopia rensas. Personen kommer till inloggningen med informationsrutan "Du är utloggad på alla enheter. Det kan dröja upp till 15 minuter …" (`14-inloggning.md`).
+- **Ärligheten (27.2, 27.4):** texten påstår inte att andra enheter redan är stängda ute. Den säger två saker: att det kan dröja upp till 15 minuter, och att en enhet utan nät behåller sin sparade kopia tills den får kontakt igen.
 - **Nät saknas (27.5):** dialogen visar "Du verkar sakna internetanslutning. Du är fortfarande inloggad och ingen enhet har loggats ut. Försök igen när du är uppkopplad." Den egna enhetens kopia rensas inte, och sessionen finns kvar. Inget påstås vara gjort.
 
 ## Wireframe, 360 px – Radera konto, blockerad (flera orsaker kan gälla samtidigt)

@@ -102,11 +102,11 @@ Vyn har rubriken "Inbjudan fungerar inte". Texterna nämner varken klubb, lag el
 
 ### 2.3 Efter "Logga ut på alla enheter" (tillagt 2026-10-13, berättelse 27 kriterium 2, 4)
 
-Visas som informationsruta (ⓘ) överst på inloggningssidan som personen kommer till. Texten säger ärligt det ADR 0004 ger: andra enheter loggas ut inom högst en timme, och en enhet utan nät behåller sin kopia tills den får kontakt.
+Visas som informationsruta (ⓘ) överst på inloggningssidan som personen kommer till. Texten säger ärligt det ADR 0023 ger: andra enheter loggas ut inom 15 minuter, och en enhet utan nät behåller sin kopia tills den får kontakt.
 
 | Sammanhang | Text |
 |---|---|
-| Informationsruta på inloggningssidan | Du är utloggad på alla enheter. Det kan dröja upp till en timme innan en annan enhet har loggats ut. En enhet utan nät behåller sin sparade kopia tills den får kontakt igen. |
+| Informationsruta på inloggningssidan | Du är utloggad på alla enheter. Det kan dröja upp till 15 minuter innan en annan enhet har loggats ut. En enhet utan nät behåller sin sparade kopia tills den får kontakt igen. |
 | Informationsruta på inloggningssidan efter radering (se avsnitt 16) | Ditt konto är raderat. Du är utloggad. |
 
 ---
@@ -620,13 +620,13 @@ Vad som faktiskt fungerar utan nät styrs av `docs/adr/0005-daligt-nat-och-offli
 |---|---|
 | Rubrik, sektion | Om du tappat en telefon |
 | Rubrik, dialog | Logga ut på alla enheter? |
-| Text, dialog | Du loggas ut här direkt. Andra enheter loggas ut inom högst en timme. Därefter måste du logga in med en ny kod på varje enhet. |
+| Text, dialog | Du loggas ut här direkt. Andra enheter loggas ut inom 15 minuter. Därefter måste du logga in med en ny kod på varje enhet. |
 | Knapp, bekräfta | Logga ut på alla enheter |
 | Knapp | Avbryt |
 | Fel, nät saknas (27.5) | Du verkar sakna internetanslutning. Du är fortfarande inloggad och ingen enhet har loggats ut. Försök igen när du är uppkopplad. |
 | Bekräftelse på inloggningssidan | Se avsnitt 2.3 |
 
-Bekräftelsen efteråt (avsnitt 2.3) säger ärligt att det kan dröja upp till en timme innan andra enheter loggas ut och att en enhet utan nät behåller sin sparade kopia tills den får kontakt. Ingen text i appen påstår att andra enheter redan är stängda ute.
+Bekräftelsen efteråt (avsnitt 2.3) säger ärligt att det kan dröja upp till 15 minuter innan andra enheter loggas ut och att en enhet utan nät behåller sin sparade kopia tills den får kontakt. Ingen text i appen påstår att andra enheter redan är stängda ute.
 
 ### 16.2 Radera konto, fler lägen (tillagt 2026-10-13, berättelse 26 kriterium 3, 4, 9, 10, 11, 12)
 

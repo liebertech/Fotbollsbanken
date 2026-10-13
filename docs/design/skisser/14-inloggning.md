@@ -59,7 +59,7 @@ Bekräftelsen syns på inloggningssidan som personen kommer till (berättelse 27
 │  ┌───────────────────────────┐ │
 │  │ ⓘ Du är utloggad på alla   │ │
 │  │ enheter. Det kan dröja upp │ │
-│  │ till en timme innan en     │ │
+│  │ till 15 minuter innan en   │ │
 │  │ annan enhet har loggats    │ │
 │  │ ut. En enhet utan nät      │ │
 │  │ behåller sin sparade kopia │ │
@@ -248,7 +248,7 @@ Samma vy, olika text i rutan (alla texter i `texter.md` avsnitt 2):
 - **Skräppost, lugn ton:** texten är en upplysning, inte en varning – ingen ikon för fel eller varning, bara en informationsikon (ⓘ), eftersom det är normalt att mejlet dröjer när appen inte har en egen avsändardomän i version 1.
 - **Inbjudan (11.1):** en person som klickar en inbjudningslänk i sin e-post kommer till steg 1 med en rad överst: "Du är inbjuden till [Lagnamn] i [Klubbnamn]." E-postfältet är förifyllt och låst till den inbjudna adressen. Efter att koden är bekräftad kopplas kontot automatiskt till laget. Nyckeln i länken ligger i URL-fragmentet och tas bort ur adressfältet direkt efter att appen har läst den (11.6). Ett inbjudningsbanner som visas för en inloggad person med fel adress ersätts av vyn "Inbjudan fungerar inte" ovan.
 - **Utloggning (08.4):** en meny (se `16-navigering.md`) innehåller "Logga ut". Efter utloggning visas steg 1; sparade pass och klubbmaterial är otillgängliga tills ny inloggning, och den lokala kopian på enheten är rensad.
-- **Utloggning på alla enheter (27.4):** efter åtgärden (se `15-radera-konto.md`) kommer personen hit med informationsrutan i andra wireframen ovan. Rutan lovar inte mer än ADR 0004 ger: andra enheter loggas ut inom högst en timme, och en enhet utan nät behåller sin kopia tills den får kontakt.
+- **Utloggning på alla enheter (27.4):** efter åtgärden (se `15-radera-konto.md`) kommer personen hit med informationsrutan i andra wireframen ovan. Rutan lovar inte mer än ADR 0004 ger: andra enheter loggas ut inom 15 minuter, och en enhet utan nät behåller sin kopia tills den får kontakt.
 - **Tomt fält:** knapparna är alltid klickbara men visar fel om fält saknas, i stället för att vara inaktiverade (så att skärmläsare alltid kan nå dem och beskriva varför de inte går igenom).
 - **Laddning:** knapparna visar en spinner och en text ("Skickar kod …", "Kontrollerar kod …") så att ett dubbelklick inte skickar formuläret två gånger.
 - **Nät saknas (08.12):** "Skicka kod" och "Bekräfta kod" visar den vanliga texten för handlingar som kräver nät (`texter.md` avsnitt 15), och det som skrivits ligger kvar.

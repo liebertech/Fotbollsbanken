@@ -210,7 +210,7 @@ Planläget ändrar aldrig ordningen på övningarna – den ordningen sätts i p
 
 **Logga ut på alla enheter (27):**
 1. Ledaren väljer "Logga ut på alla enheter" i *Mitt konto* och bekräftar i en kort dialog. Knappen är skild från den vanliga utloggningen i menyn (27.6).
-2. Den här enheten loggas ut direkt och dess lokala kopia rensas (27.1). Personen kommer till inloggningen med en bekräftelse som är ärlig om fördröjningen: andra enheter loggas ut inom högst en timme, och en enhet utan nät behåller sin sparade kopia tills den får kontakt igen (27.2, 27.4).
+2. Den här enheten loggas ut direkt och dess lokala kopia rensas (27.1). Personen kommer till inloggningen med en bekräftelse som är ärlig om fördröjningen: andra enheter loggas ut inom 15 minuter, och en enhet utan nät behåller sin sparade kopia tills den får kontakt igen (27.2, 27.4).
 3. Saknas nät händer ingenting: personen är kvar inloggad och appen säger att ingen enhet har loggats ut (27.5).
 
 **Radera mitt konto (26):**
