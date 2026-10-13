@@ -13,7 +13,7 @@ ADR 0003 (beslutad vid K2, 2026-09-12) fastställde lagringstider för appens eg
 | `editor_events` och spärrdata | Saknas i tabellen över lagringstider, och spärrdata är ny i ADR 0023 | S-43, S-44 |
 | `invitations.invited_by`, `clubs.created_by`, `editors.appointed_by` | Saknas i ADR 0003:s steg *Avidentifieras* | S-43 |
 
-Användaren har beslutat (2026-10-13, avsnitt 6 i granskningen): obekräftade konton rensas efter 24 timmar (punkt 5), och Auths granskningslogg behålls i databasen och rensas efter 90 dagar (punkt 4).
+Användaren har beslutat (2026-10-13, avsnitt 6 i granskningen): obekräftade konton rensas efter 24 timmar (punkt 5), och Auths granskningslogg behålls i databasen och rensas efter 90 dagar (punkt 4). Samma dag godkände användaren också två förslag som den här ADR:n lägger fram: att `editor_events` sparas utan tidsgräns men avidentifieras vid radering, och att `invitation_attempts` rensas efter 24 timmar.
 
 ADR 0003 ändras inte. Tabellerna nedan ska läsas som tillägg till tabellerna *Lagringstider* och *Radering av konto* där.
 
@@ -31,8 +31,8 @@ ADR 0003 ändras inte. Tabellerna nedan ska läsas som tillägg till tabellerna 
 |---|---|---|
 | Obekräftade konton (`auth.users` med `email_confirmed_at is null`) | **24 timmar** efter `created_at` | Raden raderas hårt. Det finns ingen profil och inget annat innehåll att ta hänsyn till |
 | Auths granskningslogg (`auth.audit_log_entries`) | **90 dagar** | Raderas hårt |
-| Misslyckade försök med inbjudningsnyckel (`invitation_attempts`, ADR 0023 avsnitt 4) | **24 timmar** | Raderas hårt. Spärren behöver bara den senaste timmen |
-| Händelser för redaktörer (`editor_events`) | Så länge raden behövs som historik. Personens id avidentifieras vid radering, se avsnitt 3 | Raderna behålls. De visar vem som utsett eller återkallat en redaktör, och utan dem går en ändring i den gemensamma bankens redaktörer inte att följa |
+| Misslyckade försök med inbjudningsnyckel (`invitation_attempts`, ADR 0023 avsnitt 4) | **24 timmar** (användarens beslut 2026-10-13) | Raderas hårt. Spärren behöver bara den senaste timmen |
+| Händelser för redaktörer (`editor_events`) | **Utan tidsgräns** (användarens beslut 2026-10-13). Personens id avidentifieras vid radering, se avsnitt 3 | Raderna behålls. De visar vem som utsett eller återkallat en redaktör, och utan dem går en ändring i den gemensamma bankens redaktörer inte att följa |
 
 Rensningen görs av samma dagliga `pg_cron`-jobb som i ADR 0003. Jobbet loggar bara antalet raderade rader per tabell, aldrig id:n eller adresser (berättelse 29, kriterium 5).
 
