@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: var(--space-6);
   padding: 0 var(--space-4);
+  /* Sammanfattningen räknar upp fokusområden ("Skadeförebyggande"). Långa ord får brytas, så
+     att vyn aldrig skrollar i sidled vid 200 % text. */
+  overflow-wrap: break-word;
 }
 
 .summary {
