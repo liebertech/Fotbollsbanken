@@ -147,6 +147,15 @@ for (const scheme of SCHEMES) {
       });
 
       test('ingen sidled skroll i underlag, pass och byte', async ({ page }) => {
+        // Fast följd för Math.random, så att samma pass och samma alternativ visas varje körning.
+        // Den bredare genomgången av banken och långa ord finns i sidled.spec.ts.
+        await page.addInitScript(() => {
+          let state = 20261012;
+          Math.random = () => {
+            state = (state * 1103515245 + 12345) % 2147483648;
+            return state / 2147483648;
+          };
+        });
         const overflow = () =>
           page.evaluate(
             () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
