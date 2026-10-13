@@ -38,6 +38,12 @@ Följande ersätter listan med gränser i ADR 0004 punkt 3. Allt annat i punkt 3
 
 Om testet för 08.8 (c) visar att flera koder gäller samtidigt multipliceras risken med antalet giltiga koder, som mest 10 med 600 sekunders giltighet och 60 sekunders mellanrum. Det tas då upp med säkerhetsagenten innan produktionen tar emot riktiga personuppgifter.
 
+**Uträkningen förutsätter att gränsen per IP-adress håller** (S-78). Det är inte prövat, se *Ej verifierat* nedan. Användaren beslutade 2026-10-13:
+
+- Inget eget tak byggs nu.
+- Gränsen prövas i staging i delsteg 3c, med ett test för 08.8 (b): den elfte verifieringen inom 5 minuter från samma adress får svaret 429. Om det går prövas också två adresser i samma IPv6-nät (/64).
+- Om gränsen inte håller införs ett tak på **10 koder per e-postadress och dygn** med Supabases hook *Send Email*. Det beslutas i en ny ADR innan riktiga personuppgifter får finnas i produktionen.
+
 ### 2 Åtkomstnyckelns giltighet: 15 minuter
 
 Följande ersätter ”en åtkomsttoken som gäller i en timme” i ADR 0004 punkt 5:
@@ -97,6 +103,11 @@ Följande ersätter ”antalet misslyckade uppslagningar begränsas per IP” i 
 - **Gränsen för verifieringar gäller per IP, inte per konto.** Ett angrepp från många adresser är det som räknas i avsnitt 1. Restrisken är cirka 0,3 % per dygn och konto under ett ihållande angrepp, och kontots ägare får ett mejl för varje beställd kod.
 - **Ledare på samma nät delar gränsen på 10 verifieringar per 5 minuter.** Vid en gemensam genomgång på klubbens wifi kan en ledare som skriver fel några gånger få vänta. Det mäts i staging. Höjs gränsen ökar restrisken i samma takt.
 - **Kortare nyckel ger fler förnyelser**, ungefär fyra i timmen per öppen app. Det ryms i gratisnivån.
+- **Ett ihållande angrepp förbrukar mejlbudgeten** (S-79). Med en ny kod var 600:e sekund mot ett konto blir det cirka 144 mejl per dygn och angripet konto, och med 60 sekunders mellanrum upp till 1 440. Brevos 300 mejl per dygn delas av båda projekten, och Supabase Auths tak är 100 per timme. Två eller tre samtidiga angrepp kan alltså göra att ingen annan får sin kod den dagen. Turnstile gör varje beställning dyrare men stoppar den inte. **Signalen** är att Auths gräns för mejl per timme slår till, att Brevos statistik visar ett ovanligt högt antal mejl till samma adresser, eller att Brevo varnar för att dagskvoten är nära. Larmet i Brevo slås på när det finns, och Auths granskningslogg visar vilka adresser som fått många koder. Taket i S-78 löser också det här, om det behövs.
 - **Kriterierna och texterna behöver följa med.** Berättelse 08, kriterium 8 (b) och (e), berättelse 27, kriterium 2 och 4, och `texter.md` säger i dag ”högst en timme” och ”5 försök”. Produktägaren och UX-designern ändrar dem när beslutet godkänts.
 - **ADR 0004 läses tillsammans med den här.** När den här ADR:n godkänns får ADR 0004 status ”delvis ersatt av 0023”, enligt `docs/adr/README.md`. Huvudsessionen gör den ändringen vid K4.
-- **Ej verifierat:** att en ny kod ogiltigförklarar den förra, att `auth.sessions` kan läsas från en `security definer`-funktion i det riktiga projektet och kostnaden för det. Allt prövas i 3b och 3c.
+- **Ej verifierat:** följande prövas i 3b och 3c:
+  - att en ny kod ogiltigförklarar den förra
+  - att `auth.sessions` kan läsas från en `security definer`-funktion i det riktiga projektet, och vad det kostar
+  - **IPv6** (S-78): Supabases dokumentation säger inte om gränsen per IP-adress räknas per enskild IPv6-adress eller per nät. Räknas den per adress har en angripare med ett eget /64-nät i praktiken ingen gräns
+  - **Burst** (S-78): dokumentationen anger att verifieringar tillåts i skurar upp till 30. Om en skur på 30 tillåts också när gränsen är satt till 10, blir uträkningen i avsnitt 1 upp till tre gånger för låg

@@ -69,6 +69,26 @@ Upprätthålls i databasen med `check` eller trigger, med ett pgTAP-test per gr�
 
 Storleken mäts som text och inte med `pg_column_size`, så att en lätt komprimerbar ögonblicksbild inte slinker igenom (berättelse 28, kriterium 11).
 
+**Taken som räknar rader håller också vid samtidiga anrop (S-82).** Taket på 40 moment och taket på 200 pass per dygn räknas av triggrar. Två anrop som körs samtidigt ser annars samma antal och kan båda gå igenom. Därför:
+
+- triggern för moment låser passets rad i `training_sessions` med `select … for update` innan den räknar
+- triggern för pass tar ett lås för transaktionen per ledare, `pg_advisory_xact_lock` med en nyckel ur `auth.uid()`, innan den räknar
+- ett pgTAP-test, eller ett integrationstest mot den lokala databasen, skickar parallella anrop som tillsammans går över taket och visar att taket håller
+
+**De korta fälten har också spärrar (S-82),** med `check` och ett test per spärr:
+
+| Kolumn | Spärr |
+|---|---|
+| `session_items.kind` | ett av värdena i `RowKind` (`src/regelmotor/types.ts`) |
+| `session_items.part` | null eller ett av värdena i `SESSION_PARTS` (`src/regelmotor/keys.ts`) |
+| `session_items.block` | null eller 1–40 |
+| `session_items.station` | null eller 1–20 |
+| `session_items.minutes` | 0–180 (stationsrader har 0) |
+| `session_items.station_minutes` | null eller 1–180 |
+| `training_sessions.requested_minutes` och `total_minutes` | 0–300 |
+
+Listorna i migrationen genereras ur koden på samma sätt som `PUBLISHED_FIELDS` i avsnitt 2, och CI underkänner bygget om de skiljer sig åt. De exakta övre gränserna för tal kan justeras i 3b efter vad generatorn faktiskt kan ge, om testerna följer med.
+
 Taket på 40 moment förutsätter att generatorn aldrig gör fler. Ett test i Vitest prövar det över de underlag som egenskapstesterna redan använder. Visar testet att 40 inte räcker höjs taket i samma pull request, och värdet står i rapporten.
 
 ### 4 Tabellerna som skapas i delsteg 3b
@@ -77,12 +97,12 @@ Allt skapas med åtkomstregler på radnivå och pgTAP-tester enligt ADR 0003 och
 
 | Migration | Tabeller och annat |
 |---|---|
-| Grund | Hjälpfunktionerna `is_club_member`, `is_club_admin`, `is_team_member`, `is_editor` och, om provet håller, `session_is_active` (ADR 0023 avsnitt 3). Förvalda rättigheter för `anon` och `public` tas bort |
+| Grund | Hjälpfunktionerna `is_club_member`, `is_club_admin`, `is_team_member`, `is_editor` och, om provet håller, `session_is_active` (ADR 0023 avsnitt 3). Rättigheterna för `anon` och `public` tas bort, både på det som finns och för framtida objekt med `alter default privileges … revoke … from anon, public`, så att en tabell eller funktion som skapas senare inte får dem automatiskt (S-42, S-84). Realtime och GraphQL stängs enligt S-55: publiceringen `supabase_realtime` är tom, och `pg_graphql` är avstängt eller stängt för `anon` |
 | Konton och klubbar | `profiles`, `clubs`, `club_members`, `teams`, `team_members`, `editors`, `editor_events` |
 | Inbjudningar | `invitations`, med kolumnen `emailed_at` för gränsen per klubb, och `invitation_attempts` (ADR 0023 avsnitt 4) |
 | Sparade pass | `training_sessions`, `session_items` enligt avsnitt 1–3 |
 | Övningar och kö | `exercises`, `submissions`, `submission_events`. Tomma i inkrement 3 och utan gränssnitt, men med åtkomstregler, tak och spärren mot `planskiss` i klubbövningar (berättelse 28, kriterium 10), eftersom ett tak är dyrt att lägga till i efterhand (ADR 0003 punkt 9) |
-| Rensning | Jobbet i `pg_cron` med lagringstiderna i ADR 0003 och ADR 0024 |
+| Rensning | Jobbet i `pg_cron` med lagringstiderna i ADR 0003 och ADR 0024, inklusive 90 dagar för `cron.job_run_details`. Jobbens meddelanden innehåller bara antal (S-84) |
 
 **Skapas inte i inkrement 3:**
 
