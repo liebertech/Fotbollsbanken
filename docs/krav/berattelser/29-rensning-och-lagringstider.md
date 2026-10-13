@@ -19,9 +19,11 @@ Lagringstiderna är beslutade i ADR 0003 (*Lagringstider*, S-19, användarens be
 7. **Givet** att personuppgifter finns i säkerhetskopior i upp till 30 dagar (ADR 0002), **då** står det i integritetspolicyn (fas 5, se backlog). Det är ingen del av byggd funktion i det här inkrementet.
 
 8. **[Nytt 2026-10-13, S-41, beslut 5]** **Givet** att ett konto har skapats men koden aldrig bekräftats, **när** det har gått 24 timmar, **då** raderas kontot. **Test:** med förskjuten tid raderas ett obekräftat konto efter 25 timmar och ett bekräftat konto rörs inte.
-9. **[Nytt 2026-10-13, S-44, beslut 4]** **Givet** att Supabase Auths granskningslogg (IP, användaragent, troligen e-post) och sessionsdata behålls, **när** det har gått 90 dagar, **då** rensas posterna. Loggposter och spärrdata för ett raderat konto rensas med kontot. Brevos sändloggar omfattas av avtalskontrollen (backloggens kontrollista). Tiderna, och lagringstiden för redaktörshistoriken (`editor_events`), skrivs i en ny ADR (senior-systemutvecklare). **Test:** på samma sätt som kriterium 1.
+9. **[Nytt 2026-10-13, S-44, beslut 4]** **Givet** att Supabase Auths granskningslogg (IP, användaragent, troligen e-post) och sessionsdata behålls, **när** det har gått 90 dagar, **då** rensas posterna. Loggposter och spärrdata för ett raderat konto rensas med kontot. Brevos sändloggar omfattas av avtalskontrollen (backloggens kontrollista). Tiderna skrivs i en ny ADR (senior-systemutvecklare). **Test:** på samma sätt som kriterium 1.
+10. **[Nytt 2026-10-13, användarens beslut]** **Givet** att räknaren för felaktiga inbjudningsförsök (`invitation_attempts`) finns, **när** det har gått 24 timmar, **då** rensas raderna. **Test:** en rad äldre än 24 timmar rensas, en yngre rörs inte.
+11. **[Nytt 2026-10-13, användarens beslut]** **Givet** att redaktörshistoriken (`editor_events`) sparas utan tidsgräns, **när** en person raderar sitt konto, **då** avidentifieras personens rader (aktör och föremål sätts till tomt) men raderas inte. **Test:** efter radering finns raderna kvar utan personens id (berättelse 26, kriterium 15).
 
-Kriterium 5 gäller även de nya rensningarna, och loggraderna får bara innehålla antal, inga personuppgifter.
+Kriterium 5 gäller även de nya rensningarna (8–10), och loggraderna får bara innehålla antal, inga personuppgifter.
 
 ## Beroenden
 
@@ -38,4 +40,4 @@ Kriterium 5 gäller även de nya rensningarna, och loggraderna får bara innehå
 
 ## Ändringar efter K2
 
-Nytt dokument 2026-10-13. Samma dag tillkom kriterium 8 (S-41) och 9 (S-44), och kriterium 5 skärptes till att loggraderna bara har antal.
+Nytt dokument 2026-10-13. Samma dag tillkom kriterium 8 (S-41) och 9 (S-44), och kriterium 5 skärptes till att loggraderna bara har antal. Senare samma dag tillkom kriterium 10 (`invitation_attempts` rensas efter 24 timmar) och 11 (`editor_events` sparas utan tidsgräns men avidentifieras vid radering).

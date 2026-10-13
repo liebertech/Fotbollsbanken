@@ -68,6 +68,10 @@ Ett eget, litet inkrement, infogat direkt efter planskisserna. Beslutat av anvä
 | 12 | Koppla ett personligt pass till ett lag i efterhand (kriterium 6) | Should. Ny 2026-10-13, godkänd av användaren samma dag |
 | – | Byta namn på ett sparat pass | Could. Ny 2026-10-13 |
 | – | Uppgradera ESLint (säkerhetsgranskningen av inkrement 2b, F5). Ett eget litet jobb, se översikten | Should. Beslutat 2026-10-13: görs först, som delsteg 3a |
+| – | Uppföljning av S-59: ta bort overrides i ESLint-konfigurationen när `eslint-plugin-react` och `eslint-plugin-jsx-a11y` stöder ESLint 10 (`docs/sakerhet/granskning-eslint10-och-uppsattning.md`). Ny 2026-10-13 | Should, följs upp vid beroendeuppdatering |
+| – | Uppföljning av S-60: testet av lintreglerna är på plats men matchar bara regel-ID, inte meddelandet eller platsen. Skärps så att ett test inte blir grönt av en annan regel med samma ID. Ny 2026-10-13 | Could |
+| – | F5 (ESLint 9.39.5 utan stöd) stängs när `feature/eslint-9` mergas (delsteg 3a). Ny 2026-10-13 | Uppföljning, ingen egen byggpost |
+| – | Slå på registreringen i produktionen vid K5, efter att kontrollistan A–D är avbockad. Tills dess är registreringen avstängd med en vitlista (S-61). Ny 2026-10-13 | Must, steg vid K5 |
 | – | Mäta och redovisa leveransen av inloggningsmejl (berättelse 08, kriterium 14) | Must. Planerat vid K2 (ADR 0004) |
 | – | Klubbadmin kan se en logg över vem som gjort vad i klubben | Could |
 | – | En person kan vara medlem i flera klubbar samtidigt | Should (rimligt för ledare som tränar i flera klubbar, men inte grundflödet) |
@@ -95,7 +99,7 @@ Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna 
 | 12 kriterium 1–5, 7–10 | Must | |
 | 12 kriterium 6 | Should | Koppla personligt pass till lag i efterhand, godkänt 2026-10-13 |
 | 26 kriterium 1–16 | Must | Vad som prövas i inkrement 3 respektive 4 står i berättelsen |
-| 27 kriterium 1–7 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst en timme |
+| 27 kriterium 1–7 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst 15 minuter (åtkomstnyckeln gäller i 900 s, ADR 0023; beslut 2026-10-13) |
 | 28 kriterium 1–23 | Must | Ny berättelse, tvärgående säkerhetskrav |
 | 29 kriterium 1–3, 5–6, 8–9 | Must | Ny berättelse. 8 (obekräftade konton, S-41) och 9 (Auths loggar, S-44) nya efter säkerhetsgranskningen |
 | 29 kriterium 4 | Must, senast före K5 | Eget delsteg efter inkrement 3, utanför inkrementets K4 (beslut 2026-10-13) |
@@ -124,7 +128,9 @@ Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna 
 - Ett lagrat pass som inte klarar slutkontrollen visas inte; ledaren får ett begripligt besked och planläge och utskrift spärras (05.7).
 - Den som är ensam medlem i sin klubb får klubben raderad med lag, pass och övningar efter tydlig förvarning (26.9).
 - Arkiverade lag: passen får samma frist på 24 månader, och varningstexten säger det (10.3, 29.2).
-- Borttappad telefon: upp till en timme godtas och texten ska vara ärlig (27). Senior-systemutvecklare undersöker om tiden kan kortas på gratisnivån.
+- Borttappad telefon: texten ska vara ärlig (27). Åtkomstnyckeln gäller i 15 minuter (900 s) efter prov i staging, så andra enheter loggas ut inom högst 15 minuter. Skrivs i ADR 0023 på grenen `adr/inkrement-3` (beslut 2026-10-13, ersätter det tidigare godtagna "upp till en timme").
+- Inbjudningsnyckeln: högst 10 felförsök per konto och timme, därefter spärras kontot i en timme (11.7). `invitation_attempts` rensas efter 24 timmar (29.10). `editor_events` sparas utan tidsgräns men avidentifieras vid radering (29.11).
+- Registreringen är avstängd i produktionen, med en vitlista, tills kontrollistan A–D är avbockad. Att slå på den är ett steg vid K5, efter kontrollistan (S-61 i `docs/sakerhet/granskning-eslint10-och-uppsattning.md` på grenen `docs/uppsattning-3`).
 - Koppla pass till lag i efterhand: Should (12.6). Alla ledare i laget får ta bort lagets pass (12.8).
 - Konton utan inloggning i 24 månader: Must, eget delsteg efter inkrement 3 och före K5 (29.4).
 - Dagligt anrop som håller produktionsdatabasen vaken: ja.
@@ -198,7 +204,7 @@ Säkerhetsagenten granskade kriterierna (`docs/sakerhet/granskning-inkrement-3-k
 | S-55 Realtime och GraphQL | 28.21 |
 | S-57 sessionskontroll i åtkomstreglerna, prövas i 3b | 27.7, 28.22 |
 
-**Nya ADR:er som följer (senior-systemutvecklare):** (1) ersättningsskydd för gränsen per kod (S-40), (2) kompletterade lagringstider: obekräftade konton, Auths loggar, `editor_events`, spärrdata (S-41, S-43, S-44), (3) hur ett sparat pass refererar till en bankövning medan banken är inbyggd, (4) sessionskontroll i RLS (S-57) om den behålls och gräns per konto för inbjudningsnycklar (S-53).
+**Nya ADR:er som följer (senior-systemutvecklare):** (1) ersättningsskydd för gränsen per kod (S-40), (2) kompletterade lagringstider: obekräftade konton, Auths loggar, spärrdata och avidentifieringen av `editor_events` (S-41, S-43, S-44), (3) hur ett sparat pass refererar till en bankövning medan banken är inbyggd, (4) sessionskontroll i RLS (S-57) om den behålls och gräns per konto för inbjudningsnycklar (S-53). Skrivna som ADR 0023–0025 på grenen `adr/inkrement-3`.
 
 **Testadresser (beslut 9):** innan Brevos avtal är bekräftat skickas e-post bara till användarens egna adresser och till testare som har samtyckt. Det gäller också mätningen av leveransen (berättelse 08, kriterium 14).
 
