@@ -1,4 +1,4 @@
-Status: utkast (2026-10-13), underlag för delsteg 3a i inkrement 3. Rättad efter säkerhetsgranskningen `docs/sakerhet/granskning-eslint10-och-uppsattning.md` (S-61–S-73)
+Status: utkast (2026-10-13), underlag för delsteg 3a i inkrement 3. Rättad efter säkerhetsgranskningen `docs/sakerhet/granskning-eslint10-och-uppsattning.md` (S-61–S-73) och omgranskningen `docs/sakerhet/granskning-uppsattning-och-adr-0023-0025.md` (S-74–S-76)
 
 # Uppsättning av externa tjänster för inkrement 3
 
@@ -29,10 +29,10 @@ Vägarna i webbgränssnitten är hämtade ur tjänsternas dokumentation 2026-10-
 | 5 | Cloudflare Turnstile | Nu |
 | 6 | Adresser för inloggningen i Supabase | Nu |
 | 7 | Publika värden i Cloudflare Pages | Nu |
-| 8 | GitHub-miljöer och hemligheter | Nu. `IMPORTER_DB_URL` väntar till efter 3b |
+| 8 | GitHub-miljöer och hemligheter | Nu. `IMPORTER_DB_URL` väntar på ADR:n om bankens flytt |
 | 9 | Det dagliga anropet som håller produktionen vaken | Variabler nu. Arbetsflödet byggs i 3b |
 | 10 | Vitlistan för registrering | **Väntar** till 3b |
-| 11 | Lösenordet för `importer` | **Väntar** till efter 3b |
+| 11 | Lösenordet för `importer` | **Väntar** på ADR:n om bankens flytt, tidigast inför inkrement 4 |
 | 12 | Slå på registreringen i produktionen | **Väntar** till K5 |
 
 ## 0. Före start
@@ -48,7 +48,7 @@ Vissa uppgifter är publika och får lämnas till senior-systemutvecklare i en c
 | Turnstile **site key** | Publik | Samma som ovan |
 | Regionen som valdes för varje projekt | Publik | Lämnas till senior-systemutvecklare |
 | Databasens lösenord, och varje anslutningssträng som innehåller det | **Hemlig** | Lösenordshanterare, och GitHub-hemlighet i en miljö (steg 8). Aldrig som hemlighet direkt på repot |
-| Lösenordet för databasrollen `importer` | **Hemlig** | Sätts av dig själv i SQL-editorn (steg 11). Aldrig i en migration eller i repot |
+| Lösenordet för databasrollen `importer` | **Hemlig** | Sätts av dig själv med `\password` i `psql` eller som SCRAM-hash (steg 11). Aldrig i klartext i SQL-editorn, i en migration eller i repot |
 | Supabase **secret key** (`sb_secret_…`) och äldre `service_role` | **Hemlig**. Går förbi alla åtkomstregler | Ingenstans utanför Supabase. Edge Functions får den automatiskt. Aldrig i CI (ADR 0003) |
 | JWT-hemligheten (äldre JWT Secret) | **Hemlig**. Kan signera en nyckel för vilken roll som helst | Ingenstans. Rör den inte |
 | Supabase personlig åtkomsttoken (Account → Access Tokens) | **Hemlig**. Gäller alla projekt i kontot | Skapa ingen, utom i reservfallet i steg 2, och då tas den bort samma dag |
@@ -67,6 +67,8 @@ Slå på tvåstegsverifiering i varje konto innan du skapar något där. Konton 
 - **Supabase:** **Account → Security** (steg 1).
 - **Brevo:** **My profile → Security** eller **Account settings → Security** (steg 3).
 - **Cloudflare:** **My Profile → Authentication → Two-Factor Authentication** (steg 5).
+- **E-postkontot** du använder för tjänsterna, och för dina egna inloggningar i appen (S-75). Den som tar över e-posten kan återställa lösenordet i alla tjänster ovan och ta emot inloggningskoderna.
+- **Lösenordshanteraren** där databaslösenorden ligger (S-75).
 
 ## 1. Supabase: konto och två projekt
 
@@ -107,9 +109,9 @@ Värdena kommer från ADR 0004 punkt 3, ADR 0023 avsnitt 1 och berättelse 08, k
 Konton för dina egna prov i staging, innan vitlistan finns, skapar du under **Authentication → Users → Add user**. Ange din egen adress och bekräfta den direkt. Ett befintligt konto kan logga in med kod också när registreringen är av.
 
 **Stopp om fältet för kodlängden saknas (S-64).** Om **Email OTP Length** inte finns i panelen, eller inte går att sätta till 8, ska du inte välja 6 siffror. Stanna och säg till. Kodlängden sätts då till 8 via Supabases Management API:
-1. Skapa en personlig åtkomsttoken under **Account → Access Tokens** med namnet `otp-langd-<datum>`.
-2. Senior-systemutvecklare ger dig ett färdigt kommando som sätter `mailer_otp_length` till 8 för de två projekten. Du kör det själv på din dator och klistrar in token där, aldrig i chatten.
-3. **Ta bort token samma dag**, under **Account → Access Tokens**.
+1. Skapa en personlig åtkomsttoken under **Account → Access Tokens** med namnet `otp-langd-<datum>` och den **kortaste giltighetstid** som går att välja.
+2. Senior-systemutvecklare ger dig ett färdigt kommando som sätter `mailer_otp_length` till 8 för de två projekten. Du kör det själv på din dator. Kommandot läser token med en dold fråga, eller ur en variabel som du sätter just före, så att token aldrig skrivs på kommandoraden och aldrig hamnar i skalets historik (S-76). Klistra aldrig in den i chatten.
+3. **Ta bort token samma dag**, under **Account → Access Tokens**, också om den har en kortare giltighetstid.
 
 Sex siffror godtas inte (ADR 0023).
 
@@ -210,7 +212,7 @@ Lägg anslutningssträngarna i **miljöer** under **Settings → Environments �
 |---|---|---|---|
 | `staging` | **Required reviewers:** du själv. **Deployment branches:** bara `main` och `feature/*` | `STAGING_DB_URL` | Delsteg 3b |
 | `produktion` | **Required reviewers:** du själv. **Deployment branches:** bara `main` | `PROD_DB_URL` | Delsteg 3b |
-| `produktion` | Samma | `IMPORTER_DB_URL` | **Väntar** till efter 3b, se steg 11. Läggs **bara** i `produktion`, inte i `godkannande` (S-67) |
+| `produktion` | Samma | `IMPORTER_DB_URL` | **Väntar** på ADR:n om bankens flytt, se steg 11. Läggs **bara** i `produktion`, inte i `godkannande` (S-67) |
 
 I båda miljöerna:
 
@@ -250,13 +252,15 @@ När hooken finns:
 3. **Staging:** när testet i berättelse 08, kriterium 15, är grönt slår du på **Allow new users to sign up** i staging.
 4. **Produktion:** registreringen förblir **av** (steg 12).
 
-## 11. Lösenordet för `importer` (väntar till efter 3b, S-63)
+## 11. Lösenordet för `importer` (väntar på ADR:n om bankens flytt, S-63, S-74)
 
-**Väntar** tills den ADR som flyttar banken till Supabase är beslutad, och migrationen som skapar rollen har körts. Migrationen skapar rollen `importer` **utan lösenord**, och CI underkänner en migration som innehåller `password`.
+**Väntar** tills den ADR som flyttar banken till Supabase är beslutad och migrationen som skapar rollen har körts. Det är tidigast inför inkrement 4, inte direkt efter 3b. Migrationen skapar rollen `importer` **utan lösenord**, och CI underkänner en migration som innehåller `password`.
 
 När rollen finns:
 1. Generera ett långt lösenord i din lösenordshanterare.
-2. Sätt det själv i produktionsprojektets **SQL Editor** med det kommando du får från senior-systemutvecklare. Skriv lösenordet direkt i editorn. Kör inte en sparad fråga med lösenordet i, och spara inte frågan.
+2. Sätt lösenordet så att det aldrig står i klartext i Supabase (S-74). Skriv det **inte** i SQL-editorn i dashboarden, eftersom den kan spara frågor och Postgres kan logga `ALTER ROLE … PASSWORD`. Gör i stället på ett av två sätt, med de kommandon du får av senior-systemutvecklare:
+   - anslut med `psql` från din dator och kör `\password importer`. Då frågar `psql` efter lösenordet utan att visa det och skickar bara en hash till servern, eller
+   - räkna fram en SCRAM-hash av lösenordet lokalt och skriv bara hashen i `ALTER ROLE`.
 3. Bygg anslutningssträngen för session-poolern med användaren `importer` och lägg den som `IMPORTER_DB_URL` i miljön `produktion`, och bara där.
 
 ## 12. Registreringen i produktionen (väntar till K5, S-61)
