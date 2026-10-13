@@ -2,7 +2,7 @@ Status: godkänd (K2, 2026-09-12)
 
 # Användarflöden – Fotbollsbanken
 
-Det här dokumentet beskriver de skärmflöden som täcker alla 25 användarberättelser i `docs/krav/backlog.md`. Varje steg hänvisar till berättelsens nummer, till exempel (01). Wireframes för varje vy finns i `skisser/`.
+Det här dokumentet beskriver de skärmflöden som täcker användarberättelserna 01-27 i `docs/krav/backlog.md`. Varje steg hänvisar till berättelsens nummer, till exempel (01). Wireframes för varje vy finns i `skisser/`.
 
 Ledarens arbete sker i **två skilda lägen** som aldrig blandas i samma skärm:
 
@@ -21,11 +21,11 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 
 1. Ny person öppnar appen, väljer "Skapa konto", anger namn och e-post, bekräftar en CAPTCHA-ruta och trycker "Skicka kod" (08.1, 08.5).
 2. Personen loggar in genom att ange e-post, bekräfta CAPTCHA-rutan och trycka "Skicka kod" (08.2). Appen svarar likadant oavsett om adressen har ett konto eller inte: "Om adressen finns hos oss har vi skickat en kod" (S-13). Kodsteget visar en lugn upplysning om att även titta i skräpposten, eftersom appen inte har en egen avsändardomän i version 1.
-3. Personen skriver in den sexsiffriga koden. Fel kod ger ett tydligt felmeddelande utan att avslöja om adressen har ett konto, ingen inloggning sker (08.3). En ny kod kan begäras tidigast efter en väntetid. För många felaktiga försök gör koden ogiltig och kräver en ny.
-4. Utloggning kräver ny inloggning för att se sparade pass eller klubbens material (08.4).
-5. En inbjuden ledare (11.1) kommer hit via en inbjudningslänk i sin e-post, med e-postfältet förifyllt och låst, skapar konto eller loggar in med kod, och kopplas automatiskt till laget hon eller han bjöds in till.
+3. Personen skriver in koden (8 siffror enligt användarens beslut 2026-10-13; blir 6 om Supabase inte tillåter 8, ett enda värde i `skisser/14-inloggning.md`). Fel kod ger ett tydligt felmeddelande utan att avslöja om adressen har ett konto, ingen inloggning sker (08.3). En ny kod kan begäras tidigast efter en väntetid (60 sekunder). För många felaktiga försök gör koden ogiltig och kräver en ny. Går den automatiska kontrollen (Turnstile) inte att ladda får personen ett besked och en knapp för att försöka igen (08.9).
+4. Utloggning, i menyn, kräver ny inloggning för att se sparade pass eller klubbens material (08.4) och rensar enhetens lokala kopia. "Logga ut på alla enheter" ligger i stället i *Mitt konto* (avsnitt 5) och är skild från den vanliga utloggningen (27.6).
+5. En inbjuden ledare (11.1) kommer hit via en inbjudningslänk i sin e-post, med e-postfältet förifyllt och låst, skapar konto eller loggar in med kod, och kopplas automatiskt till laget hon eller han bjöds in till. Är länken utgången, återkallad, redan använd eller gäller en annan adress än den personen är inloggad med, visas vyn "Inbjudan fungerar inte" med en egen text för varje orsak, och ingen kopplas till något lag (11.4, 11.5).
 
-Efter inloggning kommer ledaren till startsidan (`Mina pass`), klubbadmin till klubbens översikt och redaktören ser en extra flik för redaktörskön om personen har den rollen.
+Efter inloggning kommer ledaren till startsidan **Sparade pass** (`skisser/05-sparade-pass.md`; det som tidigare kallades "Mina pass" är nu första fliken i den vyn). En klubbadmin utan klubb kommer till "Skapa din klubb". Redaktören ser en extra menypunkt för redaktörskön om personen har den rollen. Hela navigeringen, med menyn i sidhuvudet och punkten *Mitt konto*, finns i `skisser/16-navigering.md`.
 
 ---
 
@@ -71,11 +71,14 @@ Efter inloggning kommer ledaren till startsidan (`Mina pass`), klubbadmin till k
 
 **Vy:** del av `skisser/02-genererat-pass.md` (spara-knapp) och `skisser/05-sparade-pass.md`
 
-1. Ledaren trycker "Spara pass". Passet sparas med övningar, ordning, tider och underlaget (05.1).
-2. Om ledaren inte anger namn, föreslår appen ett namn med datum, spelform och fokus (05.3).
-3. Om ledaren är kopplad till ett lag går passet automatiskt till lagets pass och blir synligt för lagets andra ledare (12.1). Är ledaren inte kopplad till något lag är passet bara synligt för ledaren själv, tills det kopplas till ett lag (12.2, 05:Beroenden).
-4. Ledaren kan fortsätta genast med ett nytt pass eller andra uppgifter (05.4).
-5. Ledaren öppnar "Sparade pass" och ser listan (05.2), inklusive lagets delade pass. Lämnar en ledare laget syns passen ändå för kvarvarande ledare, men inte längre för den som lämnat (12.3).
+1. Ledaren trycker "Spara pass". Dialogen frågar efter ett namn och, om ledaren är med i något lag, vilket lag passet ska delas med (05.1, 12.1). Passet sparas med övningar, ordning, tider och underlaget.
+2. Om ledaren inte anger namn, föreslår appen ett namn med datum, spelform och fokus (05.3). Under namnfältet står att namnet inte ska innehålla namn på spelare (05.5).
+3. **Ledaren väljer lag.** Lagvalet är förvalt till det lag ledaren senast sparade ett pass i, och valet "Inget lag, bara för mig" finns alltid (12.1, 12.2, 12.5). Ett pass hör till ett lag eller inget, aldrig flera. Arkiverade lag går inte att välja (12.7). Väljer ledaren ett lag blir passet synligt för lagets alla ledare. Väljer ledaren inget lag, eller har inget lag, är passet bara synligt för ledaren själv, inte heller för klubbadmin (12.2). *Rättat 2026-10-13: det här avsnittet sade tidigare att kopplingen var automatisk. Berättelse 12 kriterium 1 och skiss 05 gäller: ledaren väljer.*
+4. Ledaren kan fortsätta genast med ett nytt pass eller andra uppgifter (05.4). Misslyckas sparandet (namnet för långt, 200 pass på ett dygn, inget nät) står det i dialogen, det ledaren skrivit ligger kvar och inget påstås vara sparat (05.10-05.12).
+5. Ledaren öppnar "Sparade pass" och ser listan (05.2) med en flik för personliga pass och en för varje lag, inklusive lagets delade pass. Varje pass visar vem som sparade det: "Sparat av dig", "Sparat av {namn}", "Sparat av en tidigare ledare" eller "Sparat av Borttagen användare". Lämnar en ledare laget syns passen ändå för kvarvarande ledare, men inte längre för den som lämnat (12.3).
+6. **Koppla ett personligt pass till ett lag i efterhand (12.6, Should).** I ett personligt pass väljer ledaren "Koppla till lag", väljer ett lag hon eller han är med i och bekräftar. Åtgärden är enkelriktad: passet kan inte flyttas till ett annat lag och inte göras personligt igen. Är ledaren inte med i något lag visas ingen knapp, bara en förklaring. Se `skisser/05-sparade-pass.md`.
+7. **Ta bort ett pass (05.13, 12.8).** Ledaren väljer "Ta bort pass" och bekräftar. Är det ett lagpass kan vilken ledare som helst i laget ta bort det, och bekräftelsen säger att det försvinner för alla i laget. Passet rensas helt efter 90 dagar (berättelse 29).
+8. **Ett pass som inte klarar slutkontrollen (05.7).** Öppnar ledaren ett lagrat pass som inte klarar säkerhetsreglerna visas inte passet. Ledaren får ett begripligt besked, planläge och utskrift är avstängda för det passet, och hon eller han kan skapa ett nytt pass eller ta bort det.
 
 ### 1.5 Visa planskisser (06, 07)
 
@@ -183,26 +186,41 @@ Planläget ändrar aldrig ordningen på övningarna – den ordningen sätts i p
 **Hantera lag (10):**
 1. Klubbadmin skapar ett lag med namn och ålder (spelform föreslås) (10.1).
 2. Klubbadmin redigerar lagets uppgifter; ändringen gäller för alla kopplade till laget (10.2).
-3. Klubbadmin tar bort/arkiverar ett lag; appen varnar i förväg om laget har sparade pass kopplade till sig (10.3).
+3. Klubbadmin arkiverar ett lag; appen varnar i förväg om laget har sparade pass kopplade till sig, med exakt antal, och säger att laget och dess pass rensas helt efter 24 månader (10.3, användarens beslut 2026-10-13). Ett arkiverat lag går inte att återställa i appen.
+4. Lagets ålder sparas så att den följer kalenderåret: ett lag som skapas som 11-åringar 2026 visar 12 år under 2027 utan att någon ändrar något (10.6).
+5. Bara klubbadmin ändrar lag. En ledare ser sitt lag skrivskyddat, och en klubbadmin som inte är ledare i laget ser laget, ledarna och antalet pass men kan inte öppna passen (10.7).
 
 **Bjuda in ledare (11):**
 1. Klubbadmin bjuder in en person via e-post till ett visst lag (11.1).
 2. Personen accepterar och får tillgång bara till det laget, inte klubbens övriga lag (11.2).
 3. Klubbadmin tar bort en ledares åtkomst till laget; ledaren behåller sitt konto och det som inte enbart hör till laget (11.3).
+4. En inbjudan gäller i 14 dagar och kan återkallas. Är den utgången kan klubbadmin bjuda in igen. Klubbadmin kan i stället kopiera inbjudningslänken och skicka den själv (11.1, 11.4, 11.8). Klubben kan skicka högst 50 inbjudningsmejl per dygn (11.9).
+
+**Utse ytterligare klubbadmin (09.4):**
+1. Klubbadmin väljer "Gör till klubbadmin" på en ledare som redan är medlem i klubben och bekräftar. Personen får samma rättigheter som klubbadmin, utöver sina lag.
+2. En person som bara är inbjuden, eller som inte finns i klubben, kan inte utses. Det är den här vägen en ensam klubbadmin använder för att utse en efterträdare innan hon eller han raderar sitt konto (avsnitt 5).
 
 ---
 
-## 5. Radera sitt konto (alla roller)
+## 5. Mitt konto: logga ut på alla enheter och radera sitt konto (alla roller)
 
-**Vy:** `skisser/15-radera-konto.md`
+**Vy:** `skisser/15-radera-konto.md`, nås från menypunkten *Mitt konto* (`skisser/16-navigering.md`).
 
-**Uppfyller:** berättelse 26 (produktägaren skriver acceptanskriterierna parallellt). Grunden är säkerhetsgranskningens fynd S-10: rätten till radering är ovillkorlig och ska gå att utföra i appen, inte bara för hand i drift.
+**Uppfyller:** berättelse 26 och 27. Grunden är säkerhetsgranskningens fynd S-10 (rätten till radering är ovillkorlig och ska gå att utföra i appen) och S-11 (det måste gå att avbryta åtkomsten från en borttappad enhet).
 
-1. Ledaren öppnar kontoinställningarna och väljer "Radera mitt konto".
-2. Är personen klubbadmin och den enda klubbadminen i sin klubb, blockerar appen raderingen tills en efterträdare är utsedd, och länkar dit.
-3. Appen visar tydligt vad som raderas (profil, personliga pass utan lagkoppling, medlemskap och inbjudningar) och vad som blir kvar avidentifierat (lagets delade pass, klubbens egna övningar och godkända bidrag till den gemensamma banken, med skaparen ersatt av "Borttagen användare").
-4. Ledaren bekräftar genom att skriva klubbens eller sitt eget namn i en textruta, och får en sista tydlig varning om att raderingen inte går att ångra.
-5. Efter radering loggas personen ut och kan inte längre logga in med samma e-postadress på det gamla kontot.
+**Logga ut på alla enheter (27):**
+1. Ledaren väljer "Logga ut på alla enheter" i *Mitt konto* och bekräftar i en kort dialog. Knappen är skild från den vanliga utloggningen i menyn (27.6).
+2. Den här enheten loggas ut direkt och dess lokala kopia rensas (27.1). Personen kommer till inloggningen med en bekräftelse som är ärlig om fördröjningen: andra enheter loggas ut inom högst en timme, och en enhet utan nät behåller sin sparade kopia tills den får kontakt igen (27.2, 27.4).
+3. Saknas nät händer ingenting: personen är kvar inloggad och appen säger att ingen enhet har loggats ut (27.5).
+
+**Radera mitt konto (26):**
+1. Ledaren väljer "Radera mitt konto" i *Mitt konto*.
+2. Appen kontrollerar spärrarna. Personen hindras och ser alla orsaker som gäller, med en knapp till rätt åtgärd där en finns, om hon eller han är: den enda klubbadminen i en klubb där andra medlemmar finns kvar (26.3, länk till "Gör till klubbadmin", 09.4), den enda redaktören (26.4) eller redaktörernas ägare (26.10). Det finns inget sätt att flytta ägarskapet i appen än, vilket vyn säger ärligt.
+3. Appen visar tydligt vad som raderas (profil, personliga pass utan lagkoppling, medlemskap och inbjudningar) och vad som blir kvar avidentifierat (lagets delade pass, klubbens egna övningar och godkända bidrag till den gemensamma banken, med skaparen ersatt av "Borttagen användare"). De två listorna syns hela tiden.
+4. **Är personen ensam medlem i en klubb** (alltså både enda klubbadmin och enda ledare) visas en tydlig förvarning överst: klubben, dess lag, lagens pass och klubbens egna övningar raderas tillsammans med kontot, och går inte att få tillbaka (26.9, användarens beslut 2026-10-13). Listan "Det här raderas" visar antal lag, pass och övningar, och knappen heter "Radera mitt konto och klubben".
+5. Ledaren bekräftar genom att skriva **sitt eget namn** i en textruta, och har en sista tydlig varning om att raderingen inte går att ångra (26.6). *Rättat 2026-10-13: det här avsnittet sade tidigare "klubbens eller sitt eget namn", medan skiss 15 sade bara eget namn. Berättelse 26 kriterium 6 gäller: eget namn, alltid, även när klubben raderas. Varningsrutan och knappens text bär skillnaden.*
+6. Misslyckas ett steg i raderingen visas ett besked och samma radering går att göra om utan dubbletter (26.11). Saknas nät raderas ingenting och appen säger det (26.12).
+7. Efter radering loggas personen ut och kan inte längre logga in med samma e-postadress på det gamla kontot, utan får skapa ett nytt konto utan koppling till det gamla (26.8, 26.13).
 
 ---
 
@@ -221,7 +239,8 @@ Planläget ändrar aldrig ordningen på övningarna – den ordningen sätts i p
  ├─ 19 Starta planläge ─ 20 Timer ─ 21 Navigera
  ├─ 22 Skriv ut/PDF
  ├─ 23 Skapa säsongsplan ─ 24 Lägg pass i vecka ─ 25 Översikt
- └─ 26 Radera sitt konto (kräver att en ensam klubbadmin först utser en efterträdare, se 09/10)
+ ├─ 26 Radera sitt konto (kräver att en klubbadmin, som inte är ensam medlem, först utser en efterträdare, se 09.4)
+ └─ 27 Logga ut på alla enheter (i samma vy som 26, Mitt konto)
 ```
 
 ## Konstaterade motsägelser och gränsfall att lösa vid K2
@@ -230,3 +249,11 @@ Inget av nedanstående ändrar krav på egen hand – de läggs fram som *Beslut
 
 1. **Rollmodellen är inte slutgiltig.** `kravspec.md` säger uttryckligen att roll- och behörighetsmodellen beslutas vid K2. Flödena ovan bygger på tre roller (ledare, klubbadmin, redaktör) som kan kombineras på en person, i linje med kravspecen, men den tekniska behörighetsmodellen ägs av senior-systemutvecklare/säkerhetsagenten.
 2. **Två olika "inget matchande"-meddelanden** (R-100 andra punkten och R-103) kräver att texterna skiljer tydligt mellan "byt ett av dessa val" och "gick inte att kombinera med resten av passet", annars uppfattar ledaren dem som samma fel. Löst i `texter.md` och `skisser/03-inget-matchande-resultat.md`.
+
+## Rättade motsägelser inför inkrement 3 (2026-10-13)
+
+Produktägaren hittade två motsägelser mellan det här dokumentet och skisserna, en tredje fann UX-designern. Alla tre är rättade i linje med acceptanskriterierna.
+
+1. **Lagval vid sparande.** Avsnitt 1.4 sade att passet automatiskt gick till lagets pass, medan skiss 05 lät ledaren välja lag. Rättat i linje med berättelse 12 kriterium 1: ledaren väljer, förvalt till det senast använda laget, med valet "Inget lag, bara för mig".
+2. **Bekräftelse vid radering.** Avsnitt 5 sade "klubbens eller sitt eget namn", medan skiss 15 sade bara eget namn. Rättat i linje med berättelse 26 kriterium 6: personens eget namn.
+3. **Startsidans namn.** Avsnitt 0 kallade startsidan "Mina pass", vilket också är namnet på en flik i skiss 05. Startsidan heter nu "Sparade pass"; "Mina pass" är fliken för personliga pass.

@@ -244,6 +244,14 @@ Regler:
 - Ikoner förmedlar aldrig något ensamma (avsnitt 8, 1.4.1).
 - Ikonerna ligger samlade i en enda fil i repot (ett SVG-"sprite" eller en liten komponent per ikon) och är en del av koden, inte av `content/`, så att de omfattas av kodens licens (Apache-2.0).
 
+### 6.12 Huvudmeny (inkrement 3, utkast)
+
+Se `skisser/16-navigering.md`. Under 720 px: en disclosure-knapp "Meny" (minst 48 × 48 px, synlig text) längst till höger på varumärkesraden i sidhuvudet (6.10) som fäller ut en lista under bandet. Raderna är minst 56 px höga, den aktuella markeras med `aria-current="page"`, fet stil och understrykning, och "Logga ut" ligger sist, skild av en linje. Från 720 px ligger punkterna i en rad i bandet. Fokusramen i bandet är vit, som i 6.10. Menyn finns inte i planläget och inte på utskrift. Det är ingen `role="menu"`, utan en `nav` med en vanlig länklista.
+
+### 6.13 Varningsruta för oåterkalleliga följder (inkrement 3, utkast)
+
+Används för "Klubben {klubbnamn} raderas också" i `skisser/15-radera-konto.md` och för arkiveringsvarningen i `skisser/13-klubbadmin-lag.md`. Samma ruta som varning, övrig (6.4): varningstriangeln (6.11), varningsfärgen som bakgrund och 2 px kant, men rubriken är en riktig rubrik (h2) i 700, och rutan ligger högst upp i vyn eller dialogen, aldrig bakom en panel. Två olika följder (till exempel "laget tas bort från listorna" och "efter 24 månader rensas laget och dess pass") får var sin ruta i stället för en lång mening. Knappen under rutan är destruktiv (6.1) och säger vad som händer.
+
 ---
 
 ## 7. Planskisser i vyerna
@@ -352,3 +360,4 @@ Skissens textetiketter (`--skiss-text` på `--skiss-halo`) är den enda text som
 | 2026-10-12 | Riktning A, Gräsmattan, vald av användaren (`visuell-design-forslag.md`). Nya paletter i 2.1 och 2.2 (bakgrund, kort, text, sekundär text, fel, varning, kant, nya roller *Accent*, *Sidhuvud*, *Kortkant*, *Valt val*), statusfärgerna i 2.4 kontrollräknade mot de nya korten (den ljusblå färgen stod som 5,6:1 mot vitt men är 6,3:1) och Åtgärda i mörkt läge följer nya felfärgen, typografin i avsnitt 3 (stack med `ui-rounded`, storlekstabell), avstånd och radier i avsnitt 4, knappar, kort, varning som gult kort, val-piller (6.1, 6.3–6.5), nya 6.10 (sidhuvud, passdel, tidspill, vattenpaus) och 6.11 (ikoner), uppdaterad rad för passvyn i avsnitt 7 och nytt avsnitt 10 (planskissens färger). Planläget (2.3) och utskriften är oförändrade. Statusraden ändras inte av en agent. |
 | 2026-10-12 | Granskning av det byggda gränssnittet för riktning A: miniatyrknappens kant är fältkantens färg (6.3), fokusgrupperna får ingen ▸/▾ (6.7), bakåtknapp och vit fokusram i sidhuvudet samt beteende på smal skärm (6.10). |
 | 2026-10-12 | Granskning av helheten (appen och planskisserna tillsammans): bilderna i Byt övning är kontroller och har samma kant som passets miniatyr (6.3, 7), knappraden fast bara om den tar högst en fjärdedel av höjden samt tillåtet långt ord vid stor text (6.10), marginalen runt skissen är gräs och utfälld skiss har ingen ram (avsnitt 10), lag B med etikett (avsnitt 10). |
+| 2026-10-13 | Inkrement 3, utkast: nya komponenter 6.12 (huvudmeny) och 6.13 (varningsruta för oåterkalleliga följder). Inga färger eller mått ändras. Statusraden ändras inte av en agent. |

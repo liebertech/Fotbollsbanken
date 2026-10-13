@@ -43,7 +43,7 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Rubrik, kodsteg | Skriv in koden |
 | Ingress, kodsteg | Vi har skickat en kod till {e-post}. |
 | Hjälptext, skräppost (lugn ton, ingen varningsikon) | Hittar du inget mejl om en liten stund? Kolla även i skräpposten. |
-| Fält, kod | Kod (6 siffror) |
+| Fält, kod | Kod ({kodlängd} siffror) |
 | Knapp, bekräfta kod | Bekräfta kod |
 | Knapp, skicka ny kod (väntar) | Skicka ny kod ({sekunder} s) |
 | Knapp, skicka ny kod (klar) | Skicka ny kod |
@@ -56,7 +56,54 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Inbjudan, banner | Du är inbjuden till {lagnamn} i {klubbnamn}. |
 | Efter accepterad inbjudan | Du är nu kopplad till {lagnamn}. |
 
+**Kodlängd (användarens beslut 2026-10-13):** `{kodlängd}` är **8** om Supabase tillåter det och annars **6**. Det är det enda stället där längden finns i texterna. Visar kontrollen av projektet att bara 6 går, ändras värdet till 6 och ingen text behöver skrivas om. Samma värde gäller etiketten, felet "Koden ska ha {kodlängd} siffror." nedan och mejlet i avsnitt 17.
+
 **Viktigt:** appen ska aldrig säga att en adress "redan har ett konto" eller att uppgifter "inte stämmer" för en okänd adress (S-13). Vid fel kod, däremot, ska felmeddelandet vara tydligt – det handlar inte om att avslöja kontots existens, utan om att koden personen just skrev in är fel.
+
+### 2.1 Kodfel, väntetid, gränser och kontroll (tillagt 2026-10-13, berättelse 08 kriterium 3, 8, 9)
+
+De fyra kodfelen i kriterium 3 har egna texter. Går de inte att skilja åt i Supabase används den gemensamma raden sist i första tabellen.
+
+| Sammanhang | Text |
+|---|---|
+| Fel: koden har fel längd eller innehåller annat än siffror (innan något skickas) | Koden ska ha {kodlängd} siffror. |
+| Fel: koden redan använd | Koden är redan använd. Begär en ny kod. |
+| Fel: koden ersatt av en nyare | Du har begärt en nyare kod sedan den här. Använd koden i det senaste mejlet. |
+| Fel: gemensam text om fallen ovan och "har gått ut" inte går att skilja åt | Koden stämmer inte eller har gått ut. Begär en ny kod. |
+| Väntetid, skärmläsartext och text under knappen | Du kan begära en ny kod om {sekunder} sekunder. |
+| Fel: för många kodbeställningar (servern nekar) | Du har begärt för många koder just nu. Vänta en stund och försök igen. |
+| Fel: tjänstens gräns för mejl per timme nådd | Det går inte att skicka fler koder just nu. Försök igen om en liten stund. |
+| Fel: e-postadressen ser inte rätt ut | Skriv en giltig e-postadress, till exempel namn@exempel.se. |
+| Fel: namnet för långt | Namnet får vara högst 100 tecken. |
+| Fel: kontrollen ej godkänd när "Skicka kod" trycks | Bekräfta först att du är en person. |
+| Fel: kontrollen (Turnstile) kan inte laddas | Vi kunde inte göra kontrollen som visar att du är en person. Kontrollera din anslutning. Blockerar du innehåll från andra webbplatser kan du behöva tillåta Cloudflare. |
+| Knapp, kontrollen kunde inte laddas | Försök kontrollen igen |
+| Knapp, skicka kod, pågår | Skickar kod … |
+| Knapp, bekräfta kod, pågår | Kontrollerar kod … |
+
+**Ingen av texterna ovan får skilja mellan en känd och en okänd adress** (S-13). Väntetid och gränser gäller adressen oavsett om den har ett konto.
+
+### 2.2 Inbjudan som inte fungerar (tillagt 2026-10-13, berättelse 11 kriterium 4, 5, 7)
+
+Vyn har rubriken "Inbjudan fungerar inte". Texterna nämner varken klubb, lag eller den inbjudna adressen, eftersom länken kan ha hamnat hos fel person (S-14).
+
+| Orsak | Text | Knapp |
+|---|---|---|
+| Har gått ut | Den här inbjudan har gått ut. Be den som bjöd in dig om en ny. | Logga in |
+| Är återkallad | Den här inbjudan är återkallad. Be den som bjöd in dig om en ny om du tror att det är ett misstag. | Logga in |
+| Är redan använd | Den här inbjudan är redan använd. Om det var du kan du logga in som vanligt. | Logga in |
+| Gäller en annan adress | Den här inbjudan gäller en annan e-postadress än den du är inloggad med. Logga ut och logga in med adressen som inbjudan skickades till. | Logga ut och byt konto |
+| Länken fungerar inte (okänd eller avkortad nyckel) | Länken fungerar inte. Kontrollera att du kopierat hela länken, eller be om en ny inbjudan. | Logga in |
+| För många försök | Du har försökt för många gånger. Vänta en stund och försök igen. | (ingen) |
+
+### 2.3 Efter "Logga ut på alla enheter" (tillagt 2026-10-13, berättelse 27 kriterium 2, 4)
+
+Visas som informationsruta (ⓘ) överst på inloggningssidan som personen kommer till. Texten säger ärligt det ADR 0004 ger: andra enheter loggas ut inom högst en timme, och en enhet utan nät behåller sin kopia tills den får kontakt.
+
+| Sammanhang | Text |
+|---|---|
+| Informationsruta på inloggningssidan | Du är utloggad på alla enheter. Det kan dröja upp till en timme innan en annan enhet har loggats ut. En enhet utan nät behåller sin sparade kopia tills den får kontakt igen. |
+| Informationsruta på inloggningssidan efter radering (se avsnitt 16) | Ditt konto är raderat. Du är utloggad. |
 
 ---
 
@@ -204,7 +251,78 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Rubrik, lista | Sparade pass |
 | Flik | Mina pass / {lagnamn} |
 | Tomt läge | Du har inga sparade pass än. Skapa ditt första pass. |
+| Tomt läge, lagets flik | {lagnamn} har inga sparade pass än. |
 | Knapp, nytt | + Nytt pass |
+
+### 7.1 Lagval, fel och bekräftelse vid sparande (tillagt 2026-10-13, berättelse 05 och 12)
+
+| Sammanhang | Text |
+|---|---|
+| Alternativ i lagvalet, inget lag | Inget lag, bara för mig |
+| Knapp, pågår | Sparar … |
+| Bekräftelse, sparat i lag | Passet är sparat i {lagnamn}. |
+| Bekräftelse, sparat personligt | Passet är sparat. Bara du ser det. |
+| Knapp, spara ett ändrat sparat pass (05.9) | Spara som nytt pass |
+| Fel: passnamnet för långt | Namnet får vara högst 100 tecken. Du har skrivit {antal}. |
+| Fel: dygnsgränsen nådd (05.11) | Du har sparat 200 pass det senaste dygnet, vilket är gränsen. Försök igen senare. |
+| Fel: nät saknas vid sparande (05.12) | Du verkar sakna internetanslutning. Passet har inte sparats. Det ligger kvar här – försök igen när du är uppkopplad. |
+| Osparat pass efter omstart (05.14) | Det här passet är inte sparat än. |
+
+### 7.2 Vem som sparade (tillagt 2026-10-13, berättelse 12 kriterium 1 och 3, berättelse 26 kriterium 2)
+
+Raden på passkortet har exakt fyra former. Namnet på den som lämnat laget visas aldrig (S-16).
+
+| Sammanhang | Text |
+|---|---|
+| Du sparade passet | Sparat av dig |
+| Annan ledare i samma lag | Sparat av {namn} |
+| Ledaren har lämnat laget men finns kvar som konto | Sparat av en tidigare ledare |
+| Kontot är raderat | Sparat av Borttagen användare |
+
+"Borttagen användare" är den exakta text berättelse 26 kriterium 2 anger. Den skrivs med stor bokstav, som ett namn, och översätts inte till "en borttagen användare".
+
+### 7.3 Vem som ser passet och att koppla det till ett lag (tillagt 2026-10-13, berättelse 12 kriterium 2 och 6)
+
+| Sammanhang | Text |
+|---|---|
+| Chip, personligt pass | Bara synligt för dig |
+| Chip, lagpass | Delas med {lagnamn} |
+| Knapp, koppla personligt pass | Koppla till lag |
+| Rubrik, dialog | Koppla passet till ett lag |
+| Fält | Lag |
+| Förklaring i dialogen | Alla ledare i {lagnamn} kan då se, öppna och ta bort passet. Du kan inte göra det personligt igen eller flytta det till ett annat lag. |
+| Påminnelse om passets namn | Passets namn syns för dem: "{passnamn}". Skriv inga namn på spelare. |
+| Knapp, bekräfta | Koppla till {lagnamn} |
+| Bekräftelse efter koppling | Passet delas nu med {lagnamn}. |
+| Info, ledaren är inte med i något lag | Du är inte med i något lag än. Be klubbadmin bjuda in dig, så kan du dela passet. |
+| Fel: laget arkiverades under tiden | Laget är arkiverat och kan inte tas emot pass. |
+
+### 7.4 Ta bort ett pass (tillagt 2026-10-13, berättelse 05 kriterium 13, berättelse 12 kriterium 8)
+
+Alla ledare i ett lag får ta bort lagets pass (användarens beslut 2026-10-13). Bekräftelsen för ett lagpass säger vem det drabbar.
+
+| Sammanhang | Text |
+|---|---|
+| Knapp i passvyn | Ta bort pass |
+| Rubrik, personligt pass | Ta bort passet? |
+| Text, personligt pass | "{passnamn}" försvinner ur dina listor. Det rensas helt efter 90 dagar. |
+| Knapp, bekräfta, personligt pass | Ta bort passet |
+| Rubrik, lagpass | Ta bort passet för hela {lagnamn}? |
+| Text, lagpass | "{passnamn}" försvinner för alla ledare i {lagnamn}. Det rensas helt efter 90 dagar. Du kan inte ångra det i appen. |
+| Knapp, bekräfta, lagpass | Ta bort för hela laget |
+| Bekräftelse efter borttagning | Passet är borttaget. Det rensas helt efter 90 dagar. |
+| Info, någon annan hann före | Passet är redan borttaget. |
+
+### 7.5 Pass som inte klarar slutkontrollen (tillagt 2026-10-13, berättelse 05 kriterium 7)
+
+Användarens beslut 2026-10-13: ett lagrat pass som inte klarar slutkontrollen visas inte. Texten är ett begripligt besked utan teknisk utskrift, gissar inte orsaken och använder inga regelnummer. Planläge och utskrift är spärrade, och knapparna för dem visas inte alls.
+
+| Sammanhang | Text |
+|---|---|
+| Rubrik (h1) | Det här passet går inte att använda |
+| Text i rutan | Passet "{passnamn}" klarar inte våra säkerhetskontroller, till exempel för att en övning inte är godkänd eller för att passet har mer nickspel än åldern tillåter. Därför visar vi det inte. Planläge och utskrift är avstängda för det. |
+| Knapp, primär | Skapa ett nytt pass |
+| Knapp, destruktiv | Ta bort passet |
 
 ---
 
@@ -368,13 +486,65 @@ En sak till behöver kontrolleras när knappen byggs: miniatyrens egen `<svg rol
 | Knapp | + Lag |
 | Fält, lag | Lagnamn / Ålder / Spelform |
 | Hjälptext, lagnamn (S-20) | Skriv inga namn på spelare. |
-| Varning, arkivera lag | Laget har {antal} sparade pass{ och en säsongsplan, om aktuellt}. De påverkas inte, men laget tas bort från de aktiva listorna och kan inte längre väljas för nya pass. |
+| Varning, arkivera lag, vad som händer nu (ersätter texten före 2026-10-13) | Laget har {antal} sparade pass{ och en säsongsplan, om aktuellt}. Laget tas bort från de aktiva listorna och kan inte längre väljas för nya pass. |
+| Varning, arkivera lag, rensning efter 24 månader (användarens beslut 2026-10-13) | Efter 24 månader rensas laget och dess pass helt. Det går inte att återställa ett arkiverat lag i appen. |
+| Varning, arkivera lag utan pass och säsongsplan (bara en ruta) | Laget {lagnamn} rensas helt efter 24 månader. Det går inte att återställa ett arkiverat lag i appen. |
+| Rubrik, arkivera | Arkivera {lagnamn}? |
 | Knapp | Arkivera ändå |
+| Knapp, laget saknar pass | Arkivera laget |
+| Rubrik, arkiverade lag (hopfälld) | Arkiverade lag ({antal}) |
+| Rad, arkiverat lag | {lagnamn} · Rensas {datum} |
 | Fält, inbjudan | Bjud in ledare via e-post |
 | Knapp | Skicka inbjudan |
 | Status | Inbjuden, väntar på svar |
 | Knapp | Ta bort från lag |
 | Bekräftelse, ta bort | Ta bort {namn} från {lagnamn}? Personen behåller sitt konto och det som inte enbart hör till laget. |
+
+### 13.1 Lagets uppgifter (tillagt 2026-10-13, berättelse 10)
+
+| Sammanhang | Text |
+|---|---|
+| Rubrik, nytt lag | Nytt lag |
+| Hjälptext, ålder | Ange den ålder som flest i laget fyller i år. Åldern räknas upp av sig själv varje nyår. |
+| Hjälptext, spelform | Föreslagen utifrån åldern. Du kan välja en annan. |
+| Visning av ålder i lagets vy | {ålder} år i år |
+| Fel: namnet för långt (klubbnamn, lagnamn) | {Fältnamn} får vara högst 100 tecken. Du har skrivit {antal}. |
+| Knapp | Skapa lag |
+| Rad, antal sparade pass i lagets vy | Sparade pass: {antal} |
+| Förklaring, klubbadmin som inte är ledare i laget | Du är inte ledare i {lagnamn}, så du kan inte öppna lagets pass. |
+| Förklaring, vanlig ledare i lagets vy | Bara klubbadmin kan ändra laget och bjuda in ledare. |
+
+### 13.2 Utse klubbadmin (tillagt 2026-10-13, berättelse 09 kriterium 4)
+
+| Sammanhang | Text |
+|---|---|
+| Rubrik, lista | Ledare i klubben |
+| Chip | Klubbadmin |
+| Knapp | Gör till klubbadmin |
+| Knappens tillgängliga namn | Gör till klubbadmin, {namn} |
+| Rubrik, dialog | Gör {namn} till klubbadmin? |
+| Text, dialog | {namn} får samma rättigheter som du: skapa och arkivera lag, bjuda in och ta bort ledare och utse fler klubbadminer. {namn} blir klubbadmin i {klubbnamn}, utöver sina lag. |
+| Knapp, bekräfta | Gör till klubbadmin |
+| Bekräftelse | {namn} är nu klubbadmin i {klubbnamn}. |
+| Info, ingen annan i klubben kan utses | Ingen annan i klubben kan bli klubbadmin än. Bjud in en ledare till ett lag först. |
+
+### 13.3 Inbjudningar (tillagt 2026-10-13, berättelse 11)
+
+| Sammanhang | Text |
+|---|---|
+| Status, giltighet | Gäller till {datum} |
+| Status, utgången | Inbjudan har gått ut |
+| Knapp, utgången inbjudan | Bjud in igen |
+| Knapp | Kopiera inbjudningslänk |
+| Knapp, på en inbjudan | Kopiera länk |
+| Knapp | Återkalla |
+| Knappens tillgängliga namn | Återkalla inbjudan till {e-post} |
+| Bekräftelse efter kopiering | Länken är kopierad. Den fungerar bara för {e-post} och gäller i 14 dagar. |
+| Bekräftelse efter utskick | Inbjudan är skickad till {e-post}. |
+| Bekräftelse efter återkallande | Inbjudan till {e-post} är återkallad. Länken fungerar inte längre. |
+| Bekräftelse efter borttagning ur lag | {namn} är borttagen från {lagnamn}. |
+| Fel: dygnsgränsen för utskick nådd (11.9) | Klubben har skickat 50 inbjudningar det senaste dygnet, vilket är gränsen. Försök igen i morgon, eller kopiera länken och skicka den själv. |
+| Fel: e-postadressen ser inte rätt ut | Skriv en giltig e-postadress, till exempel namn@exempel.se. |
 
 ---
 
@@ -410,7 +580,11 @@ Vad som faktiskt fungerar utan nät styrs av `docs/adr/0005-daligt-nat-och-offli
 | Något gick fel (oväntat tekniskt fel) | Något gick fel just nu. Försök igen om en liten stund. |
 | Anslutningsindikator (banderoll, `designsystem.md` avsnitt 9) | Ingen anslutning · Visar sparad data från {tidpunkt} |
 | Anslutningsindikator, återställd | Uppdaterat |
-| Fel, handling kräver nät (spara, ändra, skicka in, godkänna, bjuda in, logga in, radera konto) | Du verkar sakna internetanslutning. Det du skrivit finns kvar – försök igen när du är uppkopplad. |
+| Fel, handling kräver nät (spara, ändra, skicka in, godkänna, bjuda in, logga in, skapa klubb, skapa eller arkivera lag, utse klubbadmin, ta bort ett pass, koppla ett pass till ett lag) | Du verkar sakna internetanslutning. Det du skrivit finns kvar – försök igen när du är uppkopplad. |
+| Fel, spara pass utan nät (egen text, säger att passet inte är sparat) | Du verkar sakna internetanslutning. Passet har inte sparats. Det ligger kvar här – försök igen när du är uppkopplad. |
+| Fel, ta bort pass utan nät | Du verkar sakna internetanslutning. Passet är inte borttaget. Försök igen när du är uppkopplad. |
+| Fel, logga ut på alla enheter utan nät (27.5) | Du verkar sakna internetanslutning. Du är fortfarande inloggad och ingen enhet har loggats ut. Försök igen när du är uppkopplad. |
+| Fel, radera konto utan nät (26.12) | Du verkar sakna internetanslutning. Ingenting har raderats. Försök igen när du är uppkopplad. |
 | Bekräftelse, osparade ändringar | Du har ändringar som inte är sparade. Vill du lämna sidan ändå? |
 | Laddar innehåll | Hämtar … |
 
@@ -435,6 +609,100 @@ Vad som faktiskt fungerar utan nät styrs av `docs/adr/0005-daligt-nat-och-offli
 | Knapp | Radera mitt konto |
 | Knapp | Avbryt |
 | Bekräftelse efter radering | Ditt konto är raderat. Du är utloggad. |
+
+### 16.1 Logga ut på alla enheter (tillagt 2026-10-13, berättelse 27)
+
+| Sammanhang | Text |
+|---|---|
+| Rubrik, sektion | Om du tappat en telefon |
+| Rubrik, dialog | Logga ut på alla enheter? |
+| Text, dialog | Du loggas ut här direkt. Andra enheter loggas ut inom högst en timme. Därefter måste du logga in med en ny kod på varje enhet. |
+| Knapp, bekräfta | Logga ut på alla enheter |
+| Knapp | Avbryt |
+| Fel, nät saknas (27.5) | Du verkar sakna internetanslutning. Du är fortfarande inloggad och ingen enhet har loggats ut. Försök igen när du är uppkopplad. |
+| Bekräftelse på inloggningssidan | Se avsnitt 2.3 |
+
+Bekräftelsen efteråt (avsnitt 2.3) säger ärligt att det kan dröja upp till en timme innan andra enheter loggas ut och att en enhet utan nät behåller sin sparade kopia tills den får kontakt. Ingen text i appen påstår att andra enheter redan är stängda ute.
+
+### 16.2 Radera konto, fler lägen (tillagt 2026-10-13, berättelse 26 kriterium 3, 4, 9, 10, 11, 12)
+
+| Sammanhang | Text |
+|---|---|
+| Ingress, blockerad | Du kan inte radera ditt konto än: |
+| Blockerad, sista redaktören (26.4) | Du är den enda redaktören. Utse en annan redaktör innan du kan radera ditt konto. |
+| Knapp, sista redaktören (visas först när inkrement 4 är byggt) | Utse en redaktör |
+| Blockerad, redaktörernas ägare (26.10) | Du är redaktörernas ägare. Ägarskapet kan inte flyttas i appen än. Kontakta den som driver Fotbollsbanken. |
+| Info, ingen annan i klubben kan utses | Ingen annan i klubben kan bli klubbadmin än. Bjud in en ledare till ett lag först. |
+| Rubrik, ensam medlem (26.9, användarens beslut 2026-10-13) | Klubben {klubbnamn} raderas också |
+| Varning, ensam medlem | Du är den enda medlemmen. Klubben, dess lag, lagens pass och klubbens egna övningar raderas för alltid och går inte att få tillbaka. |
+| Listpunkt, raderas | Din profil (namn, e-post) |
+| Listpunkt, raderas | Klubben {klubbnamn} |
+| Listpunkt, raderas | {antal} lag |
+| Listpunkt, raderas | {antal} sparade pass i lagen |
+| Listpunkt, raderas | {antal} egna övningar i klubben |
+| Listpunkt, raderas | Dina personliga pass |
+| Listpunkt, raderas | Väntande inbjudningar |
+| Knapp, ensam medlem i en klubb | Radera mitt konto och klubben |
+| Knapp, ensam medlem i flera klubbar | Radera mitt konto och klubbarna |
+| Förklaring, knappen verkningslös (`aria-describedby`) | Skriv ditt namn för att bekräfta. |
+| Fel, raderingen blev inte klar (26.11) | Raderingen blev inte klar. Försök igen. Det går bra att göra om, och inget raderas två gånger. |
+| Knapp, försök igen | Försök radera igen |
+| Fel, nät saknas (26.12) | Du verkar sakna internetanslutning. Ingenting har raderats. Försök igen när du är uppkopplad. |
+
+---
+
+## 17. Mejl (berättelse 08 kriterium 11, berättelse 11 kriterium 1, `skisser/14-inloggning.md`)
+
+Båda mejlen är rena textmejl på svenska, utan bilder och utan spårningslänkar. De säger vem som skickat dem. Platshållarna ersätts av tjänsten som skickar (Supabase Auth respektive Edge Function för inbjudningar); hur det görs tekniskt avgör senior-systemutvecklare.
+
+### 17.1 Inloggningsmejl (samma text vid registrering och inloggning)
+
+Mejlet innehåller **bara koden, ingen inloggningslänk** (ADR 0004 punkt 4). Samma text används för nya och befintliga konton, så att mejlet inte avslöjar något om kontots existens.
+
+| Del | Text |
+|---|---|
+| Avsändarnamn | Fotbollsbanken |
+| Ämne | Din inloggningskod till Fotbollsbanken |
+| Brödtext | Hej!<br><br>Din kod är:<br><br>{kod}<br><br>Skriv in koden i Fotbollsbanken för att logga in. Koden gäller i 10 minuter och går bara att använda en gång.<br><br>Om du inte har försökt logga in kan du bortse från det här mejlet. Ingen har fått tillgång till ditt konto.<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
+
+- `{kod}` skrivs i grupper för läsbarhet: "1234 5678" vid 8 siffror, "123 456" vid 6. Grupperingen är bara visuell; koden som skrivs in i appen har inga mellanslag (appen tar bort dem om de klistras in).
+- Koden står på en egen rad i större stil än brödtexten (om mejlmallen tillåter), så att den går att läsa av på en låsskärm.
+- Texten innehåller ingen länk och inget som liknar en inloggningsknapp.
+
+### 17.2 Inbjudningsmejl
+
+Skickas från klubbadmins inbjudan (berättelse 11). Mejlet säger vem som bjuder in och till vad, så att mottagaren kan känna igen avsändaren.
+
+| Del | Text |
+|---|---|
+| Avsändarnamn | Fotbollsbanken |
+| Ämne | Du är inbjuden till {lagnamn} i Fotbollsbanken |
+| Brödtext | Hej!<br><br>{inbjudarens namn} i {klubbnamn} har bjudit in dig som ledare för {lagnamn} i Fotbollsbanken, en app för att planera fotbollsträningar.<br><br>Öppna länken för att skapa ett konto eller logga in och gå med i laget:<br><br>{inbjudningslänk}<br><br>Inbjudan gäller i 14 dagar och bara för den här e-postadressen. Du loggar in med en kod som skickas till samma adress, så du behöver inget lösenord.<br><br>Känner du inte igen {inbjudarens namn} eller {klubbnamn} kan du bortse från mejlet. Ingenting händer om du inte öppnar länken.<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
+
+- Länken är ett vanligt textlänkfält, utskriven i sin helhet, så att den går att kopiera om mejlprogrammet inte gör den klickbar. Länkens nyckel ligger i URL-fragmentet (11.6).
+- Mejlet nämner inte om adressen redan har ett konto (11.11).
+- Inbjudarens namn är klubbadmins eget namn, och går alltså till en person som inte är medlem än. Det är avsiktligt (mottagaren ska kunna känna igen avsändaren) men ska bekräftas i integritetspolicyn (fas 5).
+
+---
+
+## 18. Meny (`skisser/16-navigering.md`)
+
+| Sammanhang | Text |
+|---|---|
+| Knapp, meny stängd | Meny |
+| Knapp, meny öppen | Stäng meny |
+| Navigeringens namn (`nav`) | Huvudmeny |
+| Punkt | Sparade pass |
+| Punkt | Nytt pass |
+| Punkt | Klubb och lag |
+| Punkt (kommer med inkrement 4) | Klubbens övningar |
+| Punkt (kommer med inkrement 4) | Redaktörskö ({antal}) |
+| Punkt (kommer med inkrement 7) | Säsongsplan |
+| Punkt | Mitt konto |
+| Punkt | Logga ut |
+| Redaktörskön, tillgängligt namn | Redaktörskö, {antal} väntar |
+| Info på startsidan, person utan klubb | Du är inte med i någon klubb än. Skapa din klubb, eller be en klubbadmin bjuda in dig. |
+| Knapp i den rutan | Skapa din klubb |
 
 ---
 
@@ -465,3 +733,4 @@ Det här dokumentet godkändes vid K2, 2026-09-12. Ändringarna nedan är tillä
 | 2026-10-02 (granskning av `feature/ritmotor`) | **Avsnitt 8:** fastställer de texter som saknades och som planskissutvecklaren hade som förslag i `src/app/text/texts.ts` och `src/planskiss/`: teckenförklaringens 17 benämningar (`LEGEND_NAMES`, godkända ordagrant), rubriken "Teckenförklaring", och "N spelare till står inte med i skissen." (`notDrawnText`). Nytt: miniatyrknappens tillgängliga namn, som saknades helt – i dag blir den den sammanslagna `<title>` + `<desc>`, vilket är långt och upprepas i varje kort. Fastställt till "Förstora planskiss, {övningsnamn}" / "Dölj planskiss, {övningsnamn}" via ett eget `aria-label`, med en förklaring av hur den fulla beskrivningen ändå nås (den förstorade skissen, utanför knappen) och en anmärkning om att miniatyr-`<svg>`:n bör få `aria-hidden` inuti knappen för att undvika dubbelupläsning – kvalitetssäkraren kontrollerar med en riktig skärmläsare. Grenen `design/ritmotor-texter`. Ingen kod ändrad av ux-designern. |
 | 2026-10-05 (granskning av `feature/byt-ovning`, inkrement 2b) | **Avsnitt 4 och 6:** fastställer texterna som senior-systemutvecklare föreslagit i `src/app/text/texts.ts` för bytesvyn (berättelse 04): "Tillbaka till passet", "Sök bland alternativen", "Ingen av övningarna matchar sökningen.", nyckeltalsraden "{tid} min · {spelare} spelare", samt knapparnas tillgängliga namn "Byt övning, {kortets rubrik}" (avsnitt 4) och "Välj denna: {namn}" (avsnitt 6) – det senare ersätter skissens "Välj {namn}" eftersom det tillgängliga namnet måste innehålla den synliga texten ordagrant (WCAG 2.5.3). "Inga alternativ" skrivs om tillfälligt utan "era egna övningar", eftersom klubbens egna övningar inte går att byta in förrän inkrement 4 – ska bytas tillbaka då, se noten i avsnitt 6. Ordning och placering i bytesvyn (namn, fokus, nyckeltal, miniatyr, knapp; sortering på namn i svensk ordning; miniatyren under nyckeltalen) är granskad mot det byggda gränssnittet och behålls oförändrad. Ett nytt stycke i avsnitt 4 fastställer att bekräftelsen "Bytt till: …" visas på det bytta kortet, inte intill totaltiden, med en motivering kring `role="status"`-regionen i `Generator.tsx` och en rekommendation om var fokus bör hamna om `ref` tillåts (vyns `<h1>` vid öppning; oförändrat – det nya kortets bytesknapp – efter ett byte). Grenen `design/byt-ovning`. Ingen kod ändrad av ux-designern. |
 | 2026-10-12 (granskning av helheten, riktning A) | **Avsnitt 4, ytraden:** hårda mellanslag bara inuti "{längd} × {bredd} meter"; vanligt mellanslag efter "Yta:" och före "(". Skälet: med hårda mellanslag hela vägen bröts "(ungefär" mitt i ordet vid stor text. Koden (`src/app/text/texts.ts`, `areaWithReference` och `area`) behöver ändras av senior-systemutvecklare. |
+| 2026-10-13 (inkrement 3) | **Avsnitt 2:** kodlängd som platshållaren `{kodlängd}` (8, användarens beslut; 6 om Supabase inte tillåter 8), nya under-avsnitt 2.1 (kodfel, väntetid, gränser, Turnstile), 2.2 (inbjudan som inte fungerar) och 2.3 (bekräftelse efter "Logga ut på alla enheter"). **Avsnitt 7:** nya 7.1-7.5 (lagval och fel vid sparande, "Sparat av" i fyra former, koppla ett personligt pass till ett lag, ta bort pass, pass som inte klarar slutkontrollen). **Avsnitt 13:** arkiveringsvarningen säger att laget och dess pass rensas efter 24 månader (ersätter "De påverkas inte"), nya 13.1-13.3 (lagets uppgifter, utse klubbadmin, inbjudningar). **Avsnitt 15:** nätfel med egen text för spara, ta bort, logga ut på alla enheter och radera. **Avsnitt 16:** nya 16.1-16.2 (logga ut på alla enheter, radering när personen är ensam medlem, sista redaktör, redaktörsägare eller ett steg misslyckats). Nya avsnitt 17 (mejl) och 18 (meny). Statusraden ändras inte av en agent. |
