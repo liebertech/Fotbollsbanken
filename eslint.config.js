@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
+import { createRequire } from 'node:module';
 import { ALLOWED_SVG_ATTRIBUTES, ALLOWED_SVG_ELEMENTS } from './src/planskiss/vitlista.ts';
 
 /**
@@ -398,6 +399,19 @@ const APP_TEST_FILES = ['src/app/**/*.test.{ts,tsx}', 'src/app/**/__testdata__/*
  * JSX-tagg. Också namn med bara versaler, som TAG (R4).
  */
 const PASCAL_CASE = '/^[A-Z]/';
+
+/**
+ * React-versionen läses ur det installerade paketet. eslint-plugin-react 7.37.5 kan inte själv
+ * hitta den under ESLint 10 (`version: 'detect'` anropar context.getFilename, som är borttagen).
+ *
+ * Hör ihop med `overrides` i package.json, som tvingar eslint-plugin-react och
+ * eslint-plugin-jsx-a11y att godta ESLint 10 fast de inte anger stöd för den (S-59). Ta bort
+ * båda, och gå tillbaka till `version: 'detect'`, när paketen släpps med ESLint 10 i
+ * peerDependencies. Uppgradera inte ESLint till en ny huvudversion, och lägg inte till fler
+ * overrides, utan säkerhetsgranskning: overrides stänger av npm:s kontroll av vilka versioner
+ * paketen stöder. scripts/lint-sakerhetsregler.test.ts visar att säkerhetsreglerna slår till.
+ */
+const REACT_VERSION = createRequire(import.meta.url)('react/package.json').version;
 const PASCAL_BINDING_MESSAGE =
   'Ett namn med versal kan användas som JSX-tagg och välja element under körning, förbi vitlistan. Ge variabeln ett namn med gemen, eller skriv en komponent som funktion (S-07, F9).';
 
@@ -415,7 +429,7 @@ export default tseslint.config(
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
-    settings: { react: { version: 'detect' } },
+    settings: { react: { version: REACT_VERSION } },
     plugins: { react, 'jsx-a11y': jsxA11y },
     rules: {
       ...react.configs.flat.recommended.rules,
