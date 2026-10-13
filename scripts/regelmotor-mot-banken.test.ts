@@ -38,6 +38,36 @@ const underlag: Input = {
   fokus: ['passning-mottagning'],
 };
 
+/**
+ * Svepet i R-049-testet nedan, uppdelat i ett test per ålder, spelform och nivå: 9 och 11 år,
+ * varje spelform åldern får välja och varje nivå, alltså 18 tester per bankvariant. Inom varje
+ * test prövas samma spelarantal, ledarantal, passlängder och fokus som när svepet var ett enda
+ * test, så täckningen är densamma.
+ *
+ * Varför uppdelat: som ett enda test hade svepet 120 s. Med 104 övningar i banken tog det
+ * 59-100 s ensamt och 184-222 s i full svit på fyra kärnor under last, och överskred gränsen.
+ * Tiden växer med banken. Uppdelat bär varje test en artondel av svepet: uppmätt 3,3-6,7 s
+ * ensamt 2026-10-12. Ett fel pekar dessutom ut sitt underlag direkt.
+ */
+function r049Underlag() {
+  return [9, 11].flatMap((alder) => {
+    const phase = phaseForAge(alder);
+    if (phase === undefined) {
+      return [];
+    }
+    return allowedGameFormats(alder).flatMap((spelform) =>
+      (['niva-1', 'niva-2', 'niva-3'] as const).map((niva) => ({ alder, phase, spelform, niva })),
+    );
+  });
+}
+
+/*
+ * Tidsgräns per del av R-049-svepet. 120 s är ungefär 18 gånger det sämsta uppmätta värdet
+ * ensamt och 6-8 gånger det under samma last som fällde det odelade testet, så banken kan
+ * växa flera gånger om innan gränsen nås. En oändlig loop fälls fortfarande.
+ */
+const R049_TIMEOUT = 120_000;
+
 describe.each(bankVariantsForTests())('Banken med $name', (variant) => {
   /**
    * Banken som generatorn tar emot: övningarna märkta med sitt ursprung, precis som
@@ -77,54 +107,40 @@ describe.each(bankVariantsForTests())('Banken med $name', (variant) => {
       expect(checkSession(session(underlag))).toEqual([]);
     });
 
-    /*
-     * Egen tidsgräns: testet går igenom varje underlag banken räcker till och räknar i tiotals
-     * sekunder, alltså långt över sviten förval. Uppmätt: 7,2 s ensamt på full klockfrekvens,
-     * 26-28 s när maskinen klockade ned till 1,7 av 3,0 GHz. 60 s gav bara dubbla marginalen
-     * mot det sämsta mätvärdet, vilket räckte för att testet skulle störas när sviten var
-     * flakig. 120 s tål samma nedklockning med marginal och fäller fortfarande en oändlig loop.
-     *
-     * QA-granskning av R-058 (2026-10-02): lade till 13 (udda antal) i `spelare`, så att
-     * trion i parövningar prövas mot den riktiga banken. Uppmätt ensamt på full klockfrekvens:
-     * 8,1 s före, 9,9 s efter, alltså en ökning på ungefär en fjärdedel. Tidsgränsen ovan har
-     * ändå gott om marginal kvar och lämnas oförändrad.
-     */
-    it(
-      'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till',
-      { timeout: 120_000 },
-      () => {
+    it('R-049 svepet har alla 18 underlag, så ingen del hoppas tyst över', () => {
+      const delar = r049Underlag().map(
+        ({ alder, spelform, niva }) => `${alder} ${spelform} ${niva}`,
+      );
+      expect(delar).toHaveLength(18);
+      expect(new Set(delar).size).toBe(18);
+    });
+
+    it.each(r049Underlag())(
+      'R-049 ger ett pass som klarar kontrollen för varje underlag banken räcker till: $alder år, $spelform, $niva',
+      { timeout: R049_TIMEOUT },
+      ({ alder, phase, spelform, niva }) => {
         let skapade = 0;
-        for (const alder of [9, 11]) {
-          const phase = phaseForAge(alder);
-          if (phase === undefined) {
-            continue;
-          }
-          for (const spelform of allowedGameFormats(alder)) {
-            for (const niva of ['niva-1', 'niva-2', 'niva-3'] as const) {
-              for (const spelare of [8, 12, 13, 14, 20]) {
-                for (const ledare of [1, 2, 4]) {
-                  for (const passlangd of [30, 60, Math.min(75, SESSION_LENGTH_MAX[phase])]) {
-                    for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
-                      const input: Input = {
-                        alder,
-                        spelform,
-                        niva,
-                        spelare,
-                        ledare,
-                        passlangd,
-                        fokus,
-                      };
-                      const result = generateSession(input, banken, 'fro');
-                      if (result.kind === 'none') {
-                        // Kontrollen får aldrig vara skälet till att inget pass skapades.
-                        expect(result.reason.internalProblems).toEqual([]);
-                        continue;
-                      }
-                      skapade += 1;
-                      expect(checkSession(result.session)).toEqual([]);
-                    }
-                  }
+        for (const spelare of [8, 12, 13, 14, 20]) {
+          for (const ledare of [1, 2, 4]) {
+            for (const passlangd of [30, 60, Math.min(75, SESSION_LENGTH_MAX[phase])]) {
+              for (const fokus of selectableFocusAreas(phase, alder).map((item) => [item])) {
+                const input: Input = {
+                  alder,
+                  spelform,
+                  niva,
+                  spelare,
+                  ledare,
+                  passlangd,
+                  fokus,
+                };
+                const result = generateSession(input, banken, 'fro');
+                if (result.kind === 'none') {
+                  // Kontrollen får aldrig vara skälet till att inget pass skapades.
+                  expect(result.reason.internalProblems).toEqual([]);
+                  continue;
                 }
+                skapade += 1;
+                expect(checkSession(result.session)).toEqual([]);
               }
             }
           }
