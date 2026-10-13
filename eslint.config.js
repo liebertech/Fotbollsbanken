@@ -403,6 +403,13 @@ const PASCAL_CASE = '/^[A-Z]/';
 /**
  * React-versionen läses ur det installerade paketet. eslint-plugin-react 7.37.5 kan inte själv
  * hitta den under ESLint 10 (`version: 'detect'` anropar context.getFilename, som är borttagen).
+ *
+ * Hör ihop med `overrides` i package.json, som tvingar eslint-plugin-react och
+ * eslint-plugin-jsx-a11y att godta ESLint 10 fast de inte anger stöd för den (S-59). Ta bort
+ * båda, och gå tillbaka till `version: 'detect'`, när paketen släpps med ESLint 10 i
+ * peerDependencies. Uppgradera inte ESLint till en ny huvudversion, och lägg inte till fler
+ * overrides, utan säkerhetsgranskning: overrides stänger av npm:s kontroll av vilka versioner
+ * paketen stöder. scripts/lint-sakerhetsregler.test.ts visar att säkerhetsreglerna slår till.
  */
 const REACT_VERSION = createRequire(import.meta.url)('react/package.json').version;
 const PASCAL_BINDING_MESSAGE =
