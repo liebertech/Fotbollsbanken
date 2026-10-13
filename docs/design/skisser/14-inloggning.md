@@ -10,12 +10,12 @@ Status: godkänd (K2, 2026-09-12)
 
 ## Kodlängd (beslut 2026-10-13: 8 siffror om Supabase tillåter det, annars 6)
 
-Kodens längd är **ett enda värde**, `kodlängd`, och alla texter och fält nedan hänvisar till det. Wireframes visar **8** (användarens beslut 2026-10-13). Visar kontrollen av Supabase-projektet (berättelse 08, kriterium 8e) att bara 6 går, ändras bara värdet `kodlängd` till 6. Ingen text, ingen etikett och ingen skiss behöver skrivas om, och inga andra delar av vyn påverkas.
+Koden har **8 siffror** (användarens beslut 2026-10-13). Reservalternativet 6 siffror är struket efter säkerhetsgranskningen (S-40), eftersom Supabase saknar gräns för försök per kod och 6 siffror därför inte är säkert nog. Koden gäller i 10 minuter.
 
-- **Etikett:** "Kod ({kodlängd} siffror)". Texten står bara i `texter.md` avsnitt 2 och bygger på platshållaren.
-- **Fältet:** ett enda fält, `maxlength` lika med `kodlängd`, `inputmode="numeric"`, `autocomplete="one-time-code"`. Ledaren ska inte behöva skriva ett mellanslag. Klistras en kod in med mellanslag eller bindestreck tas de bort tyst innan koden prövas.
+- **Etikett:** "Kod (8 siffror)", `maxlength` 8.
+- **Fältet:** ett enda fält, `maxlength` `inputmode="numeric"`, `autocomplete="one-time-code"`. Ledaren ska inte behöva skriva ett mellanslag. Klistras en kod in med mellanslag eller bindestreck tas de bort tyst innan koden prövas.
 - **Läsbarhet:** siffrorna visas med extra teckenavstånd (minst 0,15 em) och minst 24 px storlek, så att 8 siffror går att kontrollera mot mejlet. Fältet får inte delas i en ruta per siffra, eftersom det bryter automatisk ifyllning och inklistring.
-- **Mejlet:** koden skrivs i mejlet i grupper om fyra (8 siffror) eller tre (6 siffror) för att vara lätt att läsa av; se `texter.md` avsnitt 17.
+- **Mejlet:** koden skrivs i grupper om fyra ("1234 5678") för att vara lätt att läsa av; se `texter.md` avsnitt 17.
 
 ## Wireframe, 360 px – Logga in (steg 1: e-post)
 
@@ -115,7 +115,7 @@ Bekräftelsen syns på inloggningssidan som personen kommer till (berättelse 27
 │  liten stund? Kolla även i      │
 │  skräpposten.                   │
 │                                 │
-│  Kod (8 siffror)                │  ← kodlängd, se avsnittet ovan
+│  Kod (8 siffror)                │
 │  ┌───────────────────────────┐ │
 │  │  1 2 3 4 5 6 7 8          │ │
 │  └───────────────────────────┘ │
@@ -242,9 +242,9 @@ Samma vy, olika text i rutan (alla texter i `texter.md` avsnitt 2):
 - **Steg 1 gäller lika för okänd och känd adress (S-13):** oavsett om adressen har ett konto eller inte visar appen samma bekräftelse och går vidare till kodsteget: "Om adressen finns hos oss har vi skickat en kod." Appen avslöjar aldrig om ett konto finns. Vid registrering skapas kontot först när koden bekräftas.
 - **CAPTCHA före kodbeställning:** Turnstile-rutan måste vara godkänd innan "Skicka kod" fungerar. Rutan är i normalfallet osynlig/automatisk för de flesta besökare (icke-interaktiv), men visas som i skissen när Cloudflare behöver en bekräftelse. Turnstile ersätter aldrig gränserna för antal försök nedan. Trycker personen "Skicka kod" innan kontrollen är godkänd, visas "Bekräfta först att du är en person." under rutan och fokus flyttas dit. Kan kontrollen inte laddas visas felrutan ovan.
 - **Väntetid mellan kodbeställningar (S-18):** minst 60 sekunder mellan varje ny kod till samma adress. Under väntetiden visas nedräkningen som text, inte bara en gråtonad knapp, så att skärmläsare uppfattar varför knappen inte går att trycka.
-- **Fel kod (08.3):** tydligt felmeddelande ovanför fältet, fältet töms, fokus läggs i fältet igen. Efter för många felaktiga försök (5 per kod, se berättelse 08 kriterium 8) ogiltigförklaras koden och appen visar att en ny kod krävs.
+- **Fel kod (08.3):** tydligt felmeddelande ovanför fältet, fältet töms, fokus läggs i fältet igen. Supabase har ingen gräns per kod (S-40). Skyddet är 8 siffror, en kod som gäller i 10 minuter, högst 10 verifieringar per 5 minuter och Turnstile. Slår gränsen för verifieringar till visas "Du har försökt för många gånger. Vänta en stund och försök igen."
 - **Fyra olika kodfel (08.3):** fel kod, utgången kod (10 minuter), redan använd kod och ogiltigförklarad kod (för många försök, eller ersatt av en nyare kod) har egna texter. Går de inte att skilja åt i Supabase (senior-systemutvecklaren avgör), används den gemensamma texten "Koden stämmer inte eller har gått ut. Begär en ny kod." för de fall som inte går att skilja åt.
-- **Koden är för kort eller innehåller något annat än siffror:** fältet markeras innan något skickas, med "Koden ska ha {kodlängd} siffror." Ingen serverförfrågan görs.
+- **Koden är för kort eller innehåller något annat än siffror:** fältet markeras innan något skickas, med "Koden ska ha 8 siffror." Ingen serverförfrågan görs.
 - **Skräppost, lugn ton:** texten är en upplysning, inte en varning – ingen ikon för fel eller varning, bara en informationsikon (ⓘ), eftersom det är normalt att mejlet dröjer när appen inte har en egen avsändardomän i version 1.
 - **Inbjudan (11.1):** en person som klickar en inbjudningslänk i sin e-post kommer till steg 1 med en rad överst: "Du är inbjuden till [Lagnamn] i [Klubbnamn]." E-postfältet är förifyllt och låst till den inbjudna adressen. Efter att koden är bekräftad kopplas kontot automatiskt till laget. Nyckeln i länken ligger i URL-fragmentet och tas bort ur adressfältet direkt efter att appen har läst den (11.6). Ett inbjudningsbanner som visas för en inloggad person med fel adress ersätts av vyn "Inbjudan fungerar inte" ovan.
 - **Utloggning (08.4):** en meny (se `16-navigering.md`) innehåller "Logga ut". Efter utloggning visas steg 1; sparade pass och klubbmaterial är otillgängliga tills ny inloggning, och den lokala kopian på enheten är rensad.
@@ -252,7 +252,9 @@ Samma vy, olika text i rutan (alla texter i `texter.md` avsnitt 2):
 - **Tomt fält:** knapparna är alltid klickbara men visar fel om fält saknas, i stället för att vara inaktiverade (så att skärmläsare alltid kan nå dem och beskriva varför de inte går igenom).
 - **Laddning:** knapparna visar en spinner och en text ("Skickar kod …", "Kontrollerar kod …") så att ett dubbelklick inte skickar formuläret två gånger.
 - **Nät saknas (08.12):** "Skicka kod" och "Bekräfta kod" visar den vanliga texten för handlingar som kräver nät (`texter.md` avsnitt 15), och det som skrivits ligger kvar.
-- **Namn vid registrering (08.1):** obligatoriskt, högst 100 tecken. Tomt eller bara blanksteg ger "Fyll i namn för att fortsätta."
+- **Namn vid registrering (08.1, 08.16):** obligatoriskt, högst 100 tecken. Tomt eller bara blanksteg ger "Fyll i namn för att fortsätta." Styrtecken och dolda riktningstecken nekas med "Namnet innehåller tecken som inte går att använda. Skriv bara vanliga bokstäver, siffror och skiljetecken." (S-54). Samma fel och samma text gäller klubbnamn, lagnamn och passnamn.
+- **Obekräftad registrering (S-41):** kontot skapas först när koden bekräftas, så en registrering som aldrig bekräftas lämnar ingenting kvar för personen att se. Kodsteget vid registrering säger det: "Ditt konto skapas först när du har skrivit in koden. Gör du inte det sparas ingenting om dig." Försöker någon registrera en adress som redan har ett konto skrivs namnet aldrig över, och svaret är detsamma som alltid (S-13). Ett obekräftat konto rensas efter 24 timmar utan att personen märker något, och inget eget läge behövs.
+- **Integritetspolicy (S-48):** länken "Så behandlar vi dina uppgifter" ligger längst ner på alla tre stegen i inloggningen och är nåbar utan inloggning.
 - **Delad enhet (08.10):** ingen text i vyn, men efter inloggning visas aldrig den förra användarens namn, lag eller pass, inte ens ett ögonblick medan data hämtas.
 - **Inget lösenord finns någonstans i flödet.** Det finns ingen länk "Glömt lösenord?".
 
@@ -264,7 +266,7 @@ Texterna till inloggningsmejlet och inbjudningsmejlet finns i `texter.md` avsnit
 
 - Fälten har synliga etiketter (inte bara platshållartext), kopplade med `label`/`for` eller motsvarande.
 - Felmeddelanden är kopplade till respektive fält (aria-describedby eller motsvarande) och läses upp av skärmläsare.
-- Kodfältet har `inputmode="numeric"` och `autocomplete="one-time-code"`, så att mobilens tangentbord och automatisk kodifyllning (SMS/mejl) fungerar. Etiketten och `maxlength` följer `kodlängd`.
+- Kodfältet har `inputmode="numeric"` och `autocomplete="one-time-code"`, så att mobilens tangentbord och automatisk kodifyllning (SMS/mejl) fungerar.
 - Nedräkningen för "Skicka ny kod" annonseras via `aria-live="polite"` med rimliga intervall, inte varje sekund.
 - Informationsrutan efter "Logga ut på alla enheter" och felet när kontrollen inte kan laddas annonseras via `role="status"` respektive `role="alert"`, så att de läses upp utan att personen behöver leta.
 - Träffyta på knappar minst 48 × 48 px.

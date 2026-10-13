@@ -96,8 +96,9 @@ Blockeringsvyn visar **alla** orsaker som gäller, inte bara den första, så at
 ```
 
 - **Ensam klubbadmin (26.3):** gäller när klubben har andra medlemmar än personen. Har personen flera klubbar, finns en ruta per klubb där det gäller. Knappen leder till klubbens ledarlista i `13-klubbadmin-lag.md` där "Gör till klubbadmin" finns (09.4).
+- **Kontaktväg under alla blockeringar (S-47):** under rutorna står alltid "Kommer du inte vidare? Mejla {kontaktadress}. Föreningen raderar kontot åt dig inom 30 dagar." med adressen som en riktig mejllänk. Rätten till radering ska kunna verkställas inom en månad även när ingen vill bli klubbadmin. Texten står under alla rutor, inte i en av dem, och den hänvisar inte till en person.
 - **Ensam klubbadmin, men också ensam medlem:** blockerar inte. Då gäller varningen i nästa wireframe i stället (26.9).
-- **Sista redaktören och redaktörernas ägare (26.4, 26.10):** knappen "Utse en redaktör" visas först när inkrement 4 har byggt gränssnittet för det (berättelse 18). Till dess visas bara texten, och för ägaren hänvisningen att kontakta den som driver Fotbollsbanken, eftersom något sätt att flytta ägarskapet i appen inte finns (se *Beslut som behövs*, rapporten). Skärmen får inte låta som att personen själv kan lösa det, när hon eller han inte kan.
+- **Sista redaktören och redaktörernas ägare (26.4, 26.10):** knappen "Utse en redaktör" visas först när inkrement 4 har byggt gränssnittet för det (berättelse 18). Till dess visas bara texten, och för ägaren hänvisningen att kontakta den som driver Fotbollsbanken, eftersom något sätt att flytta ägarskapet i appen inte finns (beslutat av användaren 2026-10-13: texten gäller fram till inkrement 4). Skärmen får inte låta som att personen själv kan lösa det, när hon eller han inte kan.
 - Ingen "Radera"-knapp visas i den här vyn. Det finns inget att trycka som ser ut att fungera men nekas.
 
 ## Wireframe, 360 px – Radera konto, vad som händer (ledare med lag, klubben finns kvar)

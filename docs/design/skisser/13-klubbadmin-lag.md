@@ -273,9 +273,11 @@ Användarens beslut 2026-10-13: varningen ska säga att laget och dess pass rens
 │ inte längre väljas för nya pass. │
 │                                 │
 │ ⚠ Efter 24 månader rensas laget  │
-│ och dess pass helt. Det går inte │
-│ att återställa ett arkiverat     │
-│ lag i appen.                     │
+│ och dess pass helt. Tills dess   │
+│ går passen att läsa och skriva   │
+│ ut under Arkiverade lag. Det     │
+│ går inte att återställa ett      │
+│ arkiverat lag i appen.           │
 │                                 │
 │ ┌───────────────────────────┐  │
 │ │  Arkivera ändå               │  │
@@ -290,7 +292,7 @@ Användarens beslut 2026-10-13: varningen ska säga att laget och dess pass rens
 - **Har laget inga pass och ingen säsongsplan** visas bara den andra rutan, med texten "Laget {lagnamn} rensas helt efter 24 månader. Det går inte att återställa ett arkiverat lag i appen." Knappen heter då "Arkivera laget" och inte "Arkivera ändå", eftersom det inte finns något att "ändå" gå förbi.
 - **Antalet pass visas, men inte vilka** (10.3, 10.7). Klubbadmin som inte är ledare i laget kan se antalet utan att kunna läsa passen.
 - **Säsongsplan** nämns först när inkrement 7 är byggt.
-- **Vad ledarna ser (väntar på beslut, se rapporten):** förslaget är att lagets pass finns kvar att läsa och skriva ut under "Arkiverade lag" (`05-sparade-pass.md`) tills rensningen. Beslutas något annat, ska varningen säga det. Texten ovan lovar inte mer än rensningen efter 24 månader.
+- **Vad ledarna ser (beslutat av användaren 2026-10-13):** lagets pass finns kvar att läsa och skriva ut under fliken "Arkiverade lag" (`05-sparade-pass.md`) tills rensningen efter 24 månader. Varningen ska därför säga det: "Passen går att läsa och skriva ut under Arkiverade lag tills de rensas."
 - **Arkiverade lag i klubbvyn:** en hopfälld rad "Arkiverade lag ({antal})" längst ner. Utfälld visar den lagnamn och datum då laget rensas ("Rensas 14 sep 2028"), utan åtgärdsknappar. Återställ finns inte i version 1.
 - **Nät saknas (10.8):** den vanliga texten för handlingar som kräver nät; ingenting arkiveras.
 

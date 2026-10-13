@@ -43,20 +43,20 @@ Inloggning sker med en engångskod via e-post, utan lösenord (`docs/adr/0004-in
 | Rubrik, kodsteg | Skriv in koden |
 | Ingress, kodsteg | Vi har skickat en kod till {e-post}. |
 | Hjälptext, skräppost (lugn ton, ingen varningsikon) | Hittar du inget mejl om en liten stund? Kolla även i skräpposten. |
-| Fält, kod | Kod ({kodlängd} siffror) |
+| Fält, kod | Kod (8 siffror) |
 | Knapp, bekräfta kod | Bekräfta kod |
 | Knapp, skicka ny kod (väntar) | Skicka ny kod ({sekunder} s) |
 | Knapp, skicka ny kod (klar) | Skicka ny kod |
 | Länk, fel adress angiven | Fel e-postadress? Gå tillbaka |
 | Bekräftelse efter steg 1 (samma oavsett om kontot finns, S-13) | Om adressen finns hos oss har vi skickat en kod. |
 | Fel: fel kod | Koden stämmer inte. Kontrollera siffrorna och försök igen. |
-| Fel: för många felaktiga försök | Du har försökt för många gånger. Begär en ny kod för att fortsätta. |
+| Fel: för många verifieringsförsök (gränsen gäller adressen och nätverket, inte en enskild kod, S-40) | Du har försökt för många gånger. Vänta en stund och försök igen. |
 | Fel: koden har gått ut | Koden har gått ut. Begär en ny kod. |
 | Fel: obligatoriskt fält saknas | Fyll i {fältnamn} för att fortsätta. |
 | Inbjudan, banner | Du är inbjuden till {lagnamn} i {klubbnamn}. |
 | Efter accepterad inbjudan | Du är nu kopplad till {lagnamn}. |
 
-**Kodlängd (användarens beslut 2026-10-13):** `{kodlängd}` är **8** om Supabase tillåter det och annars **6**. Det är det enda stället där längden finns i texterna. Visar kontrollen av projektet att bara 6 går, ändras värdet till 6 och ingen text behöver skrivas om. Samma värde gäller etiketten, felet "Koden ska ha {kodlängd} siffror." nedan och mejlet i avsnitt 17.
+**Kodlängd (användarens beslut 2026-10-13, fast efter säkerhetsgranskningen S-40):** koden har alltid 8 siffror. Reservalternativet 6 siffror är struket, eftersom 6 siffror inte är säkert nog utan en gräns per kod.
 
 **Viktigt:** appen ska aldrig säga att en adress "redan har ett konto" eller att uppgifter "inte stämmer" för en okänd adress (S-13). Vid fel kod, däremot, ska felmeddelandet vara tydligt – det handlar inte om att avslöja kontots existens, utan om att koden personen just skrev in är fel.
 
@@ -66,7 +66,7 @@ De fyra kodfelen i kriterium 3 har egna texter. Går de inte att skilja åt i Su
 
 | Sammanhang | Text |
 |---|---|
-| Fel: koden har fel längd eller innehåller annat än siffror (innan något skickas) | Koden ska ha {kodlängd} siffror. |
+| Fel: koden har fel längd eller innehåller annat än siffror (innan något skickas) | Koden ska ha 8 siffror. |
 | Fel: koden redan använd | Koden är redan använd. Begär en ny kod. |
 | Fel: koden ersatt av en nyare | Du har begärt en nyare kod sedan den här. Använd koden i det senaste mejlet. |
 | Fel: gemensam text om fallen ovan och "har gått ut" inte går att skilja åt | Koden stämmer inte eller har gått ut. Begär en ny kod. |
@@ -80,6 +80,10 @@ De fyra kodfelen i kriterium 3 har egna texter. Går de inte att skilja åt i Su
 | Knapp, kontrollen kunde inte laddas | Försök kontrollen igen |
 | Knapp, skicka kod, pågår | Skickar kod … |
 | Knapp, bekräfta kod, pågår | Kontrollerar kod … |
+| Hjälptext, kodsteget vid registrering (S-41) | Ditt konto skapas först när du har skrivit in koden. Gör du inte det sparas ingenting om dig. |
+| Info, registreringen blev aldrig bekräftad (visas om personen försöker logga in igen efter 24 timmar) | Om adressen finns hos oss har vi skickat en kod. |
+| Länk, integritetspolicy (på inloggningen, nåbar utan inloggning) | Så behandlar vi dina uppgifter |
+| Fel: namnet innehåller tecken som inte går att använda (S-54) | Namnet innehåller tecken som inte går att använda. Skriv bara vanliga bokstäver, siffror och skiljetecken. |
 
 **Ingen av texterna ovan får skilja mellan en känd och en okänd adress** (S-13). Väntetid och gränser gäller adressen oavsett om den har ett konto.
 
@@ -487,7 +491,7 @@ En sak till behöver kontrolleras när knappen byggs: miniatyrens egen `<svg rol
 | Fält, lag | Lagnamn / Ålder / Spelform |
 | Hjälptext, lagnamn (S-20) | Skriv inga namn på spelare. |
 | Varning, arkivera lag, vad som händer nu (ersätter texten före 2026-10-13) | Laget har {antal} sparade pass{ och en säsongsplan, om aktuellt}. Laget tas bort från de aktiva listorna och kan inte längre väljas för nya pass. |
-| Varning, arkivera lag, rensning efter 24 månader (användarens beslut 2026-10-13) | Efter 24 månader rensas laget och dess pass helt. Det går inte att återställa ett arkiverat lag i appen. |
+| Varning, arkivera lag, rensning efter 24 månader (användarens beslut 2026-10-13) | Efter 24 månader rensas laget och dess pass helt. Tills dess går passen att läsa och skriva ut under Arkiverade lag. Det går inte att återställa ett arkiverat lag i appen. |
 | Varning, arkivera lag utan pass och säsongsplan (bara en ruta) | Laget {lagnamn} rensas helt efter 24 månader. Det går inte att återställa ett arkiverat lag i appen. |
 | Rubrik, arkivera | Arkivera {lagnamn}? |
 | Knapp | Arkivera ändå |
@@ -630,6 +634,7 @@ Bekräftelsen efteråt (avsnitt 2.3) säger ärligt att det kan dröja upp till 
 |---|---|
 | Ingress, blockerad | Du kan inte radera ditt konto än: |
 | Blockerad, sista redaktören (26.4) | Du är den enda redaktören. Utse en annan redaktör innan du kan radera ditt konto. |
+| Kontaktväg under alla blockeringar (S-47) | Kommer du inte vidare? Mejla {kontaktadress}. Föreningen raderar kontot åt dig inom 30 dagar. |
 | Knapp, sista redaktören (visas först när inkrement 4 är byggt) | Utse en redaktör |
 | Blockerad, redaktörernas ägare (26.10) | Du är redaktörernas ägare. Ägarskapet kan inte flyttas i appen än. Kontakta den som driver Fotbollsbanken. |
 | Info, ingen annan i klubben kan utses | Ingen annan i klubben kan bli klubbadmin än. Bjud in en ledare till ett lag först. |
@@ -663,11 +668,12 @@ Mejlet innehåller **bara koden, ingen inloggningslänk** (ADR 0004 punkt 4). Sa
 |---|---|
 | Avsändarnamn | Fotbollsbanken |
 | Ämne | Din inloggningskod till Fotbollsbanken |
-| Brödtext | Hej!<br><br>Din kod är:<br><br>{kod}<br><br>Skriv in koden i Fotbollsbanken för att logga in. Koden gäller i 10 minuter och går bara att använda en gång.<br><br>Om du inte har försökt logga in kan du bortse från det här mejlet. Ingen har fått tillgång till ditt konto.<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
+| Brödtext | Hej!<br><br>Din kod är:<br><br>{kod}<br><br>Skriv in koden i Fotbollsbanken för att logga in. Koden gäller i 10 minuter och går bara att använda en gång.<br><br>Om du inte har försökt logga in kan du bortse från det här mejlet. Ingen har fått tillgång till ditt konto.<br><br>Om dina uppgifter: {föreningens namn} ansvarar för uppgifterna i Fotbollsbanken. Vi använder din e-postadress och ditt namn för att du ska kunna logga in och för att dina pass ska vara knutna till dig. Vi sparar dem så länge du har ett konto. Har du inte loggat in på 24 månader raderas kontot efter en påminnelse. Du kan radera kontot själv när som helst. Läs mer: {länk till integritetspolicyn}<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
 
-- `{kod}` skrivs i grupper för läsbarhet: "1234 5678" vid 8 siffror, "123 456" vid 6. Grupperingen är bara visuell; koden som skrivs in i appen har inga mellanslag (appen tar bort dem om de klistras in).
+- `{kod}` skrivs i grupper om fyra för läsbarhet: "1234 5678". Grupperingen är bara visuell; koden som skrivs in i appen har inga mellanslag (appen tar bort dem om de klistras in).
 - Koden står på en egen rad i större stil än brödtexten (om mejlmallen tillåter), så att den går att läsa av på en låsskärm.
-- Texten innehåller ingen länk och inget som liknar en inloggningsknapp.
+- Texten innehåller ingen länk till inloggning och inget som liknar en inloggningsknapp. Den enda länken är integritetspolicyn, utskriven i sin helhet.
+- **Information enligt artikel 14 (S-48):** båda mejlen anger den ansvarige (föreningen), varför adressen behandlas, hur länge den sparas och en länk till integritetspolicyn, som är nåbar utan inloggning. Policyn ska finnas innan det första riktiga mejlet skickas. `{föreningens namn}` och `{länk till integritetspolicyn}` fylls i när policyn är skriven (fas 5). Lagringstiderna i texten följer ADR 0003 och berättelse 29.
 
 ### 17.2 Inbjudningsmejl
 
@@ -677,11 +683,11 @@ Skickas från klubbadmins inbjudan (berättelse 11). Mejlet säger vem som bjude
 |---|---|
 | Avsändarnamn | Fotbollsbanken |
 | Ämne | Du är inbjuden till {lagnamn} i Fotbollsbanken |
-| Brödtext | Hej!<br><br>{inbjudarens namn} i {klubbnamn} har bjudit in dig som ledare för {lagnamn} i Fotbollsbanken, en app för att planera fotbollsträningar.<br><br>Öppna länken för att skapa ett konto eller logga in och gå med i laget:<br><br>{inbjudningslänk}<br><br>Inbjudan gäller i 14 dagar och bara för den här e-postadressen. Du loggar in med en kod som skickas till samma adress, så du behöver inget lösenord.<br><br>Känner du inte igen {inbjudarens namn} eller {klubbnamn} kan du bortse från mejlet. Ingenting händer om du inte öppnar länken.<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
+| Brödtext | Hej!<br><br>{inbjudarens namn} i {klubbnamn} har bjudit in dig som ledare för {lagnamn} i Fotbollsbanken, en app för att planera fotbollsträningar.<br><br>Öppna länken för att skapa ett konto eller logga in och gå med i laget:<br><br>{inbjudningslänk}<br><br>Inbjudan gäller i 14 dagar och bara för den här e-postadressen. Du loggar in med en kod som skickas till samma adress, så du behöver inget lösenord.<br><br>Känner du inte igen {inbjudarens namn} eller {klubbnamn} kan du bortse från mejlet. Ingenting händer om du inte öppnar länken.<br><br>Om dina uppgifter: {föreningens namn} ansvarar för uppgifterna i Fotbollsbanken. {inbjudarens namn} har lämnat din e-postadress till oss för att kunna skicka den här inbjudan. Vi använder den bara för inbjudan. Adressen tas bort när du har svarat, och senast 30 dagar efter att inbjudan gått ut eller återkallats. Skapar du ett konto sparar vi adressen och ditt namn så länge kontot finns. Läs mer: {länk till integritetspolicyn}<br><br>Fotbollsbanken<br>Det här mejlet går inte att svara på. |
 
 - Länken är ett vanligt textlänkfält, utskriven i sin helhet, så att den går att kopiera om mejlprogrammet inte gör den klickbar. Länkens nyckel ligger i URL-fragmentet (11.6).
 - Mejlet nämner inte om adressen redan har ett konto (11.11).
-- Inbjudarens namn är klubbadmins eget namn, och går alltså till en person som inte är medlem än. Det är avsiktligt (mottagaren ska kunna känna igen avsändaren) men ska bekräftas i integritetspolicyn (fas 5).
+- Inbjudarens namn är klubbadmins eget namn och går till en person som inte är medlem än. Användaren godkände det 2026-10-13, eftersom mottagaren ska kunna känna igen avsändaren.
 
 ---
 

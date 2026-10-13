@@ -122,7 +122,7 @@ Namn för långt (över 100)     Dygnsgränsen nådd           Nät saknas
   3. "Sparat av en tidigare ledare" när den som sparade passet har lämnat laget men finns kvar som konto (12.3). Namnet visas inte, eftersom personer bara ser namn på dem de delar lag med (S-16).
   4. "Sparat av Borttagen användare" när kontot har raderats (26.2).
 - **Tom lista (flik utan pass):** "Du har inga sparade pass än. Skapa ditt första pass." Knappen "+ Nytt pass" ligger kvar ovanför. I ett lags flik: "{lagnamn} har inga sparade pass än."
-- **Arkiverade lag (väntar på beslut, se rapporten):** förslaget är att passen i ett arkiverat lag syns under en sista flik, "Arkiverade lag", bara för att läsas och skrivas ut, tills laget rensas efter 24 månader. Spara och koppla går inte att göra mot ett arkiverat lag (12.7). Om beslutet blir att passen inte nås efter arkivering utgår fliken, och arkiveringsvarningen i `13-klubbadmin-lag.md` ska säga det.
+- **Arkiverade lag (beslutat av användaren 2026-10-13):** passen i ett arkiverat lag syns under en sista flik, "Arkiverade lag", där de kan läsas och skrivas ut tills laget rensas efter 24 månader. Spara, koppla och byta övning går inte att göra mot ett arkiverat lag (12.7). Fliken visas bara för ledare som var med i laget när det arkiverades. Passen kan fortfarande tas bort.
 
 ## Wireframe, 360 px – Ett sparat pass (personligt) med hantering
 
@@ -269,6 +269,7 @@ Ett lagrat pass som inte klarar slutkontrollen av säkerhetsreglerna visas inte 
 - **Texten gissar inte orsaken.** "Till exempel" räknar upp de två vanligaste orsakerna men påstår inte att just någon av dem gäller. Texten skyller inte på ledaren och använder inga regelnummer.
 - **Ingen "visa ändå"-knapp.** Spärren är avsiktlig; det är inte ett val ledaren ska kunna göra på planen.
 - **I listan** ser passet ut som vilket annat pass som helst. Kontrollen körs när passet öppnas (05.7), och listan får inte bli långsam av att kontrollera alla pass i förväg.
+- **Går att ta bort (S-51):** "Ta bort passet" finns alltid i den här vyn, också för ett lagpass (samma bekräftelse som ovan). Ett spärrat pass får aldrig fastna, eftersom ett spelarnamn i dess namn då inte skulle gå att rätta. Efter borttagningen ligger passet inte kvar i andra ledares lokala kopia efter nästa synk.
 - **"Skapa ett nytt pass"** leder till underlaget (`01-underlag.md`) med förvalen. Underlaget från det spärrade passet används inte, eftersom raden inte går att lita på.
 
 ## Beteende och tillstånd
