@@ -62,12 +62,12 @@ Ett eget, litet inkrement, infogat direkt efter planskisserna. Beslutat av anvä
 | 27 | [Logga ut på alla enheter](berattelser/27-logga-ut-alla-enheter.md) | Must |
 | 28 | [Databasens skydd och gränser](berattelser/28-databasens-skydd-och-granser.md). Samlar de tvärgående säkerhetskraven, bland annat spärren mot `planskiss` i klubbens egna övningar (se sista raden i tabellen) | Must. Ny 2026-10-13 |
 | 29 | [Rensning och lagringstider](berattelser/29-rensning-och-lagringstider.md), kriterium 1–3, 5–6 | Must. Ny 2026-10-13 |
-| 29 | Rensning och lagringstider, kriterium 4 (konton utan inloggning i 24 månader, påminnelse och radering) | Must, senast före K5. Kan byggas efter inkrement 3 (tidigast hösten 2028 når ett konto gränsen). Se översikten nedan |
+| 29 | Rensning och lagringstider, kriterium 4 (konton utan inloggning i 24 månader, påminnelse och radering) | Must, senast före K5. Beslutat 2026-10-13: byggs som ett eget delsteg efter inkrement 3 och före K5, utanför inkrementets K4 (tidigast hösten 2028 når ett konto gränsen) |
 | 05 | Ta bort ett sparat pass (kriterium 13) | Must. Ny 2026-10-13: utan det går ett spelarnamn som råkat hamna i ett passnamn inte att rätta (S-19, S-20) |
 | 05 | Osparat genererat pass överlever att webbläsaren stängs (kriterium 14) | Should. Ny 2026-10-13, ADR 0005 punkt 2 |
-| 12 | Koppla ett personligt pass till ett lag i efterhand (kriterium 6) | Should. Ny 2026-10-13, väntar på beslut |
+| 12 | Koppla ett personligt pass till ett lag i efterhand (kriterium 6) | Should. Ny 2026-10-13, godkänd av användaren samma dag |
 | – | Byta namn på ett sparat pass | Could. Ny 2026-10-13 |
-| – | Uppgradera ESLint (säkerhetsgranskningen av inkrement 2b, F5). Ett eget litet jobb, se översikten | Should. Rekommenderas som första steg i inkrement 3 |
+| – | Uppgradera ESLint (säkerhetsgranskningen av inkrement 2b, F5). Ett eget litet jobb, se översikten | Should. Beslutat 2026-10-13: görs först, som delsteg 3a |
 | – | Mäta och redovisa leveransen av inloggningsmejl (berättelse 08, kriterium 14) | Must. Planerat vid K2 (ADR 0004) |
 | – | Klubbadmin kan se en logg över vem som gjort vad i klubben | Could |
 | – | En person kan vara medlem i flera klubbar samtidigt | Should (rimligt för ledare som tränar i flera klubbar, men inte grundflödet) |
@@ -93,12 +93,12 @@ Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna 
 | 05 kriterium 14 | Should | Osparat pass överlever omstart |
 | 06 kriterium 9 | Must | Ögonblicksbild av skissen, skärpt med tre tester |
 | 12 kriterium 1–5, 7–8 | Must | |
-| 12 kriterium 6 | Should | Koppla personligt pass till lag i efterhand, väntar på beslut |
+| 12 kriterium 6 | Should | Koppla personligt pass till lag i efterhand, godkänt 2026-10-13 |
 | 26 kriterium 1–14 | Must | Vad som prövas i inkrement 3 respektive 4 står i berättelsen |
 | 27 kriterium 1–6 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst en timme |
 | 28 kriterium 1–15 | Must | Ny berättelse, tvärgående säkerhetskrav |
 | 29 kriterium 1–3, 5–6 | Must | Ny berättelse |
-| 29 kriterium 4 | Must, senast före K5 | Behöver inte byggas i inkrement 3 |
+| 29 kriterium 4 | Must, senast före K5 | Eget delsteg efter inkrement 3, utanför inkrementets K4 (beslut 2026-10-13) |
 | ESLint-uppgradering (F5) | Should | Se *Kända punkter* nedan |
 
 **Kända punkter som ska komma med**
@@ -117,6 +117,21 @@ Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna 
 - Integritetspolicy, rättslig grund, biträdesavtal, säkerhetskopior, åldersfaserna mot SvFF och GitHub-appen i stället för deploy-nyckeln (fas 5, "Innan lansering"). Se dock förutsättningen nedan.
 - Export av egna uppgifter, egen domän för mejl, loggen över vad som gjorts i klubben, flera klubbar per person i gränssnittet, byte av e-postadress och att återställa ett arkiverat lag.
 
+**Användarens beslut om inkrement 3, 2026-10-13**
+
+- Externa tjänster sätts upp nu. Bygget sker mot lokal databas och staging tills säkerhetsagentens granskning av avtal och region är klar och en integritetspolicy finns. Inga riktiga ledaruppgifter får finnas i produktion före det.
+- Inloggningskoden har 8 siffror om Supabase tillåter det. UX-designern uppdaterar skiss och texter.
+- Ett lagrat pass som inte klarar slutkontrollen visas inte; ledaren får ett begripligt besked och planläge och utskrift spärras (05.7).
+- Den som är ensam medlem i sin klubb får klubben raderad med lag, pass och övningar efter tydlig förvarning (26.9).
+- Arkiverade lag: passen får samma frist på 24 månader, och varningstexten säger det (10.3, 29.2).
+- Borttappad telefon: upp till en timme godtas och texten ska vara ärlig (27). Senior-systemutvecklare undersöker om tiden kan kortas på gratisnivån.
+- Koppla pass till lag i efterhand: Should (12.6). Alla ledare i laget får ta bort lagets pass (12.8).
+- Konton utan inloggning i 24 månader: Must, eget delsteg efter inkrement 3 och före K5 (29.4).
+- Dagligt anrop som håller produktionsdatabasen vaken: ja.
+- ESLint-uppgraderingen görs först, som delsteg 3a.
+- Kontrollpunkt: ett K4 för hela inkrementet. Varje delsteg granskas och mergas för sig.
+- Fortfarande öppna: redaktörens ägarskap (26.10, tills vidare flyttas det i databasen), Brevo utan egen domän, lagets ålder som årgång (fotbollsexperten, 10.6) och frågorna till senior-systemutvecklare.
+
 **Förutsättning före riktiga personuppgifter (användarens beslut 2026-09-23, `granskning-inkrement-1.md` avsnitt 4 och 5, punkt 3)**
 
 Inget som innehåller riktiga ledares namn eller e-postadresser får läggas i produktionsprojektet förrän säkerhetsagenten har granskat de tre biträdesavtalen (Supabase, Cloudflare, Brevo), bekräftat Brevos lagringsort och Supabase-regionen, och en integritetspolicy med rättslig grund (avtal) finns nåbar utan inloggning. Utveckling och test mot lokal Supabase och stagingprojektet med påhittade uppgifter kan börja direkt. Detta flyttar integritetspolicyn tidigare än "innan K5" om riktiga ledare ska bjudas in före K5.
@@ -132,11 +147,11 @@ Inget som innehåller riktiga ledares namn eller e-postadresser får läggas i p
 | Redaktörens första konto | När produktionen sätts upp lägger användaren själv in sig som första redaktör och ägare, med ett engångsskript (ADR 0003). | Behövs för att kriterium 4 och 10 i berättelse 26 ska gå att pröva med en riktig rad. |
 | Testadresser | Några e-postadresser hos Gmail, Outlook och en telefonoperatör som får ta emot testkoder. | För mätningen i berättelse 08 kriterium 14. |
 
-Förslag att besluta (rapporten, punkt 10): ett schemalagt dagligt anrop som håller produktionsprojektet vaket (ADR 0002 punkt 5), eftersom ett projekt annars pausas efter en veckas uppehåll och ingen kan logga in. Behövs först när riktiga ledare använder produktionen.
+Beslutat 2026-10-13: ett schemalagt dagligt anrop håller produktionsprojektet vaket (ADR 0002 punkt 5), eftersom ett projekt annars pausas efter en veckas uppehåll och ingen kan logga in. Behövs först när riktiga ledare använder produktionen.
 
 **Föreslagen ordning att bygga i**
 
-Inkrementet är stort. Förslaget är att dela det i delsteg, vart och ett i en egen pull request mot grenen eller `main` enligt senior-systemutvecklares val, med kvalitetssäkrarens granskning per delsteg och säkerhetsagentens granskning av 3b–3f. Kontrollpunkten K4 är fortfarande en för hela inkrementet, om inte användaren vill ha en per delsteg.
+Inkrementet är stort. Förslaget är att dela det i delsteg, vart och ett i en egen pull request mot grenen eller `main` enligt senior-systemutvecklares val, med kvalitetssäkrarens granskning per delsteg och säkerhetsagentens granskning av 3b–3f. Beslutat 2026-10-13: ett K4 för hela inkrementet (3a–3f). Varje delsteg granskas och mergas för sig.
 
 | Delsteg | Innehåll | Skäl för ordningen |
 |---|---|---|
@@ -146,7 +161,7 @@ Inkrementet är stort. Förslaget är att dela det i delsteg, vart och ett i en 
 | 3d Klubb, lag och inbjudan | Berättelse 09, 10, 11: skapa klubb, lag, utse klubbadmin, bjuda in via Brevo och Edge Function, acceptera, ta bort ur lag. | Ger de roller och lag som sparade pass delas via. |
 | 3e Spara och dela pass | Berättelse 05 och 12, och 06 kriterium 9, `swapped`, slutkontroll av lagrade pass, borttagning, lagets flik. | Kräver lag (3d). |
 | 3f Radering och rensning | Berättelse 26 och 29 kriterium 1–3, 5–6. | Funktionen rör alla tabeller och kan prövas fullt ut först när de finns. |
-| 3g (kan skjutas) | Berättelse 29 kriterium 4 (konton utan inloggning). | Behöver inte vara klar förrän före K5. |
+| 3g Efter inkrementet | Berättelse 29 kriterium 4 (konton utan inloggning). Eget delsteg efter inkrement 3, före K5, utanför inkrementets K4. | Beslutat 2026-10-13. Behöver inte vara klar förrän före K5. |
 
 Mejlleveransen (berättelse 08 kriterium 14) mäts så snart 3c är i staging, inte först vid K4, så att en eventuell domänfråga kommer upp tidigt.
 
