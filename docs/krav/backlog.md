@@ -1,4 +1,4 @@
-Status: godkänd (K2, 2026-09-12)
+Status: godkänd (K2, 2026-09-12); inkrement 3 skärpt 2026-10-13 och väntar på godkännande (K4 inkrement 3)
 
 # Backlog – Fotbollsbanken
 
@@ -60,6 +60,15 @@ Ett eget, litet inkrement, infogat direkt efter planskisserna. Beslutat av anvä
 | 12 | [Dela sparat pass inom laget](berattelser/12-dela-sparat-pass-inom-laget.md) | Must |
 | 26 | [Radera sitt konto](berattelser/26-radera-konto.md) | Must |
 | 27 | [Logga ut på alla enheter](berattelser/27-logga-ut-alla-enheter.md) | Must |
+| 28 | [Databasens skydd och gränser](berattelser/28-databasens-skydd-och-granser.md). Samlar de tvärgående säkerhetskraven, bland annat spärren mot `planskiss` i klubbens egna övningar (se sista raden i tabellen) | Must. Ny 2026-10-13 |
+| 29 | [Rensning och lagringstider](berattelser/29-rensning-och-lagringstider.md), kriterium 1–3, 5–6 | Must. Ny 2026-10-13 |
+| 29 | Rensning och lagringstider, kriterium 4 (konton utan inloggning i 24 månader, påminnelse och radering) | Must, senast före K5. Kan byggas efter inkrement 3 (tidigast hösten 2028 når ett konto gränsen). Se översikten nedan |
+| 05 | Ta bort ett sparat pass (kriterium 13) | Must. Ny 2026-10-13: utan det går ett spelarnamn som råkat hamna i ett passnamn inte att rätta (S-19, S-20) |
+| 05 | Osparat genererat pass överlever att webbläsaren stängs (kriterium 14) | Should. Ny 2026-10-13, ADR 0005 punkt 2 |
+| 12 | Koppla ett personligt pass till ett lag i efterhand (kriterium 6) | Should. Ny 2026-10-13, väntar på beslut |
+| – | Byta namn på ett sparat pass | Could. Ny 2026-10-13 |
+| – | Uppgradera ESLint (säkerhetsgranskningen av inkrement 2b, F5). Ett eget litet jobb, se översikten | Should. Rekommenderas som första steg i inkrement 3 |
+| – | Mäta och redovisa leveransen av inloggningsmejl (berättelse 08, kriterium 14) | Must. Planerat vid K2 (ADR 0004) |
 | – | Klubbadmin kan se en logg över vem som gjort vad i klubben | Could |
 | – | En person kan vara medlem i flera klubbar samtidigt | Should (rimligt för ledare som tränar i flera klubbar, men inte grundflödet) |
 | – | Egen domän för utskick av inloggningsmejl, för att minska risken att koden hamnar i skräpposten | Could. Beslutat vid K2 (2026-09-12), se berättelse 08, kriterium 6, och kravspec. |
@@ -67,6 +76,86 @@ Ett eget, litet inkrement, infogat direkt efter planskisserna. Beslutat av anvä
 | – | Klubbens egna övningar får inte ha `planskiss` i version 1, eftersom det inte finns någon skisseditor och texten då aldrig granskas. Databasen nekar fältet med en `check` eller trigger | Must. Säkerhetsgranskningen av schemat för skissdata, uppföljningen 2026-09-29 (`docs/sakerhet/granskning-inkrement-2-schema.md`). |
 
 **Not, flyttad hit 2026-10-02:** berättelse 05 (spara ett pass) stod tidigare som Must i inkrement 1, men byggdes aldrig där. Användaren beslutade 2026-10-02 att flytta den hit, eftersom ett sparat pass kräver ett konto att spara på och en databas att spara i, som inte finns förrän det här inkrementet är byggt. Berättelse 06, kriterium 9 (skissen i ett sparat pass) gäller också först från och med att 05 är byggd, se berättelse 06.
+
+### Översikt inför bygget av inkrement 3 (2026-10-13)
+
+Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna för berättelserna ovan är skärpta 2026-10-13; varje berättelse har en tabell *Ändringar efter K2* (eller K1) och markerar vilka kriterier som är oförändrade, skärpta, ändrade eller nya.
+
+**Vad som ingår, med MoSCoW**
+
+| Berättelse och kriterier | MoSCoW | Anmärkning |
+|---|---|---|
+| 08 kriterium 1–14 | Must | 14 (mätning av mejlleveransen) är en redovisning, inget utfallskrav |
+| 09 kriterium 1–7 | Must | |
+| 10 kriterium 1–8 | Must | 6 (lagets ålder följer kalenderåret) kräver fotbollsexpertens bekräftelse |
+| 11 kriterium 1–12 | Must | |
+| 05 kriterium 1–13 | Must | 6 är markeringen `Session.swapped` som sparas med passet; 7 är slutkontrollen av lagrade pass |
+| 05 kriterium 14 | Should | Osparat pass överlever omstart |
+| 06 kriterium 9 | Must | Ögonblicksbild av skissen, skärpt med tre tester |
+| 12 kriterium 1–5, 7–8 | Must | |
+| 12 kriterium 6 | Should | Koppla personligt pass till lag i efterhand, väntar på beslut |
+| 26 kriterium 1–14 | Must | Vad som prövas i inkrement 3 respektive 4 står i berättelsen |
+| 27 kriterium 1–6 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst en timme |
+| 28 kriterium 1–15 | Must | Ny berättelse, tvärgående säkerhetskrav |
+| 29 kriterium 1–3, 5–6 | Must | Ny berättelse |
+| 29 kriterium 4 | Must, senast före K5 | Behöver inte byggas i inkrement 3 |
+| ESLint-uppgradering (F5) | Should | Se *Kända punkter* nedan |
+
+**Kända punkter som ska komma med**
+
+- **`Session.swapped` sparas med passet.** Berättelse 05 kriterium 6 och 9. Markeringen kommer från lagrad data och kan därför inte litas på: den får bara släppa tidsmålen i R-035 och R-036 (R-105), aldrig R-080, R-082, R-022 eller resten av slutkontrollen (säkerhetsgranskningen av 2b, F3). F3:s tre åtgärder (regressionstest att `swapped: true` fortfarande fäller R-080, R-082 och R-022, test med byte efter byte, kommentar i typen) finns redan i `src/regelmotor/types.ts` och `src/regelmotor/swap/swapped-flag.test.ts` (kontrollerat 2026-10-13 genom att läsa filerna, testerna är inte körda). Det som återstår för inkrement 3 är att samma sak gäller för ett pass som har sparats och lästs tillbaka: se kriterium 6 och 7 i berättelse 05.
+- **Säkerhetsfynd F5 (ESLint 9.39.5 rapporteras som utan stöd): ja, ta det i inkrement 3, och gör det först.** Det är en låg fyndnivå och ändrar ingen funktion, men inkrement 3 lägger till stora nya beroenden (Supabase-klient, Turnstile, cache-lagret) och det är när lintreglerna för `ref`, `innerHTML` och liknande (F1–F2 i samma granskning) behöver vara pålitliga. Förslag: ett litet eget jobb som första delsteg, i en egen pull request, skilt från konto-koden. Eventuellt behövs en ny version av `typescript-eslint` och regelpaketen samtidigt; det avgör senior-systemutvecklare.
+- Från granskningen av inkrement 1 (`granskning-inkrement-1.md`, avsnitt 4, S-26, S-35, S-37) tas med: CSP:n utökas med Supabase och Turnstile (berättelse 28, kriterium 12), cachen töms vid utloggning och byte av konto (08, kriterium 10), och körtidsvägen för data kastar inte (28, kriterium 15). Importgränsen från S-29 (ingen import av den virtuella bankmodulen utanför `src/data/bank.ts`) rekommenderas som en automatisk regel före inkrement 4, inte i det här.
+- Säkerhetsgranskningen av schemat för skissdata: spärren mot `planskiss` i klubbens egna övningar och pgTAP-testet av skissens storlek (F5 i den granskningen) ingår i berättelse 28, kriterium 10–11.
+
+**Vad som uttryckligen inte ingår i inkrement 3**
+
+- Skapa, hantera och skicka in egna övningar, redaktörskön och att utse eller flytta redaktörsroller i appen (inkrement 4, berättelse 13–18). Tabeller och regler som de behöver finns från början (berättelse 28), men det finns inget gränssnitt för dem.
+- Klubbens egna övningar som alternativ vid byte (R-106, berättelse 04, inkrement 4).
+- Planläge, utskrift och säsongsplanering. Tabellerna för säsongsplan skapas i inkrement 7. Testerna för att köra planläget utan nät hör till inkrement 5 (ADR 0005).
+- Flytten av den gemensamma banken från det inbyggda paketet till Supabase. ADR 0015 gäller till och med inkrement 3 och utfasningen kräver en egen ADR före inkrement 4. I inkrement 3 är banken oförändrat inbyggd, och ett sparat pass bär sina övningar som ögonblicksbilder.
+- Integritetspolicy, rättslig grund, biträdesavtal, säkerhetskopior, åldersfaserna mot SvFF och GitHub-appen i stället för deploy-nyckeln (fas 5, "Innan lansering"). Se dock förutsättningen nedan.
+- Export av egna uppgifter, egen domän för mejl, loggen över vad som gjorts i klubben, flera klubbar per person i gränssnittet, byte av e-postadress och att återställa ett arkiverat lag.
+
+**Förutsättning före riktiga personuppgifter (användarens beslut 2026-09-23, `granskning-inkrement-1.md` avsnitt 4 och 5, punkt 3)**
+
+Inget som innehåller riktiga ledares namn eller e-postadresser får läggas i produktionsprojektet förrän säkerhetsagenten har granskat de tre biträdesavtalen (Supabase, Cloudflare, Brevo), bekräftat Brevos lagringsort och Supabase-regionen, och en integritetspolicy med rättslig grund (avtal) finns nåbar utan inloggning. Utveckling och test mot lokal Supabase och stagingprojektet med påhittade uppgifter kan börja direkt. Detta flyttar integritetspolicyn tidigare än "innan K5" om riktiga ledare ska bjudas in före K5.
+
+**Externa tjänster och vad användaren behöver sätta upp (inga nya kostnader, allt på gratisnivå enligt ADR 0002)**
+
+| Tjänst | Vad som behövs | Anmärkning |
+|---|---|---|
+| Supabase Free | Ett konto och **två projekt**, produktion och staging, i EU (förstahandsval Stockholm, annars Frankfurt). Användaren noterar vilken region som faktiskt valdes. Lösenord till databasen sparas utanför repot. Projektets adress och publika nyckel (som är avsedd att ligga i bygget) lämnas till senior-systemutvecklare. Servicenyckeln lämnas aldrig i repot eller i CI. | Gratisnivån medger två aktiva projekt, vilket är exakt vad som behövs. Staging får innehålla bara påhittade uppgifter. Före bygget kontrollerar senior-systemutvecklare mot projektet: att `pg_cron` finns, kodgränserna i berättelse 08 kriterium 8 och om kodlängden 8 tillåts. |
+| Brevo Free | Ett konto, en verifierad avsändaradress (ingen egen domän köps) och SMTP-uppgifter som läggs in i Supabase Auth. En API-nyckel som läggs som hemlighet i Edge Function för inbjudningar. | **Obekräftat:** om Brevo tillåter en avsändare utan egen domän på gratisnivån (ADR 0002, ADR 0004). Går det inte, lyfter produktägaren frågan till användaren igen. 300 mejl per dag. |
+| Cloudflare | En Turnstile-widget (gratis): en publik nyckel för bygget och en hemlig nyckel som läggs i Supabase Auths inställningar. Pages-projektet för förhandsversioner och produktion, om det inte redan finns. | Turnstile är redan tillstyrkt av säkerhetsagenten (K2, avsnitt 4) på villkor att det nämns i integritetspolicyn. |
+| GitHub | Hemligheter för att köra migrationer mot staging (automatiskt) och produktion (manuellt startat), knutna till en miljö med krav på godkännande, och en åtkomsttoken med minsta möjliga behörighet. | Servicenyckeln läggs inte i CI (ADR 0003). Migrationsfilerna ligger redan under kodägarskydd. |
+| Redaktörens första konto | När produktionen sätts upp lägger användaren själv in sig som första redaktör och ägare, med ett engångsskript (ADR 0003). | Behövs för att kriterium 4 och 10 i berättelse 26 ska gå att pröva med en riktig rad. |
+| Testadresser | Några e-postadresser hos Gmail, Outlook och en telefonoperatör som får ta emot testkoder. | För mätningen i berättelse 08 kriterium 14. |
+
+Förslag att besluta (rapporten, punkt 10): ett schemalagt dagligt anrop som håller produktionsprojektet vaket (ADR 0002 punkt 5), eftersom ett projekt annars pausas efter en veckas uppehåll och ingen kan logga in. Behövs först när riktiga ledare använder produktionen.
+
+**Föreslagen ordning att bygga i**
+
+Inkrementet är stort. Förslaget är att dela det i delsteg, vart och ett i en egen pull request mot grenen eller `main` enligt senior-systemutvecklares val, med kvalitetssäkrarens granskning per delsteg och säkerhetsagentens granskning av 3b–3f. Kontrollpunkten K4 är fortfarande en för hela inkrementet, om inte användaren vill ha en per delsteg.
+
+| Delsteg | Innehåll | Skäl för ordningen |
+|---|---|---|
+| 3a Förarbete | ESLint-uppgraderingen (F5). Användarens uppsättning av Supabase, Brevo och Turnstile. Kontroll av projektinställningarna. | Billigt och oberoende av konton. Uppsättningen tar tid och blockerar annars de följande stegen. |
+| 3b Databas och skydd | Migrationer, åtkomstregler på radnivå på alla tabeller, pgTAP-tester med två klubbar, begränsningar och tak, säkerhetsheaders med Supabase och Turnstile (berättelse 28). Ingen användarvy. | Allt annat vilar på det. Säkerhetsgranskningen i K2 ville se policyerna och testerna först (S-01, S-02, S-06). Headern måste finnas innan förnyelsetoken hamnar i webbläsarens lagring. |
+| 3c Konto och inloggning | Berättelse 08 och 27: registrering, kod, Turnstile, gränserna, åtskild cache per användare, *Mitt konto* med "Logga ut på alla enheter". | Utan inloggning går inget annat att prova. 27 är liten och hör till samma vy. |
+| 3d Klubb, lag och inbjudan | Berättelse 09, 10, 11: skapa klubb, lag, utse klubbadmin, bjuda in via Brevo och Edge Function, acceptera, ta bort ur lag. | Ger de roller och lag som sparade pass delas via. |
+| 3e Spara och dela pass | Berättelse 05 och 12, och 06 kriterium 9, `swapped`, slutkontroll av lagrade pass, borttagning, lagets flik. | Kräver lag (3d). |
+| 3f Radering och rensning | Berättelse 26 och 29 kriterium 1–3, 5–6. | Funktionen rör alla tabeller och kan prövas fullt ut först när de finns. |
+| 3g (kan skjutas) | Berättelse 29 kriterium 4 (konton utan inloggning). | Behöver inte vara klar förrän före K5. |
+
+Mejlleveransen (berättelse 08 kriterium 14) mäts så snart 3c är i staging, inte först vid K4, så att en eventuell domänfråga kommer upp tidigt.
+
+**Behov från andra roller innan bygget av respektive delsteg**
+
+- **UX-designern:** navigeringsmönstret och var *Mitt konto* placeras (skiss 15 lämnar det till inkrement 3), uppdaterad skiss 14 och `texter.md` till koden (kodlängd, se *Beslut som behövs*), texter för: bekräftelse efter "Logga ut på alla enheter" (saknas), inbjudan som gått ut, återkallats, redan använts eller gäller en annan adress, Turnstile som inte kan laddas, väntetid och gränser (60 sekunder, 200 pass per dygn, 50 inbjudningsmejl per dygn), borttagning av pass, "Sparat av en tidigare ledare", radering när personen är ensam medlem eller redaktörsägare, arkiveringsvarningen med lagringstid samt mejlmallarna till inloggning och inbjudan. Skiss 05 och `floden.md` avsnitt 1.4 säger olika om lagval vid sparande (automatiskt eller val); berättelse 12 kriterium 1 utgår från skiss 05 (ledaren väljer, förvalt till senast använda lag).
+- **Fotbollsexperten:** bekräfta att lagets ålder lagrad som årgång stämmer med R-010 och R-113 (berättelse 10, kriterium 6).
+- **Senior-systemutvecklare:** hur ett sparat pass refererar till en bankövning när banken i inkrement 3 fortfarande är inbyggd (ADR 0003 har `exercise_id` mot `exercises`; passet bär ögonblicksbilden och `source_id`), antal och tid för gränsen för felaktiga försök med inbjudningsnyckel (11 kriterium 7), vilka tabeller som skapas i första migrationen, och om cache-lagret för offline byggs i inkrement 3 (S-12 förutsätter det).
+- **Säkerhetsagenten:** granskning av biträdesavtalen enligt ovan, granskning av de faktiska migrationerna mot S-01, S-02, S-06 och S-16 före K4, och ställningstagande till restrisken med lokal kopia på en borttappad enhet (berättelse 27).
 
 ## Inkrement 4 – Egna och inskickade övningar med redaktörskö
 

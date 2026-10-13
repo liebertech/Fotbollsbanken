@@ -1,4 +1,4 @@
-Status: godkänd (K2, 2026-09-12)
+Status: skärpt inför inkrement 3 (2026-10-13), väntar på godkännande (K4 inkrement 3). Tidigare: godkänd (K2, 2026-09-12)
 
 # 26. Radera sitt konto
 
@@ -6,26 +6,45 @@ Status: godkänd (K2, 2026-09-12)
 
 **Som** inloggad person **vill jag** kunna radera mitt konto i appen, **så att** jag kan utöva min rätt att få mina personuppgifter borttagna när jag inte längre vill vara med.
 
+Markeringar: **[Oförändrat]**, **[Skärpt]** och **[Nytt]** som i berättelse 05. Kriterium 1–8 behåller sina nummer från K2; nya kriterier läggs till som 9–15. Se *Ändringar efter K2* sist.
+
+**Vad som kan provas i inkrement 3:** klubbövningar (berättelse 13–14), inskickningar (15–17) och redaktörsfunktioner (18) finns i appen först i inkrement 4. Tabellerna finns dock från inkrement 3, och raderingsfunktionen ska hantera dem redan nu. Kriterier som gäller dem prövas därför i inkrement 3 på databasnivå med förberedda testrader (pgTAP), och i gränssnittet först i inkrement 4. Det står vid varje kriterium.
+
 ## Acceptanskriterier
 
-1. **Givet** att en inloggad person väljer att radera sitt konto och bekräftar det, **när** raderingen genomförs, **då** verkställs den direkt: personens profil och inloggningsuppgifter (namn, e-post) tas bort, och personen loggas ut och kan inte längre logga in med det kontot.
-2. **Givet** att personen har material som delas med andra (till exempel lagets sparade pass, klubbens egna övningar eller en övning personen fått godkänd i den gemensamma banken), **när** kontot raderas, **då** finns materialet kvar för de som annars hade tillgång till det, men utan koppling till personen – personens namn visas inte längre som skapare.
-3. **Givet** att personen är den enda klubbadminen i sin klubb, **när** personen försöker radera sitt konto, **då** hindras raderingen, och appen upplyser om att en till klubbadmin måste utses först (se berättelse 09, kriterium 4).
-4. **Givet** att personen är den enda redaktören i appen, **när** personen försöker radera sitt konto, **då** hindras raderingen, och appen upplyser om att en till redaktör måste utses först (se berättelse 18, kriterium 1). Beslutat vid K2 (2026-09-12): samma spärr som för den sista klubbadminen (kriterium 3) gäller den sista redaktören.
-5. **Givet** att villkoren i kriterium 3 och 4 inte gäller personen – klubben har redan en till klubbadmin eller personen är inte klubbadmin, och det redan finns en till redaktör eller personen är inte redaktör – **när** personen raderar sitt konto, **då** genomförs raderingen utan att de villkoren hindrar den.
-6. **Givet** att radering inte går att ångra, **när** personen begär radering, **då** ber appen om en tydlig bekräftelse innan kontot faktiskt raderas.
-7. **Givet** att personen ångrar sig innan bekräftelsen, **när** personen avbryter, **då** finns kontot kvar helt oförändrat.
-8. **Givet** att ett konto har raderats, **när** samma e-postadress senare används för att registrera ett nytt konto, **då** behandlas det som ett helt nytt konto, utan koppling till det raderade kontots historik.
+1. **[Skärpt]** **Givet** att en inloggad person väljer att radera sitt konto och bekräftar det, **när** raderingen genomförs, **då** verkställs den direkt: personens profil och inloggningsuppgifter (namn, e-post) tas bort, personens medlemskap i klubb och lag tas bort, inbjudningar personen skickat och som inte accepterats tas bort, personliga pass (utan lag) med sina moment tas bort, och personen loggas ut och kan inte längre logga in med det kontot. Personens inloggningar på andra enheter upphör (de kan inte förnya sin session), och den lokala kopian på enheten rensas (`USER_DELETED`, ADR 0005 punkt 4). **Test:** efter raderingen finns inga rader med personens id i profil-, medlems-, inbjudnings- eller passtabellerna, kontot saknas i inloggningsregistret, ett försök att logga in med adressen ger samma bekräftelse som för en okänd adress (berättelse 08, kriterium 7) och ingen kod skickas, och en annan enhets session nekas vid nästa förnyelse.
+2. **[Skärpt]** **Givet** att personen har material som delas med andra (till exempel lagets sparade pass, klubbens egna övningar eller en övning personen fått godkänd i den gemensamma banken), **när** kontot raderas, **då** finns materialet kvar för de som annars hade tillgång till det, men utan koppling till personen: skaparen, den som skickat in, den som utfört en åtgärd i en historik och den som lagt till en medlem är då tomma värden, och gränssnittet visar "Borttagen användare" i stället för namn. Personens namn visas inte längre någonstans. **Test (inkrement 3):** lagpass som personen sparat finns kvar för laget och visar "Borttagen användare"; på databasnivå, med förberedda rader: klubbövningar, inskickningar, historikrader och bankövningar med personen som skapare får tomt skaparfält men finns kvar. **Test (inkrement 4, i gränssnittet):** klubbens egna övningar och godkända bankövningar visar "Borttagen användare".
+3. **[Skärpt]** **Givet** att personen är den enda klubbadminen i en klubb där andra medlemmar finns kvar, **när** personen försöker radera sitt konto, **då** hindras raderingen, ingenting raderas, och appen upplyser om att en till klubbadmin måste utses först (se berättelse 09, kriterium 4), med en genväg dit. Har personen flera klubbar kontrolleras alla. **Test:** efter det nekade försöket är kontot, medlemskapen och passen helt oförändrade. *Ändring:* tillägget "där andra medlemmar finns kvar" följer ADR 0003, se kriterium 9.
+4. **[Oförändrat, test skärpt]** **Givet** att personen är den enda redaktören i appen, **när** personen försöker radera sitt konto, **då** hindras raderingen, och appen upplyser om att en till redaktör måste utses först (se berättelse 18, kriterium 1). Beslutat vid K2 (2026-09-12): samma spärr som för den sista klubbadminen (kriterium 3) gäller den sista redaktören. **Test (inkrement 3):** med en redaktör som lagts in direkt i databasen (så som den första redaktören läggs in, ADR 0003) nekas raderingen och ingenting raderas. Gränssnittet för att utse en efterträdare kommer i inkrement 4.
+5. **[Skärpt]** **Givet** att villkoren i kriterium 3, 4, 9 (varningen) och 10 inte hindrar personen – klubben har redan en till klubbadmin eller personen är inte klubbadmin, och det redan finns en till redaktör (och, om personen är ägare, har ägarskapet flyttats) eller personen är inte redaktör – **när** personen raderar sitt konto, **då** genomförs raderingen utan att de villkoren hindrar den.
+6. **[Skärpt]** **Givet** att radering inte går att ångra, **när** personen begär radering, **då** visar appen två separata listor, aldrig gömda bakom en dragspelspanel: det som raderas och det som blir kvar avidentifierat, och varningen "Det går inte att ångra." syns hela tiden. Knappen "Radera mitt konto" är verkningslös (`aria-disabled`, med en förklaring) tills personen har skrivit sitt eget namn precis som det står på kontot. Vid fel namn visas "Namnet du skrev stämmer inte. Kontrollera stavningen." (`docs/design/skisser/15-radera-konto.md`, `texter.md` avsnitt 16).
+7. **[Oförändrat]** **Givet** att personen ångrar sig innan bekräftelsen, **när** personen avbryter, **då** finns kontot kvar helt oförändrat.
+8. **[Skärpt]** **Givet** att ett konto har raderats, **när** samma e-postadress senare används för att registrera ett nytt konto, **då** behandlas det som ett helt nytt konto, utan koppling till det raderade kontots historik: ny profil, inga medlemskap, inga pass och ett nytt id. Det raderade kontots material som blev kvar avidentifierat kopplas inte till det nya.
+9. **[Nytt]** **Givet** att personen är den enda medlemmen i en klubb (alltså både enda klubbadmin och enda ledare, utan andra medlemmar), **när** personen raderar sitt konto, **då** raderas klubben tillsammans med dess lag, lagpass, klubbens egna övningar och inbjudningar i samma åtgärd, eftersom ingen annan förlorar något på det (ADR 0003, *Radering av konto*). Raderingsvyn säger det uttryckligen i förväg: "Klubben {klubbnamn} har inga andra medlemmar och raderas tillsammans med sina lag, pass och övningar." **Test:** efter raderingen finns inga rader kvar för klubben. **Beslut som behövs:** det här fallet stod inte i kriterium 3 från K2, som bara sa att den enda klubbadminen hindras. Se rapporten, punkt 4.
+10. **[Nytt]** **Givet** att personen är redaktörens ägare (den första redaktören, ADR 0003, S-15), **när** personen försöker radera sitt konto, **då** hindras raderingen tills ägarskapet har flyttats till en annan redaktör, också när det finns fler redaktörer, och appen säger det. **Test:** ägare med en annan redaktör närvarande nekas; efter att ägarskapet flyttats i databasen går raderingen igenom. **Beslut som behövs:** det finns ingen berättelse för att flytta ägarskapet i appen, se rapporten, punkt 6.
+11. **[Nytt]** **Givet** att raderingen sker i flera steg (databasen först, därefter inloggningsregistret), **när** ett steg misslyckas, **då** lämnas inte kontot halvt raderat och oanvändbart utan besked: personen får ett tydligt besked, och samma radering går att göra om och slutföras utan fel eller dubbletter. **Test:** felinjektion efter databassteget, därefter ett nytt försök som lyckas.
+12. **[Nytt]** **Givet** att nätet saknas, **när** personen försöker radera sitt konto, **då** visas kravet på anslutning, ingenting raderas och ingenting påstås vara raderat (`texter.md` avsnitt 15).
+13. **[Nytt]** **Givet** att raderingen är klar, **då** visas "Ditt konto är raderat. Du är utloggad." och personen kan inte gå bakåt till inloggade vyer.
+14. **[Nytt]** **Givet** att raderingen bara får röra personens eget konto, **när** en inloggad person försöker radera någon annans konto (genom att anropa funktionen direkt), **då** nekas det. Funktionen tar inget id som indata och kan inte anropas utan inloggning (ADR 0003 princip 3).
 
 ## Beroenden
 
 - 08 (registrera konto och logga in).
 - 09, kriterium 4 (klubbadmin kan utse ytterligare klubbadmin) – en förutsättning för kriterium 3 ovan.
-- 18, kriterium 1 (redaktör kan utse ytterligare redaktör) – en förutsättning för kriterium 4 ovan.
+- 18, kriterium 1 (redaktör kan utse ytterligare redaktör) – en förutsättning för kriterium 4 ovan i gränssnittet, men inte för testet i inkrement 3.
+- 05 och 12 (lagpass som blir kvar avidentifierade), 28 (databasens skydd) och 29 (rensning och lagringstider).
 
 ## Utanför denna berättelse
 
 - Att tillfälligt inaktivera eller pausa ett konto utan att radera det – inte ett krav i version 1.
 - Att exportera sina egna uppgifter innan radering (dataportabilitet enligt GDPR, artikel 20). Beslutat vid K2 (2026-09-12): ingår inte i version 1, utan är en Could-post i backloggen (se `backlog.md`, inkrement 3).
 - Att en klubbadmin eller redaktör raderar en annan persons konto åt dem.
-- Hur länge avidentifierat material eller krypterade säkerhetskopior kan innehålla spår av kontot efter radering – beskrivs i integritetspolicyn (se backlog, "Innan lansering"), inte här.
+- Hur länge avidentifierat material eller krypterade säkerhetskopior kan innehålla spår av kontot efter radering – beskrivs i integritetspolicyn (se backlog, "Innan lansering"), inte här. Kopior kan finnas kvar i högst 30 dagar (ADR 0003, *Lagringstider*).
+- Automatisk radering av konton som inte använts på 24 månader (berättelse 29, kriterium 4).
+- Att flytta ägarskapet för redaktörsrollen i appen (se kriterium 10 och rapporten).
+
+## Ändringar efter K2
+
+| Datum | Ändring |
+|---|---|
+| 2026-10-13 | Skärpt inför inkrement 3 mot ADR 0003 (*Radering av konto*) och ADR 0004. Kriterium 1, 2, 3, 6 och 8 preciserade och gjorda testbara; kriterium 4 och 7 i sak oförändrade (4 med ett skärpt test). Kriterium 5 pekar nu på de nya spärrarna. Ny uppdelning av vad som kan prövas i inkrement 3 och 4. Nya kriterier 9–14: klubb där personen är ensam medlem (ADR 0003 raderar klubben, vilket K2-lydelsen av kriterium 3 inte täckte), redaktörens ägare (S-15), delvis misslyckad radering, nät, bekräftelsen efter radering och att bara det egna kontot kan raderas. |
