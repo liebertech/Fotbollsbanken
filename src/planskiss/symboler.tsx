@@ -25,6 +25,8 @@ export interface PatternIds {
   diagonal: string;
   dots: string;
   net: string;
+  /** Gräsytans ränder (designsystem.md avsnitt 10). */
+  grass: string;
 }
 
 export function patternIds(instanceId: string): PatternIds {
@@ -37,6 +39,7 @@ export function patternIds(instanceId: string): PatternIds {
     diagonal: `${instanceId}-zon-diagonal`,
     dots: `${instanceId}-zon-prickar`,
     net: `${instanceId}-mal-nat`,
+    grass: `${instanceId}-gras`,
   };
 }
 
@@ -51,6 +54,8 @@ export interface DrawContext {
   ids: PatternIds;
   /** Högst så här många punkter i varje vågig linje, se `wavePointBudget` (R2). */
   wavePoints: number;
+  /** Gräsrandens bredd i meter. Ränderna börjar vid ytans vänsterkant, `x = 0`. */
+  stripe: number;
 }
 
 const TEAM_CLASS: Record<Team, string | undefined> = {
@@ -86,20 +91,31 @@ function pathData(list: readonly Point[]): string {
     .join(' ');
 }
 
-/** Mönstren som skissen använder. Bara de som behövs ritas, så att utdata hålls liten. */
+/**
+ * Mönstren som skissen använder. Gräset ritas alltid, eftersom ytan alltid har ränder. De
+ * andra ritas bara när de behövs, så att utdata hålls liten.
+ */
 export function patternDefs(
   ctx: DrawContext,
   needed: { keeper: ReadonlySet<Team>; diagonal: boolean; dots: boolean; net: boolean },
-): ReactElement | null {
+): ReactElement {
   const stripe = u(ctx.d / 4);
   const teams = (['a', 'b', 'neutral'] as const).filter((team) => needed.keeper.has(team));
-  if (teams.length === 0 && !needed.diagonal && !needed.dots && !needed.net) {
-    return null;
-  }
   const hatch = u(0.5);
   const dotStep = u(ctx.d / 2);
+  const grass = u(ctx.stripe);
+  const grassTile = finite(grass * 2);
   return (
     <defs>
+      <pattern
+        id={ctx.ids.grass}
+        patternUnits="userSpaceOnUse"
+        width={grassTile}
+        height={grassTile}
+      >
+        <rect className={styles.gras1} x={0} y={0} width={grass} height={grassTile} />
+        <rect className={styles.gras2} x={grass} y={0} width={grass} height={grassTile} />
+      </pattern>
       {teams.map((team) => (
         <pattern
           key={team}
@@ -182,6 +198,7 @@ function symbolLabel(
         styles.etikett,
         kind === 'filled' && styles.etikettPaFylld,
         kind === 'halo' && styles.etikettHalo,
+        kind === 'plain' && styles.etikettPaOfylld,
       )}
       x={u(at.x)}
       y={u(at.y)}

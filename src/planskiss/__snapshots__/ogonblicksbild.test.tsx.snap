@@ -17,8 +17,46 @@ exports[`en skiss per skalningsstrategi > fast 1`] = `
   >
     Yta 15 gånger 15 meter. 5 spelare i lag A. 2 passningar och 1 löpning.
   </desc>
+  <defs>
+    <pattern
+      height="31.5"
+      id="fast-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_marginal_a7e2bf"
+    height="630"
+    width="630"
+    x="-240"
+    y="-240"
+  />
   <rect
     class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#fast-gras)"
     height="150"
     width="150"
     x="0"
@@ -295,6 +333,27 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
   </desc>
   <defs>
     <pattern
+      height="31.5"
+      id="koer-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="koer-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -340,7 +399,22 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="570"
+    width="630"
+    x="-240"
+    y="-240"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="90"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#koer-gras)"
     height="90"
     width="150"
     x="0"
@@ -528,7 +602,7 @@ exports[`en skiss per skalningsstrategi > köer, med en kö längre än 8 1`] = 
         y="84.6"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="7.2"
         text-anchor="middle"
@@ -728,8 +802,46 @@ exports[`en skiss per skalningsstrategi > parallella ytor 1`] = `
   >
     Yta 15 gånger 15 meter. 5 spelare i lag A. 2 passningar och 1 löpning. Så här ser en av 3 ytor ut.
   </desc>
+  <defs>
+    <pattern
+      height="31.5"
+      id="parallella-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_marginal_a7e2bf"
+    height="630"
+    width="630"
+    x="-240"
+    y="-240"
+  />
   <rect
     class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#parallella-gras)"
     height="150"
     width="150"
     x="0"
@@ -1006,6 +1118,27 @@ exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] 
   </desc>
   <defs>
     <pattern
+      height="69"
+      id="platser-gras"
+      patternUnits="userSpaceOnUse"
+      width="69"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="69"
+        width="34.5"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="69"
+        width="34.5"
+        x="34.5"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="4.17"
       id="platser-malvakt-a"
       patternUnits="userSpaceOnUse"
@@ -1072,7 +1205,22 @@ exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] 
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="1280"
+    width="1380"
+    x="-490"
+    y="-490"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="300"
+    width="400"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#platser-gras)"
     height="300"
     width="400"
     x="0"
@@ -1374,7 +1522,7 @@ exports[`en skiss per skalningsstrategi > platser, fler spelare än platser 1`] 
         stroke-width="2.08"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="6.67"
         text-anchor="middle"
@@ -1480,6 +1628,27 @@ exports[`en skiss per storlek > miniatyr 1`] = `
   </desc>
   <defs>
     <pattern
+      height="36"
+      id="storlek-miniatyr-gras"
+      patternUnits="userSpaceOnUse"
+      width="36"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="36"
+        width="18"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="36"
+        width="18"
+        x="18"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="storlek-miniatyr-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -1525,7 +1694,22 @@ exports[`en skiss per storlek > miniatyr 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="640"
+    width="720"
+    x="-270"
+    y="-270"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#storlek-miniatyr-gras)"
     height="100"
     width="180"
     x="0"
@@ -1702,6 +1886,27 @@ exports[`en skiss per storlek > normal 1`] = `
   </desc>
   <defs>
     <pattern
+      height="36"
+      id="storlek-normal-gras"
+      patternUnits="userSpaceOnUse"
+      width="36"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="36"
+        width="18"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="36"
+        width="18"
+        x="18"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="storlek-normal-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -1747,7 +1952,22 @@ exports[`en skiss per storlek > normal 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="640"
+    width="720"
+    x="-270"
+    y="-270"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#storlek-normal-gras)"
     height="100"
     width="180"
     x="0"
@@ -1935,7 +2155,7 @@ exports[`en skiss per storlek > normal 1`] = `
         y="94.6"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="7.2"
         text-anchor="middle"
@@ -2043,6 +2263,27 @@ exports[`en skiss per storlek > planlage 1`] = `
   </desc>
   <defs>
     <pattern
+      height="36"
+      id="storlek-planlage-gras"
+      patternUnits="userSpaceOnUse"
+      width="36"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="36"
+        width="18"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="36"
+        width="18"
+        x="18"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="storlek-planlage-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -2088,7 +2329,22 @@ exports[`en skiss per storlek > planlage 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="640"
+    width="720"
+    x="-270"
+    y="-270"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#storlek-planlage-gras)"
     height="100"
     width="180"
     x="0"
@@ -2276,7 +2532,7 @@ exports[`en skiss per storlek > planlage 1`] = `
         y="94.6"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="7.2"
         text-anchor="middle"
@@ -2384,6 +2640,27 @@ exports[`en skiss per storlek > utskrift 1`] = `
   </desc>
   <defs>
     <pattern
+      height="36"
+      id="storlek-utskrift-gras"
+      patternUnits="userSpaceOnUse"
+      width="36"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="36"
+        width="18"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="36"
+        width="18"
+        x="18"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="storlek-utskrift-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -2429,7 +2706,22 @@ exports[`en skiss per storlek > utskrift 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="640"
+    width="720"
+    x="-270"
+    y="-270"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="100"
+    width="180"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#storlek-utskrift-gras)"
     height="100"
     width="180"
     x="0"
@@ -2617,7 +2909,7 @@ exports[`en skiss per storlek > utskrift 1`] = `
         y="94.6"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="7.2"
         text-anchor="middle"
@@ -2725,6 +3017,27 @@ exports[`ett exempel per spelform > 3mot3 i storleken normal 1`] = `
   </desc>
   <defs>
     <pattern
+      height="31.5"
+      id="exempel-3mot3-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="5"
       id="exempel-3mot3-mal-nat"
       patternUnits="userSpaceOnUse"
@@ -2749,7 +3062,22 @@ exports[`ett exempel per spelform > 3mot3 i storleken normal 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="600"
+    width="630"
+    x="-240"
+    y="-240"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="120"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#exempel-3mot3-gras)"
     height="120"
     width="150"
     x="0"
@@ -3003,6 +3331,27 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
   </desc>
   <defs>
     <pattern
+      height="31.5"
+      id="exempel-5mot5-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="3"
       id="exempel-5mot5-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -3048,7 +3397,22 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="570"
+    width="630"
+    x="-240"
+    y="-240"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="90"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#exempel-5mot5-gras)"
     height="90"
     width="150"
     x="0"
@@ -3236,7 +3600,7 @@ exports[`ett exempel per spelform > 5mot5 i storleken normal 1`] = `
         y="84.6"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="7.2"
         text-anchor="middle"
@@ -3360,8 +3724,46 @@ exports[`ett exempel per spelform > 7mot7 i storleken normal 1`] = `
   >
     Yta 15 gånger 15 meter. 8 spelare i lag A. 2 passningar och 1 löpning. 1 spelare till står inte med i skissen.
   </desc>
+  <defs>
+    <pattern
+      height="31.5"
+      id="exempel-7mot7-gras"
+      patternUnits="userSpaceOnUse"
+      width="31.5"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="31.5"
+        width="15.75"
+        x="15.75"
+        y="0"
+      />
+    </pattern>
+  </defs>
+  <rect
+    class="_marginal_a7e2bf"
+    height="630"
+    width="630"
+    x="-240"
+    y="-240"
+  />
   <rect
     class="_yta_a7e2bf"
+    height="150"
+    width="150"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#exempel-7mot7-gras)"
     height="150"
     width="150"
     x="0"
@@ -3662,6 +4064,27 @@ exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
   </desc>
   <defs>
     <pattern
+      height="69"
+      id="exempel-9mot9-gras"
+      patternUnits="userSpaceOnUse"
+      width="69"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="69"
+        width="34.5"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="69"
+        width="34.5"
+        x="34.5"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="4.17"
       id="exempel-9mot9-malvakt-a"
       patternUnits="userSpaceOnUse"
@@ -3728,7 +4151,22 @@ exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="1280"
+    width="1380"
+    x="-490"
+    y="-490"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="300"
+    width="400"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#exempel-9mot9-gras)"
     height="300"
     width="400"
     x="0"
@@ -4030,7 +4468,7 @@ exports[`ett exempel per spelform > 9mot9 i storleken normal 1`] = `
         stroke-width="2.08"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="6.67"
         text-anchor="middle"
@@ -4136,6 +4574,27 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
   </desc>
   <defs>
     <pattern
+      height="87"
+      id="exempel-11mot11-gras"
+      patternUnits="userSpaceOnUse"
+      width="87"
+    >
+      <rect
+        class="_gras1_a7e2bf"
+        height="87"
+        width="43.5"
+        x="0"
+        y="0"
+      />
+      <rect
+        class="_gras2_a7e2bf"
+        height="87"
+        width="43.5"
+        x="43.5"
+        y="0"
+      />
+    </pattern>
+    <pattern
       height="7.22"
       id="exempel-11mot11-malvakt-b"
       patternUnits="userSpaceOnUse"
@@ -4209,7 +4668,22 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
     </pattern>
   </defs>
   <rect
+    class="_marginal_a7e2bf"
+    height="2220"
+    width="2060"
+    x="-770"
+    y="-770"
+  />
+  <rect
     class="_yta_a7e2bf"
+    height="680"
+    width="520"
+    x="0"
+    y="0"
+  />
+  <rect
+    class="_rander_a7e2bf"
+    fill="url(#exempel-11mot11-gras)"
     height="680"
     width="520"
     x="0"
@@ -4556,7 +5030,7 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
         y="267"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="17.33"
         text-anchor="middle"
@@ -4573,7 +5047,7 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
         stroke-width="3.61"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="17.33"
         text-anchor="middle"
@@ -4590,7 +5064,7 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
         stroke-width="3.61"
       />
       <text
-        class="_etikett_a7e2bf"
+        class="_etikett_a7e2bf _etikettPaOfylld_a7e2bf"
         dominant-baseline="central"
         font-size="11.56"
         text-anchor="middle"
@@ -4621,26 +5095,26 @@ exports[`ett exempel per spelform > 11mot11 i storleken normal 1`] = `
     <g>
       <circle
         class="_boll_a7e2bf"
-        cx="350"
-        cy="70"
+        cx="355.32"
+        cy="75.32"
         r="5.06"
         stroke-width="1.2"
       />
       <line
         class="_bollKryss_a7e2bf"
         stroke-width="1.2"
-        x1="346.46"
-        x2="353.54"
-        y1="66.46"
-        y2="73.54"
+        x1="351.78"
+        x2="358.86"
+        y1="71.78"
+        y2="78.86"
       />
       <line
         class="_bollKryss_a7e2bf"
         stroke-width="1.2"
-        x1="346.46"
-        x2="353.54"
-        y1="73.54"
-        y2="66.46"
+        x1="351.78"
+        x2="358.86"
+        y1="78.86"
+        y2="71.78"
       />
     </g>
   </g>

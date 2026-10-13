@@ -20,6 +20,7 @@ import {
   areaFrame,
   decimal,
   direction,
+  distance,
   symbolDiameter,
   toDrawn,
   u,
@@ -90,6 +91,17 @@ type SketchObject = Planskissdata['objekt'][number];
 const LABEL_SIZE = 0.6;
 /** En ruta eller zon vars båda sidor är högst så här många `D` räknas som en symbol. */
 const SMALL_RECT = 2;
+/**
+ * Gräsrandens bredd som andel av bildens bredd: 9 enheter av 120 i referensskissen
+ * (designsystem.md avsnitt 10). Ränderna bär ingen information.
+ */
+const GRASS_STRIPE_SHARE = 0.075;
+/**
+ * En boll vars mitt ligger närmare spelarens mitt än så här många `D` ligger på spelaren och
+ * kan täcka etiketten: halva symbolen plus bollens radie (0,175 D) med lite luft. Bollen
+ * flyttas då ut till just det avståndet.
+ */
+const BALL_ON_PLAYER = 0.75;
 
 /** Rutan runt ett mål: stolparna och nätet bakom mållinjen. */
 function goalBox(
@@ -148,8 +160,53 @@ function goalWidth(
   return GOAL_WIDTHS[spelform ?? item.storlek];
 }
 
+/**
+ * Var ett objekt ritas, i den ritade ytans meter. Allt ritas där skissen säger, utom en boll
+ * som ligger på en spelare med etikett: den flyttas ut till spelarens kant, i samma riktning
+ * som den låg från spelarens mitt, så att den inte täcker etiketten (UX-fynd 8, 2026-10-12).
+ * Ligger bollen mitt på spelaren flyttas den snett nedåt höger, vid fötterna. I miniatyren,
+ * som saknar etiketter, ritas bollen där skissen säger.
+ */
+function objectPlacer(sketch: Planskissdata, frame: AreaFrame, d: number, detail: boolean) {
+  const labelled = sketch.objekt.flatMap((item) =>
+    item.typ === 'spelare' && ((item.etikett ?? '').length > 0 || item.malvakt === true)
+      ? [toDrawn(frame, item)]
+      : [],
+  );
+  const reach = d * BALL_ON_PLAYER;
+  return (item: SketchObject): Point => {
+    const point = toDrawn(frame, item);
+    if (item.typ !== 'boll' || !detail) {
+      return point;
+    }
+    let nearest: Point | null = null;
+    for (const candidate of labelled) {
+      if (
+        distance(candidate, point) < reach &&
+        (nearest === null || distance(candidate, point) < distance(nearest, point))
+      ) {
+        nearest = candidate;
+      }
+    }
+    if (nearest === null) {
+      return point;
+    }
+    const away = distance(nearest, point);
+    const dir =
+      away > 0.01
+        ? { x: (point.x - nearest.x) / away, y: (point.y - nearest.y) / away }
+        : { x: Math.SQRT1_2, y: Math.SQRT1_2 };
+    return { x: nearest.x + dir.x * reach, y: nearest.y + dir.y * reach };
+  };
+}
+
 /** Rörelsernas banor i den ritade ytans meter, kortade vid symbolernas kanter (avsnitt 3). */
-function movementPaths(sketch: Planskissdata, frame: AreaFrame, d: number) {
+function movementPaths(
+  sketch: Planskissdata,
+  frame: AreaFrame,
+  d: number,
+  place: (item: SketchObject) => Point,
+) {
   const byId = new Map<string, SketchObject>();
   for (const item of sketch.objekt) {
     if (item.id !== undefined) {
@@ -159,7 +216,7 @@ function movementPaths(sketch: Planskissdata, frame: AreaFrame, d: number) {
   const resolve = (end: { objekt: string } | { x: number; y: number }) => {
     if ('objekt' in end) {
       const target = byId.get(end.objekt);
-      return target === undefined ? null : { at: toDrawn(frame, target), edge: edgeOf(target, d) };
+      return target === undefined ? null : { at: place(target), edge: edgeOf(target, d) };
     }
     return { at: toDrawn(frame, end), edge: 0 };
   };
@@ -247,6 +304,7 @@ export function Planskiss({
     wavePoints: wavePointBudget(
       (skiss.rorelser ?? []).filter((item) => item.typ === 'dribbling').length,
     ),
+    stripe: (drawn.langd + 2 * MARGIN) * GRASS_STRIPE_SHARE,
   };
   const titleId = `${instansId}-titel`;
   const descId = `${instansId}-beskrivning`;
@@ -257,6 +315,7 @@ export function Planskiss({
     lines: ReactElement[];
     front: ReactElement[];
   } = { back: [], lines: [], front: [] };
+  const place = objectPlacer(skiss, frame, d, ctx.detail);
   // Symbolernas rutor och etiketterna som ska placeras runt dem (fynd C, etiketter.ts).
   const obstacles: Box[] = [];
   const requests: { request: LabelRequest; key: string; className?: string }[] = [];
@@ -376,7 +435,7 @@ export function Planskiss({
         break;
       case 'boll':
         // Bollarna ritas sist, ovanpå spelarna, se nedan.
-        obstacles.push(around(at(item), d * 0.2));
+        obstacles.push(around(place(item), d * 0.2));
         break;
     }
   });
@@ -389,12 +448,12 @@ export function Planskiss({
 
   skiss.objekt.forEach((item, index) => {
     if (item.typ === 'boll') {
-      layers.front.push(ball(ctx, at(item), `b${index}`));
+      layers.front.push(ball(ctx, place(item), `b${index}`));
     }
   });
 
   const movementLabels: { request: LabelRequest; key: string }[] = [];
-  movementPaths(skiss, frame, d).forEach((shape, index) => {
+  movementPaths(skiss, frame, d, place).forEach((shape, index) => {
     const element = movement(ctx, shape, `r${index}`);
     if (element === null) {
       return;
@@ -503,6 +562,7 @@ export function Planskiss({
     });
   }
 
+  const bleed = Math.max(drawn.langd, drawn.bredd) + 2 * MARGIN;
   const viewBox = [
     u(-MARGIN),
     u(-MARGIN),
@@ -520,7 +580,28 @@ export function Planskiss({
       <title id={titleId}>{sketchTitle(titel)}</title>
       <desc id={descId}>{sketchDescription(skiss, frame, players)}</desc>
       {patternDefs(ctx, usedPatterns(skiss))}
+      {/* Marginalen runt ytan är gräs i planeringsläget, så att vita linjer, köer och mål
+          utanför ytan syns. Den räcker en hel bildbredd utanför bildytan, så att den också
+          fyller miniatyrens ruta när skissens proportioner inte är 4:3 (SVG:n klipper vid
+          sin egen kant). I planläget och utskriften ritas den inte (designsystem.md 10). */}
+      <rect
+        className={styles.marginal}
+        x={u(-MARGIN - bleed)}
+        y={u(-MARGIN - bleed)}
+        width={u(drawn.langd + 2 * MARGIN + 2 * bleed)}
+        height={u(drawn.bredd + 2 * MARGIN + 2 * bleed)}
+      />
       <rect className={styles.yta} x={0} y={0} width={u(drawn.langd)} height={u(drawn.bredd)} />
+      {/* Ränderna ligger ovanpå den enfärgade ytan, så att mönstrets skarvar aldrig släpper
+          igenom bakgrunden. De ritas bara på gräset, inte i planläget eller utskriften. */}
+      <rect
+        className={styles.rander}
+        x={0}
+        y={0}
+        width={u(drawn.langd)}
+        height={u(drawn.bredd)}
+        fill={`url(#${ctx.ids.grass})`}
+      />
       <g>{layers.back}</g>
       <g>{layers.lines}</g>
       <g>{layers.front}</g>

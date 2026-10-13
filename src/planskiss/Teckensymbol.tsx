@@ -114,6 +114,8 @@ export function Teckensymbol({
     detail: false,
     ids: patternIds(`${instansId}-tf-${kind}`),
     wavePoints: MAX_PATH_POINTS,
+    // En rand som är bredare än rutan, så att symbolen står på en jämn gräsyta.
+    stripe: BOX.langd,
   };
   const needed = {
     keeper: new Set<Team>(kind === 'malvakt' ? [team] : []),
@@ -129,6 +131,8 @@ export function Teckensymbol({
       aria-hidden="true"
     >
       {patternDefs(ctx, needed)}
+      {/* Symbolen står på gräs, som i skissen, så att de vita linjerna syns mot kortet. */}
+      <rect className={styles.marginal} x={0} y={0} width={u(BOX.langd)} height={u(BOX.bredd)} />
       {symbol(ctx, kind, team)}
     </svg>
   );

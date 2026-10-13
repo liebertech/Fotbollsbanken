@@ -1,5 +1,5 @@
 /*
- * Planskissens färger (ADR 0012 avsnitt 5, designsystem.md avsnitt 2 och 8).
+ * Planskissens färger (ADR 0012 avsnitt 5, designsystem.md avsnitt 2, 8 och 10).
  *
  * Ritmotorn skriver aldrig en färg i ett attribut. Varje fyllning och kontur kommer från en
  * klass här, och klasserna pekar på fasta CSS-variabler. Ingen `style` byggs av data (RK-5,
@@ -8,62 +8,103 @@
  */
 
 /*
- * Ljust och mörkt läge (berättelse 06, kriterium 7). Skissen läser appens egna färgtokens ur
- * src/app/app.css, så att den alltid har samma tema som resten av appen, också om temat
- * senare kan väljas för hand (designsystem.md avsnitt 1). Värdet efter kommat används bara
- * om skissen visas utanför appen, till exempel i ett test.
+ * Planeringsläget, riktning A "Gräsmattan" (designsystem.md avsnitt 10, beslut 2026-10-12).
+ * Skissen ligger på en randig gräsyta med vita linjer i både ljust och mörkt läge, och har
+ * därför egna värden i stället för appens färgtokens.
  *
- * Kontrasten mot ytan: linjer och text har samma färg som appens brödtext (minst 15:1 i båda
- * lägena). Lag A:s gröna och konens röda klarar 3:1 för icke-text (WCAG 1.4.11) mot både
- * bakgrunden och den gröna ytan, enligt värdena i designsystem.md avsnitt 2.
+ * Kontrasten mot gräset (`--skiss-yta` / `--skiss-yta-2`), räknad med WCAG:s formel:
+ * - vita linjer, pilar och lag B:s kontur: 4,05 / 3,52 i ljust läge, 5,34 / 4,62 i mörkt,
+ * - den mörka kanten runt lag A och konen: 4,04 / 4,64 i ljust läge, 3,06 / 3,54 i mörkt,
+ *   alltså minst 3:1 för icke-text (WCAG 1.4.11). Gult och orange bär inget ensamt,
+ * - etiketternas text står alltid på vit halo eller på lag A:s gula fyllning: 16,3 och 11,3.
+ *
+ * `--skiss-marginal` är ytan utanför övningsytan. Den är gräs här och `none` i planläget och
+ * utskriften, så att de ritas exakt som förut.
  */
 .skiss {
-  --skiss-bakgrund: var(--color-bg, #ffffff);
-  --skiss-linje: var(--color-text, #1a1a1a);
-  --skiss-text: var(--color-text, #1a1a1a);
-  --skiss-tunn: var(--color-text-muted, #595959);
-  --skiss-halo: var(--color-bg, #ffffff);
-  --skiss-lag-a: var(--color-primary, #0b6b3a);
-  --skiss-pa-lag-a: var(--color-on-primary, #ffffff);
-  --skiss-lag-b: var(--color-text, #1a1a1a);
-  --skiss-ledare: var(--color-text, #1a1a1a);
-  --skiss-kon: var(--color-error, #b3261e);
-  --skiss-neutral: var(--color-warning-text, #6b4300);
-  /* Ytan är en svag grön ton, bara som bakgrund. Ingen information bärs av den. */
-  --skiss-yta: #eef4ee;
-  --skiss-monster: #8a938b;
+  --skiss-bakgrund: var(--color-surface, #ffffff);
+  --skiss-yta: #3e8e4f;
+  --skiss-yta-2: #46995a;
+  --skiss-marginal: var(--skiss-yta);
+  --skiss-linje: #ffffff;
+  --skiss-tunn: #ffffff;
+  --skiss-monster: #ffffff;
+  --skiss-lag-a: #ffd23f;
+  --skiss-lag-a-kant: #14231a;
+  --skiss-pa-lag-a: #14231a;
+  --skiss-lag-b: #ffffff;
+  --skiss-neutral: #ffffff;
+  --skiss-ledare: #ffffff;
+  --skiss-kon: #ff8a3d;
+  --skiss-text: #14231a;
+  --skiss-halo: #ffffff;
 
   display: block;
   max-width: 100%;
   height: auto;
+  /* Gräsmarginalen räcker utanför bildytan och klipps här, vid SVG:ns kant. */
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
   .skiss {
-    /* Mörkt läge, designsystem.md avsnitt 2.2. Tokens ovan byter själva värde. */
-    --skiss-bakgrund: var(--color-bg, #121212);
-    --skiss-linje: var(--color-text, #f2f2f2);
-    --skiss-text: var(--color-text, #f2f2f2);
-    --skiss-tunn: var(--color-text-muted, #c7c7c7);
-    --skiss-halo: var(--color-bg, #121212);
-    --skiss-lag-a: var(--color-primary, #57c98a);
-    --skiss-pa-lag-a: var(--color-on-primary, #121212);
-    --skiss-lag-b: var(--color-text, #f2f2f2);
-    --skiss-ledare: var(--color-text, #f2f2f2);
-    --skiss-kon: var(--color-error, #e4685d);
-    --skiss-neutral: var(--color-warning-text, #f5d98a);
-    --skiss-yta: #1e2620;
-    --skiss-monster: #7d877f;
+    /* Mörkt läge: lite ljusare gräs, så att den mörka kanten når 3:1 (avsnitt 10). */
+    --skiss-bakgrund: var(--color-surface, #16271c);
+    --skiss-yta: #357847;
+    --skiss-yta-2: #3b8350;
+    --skiss-marginal: var(--skiss-yta);
+    --skiss-linje: #ffffff;
+    --skiss-tunn: #ffffff;
+    --skiss-monster: #ffffff;
+    --skiss-lag-a: #ffd23f;
+    --skiss-lag-a-kant: #14231a;
+    --skiss-pa-lag-a: #14231a;
+    --skiss-lag-b: #ffffff;
+    --skiss-neutral: #ffffff;
+    --skiss-ledare: #ffffff;
+    --skiss-kon: #ff8a3d;
+    --skiss-text: #14231a;
+    --skiss-halo: #ffffff;
+  }
+}
+
+/*
+ * Det som bara gäller på gräset: kanten runt lag A och konen är minst 1,5 px på skärmen,
+ * oavsett skissens skala, och etiketter i ofyllda symboler får en ljus halo. Planläget och
+ * utskriften berörs inte.
+ */
+@media screen {
+  .skiss:not(.planlage):not(.utskrift) .lagA,
+  .skiss:not(.planlage):not(.utskrift) .konturA,
+  .skiss:not(.planlage):not(.utskrift) .kon {
+    stroke: var(--skiss-lag-a-kant);
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .skiss:not(.planlage):not(.utskrift) .rander {
+    display: inline;
+  }
+
+  .skiss:not(.planlage):not(.utskrift) .etikettPaOfylld {
+    paint-order: stroke;
+    stroke: var(--skiss-halo);
+    stroke-width: 0.25em;
+    stroke-linejoin: round;
   }
 }
 
 /* Planläget (inkrement 5): svart på vitt med kraftigare linjer, designsystem.md avsnitt 2.3. */
 .planlage {
   --skiss-yta: #ffffff;
+  --skiss-yta-2: #ffffff;
+  --skiss-marginal: none;
   --skiss-bakgrund: #ffffff;
   --skiss-linje: #000000;
   --skiss-tunn: #000000;
   --skiss-lag-a: #000000;
+  --skiss-lag-a-kant: #000000;
   --skiss-pa-lag-a: #ffffff;
   --skiss-lag-b: #000000;
   --skiss-neutral: #000000;
@@ -78,10 +119,13 @@
   /* Planläget i mörkt underläge: vitt på svart med samma kontrast (avsnitt 2.3). */
   .planlage {
     --skiss-yta: #000000;
+    --skiss-yta-2: #000000;
+    --skiss-marginal: none;
     --skiss-bakgrund: #000000;
     --skiss-linje: #ffffff;
     --skiss-tunn: #ffffff;
     --skiss-lag-a: #ffffff;
+    --skiss-lag-a-kant: #ffffff;
     --skiss-pa-lag-a: #000000;
     --skiss-lag-b: #ffffff;
     --skiss-neutral: #ffffff;
@@ -96,10 +140,13 @@
 /* Utskriften (inkrement 6) och all utskrift: svart, vitt och grått (avsnitt 5). */
 .utskrift {
   --skiss-yta: #ffffff;
+  --skiss-yta-2: #ffffff;
+  --skiss-marginal: none;
   --skiss-bakgrund: #ffffff;
   --skiss-linje: #000000;
   --skiss-tunn: #404040;
   --skiss-lag-a: #000000;
+  --skiss-lag-a-kant: #000000;
   --skiss-pa-lag-a: #ffffff;
   --skiss-lag-b: #000000;
   --skiss-neutral: #000000;
@@ -113,10 +160,13 @@
 @media print {
   .skiss {
     --skiss-yta: #ffffff;
+    --skiss-yta-2: #ffffff;
+    --skiss-marginal: none;
     --skiss-bakgrund: #ffffff;
     --skiss-linje: #000000;
     --skiss-tunn: #404040;
     --skiss-lag-a: #000000;
+    --skiss-lag-a-kant: #000000;
     --skiss-pa-lag-a: #ffffff;
     --skiss-lag-b: #000000;
     --skiss-neutral: #000000;
@@ -128,34 +178,59 @@
   }
 }
 
+/*
+ * Ytan är enfärgad, och gräsmönstret i fill-attributet ligger i ett eget lager ovanpå den.
+ * Lagret visas bara på gräset (se `@media screen` ovan). I planläget och utskriften finns det
+ * inte alls, så ytan ritas exakt som förut. Där har ränderna dessutom samma färg som ytan.
+ */
+.rander {
+  display: none;
+}
+
+.gras1 {
+  fill: var(--skiss-yta);
+}
+
+.gras2 {
+  fill: var(--skiss-yta-2);
+}
+
+.marginal {
+  fill: var(--skiss-marginal);
+}
+
 .yta {
   fill: var(--skiss-yta);
 }
 
-/* Spelarna. Lag A är fylld, lag B och neutrala är ofyllda (ADR 0012 avsnitt 2). */
+/*
+ * Spelarna. Lag A är fylld, lag B och neutrala är ofyllda (ADR 0012 avsnitt 2). En ofylld
+ * symbol fylls med ytans färg, så att den syns som en kontur på gräset och ändå täcker
+ * linjerna bakom sig. I planläget och utskriften är ytans färg bakgrundens, som förut.
+ */
 .spelare {
   stroke-linejoin: round;
 }
 
 .lagA {
   fill: var(--skiss-lag-a);
-  stroke: var(--skiss-lag-a);
+  stroke: var(--skiss-lag-a-kant);
 }
 
 .lagB {
-  fill: var(--skiss-bakgrund);
+  fill: var(--skiss-yta);
   stroke: var(--skiss-lag-b);
 }
 
 .lagNeutral {
-  fill: var(--skiss-bakgrund);
+  fill: var(--skiss-yta);
   stroke: var(--skiss-neutral);
 }
 
 /* Målvakten fylls med randmönstret i fill-attributet. En klass med fill skulle vinna över
    attributet, så målvaktens klasser sätter bara konturen. */
 .konturA {
-  stroke: var(--skiss-lag-a);
+  stroke: var(--skiss-lag-a-kant);
 }
 
 .konturB {
@@ -178,8 +253,9 @@
   fill: var(--skiss-neutral);
 }
 
+/* Målvaktens andra rand är ytan, så att randen syns som ofylld också på gräset. */
 .randBakgrund {
-  fill: var(--skiss-bakgrund);
+  fill: var(--skiss-yta);
 }
 
 .riktning {
@@ -187,8 +263,9 @@
   stroke-linecap: round;
 }
 
+/* Ledaren är ofylld, som lag B. */
 .ledare {
-  fill: var(--skiss-bakgrund);
+  fill: var(--skiss-yta);
   stroke: var(--skiss-ledare);
   stroke-linejoin: round;
 }
@@ -197,13 +274,14 @@
   fill: var(--skiss-kon);
 }
 
+/* Bollen är ljus med mörk kant och mörkt kryss, så att den syns också ovanpå lag A. */
 .boll {
-  fill: var(--skiss-bakgrund);
-  stroke: var(--skiss-linje);
+  fill: var(--skiss-halo);
+  stroke: var(--skiss-lag-a-kant);
 }
 
 .bollKryss {
-  stroke: var(--skiss-linje);
+  stroke: var(--skiss-lag-a-kant);
 }
 
 .platta {
@@ -266,9 +344,10 @@
   fill: var(--skiss-linje);
 }
 
+/* Ordningsringen är ljus med mörk kant, så att den mörka siffran går att läsa. */
 .ordningRing {
-  fill: var(--skiss-bakgrund);
-  stroke: var(--skiss-linje);
+  fill: var(--skiss-halo);
+  stroke: var(--skiss-lag-a-kant);
 }
 
 /* Text ur skissen isoleras från omgivande skrivriktning (RK-7). */
