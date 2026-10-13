@@ -18,6 +18,9 @@ Markeringar: **[Oförändrat]**, **[Skärpt]** och **[Nytt]** som i berättelse 
 6. **[Nytt]** **Givet** att en klubb skapas, **när** klubben skapas, **då** sker det i en enda sammanhållen åtgärd: klubben och personens koppling som klubbadmin skapas tillsammans eller inte alls. En person kan inte själv lägga till sig som klubbadmin i en befintlig klubb, och det finns ingen väg att skapa en klubb utan en klubbadmin. **Test:** direkt skrivning mot klubb- och medlemstabellerna nekas för en inloggad person; bara funktionen för att skapa klubb fungerar.
 7. **[Nytt]** **Givet** att nätet saknas, **när** personen försöker skapa klubben, **då** visas kravet på anslutning och det som skrivits ligger kvar (`texter.md` avsnitt 15).
 
+8. **[Nytt 2026-10-13, S-46]** **Givet** att en klubb har flera klubbadminer, **när** en klubbadmin försöker ta bort en annan klubbadmin, ändra någon annans `is_admin` eller ta bort en klubbadmins medlemskap (direkt mot databasen eller via gränssnittet), **då** nekas det. Det enda som går är att utse en ny via funktionen i kriterium 4. Spärren ligger i databasen. **Test:** ett test per väg (ändra `is_admin`, ta bort medlemskap) som klubbadmin A mot klubbadmin B i samma klubb.
+9. **[Nytt 2026-10-13, S-52]** **Givet** att en klubb skapas, **då** sätts fältet för vem som skapat den av databasen till den inloggade personen och kan inte sättas till någon annan.
+
 ## Beroenden
 
 - 08 (registrera konto och logga in).
@@ -36,3 +39,4 @@ Markeringar: **[Oförändrat]**, **[Skärpt]** och **[Nytt]** som i berättelse 
 | Datum | Ändring |
 |---|---|
 | 2026-10-13 | Skärpt inför inkrement 3. Kriterium 2–4 gjorda testbara och rättade mot ADR 0003 (normaliserad namnjämförelse, anrop kräver inloggning, den som utses måste redan vara medlem). Nya kriterier 5–7: hjälptext och längdgräns för klubbnamn (S-20, S-08), att klubben skapas sammanhållet och inte kan kringgås, och kravet på nät. Kriterium 1 är oförändrat. |
+| 2026-10-13 (säkerhetsgranskning av kriterierna) | Nya kriterier 8 (S-46: ingen klubbadmin kan ta bort en annan) och 9 (S-52: skaparfältet kan inte förfalskas). |

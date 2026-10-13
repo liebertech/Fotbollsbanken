@@ -18,6 +18,11 @@ Lagringstiderna är beslutade i ADR 0003 (*Lagringstider*, S-19, användarens be
 6. **Givet** att en rad rensas, **då** påverkas inga andra klubbars eller lags rader, och inga rader som inte uppfyller kriterium 1–4 raderas (negativa tester).
 7. **Givet** att personuppgifter finns i säkerhetskopior i upp till 30 dagar (ADR 0002), **då** står det i integritetspolicyn (fas 5, se backlog). Det är ingen del av byggd funktion i det här inkrementet.
 
+8. **[Nytt 2026-10-13, S-41, beslut 5]** **Givet** att ett konto har skapats men koden aldrig bekräftats, **när** det har gått 24 timmar, **då** raderas kontot. **Test:** med förskjuten tid raderas ett obekräftat konto efter 25 timmar och ett bekräftat konto rörs inte.
+9. **[Nytt 2026-10-13, S-44, beslut 4]** **Givet** att Supabase Auths granskningslogg (IP, användaragent, troligen e-post) och sessionsdata behålls, **när** det har gått 90 dagar, **då** rensas posterna. Loggposter och spärrdata för ett raderat konto rensas med kontot. Brevos sändloggar omfattas av avtalskontrollen (backloggens kontrollista). Tiderna, och lagringstiden för redaktörshistoriken (`editor_events`), skrivs i en ny ADR (senior-systemutvecklare). **Test:** på samma sätt som kriterium 1.
+
+Kriterium 5 gäller även de nya rensningarna, och loggraderna får bara innehålla antal, inga personuppgifter.
+
 ## Beroenden
 
 - 05 (passen som tas bort), 10 (arkivering), 11 (inbjudningar), 26 (radering).
@@ -33,4 +38,4 @@ Lagringstiderna är beslutade i ADR 0003 (*Lagringstider*, S-19, användarens be
 
 ## Ändringar efter K2
 
-Nytt dokument 2026-10-13.
+Nytt dokument 2026-10-13. Samma dag tillkom kriterium 8 (S-41) och 9 (S-44), och kriterium 5 skärptes till att loggraderna bara har antal.

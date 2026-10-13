@@ -85,19 +85,19 @@ Status: utkast, väntar på godkännande (K4 inkrement 3). Acceptanskriterierna 
 
 | Berättelse och kriterier | MoSCoW | Anmärkning |
 |---|---|---|
-| 08 kriterium 1–14 | Must | 14 (mätning av mejlleveransen) är en redovisning, inget utfallskrav |
-| 09 kriterium 1–7 | Must | |
-| 10 kriterium 1–8 | Must | 6 (lagets ålder följer kalenderåret) kräver fotbollsexpertens bekräftelse |
-| 11 kriterium 1–12 | Must | |
-| 05 kriterium 1–13 | Must | 6 är markeringen `Session.swapped` som sparas med passet; 7 är slutkontrollen av lagrade pass |
+| 08 kriterium 1–16 | Must | 14 (mätning av mejlleveransen) är en redovisning, inget utfallskrav |
+| 09 kriterium 1–9 | Must | 8 (S-46) och 9 (S-52) nya efter säkerhetsgranskningen |
+| 10 kriterium 1–9 | Must | 6 (lagets ålder följer kalenderåret) kräver fotbollsexpertens bekräftelse |
+| 11 kriterium 1–13 | Must | |
+| 05 kriterium 1–13, 15–17 | Must | 6 är markeringen `Session.swapped` som sparas med passet; 7 är slutkontrollen av lagrade pass |
 | 05 kriterium 14 | Should | Osparat pass överlever omstart |
 | 06 kriterium 9 | Must | Ögonblicksbild av skissen, skärpt med tre tester |
-| 12 kriterium 1–5, 7–8 | Must | |
+| 12 kriterium 1–5, 7–10 | Must | |
 | 12 kriterium 6 | Should | Koppla personligt pass till lag i efterhand, godkänt 2026-10-13 |
-| 26 kriterium 1–14 | Must | Vad som prövas i inkrement 3 respektive 4 står i berättelsen |
-| 27 kriterium 1–6 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst en timme |
-| 28 kriterium 1–15 | Must | Ny berättelse, tvärgående säkerhetskrav |
-| 29 kriterium 1–3, 5–6 | Must | Ny berättelse |
+| 26 kriterium 1–16 | Must | Vad som prövas i inkrement 3 respektive 4 står i berättelsen |
+| 27 kriterium 1–7 | Must | Kriterium 2 och 4 rättade: andra enheter loggas ut inom högst en timme |
+| 28 kriterium 1–23 | Must | Ny berättelse, tvärgående säkerhetskrav |
+| 29 kriterium 1–3, 5–6, 8–9 | Must | Ny berättelse. 8 (obekräftade konton, S-41) och 9 (Auths loggar, S-44) nya efter säkerhetsgranskningen |
 | 29 kriterium 4 | Must, senast före K5 | Eget delsteg efter inkrement 3, utanför inkrementets K4 (beslut 2026-10-13) |
 | ESLint-uppgradering (F5) | Should | Se *Kända punkter* nedan |
 
@@ -172,6 +172,48 @@ Mejlleveransen (berättelse 08 kriterium 14) mäts så snart 3c är i staging, i
 - **Senior-systemutvecklare:** hur ett sparat pass refererar till en bankövning när banken i inkrement 3 fortfarande är inbyggd (ADR 0003 har `exercise_id` mot `exercises`; passet bär ögonblicksbilden och `source_id`), antal och tid för gränsen för felaktiga försök med inbjudningsnyckel (11 kriterium 7), vilka tabeller som skapas i första migrationen, och om cache-lagret för offline byggs i inkrement 3 (S-12 förutsätter det).
 - **Säkerhetsagenten:** granskning av biträdesavtalen enligt ovan, granskning av de faktiska migrationerna mot S-01, S-02, S-06 och S-16 före K4, och ställningstagande till restrisken med lokal kopia på en borttappad enhet (berättelse 27).
 
+### Säkerhetsgranskningen av kriterierna och villkor för produktion (2026-10-13)
+
+Säkerhetsagenten granskade kriterierna (`docs/sakerhet/granskning-inkrement-3-krav.md`, fynd S-38–S-58). Användaren godkände rekommendationerna i avsnitt 6 samma dag, och varje fynd med åtgärd är infört som ett skärpt eller nytt kriterium, markerat med S-numret:
+
+| Fynd | Hör till |
+|---|---|
+| S-38 storleksgränser för pass | 05.15, 28.17 |
+| S-39 förfalskad ögonblicksbild (kontroll i databasen, restrisk godtagen) | 05.7, 28.18 |
+| S-40 gräns per kod ersatt (8 siffror, 600 s, högst 10 verifieringar per 5 minuter, Turnstile; reserv 6 siffror struken) | 08.8 |
+| S-41 profil först när koden är bekräftad, obekräftade konton rensas efter 24 timmar | 08.1, 29.8 |
+| S-42 `anon` mot tabeller och vyer | 28.16 |
+| S-43 allmänt test av raderat id, skrivning med gammal nyckel | 26.15 |
+| S-44 Auths logg rensas efter 90 dagar | 29.9 |
+| S-45 staging stängd med "Before User Created" och vitlista | 08.15, 28.14 |
+| S-46 ingen klubbadmin kan ta bort en annan | 09.8, 28.23 |
+| S-47 kontaktväg och rutin inom 30 dagar vid spärrad radering | 26.16 |
+| S-48 information enligt artikel 14 i mejlen | 08.11, 11.1 |
+| S-49 `script-src`, förbud mot `'unsafe-inline'` | 28.12 |
+| S-50 restrisk för API:et | 08.7 |
+| S-51 borttagna pass | 05.16, 12.10 |
+| S-52 skaparfält | 05.17, 09.9, 11.13, 12.9, 28.19 |
+| S-53 gräns per konto för inbjudningsnycklar | 11.7 |
+| S-54 styrtecken i namn | 08.16, 10.9, 05.17, 28.20 |
+| S-55 Realtime och GraphQL | 28.21 |
+| S-57 sessionskontroll i åtkomstreglerna, prövas i 3b | 27.7, 28.22 |
+
+**Nya ADR:er som följer (senior-systemutvecklare):** (1) ersättningsskydd för gränsen per kod (S-40), (2) kompletterade lagringstider: obekräftade konton, Auths loggar, `editor_events`, spärrdata (S-41, S-43, S-44), (3) hur ett sparat pass refererar till en bankövning medan banken är inbyggd, (4) sessionskontroll i RLS (S-57) om den behålls och gräns per konto för inbjudningsnycklar (S-53).
+
+**Testadresser (beslut 9):** innan Brevos avtal är bekräftat skickas e-post bara till användarens egna adresser och till testare som har samtyckt. Det gäller också mätningen av leveransen (berättelse 08, kriterium 14).
+
+| # | Uppgift | Prioritet |
+|---|---|---|
+| – | Registerförteckning enligt artikel 30.1 (undantaget i 30.5 gäller inte) (S-58) | Must, villkor för produktion |
+| – | Kontrollistan nedan, avsnitt 5 i säkerhetsgranskningen, bockas av innan riktiga personuppgifter läggs i produktion | Must, villkor för produktion |
+
+**Kontrollista före riktiga personuppgifter i produktion** (avsnitt 5 i `granskning-inkrement-3-krav.md`). Användaren bockar av A, B och C, säkerhetsagenten D.
+
+- **A. Biträdesavtal:** Supabase (omfattar Free, underbiträdeslistan läst), Cloudflare (underbiträdeslistan läst, global behandling noterad), Brevo (inte verifierat: ladda ned avtalet, bekräfta lagringsort i EU, underbiträden, överföringar, hur länge sändloggar och mejlinnehåll sparas, att transaktionsmejl inte skapar kontakter; går det inte byts leverantören enligt K2-beslut 7), GitHub (bara om säkerhetskopiorna läggs där, krypterade).
+- **B. Lagringsort:** skärmdump av regionen för Supabase produktion och staging, Brevos lagringsort bekräftad i avtalet, överföringen via Cloudflare dokumenterad med standardavtalsklausuler.
+- **C. Dokument och rutiner:** integritetspolicy (nåbar utan inloggning och länkad från inloggningen och mejlen; den ansvarige och kontaktväg, uppgifter, ändamål och rättslig grund, biträden och överföringar, lagringstider, att delat material blir kvar avidentifierat, rättigheter, rätten att klaga hos IMY, att inte skriva namn på spelare, att redaktörer ser inskickade övningar, att ett passnamn med den raderades eget namn kan bli kvar i lagets pass), registerförteckning (S-58), intresseavvägning för inbjudnas adresser och säkerhetsloggar, rutin för begäranden från registrerade inom en månad (S-47), rutin för personuppgiftsincidenter (anmälan till IMY inom 72 timmar, utsedd ansvarig).
+- **D. Teknik, verifierad mot produktionsprojektet:** Auth-inställningarna enligt S-40 med Turnstile på och beslutad livstid för åtkomstnyckeln, migrationerna granskade mot S-01, S-02, S-06, S-16 och S-42 med gröna pgTAP-tester, CSP enligt S-49 och ingen servicenyckel i bygget eller CI, staging stängd (S-45), `delete_my_account` provad hela vägen i produktion, `pg_cron` aktivt med loggande rensning, rekommenderat: krypterade säkerhetskopior med provad återläsning.
+
 ## Inkrement 4 – Egna och inskickade övningar med redaktörskö
 
 | # | Berättelse | Prioritet |
@@ -182,6 +224,7 @@ Mejlleveransen (berättelse 08 kriterium 14) mäts så snart 3c är i staging, i
 | 16 | [Redaktören granskar en inskickad övning](berattelser/16-redaktor-granskar-inskickad-ovning.md) | Must |
 | 17 | [Åtgärda och skicka in igen](berattelser/17-atgarda-och-skicka-in-igen.md) | Must |
 | 18 | [Utse ytterligare redaktör](berattelser/18-utse-ytterligare-redaktor.md) | Should |
+| – | Berättelse om att flytta redaktörens ägarskap i appen (`transfer_editor_ownership`, ADR 0003; behövs för att ägaren ska kunna radera sitt konto, berättelse 26 kriterium 10). Tills den är byggd visar spärrmeddelandet "Kontakta den som driver Fotbollsbanken". Ny 2026-10-13 | Must i inkrement 4 (berättelsen skrivs då) |
 | – | Formuläret för egna övningar frågar rakt ut om övningen innehåller nickning och märker den då med `nickspel` (beslut vid K1, punkt 13) | Could |
 | – | Kommentera/diskutera en inskickad övning innan beslut | Could |
 | – | Statistik över hur många övningar en klubb har fått godkända | Could |

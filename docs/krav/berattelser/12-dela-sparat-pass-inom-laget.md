@@ -16,8 +16,11 @@ Markeringar: **[Oförändrat]**, **[Skärpt]** och **[Nytt]** som i berättelse 
 4. **[Nytt]** **Givet** att en ledare är ledare i lag A men inte i lag B i samma klubb, **när** ledaren tittar bland sparade pass, **då** ser ledaren aldrig lag B:s pass, och inte klubbens övriga ledares personliga pass (berättelse 11, kriterium 2; ADR 0003). **Test:** med två klubbar och två lag i en av dem ger direkta anrop noll rader för allt som ligger utanför ledarens egna pass och egna lag.
 5. **[Nytt]** **Givet** att ledaren är ledare i flera lag, **när** passet sparas, **då** kan ledaren välja vilket lag passet delas med, och passet hör till ett lag (eller inget), aldrig till flera.
 6. **[Nytt, Should]** **Givet** att ett sparat pass är personligt, **när** ledaren kopplar det till ett lag ledaren själv är med i, **då** blir passet synligt för lagets ledare. Ledaren kan inte koppla ett pass till ett lag hen inte är med i, och kan inte flytta ett lagpass till ett annat lag eller göra det personligt (flytt av ägarskap kräver skydd i databasen, ADR 0003 princip 8). Beslutat av användaren 2026-10-13 (Should). Ingen skiss beskriver ännu hur det görs; ux-designern ritar det.
-7. **[Nytt]** **Givet** att ett lag är arkiverat (berättelse 10, kriterium 3), **när** ledare i laget sparar nya pass, **då** går laget inte att välja. Redan sparade pass raderas inte av arkiveringen.
+7. **[Nytt]** **Givet** att ett lag är arkiverat (berättelse 10, kriterium 3), **när** ledare i laget sparar nya pass, **då** går laget inte att välja. Redan sparade pass raderas inte av arkiveringen och kan läsas och skrivas ut under fliken "Arkiverade lag" (berättelse 10, kriterium 3) tills rensningen; de kan inte sparas om eller kopplas till något nytt.
 8. **[Nytt]** **Givet** att en ledare i laget tar bort ett lagpass (berättelse 05, kriterium 13), **då** försvinner det för alla i laget och rensas hårt efter 90 dagar. Alla ledare i laget får ta bort lagets pass, även andras (användarens beslut 2026-10-13). Appen ber om en bekräftelse som säger att passet försvinner för alla i laget.
+
+9. **[Nytt 2026-10-13, S-52]** **Givet** att ett pass sparas, **då** sätts fältet för vem som sparade det av databasen till den inloggade personen och kan inte sättas till någon annan.
+10. **[Nytt 2026-10-13, S-51]** **Givet** att ett lagpass har tagits bort, **när** en annan ledare i laget frågar efter det direkt mot databasen, **då** ger anropet noll rader, och passet saknas i andra ledares lokala kopia efter nästa synk.
 
 ## Beroenden
 
@@ -38,3 +41,4 @@ Markeringar: **[Oförändrat]**, **[Skärpt]** och **[Nytt]** som i berättelse 
 | Datum | Ändring |
 |---|---|
 | 2026-10-13 | Skärpt inför inkrement 3 mot ADR 0003, skiss 05 och säkerhetsgranskning K2 (S-16). Kriterium 1–3 preciserade och gjorda testbara; kriterium 3 kompletterat så att namnet på den som lämnat laget inte visas. Nya kriterier 4–8: avgränsning mot andra lag i klubben, val av lag, koppling i efterhand (Should, väntar på beslut), arkiverade lag och borttagning av lagpass. |
+| 2026-10-13 (beslut och säkerhetsgranskning) | Kriterium 7: arkiverade lags pass läsbara och utskrivbara. Nya 9 (S-52) och 10 (S-51). |
